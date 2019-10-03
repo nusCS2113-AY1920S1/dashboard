@@ -1,0 +1,8674 @@
+[
+  {
+    "path": "src/main/java/Parser.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "import command.ByeCommand;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "import command.Command;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "import command.DeadlineCommand;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "import command.DeleteCommand;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "import command.DoAfterCommand;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "import command.DoWithinPeriodCommand;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "import command.DoneCommand;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "import command.EventCommand;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "import command.FindCommand;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "import command.FindFreeTimesCommand;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "import command.FixedDurationCommand;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "import command.ListCommand;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "import command.RecurringCommand;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "import command.SnoozeCommand;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "import command.TodoCommand;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "import command.UpcomingCommand;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "import command.ViewScheduleCommand;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import exception.DukeException;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.text.ParseException;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " * Parse input and execute respective user command."
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "public class Parser {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Converts user input into commands for Duke."
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @param input from user"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @return Command to be executed"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @throws DukeException if user enters wrong input format"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public static Command parse(String input) throws DukeException {"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        String[] splitStr \u003d input.split(\" \");"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        switch (splitStr[0]) {"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        case \"list\":"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return new ListCommand();"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        case \"bye\":"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return new ByeCommand();"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        case \"done\":"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return new DoneCommand(splitStr);"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        case \"deadline\":"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return new DeadlineCommand(input, splitStr);"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        case \"todo\":"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return new TodoCommand(input, splitStr);"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        case \"event\":"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return new EventCommand(input, splitStr);"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        case \"delete\":"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return new DeleteCommand(splitStr);"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        case \"find\":"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return new FindCommand(input, splitStr);"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        case \"upcoming\":"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return new UpcomingCommand();"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        case \"viewschedule\":"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "            return new ViewScheduleCommand(splitStr);"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        case \"snooze\":"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "            return new SnoozeCommand(input, splitStr);"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        case \"duration\" :"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return new FixedDurationCommand(input, splitStr);"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        case \"findfree\" :"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return new FindFreeTimesCommand(splitStr);"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "        case \"recurring\" :"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "            return new RecurringCommand(input, splitStr);"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "        case \"doafter\" :"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "            return new DoAfterCommand(input, splitStr);"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "        case \"dowithin\":"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "            return new DoWithinPeriodCommand(input, splitStr);"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        default:"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            throw new DukeException(\"☹ OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\");"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "Amir Azhar"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "zkchang97": 2,
+      "Amir Azhar": 1,
+      "wyinnnn": 5,
+      "AmosChan97": 18,
+      "-": 47,
+      "AmirAzhar": 2
+    }
+  },
+  {
+    "path": "src/main/java/command/DoAfterCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "package command;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "import exception.DukeException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "import storage.Storage;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "import task.TaskList;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "import ui.Ui;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "import java.io.IOException;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "import task.DoAfter;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": " * Command to add new DoAfter tasks to task list."
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "public class DoAfterCommand extends Command {"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "    String[] splitD;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "     * Creates new To Do to be done after a specific task/time."
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "     * @param input input from user."
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "     * @param splitStr tokenized input."
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "     * @throws DukeException if description is empty or format not followed."
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "    public DoAfterCommand(String input, String[] splitStr) throws DukeException {"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "        if (splitStr.length \u003d\u003d 1) {"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "            throw new DukeException(\"☹ OOPS!!! The description of todo cannot be empty.\");"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "        String tempD \u003d input.substring(8);"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "        if (!tempD.contains(\" /after \")) {"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "            throw new DukeException(\"☹ OOPS!!! Please add a time for the task.\");"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "        this.splitD \u003d tempD.split(\" /after \");"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "     * @param tasks task list."
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "     * @param ui user interface."
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "     * @param storage handles read write of text file."
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "     * @throws IOException"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "    public void execute(TaskList tasks, Ui ui, Storage storage) throws IOException {"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "        DoAfter after \u003d new DoAfter(splitD[0], splitD[1]);"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "        tasks.add(after);"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "        storage.saveToFile(tasks);"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "        ui.showString(\"Got it. I\u0027ve added this task:\\n\" +"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "                after.toString() + \"\\n\" +"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "                \"Now you have \" + tasks.size() + \" task(s) in the list\");"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "zkchang97": 49
+    }
+  },
+  {
+    "path": "src/main/java/command/DoWithinPeriodCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "package command;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "import exception.DukeException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "import storage.Storage;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "import task.DoWithinPeriod;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "import task.TaskList;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "import ui.Ui;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "import java.io.IOException;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": " * command.Command to add period for task to be completed within."
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "public class DoWithinPeriodCommand extends Command{"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "    private String[] doWithin;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "    private String[] periods;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "     * Create new To Do with fixed duration."
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "     * @param input from user"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "     * @param splitStr tokenized input"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "     * @throws DukeException if description empty or format not followed"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "    public DoWithinPeriodCommand(String input, String[] splitStr) throws DukeException {"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "        if (splitStr.length \u003d\u003d 1) {"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "            throw new DukeException(\"☹ OOPS!!! The description of todo with duration cannot be empty.\");"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "        String tempD \u003d input.substring(8);"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "        if (!tempD.contains(\" /period \")) {"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "            throw new DukeException(\"☹ OOPS!!! Please add a period for the task to be completed within.\");"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "        if (!tempD.contains(\" /til \")) {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "            throw new DukeException(\"☹ OOPS!!! Please enter task period correctly: \u003cdate_1\u003e /til \u003cdate_2\u003e \");"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "        this.doWithin \u003d tempD.split(\" /period \");"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "        this.periods \u003d doWithin[1].split(\"/til\");"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "    public void execute(TaskList tasks, Ui ui, Storage storage) throws IOException {"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "        DoWithinPeriod duration \u003d new DoWithinPeriod(doWithin[0], periods[0], periods[1]);"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "        tasks.add(duration);"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "        storage.saveToFile(tasks);"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "        ui.showString(\"Got it. I\u0027ve added this task:\\n\""
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "                + duration.toString() + \"\\n\""
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "                + \"Now you have \" + tasks.size() + \" task(s) in the list\");"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "wyinnnn": 52
+    }
+  },
+  {
+    "path": "src/main/java/command/DoneCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "package command;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import exception.DukeException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import storage.Storage;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "import task.Recurring;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import task.TaskList;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import ui.Ui;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.io.IOException;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "import java.text.SimpleDateFormat;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "import java.util.Calendar;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "import java.util.Date;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "import java.util.Locale;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " * command.Command to mark task as done"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "public class DoneCommand extends Command {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private int num;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Marks task as done."
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @param splitStr tokenized user input"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @throws DukeException if format not followed"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public DoneCommand(String[] splitStr) throws DukeException {"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        if (splitStr.length \u003d\u003d 1) {"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            throw new DukeException(\"☹ OOPS!!! Please add the index of the task you have completed\");"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        num \u003d Integer.parseInt(splitStr[1]);"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        if (num \u003c 1 || num \u003e tasks.size()) {"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            throw new DukeException(\"☹ OOPS!!! That task is not in your list\");"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        tasks.get(num - 1).markAsDone();"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "        if (tasks.get(num - 1).toString().contains(\"[R]\")) {"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "            String tempDesc \u003d tasks.get(num - 1).getDesc();"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "            String tempFreq \u003d tasks.get(num - 1).getFreq();"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "            Date originalDate \u003d tasks.get(num - 1).getBy();"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "            SimpleDateFormat sdfDate \u003d new SimpleDateFormat(\"dd/MM/yyyy hhmm\");"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "            if (tempFreq.equals(\"DAY\")) {"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "                Calendar c \u003d Calendar.getInstance();"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "                c.setTime(originalDate);"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "                c.add(Calendar.DAY_OF_MONTH, 1);"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "                Date newDate \u003d c.getTime();"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "                String strDate \u003d sdfDate.format(newDate);"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "                Recurring recurring \u003d tasks.get(num - 1).recreate(tempDesc, strDate, tempFreq);"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "                tasks.add(recurring);"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "            } else if (tempFreq.equals(\"WEEK\")) {"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "                Calendar c \u003d Calendar.getInstance();"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "                c.setTime(originalDate);"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "                c.add(Calendar.WEEK_OF_YEAR, 1);"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "                Date newDate \u003d c.getTime();"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "                String strDate \u003d sdfDate.format(newDate);"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "                Recurring recurring \u003d tasks.get(num - 1).recreate(tempDesc, strDate, tempFreq);"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "                tasks.add(recurring);"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "            } else if (tempFreq.equals(\"MONTH\")) {"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "                Calendar c \u003d Calendar.getInstance();"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "                c.setTime(originalDate);"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "                c.add(Calendar.MONTH, 1);"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "                Date newDate \u003d c.getTime();"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "                String strDate \u003d sdfDate.format(newDate);"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "                Recurring recurring \u003d tasks.get(num - 1).recreate(tempDesc, strDate, tempFreq);"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "                tasks.add(recurring);"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "            System.out.println(\"I\u0027ve also repeated the same task for the following \" + tempFreq.toLowerCase() + \"!\");"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        storage.saveToFile(tasks);"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "-": 36,
+      "AmirAzhar": 38
+    }
+  },
+  {
+    "path": "src/main/java/command/FindFreeTimesCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "package command;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import exception.DukeException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import storage.Storage;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import task.Event;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import task.Task;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import task.TaskList;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import ui.Ui;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.io.IOException;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "import java.util.Calendar;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.util.Comparator;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "import java.util.Date;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "public class FindFreeTimesCommand extends Command {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "    private int hours;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "    private ArrayList\u003cEvent\u003e scheduleList;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "    private Date freeTime;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "    private Date dateNow;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Command to find the next free n number of hours in the schedule."
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @param splitStr from user"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public FindFreeTimesCommand(String[] splitStr) throws DukeException {"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        if (splitStr.length \u003d\u003d 1) {"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            throw new DukeException(\"☹ OOPS!!! Please input the number of hours of free time you need\");"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "            hours \u003d Integer.parseInt(splitStr[1]);"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        } catch (NumberFormatException e) {"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "            throw new DukeException(\"☹ OOPS!!! Number of hours needs to be an integer!\");"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        if (hours \u003c 1) {"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "            throw new DukeException(\"☹ OOPS!!! Please enter a number \u003e 0\");"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        scheduleList \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        dateNow \u003d new Date(System.currentTimeMillis());"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException {"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        for (Task i : tasks) {"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            if (i.getClass() \u003d\u003d Event.class) {"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "                Event temp \u003d (Event) i;"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "                if (temp.getDateTimeStart().after(dateNow) || temp.getDateTimeEnd().after(dateNow)) {"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "                    scheduleList.add((Event) i);"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        scheduleList.sort("
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                Comparator.comparing(Task::getDateTime));"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        Date timeUntil \u003d addHoursToDate(dateNow, this.hours);"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        if (scheduleList.isEmpty()) {"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "            freeTime \u003d dateNow;"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        } else if (scheduleList.size() \u003d\u003d 1) {"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "            Event onlyEvent \u003d scheduleList.get(0);"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "            if (timeUntil.before(onlyEvent.getDateTimeStart())) {"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "                freeTime \u003d dateNow;"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "            } else if (dateNow.after(onlyEvent.getDateTimeEnd())) {"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "                freeTime \u003d dateNow;"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "            } else {"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "                freeTime \u003d onlyEvent.getDateTimeEnd();"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "            Date currTime \u003d dateNow;"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "            boolean found \u003d false;"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "            for (int i \u003d 1; i \u003c scheduleList.size(); i++) {"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "                timeUntil \u003d addHoursToDate(currTime, hours);"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "                Event first \u003d scheduleList.get(i - 1);"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "                Event second \u003d scheduleList.get(i);"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "                if (currTime.after(first.getDateTimeEnd()) \u0026\u0026 timeUntil.before(second.getDateTimeStart())) {"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "                    freeTime \u003d currTime;"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "                    found \u003d true;"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "                if (found) {"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "            if (!found) {"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "                Event last \u003d scheduleList.get(scheduleList.size() - 1);"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "                freeTime \u003d last.getDateTimeEnd();"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        ui.showString(\"Next available time slot is: \" + freeTime.toString());"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "    public Date addHoursToDate(Date date, int hours) {"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        Calendar calendar \u003d Calendar.getInstance();"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        calendar.setTime(date);"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        calendar.add(Calendar.HOUR_OF_DAY, hours);"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        return calendar.getTime();"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "-": 36,
+      "AmosChan97": 60
+    }
+  },
+  {
+    "path": "src/main/java/command/RecurringCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "package command;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "import exception.DukeException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "import storage.Storage;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "import task.Event;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "import task.Recurring;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "import task.TaskList;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "import ui.Ui;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "import java.io.IOException;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": " * command.Command to create a recurring task"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "public class RecurringCommand extends Command {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "    private String[] splitR1;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "    private String[] splitR;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "     * Create new Event object."
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "     * @param input from user"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "     * @param splitStr tokenized input"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "     * @throws DukeException if description empty or format not followed"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "    public RecurringCommand(String input, String[] splitStr) throws DukeException {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "        if (splitStr.length \u003d\u003d 1) {"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "            throw new DukeException(\"☹ OOPS!!! The description of a recurring task cannot be empty.\");"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "        String tempR \u003d input.substring(10);"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "        if (!tempR.contains(\" /at \")) {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "            throw new DukeException(\"☹ OOPS!!! Please add a date for the task.\");"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "        if (!tempR.contains(\"/every\")){"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "            throw new DukeException(\"☹ OOPS!!! Please add a frequency for the recurrence: Day, Week or Month.\");"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "        this.splitR1 \u003d tempR.split(\"/every\");"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "        this.splitR \u003d splitR1[0].split(\" /at \");"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "        if (!isValidDateTime(splitR[1])) {"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "            throw  new DukeException(\"Please enter correct date time format: dd/mm/yyyy hhmm\");"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException {"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "        Recurring recurring \u003d new Recurring(splitR[0], splitR[1], splitR1[1].substring(1).toUpperCase());"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "        tasks.add(recurring);"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "        storage.saveToFile(tasks);"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "        ui.showString(\"Got it. I\u0027ve added this task:\\n\""
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "                + recurring.toString() + \"\\n\""
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "                + \"Now you have \" + tasks.size() + \" task(s) in the list.\");"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "AmirAzhar": 53
+    }
+  },
+  {
+    "path": "src/main/java/command/SnoozeCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "package command;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import exception.DukeException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import storage.Storage;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "import task.Deadline;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "import task.Event;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import task.TaskList;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import ui.Ui;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.io.IOException;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "import java.util.Calendar;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "import java.util.Date;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "public class SnoozeCommand extends Command {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private int num;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "    private int hours;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "    private String[] split;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "     * Postpone task"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @param splitStr"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @throws DukeException"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "    public SnoozeCommand(String input, String[] splitStr) throws DukeException {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        if (splitStr.length \u003d\u003d 1) {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "            throw new DukeException(\"☹ OOPS!!! Please add the index of the task you want to snooze\");"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        String temp \u003d input.substring(7);"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        if (!temp.contains(\" /by \")) {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "            throw new DukeException(\"☹ OOPS!!! Please add the time you want to postpone the task to!\");"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        this.split \u003d temp.split(\" /by \");"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "            this.num \u003d Integer.parseInt(splitStr[0]);"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        } catch (NumberFormatException e) {"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "            throw new DukeException(\"☹ OOPS!!! Please input an integer for the task index!\");"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Run the command."
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @param tasks task list"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @param ui user interface"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @param storage handles read write of text file"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "      * @throws IOException"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException {"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        if (this.num \u003c 1 || this.num \u003e tasks.size()) {"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            throw new DukeException(\"☹ OOPS!!! That task is not in your list\");"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        if (tasks.get(num) instanceof Deadline) {"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "            Date newDate \u003d tasks.get(num).getDateTime();"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "            newDate \u003d addHoursToDate(newDate, hours);"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "            ((Deadline) tasks.get(num)).setDateTime(newDate);"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        } else if (tasks.get(num) instanceof Event) {"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "            Date newStartDate \u003d ((Event) tasks.get(num)).getDateTimeStart();"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "            Date newEndDate \u003d ((Event) tasks.get(num)).getDateTimeEnd();"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "            newStartDate \u003d addHoursToDate(newStartDate, hours);"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "            newEndDate \u003d addHoursToDate(newEndDate, hours);"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "            ((Event) tasks.get(num)).setDateTimeStart(newStartDate);"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "            ((Event) tasks.get(num)).setDateTimeEnd(newEndDate);"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "            throw new DukeException(\"☹ OOPS!!! This task cannot be postponed!\");"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        storage.saveToFile(tasks);"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "    public Date addHoursToDate(Date date, int hours) {"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        Calendar calendar \u003d Calendar.getInstance();"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        calendar.setTime(date);"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        calendar.add(Calendar.HOUR_OF_DAY, hours);"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        return calendar.getTime();"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "-": 35,
+      "AmosChan97": 40
+    }
+  },
+  {
+    "path": "src/main/java/command/UpcomingCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "package command;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import storage.Storage;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import task.TaskList;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import ui.Ui;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.text.ParseException;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.text.SimpleDateFormat;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.time.LocalDateTime;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.time.format.DateTimeFormatter;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.util.Date;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": " * command.Command to show tasks in the upcoming week"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "public class UpcomingCommand extends Command {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Amir Azhar"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Based on current CPU Date, search for any tasks due in 7 days."
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "     * @param tasks tasklist"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Amir Azhar"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void execute(TaskList tasks, Ui ui, Storage storage) throws ParseException {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        SimpleDateFormat sdf \u003d new SimpleDateFormat(\"MMM dd\");"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        LocalDateTime dateNow \u003d LocalDateTime.now();"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        int counter \u003d 0;"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        DateTimeFormatter myFormatObj \u003d DateTimeFormatter.ofPattern(\"MMM dd\");"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        System.out.println(\"Here are your tasks due in the upcoming week:\");"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "        for (int i \u003d 0; i \u003c 7; i++) {"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            String formattedDate \u003d dateNow.format(myFormatObj);"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            LocalDateTime nextDay \u003d dateNow.plusDays(i);"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            String formattedNextDay \u003d nextDay.format(myFormatObj);"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "            for (int j \u003d 0; j \u003c tasks.size(); j++) {"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                if (tasks.get(j).toString().contains(formattedNextDay)) {"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                    Date dateBefore \u003d sdf.parse(formattedDate);"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                    Date dateAfter \u003d sdf.parse(formattedNextDay);"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                    long difference \u003d dateAfter.getTime() - dateBefore.getTime();"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "                    long daysTo \u003d (difference/(1000 * 60 * 60 * 24));"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "Amir Azhar"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                    counter++;"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                    if (daysTo \u003d\u003d 0) {"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                        System.out.println(\"    \" + counter + \". \" + tasks.get(j).toString() + \" -\u003e [Due TODAY]\");"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                    } else {"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                        System.out.println(\"    \" + counter + \". \" + tasks.get(j).toString()"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                                + \" -\u003e [Due in: \" + daysTo + \" Day(s)]\");"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        if (counter \u003d\u003d 0) {"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            System.out.println(\"You have 0 tasks due in the upcoming week\");"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            System.out.println(\"You have \" + counter + \" tasks due in the upcoming week.\");"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Amir Azhar": 3,
+      "-": 49,
+      "AmosChan97": 1,
+      "AmirAzhar": 6
+    }
+  },
+  {
+    "path": "src/main/java/command/ViewScheduleCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "package command;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import exception.DukeException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import storage.Storage;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import task.Deadline;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import task.Event;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import task.Task;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import task.TaskList;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import ui.Ui;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.io.IOException;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.text.ParseException;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.text.SimpleDateFormat;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "import java.util.Calendar;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.util.Comparator;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.util.Date;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "public class ViewScheduleCommand extends Command {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private TaskList scheduleList;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    Date dateToView;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "    Date dateAfter;"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "     * View the schedule on a certain date."
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "     * @param splitStr tokenized user input"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "     * @throws DukeException if input format is incorrect"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "    public ViewScheduleCommand(String[] splitStr) throws DukeException {"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        if (splitStr.length \u003d\u003d 1) {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "            throw new DukeException(\"☹ OOPS!!! Please add the date which you want to view!\");"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        scheduleList \u003d new TaskList();"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        SimpleDateFormat sdf \u003d new SimpleDateFormat(\"dd/MM/yyyy\");"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "            dateToView \u003d sdf.parse(splitStr[1]);"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        } catch (ParseException e) {"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            throw new DukeException(\"Please enter date time format correctly: dd/mm/yyyy\");"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        Calendar c \u003d Calendar.getInstance();"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        c.setTime(dateToView);"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        c.add(Calendar.DATE, 1);"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        dateAfter \u003d c.getTime();"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException {"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        for (Task i : tasks) {"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "            if ((i.getClass() \u003d\u003d Event.class || i.getClass() \u003d\u003d Deadline.class)"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "                \u0026\u0026 i.getDateTime().getTime() - dateToView.getTime() \u003e\u003d 0"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "                \u0026\u0026 dateAfter.getTime() - i.getDateTime().getTime() \u003e\u003d 0) {"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                scheduleList.add(i);"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        scheduleList.sort("
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                Comparator.comparing(Task::getDateTime));"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        for (Task i : scheduleList) {"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            ui.showString(i.toString());"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "-": 41,
+      "AmosChan97": 19
+    }
+  },
+  {
+    "path": "src/main/java/storage/Constants.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "package storage;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " * Contains project-wide constants."
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "public class Constants {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public static final String FILENAME \u003d \"data/duke.txt\";"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "    public static final int TYPE \u003d 0;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "    public static final int ISDONE \u003d 1;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "    public static final int DESCRIPTION \u003d 2;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "    public static final int TIME \u003d 3;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "    public static final int NEEDS \u003d 3;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "    public static final int TIMESTART \u003d 3;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "    public static final int TIMEEND \u003d 4;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "-": 8,
+      "AmosChan97": 7
+    }
+  },
+  {
+    "path": "src/main/java/task/Deadline.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "package task;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.io.FileOutputStream;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.io.IOException;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.text.ParseException;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.text.SimpleDateFormat;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.time.format.DateTimeFormatter;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.util.Date;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " * Tasks which have a deadline."
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " * Lists the task name and stores the deadline in Date format."
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "public class Deadline extends Task {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * task.Deadline Constructor."
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @param description task descriprtion"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @param by task deadline"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public Deadline(String description, String by) {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        super(description);"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        SimpleDateFormat sdf \u003d new SimpleDateFormat(\"dd/MM/yyyy HHmm\");"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            this.dateTime \u003d sdf.parse(by);"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        } catch (ParseException e) {"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            System.out.println(\"Please enter date time format correctly: dd/mm/yyyy hhmm\");"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * task.Deadline Constructor from text file."
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @param i isDone status"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @param description of deadline"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "     * @param date deadline date and time"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "    public Deadline(String i, String description, String date) {"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        super(description);"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        this.dateTime \u003d new Date(Long.parseLong(date));"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        this.isDone \u003d i.equals(\"1\");"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return \"[D]\" + super.toString() + \" (by: \" + this.dateTime + \")\";"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Returns a string that is formatted for the text file."
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @return String formatted for text file"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public String toWriteFile() {"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        int boolToInt \u003d isDone ? 1 : 0;"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        return \"D | \" + boolToInt + \" | \" + this.description + \" | \" + this.dateTime.getTime() + \" | \" + \"\\n\";"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "    public void setDateTime(Date newDate) {"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        this.dateTime \u003d newDate;"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "-": 53,
+      "AmosChan97": 8
+    }
+  },
+  {
+    "path": "src/main/java/task/DoAfter.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "package task;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "import java.text.ParseException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "import java.text.SimpleDateFormat;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "import java.time.format.DateTimeFormatter;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "public class DoAfter extends Task {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "    protected String after;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "    public DoAfter(String description, String after) {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "        super(description);"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "        this.after \u003d after;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "    public DoAfter(String i, String description, String after) {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        super(description);"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        this.after \u003d after;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        this.isDone \u003d i.equals(\"1\");"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "        return \"[DA]\" + super.toString() + \" (after: \" + this.after + \")\";"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "    public String toWriteFile() {"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "        int boolToInt \u003d isDone ? 1 : 0;"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        return \"DA | \" + boolToInt + \" | \" + this.description + \" | \" + this.after +  \" | \" + \"\\n\";"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "zkchang97": 20,
+      "AmosChan97": 11
+    }
+  },
+  {
+    "path": "src/main/java/task/DoWithinPeriod.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "package task;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "public class DoWithinPeriod extends Task {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "    private String start;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "    private String end;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "     * task.DoWithinPeriod constructor"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "     * @param description task description"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "     * @param Period1 earliest date task can be completed by"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "     * @param Period2 task should be completed by then"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "    public DoWithinPeriod(String description, String Period1, String Period2) {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "        super(description);"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "        this.start \u003d Period1;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "        this.end \u003d Period2;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "    public DoWithinPeriod(String isDone, String description, String start, String end) {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "        super(description);"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "        this.start \u003d start;"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "        this.end \u003d end;"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "        this.isDone \u003d isDone.equals(\"1\");"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "        return \"[DW]\" + super.toString() + \" (from: \" + start + \" til \" + end + \")\";"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "    public String toWriteFile() {"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "        int boolToInt \u003d isDone ? 1 : 0;"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "        return \"DW | \" + boolToInt + \" | \" + this.description + \" | \" + this.start + \" | \" + this.end + \"\\n\";"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": ""
+      }
+    ],
+    "authorContributionMap": {
+      "wyinnnn": 41
+    }
+  },
+  {
+    "path": "src/main/java/task/Event.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "package task;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import exception.DukeException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.text.ParseException;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.text.SimpleDateFormat;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.util.Date;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " * Events are tasks with a start and end time."
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "public class Event extends Task {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "    protected Date dateTimeStart;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    protected Date dateTimeEnd;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * task.Event Constructor"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @param description task description"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @param atStart task time start"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @param atEnd task time end"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public Event(String description, String atStart, String atEnd) throws DukeException {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        super(description);"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        SimpleDateFormat sdf \u003d new SimpleDateFormat(\"dd/MM/yyyy HHmm\");"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "            this.dateTimeStart \u003d sdf.parse(atStart);"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            this.dateTimeEnd \u003d sdf.parse(atEnd);"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        } catch (ParseException e) {"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            throw new DukeException(\"Please enter date time format correctly: dd/mm/yyyy hhmm\");"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * task.Event Constructor from text file"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @param i isDone status"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @param description of event"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @param atStart event date and time start"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @param atEnd event date and time end"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "    public Event(String i, String description, String atStart, String atEnd) throws DukeException {"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        super(description);"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        this.dateTimeStart \u003d new Date(Long.parseLong(atStart));"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        this.dateTimeEnd \u003d new Date(Long.parseLong(atEnd));"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        this.isDone \u003d i.equals(\"1\");"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        return \"[E]\" + super.toString() + \" (at: \" + dateTimeStart"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "                + \" to \" + dateTimeEnd + \")\";"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "    public Date getDateTime() {"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        return this.dateTimeStart;"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "    public Date getDateTimeStart() {"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        return this.dateTimeStart;"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "    public Date getDateTimeEnd() {"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        return this.dateTimeEnd;"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Returns a string that is formatted for the text file."
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @return String"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public String toWriteFile() {"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        int boolToInt \u003d isDone ? 1 : 0;"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        return \"E | \" + boolToInt + \" | \" + this.description + \" | \" + this.dateTimeStart.getTime() + \" | \""
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "                + this.dateTimeEnd.getTime() + \"\\n\";"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "    public void setDateTimeStart(Date newDateTimeStart) {"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        this.dateTimeStart \u003d newDateTimeStart;"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "    public void setDateTimeEnd(Date newDateTimeEnd) {"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        this.dateTimeEnd \u003d newDateTimeEnd;"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "-": 55,
+      "AmosChan97": 28
+    }
+  },
+  {
+    "path": "src/main/java/task/FixedDuration.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "package task;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "public class FixedDuration extends Task {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    protected String needs;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * task.FixedDuration constructor"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @param description task description"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @param needs time needed to finish task"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public FixedDuration(String description, String needs) {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        super(description);"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        this.needs \u003d needs;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "    public FixedDuration(String isDone, String description, String needs) {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        super(description);"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        this.description \u003d description;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        this.needs \u003d needs;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        this.isDone \u003d isDone.equals(\"1\");"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return \"[F]\" + super.toString() + \" (needs: \" + this.needs + \")\";"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public String toWriteFile() {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        int boolToInt \u003d isDone ? 1 : 0;"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        return \"F | \" + boolToInt + \" | \" + this.description + \" | \" + this.needs + \" | \" + \"\\n\";"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      }
+    ],
+    "authorContributionMap": {
+      "-": 26,
+      "AmosChan97": 8
+    }
+  },
+  {
+    "path": "src/main/java/task/Recurring.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "package task;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "import java.io.FileOutputStream;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "import java.io.IOException;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "import java.text.ParseException;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "import java.text.SimpleDateFormat;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "import java.time.format.DateTimeFormatter;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "import java.util.Date;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": " * Tasks which have a deadline."
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": " * Lists the task name and stores the deadline in Date format."
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "public class Recurring extends Task {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "    protected String by;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "     * Recurring task which will add a new task when the previous task is completed."
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "     * @param description task description"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "     * @param by task deadline"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "    public Recurring(String description, String by, String frequency) {"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "        super(description);"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "        SimpleDateFormat sdf \u003d new SimpleDateFormat(\"dd/MM/yyyy HHmm\");"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "            this.dateTime \u003d sdf.parse(by);"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "        } catch (ParseException e) {"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "            System.out.println(\"Please enter date time format correctly: dd/mm/yyyy hhmm\");"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "        this.by \u003d by;"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "        this.frequency \u003d frequency;"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "     * Make a recurring task when reading from storage."
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "     * @param i isDone status"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "     * @param description of recurring task"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "     * @param by dateTime of recurring task"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "     * @param snooze isSnooze status"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "     * @param frequency of recurrence"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "    public Recurring(String i, String description, String by, String snooze, String frequency) {"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "        super(description);"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "        DateTimeFormatter dateTimeFormatter \u003d DateTimeFormatter.ofPattern(\"dd/MM/yyyy HHmm\");"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "        SimpleDateFormat sdf \u003d new SimpleDateFormat(\"dd/MM/yyyy HHmm\");"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "            this.dateTime \u003d sdf.parse(by);"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "        } catch (ParseException e) {"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "            System.out.println(\"Please enter date time format correctly: dd/mm/yyyy hhmm\");"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "        this.by \u003d by;"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "        this.isDone \u003d i.equals(\"1\");"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        this.frequency \u003d frequency;"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "        return \"[R]\" + \" [\" + frequency + \"] \" + super.toString() + \" (at: \" + this.dateTime + \")\";"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "     * Returns a string that is formatted for the text file."
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "     * @return String formatted for text file"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "    public String toWriteFile() {"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "        int boolToInt \u003d isDone ? 1 : 0;"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        return \"R | \"  + boolToInt + \" | \" + this.description + \" | \" + this.by + \" | \" + frequency + \"\\n\";"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "    public Date getBy() {"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "        return this.dateTime;"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "    public String getDesc() {"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "        return description;"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "    public String getFreq(){"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "        return frequency;"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "AmosChan97": 6,
+      "AmirAzhar": 77
+    }
+  },
+  {
+    "path": "src/main/java/task/Task.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "package task;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.util.Date;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": " * Class from which task. To do, task.Deadline and task.Event are extended from."
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "public abstract class Task {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    protected Date dateTime;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    protected String description;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    protected boolean isDone;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "    protected String frequency;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Create task with a description."
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @param description of task."
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public Task(String description) {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        this.description \u003d description;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        this.isDone \u003d false;"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Get status icon."
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @return String status icon of task"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public String getStatusIcon() {"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return (isDone ? \"✓\" : \"✘\"); //return tick or X symbols"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Mark task as done."
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void markAsDone() {"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        this.isDone \u003d true;"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        System.out.println(\"Nice! I\u0027ve marked this task as done:\");"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "        System.out.println(\"    \" + this.toString());"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * check if task description contains a certain string."
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @param s string to find"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @return true if description contains string"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public boolean contains(String s) {"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return this.description.contains(s);"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        return \"[\" + this.getStatusIcon() + \"] \" + this.description;"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Returns a string that is formatted for the text file."
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @return String that will be stored in text file"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public String toWriteFile() {"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return this.description;"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public Date getDateTime() {"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return this.dateTime;"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "     * @param description of recurring task"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "     * @param dateTime of recurring task"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "     * @param frequency of recurrence"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "     * @return"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "    public Recurring recreate(String description, String dateTime, String frequency){"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "        Recurring recurring \u003d new Recurring(description, dateTime, frequency);"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "        return recurring;"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "    public Date getBy() {"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "        return this.dateTime;"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "    public String getDesc() {"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "        return description;"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "    public String getFreq(){"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "        return frequency;"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "AmirAzhar"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "-": 62,
+      "AmosChan97": 3,
+      "AmirAzhar": 25
+    }
+  },
+  {
+    "path": "src/main/java/task/TaskList.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "package task;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import exception.DukeException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "import storage.Constants;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " * Contains task list."
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "public class TaskList extends ArrayList\u003cTask\u003e {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Create tasklist from text file."
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @param loader strings from text file containing task info"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @throws DukeException if file format incorrect"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public TaskList(ArrayList\u003cString\u003e loader) throws DukeException {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        for (String line : loader) {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            String[] splitStr \u003d line.split(\" \\\\| \");"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "            switch (splitStr[Constants.TYPE]) {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            case \"T\":"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "                this.add(new Todo(splitStr[Constants.ISDONE], splitStr[Constants.DESCRIPTION]));"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            case \"E\":"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "                this.add(new Event(splitStr[Constants.ISDONE], splitStr[Constants.DESCRIPTION],"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "                        splitStr[Constants.TIMESTART], splitStr[Constants.TIMEEND]));"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            case \"D\":"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "                this.add(new Deadline(splitStr[Constants.ISDONE],"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "                        splitStr[Constants.DESCRIPTION], splitStr[Constants.TIME]));"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "            case \"F\":"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "                this.add(new FixedDuration(splitStr[Constants.ISDONE],"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "                        splitStr[Constants.DESCRIPTION], splitStr[Constants.NEEDS]));"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "            case \"R\":"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "                this.add(new Recurring(splitStr[Constants.ISDONE], splitStr[Constants.DESCRIPTION], splitStr[Constants.TIME],"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "                        splitStr[4], splitStr[5]));"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "            case \"DA\":"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "                this.add(new DoAfter(splitStr[Constants.ISDONE], splitStr[Constants.DESCRIPTION], splitStr[Constants.TIME]));"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "            case \"DW\":"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "wyinnnn"
+        },
+        "content": "                this.add(new DoWithinPeriod(splitStr[Constants.ISDONE], splitStr[Constants.DESCRIPTION], splitStr[Constants.TIMESTART], splitStr[Constants.TIMEEND]));"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            default:"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                throw new DukeException(\"File format incorrect\");"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public TaskList() {"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "wyinnnn": 2,
+      "-": 32,
+      "AmosChan97": 19
+    }
+  },
+  {
+    "path": "src/main/java/task/Todo.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "package task;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.io.FileOutputStream;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.io.IOException;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "public class Todo extends Task {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * task.Todo Constructor"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @param description task description"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public Todo(String description) {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        super(description);"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Constructor from text file."
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @param i isDone status"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @param description task description"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "    public Todo(String i, String description) {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        super(description);"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        this.isDone \u003d i.equals(\"1\");"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return \"[T]\" + super.toString();"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Returns a string that is formatted for the text file."
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @return String"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public String toWriteFile() {"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        int boolToInt \u003d this.isDone ? 1 : 0;"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        return \"T | \" + boolToInt + \" | \" + this.description + \" | \" + \"\\n\";"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "-": 38,
+      "AmosChan97": 2
+    }
+  },
+  {
+    "path": "src/main/java/ui/Ui.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "package ui;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.util.Scanner;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " * To deal with user interactions."
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "public class Ui {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private Scanner scanner;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public Ui() {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        scanner \u003d new Scanner(System.in);"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void showLoadingError() {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        System.out.println(\":( OOPS!!! File path not found. Creating directory /data/data.txt\");"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void showError(String error) {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        System.out.println(error);"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public String readCommand() {"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return scanner.nextLine();"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void showString(String string) {"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        System.out.println(string);"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Show Welcome message on programme start."
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void showWelcome() {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        String logo \u003d \" ____        _        \\n\""
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                + \"|  _ \\\\ _   _| | _____ \\n\""
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                + \"| | | | | | | |/ / _ \\\\\\n\""
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                + \"| |_| | |_| |   \u003c  __/\\n\""
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                + \"|____/ \\\\__,_|_|\\\\_\\\\___|\\n\";"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        //System.out.println(\"Hello from\\n\" + logo);"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        System.out.println(\"Hello! I\u0027m Duke\\n\""
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                + \"What can I do for you?\");"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void showLine() {"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        System.out.println(\"    ____________________________________________________________\");"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void showBye() {"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        System.out.println(\"Bye. Hope to see you again soon!\");"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "    public void indent() {"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        System.out.print(\"    \");"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "-": 53,
+      "AmosChan97": 4
+    }
+  },
+  {
+    "path": "src/test/java/DoAfterTest.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "import org.junit.jupiter.api.Test;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "import task.DoAfter;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.assertEquals;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "public class DoAfterTest {"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "    void doAfter() {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "        DoAfter doafter \u003d new DoAfter(\"eat\", \"2 hours\");"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "        assertEquals(doafter.toString(), \"[DA][✘] [A] eat (after: 2 hours)\");"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "zkchang97": 12
+    }
+  },
+  {
+    "path": "src/test/java/EventTest.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "import exception.DukeException;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import org.junit.jupiter.api.Test;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import task.Event;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.assertEquals;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "public class EventTest {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "    void testEvent() throws DukeException {"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        Event event \u003d new Event(\"dinner\", \"28/9/2019 1800\", \"28/9/2019 2000\");"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        assertEquals(event.toString(),"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "                \"[E][✘] dinner (at: Sat Sep 28 18:00:00 SGT 2019 to Sat Sep 28 20:00:00 SGT 2019)\");"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "AmosChan97": 5,
+      "-": 9
+    }
+  }
+]
