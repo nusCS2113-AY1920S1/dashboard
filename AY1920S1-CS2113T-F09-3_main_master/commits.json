@@ -56,6 +56,20 @@
             "deletions": 644
           }
         ]
+      },
+      {
+        "insertions": 1,
+        "deletions": 193,
+        "date": "2019-10-11",
+        "commitResults": [
+          {
+            "hash": "faf00d7b80697e4f033862e9724ba6a895bc14d6",
+            "messageTitle": "Remove old Duke features (#192)",
+            "messageBody": "* Add UI.print() method\r\n\r\nNo functional changes yet.\r\n\r\n* Shift Parse.parse() exception printing to UI\r\n\r\nCascaded all Parse.parse() exceptions upwards to be printed by UI.printError(Exception e) within Duke.run()\r\n\r\n* Add UI output indentation\r\n\r\nThe idea is that UI.print(String printString) will automatically handle printing lines outside every output by the program, and will also indent all output to clearly differentiate between user input and program output.\r\n\r\n* Extract TaskList.searchForTask to FindCommand.execute()\r\n\r\nWe want to make TaskList just a dumb container, any smarter processing should be done within the Command objects\u0027 execute() methods.\r\n\r\n* Extract printing of FindCommand to UI.print()\r\n\r\n* Extract TaskList.printList() to Command.execute()\r\n\r\nIdeally I believe we should have an explicit ListCommand class that executes this, but for now this should make dealing with UI output easier.\r\n\r\n* Add DoneCommand class\r\n\r\nAlso extract TaskList.markItemAsDone() method\r\n\r\n* Add DeleteCommand class\r\n\r\nAlso extract TaskList.deleteTask() method\r\n\r\n* Add explicit ListCommand class\r\n\r\n* Polish UI.print() extraction refactor\r\n\r\n* Fix .gitignore for saved_tasks.txt\r\n\r\n* Fix file permissions\r\n\r\n* Fix travis checkstyle 1\r\n\r\n* Fix travis checkstyle 2\r\n\r\nughhhh\r\n\r\n* Disable JUnit test for NumCommand\r\n\r\n* Disable JUnit test for FindCommand \u0026 printList\r\n\r\nDisabled temporarily after refactor\r\n\r\n* Update README.md with Introduction\r\n\r\n* Rename duke occurrences to eggventory\r\n\r\n* Rename TaskList to StockType\r\n\r\n* Finish initial morph from Tasks to Stocks\r\n\r\nstonks*\r\n\r\n* index on stock-morph: ea60fa9 Finish initial morph from Tasks to Stocks\r\n\r\n* Fix FindCommand\r\n\r\nIt\u0027s a very simplistic implementation right now.\r\n\r\n* Fix .* import statement checkstyle\r\n\r\n* Fix typo\r\n\r\n* Update README.md\r\n\r\n* Update README.md\r\n\r\n* Update README.md\r\n\r\n* Fix links\r\n\r\n* Update docs\r\n\r\nTesting Ui.png\r\n\r\n* Make Ui.png prettier\r\n\r\npretty \u003c3\r\n\r\n* Fix typos in readme.md\r\n\r\n* Edit formatting in readme.md\r\n\r\n* Remove printReminder functionality\r\n\r\n* Remove ToDo class\r\n\r\n* Remove Task class\r\n\r\n* Remove old, unused enums\r\n\r\nFor example, TODO, DEADLINE, etc.\r\n\r\n* Remove ToDo, Deadline \u0026 Event JUnit tests\r\n\r\n* Remove NumCommand\r\n\r\n* Fix merge conflict\r\n",
+            "insertions": 1,
+            "deletions": 193
+          }
+        ]
       }
     ],
     "Deculsion": [
@@ -191,9 +205,45 @@
             "deletions": 92
           }
         ]
+      },
+      {
+        "insertions": 310,
+        "deletions": 266,
+        "date": "2019-10-10",
+        "commitResults": [
+          {
+            "hash": "f29add2b65d351f93565821d82650148612a03f1",
+            "messageTitle": "Added skeleton classes for Parse (#182)",
+            "messageBody": "Parsers for add, delete and edit",
+            "insertions": 23,
+            "deletions": 1
+          },
+          {
+            "hash": "fa12ae08ef3f5b0f3fd1c4ada7cbb30f4a6d7117",
+            "messageTitle": "Stock type stock list (#187)",
+            "messageBody": "* Added skeleton classes for Parse\r\n\r\n* Updated test for StockType\r\n\r\n* Added StockType and StockList\r\n\r\n* Updated commands to work with new StockList and StockType behaviour.\r\n\r\n* Added Javadocs.\r\n\r\n* Changed tests to work with new StockList and StockType classes\r\n\r\n* Removed.\r\n\r\n* Changed tests to work with new StockList and StockType classes\r\n",
+            "insertions": 287,
+            "deletions": 265
+          }
+        ]
       }
     ],
-    "yanprosobo": [],
+    "yanprosobo": [
+      {
+        "insertions": 2,
+        "deletions": 67,
+        "date": "2019-10-10",
+        "commitResults": [
+          {
+            "hash": "f11d46cb5620282ccd6603b455107d3977207454",
+            "messageTitle": "Remove event (#184)",
+            "messageBody": "* Merge with master\r\n\r\n* Removed Events.java, edited CommandType enums and TaskType enums\r\n\r\n* Removed event from JUnit\r\n\r\n* Removed extra space\r\n",
+            "insertions": 2,
+            "deletions": 67
+          }
+        ]
+      }
+    ],
     "cyanoei": [
       {
         "insertions": 3,
@@ -285,6 +335,41 @@
             "deletions": 0
           }
         ]
+      },
+      {
+        "insertions": 455,
+        "deletions": 75,
+        "date": "2019-10-10",
+        "commitResults": [
+          {
+            "hash": "95fe96f30eca3d2acd69c65b2ba2f58197a3ddd4",
+            "messageTitle": "Parser accepts any amount of whitespace between words (#173)",
+            "messageBody": "* Parser fix for addcommand to handle wrong input more accurately\r\n\r\n* Small fix to parser update\r\n",
+            "insertions": 11,
+            "deletions": 4
+          },
+          {
+            "hash": "303d3f364ef57ed671465d50de751dcdab68b8d0",
+            "messageTitle": "Added CollectiveStock, UniqueStock, and Item classes (#181)",
+            "messageBody": "* Modified parser to handle the first command word only, and only split subsequent words based on that command.\r\nModified add function to accept multi-word description.\r\n\r\n* Improved parser\u0027s javadoc comments\r\n\r\n* Updated javadoc comments for several classes\r\nFind command now only searches description instead of the entire print string.\r\n\r\n* deleted wrong images\r\n\r\n* added back photos with the right names\r\n\r\n* is more descriptive\r\n\r\n* Updated name of Ui file\r\n\r\nthank you raghav\r\n\r\n* Updated photo names\r\n\r\nthanks raghav\r\n\r\n* Save at every add/delete\r\n\r\n* item -\u003e stock and some other small edits\r\n\r\n* draft submissions of ug/dg\r\n\r\n* updated UG/DG links\r\n\r\nTHANKS RAGHAV AHH\r\n\r\n* Tentative work on CollectiveStock. Committing to revert to another version to fix a bug\r\n\r\n* Parser fix for addcommand to handle wrong input more accurately\r\n\r\n* Added uniquestock, edited documentation for stock/collectivestock\r\n\r\n* Minimum attribute for stocks introduced. Item class introduced for UniqueStock to keep track of.\r\n\r\n* Stock update continued. Basic methods for Item and UniqueStock classes completed.\r\n\r\n* Small fix to parser update\r\n\r\n* print/save in item and uniquestock\r\n\r\n* Remove trailing spaces on last input of add commands\r\n\r\n* Implementing parser command whitespace strip the correct way\r\n\r\n* Fixed checkstyle violations\r\n\r\n* updated StockTest to include the new save string for minimum required stock\r\n",
+            "insertions": 342,
+            "deletions": 11
+          },
+          {
+            "hash": "911db84eac41ccbd6b791eeb703121b536c96206",
+            "messageTitle": "Removed doAfter  (#183)",
+            "messageBody": "* Modified parser to handle the first command word only, and only split subsequent words based on that command.\r\nModified add function to accept multi-word description.\r\n\r\n* Improved parser\u0027s javadoc comments\r\n\r\n* Updated javadoc comments for several classes\r\nFind command now only searches description instead of the entire print string.\r\n\r\n* deleted wrong images\r\n\r\n* added back photos with the right names\r\n\r\n* is more descriptive\r\n\r\n* Updated name of Ui file\r\n\r\nthank you raghav\r\n\r\n* Updated photo names\r\n\r\nthanks raghav\r\n\r\n* Save at every add/delete\r\n\r\n* item -\u003e stock and some other small edits\r\n\r\n* draft submissions of ug/dg\r\n\r\n* updated UG/DG links\r\n\r\nTHANKS RAGHAV AHH\r\n\r\n* Tentative work on CollectiveStock. Committing to revert to another version to fix a bug\r\n\r\n* Parser fix for addcommand to handle wrong input more accurately\r\n\r\n* Added uniquestock, edited documentation for stock/collectivestock\r\n\r\n* Minimum attribute for stocks introduced. Item class introduced for UniqueStock to keep track of.\r\n\r\n* Stock update continued. Basic methods for Item and UniqueStock classes completed.\r\n\r\n* Small fix to parser update\r\n\r\n* print/save in item and uniquestock\r\n\r\n* Remove trailing spaces on last input of add commands\r\n\r\n* Implementing parser command whitespace strip the correct way\r\n\r\n* Fixed checkstyle violations\r\n\r\n* updated StockTest to include the new save string for minimum required stock\r\n\r\n* Removed references to doAfter code\r\n",
+            "insertions": 0,
+            "deletions": 22
+          },
+          {
+            "hash": "59185f23abc4b6fd3b48c060b432b8078b601f49",
+            "messageTitle": "ParseAdd implemented (#185)",
+            "messageBody": "* Modified parser to handle the first command word only, and only split subsequent words based on that command.\r\nModified add function to accept multi-word description.\r\n\r\n* Improved parser\u0027s javadoc comments\r\n\r\n* Updated javadoc comments for several classes\r\nFind command now only searches description instead of the entire print string.\r\n\r\n* deleted wrong images\r\n\r\n* added back photos with the right names\r\n\r\n* is more descriptive\r\n\r\n* Updated name of Ui file\r\n\r\nthank you raghav\r\n\r\n* Updated photo names\r\n\r\nthanks raghav\r\n\r\n* Save at every add/delete\r\n\r\n* item -\u003e stock and some other small edits\r\n\r\n* draft submissions of ug/dg\r\n\r\n* updated UG/DG links\r\n\r\nTHANKS RAGHAV AHH\r\n\r\n* Tentative work on CollectiveStock. Committing to revert to another version to fix a bug\r\n\r\n* Parser fix for addcommand to handle wrong input more accurately\r\n\r\n* Added uniquestock, edited documentation for stock/collectivestock\r\n\r\n* Minimum attribute for stocks introduced. Item class introduced for UniqueStock to keep track of.\r\n\r\n* Stock update continued. Basic methods for Item and UniqueStock classes completed.\r\n\r\n* Small fix to parser update\r\n\r\n* print/save in item and uniquestock\r\n\r\n* Remove trailing spaces on last input of add commands\r\n\r\n* Implementing parser command whitespace strip the correct way\r\n\r\n* Fixed checkstyle violations\r\n\r\n* updated StockTest to include the new save string for minimum required stock\r\n\r\n* Removed references to doAfter code\r\n\r\n* Moved add functionalities out of main parser\r\n\r\n* ParseAdd basics completed\r\n",
+            "insertions": 102,
+            "deletions": 38
+          }
+        ]
       }
     ],
     "patwaririshab": [
@@ -371,46 +456,60 @@
             "deletions": 7
           }
         ]
+      },
+      {
+        "insertions": 0,
+        "deletions": 39,
+        "date": "2019-10-10",
+        "commitResults": [
+          {
+            "hash": "23e79eb12fc546f966595fcbc1ed28d0623c37ef",
+            "messageTitle": "Removed ToDo Class issue, file still there fixed (#189)",
+            "messageBody": "* Add support for Gradle workflow\r\n\r\n* Add sample checkstyle configuration\r\n\r\nAdd toolVersion block in to Gradle code sample to prevent errors.\r\n\r\n* Change file mode on `gradle` to be executable\r\n\r\n* Add configuration for console applications\r\n\r\nGradle defaults to an empty stdin which results in runtime exceptions\r\nwhen attempting to read from `System.in`. Let\u0027s add some sensible\r\ndefaults for students who may still need to work with the standard\r\ninput stream.\r\n\r\n* - Added Gradle support\r\n- Changed filePath of persistent storage to be variable based on individual system\r\n\r\n* - Added ChecStyle, Shadow and JUnit support to build.gradle\r\n- Set up JUnit testing\r\n\r\n* - Recur command added\r\n\r\n* -Removed listIndex\r\n\r\n* -Fixed CheckStyle errors\r\n\r\n* -Removed test class\r\n\r\n* -Changed intro text from Duke to EggVentory\r\n\r\n* -Fixed checkstyle\r\n\r\n* -Added JUNIT test for AddCommand\r\n\r\n* -Event toString() yet to be fixed\r\n\r\n* - Fixed CheckStyle error where EscapeLiteral was used\r\n\r\n* - Fixed CheckStyle conflicts again\r\n\r\n* - Temporarily disabled test for addDeadline as Travis wont let it pass\r\n\r\n* -Finally conflict resolved\r\n\r\n* -Updated JUnit test for AddCommand\r\n\r\n* - Trying to get tests to pass\r\n\r\n* -Replaced Date with Calendar\\n-Changed toString() formatting to be more readable\r\n\r\n* -Added JUnit test for FindCommand\r\n\r\n* - Added RecurCommandTest\r\n- Fixed bug with RecurCommand whereby the date was not updated\r\n\r\n* - Added Test for NumCommand\r\n- Added Test for Command\r\n\r\n* - Fixed all CheckStyle errors\r\n\r\n* Added UI Mockup to Readme\r\n\r\n* Update README.md\r\n\r\nUpdated Readme Introduction, added in a draft Value Proposition\r\n\r\n* Added StockTypeTest\r\n\r\n* Added stockType test\r\n\r\n* Added JUnit tests for methods of StockType\r\n\r\n* - Added JUnit tests for Stock class\r\n- Changed error in the method getLoan() in Stock class where it was returning lost instead of loan\r\n- Modified printAvailable(), printLoan(), printLost() methods in Stock class\r\n\r\n* -Changed mainClassName in build.gradle to /eggventory.Eggventory/\r\n\r\n* - Fixed missing whiteSpace error in Stock class\r\n- Added JUnit tests for AddCommand class\r\n\r\n* - Replaced calling static method from Ui class in JUnit test with explicit declaration of ident variable\r\n- This was done to check whether Travis tests were failing due to the static method call\r\n\r\n* - Commented out execute() in AddCommandTest\r\n- To figure out how to handle filePath for savedData with JUnit tests\r\n\r\n* Deleted ToDO\r\n",
+            "insertions": 0,
+            "deletions": 39
+          }
+        ]
       }
     ]
   },
   "authorFinalContributionMap": {
-    "Raghav-B": 575,
-    "Deculsion": 44,
-    "yanprosobo": 14,
-    "cyanoei": 463,
-    "patwaririshab": 375
+    "Raghav-B": 346,
+    "Deculsion": 317,
+    "yanprosobo": 0,
+    "cyanoei": 757,
+    "patwaririshab": 271
   },
   "authorFileTypeContributionMap": {
     "Raghav-B": {
-      "tests": 56,
-      "functional": 516,
+      "tests": 32,
+      "functional": 311,
       "other": 3
     },
     "Deculsion": {
-      "tests": 0,
-      "functional": 44
+      "tests": 24,
+      "functional": 293
     },
     "yanprosobo": {
       "tests": 0,
-      "functional": 14
+      "functional": 0
     },
     "cyanoei": {
-      "tests": 0,
-      "functional": 463
+      "tests": 1,
+      "functional": 756
     },
     "patwaririshab": {
-      "tests": 316,
-      "functional": 53,
+      "tests": 230,
+      "functional": 35,
       "other": 6
     }
   },
   "authorContributionVariance": {
-    "Raghav-B": 145676.06,
-    "Deculsion": 11227.17,
-    "yanprosobo": 0.0,
-    "cyanoei": 10667.349,
-    "patwaririshab": 8464.739
+    "Raghav-B": 101020.914,
+    "Deculsion": 21391.16,
+    "yanprosobo": 215.91837,
+    "cyanoei": 18871.768,
+    "patwaririshab": 6510.966
   },
   "authorDisplayNameMap": {
     "Raghav-B": "CS2113T-F09-3 RAG  . . WAJ",

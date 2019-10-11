@@ -2307,54 +2307,537 @@
       {
         "lineNumber": 3,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "import cube.logic.command.AddCommand;"
+        "content": "import cube.exception.CubeException;"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "tygq13"
         },
-        "content": ""
+        "content": "import cube.logic.command.AddCommand;"
       },
       {
         "lineNumber": 5,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "import cube.model.food.Food;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "import cube.ui.Message;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "import java.text.ParseException;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "import java.text.SimpleDateFormat;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "import java.util.Date;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "import java.util.Locale;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "import java.util.TimeZone;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
         "author": {
           "gitId": "tygq13"
         },
         "content": "public class AddCommandParser implements ParserPrototype\u003cAddCommand\u003e {"
       },
       {
-        "lineNumber": 6,
+        "lineNumber": 15,
         "author": {
           "gitId": "tygq13"
         },
         "content": ""
       },
       {
-        "lineNumber": 7,
+        "lineNumber": 16,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "\tpublic AddCommand parse(String args) {"
+        "content": "\tpublic AddCommand parse(String[] args) throws CubeException {"
       },
       {
-        "lineNumber": 8,
+        "lineNumber": 17,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "\t\treturn new AddCommand(null);"
+        "content": "\t\tint foodNameIndex \u003d -1;"
       },
       {
-        "lineNumber": 9,
+        "lineNumber": 18,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\tint foodTypeIndex \u003d -1;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\tint priceIndex \u003d -1;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\tint stockIndex \u003d -1;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\tint expiryDateIndex \u003d -1;"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\tfor (int i \u003d 1; i \u003c args.length; i ++) {"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\tif (args[i].equals(\"-n\")) {"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\t\tfoodNameIndex \u003d i;"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\t}"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\tif (args[i].equals(\"-t\")) {"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\t\tfoodTypeIndex \u003d i;"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\t}"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\tif (args[i].equals(\"-p\")) {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\t\tpriceIndex \u003d i;"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\t}"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\tif (args[i].equals(\"-s\")) {"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\t\tstockIndex \u003d i;"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\t}"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\tif (args[i].equals(\"-e\")) {"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\t\texpiryDateIndex \u003d i;"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\t}"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t}"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\tif (foodNameIndex \u003d\u003d -1) {"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\tthrow new CubeException(\"Not enough parameter. Please enter food name.\");"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t}"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\tFood tempFood \u003d new Food(args[foodNameIndex+1]);"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\tif (foodTypeIndex !\u003d -1) {"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\ttempFood.setType(args[foodTypeIndex+1]);"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t}"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\tif (priceIndex !\u003d -1) {"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\ttempFood.setPrice(Integer.parseInt(args[priceIndex+1]));"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t}"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\tif (stockIndex !\u003d -1) {"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\ttempFood.updateStock(Integer.parseInt(args[stockIndex+1]));"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t}"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\tif (expiryDateIndex !\u003d -1) {"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\ttempFood.setExpiryDate(parseStringToDate(args[priceIndex+1]));"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t}"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\treturn new AddCommand(tempFood);"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t}"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t/**"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t * Returns a Date object by parsing the date String."
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t * Time zone is set as Singapore time by default."
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t *"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t * @param dateString the String describing the date."
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t * @return the date"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t * @throws CubeException exception occurs when unable to parse."
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t */"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\tpublic static Date parseStringToDate(String dateString) throws CubeException {"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\tif (dateString \u003d\u003d null) {"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\treturn null;"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t}"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\tSimpleDateFormat formatter \u003d new SimpleDateFormat(\"dd/MM/yyyy\", Locale.ENGLISH);"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\tformatter.setTimeZone(TimeZone.getTimeZone(\"GMT-8:00\"));"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\ttry {"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\tDate date \u003d formatter.parse(dateString);"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\treturn date;"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t} catch (ParseException e) {"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\tthrow new CubeException(Message.INVALID_DATE_FORMAT);"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t}"
+      },
+      {
+        "lineNumber": 78,
         "author": {
           "gitId": "tygq13"
         },
         "content": "\t}"
       },
       {
-        "lineNumber": 10,
+        "lineNumber": 79,
         "author": {
           "gitId": "tygq13"
         },
@@ -2362,7 +2845,8 @@
       }
     ],
     "authorContributionMap": {
-      "tygq13": 10
+      "tygq13": 8,
+      "ZKathrynx": 71
     }
   },
   {
@@ -2386,54 +2870,82 @@
       {
         "lineNumber": 3,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "import cube.logic.command.DeleteCommand;"
+        "content": "import cube.exception.CubeException;"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "tygq13"
         },
-        "content": ""
+        "content": "import cube.logic.command.DeleteCommand;"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "public class DeleteCommandParser implements ParserPrototype\u003cDeleteCommand\u003e {"
+        "content": ""
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "tygq13"
         },
-        "content": ""
+        "content": "public class DeleteCommandParser implements ParserPrototype\u003cDeleteCommand\u003e {"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\tpublic DeleteCommand parse(String args) {"
+        "content": ""
       },
       {
         "lineNumber": 8,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "\t\treturn new DeleteCommand(0);"
+        "content": "\tpublic DeleteCommand parse(String[] args) throws CubeException {"
       },
       {
         "lineNumber": 9,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\tif (args.length \u003c 3) {"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\tthrow new CubeException(\"Not enough parameters. Please enter index you want to delete.\");"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t}"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\treturn new DeleteCommand(Integer.parseInt(args[2]));"
+      },
+      {
+        "lineNumber": 13,
         "author": {
           "gitId": "tygq13"
         },
         "content": "\t}"
       },
       {
-        "lineNumber": 10,
+        "lineNumber": 14,
         "author": {
           "gitId": "tygq13"
         },
@@ -2441,7 +2953,8 @@
       }
     ],
     "authorContributionMap": {
-      "tygq13": 10
+      "tygq13": 8,
+      "ZKathrynx": 6
     }
   },
   {
@@ -2493,9 +3006,9 @@
       {
         "lineNumber": 7,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "\tpublic ListCommand parse(String args) {"
+        "content": "\tpublic ListCommand parse(String[] args) {"
       },
       {
         "lineNumber": 8,
@@ -2520,7 +3033,8 @@
       }
     ],
     "authorContributionMap": {
-      "tygq13": 10
+      "tygq13": 9,
+      "ZKathrynx": 1
     }
   },
   {
@@ -2840,661 +3354,129 @@
         "author": {
           "gitId": "ZKathrynx"
         },
-        "content": "\t\t\t\tint foodNameIndex \u003d -1;"
+        "content": "\t\t\t\treturn new AddCommandParser().parse(inputs);"
       },
       {
         "lineNumber": 46,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\tint foodTypeIndex \u003d -1;"
-      },
-      {
-        "lineNumber": 47,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\tint priceIndex \u003d -1;"
-      },
-      {
-        "lineNumber": 48,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\tint stockIndex \u003d -1;"
-      },
-      {
-        "lineNumber": 49,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\tint expiryDateIndex \u003d -1;"
-      },
-      {
-        "lineNumber": 50,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\tfor (int i \u003d 1; i \u003c inputs.length; i ++) {"
-      },
-      {
-        "lineNumber": 51,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\t\tif (inputs[i].equals(\"-n\")) {"
-      },
-      {
-        "lineNumber": 52,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\t\t\tfoodNameIndex \u003d i;"
-      },
-      {
-        "lineNumber": 53,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\t\t}"
-      },
-      {
-        "lineNumber": 54,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\t\tif (inputs[i].equals(\"-t\")) {"
-      },
-      {
-        "lineNumber": 55,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\t\t\tfoodTypeIndex \u003d i;"
-      },
-      {
-        "lineNumber": 56,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\t\t}"
-      },
-      {
-        "lineNumber": 57,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\t\tif (inputs[i].equals(\"-p\")) {"
-      },
-      {
-        "lineNumber": 58,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\t\t\tpriceIndex \u003d i;"
-      },
-      {
-        "lineNumber": 59,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\t\t}"
-      },
-      {
-        "lineNumber": 60,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\t\tif (inputs[i].equals(\"-s\")) {"
-      },
-      {
-        "lineNumber": 61,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\t\t\tstockIndex \u003d i;"
-      },
-      {
-        "lineNumber": 62,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\t\t}"
-      },
-      {
-        "lineNumber": 63,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\t\tif (inputs[i].equals(\"-e\")) {"
-      },
-      {
-        "lineNumber": 64,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\t\t\texpiryDateIndex \u003d i;"
-      },
-      {
-        "lineNumber": 65,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\t\t}"
-      },
-      {
-        "lineNumber": 66,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\t}"
-      },
-      {
-        "lineNumber": 67,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\tif (foodNameIndex \u003d\u003d -1) {"
-      },
-      {
-        "lineNumber": 68,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\t\tthrow new CubeException(\"Not enough parameter. Please enter food name.\");"
-      },
-      {
-        "lineNumber": 69,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\t}"
-      },
-      {
-        "lineNumber": 70,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\tFood tempFood \u003d new Food(inputs[foodNameIndex+1]);"
-      },
-      {
-        "lineNumber": 71,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\tif (foodTypeIndex !\u003d -1) {"
-      },
-      {
-        "lineNumber": 72,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\t\ttempFood.setType(inputs[foodTypeIndex+1]);"
-      },
-      {
-        "lineNumber": 73,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\t}"
-      },
-      {
-        "lineNumber": 74,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\tif (priceIndex !\u003d -1) {"
-      },
-      {
-        "lineNumber": 75,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\t\ttempFood.setPrice(Integer.parseInt(inputs[priceIndex+1]));"
-      },
-      {
-        "lineNumber": 76,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\t}"
-      },
-      {
-        "lineNumber": 77,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\tif (stockIndex !\u003d -1) {"
-      },
-      {
-        "lineNumber": 78,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\t\ttempFood.updateStock(Integer.parseInt(inputs[stockIndex+1]));"
-      },
-      {
-        "lineNumber": 79,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\t}"
-      },
-      {
-        "lineNumber": 80,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\tif (expiryDateIndex !\u003d -1) {"
-      },
-      {
-        "lineNumber": 81,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\t\ttempFood.setExpiryDate(parseStringToDate(inputs[priceIndex+1]));"
-      },
-      {
-        "lineNumber": 82,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\t}"
-      },
-      {
-        "lineNumber": 83,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\treturn new AddCommand(tempFood);"
-      },
-      {
-        "lineNumber": 84,
         "author": {
           "gitId": "tygq13"
         },
         "content": "\t\t\tcase \"list\":"
       },
       {
-        "lineNumber": 85,
+        "lineNumber": 47,
         "author": {
           "gitId": "ZKathrynx"
         },
-        "content": "\t\t\t\treturn new ListCommand();"
+        "content": "\t\t\t\treturn new ListCommandParser().parse(inputs);"
       },
       {
-        "lineNumber": 86,
+        "lineNumber": 48,
         "author": {
           "gitId": "tygq13"
         },
         "content": "\t\t\tcase \"delete\":"
       },
       {
-        "lineNumber": 87,
+        "lineNumber": 49,
         "author": {
           "gitId": "ZKathrynx"
         },
-        "content": "\t\t\t\tif (inputs.length \u003c 3) {"
+        "content": "\t\t\t\treturn new DeleteCommandParser().parse(inputs);"
       },
       {
-        "lineNumber": 88,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\t\tthrow new CubeException(\"Not enough parameters. Please enter index you want to delete.\");"
-      },
-      {
-        "lineNumber": 89,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\t}"
-      },
-      {
-        "lineNumber": 90,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\treturn new DeleteCommand(Integer.parseInt(inputs[2]));"
-      },
-      {
-        "lineNumber": 91,
+        "lineNumber": 50,
         "author": {
           "gitId": "tygq13"
         },
         "content": "\t\t\tcase \"sold\":"
       },
       {
-        "lineNumber": 92,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\tfoodNameIndex \u003d -1;"
-      },
-      {
-        "lineNumber": 93,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\tint quantityIndex \u003d -1;"
-      },
-      {
-        "lineNumber": 94,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\tfor (int i \u003d 1; i \u003c inputs.length; i ++) {"
-      },
-      {
-        "lineNumber": 95,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\t\tif (inputs[i].equals(\"-n\")) {"
-      },
-      {
-        "lineNumber": 96,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\t\t\tfoodNameIndex \u003d i;"
-      },
-      {
-        "lineNumber": 97,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\t\t}"
-      },
-      {
-        "lineNumber": 98,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\t\tif (inputs[i].equals(\"-q\")) {"
-      },
-      {
-        "lineNumber": 99,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\t\t\tquantityIndex \u003d i;"
-      },
-      {
-        "lineNumber": 100,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\t\t}"
-      },
-      {
-        "lineNumber": 101,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\t}"
-      },
-      {
-        "lineNumber": 102,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\tif(foodNameIndex \u003d\u003d -1 || quantityIndex \u003d\u003d -1) {"
-      },
-      {
-        "lineNumber": 103,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\t\tthrow new CubeException(\"Not enough parameters. Please enter both food name and quantity sold.\");"
-      },
-      {
-        "lineNumber": 104,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\t}"
-      },
-      {
-        "lineNumber": 105,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\treturn new SoldCommand(inputs[foodNameIndex+1],Integer.parseInt(inputs[quantityIndex+1]));"
-      },
-      {
-        "lineNumber": 106,
-        "author": {
-          "gitId": "tygq13"
-        },
-        "content": "\t\t\tcase \"help\":"
-      },
-      {
-        "lineNumber": 107,
-        "author": {
-          "gitId": "tygq13"
-        },
-        "content": "\t\t\t\treturn new HelpCommand();"
-      },
-      {
-        "lineNumber": 108,
-        "author": {
-          "gitId": "tygq13"
-        },
-        "content": "\t\t\tcase \"bye\":"
-      },
-      {
-        "lineNumber": 109,
-        "author": {
-          "gitId": "tygq13"
-        },
-        "content": "\t\t\tcase \"exit\":"
-      },
-      {
-        "lineNumber": 110,
-        "author": {
-          "gitId": "tygq13"
-        },
-        "content": "\t\t\tcase \"quit\":"
-      },
-      {
-        "lineNumber": 111,
-        "author": {
-          "gitId": "tygq13"
-        },
-        "content": "\t\t\t\treturn new ExitCommand();"
-      },
-      {
-        "lineNumber": 112,
-        "author": {
-          "gitId": "tygq13"
-        },
-        "content": "\t\t\tdefault:"
-      },
-      {
-        "lineNumber": 113,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\tthrow new CubeException(Message.INVALID_COMMAND);"
-      },
-      {
-        "lineNumber": 114,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t}"
-      },
-      {
-        "lineNumber": 115,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t}"
-      },
-      {
-        "lineNumber": 116,
+        "lineNumber": 51,
         "author": {
           "gitId": "ZKathrynx"
         },
         "content": ""
       },
       {
-        "lineNumber": 117,
+        "lineNumber": 52,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\t\tcase \"help\":"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\t\t\treturn new HelpCommand();"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\t\tcase \"bye\":"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\t\tcase \"exit\":"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\t\tcase \"quit\":"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\t\t\treturn new ExitCommand();"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\t\tdefault:"
+      },
+      {
+        "lineNumber": 59,
         "author": {
           "gitId": "ZKathrynx"
         },
-        "content": "\t/**"
+        "content": "\t\t\t\tthrow new CubeException(Message.INVALID_COMMAND);"
       },
       {
-        "lineNumber": 118,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t * Returns a Date object by parsing the date String."
-      },
-      {
-        "lineNumber": 119,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t * Time zone is set as Singapore time by default."
-      },
-      {
-        "lineNumber": 120,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t *"
-      },
-      {
-        "lineNumber": 121,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t * @param dateString the String describing the date."
-      },
-      {
-        "lineNumber": 122,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t * @return the date"
-      },
-      {
-        "lineNumber": 123,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t * @throws CubeException exception occurs when unable to parse."
-      },
-      {
-        "lineNumber": 124,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t */"
-      },
-      {
-        "lineNumber": 125,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\tpublic static Date parseStringToDate(String dateString) throws CubeException {"
-      },
-      {
-        "lineNumber": 126,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\tif (dateString \u003d\u003d null) {"
-      },
-      {
-        "lineNumber": 127,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\treturn null;"
-      },
-      {
-        "lineNumber": 128,
+        "lineNumber": 60,
         "author": {
           "gitId": "ZKathrynx"
         },
         "content": "\t\t}"
       },
       {
-        "lineNumber": 129,
+        "lineNumber": 61,
         "author": {
           "gitId": "ZKathrynx"
-        },
-        "content": "\t\tSimpleDateFormat formatter \u003d new SimpleDateFormat(\"dd/MM/yyyy\", Locale.ENGLISH);"
-      },
-      {
-        "lineNumber": 130,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\tformatter.setTimeZone(TimeZone.getTimeZone(\"GMT-8:00\"));"
-      },
-      {
-        "lineNumber": 131,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\ttry {"
-      },
-      {
-        "lineNumber": 132,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\tDate date \u003d formatter.parse(dateString);"
-      },
-      {
-        "lineNumber": 133,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\treturn date;"
-      },
-      {
-        "lineNumber": 134,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t} catch (ParseException e) {"
-      },
-      {
-        "lineNumber": 135,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\tthrow new CubeException(Message.INVALID_DATE_FORMAT);"
-      },
-      {
-        "lineNumber": 136,
-        "author": {
-          "gitId": "tygq13"
-        },
-        "content": "\t\t}"
-      },
-      {
-        "lineNumber": 137,
-        "author": {
-          "gitId": "tygq13"
         },
         "content": "\t}"
       },
       {
-        "lineNumber": 138,
+        "lineNumber": 62,
         "author": {
           "gitId": "tygq13"
         },
         "content": "}"
       },
       {
-        "lineNumber": 139,
+        "lineNumber": 63,
         "author": {
           "gitId": "tygq13"
         },
@@ -3502,8 +3484,8 @@
       }
     ],
     "authorContributionMap": {
-      "tygq13": 23,
-      "ZKathrynx": 116
+      "tygq13": 21,
+      "ZKathrynx": 42
     }
   },
   {
@@ -3527,89 +3509,96 @@
       {
         "lineNumber": 3,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "import cube.logic.command.Command;"
+        "content": "import cube.exception.CubeException;"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "tygq13"
         },
-        "content": ""
+        "content": "import cube.logic.command.Command;"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "/**"
+        "content": ""
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "tygq13"
         },
-        "content": " * Represents a Parser that is able to parse user input into a {@code Command} of type {@code T}."
+        "content": "/**"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "tygq13"
         },
-        "content": " */"
+        "content": " * Represents a Parser that is able to parse user input into a {@code Command} of type {@code T}."
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "public interface ParserPrototype\u003cT extends Command\u003e {"
+        "content": " */"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "tygq13"
         },
-        "content": ""
+        "content": "public interface ParserPrototype\u003cT extends Command\u003e {"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "     * Parses {@code userInput} into a command and returns it."
+        "content": "    /**"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "     * @throws ParseException if {@code userInput} does not conform the expected format"
+        "content": "     * Parses {@code userInput} into a command and returns it."
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "     */"
+        "content": "     * @throws ParseException if {@code userInput} does not conform the expected format"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "    T parse(String userInput) ;"
+        "content": "     */"
       },
       {
         "lineNumber": 15,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "    T parse(String[] userInput) throws CubeException;"
+      },
+      {
+        "lineNumber": 16,
         "author": {
           "gitId": "tygq13"
         },
@@ -3617,7 +3606,8 @@
       }
     ],
     "authorContributionMap": {
-      "tygq13": 15
+      "tygq13": 14,
+      "ZKathrynx": 2
     }
   },
   {
@@ -3641,54 +3631,152 @@
       {
         "lineNumber": 3,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "import cube.logic.command.SoldCommand;"
+        "content": "import cube.exception.CubeException;"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "tygq13"
         },
-        "content": ""
+        "content": "import cube.logic.command.SoldCommand;"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "public class SoldCommandParser implements ParserPrototype\u003cSoldCommand\u003e {"
+        "content": ""
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "tygq13"
         },
-        "content": ""
+        "content": "public class SoldCommandParser implements ParserPrototype\u003cSoldCommand\u003e {"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\tpublic SoldCommand parse(String args) {"
+        "content": ""
       },
       {
         "lineNumber": 8,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "\t\treturn new SoldCommand(\"fuckcs2113t\", 0);"
+        "content": "\tpublic SoldCommand parse(String[] args) throws CubeException {"
       },
       {
         "lineNumber": 9,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\tint foodNameIndex \u003d -1;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\tint quantityIndex \u003d -1;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\tfor (int i \u003d 1; i \u003c args.length; i ++) {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\tif (args[i].equals(\"-n\")) {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\t\tfoodNameIndex \u003d i;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\t}"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\tif (args[i].equals(\"-q\")) {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\t\tquantityIndex \u003d i;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\t}"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t}"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\tif(foodNameIndex \u003d\u003d -1 || quantityIndex \u003d\u003d -1) {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\tthrow new CubeException(\"Not enough parameters. Please enter both food name and quantity sold.\");"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t}"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\treturn new SoldCommand(args[foodNameIndex+1],Integer.parseInt(args[quantityIndex+1]));"
+      },
+      {
+        "lineNumber": 23,
         "author": {
           "gitId": "tygq13"
         },
         "content": "\t}"
       },
       {
-        "lineNumber": 10,
+        "lineNumber": 24,
         "author": {
           "gitId": "tygq13"
         },
@@ -3696,7 +3784,8 @@
       }
     ],
     "authorContributionMap": {
-      "tygq13": 10
+      "tygq13": 8,
+      "ZKathrynx": 16
     }
   },
   {
@@ -3799,733 +3888,733 @@
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t/**"
+        "content": ""
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t * Constructor with one argument."
+        "content": "    /**"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t *"
+        "content": "     * Default constructor."
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t * @param name Name of the food product."
+        "content": "     * Calls another constructor with (null) as argument."
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t */"
+        "content": "     */"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": ""
+        "content": "\tpublic Food() {"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\tpublic Food(String name) {"
+        "content": "\t    this(null);"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t\tthis.name \u003d name;"
+        "content": "    }"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t\tthis.revenue \u003d 0;"
+        "content": ""
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t\tthis.stock \u003d 0;"
+        "content": "\t/**"
       },
       {
         "lineNumber": 24,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "parvathi14"
         },
-        "content": "\t}"
+        "content": "\t * Constructor with one argument."
       },
       {
         "lineNumber": 25,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "parvathi14"
         },
-        "content": ""
+        "content": "\t *"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t/**"
+        "content": "\t * @param name Name of the food product."
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t * Sets the type of the product."
+        "content": "\t */"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t *"
+        "content": ""
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t * @param type The type of the product."
+        "content": "\tpublic Food(String name) {"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t */"
+        "content": "\t\tthis.name \u003d name;"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": ""
+        "content": "\t\tthis.revenue \u003d 0;"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\tpublic void setType(String type) {"
+        "content": "\t\tthis.stock \u003d 0;"
       },
       {
         "lineNumber": 33,
         "author": {
-          "gitId": "parvathi14"
+          "gitId": "tygq13"
         },
-        "content": "\t\tthis.type \u003d type;"
+        "content": "\t}"
       },
       {
         "lineNumber": 34,
         "author": {
-          "gitId": "parvathi14"
+          "gitId": "tygq13"
         },
-        "content": "\t}"
+        "content": ""
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": ""
+        "content": "\t/**"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t/**"
+        "content": "\t * Sets the type of the product."
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t * Gets the type of the product."
+        "content": "\t *"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t *"
+        "content": "\t * @param type The type of the product."
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t * @return the type of the product."
+        "content": "\t */"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t */"
+        "content": ""
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": ""
+        "content": "\tpublic void setType(String type) {"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\tpublic String getType() {"
+        "content": "\t\tthis.type \u003d type;"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t\treturn type;"
+        "content": "\t}"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t}"
+        "content": ""
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": ""
+        "content": "\t/**"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": ""
+        "content": "\t * Gets the type of the product."
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t/**"
+        "content": "\t *"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t * Sets/changes the price of the product."
+        "content": "\t * @return the type of the product."
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t *"
+        "content": "\t */"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t * @param price The price of the product."
+        "content": ""
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t */"
+        "content": "\tpublic String getType() {"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": ""
+        "content": "\t\treturn type;"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\tpublic void setPrice (double price) {"
+        "content": "\t}"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t\tthis.price \u003d price;"
+        "content": ""
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t}"
+        "content": ""
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": ""
+        "content": "\t/**"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t/**"
+        "content": "\t * Sets/changes the price of the product."
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t * Gets the price of the product."
+        "content": "\t *"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t *"
+        "content": "\t * @param price The price of the product."
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t * @return the price of the product."
+        "content": "\t */"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t */"
+        "content": ""
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": ""
+        "content": "\tpublic void setPrice (double price) {"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\tpublic double getPrice() {"
+        "content": "\t\tthis.price \u003d price;"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t\treturn price;"
+        "content": "\t}"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t}"
+        "content": ""
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": ""
+        "content": "\t/**"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": ""
+        "content": "\t * Gets the price of the product."
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t/**"
+        "content": "\t *"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t * Sets/updates the expiry date of the product."
+        "content": "\t * @return the price of the product."
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t *"
+        "content": "\t */"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t * @param expiryDate The expiry date of the product."
+        "content": ""
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t */"
+        "content": "\tpublic double getPrice() {"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": ""
+        "content": "\t\treturn price;"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\tpublic void setExpiryDate (Date expiryDate) {"
+        "content": "\t}"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t\tthis.expiryDate \u003d expiryDate;"
+        "content": ""
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t}"
+        "content": ""
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": ""
+        "content": "\t/**"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t/**"
+        "content": "\t * Sets/updates the expiry date of the product."
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t * Gets the expiry date of the product."
+        "content": "\t *"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t *"
+        "content": "\t * @param expiryDate The expiry date of the product."
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t * @return the expiry date of the product."
+        "content": "\t */"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t */"
+        "content": ""
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": ""
+        "content": "\tpublic void setExpiryDate (Date expiryDate) {"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\tpublic Date getExpiryDate() {"
+        "content": "\t\tthis.expiryDate \u003d expiryDate;"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t\treturn expiryDate;"
+        "content": "\t}"
       },
       {
         "lineNumber": 86,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "parvathi14"
         },
-        "content": "\t}"
+        "content": ""
       },
       {
         "lineNumber": 87,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "parvathi14"
         },
-        "content": ""
+        "content": "\t/**"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": ""
+        "content": "\t * Gets the expiry date of the product."
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t/**"
+        "content": "\t *"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t * Updates the total revenue made from selling the product."
+        "content": "\t * @return the expiry date of the product."
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t *"
+        "content": "\t */"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t * @param newRevenue New total revenue made from selling the product."
+        "content": ""
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t */"
+        "content": "\tpublic Date getExpiryDate() {"
       },
       {
         "lineNumber": 94,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "parvathi14"
         },
-        "content": ""
+        "content": "\t\treturn expiryDate;"
       },
       {
         "lineNumber": 95,
-        "author": {
-          "gitId": "parvathi14"
-        },
-        "content": "\tpublic static void updateRevenue(double newRevenue) {"
-      },
-      {
-        "lineNumber": 96,
-        "author": {
-          "gitId": "parvathi14"
-        },
-        "content": "\t\trevenue \u003d newRevenue;"
-      },
-      {
-        "lineNumber": 97,
         "author": {
           "gitId": "tygq13"
         },
         "content": "\t}"
       },
       {
-        "lineNumber": 98,
+        "lineNumber": 96,
         "author": {
           "gitId": "tygq13"
         },
         "content": ""
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "parvathi14"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "parvathi14"
+        },
+        "content": "\t/**"
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t/**"
+        "content": "\t * Updates the total revenue made from selling the product."
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t * Gets the revenue earned from selling the product."
+        "content": "\t *"
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t *"
+        "content": "\t * @param newRevenue New total revenue made from selling the product."
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t * @return the revenue earned from selling the product."
+        "content": "\t */"
       },
       {
         "lineNumber": 103,
         "author": {
-          "gitId": "parvathi14"
+          "gitId": "tygq13"
         },
-        "content": "\t */"
+        "content": ""
       },
       {
         "lineNumber": 104,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": ""
+        "content": "\tpublic static void updateRevenue(double newRevenue) {"
       },
       {
         "lineNumber": 105,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\tpublic static double getRevenue() {"
+        "content": "\t\trevenue \u003d newRevenue;"
       },
       {
         "lineNumber": 106,
         "author": {
-          "gitId": "parvathi14"
+          "gitId": "tygq13"
         },
-        "content": "\t\treturn revenue;"
+        "content": "\t}"
       },
       {
         "lineNumber": 107,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t}"
+        "content": ""
       },
       {
         "lineNumber": 108,
-        "author": {
-          "gitId": "tygq13"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 109,
-        "author": {
-          "gitId": "parvathi14"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 110,
         "author": {
           "gitId": "parvathi14"
         },
         "content": "\t/**"
       },
       {
-        "lineNumber": 111,
+        "lineNumber": 109,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t * Updates the quantity of the product available in stock."
+        "content": "\t * Gets the revenue earned from selling the product."
       },
       {
-        "lineNumber": 112,
+        "lineNumber": 110,
         "author": {
           "gitId": "parvathi14"
         },
         "content": "\t *"
       },
       {
-        "lineNumber": 113,
+        "lineNumber": 111,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t * @param newStock New quantity of product available."
+        "content": "\t * @return the revenue earned from selling the product."
       },
       {
-        "lineNumber": 114,
+        "lineNumber": 112,
         "author": {
           "gitId": "parvathi14"
         },
         "content": "\t */"
       },
       {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "parvathi14"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "parvathi14"
+        },
+        "content": "\tpublic static double getRevenue() {"
+      },
+      {
         "lineNumber": 115,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\tpublic void updateStock(int newStock) {"
+        "content": "\t\treturn revenue;"
       },
       {
         "lineNumber": 116,
-        "author": {
-          "gitId": "parvathi14"
-        },
-        "content": "\t\tstock \u003d newStock;"
-      },
-      {
-        "lineNumber": 117,
         "author": {
           "gitId": "tygq13"
         },
         "content": "\t}"
       },
       {
-        "lineNumber": 118,
+        "lineNumber": 117,
         "author": {
           "gitId": "tygq13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "parvathi14"
         },
         "content": ""
       },
@@ -4541,7 +4630,7 @@
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t * Gets the quantity of the product available in stock."
+        "content": "\t * Updates the quantity of the product available in stock."
       },
       {
         "lineNumber": 121,
@@ -4555,7 +4644,7 @@
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t * @return Quantity of product in stock."
+        "content": "\t * @param newStock New quantity of product available."
       },
       {
         "lineNumber": 123,
@@ -4569,227 +4658,290 @@
         "author": {
           "gitId": "parvathi14"
         },
-        "content": ""
+        "content": "\tpublic void updateStock(int newStock) {"
       },
       {
         "lineNumber": 125,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "parvathi14"
         },
-        "content": "\tpublic int getStock() {"
+        "content": "\t\tstock \u003d newStock;"
       },
       {
         "lineNumber": 126,
         "author": {
-          "gitId": "parvathi14"
+          "gitId": "tygq13"
         },
-        "content": "\t\treturn stock;"
+        "content": "\t}"
       },
       {
         "lineNumber": 127,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t}"
+        "content": ""
       },
       {
         "lineNumber": 128,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "parvathi14"
         },
-        "content": ""
+        "content": "\t/**"
       },
       {
         "lineNumber": 129,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t/**"
+        "content": "\t * Gets the quantity of the product available in stock."
       },
       {
         "lineNumber": 130,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t * Shows that product already exists in the inventory."
+        "content": "\t *"
       },
       {
         "lineNumber": 131,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t *"
+        "content": "\t * @return Quantity of product in stock."
       },
       {
         "lineNumber": 132,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t * @return true"
+        "content": "\t */"
       },
       {
         "lineNumber": 133,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t */"
+        "content": ""
       },
       {
         "lineNumber": 134,
         "author": {
-          "gitId": "parvathi14"
+          "gitId": "tygq13"
         },
-        "content": ""
+        "content": "\tpublic int getStock() {"
       },
       {
         "lineNumber": 135,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\tpublic boolean exists(String foodName) {"
+        "content": "\t\treturn stock;"
       },
       {
         "lineNumber": 136,
         "author": {
-          "gitId": "parvathi14"
+          "gitId": "tygq13"
         },
-        "content": "\t\tif (foodName \u003d\u003d this.name) {"
+        "content": "\t}"
       },
       {
         "lineNumber": 137,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\t\treturn true;"
-      },
-      {
-        "lineNumber": 138,
-        "author": {
-          "gitId": "tygq13"
-        },
-        "content": "\t\t}"
-      },
-      {
-        "lineNumber": 139,
-        "author": {
-          "gitId": "parvathi14"
-        },
-        "content": "\t\treturn false;"
-      },
-      {
-        "lineNumber": 140,
-        "author": {
-          "gitId": "parvathi14"
-        },
-        "content": "\t}"
-      },
-      {
-        "lineNumber": 141,
-        "author": {
-          "gitId": "parvathi14"
-        },
         "content": ""
       },
       {
-        "lineNumber": 142,
+        "lineNumber": 138,
         "author": {
           "gitId": "parvathi14"
         },
         "content": "\t/**"
       },
       {
-        "lineNumber": 143,
+        "lineNumber": 139,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t * Casts the food product to String type."
+        "content": "\t * Shows that product already exists in the inventory."
       },
       {
-        "lineNumber": 144,
+        "lineNumber": 140,
         "author": {
           "gitId": "parvathi14"
         },
         "content": "\t *"
       },
       {
-        "lineNumber": 145,
+        "lineNumber": 141,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t * @return the String printout of the food product."
+        "content": "\t * @return true"
       },
       {
-        "lineNumber": 146,
+        "lineNumber": 142,
         "author": {
           "gitId": "parvathi14"
         },
         "content": "\t */"
       },
       {
-        "lineNumber": 147,
+        "lineNumber": 143,
         "author": {
           "gitId": "parvathi14"
         },
         "content": ""
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "parvathi14"
+        },
+        "content": "\tpublic boolean exists(String foodName) {"
+      },
+      {
+        "lineNumber": 145,
+        "author": {
+          "gitId": "parvathi14"
+        },
+        "content": "\t\tif (foodName \u003d\u003d this.name) {"
+      },
+      {
+        "lineNumber": 146,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\t\treturn true;"
+      },
+      {
+        "lineNumber": 147,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\t}"
       },
       {
         "lineNumber": 148,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\tpublic String toString() {"
+        "content": "\t\treturn false;"
       },
       {
         "lineNumber": 149,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t\treturn name + \"\\n  Type: \" + type +"
+        "content": "\t}"
       },
       {
         "lineNumber": 150,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t\t\t\t\"\\n  Price: \" + price +"
+        "content": ""
       },
       {
         "lineNumber": 151,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t\t\t\t\"\\n  Stock: \" + stock +"
+        "content": "\t/**"
       },
       {
         "lineNumber": 152,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t\t\t\t\"\\n  Expiry Date: \" + expiryDate +"
+        "content": "\t * Casts the food product to String type."
       },
       {
         "lineNumber": 153,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t\t\t\t\"\\n  Revenue: \" + revenue;"
+        "content": "\t *"
       },
       {
         "lineNumber": 154,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": ""
+        "content": "\t * @return the String printout of the food product."
       },
       {
         "lineNumber": 155,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t}"
+        "content": "\t */"
       },
       {
         "lineNumber": 156,
+        "author": {
+          "gitId": "parvathi14"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 157,
+        "author": {
+          "gitId": "parvathi14"
+        },
+        "content": "\tpublic String toString() {"
+      },
+      {
+        "lineNumber": 158,
+        "author": {
+          "gitId": "parvathi14"
+        },
+        "content": "\t\treturn name + \"\\n  Type: \" + type +"
+      },
+      {
+        "lineNumber": 159,
+        "author": {
+          "gitId": "parvathi14"
+        },
+        "content": "\t\t\t\t\"\\n  Price: \" + price +"
+      },
+      {
+        "lineNumber": 160,
+        "author": {
+          "gitId": "parvathi14"
+        },
+        "content": "\t\t\t\t\"\\n  Stock: \" + stock +"
+      },
+      {
+        "lineNumber": 161,
+        "author": {
+          "gitId": "parvathi14"
+        },
+        "content": "\t\t\t\t\"\\n  Expiry Date: \" + expiryDate +"
+      },
+      {
+        "lineNumber": 162,
+        "author": {
+          "gitId": "parvathi14"
+        },
+        "content": "\t\t\t\t\"\\n  Revenue: \" + revenue;"
+      },
+      {
+        "lineNumber": 163,
+        "author": {
+          "gitId": "parvathi14"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 164,
+        "author": {
+          "gitId": "parvathi14"
+        },
+        "content": "\t}"
+      },
+      {
+        "lineNumber": 165,
         "author": {
           "gitId": "tygq13"
         },
@@ -4797,7 +4949,7 @@
       }
     ],
     "authorContributionMap": {
-      "parvathi14": 136,
+      "parvathi14": 145,
       "tygq13": 20
     }
   },
@@ -7209,7 +7361,7 @@
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "\t * @param list the list of tasks stored in Duke."
+        "content": "\t * @param list the list of tasks stored in Cube."
       },
       {
         "lineNumber": 61,
@@ -7293,7 +7445,7 @@
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "\t * @param list the list of tasks stored in Duke."
+        "content": "\t * @param list the list of tasks stored in Cube."
       },
       {
         "lineNumber": 73,
@@ -7377,7 +7529,7 @@
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "\t * @param list the list of task stored in Duke."
+        "content": "\t * @param list the list of task stored in Cube."
       },
       {
         "lineNumber": 85,
@@ -7613,9 +7765,9 @@
       {
         "lineNumber": 118,
         "author": {
-          "gitId": "-"
+          "gitId": "LL-Pengfei"
         },
-        "content": "\t * @param list the list of task stored in Duke."
+        "content": "\t * @param list the list of task stored in Cube."
       },
       {
         "lineNumber": 119,
@@ -7711,9 +7863,9 @@
       {
         "lineNumber": 132,
         "author": {
-          "gitId": "-"
+          "gitId": "LL-Pengfei"
         },
-        "content": "\t * @param list the list of task stored in Duke."
+        "content": "\t * @param list the list of task stored in Cube."
       },
       {
         "lineNumber": 133,
@@ -7795,9 +7947,9 @@
       {
         "lineNumber": 144,
         "author": {
-          "gitId": "-"
+          "gitId": "LL-Pengfei"
         },
-        "content": "\t * @param list the list of task stored in Duke."
+        "content": "\t * @param list the list of task stored in Cube."
       },
       {
         "lineNumber": 145,
@@ -8116,8 +8268,8 @@
       }
     ],
     "authorContributionMap": {
-      "-": 102,
-      "LL-Pengfei": 87
+      "-": 99,
+      "LL-Pengfei": 90
     }
   },
   {
