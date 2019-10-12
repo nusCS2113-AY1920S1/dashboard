@@ -878,166 +878,243 @@
       {
         "lineNumber": 4,
         "author": {
-          "gitId": "limsiying"
+          "gitId": "mohideenik"
         },
-        "content": "import duchess.model.task.Deadline;"
+        "content": "import duchess.model.Module;"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "limsiying"
         },
-        "content": "import duchess.model.task.Task;"
+        "content": "import duchess.model.task.Deadline;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "limsiying"
         },
-        "content": "import duchess.storage.Storage;"
+        "content": "import duchess.model.task.Task;"
       },
       {
         "lineNumber": 7,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": "import duchess.storage.Storage;"
+      },
+      {
+        "lineNumber": 8,
         "author": {
           "gitId": "mohideenik"
         },
         "content": "import duchess.storage.Store;"
       },
       {
-        "lineNumber": 8,
+        "lineNumber": 9,
         "author": {
           "gitId": "limsiying"
         },
         "content": "import duchess.ui.Ui;"
       },
       {
-        "lineNumber": 9,
+        "lineNumber": 10,
         "author": {
           "gitId": "limsiying"
         },
         "content": ""
       },
       {
-        "lineNumber": 10,
+        "lineNumber": 11,
         "author": {
           "gitId": "mohideenik"
         },
         "content": "import java.util.List;"
       },
       {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "mohideenik"
-        },
-        "content": ""
-      },
-      {
         "lineNumber": 12,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "public class AddDeadlineCommand extends Command {"
+        "content": "import java.util.Optional;"
       },
       {
         "lineNumber": 13,
         "author": {
-          "gitId": "muserr"
+          "gitId": "mohideenik"
         },
-        "content": "    /** List containing String objects. */"
+        "content": ""
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    private List\u003cString\u003e words;"
+        "content": "public class AddDeadlineCommand extends Command {"
       },
       {
         "lineNumber": 15,
         "author": {
-          "gitId": "mohideenik"
+          "gitId": "muserr"
         },
-        "content": ""
+        "content": "    /** List containing String objects. */"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public AddDeadlineCommand(List\u003cString\u003e words) {"
+        "content": "    private List\u003cString\u003e words;"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        this.words \u003d words;"
+        "content": ""
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "    public AddDeadlineCommand(List\u003cString\u003e words) {"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "        this.words \u003d words;"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    @Override"
+        "content": "    }"
       },
       {
         "lineNumber": 21,
         "author": {
-          "gitId": "nishanthelango"
+          "gitId": "mohideenik"
         },
-        "content": "    public void execute(Store store, Ui ui, Storage storage) throws DuchessException {"
+        "content": ""
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        Task task \u003d new Deadline(words.subList(0, words.size()));"
+        "content": "    @Override"
       },
       {
         "lineNumber": 23,
         "author": {
-          "gitId": "mohideenik"
+          "gitId": "nishanthelango"
         },
-        "content": "        store.getTaskList().add(task);"
+        "content": "    public void execute(Store store, Ui ui, Storage storage) throws DuchessException {"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        ui.showTaskAdded(store.getTaskList(), task);"
+        "content": "        Task task;"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        storage.save(store);"
+        "content": "        if (words.get(words.size() - 1).charAt(0) \u003d\u003d \u0027#\u0027) {"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "            task \u003d new Deadline(words.subList(0, words.size() - 1));"
       },
       {
         "lineNumber": 27,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "            Optional\u003cModule\u003e module \u003d store.findModuleByCode(words.get(words.size() - 1).substring(1));"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "            task.setModule(module.orElseThrow(() -\u003e"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "                    new DuchessException(\"Unable to find given module.\")"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "            ));"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "            task \u003d new Deadline(words.subList(0, words.size()));"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        store.getTaskList().add(task);"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        ui.showTaskAdded(store.getTaskList(), task);"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        storage.save(store);"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 38,
         "author": {
           "gitId": "mohideenik"
         },
@@ -1046,7 +1123,7 @@
     ],
     "authorContributionMap": {
       "limsiying": 7,
-      "mohideenik": 17,
+      "mohideenik": 28,
       "nishanthelango": 2,
       "muserr": 1
     }
@@ -1081,171 +1158,248 @@
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "import duchess.model.task.Event;"
+        "content": "import duchess.model.Module;"
       },
       {
         "lineNumber": 5,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "import duchess.model.task.Event;"
+      },
+      {
+        "lineNumber": 6,
         "author": {
           "gitId": "limsiying"
         },
         "content": "import duchess.storage.Storage;"
       },
       {
-        "lineNumber": 6,
+        "lineNumber": 7,
         "author": {
           "gitId": "mohideenik"
         },
         "content": "import duchess.storage.Store;"
       },
       {
-        "lineNumber": 7,
+        "lineNumber": 8,
         "author": {
           "gitId": "limsiying"
         },
         "content": "import duchess.ui.Ui;"
       },
       {
-        "lineNumber": 8,
+        "lineNumber": 9,
         "author": {
           "gitId": "nishanthelango"
         },
         "content": ""
-      },
-      {
-        "lineNumber": 9,
-        "author": {
-          "gitId": "mohideenik"
-        },
-        "content": "import java.util.List;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "import java.util.List;"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "public class AddEventCommand extends Command {"
+        "content": "import java.util.Optional;"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    private List\u003cString\u003e words;"
+        "content": ""
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "public class AddEventCommand extends Command {"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public AddEventCommand(List\u003cString\u003e words) {"
+        "content": "    private List\u003cString\u003e words;"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        this.words \u003d words;"
+        "content": ""
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "    public AddEventCommand(List\u003cString\u003e words) {"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "        this.words \u003d words;"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    @Override"
+        "content": "    }"
       },
       {
         "lineNumber": 19,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 21,
         "author": {
           "gitId": "nishanthelango"
         },
         "content": "    public void execute(Store store, Ui ui, Storage storage) throws DuchessException {"
       },
       {
-        "lineNumber": 20,
-        "author": {
-          "gitId": "nishanthelango"
-        },
-        "content": "        Event task \u003d new Event(words.subList(0, words.size()));"
-      },
-      {
-        "lineNumber": 21,
+        "lineNumber": 22,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        if (store.isClashing(task)) {"
-      },
-      {
-        "lineNumber": 22,
-        "author": {
-          "gitId": "nishanthelango"
-        },
-        "content": "            throw new DuchessException(\"Unable to add event - clash found.\");"
+        "content": "        Event task;"
       },
       {
         "lineNumber": 23,
         "author": {
-          "gitId": "nishanthelango"
+          "gitId": "mohideenik"
         },
-        "content": "        }"
+        "content": "        if (words.get(words.size() - 1).charAt(0) \u003d\u003d \u0027#\u0027) {"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        store.getTaskList().add(task);"
+        "content": "            task \u003d new Event(words.subList(0, words.size() - 1));"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        ui.showTaskAdded(store.getTaskList(), task);"
+        "content": "            Optional\u003cModule\u003e module \u003d store.findModuleByCode(words.get(words.size() - 1).substring(1));"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        storage.save(store);"
+        "content": "            task.setModule(module.orElseThrow(() -\u003e"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "                    new DuchessException(\"Unable to find given module.\")"
       },
       {
         "lineNumber": 28,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "            ));"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "            task \u003d new Event(words.subList(0, words.size()));"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        if (store.isClashing(task)) {"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "nishanthelango"
+        },
+        "content": "            throw new DuchessException(\"Unable to add event - clash found.\");"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "nishanthelango"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        store.getTaskList().add(task);"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        ui.showTaskAdded(store.getTaskList(), task);"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        storage.save(store);"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 39,
         "author": {
           "gitId": "mohideenik"
         },
@@ -1254,8 +1408,8 @@
     ],
     "authorContributionMap": {
       "limsiying": 4,
-      "mohideenik": 18,
-      "nishanthelango": 6
+      "mohideenik": 30,
+      "nishanthelango": 5
     }
   },
   {
@@ -1542,159 +1696,236 @@
       {
         "lineNumber": 4,
         "author": {
-          "gitId": "limsiying"
+          "gitId": "mohideenik"
         },
-        "content": "import duchess.model.task.Task;"
+        "content": "import duchess.model.Module;"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "limsiying"
         },
-        "content": "import duchess.model.task.Todo;"
+        "content": "import duchess.model.task.Task;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "limsiying"
         },
-        "content": "import duchess.storage.Storage;"
+        "content": "import duchess.model.task.Todo;"
       },
       {
         "lineNumber": 7,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": "import duchess.storage.Storage;"
+      },
+      {
+        "lineNumber": 8,
         "author": {
           "gitId": "mohideenik"
         },
         "content": "import duchess.storage.Store;"
       },
       {
-        "lineNumber": 8,
+        "lineNumber": 9,
         "author": {
           "gitId": "limsiying"
         },
         "content": "import duchess.ui.Ui;"
       },
       {
-        "lineNumber": 9,
+        "lineNumber": 10,
         "author": {
           "gitId": "limsiying"
         },
         "content": ""
       },
       {
-        "lineNumber": 10,
+        "lineNumber": 11,
         "author": {
           "gitId": "mohideenik"
         },
         "content": "import java.util.List;"
       },
       {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "mohideenik"
-        },
-        "content": ""
-      },
-      {
         "lineNumber": 12,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "public class AddTodoCommand extends Command {"
+        "content": "import java.util.Optional;"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    private List\u003cString\u003e words;"
+        "content": ""
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "public class AddTodoCommand extends Command {"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public AddTodoCommand(List\u003cString\u003e words) {"
+        "content": "    private List\u003cString\u003e words;"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        this.words \u003d words;"
+        "content": ""
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "    public AddTodoCommand(List\u003cString\u003e words) {"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "        this.words \u003d words;"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    @Override"
+        "content": "    }"
       },
       {
         "lineNumber": 20,
         "author": {
-          "gitId": "nishanthelango"
+          "gitId": "mohideenik"
         },
-        "content": "    public void execute(Store store, Ui ui, Storage storage) throws DuchessException {"
+        "content": ""
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        Task task \u003d new Todo(words.subList(0, words.size()));"
+        "content": "    @Override"
       },
       {
         "lineNumber": 22,
         "author": {
-          "gitId": "mohideenik"
+          "gitId": "nishanthelango"
         },
-        "content": "        store.getTaskList().add(task);"
+        "content": "    public void execute(Store store, Ui ui, Storage storage) throws DuchessException {"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        ui.showTaskAdded(store.getTaskList(), task);"
+        "content": "        Task task;"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        storage.save(store);"
+        "content": "        if (words.get(words.size() - 1).charAt(0) \u003d\u003d \u0027#\u0027) {"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "            task \u003d new Todo(words.subList(0, words.size() - 1));"
       },
       {
         "lineNumber": 26,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "            Optional\u003cModule\u003e module \u003d store.findModuleByCode(words.get(words.size() - 1).substring(1));"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "            task.setModule(module.orElseThrow(() -\u003e"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "                    new DuchessException(\"Unable to find given module.\")"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "            ));"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "            task \u003d new Todo(words.subList(0, words.size()));"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        store.getTaskList().add(task);"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        ui.showTaskAdded(store.getTaskList(), task);"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        storage.save(store);"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 37,
         "author": {
           "gitId": "mohideenik"
         },
@@ -1703,7 +1934,7 @@
     ],
     "authorContributionMap": {
       "limsiying": 7,
-      "mohideenik": 17,
+      "mohideenik": 28,
       "nishanthelango": 2
     }
   },
@@ -7008,14 +7239,14 @@
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public boolean equals(Module that) {"
+        "content": "    public boolean isOfCode(String code) {"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        return this.code.equals(that.code);"
+        "content": "        return this.code.toLowerCase().equals(code.toLowerCase());"
       },
       {
         "lineNumber": 33,
@@ -7029,11 +7260,39 @@
         "author": {
           "gitId": "mohideenik"
         },
+        "content": ""
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    public boolean equals(Module that) {"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        return this.code.equals(that.code);"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "mohideenik"
+        },
         "content": "}"
       }
     ],
     "authorContributionMap": {
-      "mohideenik": 34
+      "mohideenik": 38
     }
   },
   {
@@ -7742,500 +8001,514 @@
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "import com.fasterxml.jackson.annotation.JsonCreator;"
+        "content": "import com.fasterxml.jackson.annotation.JsonGetter;"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "import com.fasterxml.jackson.annotation.JsonGetter;"
+        "content": "import com.fasterxml.jackson.annotation.JsonSetter;"
       },
       {
         "lineNumber": 5,
-        "author": {
-          "gitId": "mohideenik"
-        },
-        "content": "import com.fasterxml.jackson.annotation.JsonProperty;"
-      },
-      {
-        "lineNumber": 6,
         "author": {
           "gitId": "nishanthelango"
         },
         "content": "import duchess.exceptions.DuchessException;"
       },
       {
-        "lineNumber": 7,
+        "lineNumber": 6,
         "author": {
           "gitId": "limsiying"
         },
         "content": "import duchess.model.TimeFrame;"
       },
       {
-        "lineNumber": 8,
+        "lineNumber": 7,
         "author": {
           "gitId": "nishanthelango"
         },
         "content": ""
       },
       {
-        "lineNumber": 9,
+        "lineNumber": 8,
         "author": {
           "gitId": "nishanthelango"
         },
         "content": "import java.time.LocalDateTime;"
       },
       {
-        "lineNumber": 10,
+        "lineNumber": 9,
         "author": {
           "gitId": "nishanthelango"
         },
         "content": "import java.time.format.DateTimeFormatter;"
       },
       {
-        "lineNumber": 11,
+        "lineNumber": 10,
         "author": {
           "gitId": "nishanthelango"
         },
         "content": "import java.time.format.DateTimeParseException;"
       },
       {
-        "lineNumber": 12,
+        "lineNumber": 11,
         "author": {
           "gitId": "nishanthelango"
         },
         "content": "import java.time.format.ResolverStyle;"
       },
       {
-        "lineNumber": 13,
+        "lineNumber": 12,
         "author": {
           "gitId": "mohideenik"
         },
         "content": "import java.util.List;"
       },
       {
-        "lineNumber": 14,
+        "lineNumber": 13,
         "author": {
           "gitId": "mohideenik"
         },
         "content": "import java.util.Optional;"
       },
       {
-        "lineNumber": 15,
+        "lineNumber": 14,
         "author": {
           "gitId": "mohideenik"
         },
         "content": ""
       },
       {
-        "lineNumber": 16,
+        "lineNumber": 15,
         "author": {
           "gitId": "mohideenik"
         },
         "content": "public class Deadline extends Task {"
       },
       {
-        "lineNumber": 17,
+        "lineNumber": 16,
         "author": {
           "gitId": "nishanthelango"
         },
         "content": "    private LocalDateTime deadline;"
       },
       {
-        "lineNumber": 18,
+        "lineNumber": 17,
         "author": {
           "gitId": "mohideenik"
         },
         "content": ""
       },
       {
-        "lineNumber": 19,
+        "lineNumber": 18,
         "author": {
           "gitId": "mohideenik"
         },
         "content": "    /**"
       },
       {
-        "lineNumber": 20,
+        "lineNumber": 19,
         "author": {
           "gitId": "mohideenik"
         },
         "content": "     * Creates a deadline task from user input."
       },
       {
-        "lineNumber": 21,
+        "lineNumber": 20,
         "author": {
           "gitId": "mohideenik"
         },
         "content": "     *"
       },
       {
-        "lineNumber": 22,
+        "lineNumber": 21,
         "author": {
           "gitId": "mohideenik"
         },
         "content": "     * @param input tokenized user input"
       },
       {
-        "lineNumber": 23,
+        "lineNumber": 22,
         "author": {
           "gitId": "nishanthelango"
         },
         "content": "     * @throws DuchessException an error if user input is invalid"
       },
       {
-        "lineNumber": 24,
+        "lineNumber": 23,
         "author": {
           "gitId": "mohideenik"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 25,
+        "lineNumber": 24,
         "author": {
           "gitId": "nishanthelango"
         },
         "content": "    public Deadline(List\u003cString\u003e input) throws DuchessException {"
       },
       {
-        "lineNumber": 26,
+        "lineNumber": 25,
         "author": {
           "gitId": "nishanthelango"
         },
         "content": "        DateTimeFormatter formatter \u003d DateTimeFormatter.ofPattern(\"dd/MM/uuuu HHmm\")"
       },
       {
-        "lineNumber": 27,
+        "lineNumber": 26,
         "author": {
           "gitId": "nishanthelango"
         },
         "content": "                .withResolverStyle(ResolverStyle.STRICT);"
       },
       {
-        "lineNumber": 28,
+        "lineNumber": 27,
         "author": {
           "gitId": "mohideenik"
         },
         "content": "        int separatorIndex \u003d input.indexOf(\"/by\");"
       },
       {
-        "lineNumber": 29,
+        "lineNumber": 28,
         "author": {
           "gitId": "mohideenik"
         },
         "content": "        if (input.size() \u003d\u003d 0 || separatorIndex \u003c\u003d 0) {"
       },
       {
-        "lineNumber": 30,
+        "lineNumber": 29,
         "author": {
           "gitId": "nishanthelango"
         },
         "content": "            throw new DuchessException(\"Format for deadline: deadline \u003ctask\u003e /by \u003cdeadline\u003e\");"
       },
       {
-        "lineNumber": 31,
+        "lineNumber": 30,
         "author": {
           "gitId": "mohideenik"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 32,
+        "lineNumber": 31,
         "author": {
           "gitId": "mohideenik"
         },
         "content": "        this.description \u003d String.join(\" \", input.subList(0, separatorIndex));"
       },
       {
-        "lineNumber": 33,
+        "lineNumber": 32,
         "author": {
           "gitId": "nishanthelango"
         },
         "content": "        String strDeadline \u003d String.join(\" \", input.subList(separatorIndex + 1, input.size()));"
       },
       {
-        "lineNumber": 34,
+        "lineNumber": 33,
         "author": {
           "gitId": "nishanthelango"
         },
         "content": "        try {"
       },
       {
-        "lineNumber": 35,
+        "lineNumber": 34,
         "author": {
           "gitId": "nishanthelango"
         },
         "content": "            this.deadline \u003d LocalDateTime.parse(strDeadline, formatter);"
       },
       {
-        "lineNumber": 36,
+        "lineNumber": 35,
         "author": {
           "gitId": "nishanthelango"
         },
         "content": "        } catch (DateTimeParseException e) {"
       },
       {
-        "lineNumber": 37,
+        "lineNumber": 36,
         "author": {
           "gitId": "nishanthelango"
         },
         "content": "            throw new DuchessException(\"Invalid datetime. Correct format: dd/mm/yyyy hhmm\");"
       },
       {
-        "lineNumber": 38,
+        "lineNumber": 37,
         "author": {
           "gitId": "nishanthelango"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 39,
+        "lineNumber": 38,
         "author": {
           "gitId": "mohideenik"
         },
         "content": "    }"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": ""
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "    @Override"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    @Override"
-      },
-      {
-        "lineNumber": 42,
-        "author": {
-          "gitId": "mohideenik"
-        },
         "content": "    public void snooze() {"
       },
       {
-        "lineNumber": 43,
+        "lineNumber": 42,
         "author": {
           "gitId": "nishanthelango"
         },
         "content": "        deadline \u003d deadline.plusWeeks(1);"
       },
       {
-        "lineNumber": 44,
+        "lineNumber": 43,
         "author": {
           "gitId": "mohideenik"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 45,
+        "lineNumber": 44,
         "author": {
           "gitId": "mohideenik"
         },
         "content": ""
       },
       {
-        "lineNumber": 46,
+        "lineNumber": 45,
         "author": {
           "gitId": "muserr"
         },
         "content": "    @Override"
       },
       {
-        "lineNumber": 47,
+        "lineNumber": 46,
         "author": {
           "gitId": "mohideenik"
         },
         "content": "    public Optional\u003cTask\u003e getReminder() {"
       },
       {
-        "lineNumber": 48,
+        "lineNumber": 47,
         "author": {
           "gitId": "mohideenik"
         },
         "content": "        return Optional.of(this);"
       },
       {
-        "lineNumber": 49,
+        "lineNumber": 48,
         "author": {
           "gitId": "muserr"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 50,
+        "lineNumber": 49,
         "author": {
           "gitId": "muserr"
         },
         "content": ""
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": "    @Override"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    @JsonCreator"
+        "content": "    public TimeFrame getTimeFrame() {"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public Deadline("
+        "content": "        return TimeFrame.ofInstantaneousTask(this.deadline);"
       },
       {
         "lineNumber": 53,
         "author": {
-          "gitId": "nishanthelango"
+          "gitId": "limsiying"
         },
-        "content": "            @JsonProperty(\"deadline\") String deadline"
+        "content": "    }"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    ) {"
+        "content": ""
       },
       {
         "lineNumber": 55,
         "author": {
-          "gitId": "nishanthelango"
+          "gitId": "mohideenik"
         },
-        "content": "        this.deadline \u003d LocalDateTime.parse(deadline);"
+        "content": "    @Override"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 57,
-        "author": {
-          "gitId": "limsiying"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 58,
-        "author": {
-          "gitId": "limsiying"
-        },
-        "content": "    @Override"
-      },
-      {
-        "lineNumber": 59,
-        "author": {
-          "gitId": "mohideenik"
-        },
-        "content": "    public TimeFrame getTimeFrame() {"
-      },
-      {
-        "lineNumber": 60,
-        "author": {
-          "gitId": "mohideenik"
-        },
-        "content": "        return TimeFrame.ofInstantaneousTask(this.deadline);"
-      },
-      {
-        "lineNumber": 61,
-        "author": {
-          "gitId": "limsiying"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 62,
-        "author": {
-          "gitId": "mohideenik"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 63,
-        "author": {
-          "gitId": "mohideenik"
-        },
-        "content": "    @Override"
-      },
-      {
-        "lineNumber": 64,
-        "author": {
-          "gitId": "mohideenik"
-        },
         "content": "    public String toString() {"
       },
       {
-        "lineNumber": 65,
+        "lineNumber": 57,
         "author": {
           "gitId": "nishanthelango"
         },
         "content": "        DateTimeFormatter formatter \u003d DateTimeFormatter.ofPattern(\"dd/MM/uuuu HHmm\")"
       },
       {
-        "lineNumber": 66,
+        "lineNumber": 58,
         "author": {
           "gitId": "nishanthelango"
         },
         "content": "                .withResolverStyle(ResolverStyle.STRICT);"
       },
       {
-        "lineNumber": 67,
+        "lineNumber": 59,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        return String.format(\"[D]%s %s (by: %s)\", super.toString(), this.description, formatter.format(this.deadline));"
+        "content": "        return String.format("
       },
       {
-        "lineNumber": 68,
+        "lineNumber": 60,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "                \"[D]%s %s (by: %s)\","
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "                super.toString(),"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "                this.description,"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "                formatter.format(this.deadline)"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        );"
+      },
+      {
+        "lineNumber": 65,
         "author": {
           "gitId": "mohideenik"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 69,
+        "lineNumber": 66,
         "author": {
           "gitId": "mohideenik"
         },
         "content": ""
       },
       {
-        "lineNumber": 70,
+        "lineNumber": 67,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    @JsonGetter(\"deadline\")"
+        "content": "    @JsonSetter(\"deadline\")"
       },
       {
-        "lineNumber": 71,
+        "lineNumber": 68,
         "author": {
-          "gitId": "nishanthelango"
+          "gitId": "mohideenik"
         },
-        "content": "    public String getDeadline() {"
+        "content": "    public void setDeadline(String deadline) {"
       },
       {
-        "lineNumber": 72,
+        "lineNumber": 69,
         "author": {
-          "gitId": "nishanthelango"
+          "gitId": "mohideenik"
         },
-        "content": "        return deadline.toString();"
+        "content": "        this.deadline \u003d LocalDateTime.parse(deadline);"
       },
       {
-        "lineNumber": 73,
+        "lineNumber": 70,
         "author": {
           "gitId": "mohideenik"
         },
         "content": "    }"
       },
       {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    @JsonGetter(\"deadline\")"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "nishanthelango"
+        },
+        "content": "    public String getDeadline() {"
+      },
+      {
         "lineNumber": 74,
+        "author": {
+          "gitId": "nishanthelango"
+        },
+        "content": "        return deadline.toString();"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 76,
         "author": {
           "gitId": "mohideenik"
         },
@@ -8243,9 +8516,9 @@
       }
     ],
     "authorContributionMap": {
-      "limsiying": 5,
-      "mohideenik": 41,
-      "nishanthelango": 25,
+      "limsiying": 4,
+      "mohideenik": 46,
+      "nishanthelango": 23,
       "muserr": 3
     }
   },
@@ -9252,54 +9525,54 @@
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "import com.fasterxml.jackson.annotation.JsonCreator;"
+        "content": "import com.fasterxml.jackson.annotation.JsonGetter;"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "import com.fasterxml.jackson.annotation.JsonGetter;"
-      },
-      {
-        "lineNumber": 5,
-        "author": {
-          "gitId": "mohideenik"
-        },
-        "content": "import com.fasterxml.jackson.annotation.JsonProperty;"
-      },
-      {
-        "lineNumber": 6,
-        "author": {
-          "gitId": "mohideenik"
-        },
         "content": "import com.fasterxml.jackson.annotation.JsonSetter;"
       },
       {
-        "lineNumber": 7,
+        "lineNumber": 5,
         "author": {
           "gitId": "nishanthelango"
         },
         "content": "import duchess.exceptions.DuchessException;"
       },
       {
-        "lineNumber": 8,
+        "lineNumber": 6,
         "author": {
           "gitId": "mohideenik"
         },
         "content": "import duchess.model.Module;"
       },
       {
-        "lineNumber": 9,
+        "lineNumber": 7,
         "author": {
           "gitId": "limsiying"
         },
         "content": "import duchess.model.TimeFrame;"
       },
       {
-        "lineNumber": 10,
+        "lineNumber": 8,
         "author": {
           "gitId": "limsiying"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "import java.util.Optional;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "mohideenik"
         },
         "content": ""
       },
@@ -9308,133 +9581,133 @@
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "import java.util.Optional;"
+        "content": "public abstract class Task implements Comparable\u003cTask\u003e {"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "    private boolean isDone;"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "public abstract class Task implements Comparable\u003cTask\u003e {"
+        "content": "    private Optional\u003cModule\u003e module;"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    private boolean isDone;"
+        "content": "    protected String description;"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    protected String description;"
+        "content": ""
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    private Optional\u003cModule\u003e module;"
+        "content": "    public Task() {"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "        this.isDone \u003d false;"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public Task() {"
+        "content": "        this.module \u003d Optional.empty();"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        this.isDone \u003d false;"
+        "content": "    }"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        this.module \u003d Optional.empty();"
+        "content": ""
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "    public void markAsDone() {"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "        this.isDone \u003d true;"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public void markAsDone() {"
+        "content": "    }"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        this.isDone \u003d true;"
+        "content": ""
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "    @Override"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "    public String toString() {"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    @Override"
+        "content": "        return"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public String toString() {"
+        "content": "                \"[\" + (this.isDone ? \"✓\" : \"✘\") + \"]\""
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        return \"[\" + (this.isDone ? \"✓\" : \"✘\") + \"]\";"
+        "content": "                        + module.map(m -\u003e \"[\" + m.getCode() + \"]\").orElse(\"\");"
       },
       {
         "lineNumber": 30,
@@ -9518,231 +9791,231 @@
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    @JsonCreator"
+        "content": "    @JsonSetter(\"description\")"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public Task("
+        "content": "    public void setDescription(String description) {"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            @JsonProperty(\"module\") Module module,"
+        "content": "        this.description \u003d description;"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            @JsonProperty(\"description\") String description) {"
-      },
-      {
-        "lineNumber": 45,
-        "author": {
-          "gitId": "mohideenik"
-        },
-        "content": "        this.module \u003d Optional.ofNullable(module);"
-      },
-      {
-        "lineNumber": 46,
-        "author": {
-          "gitId": "mohideenik"
-        },
-        "content": "        this.description \u003d description;"
-      },
-      {
-        "lineNumber": 47,
-        "author": {
-          "gitId": "mohideenik"
-        },
         "content": "    }"
       },
       {
-        "lineNumber": 48,
+        "lineNumber": 45,
         "author": {
           "gitId": "nishanthelango"
         },
         "content": ""
       },
       {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    @JsonSetter(\"module\")"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    public void setModule(Module module) {"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        this.module \u003d Optional.ofNullable(module);"
+      },
+      {
         "lineNumber": 49,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    @JsonGetter(\"module\")"
+        "content": "    }"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public Module getModule() {"
+        "content": ""
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        return this.module.orElse(null);"
+        "content": "    @JsonGetter(\"module\")"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "    public Module getModule() {"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "        return this.module.orElse(null);"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    @JsonGetter(\"done\")"
+        "content": "    }"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public boolean isDone() {"
+        "content": ""
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        return isDone;"
+        "content": "    @JsonGetter(\"done\")"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "    public boolean isDone() {"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "        return isDone;"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    @JsonGetter(\"description\")"
+        "content": "    }"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public String getDescription() {"
+        "content": ""
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        return description;"
+        "content": "    @JsonGetter(\"description\")"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "    public String getDescription() {"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "        return description;"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    @JsonSetter(\"done\")"
+        "content": "    }"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public void setDone(boolean done) {"
+        "content": ""
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        isDone \u003d done;"
+        "content": "    @JsonSetter(\"done\")"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "    public void setDone(boolean done) {"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "        isDone \u003d done;"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public boolean containsKeyword(String keyword) {"
+        "content": "    }"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        return this.description.contains(keyword);"
+        "content": ""
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "    public boolean containsKeyword(String keyword) {"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "        return this.description.contains(keyword);"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public abstract TimeFrame getTimeFrame();"
+        "content": "    }"
       },
       {
         "lineNumber": 74,
@@ -9754,9 +10027,9 @@
       {
         "lineNumber": 75,
         "author": {
-          "gitId": "nishanthelango"
+          "gitId": "mohideenik"
         },
-        "content": "    public abstract void snooze() throws DuchessException;"
+        "content": "    public abstract TimeFrame getTimeFrame();"
       },
       {
         "lineNumber": 76,
@@ -9768,12 +10041,26 @@
       {
         "lineNumber": 77,
         "author": {
+          "gitId": "nishanthelango"
+        },
+        "content": "    public abstract void snooze() throws DuchessException;"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 79,
+        "author": {
           "gitId": "mohideenik"
         },
         "content": "    public abstract Optional\u003cTask\u003e getReminder();"
       },
       {
-        "lineNumber": 78,
+        "lineNumber": 80,
         "author": {
           "gitId": "mohideenik"
         },
@@ -9782,7 +10069,7 @@
     ],
     "authorContributionMap": {
       "limsiying": 4,
-      "mohideenik": 71,
+      "mohideenik": 73,
       "nishanthelango": 3
     }
   },
@@ -11163,126 +11450,126 @@
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "import java.util.Optional;"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "public class Store {"
+        "content": ""
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    private List\u003cTask\u003e taskList;"
+        "content": "public class Store {"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    private List\u003cModule\u003e moduleList;"
+        "content": "    private List\u003cTask\u003e taskList;"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "    private List\u003cModule\u003e moduleList;"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public Store() {"
+        "content": ""
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        this.taskList \u003d new ArrayList\u003c\u003e();"
+        "content": "    public Store() {"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        this.moduleList \u003d new ArrayList\u003c\u003e();"
+        "content": "        this.taskList \u003d new ArrayList\u003c\u003e();"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "        this.moduleList \u003d new ArrayList\u003c\u003e();"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public boolean isClashing(Task newTask) {"
+        "content": ""
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        return this.taskList.stream()"
+        "content": "    public boolean isClashing(Task newTask) {"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                .anyMatch(task -\u003e task.clashesWith(newTask));"
+        "content": "        return this.taskList.stream()"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "                .anyMatch(task -\u003e task.clashesWith(newTask));"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    @JsonGetter(\"taskList\")"
+        "content": ""
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public List\u003cTask\u003e getTaskList() {"
+        "content": "    public Optional\u003cModule\u003e findModuleByCode(String code) {"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        return taskList;"
+        "content": "        return moduleList.stream().filter(module -\u003e module.isOfCode(code)).findFirst();"
       },
       {
         "lineNumber": 28,
@@ -11303,21 +11590,21 @@
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    @JsonSetter(\"taskList\")"
+        "content": "    @JsonGetter(\"taskList\")"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public void setTaskList(List\u003cTask\u003e taskList) {"
+        "content": "    public List\u003cTask\u003e getTaskList() {"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        this.taskList \u003d taskList;"
+        "content": "        return taskList;"
       },
       {
         "lineNumber": 33,
@@ -11338,21 +11625,21 @@
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    @JsonGetter(\"moduleList\")"
+        "content": "    @JsonSetter(\"taskList\")"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public List\u003cModule\u003e getModuleList() {"
+        "content": "    public void setTaskList(List\u003cTask\u003e taskList) {"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        return moduleList;"
+        "content": "        this.taskList \u003d taskList;"
       },
       {
         "lineNumber": 38,
@@ -11373,21 +11660,21 @@
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    @JsonSetter(\"moduleList\")"
+        "content": "    @JsonGetter(\"moduleList\")"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public void setModuleList(List\u003cModule\u003e moduleList) {"
+        "content": "    public List\u003cModule\u003e getModuleList() {"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        this.moduleList \u003d moduleList;"
+        "content": "        return moduleList;"
       },
       {
         "lineNumber": 43,
@@ -11401,12 +11688,47 @@
         "author": {
           "gitId": "mohideenik"
         },
+        "content": ""
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    @JsonSetter(\"moduleList\")"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    public void setModuleList(List\u003cModule\u003e moduleList) {"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        this.moduleList \u003d moduleList;"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "mohideenik"
+        },
         "content": "}"
       }
     ],
     "authorContributionMap": {
       "limsiying": 1,
-      "mohideenik": 43
+      "mohideenik": 48
     }
   },
   {
