@@ -70,6 +70,20 @@
             "deletions": 193
           }
         ]
+      },
+      {
+        "insertions": 58,
+        "deletions": 22,
+        "date": "2019-10-14",
+        "commitResults": [
+          {
+            "hash": "9c5bc7c8ac4d795c4c3f1273d7c05d9da1634775",
+            "messageTitle": "Add initial GUI (#195)",
+            "messageBody": "* Add UI.print() method\r\n\r\nNo functional changes yet.\r\n\r\n* Shift Parse.parse() exception printing to UI\r\n\r\nCascaded all Parse.parse() exceptions upwards to be printed by UI.printError(Exception e) within Duke.run()\r\n\r\n* Add UI output indentation\r\n\r\nThe idea is that UI.print(String printString) will automatically handle printing lines outside every output by the program, and will also indent all output to clearly differentiate between user input and program output.\r\n\r\n* Extract TaskList.searchForTask to FindCommand.execute()\r\n\r\nWe want to make TaskList just a dumb container, any smarter processing should be done within the Command objects\u0027 execute() methods.\r\n\r\n* Extract printing of FindCommand to UI.print()\r\n\r\n* Extract TaskList.printList() to Command.execute()\r\n\r\nIdeally I believe we should have an explicit ListCommand class that executes this, but for now this should make dealing with UI output easier.\r\n\r\n* Add DoneCommand class\r\n\r\nAlso extract TaskList.markItemAsDone() method\r\n\r\n* Add DeleteCommand class\r\n\r\nAlso extract TaskList.deleteTask() method\r\n\r\n* Add explicit ListCommand class\r\n\r\n* Polish UI.print() extraction refactor\r\n\r\n* Fix .gitignore for saved_tasks.txt\r\n\r\n* Fix file permissions\r\n\r\n* Fix travis checkstyle 1\r\n\r\n* Fix travis checkstyle 2\r\n\r\nughhhh\r\n\r\n* Disable JUnit test for NumCommand\r\n\r\n* Disable JUnit test for FindCommand \u0026 printList\r\n\r\nDisabled temporarily after refactor\r\n\r\n* Update README.md with Introduction\r\n\r\n* Rename duke occurrences to eggventory\r\n\r\n* Rename TaskList to StockType\r\n\r\n* Finish initial morph from Tasks to Stocks\r\n\r\nstonks*\r\n\r\n* index on stock-morph: ea60fa9 Finish initial morph from Tasks to Stocks\r\n\r\n* Fix FindCommand\r\n\r\nIt\u0027s a very simplistic implementation right now.\r\n\r\n* Fix .* import statement checkstyle\r\n\r\n* Fix typo\r\n\r\n* Update README.md\r\n\r\n* Update README.md\r\n\r\n* Update README.md\r\n\r\n* Fix links\r\n\r\n* Update docs\r\n\r\nTesting Ui.png\r\n\r\n* Make Ui.png prettier\r\n\r\npretty \u003c3\r\n\r\n* Fix typos in readme.md\r\n\r\n* Edit formatting in readme.md\r\n\r\n* Remove printReminder functionality\r\n\r\n* Remove ToDo class\r\n\r\n* Remove Task class\r\n\r\n* Remove old, unused enums\r\n\r\nFor example, TODO, DEADLINE, etc.\r\n\r\n* Remove ToDo, Deadline \u0026 Event JUnit tests\r\n\r\n* Remove NumCommand\r\n\r\n* Fix merge conflict\r\n\r\n* Add initial GUI\r\n\r\nNeed to implement threading to enable both CLI and GUI for testing purposes.\r\n\r\n* Implement GUI \u0026 CLI multithreading\r\n\r\nGUI \u0026 CLI can now run concurrently.\r\n\r\n* Add data/ folder check\r\n\r\nCreates data folder if folder doesn\u0027t exist.\r\n\r\n* Add Start.main javadoc comment\r\n",
+            "insertions": 58,
+            "deletions": 22
+          }
+        ]
       }
     ],
     "Deculsion": [
@@ -224,6 +238,20 @@
             "messageBody": "* Added skeleton classes for Parse\r\n\r\n* Updated test for StockType\r\n\r\n* Added StockType and StockList\r\n\r\n* Updated commands to work with new StockList and StockType behaviour.\r\n\r\n* Added Javadocs.\r\n\r\n* Changed tests to work with new StockList and StockType classes\r\n\r\n* Removed.\r\n\r\n* Changed tests to work with new StockList and StockType classes\r\n",
             "insertions": 287,
             "deletions": 265
+          }
+        ]
+      },
+      {
+        "insertions": 33,
+        "deletions": 1,
+        "date": "2019-10-14",
+        "commitResults": [
+          {
+            "hash": "c85f822617561172d47579d42638461511c0ac6c",
+            "messageTitle": "Stock items to string (#196)",
+            "messageBody": "* Added skeleton classes for Parse\r\n\r\n* Added toString() and modified some javadocs for it.\r\n",
+            "insertions": 33,
+            "deletions": 1
           }
         ]
       }
@@ -484,25 +512,53 @@
             "deletions": 39
           }
         ]
+      },
+      {
+        "insertions": 99,
+        "deletions": 38,
+        "date": "2019-10-15",
+        "commitResults": [
+          {
+            "hash": "ef82cfc2f5d80a7e2f90a333491e7a175c8b46a1",
+            "messageTitle": "After this commit, you can now use the list command to view all the Stocks in your inventory",
+            "messageBody": "- Changes functionality in Commands:\n\t1) Methods with print will no longer print print to OutputStream directly, instead they pass String variable to ui.print(output: String)\n\t2) All methods which had a print call previously have been updated to return a string\n- Changes to StockList:\n\t1) Added this.quantity++ for addStock() method\n\t2) Added this.quantity-- for deleteStock() method\n",
+            "insertions": 99,
+            "deletions": 30
+          },
+          {
+            "hash": "4605721fc3f35b897c3e921c9ea5673c96e35514",
+            "messageTitle": "-Deleted obsolete PrintType enum",
+            "messageBody": "",
+            "insertions": 0,
+            "deletions": 5
+          },
+          {
+            "hash": "bc17283a8f3463f349bfe64d83a985e7b2a36c5a",
+            "messageTitle": "-Removed residual obsolete code causing build error on travis",
+            "messageBody": "",
+            "insertions": 0,
+            "deletions": 3
+          }
+        ]
       }
     ]
   },
   "authorFinalContributionMap": {
-    "Raghav-B": 346,
-    "Deculsion": 317,
+    "Raghav-B": 389,
+    "Deculsion": 340,
     "yanprosobo": 0,
-    "cyanoei": 757,
-    "patwaririshab": 271
+    "cyanoei": 752,
+    "patwaririshab": 339
   },
   "authorFileTypeContributionMap": {
     "Raghav-B": {
       "tests": 32,
-      "functional": 311,
-      "other": 3
+      "functional": 348,
+      "other": 9
     },
     "Deculsion": {
-      "tests": 24,
-      "functional": 293
+      "tests": 22,
+      "functional": 318
     },
     "yanprosobo": {
       "tests": 0,
@@ -510,20 +566,19 @@
     },
     "cyanoei": {
       "tests": 1,
-      "functional": 756
+      "functional": 751
     },
     "patwaririshab": {
-      "tests": 230,
-      "functional": 35,
-      "other": 6
+      "tests": 239,
+      "functional": 100
     }
   },
   "authorContributionVariance": {
-    "Raghav-B": 101020.914,
-    "Deculsion": 21391.16,
-    "yanprosobo": 215.91837,
-    "cyanoei": 18862.154,
-    "patwaririshab": 6510.966
+    "Raghav-B": 85836.57,
+    "Deculsion": 18297.443,
+    "yanprosobo": 182.8224,
+    "cyanoei": 16201.001,
+    "patwaririshab": 6049.9443
   },
   "authorDisplayNameMap": {
     "Raghav-B": "CS2113T-F09-3 RAG  . . WAJ",

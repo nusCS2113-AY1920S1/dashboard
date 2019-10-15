@@ -4214,66 +4214,108 @@
         "author": {
           "gitId": "GaryStu"
         },
-        "content": "    public HelpCommand() {"
+        "content": "    private String specifiedHelp \u003d \"\";"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "GaryStu"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "GaryStu"
         },
-        "content": ""
+        "content": "    public HelpCommand() {"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "GaryStu"
         },
-        "content": "    @Override"
+        "content": "    }"
       },
       {
         "lineNumber": 17,
         "author": {
-          "gitId": "Fractalisk"
+          "gitId": "GaryStu"
         },
-        "content": "    public void execute(MealList tasks, Ui ui, Storage storage, User user, Scanner in) throws DukeException {"
+        "content": ""
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "GaryStu"
         },
-        "content": "        ArrayList\u003cString\u003e helpLines \u003d new ArrayList\u003c\u003e();"
+        "content": "    public HelpCommand(String specifiedHelp) {"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "GaryStu"
         },
-        "content": "        storage.loadHelp(helpLines);"
+        "content": "        this.specifiedHelp \u003d specifiedHelp;"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "GaryStu"
         },
-        "content": "        ui.showHelp(helpLines);"
+        "content": "    }"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "GaryStu"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 22,
+        "author": {
+          "gitId": "GaryStu"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "    public void execute(MealList tasks, Ui ui, Storage storage, User user, Scanner in) throws DukeException {"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "GaryStu"
+        },
+        "content": "        ArrayList\u003cString\u003e helpLines \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "GaryStu"
+        },
+        "content": "        storage.loadHelp(helpLines, specifiedHelp);"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "GaryStu"
+        },
+        "content": "        ui.showHelp(helpLines);"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "GaryStu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 28,
         "author": {
           "gitId": "GaryStu"
         },
@@ -4282,7 +4324,240 @@
     ],
     "authorContributionMap": {
       "Fractalisk": 2,
-      "GaryStu": 20
+      "GaryStu": 26
+    }
+  },
+  {
+    "path": "src/main/java/duke/commands/HistoryCommand.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "package duke.commands;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "import duke.storage.Storage;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "import duke.tasks.MealList;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "import duke.ui.Ui;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "import duke.user.User;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "import java.util.Scanner;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "public class HistoryCommand extends Command {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "    private ArrayList\u003cString\u003e historyCommandsList;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "    public HistoryCommand() {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "        historyCommandsList \u003d new ArrayList\u003cString\u003e();"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "    public void addCommand(String commandStr) {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "        if (!commandStr.equals(\"history\")) {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "            historyCommandsList.add(commandStr);"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "    public void clearHistory() {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "        historyCommandsList.clear();"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "    public void execute(MealList tasks, Ui ui, Storage storage, User user, Scanner in) {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "        ui.showHistory(historyCommandsList);"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "HashirZahir": 32
     }
   },
   {
@@ -5396,957 +5671,1034 @@
       {
         "lineNumber": 16,
         "author": {
-          "gitId": "Fractalisk"
+          "gitId": "HashirZahir"
         },
-        "content": ""
+        "content": "    private static HistoryCommand historyCommand \u003d new HistoryCommand();"
       },
       {
         "lineNumber": 17,
         "author": {
-          "gitId": "-"
+          "gitId": "Fractalisk"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "-"
         },
-        "content": "     * This is the main function that parse the command inputted by the user."
+        "content": "    /**"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @param fullCommand the string the user input in the CLI"
+        "content": "     * This is the main function that parse the command inputted by the user."
       },
       {
         "lineNumber": 20,
         "author": {
-          "gitId": "koushireo"
+          "gitId": "-"
         },
-        "content": "     * @return \u003ccode\u003enew ExitCommand()\u003c/code\u003e"
+        "content": "     * @param fullCommand the string the user input in the CLI"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "koushireo"
         },
-        "content": "     *         if the user input \"bye\""
+        "content": "     * @return \u003ccode\u003enew ExitCommand()\u003c/code\u003e"
       },
       {
         "lineNumber": 22,
         "author": {
-          "gitId": "Fractalisk"
+          "gitId": "koushireo"
         },
-        "content": "     *         \u003ccode\u003enew AddCommand(new Breakfast())\u003c/code\u003e if the user input"
+        "content": "     *         if the user input \"bye\""
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "     *         \"breakfast\" followed by the description of the meal"
+        "content": "     *         \u003ccode\u003enew AddCommand(new Breakfast())\u003c/code\u003e if the user input"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "     *         \u003ccode\u003enew AddCommand(new Lunch()\u003c/code\u003e if the user input"
+        "content": "     *         \"breakfast\" followed by the description of the meal"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "     *         \"lunch\" followed by the description of the meal"
+        "content": "     *         \u003ccode\u003enew AddCommand(new Lunch()\u003c/code\u003e if the user input"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "     *         \u003ccode\u003enew AddCommand(new Dinner()\u003c/code\u003e if the user input"
+        "content": "     *         \"lunch\" followed by the description of the meal"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "     *         \"dinner\" followed by the description of the meal"
+        "content": "     *         \u003ccode\u003enew AddCommand(new Dinner()\u003c/code\u003e if the user input"
       },
       {
         "lineNumber": 28,
         "author": {
-          "gitId": "koushireo"
+          "gitId": "Fractalisk"
         },
-        "content": "     *         \u003ccode\u003enew ListCommand()\u003c/code\u003e if the user input"
+        "content": "     *         \"dinner\" followed by the description of the meal"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "koushireo"
         },
-        "content": "     *         list"
+        "content": "     *         \u003ccode\u003enew ListCommand()\u003c/code\u003e if the user input"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "koushireo"
         },
-        "content": "     *         \u003ccode\u003enew MarkDoneCommand(index)\u003c/code\u003e if the user input"
+        "content": "     *         list"
       },
       {
         "lineNumber": 31,
+        "author": {
+          "gitId": "koushireo"
+        },
+        "content": "     *         \u003ccode\u003enew MarkDoneCommand(index)\u003c/code\u003e if the user input"
+      },
+      {
+        "lineNumber": 32,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "     *         \"done\" followed by the index of the meal to be marked completed"
       },
       {
-        "lineNumber": 32,
+        "lineNumber": 33,
         "author": {
           "gitId": "koushireo"
         },
         "content": "     *         \u003ccode\u003enew FindCommand(description)\u003c/code\u003e if the user input"
       },
       {
-        "lineNumber": 33,
+        "lineNumber": 34,
         "author": {
           "gitId": "koushireo"
         },
         "content": "     *         \"find\" followed by the string that needs to be added"
       },
       {
-        "lineNumber": 34,
+        "lineNumber": 35,
         "author": {
           "gitId": "koushireo"
         },
         "content": "     *         \u003ccode\u003enew DeleteCommand(index) \u003c/code\u003e if the sure input"
       },
       {
-        "lineNumber": 35,
+        "lineNumber": 36,
         "author": {
           "gitId": "koushireo"
         },
         "content": "     *         \"delete\" followed by the index of the task to be deleted"
       },
       {
-        "lineNumber": 36,
+        "lineNumber": 37,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "     * @throws DukeException when the command is not recognized or command syntax is invalid"
       },
       {
-        "lineNumber": 37,
+        "lineNumber": 38,
         "author": {
           "gitId": "-"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 38,
+        "lineNumber": 39,
         "author": {
           "gitId": "koushireo"
         },
         "content": "    public static Command parse(String fullCommand, Autocorrect autocorrect) throws DukeException {"
       },
       {
-        "lineNumber": 39,
+        "lineNumber": 40,
         "author": {
           "gitId": "-"
         },
         "content": "        String[] splitCommand \u003d fullCommand.split(\" \", 2);"
       },
       {
-        "lineNumber": 40,
+        "lineNumber": 41,
         "author": {
           "gitId": "-"
         },
         "content": "        String command \u003d splitCommand[0];"
       },
       {
-        "lineNumber": 41,
+        "lineNumber": 42,
         "author": {
           "gitId": "koushireo"
         },
         "content": "        autocorrect.setWord(command);"
       },
       {
-        "lineNumber": 42,
+        "lineNumber": 43,
         "author": {
           "gitId": "koushireo"
         },
         "content": "        autocorrect.execute();"
       },
       {
-        "lineNumber": 43,
+        "lineNumber": 44,
         "author": {
           "gitId": "koushireo"
         },
         "content": "        command \u003d autocorrect.getWord();"
       },
       {
-        "lineNumber": 44,
+        "lineNumber": 45,
         "author": {
           "gitId": "-"
         },
         "content": "        String description \u003d \"\";"
       },
       {
-        "lineNumber": 45,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
         "lineNumber": 46,
         "author": {
-          "gitId": "-"
+          "gitId": "HashirZahir"
         },
-        "content": "        if (splitCommand.length \u003e\u003d 2) {"
+        "content": "        historyCommand.addCommand(command);"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "-"
         },
-        "content": "            description \u003d splitCommand[1];"
+        "content": ""
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "        if (splitCommand.length \u003e\u003d 2) {"
       },
       {
         "lineNumber": 49,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            description \u003d splitCommand[1];"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 51,
         "author": {
           "gitId": "koushireo"
         },
         "content": "        if (command.equals(\"done\") || command.equals(\"breakfast\")"
       },
       {
-        "lineNumber": 50,
+        "lineNumber": 52,
         "author": {
           "gitId": "HashirZahir"
         },
         "content": "                || command.equals(\"lunch\") || command.equals(\"dinner\")"
       },
       {
-        "lineNumber": 51,
+        "lineNumber": 53,
         "author": {
           "gitId": "HashirZahir"
         },
         "content": "                || command.equals(\"edit\")) {"
       },
       {
-        "lineNumber": 52,
+        "lineNumber": 54,
         "author": {
           "gitId": "-"
         },
         "content": "            if (description.trim().length() \u003d\u003d 0) {"
       },
       {
-        "lineNumber": 53,
+        "lineNumber": 55,
         "author": {
           "gitId": "-"
         },
         "content": "                throw new DukeException(\"\\u2639 OOPS!!! The description of a \" + command + \" cannot be empty.\");"
       },
       {
-        "lineNumber": 54,
+        "lineNumber": 56,
         "author": {
           "gitId": "-"
         },
         "content": "            }"
       },
       {
-        "lineNumber": 55,
+        "lineNumber": 57,
         "author": {
           "gitId": "-"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 56,
+        "lineNumber": 58,
         "author": {
           "gitId": "GaryStu"
         },
         "content": ""
       },
       {
-        "lineNumber": 57,
+        "lineNumber": 59,
         "author": {
           "gitId": "koushireo"
         },
         "content": "        String name;"
       },
       {
-        "lineNumber": 58,
+        "lineNumber": 60,
         "author": {
           "gitId": "koushireo"
         },
         "content": "        String info;"
       },
       {
-        "lineNumber": 59,
+        "lineNumber": 61,
         "author": {
           "gitId": "GaryStu"
         },
         "content": "        String date \u003d \"\";"
       },
       {
-        "lineNumber": 60,
+        "lineNumber": 62,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "        int index;"
       },
       {
-        "lineNumber": 61,
+        "lineNumber": 63,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "        switch (command) {"
       },
       {
-        "lineNumber": 62,
+        "lineNumber": 64,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "            case \"bye\":"
       },
       {
-        "lineNumber": 63,
+        "lineNumber": 65,
         "author": {
           "gitId": "GaryStu"
         },
         "content": "                return new ExitCommand();"
       },
       {
-        "lineNumber": 64,
+        "lineNumber": 66,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "            case \"breakfast\":"
       },
       {
-        "lineNumber": 65,
+        "lineNumber": 67,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "                if (description.contains(\"/\")) {"
       },
       {
-        "lineNumber": 66,
+        "lineNumber": 68,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "                    name \u003d description.split(\"/\", 2)[0].trim();"
       },
       {
-        "lineNumber": 67,
+        "lineNumber": 69,
         "author": {
           "gitId": "koushireo"
         },
         "content": "                    info \u003d \"/\" + description.split(\"/\", 2)[1];"
       },
       {
-        "lineNumber": 68,
+        "lineNumber": 70,
         "author": {
           "gitId": "koushireo"
         },
         "content": "                    return new AddCommand(new Breakfast(name, info, autocorrect));"
       },
       {
-        "lineNumber": 69,
+        "lineNumber": 71,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "                } else {"
-      },
-      {
-        "lineNumber": 70,
-        "author": {
-          "gitId": "Fractalisk"
-        },
-        "content": "                    return new AddCommand(new Breakfast(description, \"\", autocorrect));"
-      },
-      {
-        "lineNumber": 71,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                }"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            case \"lunch\":"
+        "content": "                    return new AddCommand(new Breakfast(description, \"\", autocorrect));"
       },
       {
         "lineNumber": 73,
         "author": {
-          "gitId": "Fractalisk"
+          "gitId": "-"
         },
-        "content": "                if (description.contains(\"/\")) {"
+        "content": "                }"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "                    name \u003d description.split(\"/\", 2)[0].trim();"
+        "content": "            case \"lunch\":"
       },
       {
         "lineNumber": 75,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "                if (description.contains(\"/\")) {"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "                    name \u003d description.split(\"/\", 2)[0].trim();"
+      },
+      {
+        "lineNumber": 77,
         "author": {
           "gitId": "koushireo"
         },
         "content": "                    info \u003d \"/\" + description.split(\"/\", 2)[1];"
       },
       {
-        "lineNumber": 76,
+        "lineNumber": 78,
         "author": {
           "gitId": "koushireo"
         },
         "content": "                    return new AddCommand(new Lunch(name, info, autocorrect));"
       },
       {
-        "lineNumber": 77,
+        "lineNumber": 79,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "                } else {"
-      },
-      {
-        "lineNumber": 78,
-        "author": {
-          "gitId": "Fractalisk"
-        },
-        "content": "                    return new AddCommand(new Lunch(description, \"\", autocorrect));"
-      },
-      {
-        "lineNumber": 79,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                }"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            case \"dinner\":"
+        "content": "                    return new AddCommand(new Lunch(description, \"\", autocorrect));"
       },
       {
         "lineNumber": 81,
         "author": {
-          "gitId": "Fractalisk"
+          "gitId": "-"
         },
-        "content": "                if (description.contains(\"/\")) {"
+        "content": "                }"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "                    name \u003d description.split(\"/\", 2)[0].trim();"
+        "content": "            case \"dinner\":"
       },
       {
         "lineNumber": 83,
-        "author": {
-          "gitId": "koushireo"
-        },
-        "content": "                    info \u003d \"/\" + description.split(\"/\", 2)[1];"
-      },
-      {
-        "lineNumber": 84,
-        "author": {
-          "gitId": "koushireo"
-        },
-        "content": "                    return new AddCommand(new Dinner(name, info, autocorrect));"
-      },
-      {
-        "lineNumber": 85,
-        "author": {
-          "gitId": "Fractalisk"
-        },
-        "content": "                } else {"
-      },
-      {
-        "lineNumber": 86,
-        "author": {
-          "gitId": "Fractalisk"
-        },
-        "content": "                    return new AddCommand(new Dinner(description, \"\", autocorrect));"
-      },
-      {
-        "lineNumber": 87,
-        "author": {
-          "gitId": "Fractalisk"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 88,
-        "author": {
-          "gitId": "Fractalisk"
-        },
-        "content": "            case \"add\" :"
-      },
-      {
-        "lineNumber": 89,
-        "author": {
-          "gitId": "Fractalisk"
-        },
-        "content": "                name \u003d description.split(\"/\", 2)[0].trim();"
-      },
-      {
-        "lineNumber": 90,
-        "author": {
-          "gitId": "Fractalisk"
-        },
-        "content": "                info \u003d \"/\" + description.split(\"/\", 2)[1];"
-      },
-      {
-        "lineNumber": 91,
-        "author": {
-          "gitId": "Fractalisk"
-        },
-        "content": "                return new AddItemCommand(new Item(name, info, autocorrect));"
-      },
-      {
-        "lineNumber": 92,
-        "author": {
-          "gitId": "Fractalisk"
-        },
-        "content": "            case \"list\":"
-      },
-      {
-        "lineNumber": 93,
-        "author": {
-          "gitId": "koushireo"
-        },
-        "content": "                if (splitCommand.length \u003e 1) {"
-      },
-      {
-        "lineNumber": 94,
-        "author": {
-          "gitId": "koushireo"
-        },
-        "content": "                    return new ListCommand(splitCommand[1]);"
-      },
-      {
-        "lineNumber": 95,
-        "author": {
-          "gitId": "koushireo"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 96,
-        "author": {
-          "gitId": "GaryStu"
-        },
-        "content": "                return new ListCommand();"
-      },
-      {
-        "lineNumber": 97,
-        "author": {
-          "gitId": "Fractalisk"
-        },
-        "content": "            case \"done\":"
-      },
-      {
-        "lineNumber": 98,
-        "author": {
-          "gitId": "GaryStu"
-        },
-        "content": "                name \u003d description.split(\" /date \", 2)[0];"
-      },
-      {
-        "lineNumber": 99,
-        "author": {
-          "gitId": "GaryStu"
-        },
-        "content": "                if (description.split(\" /date \").length \u003e 1) {"
-      },
-      {
-        "lineNumber": 100,
-        "author": {
-          "gitId": "GaryStu"
-        },
-        "content": "                    date \u003d description.split(\" /date \")[1];"
-      },
-      {
-        "lineNumber": 101,
-        "author": {
-          "gitId": "GaryStu"
-        },
-        "content": "                    return new MarkDoneCommand(name, date);"
-      },
-      {
-        "lineNumber": 102,
-        "author": {
-          "gitId": "GaryStu"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 103,
-        "author": {
-          "gitId": "Fractalisk"
-        },
-        "content": "                throw new DukeException(\"\\u2639 OOPS!!! The done command was not entered correctly\");"
-      },
-      {
-        "lineNumber": 104,
-        "author": {
-          "gitId": "Fractalisk"
-        },
-        "content": "            case \"find\":"
-      },
-      {
-        "lineNumber": 105,
-        "author": {
-          "gitId": "GaryStu"
-        },
-        "content": "                name \u003d description.split(\" /date \", 2)[0];"
-      },
-      {
-        "lineNumber": 106,
-        "author": {
-          "gitId": "GaryStu"
-        },
-        "content": "                if (description.split(\" /date \").length \u003e 1) {"
-      },
-      {
-        "lineNumber": 107,
-        "author": {
-          "gitId": "GaryStu"
-        },
-        "content": "                    date \u003d description.split(\" /date \")[1];"
-      },
-      {
-        "lineNumber": 108,
-        "author": {
-          "gitId": "GaryStu"
-        },
-        "content": "                    return new FindCommand(name, date);"
-      },
-      {
-        "lineNumber": 109,
-        "author": {
-          "gitId": "GaryStu"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 110,
-        "author": {
-          "gitId": "GaryStu"
-        },
-        "content": "                return new FindCommand(name);"
-      },
-      {
-        "lineNumber": 111,
-        "author": {
-          "gitId": "Fractalisk"
-        },
-        "content": "            case \"delete\":"
-      },
-      {
-        "lineNumber": 112,
-        "author": {
-          "gitId": "HashirZahir"
-        },
-        "content": "                if (splitCommand.length \u003e 1) {"
-      },
-      {
-        "lineNumber": 113,
-        "author": {
-          "gitId": "HashirZahir"
-        },
-        "content": "                    // user specifies date and index."
-      },
-      {
-        "lineNumber": 114,
-        "author": {
-          "gitId": "HashirZahir"
-        },
-        "content": "                    if (description.split(\"/date\").length \u003e\u003d 2) {"
-      },
-      {
-        "lineNumber": 115,
-        "author": {
-          "gitId": "HashirZahir"
-        },
-        "content": "                        String[] splitArgs \u003d description.split(\"/date\", 2);"
-      },
-      {
-        "lineNumber": 116,
-        "author": {
-          "gitId": "HashirZahir"
-        },
-        "content": "                        return new DeleteCommand(splitArgs[0], splitArgs[1]);"
-      },
-      {
-        "lineNumber": 117,
-        "author": {
-          "gitId": "HashirZahir"
-        },
-        "content": "                    } else {"
-      },
-      {
-        "lineNumber": 118,
-        "author": {
-          "gitId": "HashirZahir"
-        },
-        "content": "                        // user only specifies index to delete for current day."
-      },
-      {
-        "lineNumber": 119,
-        "author": {
-          "gitId": "HashirZahir"
-        },
-        "content": "                        return new DeleteCommand(description);"
-      },
-      {
-        "lineNumber": 120,
-        "author": {
-          "gitId": "HashirZahir"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 121,
-        "author": {
-          "gitId": "HashirZahir"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 122,
-        "author": {
-          "gitId": "HashirZahir"
-        },
-        "content": "                throw new DukeException(\"Please enter index of meal to delete on today\u0027s list or \""
-      },
-      {
-        "lineNumber": 123,
-        "author": {
-          "gitId": "HashirZahir"
-        },
-        "content": "                        + \"date and index of meal to delete\");"
-      },
-      {
-        "lineNumber": 124,
-        "author": {
-          "gitId": "koushireo"
-        },
-        "content": "            case \"update\":"
-      },
-      {
-        "lineNumber": 125,
-        "author": {
-          "gitId": "koushireo"
-        },
-        "content": "                return new UpdateWeightCommand(description);"
-      },
-      {
-        "lineNumber": 126,
-        "author": {
-          "gitId": "HashirZahir"
-        },
-        "content": "            case \"clear\":"
-      },
-      {
-        "lineNumber": 127,
-        "author": {
-          "gitId": "HashirZahir"
-        },
-        "content": "                if (splitCommand.length \u003e 1) {"
-      },
-      {
-        "lineNumber": 128,
-        "author": {
-          "gitId": "HashirZahir"
-        },
-        "content": "                    String[] splitArgs \u003d description.split(\" \", 2);"
-      },
-      {
-        "lineNumber": 129,
-        "author": {
-          "gitId": "HashirZahir"
-        },
-        "content": "                    if (splitArgs.length \u003e\u003d 2) {"
-      },
-      {
-        "lineNumber": 130,
-        "author": {
-          "gitId": "HashirZahir"
-        },
-        "content": "                        return new ClearCommand(splitArgs[0], splitArgs[1]);"
-      },
-      {
-        "lineNumber": 131,
-        "author": {
-          "gitId": "HashirZahir"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 132,
-        "author": {
-          "gitId": "HashirZahir"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 133,
-        "author": {
-          "gitId": "HashirZahir"
-        },
-        "content": "                throw new DukeException(\"Please enter 2 dates; Start and End dates to clear meals from.\");"
-      },
-      {
-        "lineNumber": 134,
-        "author": {
-          "gitId": "HashirZahir"
-        },
-        "content": "            case \"edit\":"
-      },
-      {
-        "lineNumber": 135,
-        "author": {
-          "gitId": "HashirZahir"
-        },
-        "content": "                name \u003d description.split(\"/\", 2)[0];"
-      },
-      {
-        "lineNumber": 136,
-        "author": {
-          "gitId": "HashirZahir"
-        },
-        "content": "                info \u003d \"/\" + description.split(\"/\", 2)[1];"
-      },
-      {
-        "lineNumber": 137,
-        "author": {
-          "gitId": "HashirZahir"
-        },
-        "content": "                return new EditCommand(new Meal(name, info, autocorrect));"
-      },
-      {
-        "lineNumber": 138,
-        "author": {
-          "gitId": "Fractalisk"
-        },
-        "content": "            case \"setgoal\":"
-      },
-      {
-        "lineNumber": 139,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "                if (description.contains(\"/\")) {"
       },
       {
-        "lineNumber": 140,
+        "lineNumber": 84,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "                    name \u003d description.split(\"/\", 2)[0].trim();"
       },
       {
-        "lineNumber": 141,
+        "lineNumber": 85,
         "author": {
-          "gitId": "Fractalisk"
+          "gitId": "koushireo"
         },
         "content": "                    info \u003d \"/\" + description.split(\"/\", 2)[1];"
       },
       {
-        "lineNumber": 142,
+        "lineNumber": 86,
         "author": {
-          "gitId": "Fractalisk"
+          "gitId": "koushireo"
         },
-        "content": "                    return new AddGoalCommand(new Goal(name, info, autocorrect));"
+        "content": "                    return new AddCommand(new Dinner(name, info, autocorrect));"
       },
       {
-        "lineNumber": 143,
+        "lineNumber": 87,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "                } else {"
       },
       {
-        "lineNumber": 144,
+        "lineNumber": 88,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "                    return new AddGoalCommand(new Goal(description, \"\", autocorrect));"
+        "content": "                    return new AddCommand(new Dinner(description, \"\", autocorrect));"
       },
       {
-        "lineNumber": 145,
+        "lineNumber": 89,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "                }"
       },
       {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "            case \"add\" :"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "                name \u003d description.split(\"/\", 2)[0].trim();"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "                info \u003d \"/\" + description.split(\"/\", 2)[1];"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "                return new AddItemCommand(new Item(name, info, autocorrect));"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "            case \"list\":"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "koushireo"
+        },
+        "content": "                if (splitCommand.length \u003e 1) {"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "koushireo"
+        },
+        "content": "                    return new ListCommand(splitCommand[1]);"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "koushireo"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "GaryStu"
+        },
+        "content": "                return new ListCommand();"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "            case \"done\":"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "GaryStu"
+        },
+        "content": "                name \u003d description.split(\" /date \", 2)[0];"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "GaryStu"
+        },
+        "content": "                if (description.split(\" /date \").length \u003e 1) {"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "GaryStu"
+        },
+        "content": "                    date \u003d description.split(\" /date \")[1];"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "GaryStu"
+        },
+        "content": "                    return new MarkDoneCommand(name, date);"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "GaryStu"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "                throw new DukeException(\"\\u2639 OOPS!!! The done command was not entered correctly\");"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "            case \"find\":"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "GaryStu"
+        },
+        "content": "                name \u003d description.split(\" /date \", 2)[0];"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "GaryStu"
+        },
+        "content": "                if (description.split(\" /date \").length \u003e 1) {"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "GaryStu"
+        },
+        "content": "                    date \u003d description.split(\" /date \")[1];"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "GaryStu"
+        },
+        "content": "                    return new FindCommand(name, date);"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "GaryStu"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "GaryStu"
+        },
+        "content": "                return new FindCommand(name);"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "            case \"delete\":"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "                if (splitCommand.length \u003e 1) {"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "                    // user specifies date and index."
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "                    if (description.split(\"/date\").length \u003e\u003d 2) {"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "                        String[] splitArgs \u003d description.split(\"/date\", 2);"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "                        return new DeleteCommand(splitArgs[0], splitArgs[1]);"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "                    } else {"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "                        // user only specifies index to delete for current day."
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "                        return new DeleteCommand(description);"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "                throw new DukeException(\"Please enter index of meal to delete on today\u0027s list or \""
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "                        + \"date and index of meal to delete\");"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "koushireo"
+        },
+        "content": "            case \"update\":"
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "koushireo"
+        },
+        "content": "                return new UpdateWeightCommand(description);"
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "            case \"clear\":"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "                if (splitCommand.length \u003e 1) {"
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "                    String[] splitArgs \u003d description.split(\" \", 2);"
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "                    if (splitArgs.length \u003e\u003d 2) {"
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "                        return new ClearCommand(splitArgs[0], splitArgs[1]);"
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "                throw new DukeException(\"Please enter 2 dates; Start and End dates to clear meals from.\");"
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "            case \"edit\":"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "                name \u003d description.split(\"/\", 2)[0];"
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "                info \u003d \"/\" + description.split(\"/\", 2)[1];"
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "                return new EditCommand(new Meal(name, info, autocorrect));"
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "            case \"setgoal\":"
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "                if (description.contains(\"/\")) {"
+      },
+      {
+        "lineNumber": 142,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "                    name \u003d description.split(\"/\", 2)[0].trim();"
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "                    info \u003d \"/\" + description.split(\"/\", 2)[1];"
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "                    return new AddGoalCommand(new Goal(name, info, autocorrect));"
+      },
+      {
+        "lineNumber": 145,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "                } else {"
+      },
+      {
         "lineNumber": 146,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "                    return new AddGoalCommand(new Goal(description, \"\", autocorrect));"
+      },
+      {
+        "lineNumber": 147,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 148,
         "author": {
           "gitId": "GaryStu"
         },
         "content": "            case \"help\":"
       },
       {
-        "lineNumber": 147,
+        "lineNumber": 149,
+        "author": {
+          "gitId": "GaryStu"
+        },
+        "content": "                if (description.trim().length() \u003e\u003d 0) {"
+      },
+      {
+        "lineNumber": 150,
+        "author": {
+          "gitId": "GaryStu"
+        },
+        "content": "                    return new HelpCommand(description);"
+      },
+      {
+        "lineNumber": 151,
+        "author": {
+          "gitId": "GaryStu"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 152,
         "author": {
           "gitId": "GaryStu"
         },
         "content": "                return new HelpCommand();"
       },
       {
-        "lineNumber": 148,
+        "lineNumber": 153,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "            case \"history\":"
+      },
+      {
+        "lineNumber": 154,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "                // clear history if requested"
+      },
+      {
+        "lineNumber": 155,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "                if (!description.isEmpty() \u0026\u0026 description.equals(\"clear\")) {"
+      },
+      {
+        "lineNumber": 156,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "                    historyCommand.clearHistory();"
+      },
+      {
+        "lineNumber": 157,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 158,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "                return historyCommand;"
+      },
+      {
+        "lineNumber": 159,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "            default:"
       },
       {
-        "lineNumber": 149,
+        "lineNumber": 160,
         "author": {
           "gitId": "HashirZahir"
         },
         "content": "                throw new DukeException(\"\\u2639 OOPS!!! I\u0027m sorry, but I don\u0027t know what \" + command + \" means :-(\");"
       },
       {
-        "lineNumber": 150,
+        "lineNumber": 161,
         "author": {
           "gitId": "-"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 151,
+        "lineNumber": 162,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 152,
+        "lineNumber": 163,
         "author": {
           "gitId": "-"
         },
@@ -6355,8 +6707,8 @@
     ],
     "authorContributionMap": {
       "Fractalisk": 50,
-      "HashirZahir": 27,
-      "GaryStu": 17,
+      "HashirZahir": 35,
+      "GaryStu": 20,
       "koushireo": 28,
       "-": 30
     }
@@ -8736,7 +9088,7 @@
         "author": {
           "gitId": "GaryStu"
         },
-        "content": "    public void loadHelp(ArrayList\u003cString\u003e lines) throws DukeException {"
+        "content": "    public void loadHelp(ArrayList\u003cString\u003e lines, String specifiedHelp) throws DukeException {"
       },
       {
         "lineNumber": 340,
@@ -8750,122 +9102,164 @@
         "author": {
           "gitId": "GaryStu"
         },
-        "content": "        String sep \u003d System.getProperty(\"file.separator\");"
+        "content": "        String helpFileName \u003d \"\";"
       },
       {
         "lineNumber": 342,
         "author": {
           "gitId": "GaryStu"
         },
-        "content": "        file \u003d new File(\"src\" + sep + \"main\" + sep + \"java\" + sep + \"duke\""
+        "content": "        if (specifiedHelp.isBlank()) {"
       },
       {
         "lineNumber": 343,
         "author": {
           "gitId": "GaryStu"
         },
-        "content": "                            + sep + \"Data\" + sep + \"help.txt\");"
+        "content": "            helpFileName \u003d \"help.txt\";"
       },
       {
         "lineNumber": 344,
         "author": {
           "gitId": "GaryStu"
         },
-        "content": "        try {"
+        "content": "        } else {"
       },
       {
         "lineNumber": 345,
         "author": {
           "gitId": "GaryStu"
         },
-        "content": "            bufferedReader \u003d new BufferedReader(new FileReader(file));"
+        "content": "            helpFileName \u003d specifiedHelp + \".txt\";"
       },
       {
         "lineNumber": 346,
         "author": {
           "gitId": "GaryStu"
         },
-        "content": "        } catch (Exception e) {"
+        "content": "        }"
       },
       {
         "lineNumber": 347,
         "author": {
           "gitId": "GaryStu"
         },
-        "content": "            throw new DukeException(\"Unable to access help file\");"
+        "content": "        String sep \u003d System.getProperty(\"file.separator\");"
       },
       {
         "lineNumber": 348,
         "author": {
           "gitId": "GaryStu"
         },
-        "content": "        }"
+        "content": "        file \u003d new File(\"src\" + sep + \"main\" + sep + \"java\" + sep + \"duke\""
       },
       {
         "lineNumber": 349,
         "author": {
           "gitId": "GaryStu"
         },
-        "content": "        try {"
+        "content": "                            + sep + \"Data\" + sep + \"Help\" + sep + helpFileName);"
       },
       {
         "lineNumber": 350,
         "author": {
           "gitId": "GaryStu"
         },
-        "content": "            while ((line \u003d bufferedReader.readLine()) !\u003d null) {"
+        "content": "        try {"
       },
       {
         "lineNumber": 351,
         "author": {
           "gitId": "GaryStu"
         },
-        "content": "                lines.add(line);"
+        "content": "            bufferedReader \u003d new BufferedReader(new FileReader(file));"
       },
       {
         "lineNumber": 352,
         "author": {
           "gitId": "GaryStu"
         },
-        "content": "            }"
+        "content": "        } catch (Exception e) {"
       },
       {
         "lineNumber": 353,
         "author": {
           "gitId": "GaryStu"
         },
-        "content": "            bufferedReader.close();"
+        "content": "            throw new DukeException(\"Unable to access help file\");"
       },
       {
         "lineNumber": 354,
         "author": {
-          "gitId": "-"
+          "gitId": "GaryStu"
         },
-        "content": "        } catch (IOException e) {"
+        "content": "        }"
       },
       {
         "lineNumber": 355,
         "author": {
           "gitId": "GaryStu"
         },
-        "content": "            throw new DukeException(\"Error reading help file\");"
+        "content": "        try {"
       },
       {
         "lineNumber": 356,
+        "author": {
+          "gitId": "GaryStu"
+        },
+        "content": "            while ((line \u003d bufferedReader.readLine()) !\u003d null) {"
+      },
+      {
+        "lineNumber": 357,
+        "author": {
+          "gitId": "GaryStu"
+        },
+        "content": "                lines.add(line);"
+      },
+      {
+        "lineNumber": 358,
+        "author": {
+          "gitId": "GaryStu"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 359,
+        "author": {
+          "gitId": "GaryStu"
+        },
+        "content": "            bufferedReader.close();"
+      },
+      {
+        "lineNumber": 360,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 361,
+        "author": {
+          "gitId": "GaryStu"
+        },
+        "content": "            throw new DukeException(\"Error reading help file\");"
+      },
+      {
+        "lineNumber": 362,
         "author": {
           "gitId": "-"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 357,
+        "lineNumber": 363,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 358,
+        "lineNumber": 364,
         "author": {
           "gitId": "-"
         },
@@ -8875,7 +9269,7 @@
     "authorContributionMap": {
       "Fractalisk": 165,
       "HashirZahir": 1,
-      "GaryStu": 37,
+      "GaryStu": 43,
       "koushireo": 78,
       "-": 77
     }
@@ -13592,14 +13986,14 @@
       {
         "lineNumber": 79,
         "author": {
-          "gitId": "GaryStu"
+          "gitId": "-"
         },
         "content": "    }"
       },
       {
         "lineNumber": 80,
         "author": {
-          "gitId": "Fractalisk"
+          "gitId": "-"
         },
         "content": ""
       },
@@ -13627,14 +14021,14 @@
       {
         "lineNumber": 84,
         "author": {
-          "gitId": "-"
+          "gitId": "Fractalisk"
         },
         "content": "    }"
       },
       {
         "lineNumber": 85,
         "author": {
-          "gitId": "-"
+          "gitId": "Fractalisk"
         },
         "content": ""
       },
@@ -13830,7 +14224,7 @@
       {
         "lineNumber": 113,
         "author": {
-          "gitId": "-"
+          "gitId": "koushireo"
         },
         "content": ""
       },
@@ -13970,7 +14364,7 @@
       {
         "lineNumber": 133,
         "author": {
-          "gitId": "koushireo"
+          "gitId": "-"
         },
         "content": ""
       },
@@ -14070,73 +14464,143 @@
         "author": {
           "gitId": "GaryStu"
         },
-        "content": "        System.out.println(padding + \"Here are the commands you need to know:\");"
+        "content": "        helpLines.forEach(line -\u003e {"
       },
       {
         "lineNumber": 148,
         "author": {
           "gitId": "GaryStu"
         },
-        "content": "        helpLines.forEach(line -\u003e {"
+        "content": "            System.out.println(padding + line);"
       },
       {
         "lineNumber": 149,
         "author": {
           "gitId": "GaryStu"
         },
-        "content": "            System.out.println(padding + line);"
+        "content": "        });"
       },
       {
         "lineNumber": 150,
         "author": {
           "gitId": "GaryStu"
         },
-        "content": "        });"
-      },
-      {
-        "lineNumber": 151,
-        "author": {
-          "gitId": "GaryStu"
-        },
         "content": "    }"
       },
       {
-        "lineNumber": 152,
+        "lineNumber": 151,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": ""
       },
       {
-        "lineNumber": 153,
+        "lineNumber": 152,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "    public void showAddedGoal(Goal goal) {"
       },
       {
-        "lineNumber": 154,
+        "lineNumber": 153,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "        System.out.println(padding + \"Got it. I\u0027ve set the goal to be met:\");"
       },
       {
-        "lineNumber": 155,
+        "lineNumber": 154,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "        System.out.println(padding + goal);"
       },
       {
-        "lineNumber": 156,
+        "lineNumber": 155,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "    }"
       },
       {
+        "lineNumber": 156,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": ""
+      },
+      {
         "lineNumber": 157,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "    public void showHistory(ArrayList\u003cString\u003e commandHistoryList) {"
+      },
+      {
+        "lineNumber": 158,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "        if (commandHistoryList.isEmpty()) {"
+      },
+      {
+        "lineNumber": 159,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "            System.out.println(padding + \"No commands in history\");"
+      },
+      {
+        "lineNumber": 160,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 161,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "            System.out.println(padding + \"History of Commands you have typed: \");"
+      },
+      {
+        "lineNumber": 162,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "            for (int idx \u003d 0;idx \u003c commandHistoryList.size();idx++) {"
+      },
+      {
+        "lineNumber": 163,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "                System.out.println(padding + padding + (idx + 1) + \". \" + commandHistoryList.get(idx));"
+      },
+      {
+        "lineNumber": 164,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 165,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 166,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 167,
         "author": {
           "gitId": "-"
         },
@@ -14144,9 +14608,9 @@
       }
     ],
     "authorContributionMap": {
-      "Fractalisk": 22,
-      "HashirZahir": 20,
-      "GaryStu": 18,
+      "Fractalisk": 23,
+      "HashirZahir": 31,
+      "GaryStu": 16,
       "koushireo": 37,
       "-": 60
     }
@@ -16986,40 +17450,54 @@
       {
         "lineNumber": 33,
         "author": {
-          "gitId": "-"
+          "gitId": "GaryStu"
         },
-        "content": "        } catch (DukeException e) {"
+        "content": "            assertTrue(Parser.parse(\"help\", autocorrect) instanceof HelpCommand);"
       },
       {
         "lineNumber": 34,
         "author": {
-          "gitId": "-"
+          "gitId": "GaryStu"
         },
-        "content": "            System.out.println(\"Something is wrong with the parser\");"
+        "content": "            assertTrue(Parser.parse(\"help breakfast\", autocorrect) instanceof HelpCommand);"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "        } catch (DukeException e) {"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "            System.out.println(\"Something is wrong with the parser\");"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "-"
         },
-        "content": "}"
+        "content": "        }"
       },
       {
         "lineNumber": 38,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 40,
         "author": {
           "gitId": "-"
         },
@@ -17028,6 +17506,7 @@
     ],
     "authorContributionMap": {
       "Fractalisk": 20,
+      "GaryStu": 2,
       "-": 18
     }
   },

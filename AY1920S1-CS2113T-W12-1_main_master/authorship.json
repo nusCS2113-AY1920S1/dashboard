@@ -339,6 +339,316 @@
     }
   },
   {
+    "path": "src/main/java/rims/command/AddCommand.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "package rims.command;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "import rims.core.ResourceList;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "import rims.core.Storage;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "import rims.core.Ui;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "import rims.exception.RimException;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "public class AddCommand extends Command {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "    protected String resourceName;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "    protected int qty;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "    protected char type;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "    public AddCommand(String itemName, int qty) {"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "        this.resourceName \u003d itemName;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "        this.qty \u003d qty;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "        this.type \u003d \u0027I\u0027;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "    public AddCommand(String roomName) {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "        this.resourceName \u003d roomName;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "        this.qty \u003d 1;"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "        this.type \u003d \u0027R\u0027;"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "    public void execute(Ui ui, Storage storage, ResourceList resources) throws RimException {"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "        for (int i \u003d 0; i \u003c qty; i++) {"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "            resources.addResource(resourceName,type);"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "        ui.printLine();"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "        ui.print(\"The following resource(s) have been successfully added:\");"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "        if (type \u003d\u003d \u0027I\u0027) {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "            ui.print(\"[I] \" + resourceName + \" (qty: \" + qty + \")\");"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "        } else if (type \u003d\u003d \u0027R\u0027) {"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "            ui.print(\"[R] \" + resourceName);"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "            throw new RimException(\"Invalid resource type!\");"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "        ui.printLine();"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "hin1": 43
+    }
+  },
+  {
     "path": "src/main/java/rims/command/CloseCommand.java",
     "fileType": "functional",
     "lines": [
@@ -683,26 +993,12 @@
       {
         "lineNumber": 31,
         "author": {
-          "gitId": "rabhijit"
+          "gitId": "hin1"
         },
-        "content": "    public void execute(Ui ui, Storage storage, ResourceList resources) throws Exception, IOException {"
+        "content": "    abstract public void execute(Ui ui, Storage storage, ResourceList resources) throws Exception;"
       },
       {
         "lineNumber": 32,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "        ;"
-      },
-      {
-        "lineNumber": 33,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 34,
         "author": {
           "gitId": "rabhijit"
         },
@@ -710,7 +1006,339 @@
       }
     ],
     "authorContributionMap": {
-      "rabhijit": 34
+      "hin1": 1,
+      "rabhijit": 31
+    }
+  },
+  {
+    "path": "src/main/java/rims/command/DeleteCommand.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "package rims.command;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "import rims.core.ResourceList;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "import rims.core.Storage;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "import rims.core.Ui;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "import rims.exception.RimException;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "public class DeleteCommand extends Command {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "    protected String resourceName;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "    protected int qty;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "    protected char type;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "    public DeleteCommand(String itemName, int qty) {"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "        this.resourceName \u003d itemName;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "        this.qty \u003d qty;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "    public DeleteCommand(String roomName) {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "        this.resourceName \u003d roomName;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "        this.qty \u003d 1;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "    public void execute(Ui ui, Storage storage, ResourceList resources) throws Exception {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "        int availableResourceQty \u003d resources.getAvailableQuantity(resourceName);"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "        if (availableResourceQty \u003c qty) {"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "            throw new RimException(\"Insufficient available resources to delete!\"); //Resources not booked not enough to delete"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "        for (int i \u003d 0; i \u003c qty; i++) {"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "            resources.deleteResource(resourceName);"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "        ui.printLine();"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "        ui.print(\"The following resource(s) have been successfully removed:\");"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "        if (type \u003d\u003d \u0027I\u0027) {"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "            ui.print(\"[I] \" + resourceName  + \" (qty: \" + qty + \")\");"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "        } else if (type \u003d\u003d \u0027R\u0027) {"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "            ui.print(\"[R] \" + resourceName);"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "            throw new RimException(\"Invalid resource type!\");"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "        ui.printLine();"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "hin1": 46
     }
   },
   {
@@ -1044,6 +1672,409 @@
     ],
     "authorContributionMap": {
       "aarushisingh1": 28
+    }
+  },
+  {
+    "path": "src/main/java/rims/command/ListByItemCommand.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "package rims.command;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "import rims.core.*;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "import rims.exception.*;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "import rims.resource.*;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "import java.util.*;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "import java.io.*;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "import java.text.*;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "public class ListByItemCommand extends Command{"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "    protected String itemName;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "    public ListByItemCommand(String itemName){"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "        this.itemName \u003d itemName;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "    public void execute(Ui ui, Storage storage, ResourceList resources) throws ParseException {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "        ui.printLine();"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "        ui.print(\"Here are the resources in your list by item name:\");"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "        ui.printEmptyLine();"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "        ui.printArray(resources.generateListByItem(itemName));"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "//        ui.printEmptyLine();"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "//        ui.printArray(resources.generateBookedListByDate(itemName));"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "        ui.printLine();"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": ""
+      }
+    ],
+    "authorContributionMap": {
+      "aarushisingh1": 29
+    }
+  },
+  {
+    "path": "src/main/java/rims/command/ListByRoomCommand.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "package rims.command;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "import rims.core.*;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "import rims.exception.*;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "import rims.resource.*;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "import java.util.*;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "import java.io.*;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "import java.text.*;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "public class ListByRoomCommand extends Command {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "    protected String roomName;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "    public ListByRoomCommand(String roomName){"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "        this.roomName \u003d roomName;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "    public void execute(Ui ui, Storage storage, ResourceList resources) throws ParseException {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "        ui.printLine();"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "        ui.print(\"Here are the resources in your list by room name:\");"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "        ui.printArray(resources.generateListByRoom(roomName));"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "//        ui.printEmptyLine();"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "//        ui.printArray(resources.generateBookedListByDate(itemName));"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "        ui.printLine();"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "aarushisingh1": 26
     }
   },
   {
@@ -2573,229 +3604,558 @@
       {
         "lineNumber": 31,
         "author": {
-          "gitId": "danielcyc"
+          "gitId": "aarushisingh1"
         },
-        "content": "        "
+        "content": "        else if (words[0].equals(\"listByItem\")) {"
       },
       {
         "lineNumber": 32,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "            Scanner myObj \u003d new Scanner(System.in);"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "            String itemName \u003d myObj.nextLine();"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "            c \u003d new ListByItemCommand(itemName);"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "        else if (words[0].equals(\"listByRoom\")) {"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "            Scanner myObj \u003d new Scanner(System.in);"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "            String roomName \u003d myObj.nextLine();"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "            c \u003d new ListByRoomCommand(roomName);"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 41,
         "author": {
           "gitId": "isbobby"
         },
         "content": "        else if (words[0].equals(\"lend\") \u0026\u0026 words.length \u003d\u003d 1) {"
       },
       {
-        "lineNumber": 33,
+        "lineNumber": 42,
         "author": {
           "gitId": "isbobby"
         },
         "content": "            c\u003dreader.ReadLoanCommand(ui);        "
       },
       {
-        "lineNumber": 34,
+        "lineNumber": 43,
         "author": {
           "gitId": "rabhijit"
         },
         "content": "        } "
       },
       {
-        "lineNumber": 35,
+        "lineNumber": 44,
         "author": {
           "gitId": "isbobby"
         },
         "content": "        else if (words[0].equals(\"reserve\") \u0026\u0026 words.length \u003d\u003d 1) {"
       },
       {
-        "lineNumber": 36,
+        "lineNumber": 45,
         "author": {
           "gitId": "isbobby"
         },
         "content": "            c\u003dreader.ReadReserveCommand(ui);"
       },
       {
-        "lineNumber": 37,
+        "lineNumber": 46,
         "author": {
           "gitId": "danielcyc"
         },
         "content": ""
       },
       {
-        "lineNumber": 38,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 39,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "        else if (words[0].equals(\"return\")) {"
-      },
-      {
-        "lineNumber": 40,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "            if (words[1].equals(\"/item\")) {"
-      },
-      {
-        "lineNumber": 41,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                int itemIndex \u003d input.indexOf(\"/item\") + 6;"
-      },
-      {
-        "lineNumber": 42,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                int qtyIndex \u003d input.indexOf(\" /qty\");"
-      },
-      {
-        "lineNumber": 43,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                String item \u003d input.substring(itemIndex, qtyIndex);"
-      },
-      {
-        "lineNumber": 44,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                int idIndex \u003d input.indexOf(\" /id\");"
-      },
-      {
-        "lineNumber": 45,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                int qty \u003d Integer.parseInt(input.substring(qtyIndex + 6, idIndex));"
-      },
-      {
-        "lineNumber": 46,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                input \u003d input.replaceFirst(\"return /item \" + item + \" /qty \" + qty + \" /id \", \"\");"
-      },
-      {
         "lineNumber": 47,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                int id \u003d Integer.parseInt(input);"
+        "content": "        }"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                c \u003d new ReturnCommand(item, qty, id);"
+        "content": "        else if (words[0].equals(\"return\")) {"
       },
       {
         "lineNumber": 49,
         "author": {
-          "gitId": "isbobby"
+          "gitId": "rabhijit"
         },
-        "content": "            } else if (words[1].equals(\"/room\")) {"
+        "content": "            if (words[1].equals(\"/item\")) {"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                int roomIndex \u003d input.indexOf(\"/room\") + 6;"
+        "content": "                int itemIndex \u003d input.indexOf(\"/item\") + 6;"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                int idIndex \u003d input.indexOf(\" /id\");"
+        "content": "                int qtyIndex \u003d input.indexOf(\" /qty\");"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                String room \u003d input.substring(roomIndex, idIndex);"
+        "content": "                String item \u003d input.substring(itemIndex, qtyIndex);"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                input \u003d input.replaceFirst(\"return /room \" + room + \" /id \", \"\");"
+        "content": "                int idIndex \u003d input.indexOf(\" /id\");"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                int id \u003d Integer.parseInt(input);"
+        "content": "                int qty \u003d Integer.parseInt(input.substring(qtyIndex + 6, idIndex));"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                c \u003d new ReturnCommand(room, id);"
+        "content": "                input \u003d input.replaceFirst(\"return /item \" + item + \" /qty \" + qty + \" /id \", \"\");"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            }"
+        "content": "                int id \u003d Integer.parseInt(input);"
       },
       {
         "lineNumber": 57,
         "author": {
-          "gitId": "isbobby"
+          "gitId": "rabhijit"
         },
-        "content": "        } else {"
+        "content": "                c \u003d new ReturnCommand(item, qty, id);"
       },
       {
         "lineNumber": 58,
         "author": {
-          "gitId": "rabhijit"
+          "gitId": "isbobby"
         },
-        "content": "            // throw an exception"
+        "content": "            } else if (words[1].equals(\"/room\")) {"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            ;"
+        "content": "                int roomIndex \u003d input.indexOf(\"/room\") + 6;"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        }"
+        "content": "                int idIndex \u003d input.indexOf(\" /id\");"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        return c;"
+        "content": "                String room \u003d input.substring(roomIndex, idIndex);"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "    }"
+        "content": "                input \u003d input.replaceFirst(\"return /room \" + room + \" /id \", \"\");"
       },
       {
         "lineNumber": 63,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                int id \u003d Integer.parseInt(input);"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                c \u003d new ReturnCommand(room, id);"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "        else if (words[0].equals(\"add\")) {"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "            if (words[1].equals(\"/item\")) {"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "                int itemIndex \u003d input.indexOf(\"/item\") + 6;"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "                int qtyIndex \u003d input.indexOf(\" /qty\");"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "                String item \u003d input.substring(itemIndex, qtyIndex);"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "                String qtyString \u003d input.replaceFirst(\"add /item \" + item + \" /qty \", \"\");"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "                int qty \u003d Integer.parseInt(qtyString);"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "                c \u003d new AddCommand(item, qty);"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "            else if (words[1].equals(\"/room\")) {"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "                int roomIndex \u003d input.indexOf(\"/room\") + 6;"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "                String room \u003d input.substring(roomIndex);"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "                c \u003d new AddCommand(room);"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "            else {"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "                //throw new RimException"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "        else if (words[0].equals(\"delete\")) {"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "            if (words[1].equals(\"/item\")) {"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "                int itemIndex \u003d input.indexOf(\"/item\") + 6;"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "                int qtyIndex \u003d input.indexOf(\" /qty\");"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "                String item \u003d input.substring(itemIndex, qtyIndex);"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "                String qtyString \u003d input.replaceFirst(\"delete /item \" + item + \" /qty \", \"\");"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "                int qty \u003d Integer.parseInt(qtyString);"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "                c \u003d new DeleteCommand(item, qty);"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "            else if (words[1].equals(\"/room\")) {"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "                int roomIndex \u003d input.indexOf(\"/room\") + 6;"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "                String room \u003d input.substring(roomIndex);"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "                c \u003d new DeleteCommand(room);"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "            else {"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "                //throw new RimException"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        else {"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            // throw an exception"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            ;"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        return c;"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 110,
         "author": {
           "gitId": "rabhijit"
         },
@@ -2803,10 +4163,11 @@
       }
     ],
     "authorContributionMap": {
-      "aarushisingh1": 6,
-      "isbobby": 10,
-      "danielcyc": 2,
-      "rabhijit": 45
+      "hin1": 37,
+      "aarushisingh1": 16,
+      "isbobby": 9,
+      "danielcyc": 1,
+      "rabhijit": 47
     }
   },
   {
@@ -4110,651 +5471,651 @@
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "import rims.command.*;"
+        "content": "import rims.exception.*;"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "import rims.exception.*;"
+        "content": "import rims.resource.*;"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "import rims.resource.*;"
+        "content": ""
       },
       {
         "lineNumber": 6,
         "author": {
-          "gitId": "rabhijit"
+          "gitId": "hin1"
         },
-        "content": ""
+        "content": "import java.text.ParseException;"
       },
       {
         "lineNumber": 7,
         "author": {
-          "gitId": "rabhijit"
+          "gitId": "hin1"
         },
-        "content": "import java.util.*;"
+        "content": "import java.text.SimpleDateFormat;"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "import java.io.*;"
+        "content": "import java.util.*;"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "import java.text.*;"
+        "content": ""
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": ""
+        "content": "public class ResourceList {"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "public class ResourceList {"
+        "content": "    protected HashMap\u003cString, ArrayList\u003cResource\u003e\u003e resources;"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "    protected HashMap\u003cString, ArrayList\u003cResource\u003e\u003e resources;"
+        "content": ""
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": ""
+        "content": "    public ResourceList(HashMap\u003cString, ArrayList\u003cResource\u003e\u003e resources) {"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "    public ResourceList(HashMap\u003cString, ArrayList\u003cResource\u003e\u003e resources) {"
+        "content": "        this.resources \u003d resources;"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        this.resources \u003d resources;"
+        "content": "    }"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": ""
+        "content": "    public HashMap\u003cString, ArrayList\u003cResource\u003e\u003e getResources() {"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "    public HashMap\u003cString, ArrayList\u003cResource\u003e\u003e getResources() {"
+        "content": "        return resources;"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        return resources;"
+        "content": "    }"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": ""
+        "content": "    public int getAvailableQuantity(String resourceName) {"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "    public int getAvailableQuantity(String resourceName) {"
+        "content": "        ArrayList\u003cResource\u003e thisResourceArray \u003d resources.get(resourceName);"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        ArrayList\u003cResource\u003e thisResourceArray \u003d resources.get(resourceName);"
+        "content": "        int availableQty \u003d 0;"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        int availableQty \u003d 0;"
+        "content": "        for (int i \u003d 0; i \u003c thisResourceArray.size(); i++) {"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        for (int i \u003d 0; i \u003c thisResourceArray.size(); i++) {"
+        "content": "            if (!(thisResourceArray.get(i).isBooked())) {"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            if (!(thisResourceArray.get(i).isBooked())) {"
+        "content": "                availableQty++;"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                availableQty++;"
+        "content": "            }"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            }"
+        "content": "        }"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        }"
+        "content": "        return availableQty;"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        return availableQty;"
+        "content": "    }"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": ""
+        "content": "    public int getBookedQuantity(String resourceName) {"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "    public int getBookedQuantity(String resourceName) {"
+        "content": "        ArrayList\u003cResource\u003e thisResourceArray \u003d resources.get(resourceName);"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        ArrayList\u003cResource\u003e thisResourceArray \u003d resources.get(resourceName);"
+        "content": "        int bookedQty \u003d 0;"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        int bookedQty \u003d 0;"
+        "content": "        for (int i \u003d 0; i \u003c thisResourceArray.size(); i++) {"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        for (int i \u003d 0; i \u003c thisResourceArray.size(); i++) {"
+        "content": "            if (thisResourceArray.get(i).isBooked()) {"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            if (thisResourceArray.get(i).isBooked()) {"
+        "content": "                bookedQty++;"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                bookedQty++;"
+        "content": "            }"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            }"
+        "content": "        }"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        }"
+        "content": "        return bookedQty;"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        return bookedQty;"
+        "content": "    }"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": ""
+        "content": "    public int getBookedQuantityOfOrder(String resourceName, int loanId) {"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "    public int getBookedQuantityOfOrder(String resourceName, int loanId) {"
+        "content": "        ArrayList\u003cResource\u003e thisResourceArray \u003d resources.get(resourceName);"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        ArrayList\u003cResource\u003e thisResourceArray \u003d resources.get(resourceName);"
+        "content": "        int bookedQty \u003d 0;"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        int bookedQty \u003d 0;"
+        "content": "        for (int i \u003d 0; i \u003c thisResourceArray.size(); i++) {"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        for (int i \u003d 0; i \u003c thisResourceArray.size(); i++) {"
+        "content": "            Resource thisResource \u003d thisResourceArray.get(i);"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            Resource thisResource \u003d thisResourceArray.get(i);"
+        "content": "            if (thisResource.isBooked() \u0026\u0026 thisResource.getLoanId() \u003d\u003d loanId) {"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            if (thisResource.isBooked() \u0026\u0026 thisResource.getLoanId() \u003d\u003d loanId) {"
+        "content": "                bookedQty++;"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                bookedQty++;"
+        "content": "            }"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            }"
+        "content": "        }"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        }"
+        "content": "        return bookedQty;"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        return bookedQty;"
+        "content": "    }"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": ""
+        "content": "    public int getTotalQuantity(String resourceName) {"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "    public int getTotalQuantity(String resourceName) {"
+        "content": "        return resources.get(resourceName).size();"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        return resources.get(resourceName).size();"
+        "content": "    }"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": ""
+        "content": "    public Resource getAvailableResource(String resourceName) throws Exception {"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "    public Resource getAvailableResource(String resourceName) throws Exception {"
+        "content": "        ArrayList\u003cResource\u003e thisResourceArray \u003d resources.get(resourceName);"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        ArrayList\u003cResource\u003e thisResourceArray \u003d resources.get(resourceName);"
+        "content": "        for (int i \u003d 0; i \u003c thisResourceArray.size(); i++) {"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        for (int i \u003d 0; i \u003c thisResourceArray.size(); i++) {"
+        "content": "            Resource thisResource \u003d thisResourceArray.get(i);"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            Resource thisResource \u003d thisResourceArray.get(i);"
+        "content": "            if (!(thisResource.isBooked())) {"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            if (!(thisResource.isBooked())) {"
+        "content": "                return thisResource;"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                return thisResource;"
+        "content": "            }"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            }"
+        "content": "        }"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        }"
+        "content": "        throw new Exception(\"No available items!\");"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        throw new Exception(\"No available items!\");"
+        "content": "        // throw exception if nothing returned"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        // throw exception if nothing returned"
+        "content": "        // replace with custom exception"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        // replace with custom exception"
+        "content": "    }"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": ""
+        "content": "    public Resource getBookedResource(String resourceName, int loanId) throws Exception {"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "    public Resource getBookedResource(String resourceName, int loanId) throws Exception {"
+        "content": "        ArrayList\u003cResource\u003e thisResourceArray \u003d resources.get(resourceName);"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        ArrayList\u003cResource\u003e thisResourceArray \u003d resources.get(resourceName);"
+        "content": "        for (int i \u003d 0; i \u003c thisResourceArray.size(); i++) {"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        for (int i \u003d 0; i \u003c thisResourceArray.size(); i++) {"
+        "content": "            Resource thisResource \u003d thisResourceArray.get(i);"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            Resource thisResource \u003d thisResourceArray.get(i);"
+        "content": "            if (thisResource.isBooked() \u0026\u0026 thisResource.getLoanId() \u003d\u003d loanId) {"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            if (thisResource.isBooked() \u0026\u0026 thisResource.getLoanId() \u003d\u003d loanId) {"
+        "content": "                return thisResource;"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                return thisResource;"
+        "content": "            }"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            }"
+        "content": "        }"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        }"
+        "content": "        throw new Exception(\"No available items!\");"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        throw new Exception(\"No available items!\");"
+        "content": "        // replace with custom exception"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        // replace with custom exception"
+        "content": "    }"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": ""
+        "content": "    public ArrayList\u003cString\u003e generateBookedList() {"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": ""
+        "content": "        ArrayList\u003cString\u003e list \u003d new ArrayList\u003cString\u003e();"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": ""
+        "content": "        list.add(\"CURRENTLY BOOKED\");"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "    public ArrayList\u003cString\u003e generateBookedList() {"
+        "content": "        for (Map.Entry\u003cString, ArrayList\u003cResource\u003e\u003e entry : resources.entrySet()) {"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        ArrayList\u003cString\u003e list \u003d new ArrayList\u003cString\u003e();"
+        "content": "            ArrayList\u003cResource\u003e thisResourceArray \u003d entry.getValue();"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        list.add(\"CURRENTLY BOOKED\");"
+        "content": "            int qtyBooked \u003d getBookedQuantity(entry.getKey());"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        for (Map.Entry\u003cString, ArrayList\u003cResource\u003e\u003e entry : resources.entrySet()) {"
+        "content": "            if (thisResourceArray.size() \u003e 0 \u0026\u0026 qtyBooked \u003e 0) {"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            ArrayList\u003cResource\u003e thisResourceArray \u003d entry.getValue();"
+        "content": "                if (thisResourceArray.get(0).getType() \u003d\u003d \u0027I\u0027) {"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            int qtyBooked \u003d getBookedQuantity(entry.getKey());"
+        "content": "                    list.add(thisResourceArray.get(0).toString() + \" (qty: \" + qtyBooked + \")\");"
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            if (thisResourceArray.size() \u003e 0 \u0026\u0026 qtyBooked \u003e 0) {"
+        "content": "                }"
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                if (thisResourceArray.get(0).getType() \u003d\u003d \u0027I\u0027) {"
+        "content": "                else if (thisResourceArray.get(0).getType() \u003d\u003d \u0027R\u0027) {"
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                    list.add(thisResourceArray.get(0).toString() + \" (qty: \" + qtyBooked + \")\");"
+        "content": "                    list.add(thisResourceArray.get(0).toString());"
       },
       {
         "lineNumber": 96,
@@ -4768,119 +6129,119 @@
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                else if (thisResourceArray.get(0).getType() \u003d\u003d \u0027R\u0027) {"
+        "content": "            }"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                    list.add(thisResourceArray.get(0).toString());"
+        "content": "        }"
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                }"
+        "content": "        return list;"
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            }"
+        "content": "    }"
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        }"
+        "content": ""
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        return list;"
+        "content": "    public ArrayList\u003cString\u003e generateAvailableList() {"
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "    }"
+        "content": "        ArrayList\u003cString\u003e list \u003d new ArrayList\u003cString\u003e();"
       },
       {
         "lineNumber": 104,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": ""
+        "content": "        list.add(\"AVAILABLE FOR LOAN\");"
       },
       {
         "lineNumber": 105,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "    public ArrayList\u003cString\u003e generateAvailableList() {"
+        "content": "        for (Map.Entry\u003cString, ArrayList\u003cResource\u003e\u003e entry : resources.entrySet()) {"
       },
       {
         "lineNumber": 106,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        ArrayList\u003cString\u003e list \u003d new ArrayList\u003cString\u003e();"
+        "content": "            ArrayList\u003cResource\u003e thisResourceArray \u003d entry.getValue();"
       },
       {
         "lineNumber": 107,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        list.add(\"AVAILABLE FOR LOAN\");"
+        "content": "            int qtyAvailable \u003d getAvailableQuantity(entry.getKey());"
       },
       {
         "lineNumber": 108,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        for (Map.Entry\u003cString, ArrayList\u003cResource\u003e\u003e entry : resources.entrySet()) {"
+        "content": "            if (thisResourceArray.size() \u003e 0 \u0026\u0026 qtyAvailable \u003e 0) {"
       },
       {
         "lineNumber": 109,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            ArrayList\u003cResource\u003e thisResourceArray \u003d entry.getValue();"
+        "content": "                if (thisResourceArray.get(0).getType() \u003d\u003d \u0027I\u0027) {"
       },
       {
         "lineNumber": 110,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            int qtyAvailable \u003d getAvailableQuantity(entry.getKey());"
+        "content": "                    list.add(thisResourceArray.get(0).toString() + \" (qty: \" + qtyAvailable + \")\");"
       },
       {
         "lineNumber": 111,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            if (thisResourceArray.size() \u003e 0 \u0026\u0026 qtyAvailable \u003e 0) {"
+        "content": "                }"
       },
       {
         "lineNumber": 112,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                if (thisResourceArray.get(0).getType() \u003d\u003d \u0027I\u0027) {"
+        "content": "                else if (thisResourceArray.get(0).getType() \u003d\u003d \u0027R\u0027) {"
       },
       {
         "lineNumber": 113,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                    list.add(thisResourceArray.get(0).toString() + \" (qty: \" + qtyAvailable + \")\");"
+        "content": "                    list.add(thisResourceArray.get(0).toString());"
       },
       {
         "lineNumber": 114,
@@ -4894,402 +6255,1291 @@
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                else if (thisResourceArray.get(0).getType() \u003d\u003d \u0027R\u0027) {"
+        "content": "            }"
       },
       {
         "lineNumber": 116,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                    list.add(thisResourceArray.get(0).toString());"
+        "content": "        }"
       },
       {
         "lineNumber": 117,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                }"
+        "content": "        return list;"
       },
       {
         "lineNumber": 118,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            }"
+        "content": "    }"
       },
       {
         "lineNumber": 119,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        }"
+        "content": ""
       },
       {
         "lineNumber": 120,
         "author": {
-          "gitId": "rabhijit"
+          "gitId": "hin1"
         },
-        "content": "        return list;"
+        "content": "    /**"
       },
       {
         "lineNumber": 121,
         "author": {
-          "gitId": "rabhijit"
+          "gitId": "hin1"
         },
-        "content": "    }"
+        "content": "     * Gets total quantity of resources in ResourceList regardless of status."
       },
       {
         "lineNumber": 122,
         "author": {
-          "gitId": "rabhijit"
+          "gitId": "hin1"
         },
-        "content": ""
+        "content": "     *"
       },
       {
         "lineNumber": 123,
         "author": {
-          "gitId": "aarushisingh1"
+          "gitId": "hin1"
         },
-        "content": ""
+        "content": "     * @return total quantity of resources."
       },
       {
         "lineNumber": 124,
         "author": {
-          "gitId": "aarushisingh1"
+          "gitId": "hin1"
         },
-        "content": "    public ArrayList\u003cString\u003e generateAvailableListByDate(String day) throws ParseException {"
+        "content": "     */"
       },
       {
         "lineNumber": 125,
         "author": {
-          "gitId": "aarushisingh1"
+          "gitId": "hin1"
         },
-        "content": "        ArrayList\u003cString\u003e list \u003d new ArrayList\u003cString\u003e();"
+        "content": "    public int getAllResourcesQuantity() {"
       },
       {
         "lineNumber": 126,
         "author": {
-          "gitId": "aarushisingh1"
+          "gitId": "hin1"
         },
-        "content": "        list.add(\"AVAILABLE FOR LOAN ON THIS DAY\");"
+        "content": "        int qty \u003d 0;"
       },
       {
         "lineNumber": 127,
         "author": {
-          "gitId": "aarushisingh1"
+          "gitId": "hin1"
         },
-        "content": "        for (Map.Entry\u003cString, ArrayList\u003cResource\u003e\u003e entry : resources.entrySet()) {"
+        "content": "        for (ArrayList\u003cResource\u003e identicalResources : resources.values()) {"
       },
       {
         "lineNumber": 128,
         "author": {
-          "gitId": "aarushisingh1"
+          "gitId": "hin1"
         },
-        "content": "            ArrayList\u003cResource\u003e thisResourceArray \u003d entry.getValue();"
+        "content": "            qty +\u003d identicalResources.size();"
       },
       {
         "lineNumber": 129,
         "author": {
-          "gitId": "aarushisingh1"
-        },
-        "content": "            int qtyAvailable \u003d getAvailableQuantity(entry.getKey());"
-      },
-      {
-        "lineNumber": 130,
-        "author": {
-          "gitId": "aarushisingh1"
-        },
-        "content": "            for(int i \u003d 0; i \u003c thisResourceArray.size(); i++){"
-      },
-      {
-        "lineNumber": 131,
-        "author": {
-          "gitId": "aarushisingh1"
-        },
-        "content": "                Resource thisResource \u003d thisResourceArray.get(i);"
-      },
-      {
-        "lineNumber": 132,
-        "author": {
-          "gitId": "aarushisingh1"
-        },
-        "content": "                if (!(thisResource.isBooked()) \u0026\u0026 ((thisResource.getDateBookedFrom().after(stringToDate(day))) \u0026\u0026 (thisResource.getDateBookedTill().before(stringToDate(day))))) {"
-      },
-      {
-        "lineNumber": 133,
-        "author": {
-          "gitId": "aarushisingh1"
-        },
-        "content": "                    if (thisResourceArray.get(0).getType() \u003d\u003d \u0027I\u0027) {"
-      },
-      {
-        "lineNumber": 134,
-        "author": {
-          "gitId": "aarushisingh1"
-        },
-        "content": "                        list.add(thisResourceArray.get(0).toString() + \" (qty: \" + qtyAvailable + \")\");"
-      },
-      {
-        "lineNumber": 135,
-        "author": {
-          "gitId": "aarushisingh1"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 136,
-        "author": {
-          "gitId": "aarushisingh1"
-        },
-        "content": "                    else if (thisResourceArray.get(0).getType() \u003d\u003d \u0027R\u0027) {"
-      },
-      {
-        "lineNumber": 137,
-        "author": {
-          "gitId": "aarushisingh1"
-        },
-        "content": "                        list.add(thisResourceArray.get(0).toString());"
-      },
-      {
-        "lineNumber": 138,
-        "author": {
-          "gitId": "aarushisingh1"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 139,
-        "author": {
-          "gitId": "aarushisingh1"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 140,
-        "author": {
-          "gitId": "aarushisingh1"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 141,
-        "author": {
-          "gitId": "aarushisingh1"
+          "gitId": "hin1"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 142,
+        "lineNumber": 130,
         "author": {
-          "gitId": "aarushisingh1"
+          "gitId": "hin1"
         },
-        "content": "        return list;"
+        "content": "        return qty;"
       },
       {
-        "lineNumber": 143,
+        "lineNumber": 131,
         "author": {
-          "gitId": "aarushisingh1"
+          "gitId": "hin1"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 144,
+        "lineNumber": 132,
         "author": {
-          "gitId": "aarushisingh1"
+          "gitId": "hin1"
         },
         "content": ""
       },
       {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "     * Adds new resource to ResourceList."
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "     * (OUTDATED + conceptually incorrect because resource id is allocated outside of ResourceList)"
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "     * @param newResource new resource to add, can be item or room."
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "    public void addResource(Resource newResource) {"
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "        String resourceName \u003d newResource.getName();"
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "        if (resources.containsKey(resourceName)) {"
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "            resources.get(resourceName).add(newResource);"
+      },
+      {
+        "lineNumber": 142,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "            resources.put(resourceName, new ArrayList\u003cResource\u003e());"
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "            resources.get(resourceName).add(newResource);"
+      },
+      {
         "lineNumber": 145,
         "author": {
-          "gitId": "aarushisingh1"
+          "gitId": "hin1"
         },
-        "content": "    public ArrayList\u003cString\u003e generateBookedListByDate(String day) throws ParseException {"
+        "content": "        }"
       },
       {
         "lineNumber": 146,
         "author": {
-          "gitId": "aarushisingh1"
+          "gitId": "hin1"
         },
-        "content": "        ArrayList\u003cString\u003e list \u003d new ArrayList\u003cString\u003e();"
+        "content": "    }"
       },
       {
         "lineNumber": 147,
         "author": {
-          "gitId": "aarushisingh1"
+          "gitId": "hin1"
         },
-        "content": "        list.add(\"CURRENTLY BOOKED ON THIS DAY\");"
+        "content": ""
       },
       {
         "lineNumber": 148,
         "author": {
-          "gitId": "aarushisingh1"
+          "gitId": "hin1"
         },
-        "content": "        for (Map.Entry\u003cString, ArrayList\u003cResource\u003e\u003e entry : resources.entrySet()) {"
+        "content": "    /**"
       },
       {
         "lineNumber": 149,
         "author": {
-          "gitId": "aarushisingh1"
+          "gitId": "hin1"
         },
-        "content": "            ArrayList\u003cResource\u003e thisResourceArray \u003d entry.getValue();"
+        "content": "     * Adds a new resource to ResourceList given resource name and type."
       },
       {
         "lineNumber": 150,
         "author": {
-          "gitId": "aarushisingh1"
+          "gitId": "hin1"
         },
-        "content": "            int qtyBooked \u003d getBookedQuantity(entry.getKey());"
+        "content": "     * @param resourceName Name of resource to add."
       },
       {
         "lineNumber": 151,
         "author": {
-          "gitId": "aarushisingh1"
+          "gitId": "hin1"
         },
-        "content": "            for(int i \u003d 0; i \u003c thisResourceArray.size(); i++){"
+        "content": "     * @param resourceType Type of resource: item or room."
       },
       {
         "lineNumber": 152,
         "author": {
-          "gitId": "aarushisingh1"
+          "gitId": "hin1"
         },
-        "content": "                Resource thisResource \u003d thisResourceArray.get(i);"
+        "content": "     * @throws RimException when type of resource is not item nor room"
       },
       {
         "lineNumber": 153,
         "author": {
-          "gitId": "aarushisingh1"
+          "gitId": "hin1"
         },
-        "content": "                if (thisResource.isBooked() \u0026\u0026 ((thisResource.getDateBookedFrom().before(stringToDate(day))) \u0026\u0026 (thisResource.getDateBookedTill().after(stringToDate(day))))) {"
+        "content": "     */"
       },
       {
         "lineNumber": 154,
         "author": {
-          "gitId": "aarushisingh1"
+          "gitId": "hin1"
         },
-        "content": "                    if (thisResourceArray.get(0).getType() \u003d\u003d \u0027I\u0027) {"
+        "content": "    public void addResource(String resourceName, char resourceType) throws RimException {"
       },
       {
         "lineNumber": 155,
         "author": {
-          "gitId": "aarushisingh1"
+          "gitId": "hin1"
         },
-        "content": "                        list.add(thisResourceArray.get(0).toString() + \" (qty: \" + qtyBooked + \")\");"
+        "content": "        Resource newResource;"
       },
       {
         "lineNumber": 156,
         "author": {
-          "gitId": "aarushisingh1"
+          "gitId": "hin1"
         },
-        "content": "                    }"
+        "content": "        if (resourceType \u003d\u003d \u0027I\u0027) {"
       },
       {
         "lineNumber": 157,
         "author": {
-          "gitId": "aarushisingh1"
+          "gitId": "hin1"
         },
-        "content": "                    else if (thisResourceArray.get(0).getType() \u003d\u003d \u0027R\u0027) {"
+        "content": "            newResource \u003d new Item(resourceName, getAllResourcesQuantity(), false);"
       },
       {
         "lineNumber": 158,
         "author": {
-          "gitId": "aarushisingh1"
+          "gitId": "hin1"
         },
-        "content": "                        list.add(thisResourceArray.get(0).toString());"
+        "content": "        } else if (resourceType \u003d\u003d \u0027R\u0027) {"
       },
       {
         "lineNumber": 159,
         "author": {
-          "gitId": "aarushisingh1"
+          "gitId": "hin1"
         },
-        "content": "                    }"
+        "content": "            newResource \u003d new Room(resourceName, getAllResourcesQuantity(), false);"
       },
       {
         "lineNumber": 160,
         "author": {
-          "gitId": "aarushisingh1"
+          "gitId": "hin1"
         },
-        "content": "                }"
+        "content": "        } else {"
       },
       {
         "lineNumber": 161,
         "author": {
-          "gitId": "aarushisingh1"
+          "gitId": "hin1"
         },
-        "content": "            }"
+        "content": "            throw new RimException(\"Invalid type of resource!\");"
       },
       {
         "lineNumber": 162,
         "author": {
-          "gitId": "aarushisingh1"
+          "gitId": "hin1"
         },
         "content": "        }"
       },
       {
         "lineNumber": 163,
         "author": {
-          "gitId": "aarushisingh1"
-        },
-        "content": "        return list;"
-      },
-      {
-        "lineNumber": 164,
-        "author": {
-          "gitId": "aarushisingh1"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 165,
-        "author": {
-          "gitId": "aarushisingh1"
+          "gitId": "hin1"
         },
         "content": ""
       },
       {
+        "lineNumber": 164,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "        if (resources.containsKey(resourceName)) {"
+      },
+      {
+        "lineNumber": 165,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "            resources.get(resourceName).add(newResource);"
+      },
+      {
         "lineNumber": 166,
         "author": {
-          "gitId": "aarushisingh1"
+          "gitId": "hin1"
         },
-        "content": "    public Date stringToDate(String stringDate) throws ParseException {"
+        "content": "        } else {"
       },
       {
         "lineNumber": 167,
         "author": {
-          "gitId": "aarushisingh1"
+          "gitId": "hin1"
         },
-        "content": "        SimpleDateFormat formatter \u003d new SimpleDateFormat(\"dd/MM/yyyy HHmm\");"
+        "content": "            resources.put(resourceName, new ArrayList\u003c\u003e());"
       },
       {
         "lineNumber": 168,
         "author": {
-          "gitId": "aarushisingh1"
+          "gitId": "hin1"
         },
-        "content": "        Date dateValue \u003d formatter.parse(stringDate);"
+        "content": "            resources.get(resourceName).add(newResource);"
       },
       {
         "lineNumber": 169,
         "author": {
-          "gitId": "aarushisingh1"
+          "gitId": "hin1"
         },
-        "content": "        return dateValue;"
+        "content": "        }"
       },
       {
         "lineNumber": 170,
         "author": {
-          "gitId": "aarushisingh1"
+          "gitId": "hin1"
         },
         "content": "    }"
       },
       {
         "lineNumber": 171,
         "author": {
-          "gitId": "aarushisingh1"
+          "gitId": "hin1"
         },
         "content": ""
       },
       {
         "lineNumber": 172,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 173,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "     * Deletes a resource from ResourceList given the resourceName."
+      },
+      {
+        "lineNumber": 174,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "     * @param resourceName Name of resource to delete."
+      },
+      {
+        "lineNumber": 175,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "     * @return the resource that was deleted."
+      },
+      {
+        "lineNumber": 176,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "     * @throws RimException"
+      },
+      {
+        "lineNumber": 177,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 178,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "    public void deleteResource(String resourceName) throws Exception {"
+      },
+      {
+        "lineNumber": 179,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 180,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "        if (!resources.containsKey(resourceName)) {"
+      },
+      {
+        "lineNumber": 181,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "            throw new RimException(\"Resource not in list\"); //resource stated not in list"
+      },
+      {
+        "lineNumber": 182,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 183,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 184,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "        Resource deletedResource \u003d getAvailableResource(resourceName);"
+      },
+      {
+        "lineNumber": 185,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "        resources.get(resourceName).remove(deletedResource);"
+      },
+      {
+        "lineNumber": 186,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 187,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "        //Remove empty ArrayList entry in inventory if that resource is depleted"
+      },
+      {
+        "lineNumber": 188,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "        if (resources.get(resourceName).isEmpty()) {"
+      },
+      {
+        "lineNumber": 189,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "            resources.remove(resourceName);"
+      },
+      {
+        "lineNumber": 190,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 191,
+        "author": {
+          "gitId": "hin1"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 192,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 193,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "    public ArrayList\u003cString\u003e generateAvailableListByDate(String day) throws ParseException {"
+      },
+      {
+        "lineNumber": 194,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "        ArrayList\u003cString\u003e list \u003d new ArrayList\u003cString\u003e();"
+      },
+      {
+        "lineNumber": 195,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "        list.add(\"AVAILABLE FOR LOAN ON THIS DAY\");"
+      },
+      {
+        "lineNumber": 196,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "        for (Map.Entry\u003cString, ArrayList\u003cResource\u003e\u003e entry : resources.entrySet()) {"
+      },
+      {
+        "lineNumber": 197,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "            ArrayList\u003cResource\u003e thisResourceArray \u003d entry.getValue();"
+      },
+      {
+        "lineNumber": 198,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "            int qtyAvailable \u003d 0;"
+      },
+      {
+        "lineNumber": 199,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "            for(int i \u003d 0; i \u003c thisResourceArray.size(); i++){"
+      },
+      {
+        "lineNumber": 200,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                Resource thisResource \u003d thisResourceArray.get(i);"
+      },
+      {
+        "lineNumber": 201,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                if((thisResource.getDateBookedFrom() \u003d\u003d null) \u0026\u0026 (thisResource.getDateBookedTill() \u003d\u003d null)){"
+      },
+      {
+        "lineNumber": 202,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                    qtyAvailable +\u003d 1;"
+      },
+      {
+        "lineNumber": 203,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 204,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                else if((thisResource.getDateBookedFrom().after(stringToDate(day))) || (thisResource.getDateBookedTill().before(stringToDate(day)))) {"
+      },
+      {
+        "lineNumber": 205,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                    qtyAvailable +\u003d 1;"
+      },
+      {
+        "lineNumber": 206,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 207,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 208,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                if(i \u003d\u003d thisResourceArray.size() - 1 \u0026\u0026 qtyAvailable \u003e 0){"
+      },
+      {
+        "lineNumber": 209,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                    if (thisResourceArray.get(0).getType() \u003d\u003d \u0027I\u0027) {"
+      },
+      {
+        "lineNumber": 210,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                        list.add(thisResourceArray.get(0).toString() + \" (qty: \" + qtyAvailable + \")\");"
+      },
+      {
+        "lineNumber": 211,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 212,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                    else if (thisResourceArray.get(0).getType() \u003d\u003d \u0027R\u0027) {"
+      },
+      {
+        "lineNumber": 213,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                        list.add(thisResourceArray.get(0).toString());"
+      },
+      {
+        "lineNumber": 214,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 215,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 216,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 217,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 218,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "        return list;"
+      },
+      {
+        "lineNumber": 219,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 220,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 221,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "    public ArrayList\u003cString\u003e generateBookedListByDate(String day) throws ParseException {"
+      },
+      {
+        "lineNumber": 222,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "        ArrayList\u003cString\u003e list \u003d new ArrayList\u003cString\u003e();"
+      },
+      {
+        "lineNumber": 223,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "        list.add(\"CURRENTLY BOOKED ON THIS DAY\");"
+      },
+      {
+        "lineNumber": 224,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "        for (Map.Entry\u003cString, ArrayList\u003cResource\u003e\u003e entry : resources.entrySet()) {"
+      },
+      {
+        "lineNumber": 225,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "            ArrayList\u003cResource\u003e thisResourceArray \u003d entry.getValue();"
+      },
+      {
+        "lineNumber": 226,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "            int qtyBooked \u003d 0;"
+      },
+      {
+        "lineNumber": 227,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "            for(int i \u003d 0; i \u003c thisResourceArray.size(); i++){"
+      },
+      {
+        "lineNumber": 228,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                Resource thisResource \u003d thisResourceArray.get(i);"
+      },
+      {
+        "lineNumber": 229,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                if ((thisResource.getDateBookedFrom() !\u003d null) \u0026\u0026 (thisResource.getDateBookedTill() !\u003d null) \u0026\u0026 (thisResource.getDateBookedFrom().before(stringToDate(day))) \u0026\u0026 (thisResource.getDateBookedTill().after(stringToDate(day)))) {"
+      },
+      {
+        "lineNumber": 230,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                    qtyBooked +\u003d 1;"
+      },
+      {
+        "lineNumber": 231,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 232,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                if((i \u003d\u003d thisResourceArray.size() - 1) \u0026\u0026 qtyBooked \u003e 0){"
+      },
+      {
+        "lineNumber": 233,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                    if (thisResourceArray.get(0).getType() \u003d\u003d \u0027I\u0027) {"
+      },
+      {
+        "lineNumber": 234,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                        list.add(thisResourceArray.get(0).toString() + \" (qty: \" + qtyBooked + \")\");"
+      },
+      {
+        "lineNumber": 235,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 236,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                    else if (thisResourceArray.get(0).getType() \u003d\u003d \u0027R\u0027) {"
+      },
+      {
+        "lineNumber": 237,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                        list.add(thisResourceArray.get(0).toString());"
+      },
+      {
+        "lineNumber": 238,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 239,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 240,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 241,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 242,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "        return list;"
+      },
+      {
+        "lineNumber": 243,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 244,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 245,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "    public Date stringToDate(String stringDate) throws ParseException {"
+      },
+      {
+        "lineNumber": 246,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "        SimpleDateFormat formatter \u003d new SimpleDateFormat(\"dd/MM/yyyy HHmm\");"
+      },
+      {
+        "lineNumber": 247,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "        Date dateValue \u003d formatter.parse(stringDate);"
+      },
+      {
+        "lineNumber": 248,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "        return dateValue;"
+      },
+      {
+        "lineNumber": 249,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 250,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "    public ArrayList\u003cString\u003e generateListByItem(String itemName) throws ParseException {"
+      },
+      {
+        "lineNumber": 251,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "        ArrayList\u003cString\u003e list \u003d new ArrayList\u003cString\u003e();"
+      },
+      {
+        "lineNumber": 252,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "        list.add(\"LIST OF \" + itemName + \": \");"
+      },
+      {
+        "lineNumber": 253,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "        for (Map.Entry\u003cString, ArrayList\u003cResource\u003e\u003e entry : resources.entrySet()) {"
+      },
+      {
+        "lineNumber": 254,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "            ArrayList\u003cResource\u003e thisResourceArray \u003d entry.getValue();"
+      },
+      {
+        "lineNumber": 255,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "            int qtyAvailable \u003d 0;"
+      },
+      {
+        "lineNumber": 256,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "            int k \u003d 0;"
+      },
+      {
+        "lineNumber": 257,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "            for(int i \u003d 0; i \u003c thisResourceArray.size(); i++){"
+      },
+      {
+        "lineNumber": 258,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                Resource thisResource \u003d thisResourceArray.get(i);"
+      },
+      {
+        "lineNumber": 259,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                if(thisResource.getName().equals(itemName)){"
+      },
+      {
+        "lineNumber": 260,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                    if ((thisResource.getDateBookedFrom() !\u003d null) \u0026\u0026 (thisResource.getDateBookedTill() !\u003d null)){"
+      },
+      {
+        "lineNumber": 261,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                        k +\u003d 1;"
+      },
+      {
+        "lineNumber": 262,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                        list.add((k) + \". \" + \"one \" + thisResourceArray.get(i).toString() + \" booked from \" + thisResource.getDateBookedFrom() + \" till \" + thisResource.getDateBookedTill());"
+      },
+      {
+        "lineNumber": 263,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 264,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                    else if((thisResource.getDateBookedFrom() \u003d\u003d null) \u0026\u0026 (thisResource.getDateBookedTill() \u003d\u003d null)){"
+      },
+      {
+        "lineNumber": 265,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                        qtyAvailable +\u003d 1;"
+      },
+      {
+        "lineNumber": 266,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 267,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                    if(qtyAvailable \u003e 1 \u0026\u0026 i \u003d\u003d thisResourceArray.size() - 1){"
+      },
+      {
+        "lineNumber": 268,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                        k +\u003d 1;"
+      },
+      {
+        "lineNumber": 269,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                        list.add((k) + \". \" + thisResourceArray.get(i).toString() + \"s are available\");"
+      },
+      {
+        "lineNumber": 270,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 271,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                    else if(qtyAvailable \u003d\u003d 1 \u0026\u0026 i \u003d\u003d thisResourceArray.size() - 1){"
+      },
+      {
+        "lineNumber": 272,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                        k +\u003d 1;"
+      },
+      {
+        "lineNumber": 273,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                        list.add((k) + \". \" + \" one \" + thisResourceArray.get(i).toString() + \" is available\");"
+      },
+      {
+        "lineNumber": 274,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 275,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 276,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 277,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 278,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "        return  list;"
+      },
+      {
+        "lineNumber": 279,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 280,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "    public ArrayList\u003cString\u003e generateListByRoom(String roomName) throws ParseException {"
+      },
+      {
+        "lineNumber": 281,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "        ArrayList\u003cString\u003e list \u003d new ArrayList\u003cString\u003e();"
+      },
+      {
+        "lineNumber": 282,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "        for (Map.Entry\u003cString, ArrayList\u003cResource\u003e\u003e entry : resources.entrySet()) {"
+      },
+      {
+        "lineNumber": 283,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "            ArrayList\u003cResource\u003e thisResourceArray \u003d entry.getValue();"
+      },
+      {
+        "lineNumber": 284,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "            for(int i \u003d 0; i \u003c thisResourceArray.size(); i++){"
+      },
+      {
+        "lineNumber": 285,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                Resource thisResource \u003d thisResourceArray.get(i);"
+      },
+      {
+        "lineNumber": 286,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                if(thisResource.getName().equals(roomName)){"
+      },
+      {
+        "lineNumber": 287,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                    if ((thisResource.getDateBookedFrom() !\u003d null) \u0026\u0026 (thisResource.getDateBookedTill() !\u003d null)){"
+      },
+      {
+        "lineNumber": 288,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                        list.add(thisResourceArray.get(i).toString() + \" booked from \" + thisResource.getDateBookedFrom() + \" till \" + thisResource.getDateBookedTill());"
+      },
+      {
+        "lineNumber": 289,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 290,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                    else if((thisResource.getDateBookedFrom() \u003d\u003d null) \u0026\u0026 (thisResource.getDateBookedTill() \u003d\u003d null)){"
+      },
+      {
+        "lineNumber": 291,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                        list.add(thisResourceArray.get(i).toString() + \" is available\");"
+      },
+      {
+        "lineNumber": 292,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 293,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 294,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 295,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 296,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "        return  list;"
+      },
+      {
+        "lineNumber": 297,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 298,
+        "author": {
+          "gitId": "aarushisingh1"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 299,
         "author": {
           "gitId": "rabhijit"
         },
@@ -5297,8 +7547,9 @@
       }
     ],
     "authorContributionMap": {
-      "aarushisingh1": 49,
-      "rabhijit": 123
+      "hin1": 74,
+      "aarushisingh1": 107,
+      "rabhijit": 118
     }
   },
   {
@@ -5639,488 +7890,663 @@
       {
         "lineNumber": 11,
         "author": {
-          "gitId": "rabhijit"
+          "gitId": "hin1"
         },
-        "content": "public class Storage {"
+        "content": "/**"
       },
       {
         "lineNumber": 12,
         "author": {
-          "gitId": "rabhijit"
+          "gitId": "hin1"
         },
-        "content": "    protected HashMap\u003cString, ArrayList\u003cResource\u003e\u003e resources \u003d new HashMap\u003cString, ArrayList\u003cResource\u003e\u003e();"
+        "content": " * Current format for text file:"
       },
       {
         "lineNumber": 13,
         "author": {
-          "gitId": "rabhijit"
+          "gitId": "hin1"
         },
-        "content": "    protected File file;"
+        "content": " * For every line:"
       },
       {
         "lineNumber": 14,
         "author": {
-          "gitId": "rabhijit"
+          "gitId": "hin1"
         },
-        "content": ""
+        "content": " * 0) ITEM/ROOM"
       },
       {
         "lineNumber": 15,
         "author": {
-          "gitId": "rabhijit"
+          "gitId": "hin1"
         },
-        "content": "    public Storage(String filename) throws FileNotFoundException, ParseException {"
+        "content": " * 1) ID (of unique item/room)"
       },
       {
         "lineNumber": 16,
         "author": {
-          "gitId": "rabhijit"
+          "gitId": "hin1"
         },
-        "content": "        file \u003d new File(filename);"
+        "content": " * 2) DESCRIPTION"
       },
       {
         "lineNumber": 17,
         "author": {
-          "gitId": "rabhijit"
+          "gitId": "hin1"
         },
-        "content": "        readFromFile();"
+        "content": " * 3) Booked or not?"
       },
       {
         "lineNumber": 18,
         "author": {
-          "gitId": "rabhijit"
+          "gitId": "hin1"
         },
-        "content": "    }"
+        "content": " * Optional:"
       },
       {
         "lineNumber": 19,
         "author": {
-          "gitId": "rabhijit"
+          "gitId": "hin1"
         },
-        "content": ""
+        "content": " * 4) Loan ID (if booked)]"
       },
       {
         "lineNumber": 20,
         "author": {
-          "gitId": "rabhijit"
+          "gitId": "hin1"
         },
-        "content": "    public void readFromFile() throws FileNotFoundException, ParseException {"
+        "content": " * 5) Loan start date"
       },
       {
         "lineNumber": 21,
         "author": {
-          "gitId": "rabhijit"
+          "gitId": "hin1"
         },
-        "content": "        Scanner fileScanner \u003d new Scanner(file);"
+        "content": " * 6) Loan end date"
       },
       {
         "lineNumber": 22,
         "author": {
-          "gitId": "rabhijit"
+          "gitId": "hin1"
         },
-        "content": "        while (fileScanner.hasNextLine()) {"
+        "content": " */"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            String[] line \u003d fileScanner.nextLine().split(\"`\");"
+        "content": "public class Storage {"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            boolean isBooked \u003d Integer.parseInt(line[3]) \u003d\u003d 1 ? true : false;"
+        "content": "    protected HashMap\u003cString, ArrayList\u003cResource\u003e\u003e resources \u003d new HashMap\u003cString, ArrayList\u003cResource\u003e\u003e();"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            if (line[0].equals(\"I\")) {"
+        "content": "    protected File file;"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                Item newItem;"
+        "content": ""
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                if (isBooked) {"
+        "content": "    public Storage(String filename) throws FileNotFoundException, ParseException {"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                    newItem \u003d new Item(line[2], Integer.parseInt(line[1]), isBooked, Integer.parseInt(line[4]), line[5], line[6]);"
+        "content": "        file \u003d new File(filename);"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                }"
+        "content": "        readFromFile();"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                else {"
+        "content": "    }"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                    newItem \u003d new Item(line[2], Integer.parseInt(line[1]), isBooked);"
+        "content": ""
       },
       {
         "lineNumber": 32,
         "author": {
-          "gitId": "rabhijit"
+          "gitId": "hin1"
         },
-        "content": "                }"
+        "content": "    /**"
       },
       {
         "lineNumber": 33,
         "author": {
-          "gitId": "rabhijit"
+          "gitId": "hin1"
         },
-        "content": "                if (resources.containsKey(line[2])) {"
+        "content": "     * Obtains the contents of a ResourceList line by line"
       },
       {
         "lineNumber": 34,
         "author": {
-          "gitId": "rabhijit"
+          "gitId": "hin1"
         },
-        "content": "                    resources.get(line[2]).add(newItem);"
+        "content": "     * from a text file in a specified file path."
       },
       {
         "lineNumber": 35,
         "author": {
-          "gitId": "rabhijit"
+          "gitId": "hin1"
         },
-        "content": "                }"
+        "content": "     *"
       },
       {
         "lineNumber": 36,
         "author": {
-          "gitId": "rabhijit"
+          "gitId": "hin1"
         },
-        "content": "                else {"
+        "content": "     * @throws FileNotFoundException when specified file path does not lead to a valid file type."
       },
       {
         "lineNumber": 37,
         "author": {
-          "gitId": "rabhijit"
+          "gitId": "hin1"
         },
-        "content": "                    resources.put(line[2], new ArrayList\u003cResource\u003e(Arrays.asList(newItem)));"
+        "content": "     * @throws ParseException when unable to parse an integer for ID or checking if a resource is booked."
       },
       {
         "lineNumber": 38,
         "author": {
-          "gitId": "rabhijit"
+          "gitId": "hin1"
         },
-        "content": "                }"
+        "content": "     */"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            }"
+        "content": "    public void readFromFile() throws FileNotFoundException, ParseException {"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            else if (line[0].equals(\"R\")) {"
+        "content": "        Scanner fileScanner \u003d new Scanner(file);"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                Room newRoom;"
+        "content": "        while (fileScanner.hasNextLine()) {"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                if (isBooked) {"
+        "content": "            String[] line \u003d fileScanner.nextLine().split(\"`\");"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                    newRoom \u003d new Room(line[2], Integer.parseInt(line[1]), isBooked, Integer.parseInt(line[4]), line[5], line[6]);"
+        "content": "            boolean isBooked \u003d Integer.parseInt(line[3]) \u003d\u003d 1 ? true : false;"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                }"
+        "content": "            if (line[0].equals(\"I\")) {"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                else {"
+        "content": "                Item newItem;"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                    newRoom \u003d new Room(line[2], Integer.parseInt(line[1]), isBooked);"
+        "content": "                if (isBooked) {"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                }"
+        "content": "                    newItem \u003d new Item(line[2], Integer.parseInt(line[1]), isBooked, Integer.parseInt(line[4]), line[5], line[6]);"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                resources.put(line[2], new ArrayList\u003cResource\u003e(Arrays.asList(newRoom)));"
+        "content": "                }"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            }"
+        "content": "                else {"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        }"
+        "content": "                    newItem \u003d new Item(line[2], Integer.parseInt(line[1]), isBooked);"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "    }"
+        "content": "                }"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": ""
+        "content": "                if (resources.containsKey(line[2])) {"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "    public void saveToFile(HashMap\u003cString, ArrayList\u003cResource\u003e\u003e resources) throws IOException {"
+        "content": "                    resources.get(line[2]).add(newItem);"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        BufferedWriter fileWriter \u003d new BufferedWriter(new FileWriter(file, false));"
+        "content": "                }"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        for (Map.Entry\u003cString, ArrayList\u003cResource\u003e\u003e entry : resources.entrySet()) {"
+        "content": "                else {"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            ArrayList\u003cResource\u003e thisResourceArray \u003d entry.getValue();"
+        "content": "                    resources.put(line[2], new ArrayList\u003cResource\u003e(Arrays.asList(newItem)));"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            for (int i \u003d 0; i \u003c thisResourceArray.size(); i++) {"
+        "content": "                }"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                Resource thisResource \u003d thisResourceArray.get(i);"
+        "content": "            }"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                int isBooked \u003d (thisResource.isBooked() \u003d\u003d true) ? 1 : 0;"
+        "content": "            else if (line[0].equals(\"R\")) {"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                String line \u003d thisResource.getType() + \"`\" + thisResource.getId() + \"`\" + thisResource.getName() + \"`\" + isBooked;"
+        "content": "                Room newRoom;"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                if (thisResource.isBooked()) {"
+        "content": "                if (isBooked) {"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                    line +\u003d \"`\";"
+        "content": "                    newRoom \u003d new Room(line[2], Integer.parseInt(line[1]), isBooked, Integer.parseInt(line[4]), line[5], line[6]);"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                    line +\u003d thisResource.getLoanId();"
+        "content": "                }"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                    line +\u003d \"`\";"
+        "content": "                else {"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                    line +\u003d thisResource.dateToString(thisResource.getDateBookedFrom());"
+        "content": "                    newRoom \u003d new Room(line[2], Integer.parseInt(line[1]), isBooked);"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                    line +\u003d \"`\";"
+        "content": "                }"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                    line +\u003d thisResource.dateToString(thisResource.getDateBookedTill());"
+        "content": "                resources.put(line[2], new ArrayList\u003cResource\u003e(Arrays.asList(newRoom)));"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                }"
+        "content": "            }"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                fileWriter.write(line);"
+        "content": "        }"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                fileWriter.newLine();"
+        "content": "    }"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            }"
+        "content": ""
       },
       {
         "lineNumber": 72,
         "author": {
-          "gitId": "rabhijit"
+          "gitId": "hin1"
         },
-        "content": "        }"
+        "content": "    /**"
       },
       {
         "lineNumber": 73,
         "author": {
-          "gitId": "rabhijit"
+          "gitId": "hin1"
         },
-        "content": "        fileWriter.close();"
+        "content": "     * Put contents of a ResourceList into a text file for future reference."
       },
       {
         "lineNumber": 74,
         "author": {
-          "gitId": "rabhijit"
+          "gitId": "hin1"
         },
-        "content": "    }"
+        "content": "     *"
       },
       {
         "lineNumber": 75,
         "author": {
-          "gitId": "rabhijit"
+          "gitId": "hin1"
         },
-        "content": ""
+        "content": "     * @param resources ResourceList to put contents into text file."
       },
       {
         "lineNumber": 76,
         "author": {
-          "gitId": "rabhijit"
+          "gitId": "hin1"
         },
-        "content": "    public HashMap\u003cString, ArrayList\u003cResource\u003e\u003e getResources() {"
+        "content": "     * @throws IOException when file given is directory, or file does not exist and cannot be created."
       },
       {
         "lineNumber": 77,
         "author": {
-          "gitId": "rabhijit"
+          "gitId": "hin1"
         },
-        "content": "        return resources;"
+        "content": "     */"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "    }"
+        "content": "    public void saveToFile(HashMap\u003cString, ArrayList\u003cResource\u003e\u003e resources) throws IOException {"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": ""
+        "content": "        BufferedWriter fileWriter \u003d new BufferedWriter(new FileWriter(file, false));"
       },
       {
         "lineNumber": 80,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        for (Map.Entry\u003cString, ArrayList\u003cResource\u003e\u003e entry : resources.entrySet()) {"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            ArrayList\u003cResource\u003e thisResourceArray \u003d entry.getValue();"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            for (int i \u003d 0; i \u003c thisResourceArray.size(); i++) {"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                Resource thisResource \u003d thisResourceArray.get(i);"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                int isBooked \u003d (thisResource.isBooked() \u003d\u003d true) ? 1 : 0;"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                String line \u003d thisResource.getType() + \"`\" + thisResource.getId() + \"`\" + thisResource.getName() + \"`\" + isBooked;"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                if (thisResource.isBooked()) {"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                    line +\u003d \"`\";"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                    line +\u003d thisResource.getLoanId();"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                    line +\u003d \"`\";"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                    line +\u003d thisResource.dateToString(thisResource.getDateBookedFrom());"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                    line +\u003d \"`\";"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                    line +\u003d thisResource.dateToString(thisResource.getDateBookedTill());"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                fileWriter.write(line);"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                fileWriter.newLine();"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        fileWriter.close();"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    public HashMap\u003cString, ArrayList\u003cResource\u003e\u003e getResources() {"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        return resources;"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 105,
         "author": {
           "gitId": "rabhijit"
         },
@@ -6128,6 +8554,7 @@
       }
     ],
     "authorContributionMap": {
+      "hin1": 25,
       "rabhijit": 80
     }
   },
@@ -7281,9 +9708,9 @@
       {
         "lineNumber": 8,
         "author": {
-          "gitId": "isbobby"
+          "gitId": "hin1"
         },
-        "content": "    RimException(String error){"
+        "content": "    public RimException(String error){"
       },
       {
         "lineNumber": 9,
@@ -7308,7 +9735,8 @@
       }
     ],
     "authorContributionMap": {
-      "isbobby": 3,
+      "hin1": 1,
+      "isbobby": 2,
       "rabhijit": 8
     }
   },

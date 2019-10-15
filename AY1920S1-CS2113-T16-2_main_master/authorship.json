@@ -1629,6 +1629,402 @@
     }
   },
   {
+    "path": "src/main/java/duke/command/ListCommand.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "package duke.command;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "import duke.exception.DukeException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import duke.storage.Storage;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "import duke.task.Task;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import duke.tasklist.TaskList;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import duke.ui.Ui;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " * duke.command.ListCommand class which executes the command of displaying the duke.tasklist.TaskList to the user"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "public class ListCommand extends Command {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "    private String mode;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "    private final String defaultMode \u003d \"DEFAULT\";"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "    public ListCommand() {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "        mode \u003d defaultMode;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "    public ListCommand(String modeInformation) {"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "        mode \u003d modeInformation;"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "        switch (mode) {"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "            case \"DEFAULT\":"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "                if (tasks.size() \u003e 0) {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "                    ui.showLine(\"Here are the tasks in your list:\");"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "                    for (int i \u003d 0; i \u003c tasks.size(); i++) {"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "                        ui.showEntry(i + 1, tasks.get(i));"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "                } else {"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "                    ui.showLine(\"There are no tasks in your list.\");"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "            case \"priority\":"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "                tasks.priorityPrint(ui);"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "            case \"day\":"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "                tasks.dayViewPrint(ui);"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "            default:"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "                throw new DukeException(\"The description of list is invalid\");"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "    public boolean isExit() {"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "        return false;"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "shaun97": 4,
+      "nicholasnovakovic": 40,
+      "-": 11
+    }
+  },
+  {
     "path": "src/main/java/duke/extensions/Priority.java",
     "fileType": "functional",
     "lines": [
@@ -1742,7 +2138,7 @@
         "author": {
           "gitId": "nicholasnovakovic"
         },
-        "content": "\tpublic int priorityLevel() throws DukeException {"
+        "content": "\tpublic int priorityLevel() {"
       },
       {
         "lineNumber": 17,
@@ -1784,7 +2180,7 @@
         "author": {
           "gitId": "nicholasnovakovic"
         },
-        "content": "\t\t\tcase HIGH:"
+        "content": "\t\t\tdefault:"
       },
       {
         "lineNumber": 23,
@@ -1798,31 +2194,94 @@
         "author": {
           "gitId": "nicholasnovakovic"
         },
-        "content": "\t\t\tdefault:"
+        "content": "\t\t}"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "nicholasnovakovic"
         },
-        "content": "\t\t\t\tthrow new DukeException(\"No such priority exists.\");"
+        "content": "\t}"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "nicholasnovakovic"
         },
-        "content": "\t\t}"
+        "content": ""
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "nicholasnovakovic"
         },
-        "content": "\t}"
+        "content": "\tpublic String priorityCode() {"
       },
       {
         "lineNumber": 28,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\tswitch(this) {"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\tcase LOW:"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\treturn \"L\";"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\tcase MEDIUM:"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\treturn \"M\";"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\tdefault:"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\treturn \"H\";"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t}"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t}"
+      },
+      {
+        "lineNumber": 37,
         "author": {
           "gitId": "nicholasnovakovic"
         },
@@ -1830,7 +2289,7 @@
       }
     ],
     "authorContributionMap": {
-      "nicholasnovakovic": 28
+      "nicholasnovakovic": 37
     }
   },
   {
@@ -2029,327 +2488,348 @@
       {
         "lineNumber": 28,
         "author": {
-          "gitId": "-"
-        },
-        "content": "                return new ListCommand();"
-      },
-      {
-        "lineNumber": 29,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            case \"delete\":"
-      },
-      {
-        "lineNumber": 30,
-        "author": {
-          "gitId": "-"
+          "gitId": "nicholasnovakovic"
         },
         "content": "                if (fcArray.length \u003d\u003d 1) {"
       },
       {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "                    return new ListCommand();"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "                }"
+      },
+      {
         "lineNumber": 31,
         "author": {
-          "gitId": "-"
+          "gitId": "nicholasnovakovic"
         },
-        "content": "                    throw new DukeException(\"☹ OOPS!!! The description of delete cannot be empty.\");"
+        "content": "                return new ListCommand(fcArray[1]);"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "-"
         },
-        "content": "                }"
+        "content": "            case \"delete\":"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "-"
         },
-        "content": "                return new DeleteCommand(fcArray[1]);"
+        "content": "                if (fcArray.length \u003d\u003d 1) {"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "-"
         },
-        "content": "            case \"find\":"
+        "content": "                    throw new DukeException(\"☹ OOPS!!! The description of delete cannot be empty.\");"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "-"
         },
-        "content": "                if (fcArray.length \u003d\u003d 1) {"
+        "content": "                }"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "-"
         },
-        "content": "                    throw new DukeException(\"☹ OOPS!!! The description of find cannot be empty.\");"
+        "content": "                return new DeleteCommand(fcArray[1]);"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "-"
         },
-        "content": "                }"
+        "content": "            case \"find\":"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "-"
         },
-        "content": "                return new FindCommand(fcArray[1]);"
+        "content": "                if (fcArray.length \u003d\u003d 1) {"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "-"
         },
-        "content": "            case \"done\":"
+        "content": "                    throw new DukeException(\"☹ OOPS!!! The description of find cannot be empty.\");"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "-"
         },
-        "content": "                if (fcArray.length \u003d\u003d 1) {"
+        "content": "                }"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "-"
         },
-        "content": "                    throw new DukeException(\"☹ OOPS!!! The description of done cannot be empty.\");"
+        "content": "                return new FindCommand(fcArray[1]);"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "-"
         },
-        "content": "                }"
+        "content": "            case \"done\":"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "-"
         },
-        "content": "                return new DoneCommand(fcArray[1]);"
+        "content": "                if (fcArray.length \u003d\u003d 1) {"
       },
       {
         "lineNumber": 44,
         "author": {
-          "gitId": "nicholasnovakovic"
+          "gitId": "-"
         },
-        "content": "            case \"set\":"
+        "content": "                    throw new DukeException(\"☹ OOPS!!! The description of done cannot be empty.\");"
       },
       {
         "lineNumber": 45,
         "author": {
-          "gitId": "nicholasnovakovic"
+          "gitId": "-"
         },
-        "content": "                if (fcArray.length \u003d\u003d 1) {"
+        "content": "                }"
       },
       {
         "lineNumber": 46,
         "author": {
-          "gitId": "nicholasnovakovic"
+          "gitId": "-"
         },
-        "content": "                    throw new DukeException(\"☹ OOPS!!! The description of set cannot be empty.\");"
+        "content": "                return new DoneCommand(fcArray[1]);"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "nicholasnovakovic"
         },
-        "content": "                }"
+        "content": "            case \"set\":"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "nicholasnovakovic"
         },
-        "content": "                String[] editArray \u003d fcArray[1].split(\" \", 2);"
+        "content": "                if (fcArray.length \u003d\u003d 1) {"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "nicholasnovakovic"
         },
-        "content": "                if (editArray.length \u003d\u003d 1) {"
+        "content": "                    throw new DukeException(\"☹ OOPS!!! The description of set cannot be empty.\");"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "nicholasnovakovic"
         },
-        "content": "                    throw new DukeException(\"☹ OOPS!!! You are missing the description of the edit.\");"
+        "content": "                }"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "nicholasnovakovic"
         },
-        "content": "                }"
+        "content": "                String[] editArray \u003d fcArray[1].split(\" \", 2);"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "nicholasnovakovic"
         },
-        "content": "                String editCommand \u003d editArray[0];"
+        "content": "                if (editArray.length \u003d\u003d 1) {"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "nicholasnovakovic"
         },
-        "content": "                switch (editCommand) {"
+        "content": "                    throw new DukeException(\"☹ OOPS!!! You are missing the description of the edit.\");"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "nicholasnovakovic"
         },
-        "content": "                    case \"priority\":"
+        "content": "                }"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "nicholasnovakovic"
         },
-        "content": "                        String[] pArray \u003d editArray[1].split(\" \");"
+        "content": "                String editCommand \u003d editArray[0];"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "nicholasnovakovic"
         },
-        "content": "                        if (pArray.length !\u003d 2) {"
+        "content": "                switch (editCommand) {"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "nicholasnovakovic"
         },
-        "content": "                            throw new DukeException(\"☹ OOPS!!! You are missing either the index of the priority level\");"
+        "content": "                    case \"priority\":"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "nicholasnovakovic"
         },
-        "content": "                        }"
+        "content": "                        String[] pArray \u003d editArray[1].split(\" \");"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "nicholasnovakovic"
         },
-        "content": "                        return new EditCommand(editCommand, pArray[0], pArray[1]);"
+        "content": "                        if (pArray.length !\u003d 2) {"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "nicholasnovakovic"
         },
-        "content": "                    default:"
+        "content": "                            throw new DukeException(\"☹ OOPS!!! You are missing either the index of the priority level\");"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "nicholasnovakovic"
         },
-        "content": "                        throw new DukeException(\"Sorry I don\u0027t know what you want me to do :-(\");"
+        "content": "                        }"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "nicholasnovakovic"
         },
-        "content": "                }"
+        "content": "                        return new EditCommand(editCommand, pArray[0], pArray[1]);"
       },
       {
         "lineNumber": 63,
         "author": {
-          "gitId": "-"
+          "gitId": "nicholasnovakovic"
         },
-        "content": "            case \"todo\":"
+        "content": "                    default:"
       },
       {
         "lineNumber": 64,
         "author": {
-          "gitId": "-"
+          "gitId": "nicholasnovakovic"
         },
-        "content": "            case \"deadline\":"
+        "content": "                        throw new DukeException(\"Sorry I don\u0027t know what you want me to do :-(\");"
       },
       {
         "lineNumber": 65,
         "author": {
-          "gitId": "-"
+          "gitId": "nicholasnovakovic"
         },
-        "content": "            case \"event\":"
+        "content": "                }"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "-"
         },
-        "content": "                if (fcArray.length \u003d\u003d 1) {"
+        "content": "            case \"todo\":"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "-"
         },
-        "content": "                    throw new DukeException(\"☹ OOPS!!! The description of \" + keyword + \" cannot be empty.\");"
+        "content": "            case \"deadline\":"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "-"
         },
-        "content": "                }"
+        "content": "            case \"event\":"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "-"
         },
-        "content": "                return new AddCommand(fcArray[1], keyword);"
+        "content": "                if (fcArray.length \u003d\u003d 1) {"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "-"
         },
-        "content": "            default:"
+        "content": "                    throw new DukeException(\"☹ OOPS!!! The description of \" + keyword + \" cannot be empty.\");"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "-"
         },
-        "content": "                throw new DukeException(\"☹ OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\");"
+        "content": "                }"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "                return new AddCommand(fcArray[1], keyword);"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "            default:"
       },
       {
         "lineNumber": 74,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                throw new DukeException(\"☹ OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\");"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 77,
         "author": {
           "gitId": "-"
         },
@@ -2357,8 +2837,8 @@
       }
     ],
     "authorContributionMap": {
-      "nicholasnovakovic": 19,
-      "-": 55
+      "nicholasnovakovic": 23,
+      "-": 54
     }
   },
   {
@@ -3029,33 +3509,61 @@
       {
         "lineNumber": 30,
         "author": {
+          "gitId": "shaun97"
+        },
+        "content": "    public Date getDatetime() {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "        return this.datetime;"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 34,
+        "author": {
           "gitId": "nicholasnovakovic"
         },
         "content": "    @Override"
       },
       {
-        "lineNumber": 31,
+        "lineNumber": 35,
         "author": {
           "gitId": "nicholasnovakovic"
         },
         "content": "    public String toString() {"
       },
       {
-        "lineNumber": 32,
+        "lineNumber": 36,
         "author": {
           "gitId": "nicholasnovakovic"
         },
         "content": "        return super.toString() + \" (by: \" + datetime + \")\";"
       },
       {
-        "lineNumber": 33,
+        "lineNumber": 37,
         "author": {
           "gitId": "nicholasnovakovic"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 34,
+        "lineNumber": 38,
         "author": {
           "gitId": "-"
         },
@@ -3063,7 +3571,7 @@
       }
     ],
     "authorContributionMap": {
-      "shaun97": 7,
+      "shaun97": 11,
       "nicholasnovakovic": 15,
       "-": 12
     }
@@ -3670,7 +4178,7 @@
         "author": {
           "gitId": "shaun97"
         },
-        "content": "    protected LocalDate dateCreated;"
+        "content": "    protected LocalDate createdDate;"
       },
       {
         "lineNumber": 19,
@@ -3782,7 +4290,7 @@
         "author": {
           "gitId": "shaun97"
         },
-        "content": "        this.dateCreated \u003d LocalDate.now();"
+        "content": "        this.createdDate \u003d LocalDate.now();"
       },
       {
         "lineNumber": 35,
@@ -4076,189 +4584,189 @@
         "author": {
           "gitId": "shaun97"
         },
-        "content": "    public void recurringTaskChecker() {"
+        "content": "    /**"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "shaun97"
         },
-        "content": "        switch (recurrencePeriod) {"
+        "content": "     * This function marks tasks as undone every week/day based on the"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "shaun97"
         },
-        "content": "            case DAILY:"
+        "content": "     * recurrence period of the task."
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "shaun97"
         },
-        "content": "                if (ChronoUnit.HOURS.between(dateCreated, LocalDate.now()) % 24 \u003d\u003d 0) {"
+        "content": "     */"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "shaun97"
         },
-        "content": "                    markAsUndone();"
+        "content": "    public boolean isTimeToReset(LocalDate dateCreated, LocalDate dateNow) {"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "shaun97"
         },
-        "content": "                }"
+        "content": "        switch (recurrencePeriod) {"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "shaun97"
         },
-        "content": "                break;"
+        "content": "            case DAILY:"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "shaun97"
         },
-        "content": "            case WEEKLY:"
+        "content": "                if (ChronoUnit.DAYS.between(dateCreated, dateNow) \u003e 0) {"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "shaun97"
         },
-        "content": "                if (ChronoUnit.DAYS.between(dateCreated, LocalDate.now()) % 7 \u003d\u003d 0) {"
+        "content": "                    return true;"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "shaun97"
         },
-        "content": "                    markAsUndone();"
+        "content": "                } else {"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "shaun97"
         },
-        "content": "                }"
+        "content": "                    return false;"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "shaun97"
         },
-        "content": "                break;"
+        "content": "                }"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "shaun97"
         },
-        "content": "            default:"
+        "content": "            case WEEKLY:"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "shaun97"
         },
-        "content": "                break;"
+        "content": "                if (ChronoUnit.DAYS.between(dateCreated, dateNow) % 7 \u003d\u003d 0) {"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "shaun97"
         },
-        "content": "        }"
+        "content": "                    return true;"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "shaun97"
         },
-        "content": "    }"
+        "content": "                } else {"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "shaun97"
         },
-        "content": ""
+        "content": "                    return false;"
       },
       {
         "lineNumber": 93,
         "author": {
-          "gitId": "nicholasnovakovic"
+          "gitId": "shaun97"
         },
-        "content": "    public void setPriority(int i) throws DukeException {"
+        "content": "                }"
       },
       {
         "lineNumber": 94,
         "author": {
-          "gitId": "nicholasnovakovic"
+          "gitId": "shaun97"
         },
-        "content": "        switch(i) {"
+        "content": "            default:"
       },
       {
         "lineNumber": 95,
         "author": {
-          "gitId": "nicholasnovakovic"
+          "gitId": "shaun97"
         },
-        "content": "            case 0:"
+        "content": "                return false;"
       },
       {
         "lineNumber": 96,
         "author": {
-          "gitId": "nicholasnovakovic"
+          "gitId": "shaun97"
         },
-        "content": "                priority \u003d Priority.LOW;"
+        "content": "        }"
       },
       {
         "lineNumber": 97,
         "author": {
-          "gitId": "nicholasnovakovic"
+          "gitId": "shaun97"
         },
-        "content": "                break;"
+        "content": "    }"
       },
       {
         "lineNumber": 98,
         "author": {
-          "gitId": "nicholasnovakovic"
+          "gitId": "shaun97"
         },
-        "content": "            case 1:"
+        "content": ""
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "nicholasnovakovic"
         },
-        "content": "                priority \u003d Priority.MEDIUM;"
+        "content": "    public void setPriority(int i) throws DukeException {"
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "nicholasnovakovic"
         },
-        "content": "                break;"
+        "content": "        switch(i) {"
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "nicholasnovakovic"
         },
-        "content": "            case 2:"
+        "content": "            case 0:"
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "nicholasnovakovic"
         },
-        "content": "                priority \u003d Priority.HIGH;"
+        "content": "                priority \u003d Priority.LOW;"
       },
       {
         "lineNumber": 103,
@@ -4272,194 +4780,194 @@
         "author": {
           "gitId": "nicholasnovakovic"
         },
-        "content": "            default:"
+        "content": "            case 1:"
       },
       {
         "lineNumber": 105,
         "author": {
           "gitId": "nicholasnovakovic"
         },
-        "content": "                throw new DukeException(\"No such priority exists.\");"
+        "content": "                priority \u003d Priority.MEDIUM;"
       },
       {
         "lineNumber": 106,
         "author": {
           "gitId": "nicholasnovakovic"
         },
-        "content": "        }"
+        "content": "                break;"
       },
       {
         "lineNumber": 107,
         "author": {
           "gitId": "nicholasnovakovic"
         },
-        "content": "    }"
+        "content": "            case 2:"
       },
       {
         "lineNumber": 108,
         "author": {
           "gitId": "nicholasnovakovic"
         },
-        "content": ""
+        "content": "                priority \u003d Priority.HIGH;"
       },
       {
         "lineNumber": 109,
         "author": {
           "gitId": "nicholasnovakovic"
         },
-        "content": "    /**"
+        "content": "                break;"
       },
       {
         "lineNumber": 110,
         "author": {
           "gitId": "nicholasnovakovic"
         },
-        "content": "     * Returns a String which describes the task"
+        "content": "            default:"
       },
       {
         "lineNumber": 111,
         "author": {
-          "gitId": "shaun97"
+          "gitId": "nicholasnovakovic"
         },
-        "content": "     *"
+        "content": "                throw new DukeException(\"No such priority exists.\");"
       },
       {
         "lineNumber": 112,
         "author": {
           "gitId": "nicholasnovakovic"
         },
-        "content": "     * @return the description of the task"
+        "content": "        }"
       },
       {
         "lineNumber": 113,
         "author": {
           "gitId": "nicholasnovakovic"
         },
-        "content": "     */"
+        "content": "    }"
       },
       {
         "lineNumber": 114,
         "author": {
           "gitId": "nicholasnovakovic"
         },
-        "content": "    public String getDescription() {"
+        "content": ""
       },
       {
         "lineNumber": 115,
         "author": {
           "gitId": "nicholasnovakovic"
         },
-        "content": "        return this.description;"
+        "content": "    public int getPriorityLevel() {"
       },
       {
         "lineNumber": 116,
         "author": {
           "gitId": "nicholasnovakovic"
         },
-        "content": "    }"
+        "content": "        return priority.priorityLevel();"
       },
       {
         "lineNumber": 117,
         "author": {
           "gitId": "nicholasnovakovic"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 118,
         "author": {
           "gitId": "nicholasnovakovic"
         },
-        "content": "    @Override"
+        "content": ""
       },
       {
         "lineNumber": 119,
         "author": {
           "gitId": "nicholasnovakovic"
         },
-        "content": "    public String toString() {"
+        "content": "    public String getPriority() {"
       },
       {
         "lineNumber": 120,
         "author": {
-          "gitId": "shaun97"
+          "gitId": "nicholasnovakovic"
         },
-        "content": "        String recurringDescription \u003d \"\";"
+        "content": "        return priority.priorityCode();"
       },
       {
         "lineNumber": 121,
         "author": {
-          "gitId": "shaun97"
+          "gitId": "nicholasnovakovic"
         },
-        "content": "        String recurringIcon \u003d \"\";"
+        "content": "    }"
       },
       {
         "lineNumber": 122,
         "author": {
-          "gitId": "shaun97"
+          "gitId": "nicholasnovakovic"
         },
-        "content": "        if (recurrencePeriod \u003d\u003d RecurrencePeriod.DAILY) {"
+        "content": ""
       },
       {
         "lineNumber": 123,
         "author": {
-          "gitId": "shaun97"
+          "gitId": "nicholasnovakovic"
         },
-        "content": "            recurringDescription \u003d \"every day\";"
+        "content": "    /**"
       },
       {
         "lineNumber": 124,
         "author": {
-          "gitId": "shaun97"
+          "gitId": "nicholasnovakovic"
         },
-        "content": "            recurringIcon \u003d \"[R]\";"
+        "content": "     * Returns a String which describes the task"
       },
       {
         "lineNumber": 125,
         "author": {
           "gitId": "shaun97"
         },
-        "content": "        } else if (recurrencePeriod \u003d\u003d RecurrencePeriod.WEEKLY) {"
+        "content": "     *"
       },
       {
         "lineNumber": 126,
         "author": {
-          "gitId": "shaun97"
+          "gitId": "nicholasnovakovic"
         },
-        "content": "            recurringDescription \u003d \"every week\";"
+        "content": "     * @return the description of the task"
       },
       {
         "lineNumber": 127,
         "author": {
-          "gitId": "shaun97"
+          "gitId": "nicholasnovakovic"
         },
-        "content": "            recurringIcon \u003d \"[R]\";"
+        "content": "     */"
       },
       {
         "lineNumber": 128,
         "author": {
-          "gitId": "shaun97"
+          "gitId": "nicholasnovakovic"
         },
-        "content": "        }"
+        "content": "    public String getDescription() {"
       },
       {
         "lineNumber": 129,
         "author": {
-          "gitId": "shaun97"
+          "gitId": "nicholasnovakovic"
         },
-        "content": ""
+        "content": "        return this.description;"
       },
       {
         "lineNumber": 130,
         "author": {
-          "gitId": "shaun97"
+          "gitId": "nicholasnovakovic"
         },
-        "content": "        return recurringIcon + type + \"[\" + this.getStatusIcon() + \"] \" + description + recurringDescription;"
+        "content": "    }"
       },
       {
         "lineNumber": 131,
         "author": {
-          "gitId": "shaun97"
+          "gitId": "nicholasnovakovic"
         },
         "content": ""
       },
@@ -4468,10 +4976,94 @@
         "author": {
           "gitId": "nicholasnovakovic"
         },
-        "content": "    }"
+        "content": "    @Override"
       },
       {
         "lineNumber": 133,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "        String recurringDescription \u003d \"\";"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "        String recurringIcon \u003d \"\";"
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "        if (recurrencePeriod \u003d\u003d RecurrencePeriod.DAILY) {"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "            recurringDescription \u003d \"every day\";"
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "            recurringIcon \u003d \"[R]\";"
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "        } else if (recurrencePeriod \u003d\u003d RecurrencePeriod.WEEKLY) {"
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "            recurringDescription \u003d \"every week\";"
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "            recurringIcon \u003d \"[R]\";"
+      },
+      {
+        "lineNumber": 142,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "        return recurringIcon + type + \"[\" + this.getStatusIcon() + \"] \" + description + recurringDescription;"
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 145,
         "author": {
           "gitId": "-"
         },
@@ -4479,8 +5071,8 @@
       }
     ],
     "authorContributionMap": {
-      "shaun97": 58,
-      "nicholasnovakovic": 63,
+      "shaun97": 62,
+      "nicholasnovakovic": 71,
       "-": 12
     }
   },
@@ -4682,6 +5274,1342 @@
       "shaun97": 6,
       "nicholasnovakovic": 1,
       "-": 20
+    }
+  },
+  {
+    "path": "src/main/java/duke/tasklist/TaskList.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "package duke.tasklist;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "import java.text.SimpleDateFormat;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "import java.util.Date;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "import duke.task.Deadline;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "import duke.task.Event;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import duke.task.Task;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import duke.ui.Ui;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "import java.util.Collections;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " * Represents the data structure containing all tasks added to the task manager"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " * Uses java.util.ArrayList as the main container"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "public class TaskList {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "    private ArrayList\u003cTask\u003e taskList;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "     * Constructor for duke.tasklist.TaskList"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "     * this is to initialise an EMPTY duke.tasklist.TaskList so it takes no inputs"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "    public TaskList() {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "        taskList \u003d new ArrayList\u003cTask\u003e();"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "     * Constructor for duke.tasklist.TaskList"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "     * this is to initialise a duke.tasklist.TaskList with an ArrayList of Tasks"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "     * this facilitates the loading of saved duke.task.Task data"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "     * @param tasks an ArrayList of Tasks"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "    public TaskList(ArrayList\u003cTask\u003e tasks) {"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "        taskList \u003d tasks;"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "     * returns the ArrayList of Tasks which duke.tasklist.TaskList maintains"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "     * @return ArrayList the ArrayList of Tasks maintained by the duke.tasklist.TaskList class"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "    public ArrayList\u003cTask\u003e getList() {"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "        return taskList;"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "     * returns the number of tasks"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "     * @return size the number of tasks in the duke.tasklist.TaskList now"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "    public int size() {"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "        return taskList.size();"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "     * returns the duke.task.Task at index i"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "     * @param i the index of the duke.task.Task"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "     * @return duke.task.Task the duke.task.Task object at index i"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "    public Task get(int i) {"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "        return taskList.get(i);"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "     * sets a duke.task.Task at index i"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "     * if there is already a duke.task.Task there then it will be overwritten"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "     * @param i    the index of the duke.task.Task"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "     * @param task the new duke.task.Task to be set at index i"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "    public void set(int i, Task task) {"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "        taskList.set(i, task);"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "     * adds a duke.task.Task to the back of the duke.tasklist.TaskList"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "     * @param task the duke.task.Task to be added"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "    public void add(Task task) {"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "        taskList.add(task);"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "        System.out.println(\"Got it. I\u0027ve added this task:\");"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "        System.out.println(\"  \" + task);"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "        int taskCount \u003d taskList.size();"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "        if (taskCount \u003d\u003d 1) {"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "            System.out.println(\"Now you have \" + taskCount + \" task in the list.\");"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "            System.out.println(\"Now you have \" + taskCount + \" tasks in the list.\");"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "     * Searches for any duke.task.Task objects that contain the keyword entered"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "     * if there are at least one duke.task.Task objects fulfilling the criteria"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "     * will print out a list of these duke.task.Task objects for the user to see"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "     * otherwise will notify the user that no duke.task.Task objects have the keyword inside"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "     * @param keyword the keyword which the user is searching for Tasks with"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "     * @param ui      the user interface class which deals with user interactions"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "    public void find(String keyword, Ui ui) {"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "        ArrayList\u003cTask\u003e temp \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "        for (Task t : taskList) {"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "            if (t.getDescription().contains(keyword)) {"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "                temp.add(t);"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "        if (temp.size() \u003d\u003d 0) {"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "            ui.showLine(\"There are no matching tasks in your list :-(\");"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "            ui.showLine(\"Here are the matching tasks in your list:\");"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "            for (int i \u003d 0; i \u003c temp.size(); i++) {"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "                ui.showLine((i + 1) + \".\" + temp.get(i));"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "     * removes the duke.task.Task at index i"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "     * @param i the index at which the duke.task.Task should be removed"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "    public void remove(int i) {"
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "        taskList.remove(i);"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "    public void priorityPrint(Ui ui) {"
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "        ArrayList\u003cTask\u003e temp \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "        for (Task t : taskList) {"
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "            temp.add(t);"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "        Collections.sort(temp, (a, b) -\u003e a.getPriorityLevel() \u003c b.getPriorityLevel() ? 1 : -1);"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "        for (Task t : temp) {"
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "            ui.showLine(\"*\" + t.getPriority() + \"* \" + t);"
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 142,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "    public void dayViewPrint(Ui ui) {"
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "        Date currDate \u003d new Date();"
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "        SimpleDateFormat fmt \u003d new SimpleDateFormat(\"yyyyMMdd\");"
+      },
+      {
+        "lineNumber": 145,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 146,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "        ArrayList\u003cTask\u003e temp \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 147,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 148,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "        for (Task t : taskList) {"
+      },
+      {
+        "lineNumber": 149,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "            if (t instanceof Event) {"
+      },
+      {
+        "lineNumber": 150,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "                System.out.println(\"this is one event\");"
+      },
+      {
+        "lineNumber": 151,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "                Date taskDate \u003d ((Event) t).getDatetime();"
+      },
+      {
+        "lineNumber": 152,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "                if (taskDate.equals(currDate)) {"
+      },
+      {
+        "lineNumber": 153,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "                    temp.add(t);"
+      },
+      {
+        "lineNumber": 154,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 155,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "            } else if (t instanceof Deadline) {"
+      },
+      {
+        "lineNumber": 156,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "                Date taskDate \u003d ((Deadline) t).getDatetime();"
+      },
+      {
+        "lineNumber": 157,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "                if (fmt.format(currDate).equals(fmt.format(taskDate))) {"
+      },
+      {
+        "lineNumber": 158,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "                    temp.add(t);"
+      },
+      {
+        "lineNumber": 159,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 160,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 161,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 162,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "        if (temp.size() \u003d\u003d 0) {"
+      },
+      {
+        "lineNumber": 163,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "            ui.showLine(\"Congratulations, you have no task for today! Take a break, have a kit kat\");"
+      },
+      {
+        "lineNumber": 164,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 165,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "            ui.showLine(\"You have \" + temp.size() + ((temp.size() \u003d\u003d 1) ? \" task today!\" : \" tasks today!\"));"
+      },
+      {
+        "lineNumber": 166,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "            for (Task t : temp) {"
+      },
+      {
+        "lineNumber": 167,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "                ui.showLine(\"  \" + t.toString());"
+      },
+      {
+        "lineNumber": 168,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 169,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 170,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 171,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "shaun97": 43,
+      "nicholasnovakovic": 115,
+      "-": 13
+    }
+  },
+  {
+    "path": "src/test/java/TaskTest.java",
+    "fileType": "tests",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "import duke.task.Task;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "import org.junit.jupiter.api.Test;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.assertEquals;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "import java.time.LocalDate;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "class TaskTest {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "     private final Task task \u003d new Task(\"homework\", \"daily\");"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "     public void testIsTimeToReset() {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "        assertEquals(true, task.isTimeToReset(LocalDate.now().minusDays(1), LocalDate.now()));"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "        assertEquals(false, task.isTimeToReset(LocalDate.now(), LocalDate.now()));"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "shaun97"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "shaun97": 17
     }
   }
 ]
