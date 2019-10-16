@@ -342,9 +342,9 @@
       {
         "lineNumber": 49,
         "author": {
-          "gitId": "koushireo"
+          "gitId": "Fractalisk"
         },
-        "content": "            ui.showError(e.getMessage());"
+        "content": "            ui.showMessage(e.getMessage());"
       },
       {
         "lineNumber": 50,
@@ -482,9 +482,9 @@
       {
         "lineNumber": 69,
         "author": {
-          "gitId": "koushireo"
+          "gitId": "Fractalisk"
         },
-        "content": "                ui.showError(e.getMessage());"
+        "content": "                ui.showMessage(e.getMessage());"
       },
       {
         "lineNumber": 70,
@@ -573,9 +573,9 @@
       {
         "lineNumber": 82,
         "author": {
-          "gitId": "-"
+          "gitId": "Fractalisk"
         },
-        "content": "                ui.showError(e.getMessage());"
+        "content": "                ui.showMessage(e.getMessage());"
       },
       {
         "lineNumber": 83,
@@ -768,10 +768,10 @@
       }
     ],
     "authorContributionMap": {
-      "Fractalisk": 6,
+      "Fractalisk": 9,
       "GaryStu": 1,
-      "koushireo": 32,
-      "-": 70
+      "koushireo": 30,
+      "-": 69
     }
   },
   {
@@ -1904,94 +1904,213 @@
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        try {"
+        "content": "        //average kg loss per day should NOT be more than 0.13607787283kg (\u003e0.3 pounds)"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            meals.addGoal(this.goal, false);"
+        "content": "        //average calorie loss per day should NOT exceed 40% base calorie intake,"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        } catch (DukeException e) {"
+        "content": "        // balanced at around 20% (1kg \u003d 7700cal \u003d 7.7kcal)"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            String response \u003d ui.readCommand(in);"
+        "content": "        /*"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            if (response \u003d\u003d \"n\"  || response \u003d\u003d \"N\") {"
+        "content": "        1) find number of days in month"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "                throw new DukeException(\"The set goal command has been canceled\");"
+        "content": "        2) average calories loss per day"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            } else {"
+        "content": "         */"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "                meals.addGoal(this.goal, true);"
+        "content": "        try {"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            }"
+        "content": "            meals.addGoal(this.goal, false);"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        }"
+        "content": "            ui.showAddedGoal(goal);"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        ui.showAddedGoal(goal);"
+        "content": "            storage.updateGoal(meals);"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        storage.updateGoal(meals);"
+        "content": "        } catch (DukeException e) {"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "    }"
+        "content": "            ui.showMessage(e.getMessage());"
       },
       {
         "lineNumber": 48,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "            ui.showLine();"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "            String response \u003d ui.readCommand(in);"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "            if (response.trim().equals(\"y\")  || response.trim().equals(\"Y\")) {"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "                meals.addGoal(this.goal, true);"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "                ui.showLine();"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "                ui.showAddedGoal(goal);"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "                storage.updateGoal(meals);"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "            } else if (response.trim().equals(\"n\")  || response.trim().equals(\"N\")) {"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "                ui.showLine();"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "                throw new DukeException(\"The set goal command has been canceled\");"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "            } else {"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "                ui.showLine();"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "                throw new DukeException(\"An unknown response has been recorded \\n\""
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "                        + \"     The set goal command has been canceled\");"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 65,
         "author": {
           "gitId": "Fractalisk"
         },
@@ -1999,7 +2118,7 @@
       }
     ],
     "authorContributionMap": {
-      "Fractalisk": 48
+      "Fractalisk": 65
     }
   },
   {
@@ -4917,9 +5036,9 @@
       {
         "lineNumber": 51,
         "author": {
-          "gitId": "koushireo"
+          "gitId": "Fractalisk"
         },
-        "content": "        ui.showRemainingCalorie(currentMeals, user);"
+        "content": "        ui.showRemainingCalorie(currentMeals, user, tasks.caloriesAvgToGoal());"
       },
       {
         "lineNumber": 52,
@@ -4937,8 +5056,8 @@
       }
     ],
     "authorContributionMap": {
-      "Fractalisk": 11,
-      "koushireo": 24,
+      "Fractalisk": 12,
+      "koushireo": 23,
       "-": 18
     }
   },
@@ -5292,26 +5411,19 @@
       {
         "lineNumber": 50,
         "author": {
-          "gitId": "GaryStu"
+          "gitId": "Fractalisk"
         },
-        "content": "        ui.showRemainingCalorie(currentMeals, user);"
+        "content": "        ui.showRemainingCalorie(currentMeals, user, tasks.caloriesAvgToGoal());"
       },
       {
         "lineNumber": 51,
-        "author": {
-          "gitId": "Fractalisk"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 52,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 53,
+        "lineNumber": 52,
         "author": {
           "gitId": "-"
         },
@@ -5320,7 +5432,7 @@
     ],
     "authorContributionMap": {
       "Fractalisk": 14,
-      "GaryStu": 15,
+      "GaryStu": 14,
       "koushireo": 1,
       "-": 23
     }
@@ -6548,47 +6660,47 @@
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "                if (description.contains(\"/\")) {"
+        "content": "                name \u003d description.split(\" \", 2)[0].trim();"
       },
       {
         "lineNumber": 142,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "                    name \u003d description.split(\"/\", 2)[0].trim();"
+        "content": "                info \u003d description.split(\" \", 2)[1];"
       },
       {
         "lineNumber": 143,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "                    info \u003d \"/\" + description.split(\"/\", 2)[1];"
+        "content": "                return new AddGoalCommand(new Goal(name, info, autocorrect));"
       },
       {
         "lineNumber": 144,
         "author": {
-          "gitId": "Fractalisk"
+          "gitId": "GaryStu"
         },
-        "content": "                    return new AddGoalCommand(new Goal(name, info, autocorrect));"
+        "content": "            case \"help\":"
       },
       {
         "lineNumber": 145,
         "author": {
-          "gitId": "Fractalisk"
+          "gitId": "GaryStu"
         },
-        "content": "                } else {"
+        "content": "                if (description.trim().length() \u003e\u003d 0) {"
       },
       {
         "lineNumber": 146,
         "author": {
-          "gitId": "Fractalisk"
+          "gitId": "GaryStu"
         },
-        "content": "                    return new AddGoalCommand(new Goal(description, \"\", autocorrect));"
+        "content": "                    return new HelpCommand(description);"
       },
       {
         "lineNumber": 147,
         "author": {
-          "gitId": "Fractalisk"
+          "gitId": "GaryStu"
         },
         "content": "                }"
       },
@@ -6597,108 +6709,80 @@
         "author": {
           "gitId": "GaryStu"
         },
-        "content": "            case \"help\":"
-      },
-      {
-        "lineNumber": 149,
-        "author": {
-          "gitId": "GaryStu"
-        },
-        "content": "                if (description.trim().length() \u003e\u003d 0) {"
-      },
-      {
-        "lineNumber": 150,
-        "author": {
-          "gitId": "GaryStu"
-        },
-        "content": "                    return new HelpCommand(description);"
-      },
-      {
-        "lineNumber": 151,
-        "author": {
-          "gitId": "GaryStu"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 152,
-        "author": {
-          "gitId": "GaryStu"
-        },
         "content": "                return new HelpCommand();"
       },
       {
-        "lineNumber": 153,
+        "lineNumber": 149,
         "author": {
           "gitId": "HashirZahir"
         },
         "content": "            case \"history\":"
       },
       {
-        "lineNumber": 154,
+        "lineNumber": 150,
         "author": {
           "gitId": "HashirZahir"
         },
         "content": "                // clear history if requested"
       },
       {
-        "lineNumber": 155,
+        "lineNumber": 151,
         "author": {
           "gitId": "HashirZahir"
         },
         "content": "                if (!description.isEmpty() \u0026\u0026 description.equals(\"clear\")) {"
       },
       {
-        "lineNumber": 156,
+        "lineNumber": 152,
         "author": {
           "gitId": "HashirZahir"
         },
         "content": "                    historyCommand.clearHistory();"
       },
       {
-        "lineNumber": 157,
+        "lineNumber": 153,
         "author": {
           "gitId": "HashirZahir"
         },
         "content": "                }"
       },
       {
-        "lineNumber": 158,
+        "lineNumber": 154,
         "author": {
           "gitId": "HashirZahir"
         },
         "content": "                return historyCommand;"
       },
       {
-        "lineNumber": 159,
+        "lineNumber": 155,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "            default:"
       },
       {
-        "lineNumber": 160,
+        "lineNumber": 156,
         "author": {
           "gitId": "HashirZahir"
         },
         "content": "                throw new DukeException(\"\\u2639 OOPS!!! I\u0027m sorry, but I don\u0027t know what \" + command + \" means :-(\");"
       },
       {
-        "lineNumber": 161,
+        "lineNumber": 157,
         "author": {
           "gitId": "-"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 162,
+        "lineNumber": 158,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 163,
+        "lineNumber": 159,
         "author": {
           "gitId": "-"
         },
@@ -6706,7 +6790,7 @@
       }
     ],
     "authorContributionMap": {
-      "Fractalisk": 50,
+      "Fractalisk": 46,
       "HashirZahir": 35,
       "GaryStu": 20,
       "koushireo": 28,
@@ -7630,72 +7714,72 @@
       {
         "lineNumber": 131,
         "author": {
-          "gitId": "-"
+          "gitId": "Fractalisk"
         },
-        "content": "        }"
+        "content": "        } else if (taskType.equals(\"G\")) {"
       },
       {
         "lineNumber": 132,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        if (taskType.equals(\"S\") \u003d\u003d false) {"
+        "content": "            meals.addGoal(new Goal(description, nutritionalValue[0], nutritionalValue), true);"
       },
       {
         "lineNumber": 133,
         "author": {
-          "gitId": "GaryStu"
+          "gitId": "-"
         },
-        "content": "            if (isDone) {"
+        "content": "        }"
       },
       {
         "lineNumber": 134,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "                newMeal.markAsDone();"
+        "content": "        if (taskType.equals(\"S\") \u003d\u003d false \u0026\u0026 taskType.equals(\"G\") \u003d\u003d false) {"
       },
       {
         "lineNumber": 135,
         "author": {
-          "gitId": "-"
+          "gitId": "GaryStu"
         },
-        "content": "            }"
+        "content": "            if (isDone) {"
       },
       {
         "lineNumber": 136,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            String mealDate \u003d newMeal.getDate();"
+        "content": "                newMeal.markAsDone();"
       },
       {
         "lineNumber": 137,
         "author": {
-          "gitId": "Fractalisk"
+          "gitId": "-"
         },
-        "content": "            if (!mealTracker.containsKey(mealDate)) {"
+        "content": "            }"
       },
       {
         "lineNumber": 138,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "                mealTracker.put(mealDate, new ArrayList\u003cMeal\u003e());"
+        "content": "            String mealDate \u003d newMeal.getDate();"
       },
       {
         "lineNumber": 139,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "                mealTracker.get(mealDate).add(newMeal);"
+        "content": "            if (!mealTracker.containsKey(mealDate)) {"
       },
       {
         "lineNumber": 140,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            } else {"
+        "content": "                mealTracker.put(mealDate, new ArrayList\u003cMeal\u003e());"
       },
       {
         "lineNumber": 141,
@@ -7707,1559 +7791,1552 @@
       {
         "lineNumber": 142,
         "author": {
-          "gitId": "-"
+          "gitId": "Fractalisk"
         },
-        "content": "            }"
+        "content": "            } else {"
       },
       {
         "lineNumber": 143,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        } else {"
+        "content": "                mealTracker.get(mealDate).add(newMeal);"
       },
       {
         "lineNumber": 144,
         "author": {
-          "gitId": "Fractalisk"
+          "gitId": "-"
         },
-        "content": "            meals.addStoredItem(newMeal);"
+        "content": "            }"
       },
       {
         "lineNumber": 145,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        }"
+        "content": "        } else if (taskType.equals(\"S\") \u003d\u003d true) {"
       },
       {
         "lineNumber": 146,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        if (taskType.equals(\"G\")) {"
+        "content": "            meals.addStoredItem(newMeal);"
       },
       {
         "lineNumber": 147,
         "author": {
-          "gitId": "Fractalisk"
+          "gitId": "-"
         },
-        "content": "            meals.addGoal(new Goal(description, nutritionalValue), true);"
+        "content": "        }"
       },
       {
         "lineNumber": 148,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "    }"
       },
       {
         "lineNumber": 149,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 150,
         "author": {
           "gitId": "-"
         },
-        "content": ""
-      },
-      {
-        "lineNumber": 151,
-        "author": {
-          "gitId": "-"
-        },
         "content": "    /**"
       },
       {
-        "lineNumber": 152,
+        "lineNumber": 151,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "     * This is a function that will update the input/output file from the current arraylist of meals."
       },
       {
-        "lineNumber": 153,
+        "lineNumber": 152,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "     * @param mealData the structure that will store the tasks from the input file"
       },
       {
-        "lineNumber": 154,
+        "lineNumber": 153,
         "author": {
           "gitId": "-"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 155,
+        "lineNumber": 154,
         "author": {
           "gitId": "GaryStu"
         },
         "content": "    //TODO: maybe we can put the errors in the ui file"
       },
       {
-        "lineNumber": 156,
+        "lineNumber": 155,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "    public void updateFile(MealList mealData) {"
       },
       {
-        "lineNumber": 157,
+        "lineNumber": 156,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "        HashMap\u003cString, ArrayList\u003cMeal\u003e\u003e meals \u003d mealData.getMealTracker();"
       },
       {
-        "lineNumber": 158,
+        "lineNumber": 157,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "        try {"
       },
       {
-        "lineNumber": 159,
+        "lineNumber": 158,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "            bufferedWriter \u003d new BufferedWriter(new FileWriter(file));"
       },
       {
-        "lineNumber": 160,
+        "lineNumber": 159,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "        } catch (Exception e) {"
+      },
+      {
+        "lineNumber": 160,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "            System.out.println(\"Error writing to file\");"
       },
       {
         "lineNumber": 161,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            System.out.println(\"Error writing to file\");"
-      },
-      {
-        "lineNumber": 162,
-        "author": {
-          "gitId": "Fractalisk"
-        },
         "content": "            e.printStackTrace();"
       },
       {
-        "lineNumber": 163,
+        "lineNumber": 162,
         "author": {
           "gitId": "-"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 164,
+        "lineNumber": 163,
         "author": {
           "gitId": "GaryStu"
         },
         "content": "        try {"
       },
       {
-        "lineNumber": 165,
+        "lineNumber": 164,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "            for (String i : meals.keySet()) { //write process for stored food entries"
       },
       {
-        "lineNumber": 166,
+        "lineNumber": 165,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "                ArrayList\u003cMeal\u003e mealsInDay \u003d meals.get(i);"
       },
       {
-        "lineNumber": 167,
+        "lineNumber": 166,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "                for (int j \u003d 0; j \u003c meals.get(i).size(); j++) {"
       },
       {
-        "lineNumber": 168,
+        "lineNumber": 167,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "                    Meal currentMeal \u003d mealsInDay.get(j);"
       },
       {
-        "lineNumber": 169,
+        "lineNumber": 168,
         "author": {
           "gitId": "GaryStu"
         },
         "content": "                    String status \u003d \"0\";"
       },
       {
-        "lineNumber": 170,
+        "lineNumber": 169,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "                    if (currentMeal.getIsDone()) {"
       },
       {
-        "lineNumber": 171,
+        "lineNumber": 170,
         "author": {
           "gitId": "GaryStu"
         },
         "content": "                        status \u003d \"1\";"
       },
       {
-        "lineNumber": 172,
+        "lineNumber": 171,
         "author": {
           "gitId": "GaryStu"
         },
         "content": "                    }"
       },
       {
-        "lineNumber": 173,
+        "lineNumber": 172,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "                    String toWrite \u003d currentMeal.getType() + \"|\" + status + \"|\" + currentMeal.getDescription()"
       },
       {
-        "lineNumber": 174,
+        "lineNumber": 173,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "                            + \"|date|\" + currentMeal.getDate();"
       },
       {
-        "lineNumber": 175,
+        "lineNumber": 174,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "                    HashMap\u003cString, Integer\u003e nutritionData \u003d currentMeal.getNutritionalValue();"
       },
       {
-        "lineNumber": 176,
+        "lineNumber": 175,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "                    if (nutritionData.size() !\u003d 0) {"
       },
       {
-        "lineNumber": 177,
+        "lineNumber": 176,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "                        toWrite +\u003d \"|\";"
       },
       {
-        "lineNumber": 178,
+        "lineNumber": 177,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "                        for (String k : nutritionData.keySet()) {"
       },
       {
-        "lineNumber": 179,
+        "lineNumber": 178,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "                            toWrite +\u003d k + \"|\" + nutritionData.get(k) + \"|\";"
       },
       {
-        "lineNumber": 180,
+        "lineNumber": 179,
         "author": {
           "gitId": "koushireo"
         },
         "content": "                        }"
       },
       {
-        "lineNumber": 181,
+        "lineNumber": 180,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "                        toWrite \u003d toWrite.substring(0, toWrite.length() - 1) + \"\\n\";"
       },
       {
-        "lineNumber": 182,
+        "lineNumber": 181,
         "author": {
           "gitId": "GaryStu"
         },
         "content": "                    }"
       },
       {
-        "lineNumber": 183,
+        "lineNumber": 182,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "                    bufferedWriter.write(toWrite);"
       },
       {
-        "lineNumber": 184,
+        "lineNumber": 183,
         "author": {
           "gitId": "GaryStu"
         },
         "content": "                }"
       },
       {
-        "lineNumber": 185,
+        "lineNumber": 184,
         "author": {
           "gitId": "-"
         },
         "content": "            }"
+      },
+      {
+        "lineNumber": 185,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "            bufferedWriter.close();"
       },
       {
         "lineNumber": 186,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            bufferedWriter.close();"
+        "content": "        } catch (IOException e) {"
       },
       {
         "lineNumber": 187,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        } catch (IOException e) {"
+        "content": "            System.out.println(\"Error writing to file\");"
       },
       {
         "lineNumber": 188,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            System.out.println(\"Error writing to file\");"
+        "content": "            e.printStackTrace();"
       },
       {
         "lineNumber": 189,
         "author": {
-          "gitId": "Fractalisk"
+          "gitId": "-"
         },
-        "content": "            e.printStackTrace();"
+        "content": "        }"
       },
       {
         "lineNumber": 190,
         "author": {
-          "gitId": "-"
+          "gitId": "Fractalisk"
         },
-        "content": "        }"
+        "content": "    }"
       },
       {
         "lineNumber": 191,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 192,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": ""
+        "content": "    public void updateDefaults(MealList mealData) {"
       },
       {
         "lineNumber": 193,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "    public void updateDefaults(MealList mealData) {"
+        "content": "        HashMap\u003cString, HashMap\u003cString, Integer\u003e\u003e storedItems \u003d mealData.getStoredList();"
       },
       {
         "lineNumber": 194,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        HashMap\u003cString, HashMap\u003cString, Integer\u003e\u003e storedItems \u003d mealData.getStoredList();"
+        "content": "        try {"
       },
       {
         "lineNumber": 195,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        try {"
+        "content": "            bufferedWriter \u003d new BufferedWriter(new FileWriter(defaultFile));"
       },
       {
         "lineNumber": 196,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            bufferedWriter \u003d new BufferedWriter(new FileWriter(defaultFile));"
+        "content": "        } catch (Exception e) {"
       },
       {
         "lineNumber": 197,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        } catch (Exception e) {"
+        "content": "            System.out.println(\"Error writing to file\");"
       },
       {
         "lineNumber": 198,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            System.out.println(\"Error writing to file\");"
+        "content": "            e.printStackTrace();"
       },
       {
         "lineNumber": 199,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            e.printStackTrace();"
+        "content": "        }"
       },
       {
         "lineNumber": 200,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        }"
+        "content": "        try {"
       },
       {
         "lineNumber": 201,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        try {"
+        "content": "            for (String i : storedItems.keySet()) { //write process for stored default food values"
       },
       {
         "lineNumber": 202,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            for (String i : storedItems.keySet()) { //write process for stored default food values"
+        "content": "                String toWrite \u003d \"\";"
       },
       {
         "lineNumber": 203,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "                String toWrite \u003d \"\";"
+        "content": "                toWrite +\u003d \"S|0|\" + i;"
       },
       {
         "lineNumber": 204,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "                toWrite +\u003d \"S|0|\" + i;"
+        "content": "                HashMap\u003cString, Integer\u003e nutritionData \u003d storedItems.get(i);"
       },
       {
         "lineNumber": 205,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "                HashMap\u003cString, Integer\u003e nutritionData \u003d storedItems.get(i);"
+        "content": "                if (nutritionData.size() !\u003d 0) {"
       },
       {
         "lineNumber": 206,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "                if (nutritionData.size() !\u003d 0) {"
+        "content": "                    toWrite +\u003d \"|\";"
       },
       {
         "lineNumber": 207,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "                    toWrite +\u003d \"|\";"
+        "content": "                    for (String k : nutritionData.keySet()) {"
       },
       {
         "lineNumber": 208,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "                    for (String k : nutritionData.keySet()) {"
+        "content": "                        toWrite +\u003d k + \"|\" + nutritionData.get(k) + \"|\";"
       },
       {
         "lineNumber": 209,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "                        toWrite +\u003d k + \"|\" + nutritionData.get(k) + \"|\";"
+        "content": "                    }"
       },
       {
         "lineNumber": 210,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "                    }"
+        "content": "                    toWrite \u003d toWrite.substring(0, toWrite.length() - 1) + \"\\n\";"
       },
       {
         "lineNumber": 211,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "                    toWrite \u003d toWrite.substring(0, toWrite.length() - 1) + \"\\n\";"
+        "content": "                }"
       },
       {
         "lineNumber": 212,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "                }"
+        "content": "                bufferedWriter.write(toWrite);"
       },
       {
         "lineNumber": 213,
         "author": {
-          "gitId": "Fractalisk"
+          "gitId": "-"
         },
-        "content": "                bufferedWriter.write(toWrite);"
+        "content": "            }"
       },
       {
         "lineNumber": 214,
         "author": {
-          "gitId": "-"
+          "gitId": "GaryStu"
         },
-        "content": "            }"
+        "content": "            bufferedWriter.close();"
       },
       {
         "lineNumber": 215,
         "author": {
           "gitId": "GaryStu"
         },
-        "content": "            bufferedWriter.close();"
-      },
-      {
-        "lineNumber": 216,
-        "author": {
-          "gitId": "GaryStu"
-        },
         "content": "        } catch (IOException e) {"
       },
       {
-        "lineNumber": 217,
+        "lineNumber": 216,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "            System.out.println(\"Error writing to file\");"
       },
       {
-        "lineNumber": 218,
+        "lineNumber": 217,
         "author": {
           "gitId": "GaryStu"
         },
         "content": "            e.printStackTrace();"
+      },
+      {
+        "lineNumber": 218,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
       },
       {
         "lineNumber": 219,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "    }"
       },
       {
         "lineNumber": 220,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 221,
-        "author": {
-          "gitId": "-"
-        },
         "content": ""
       },
       {
-        "lineNumber": 222,
+        "lineNumber": 221,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "    public void updateGoal(MealList mealData) {"
       },
       {
-        "lineNumber": 223,
+        "lineNumber": 222,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "        try {"
       },
       {
-        "lineNumber": 224,
+        "lineNumber": 223,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "            bufferedWriter \u003d new BufferedWriter(new FileWriter(goalFile));"
       },
       {
-        "lineNumber": 225,
+        "lineNumber": 224,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "        } catch (Exception e) {"
+      },
+      {
+        "lineNumber": 225,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "            System.out.println(\"Error writing to file\");"
       },
       {
         "lineNumber": 226,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            System.out.println(\"Error writing to file\");"
+        "content": "            e.printStackTrace();"
       },
       {
         "lineNumber": 227,
         "author": {
-          "gitId": "Fractalisk"
+          "gitId": "-"
         },
-        "content": "            e.printStackTrace();"
+        "content": "        }"
       },
       {
         "lineNumber": 228,
         "author": {
-          "gitId": "-"
+          "gitId": "Fractalisk"
         },
-        "content": "        }"
+        "content": "        try {"
       },
       {
         "lineNumber": 229,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        try {"
+        "content": "            Goal goal \u003d mealData.getGoal();"
       },
       {
         "lineNumber": 230,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            Goal goal \u003d mealData.getGoal();"
+        "content": "            String toWrite \u003d \"G|0|\" + goal.getEndDate() + \"|\" + goal.getStartDate();"
       },
       {
         "lineNumber": 231,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            String toWrite \u003d \"G|0|\" + goal.getDate();"
+        "content": "            HashMap\u003cString, Integer\u003e nutritionData \u003d goal.getNutritionalValue();"
       },
       {
         "lineNumber": 232,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            HashMap\u003cString, Integer\u003e nutritionData \u003d goal.getNutritionalValue();"
+        "content": "            if (nutritionData.size() !\u003d 0) {"
       },
       {
         "lineNumber": 233,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            if (nutritionData.size() !\u003d 0) {"
+        "content": "                toWrite +\u003d \"|\";"
       },
       {
         "lineNumber": 234,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "                toWrite +\u003d \"|\";"
+        "content": "                for (String k : nutritionData.keySet()) {"
       },
       {
         "lineNumber": 235,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "                for (String k : nutritionData.keySet()) {"
+        "content": "                    toWrite +\u003d k + \"|\" + nutritionData.get(k) + \"|\";"
       },
       {
         "lineNumber": 236,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "                    toWrite +\u003d k + \"|\" + nutritionData.get(k) + \"|\";"
+        "content": "                }"
       },
       {
         "lineNumber": 237,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "                }"
+        "content": "                toWrite \u003d toWrite.substring(0, toWrite.length() - 1) + \"\\n\";"
       },
       {
         "lineNumber": 238,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "                toWrite \u003d toWrite.substring(0, toWrite.length() - 1) + \"\\n\";"
+        "content": "            }"
       },
       {
         "lineNumber": 239,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            }"
+        "content": "            bufferedWriter.write(toWrite);"
       },
       {
         "lineNumber": 240,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            bufferedWriter.write(toWrite);"
+        "content": "            bufferedWriter.close();"
       },
       {
         "lineNumber": 241,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            bufferedWriter.close();"
+        "content": "        } catch (IOException e) {"
       },
       {
         "lineNumber": 242,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        } catch (IOException e) {"
+        "content": "            System.out.println(\"Error writing to file\");"
       },
       {
         "lineNumber": 243,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            System.out.println(\"Error writing to file\");"
+        "content": "            e.printStackTrace();"
       },
       {
         "lineNumber": 244,
         "author": {
-          "gitId": "Fractalisk"
+          "gitId": "-"
         },
-        "content": "            e.printStackTrace();"
+        "content": "        }"
       },
       {
         "lineNumber": 245,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "    }"
       },
       {
         "lineNumber": 246,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 247,
         "author": {
           "gitId": "-"
         },
-        "content": ""
-      },
-      {
-        "lineNumber": 248,
-        "author": {
-          "gitId": "-"
-        },
         "content": "    /**"
       },
       {
-        "lineNumber": 249,
+        "lineNumber": 248,
         "author": {
           "gitId": "koushireo"
         },
         "content": "     * This is a function that will load user info from user.txt."
       },
       {
-        "lineNumber": 250,
+        "lineNumber": 249,
         "author": {
           "gitId": "koushireo"
         },
         "content": "     * @Author Foo Chi Hen"
       },
       {
-        "lineNumber": 251,
+        "lineNumber": 250,
         "author": {
           "gitId": "-"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 252,
+        "lineNumber": 251,
         "author": {
           "gitId": "koushireo"
         },
         "content": "    public User loadUser() throws DukeException {"
       },
       {
-        "lineNumber": 253,
+        "lineNumber": 252,
         "author": {
           "gitId": "koushireo"
         },
         "content": "        User tempUser;"
       },
       {
-        "lineNumber": 254,
+        "lineNumber": 253,
         "author": {
           "gitId": "koushireo"
         },
         "content": "        String sep \u003d System.getProperty(\"file.separator\");"
       },
       {
-        "lineNumber": 255,
+        "lineNumber": 254,
         "author": {
           "gitId": "koushireo"
         },
         "content": "        nameFile \u003d new File(\"src\" + sep + \"main\" + sep + \"java\" + sep + \"duke\""
       },
       {
-        "lineNumber": 256,
+        "lineNumber": 255,
         "author": {
           "gitId": "koushireo"
         },
         "content": "                + sep + \"Data\" + sep + \"user.txt\");"
       },
       {
-        "lineNumber": 257,
+        "lineNumber": 256,
         "author": {
           "gitId": "koushireo"
         },
         "content": ""
       },
       {
-        "lineNumber": 258,
+        "lineNumber": 257,
         "author": {
           "gitId": "koushireo"
         },
         "content": "        if (nameFile.length() \u003d\u003d 0) { //user.txt has nothing"
       },
       {
-        "lineNumber": 259,
+        "lineNumber": 258,
         "author": {
           "gitId": "koushireo"
         },
         "content": "            return new User();"
       },
       {
-        "lineNumber": 260,
+        "lineNumber": 259,
         "author": {
           "gitId": "-"
         },
         "content": "        }"
+      },
+      {
+        "lineNumber": 260,
+        "author": {
+          "gitId": "koushireo"
+        },
+        "content": ""
       },
       {
         "lineNumber": 261,
         "author": {
           "gitId": "koushireo"
         },
-        "content": ""
+        "content": "        try {"
       },
       {
         "lineNumber": 262,
         "author": {
           "gitId": "koushireo"
         },
-        "content": "        try {"
+        "content": "            bufferedReader \u003d new BufferedReader(new FileReader(nameFile));"
       },
       {
         "lineNumber": 263,
         "author": {
           "gitId": "koushireo"
         },
-        "content": "            bufferedReader \u003d new BufferedReader(new FileReader(nameFile));"
+        "content": "            String line \u003d  bufferedReader.readLine();"
       },
       {
         "lineNumber": 264,
         "author": {
           "gitId": "koushireo"
         },
-        "content": "            String line \u003d  bufferedReader.readLine();"
+        "content": "            String[] splitLine \u003d line.split(\"\\\\|\");"
       },
       {
         "lineNumber": 265,
         "author": {
           "gitId": "koushireo"
         },
-        "content": "            String[] splitLine \u003d line.split(\"\\\\|\");"
+        "content": "            String name \u003d splitLine[0];"
       },
       {
         "lineNumber": 266,
         "author": {
           "gitId": "koushireo"
         },
-        "content": "            String name \u003d splitLine[0];"
+        "content": "            int age \u003d Integer.parseInt(splitLine[1]);"
       },
       {
         "lineNumber": 267,
         "author": {
           "gitId": "koushireo"
         },
-        "content": "            int age \u003d Integer.parseInt(splitLine[1]);"
+        "content": "            int height \u003d Integer.parseInt(splitLine[2]);"
       },
       {
         "lineNumber": 268,
         "author": {
           "gitId": "koushireo"
         },
-        "content": "            int height \u003d Integer.parseInt(splitLine[2]);"
+        "content": "            int activityLevel \u003d Integer.parseInt(splitLine[3]);"
       },
       {
         "lineNumber": 269,
         "author": {
           "gitId": "koushireo"
         },
-        "content": "            int activityLevel \u003d Integer.parseInt(splitLine[3]);"
+        "content": "            boolean loseWeight \u003d Boolean.parseBoolean(splitLine[4]);"
       },
       {
         "lineNumber": 270,
         "author": {
           "gitId": "koushireo"
         },
-        "content": "            boolean loseWeight \u003d Boolean.parseBoolean(splitLine[4]);"
+        "content": "            String sex \u003d splitLine[5];"
       },
       {
         "lineNumber": 271,
         "author": {
           "gitId": "koushireo"
         },
-        "content": "            String sex \u003d splitLine[5];"
+        "content": "            if (sex.equals(\"M\")) {"
       },
       {
         "lineNumber": 272,
         "author": {
           "gitId": "koushireo"
         },
-        "content": "            if (sex.equals(\"M\")) {"
+        "content": "                tempUser \u003d new User(name, age, height, Gender.MALE, activityLevel, loseWeight);"
       },
       {
         "lineNumber": 273,
         "author": {
           "gitId": "koushireo"
         },
-        "content": "                tempUser \u003d new User(name, age, height, Gender.MALE, activityLevel, loseWeight);"
+        "content": "            } else {"
       },
       {
         "lineNumber": 274,
         "author": {
           "gitId": "koushireo"
         },
-        "content": "            } else {"
+        "content": "                tempUser \u003d new User(name, age, height, Gender.FEMALE, activityLevel, loseWeight);"
       },
       {
         "lineNumber": 275,
         "author": {
           "gitId": "koushireo"
         },
-        "content": "                tempUser \u003d new User(name, age, height, Gender.FEMALE, activityLevel, loseWeight);"
+        "content": "            }"
       },
       {
         "lineNumber": 276,
         "author": {
           "gitId": "koushireo"
         },
-        "content": "            }"
+        "content": "            while ((line \u003d bufferedReader.readLine()) !\u003d null) {"
       },
       {
         "lineNumber": 277,
         "author": {
           "gitId": "koushireo"
         },
-        "content": "            while ((line \u003d bufferedReader.readLine()) !\u003d null) {"
+        "content": "                String[] splitWeightInfo \u003d line.split(\"\\\\|\");"
       },
       {
         "lineNumber": 278,
         "author": {
           "gitId": "koushireo"
         },
-        "content": "                String[] splitWeightInfo \u003d line.split(\"\\\\|\");"
+        "content": "                tempUser.setWeight(Integer.parseInt(splitWeightInfo[1]), splitWeightInfo[0]);"
       },
       {
         "lineNumber": 279,
         "author": {
           "gitId": "koushireo"
         },
-        "content": "                tempUser.setWeight(Integer.parseInt(splitWeightInfo[1]), splitWeightInfo[0]);"
+        "content": "            }"
       },
       {
         "lineNumber": 280,
         "author": {
           "gitId": "koushireo"
         },
-        "content": "            }"
+        "content": "            bufferedReader.close();"
       },
       {
         "lineNumber": 281,
         "author": {
           "gitId": "koushireo"
         },
-        "content": "            bufferedReader.close();"
+        "content": "            return tempUser;"
       },
       {
         "lineNumber": 282,
         "author": {
           "gitId": "koushireo"
         },
-        "content": "            return tempUser;"
+        "content": "        } catch (Exception e) {"
       },
       {
         "lineNumber": 283,
         "author": {
           "gitId": "koushireo"
         },
-        "content": "        } catch (Exception e) {"
+        "content": "            throw new DukeException(e.getMessage());"
       },
       {
         "lineNumber": 284,
         "author": {
-          "gitId": "koushireo"
+          "gitId": "-"
         },
-        "content": "            throw new DukeException(e.getMessage());"
+        "content": "        }"
       },
       {
         "lineNumber": 285,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "    }"
       },
       {
         "lineNumber": 286,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 287,
         "author": {
           "gitId": "-"
         },
-        "content": ""
-      },
-      {
-        "lineNumber": 288,
-        "author": {
-          "gitId": "-"
-        },
         "content": "    /**"
       },
       {
-        "lineNumber": 289,
+        "lineNumber": 288,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "     * This is a function that will store the user information into a file."
       },
       {
-        "lineNumber": 290,
+        "lineNumber": 289,
         "author": {
           "gitId": "koushireo"
         },
         "content": "     * @param user the user class that contains all personal information to be stored."
       },
       {
-        "lineNumber": 291,
+        "lineNumber": 290,
         "author": {
           "gitId": "koushireo"
         },
         "content": "     * @Author Foo Chi Hen"
       },
       {
-        "lineNumber": 292,
+        "lineNumber": 291,
         "author": {
           "gitId": "-"
         },
         "content": "     */"
+      },
+      {
+        "lineNumber": 292,
+        "author": {
+          "gitId": "koushireo"
+        },
+        "content": ""
       },
       {
         "lineNumber": 293,
         "author": {
           "gitId": "koushireo"
         },
-        "content": ""
+        "content": "    public void saveUser(User user) throws DukeException {"
       },
       {
         "lineNumber": 294,
         "author": {
           "gitId": "koushireo"
         },
-        "content": "    public void saveUser(User user) throws DukeException {"
-      },
-      {
-        "lineNumber": 295,
-        "author": {
-          "gitId": "koushireo"
-        },
         "content": "        String toWrite \u003d user.getName() + \"|\" + user.getAge() + \"|\""
       },
       {
-        "lineNumber": 296,
+        "lineNumber": 295,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "                + user.getHeight() + \"|\" + user.getActivityLevel() + \"|\" + user.getLoseWeight() + \"|\";"
       },
       {
-        "lineNumber": 297,
+        "lineNumber": 296,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "        if (user.getSex() \u003d\u003d Gender.MALE) {"
       },
       {
-        "lineNumber": 298,
+        "lineNumber": 297,
         "author": {
           "gitId": "koushireo"
         },
         "content": "            toWrite +\u003d \"M\";"
       },
       {
-        "lineNumber": 299,
+        "lineNumber": 298,
         "author": {
           "gitId": "koushireo"
         },
         "content": "        } else {"
       },
       {
-        "lineNumber": 300,
+        "lineNumber": 299,
         "author": {
           "gitId": "koushireo"
         },
         "content": "            toWrite +\u003d \"F\";"
       },
       {
-        "lineNumber": 301,
+        "lineNumber": 300,
         "author": {
           "gitId": "koushireo"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 302,
+        "lineNumber": 301,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "        ArrayList\u003cTuple\u003e allWeight \u003d user.getAllWeight();"
       },
       {
-        "lineNumber": 303,
+        "lineNumber": 302,
         "author": {
           "gitId": "koushireo"
         },
         "content": "        for (int i \u003d 0; i \u003c user.getAllWeight().size(); i +\u003d 1) {"
       },
       {
-        "lineNumber": 304,
+        "lineNumber": 303,
         "author": {
           "gitId": "koushireo"
         },
         "content": "            toWrite +\u003d \"\\n\";"
       },
       {
-        "lineNumber": 305,
+        "lineNumber": 304,
         "author": {
           "gitId": "koushireo"
         },
         "content": "            String date \u003d allWeight.get(i).date;"
       },
       {
-        "lineNumber": 306,
+        "lineNumber": 305,
         "author": {
           "gitId": "koushireo"
         },
         "content": "            int weight \u003d allWeight.get(i).weight;"
       },
       {
-        "lineNumber": 307,
+        "lineNumber": 306,
         "author": {
           "gitId": "koushireo"
         },
         "content": "            toWrite +\u003d date + \"|\" + weight;"
       },
       {
-        "lineNumber": 308,
+        "lineNumber": 307,
         "author": {
           "gitId": "koushireo"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 309,
+        "lineNumber": 308,
         "author": {
           "gitId": "-"
         },
         "content": "        try {"
       },
       {
-        "lineNumber": 310,
+        "lineNumber": 309,
         "author": {
           "gitId": "koushireo"
         },
         "content": "            bufferedWriter \u003d new BufferedWriter(new FileWriter(nameFile));"
       },
       {
-        "lineNumber": 311,
+        "lineNumber": 310,
         "author": {
           "gitId": "koushireo"
         },
         "content": "            bufferedWriter.write(toWrite);"
       },
       {
-        "lineNumber": 312,
+        "lineNumber": 311,
         "author": {
           "gitId": "koushireo"
         },
         "content": "            bufferedWriter.close();"
       },
       {
-        "lineNumber": 313,
+        "lineNumber": 312,
         "author": {
           "gitId": "-"
         },
         "content": "        } catch (Exception e) {"
       },
       {
-        "lineNumber": 314,
+        "lineNumber": 313,
         "author": {
           "gitId": "-"
         },
         "content": "            System.out.println(\"Error writing to file\");"
       },
       {
-        "lineNumber": 315,
+        "lineNumber": 314,
         "author": {
           "gitId": "-"
         },
         "content": "            e.printStackTrace();"
       },
       {
-        "lineNumber": 316,
+        "lineNumber": 315,
         "author": {
           "gitId": "-"
         },
         "content": "        }"
+      },
+      {
+        "lineNumber": 316,
+        "author": {
+          "gitId": "koushireo"
+        },
+        "content": "    }"
       },
       {
         "lineNumber": 317,
         "author": {
           "gitId": "koushireo"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 318,
         "author": {
           "gitId": "koushireo"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 319,
         "author": {
           "gitId": "koushireo"
         },
-        "content": "    /**"
+        "content": "     * This is a function that will load all the words to be autocorrected to."
       },
       {
         "lineNumber": 320,
         "author": {
           "gitId": "koushireo"
         },
-        "content": "     * This is a function that will load all the words to be autocorrected to."
+        "content": "     * @Author Foo Chi Hen"
       },
       {
         "lineNumber": 321,
         "author": {
           "gitId": "koushireo"
         },
-        "content": "     * @Author Foo Chi Hen"
+        "content": "     */"
       },
       {
         "lineNumber": 322,
         "author": {
           "gitId": "koushireo"
         },
-        "content": "     */"
+        "content": ""
       },
       {
         "lineNumber": 323,
         "author": {
           "gitId": "koushireo"
         },
-        "content": ""
+        "content": "    public void loadWord(Autocorrect autocorrect) throws DukeException {"
       },
       {
         "lineNumber": 324,
         "author": {
           "gitId": "koushireo"
         },
-        "content": "    public void loadWord(Autocorrect autocorrect) throws DukeException {"
+        "content": "        String sep \u003d System.getProperty(\"file.separator\");"
       },
       {
         "lineNumber": 325,
         "author": {
           "gitId": "koushireo"
         },
-        "content": "        String sep \u003d System.getProperty(\"file.separator\");"
+        "content": "        wordFile \u003d new File(\"src\" + sep + \"main\" + sep + \"java\" + sep + \"duke\""
       },
       {
         "lineNumber": 326,
         "author": {
           "gitId": "koushireo"
         },
-        "content": "        wordFile \u003d new File(\"src\" + sep + \"main\" + sep + \"java\" + sep + \"duke\""
+        "content": "                + sep + \"Data\" + sep + \"word.txt\");"
       },
       {
         "lineNumber": 327,
         "author": {
           "gitId": "koushireo"
         },
-        "content": "                + sep + \"Data\" + sep + \"word.txt\");"
-      },
-      {
-        "lineNumber": 328,
-        "author": {
-          "gitId": "-"
-        },
         "content": "        try {"
       },
       {
-        "lineNumber": 329,
+        "lineNumber": 328,
         "author": {
           "gitId": "koushireo"
         },
         "content": "            bufferedReader \u003d new BufferedReader(new FileReader(wordFile));"
       },
       {
-        "lineNumber": 330,
+        "lineNumber": 329,
         "author": {
           "gitId": "koushireo"
         },
         "content": "            while ((line \u003d bufferedReader.readLine()) !\u003d null) {"
       },
       {
-        "lineNumber": 331,
+        "lineNumber": 330,
         "author": {
           "gitId": "koushireo"
         },
         "content": "                autocorrect.load(line.trim());"
       },
       {
-        "lineNumber": 332,
+        "lineNumber": 331,
         "author": {
-          "gitId": "-"
+          "gitId": "koushireo"
         },
         "content": "            }"
+      },
+      {
+        "lineNumber": 332,
+        "author": {
+          "gitId": "koushireo"
+        },
+        "content": "            bufferedReader.close();"
       },
       {
         "lineNumber": 333,
         "author": {
           "gitId": "koushireo"
         },
-        "content": "            bufferedReader.close();"
+        "content": "        } catch (Exception e) {"
       },
       {
         "lineNumber": 334,
         "author": {
           "gitId": "koushireo"
         },
-        "content": "        } catch (Exception e) {"
+        "content": "            throw new DukeException(e.getMessage());"
       },
       {
         "lineNumber": 335,
         "author": {
           "gitId": "koushireo"
         },
-        "content": "            throw new DukeException(e.getMessage());"
+        "content": "        }"
       },
       {
         "lineNumber": 336,
         "author": {
           "gitId": "koushireo"
         },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 337,
-        "author": {
-          "gitId": "koushireo"
-        },
         "content": "    }"
       },
       {
-        "lineNumber": 338,
+        "lineNumber": 337,
         "author": {
           "gitId": "GaryStu"
         },
         "content": ""
       },
       {
-        "lineNumber": 339,
+        "lineNumber": 338,
         "author": {
           "gitId": "GaryStu"
         },
         "content": "    public void loadHelp(ArrayList\u003cString\u003e lines, String specifiedHelp) throws DukeException {"
       },
       {
-        "lineNumber": 340,
+        "lineNumber": 339,
         "author": {
           "gitId": "GaryStu"
         },
         "content": "        String line \u003d \"\";"
       },
       {
-        "lineNumber": 341,
+        "lineNumber": 340,
         "author": {
           "gitId": "GaryStu"
         },
         "content": "        String helpFileName \u003d \"\";"
       },
       {
-        "lineNumber": 342,
+        "lineNumber": 341,
         "author": {
           "gitId": "GaryStu"
         },
         "content": "        if (specifiedHelp.isBlank()) {"
       },
       {
-        "lineNumber": 343,
+        "lineNumber": 342,
         "author": {
           "gitId": "GaryStu"
         },
         "content": "            helpFileName \u003d \"help.txt\";"
       },
       {
-        "lineNumber": 344,
+        "lineNumber": 343,
         "author": {
           "gitId": "GaryStu"
         },
         "content": "        } else {"
       },
       {
-        "lineNumber": 345,
+        "lineNumber": 344,
         "author": {
           "gitId": "GaryStu"
         },
         "content": "            helpFileName \u003d specifiedHelp + \".txt\";"
       },
       {
-        "lineNumber": 346,
+        "lineNumber": 345,
         "author": {
           "gitId": "GaryStu"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 347,
+        "lineNumber": 346,
         "author": {
           "gitId": "GaryStu"
         },
         "content": "        String sep \u003d System.getProperty(\"file.separator\");"
       },
       {
-        "lineNumber": 348,
+        "lineNumber": 347,
         "author": {
           "gitId": "GaryStu"
         },
         "content": "        file \u003d new File(\"src\" + sep + \"main\" + sep + \"java\" + sep + \"duke\""
       },
       {
-        "lineNumber": 349,
+        "lineNumber": 348,
         "author": {
           "gitId": "GaryStu"
         },
         "content": "                            + sep + \"Data\" + sep + \"Help\" + sep + helpFileName);"
       },
       {
-        "lineNumber": 350,
+        "lineNumber": 349,
         "author": {
-          "gitId": "GaryStu"
+          "gitId": "-"
         },
         "content": "        try {"
       },
       {
-        "lineNumber": 351,
+        "lineNumber": 350,
         "author": {
           "gitId": "GaryStu"
         },
         "content": "            bufferedReader \u003d new BufferedReader(new FileReader(file));"
       },
       {
-        "lineNumber": 352,
+        "lineNumber": 351,
         "author": {
           "gitId": "GaryStu"
         },
         "content": "        } catch (Exception e) {"
       },
       {
-        "lineNumber": 353,
+        "lineNumber": 352,
         "author": {
           "gitId": "GaryStu"
         },
         "content": "            throw new DukeException(\"Unable to access help file\");"
       },
       {
-        "lineNumber": 354,
+        "lineNumber": 353,
         "author": {
           "gitId": "GaryStu"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 355,
+        "lineNumber": 354,
         "author": {
           "gitId": "GaryStu"
         },
         "content": "        try {"
       },
       {
-        "lineNumber": 356,
+        "lineNumber": 355,
         "author": {
           "gitId": "GaryStu"
         },
         "content": "            while ((line \u003d bufferedReader.readLine()) !\u003d null) {"
       },
       {
-        "lineNumber": 357,
+        "lineNumber": 356,
         "author": {
           "gitId": "GaryStu"
         },
         "content": "                lines.add(line);"
       },
       {
-        "lineNumber": 358,
+        "lineNumber": 357,
         "author": {
-          "gitId": "GaryStu"
+          "gitId": "-"
         },
         "content": "            }"
       },
       {
-        "lineNumber": 359,
+        "lineNumber": 358,
         "author": {
           "gitId": "GaryStu"
         },
         "content": "            bufferedReader.close();"
       },
       {
-        "lineNumber": 360,
+        "lineNumber": 359,
         "author": {
           "gitId": "-"
         },
         "content": "        } catch (IOException e) {"
       },
       {
-        "lineNumber": 361,
+        "lineNumber": 360,
         "author": {
           "gitId": "GaryStu"
         },
         "content": "            throw new DukeException(\"Error reading help file\");"
       },
       {
-        "lineNumber": 362,
+        "lineNumber": 361,
         "author": {
           "gitId": "-"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 363,
+        "lineNumber": 362,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 364,
+        "lineNumber": 363,
         "author": {
           "gitId": "-"
         },
@@ -9267,10 +9344,10 @@
       }
     ],
     "authorContributionMap": {
-      "Fractalisk": 165,
+      "Fractalisk": 164,
       "HashirZahir": 1,
-      "GaryStu": 43,
-      "koushireo": 78,
+      "GaryStu": 41,
+      "koushireo": 80,
       "-": 77
     }
   },
@@ -9828,35 +9905,35 @@
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "import duke.Duke;"
+        "content": "import duke.autocorrect.Autocorrect;"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "import duke.autocorrect.Autocorrect;"
+        "content": "import duke.exceptions.DukeException;"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "import duke.exceptions.DukeException;"
+        "content": ""
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": ""
+        "content": "import java.text.SimpleDateFormat;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "import java.text.SimpleDateFormat;"
+        "content": "import java.util.Calendar;"
       },
       {
         "lineNumber": 8,
@@ -9898,266 +9975,266 @@
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "    private String date;"
+        "content": "    private String enddate;"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "    private HashMap\u003cString, Integer\u003e nutritionValue \u003d new HashMap\u003cString, Integer\u003e();"
+        "content": "    private String startdate;"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": ""
+        "content": "    private HashMap\u003cString, Integer\u003e nutritionValue \u003d new HashMap\u003cString, Integer\u003e();"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "    public Goal(String date, String details, Autocorrect autocorrect) throws DukeException {"
+        "content": ""
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        try {"
+        "content": "    public Goal(String enddate, String details, Autocorrect autocorrect) throws DukeException {"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            Date day;"
+        "content": "        try {"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            day \u003d dateparser.parse(date);"
+        "content": "            Date day;"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            this.date \u003d dateparser.format(day);"
+        "content": "            startdate \u003d dateparser.format(Calendar.getInstance().getTime());"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        } catch (Exception e) {"
+        "content": "            day \u003d dateparser.parse(enddate);"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            throw new DukeException(\"It appears an invalid date has been entered\");"
+        "content": "            this.enddate \u003d dateparser.format(day);"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        }"
+        "content": "        } catch (Exception e) {"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        if (details.trim().length() !\u003d 0) {"
+        "content": "            throw new DukeException(\"It appears an invalid date has been entered\");"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            String[] splitString1 \u003d details.split(\"/\");"
+        "content": "        }"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            for (String data : splitString1) {"
+        "content": "        if (details.trim().length() !\u003d 0) {"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "                if (data.trim().length() !\u003d 0) {"
+        "content": "            String[] splitString1 \u003d details.split(\"/\");"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "                    String[] partitionedData \u003d data.split(\" \", 2);"
+        "content": "            for (String data : splitString1) {"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "                    autocorrect.setWord(partitionedData[0]);"
+        "content": "                if (data.trim().length() !\u003d 0) {"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "                    autocorrect.execute();"
+        "content": "                    String[] partitionedData \u003d data.split(\" \", 2);"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "                    String nutrient \u003d autocorrect.getWord();"
+        "content": "                    autocorrect.setWord(partitionedData[0]);"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "                    int value \u003d Integer.valueOf(partitionedData[1].trim());"
+        "content": "                    autocorrect.execute();"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "                    nutritionValue.put(nutrient, value);"
+        "content": "                    String nutrient \u003d autocorrect.getWord();"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "                }"
+        "content": "                    int value \u003d Integer.valueOf(partitionedData[1].trim());"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            }"
+        "content": "                    nutritionValue.put(nutrient, value);"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        } else {"
+        "content": "                }"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            throw new DukeException(\"It appears that there are fields missing in the setgoals command\");"
+        "content": "            }"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        }"
+        "content": "        } else {"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "    }"
+        "content": "            throw new DukeException(\"It appears that there are fields missing in the setgoals command\");"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "    public Goal(String date, String[] details) throws DukeException {"
+        "content": "    }"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        try {"
+        "content": ""
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            Date day;"
+        "content": "    public Goal(String enddate, String startdate, String[] details) throws DukeException {"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            day \u003d dateparser.parse(date);"
+        "content": "        try {"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            this.date \u003d dateparser.format(day);"
+        "content": "            this.startdate \u003d startdate;"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        } catch (Exception e) {"
+        "content": "            Date day;"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            throw new DukeException(\"It appears the previous save file has an invalid date\");"
+        "content": "            day \u003d dateparser.parse(enddate);"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        }"
+        "content": "            this.enddate \u003d dateparser.format(day);"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        for (int i \u003d 0; i \u003c details.length; i +\u003d 2) {"
+        "content": "        } catch (Exception e) {"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            nutritionValue.put(details[i], Integer.valueOf(details[i + 1]));"
+        "content": "            throw new DukeException(\"It appears the previous save file has an invalid date\");"
       },
       {
         "lineNumber": 51,
@@ -10171,199 +10248,248 @@
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "    }"
+        "content": "        for (int i \u003d 1; i \u003c details.length; i +\u003d 2) {"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": ""
+        "content": "            nutritionValue.put(details[i], Integer.valueOf(details[i + 1]));"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "    /**"
+        "content": "        }"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "     * This is a getter for date."
+        "content": "    }"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "     * @return description of the task"
+        "content": ""
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "     */"
+        "content": "    /**"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "    public String getDate() {"
+        "content": "     * This is a getter for date."
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        return this.date;"
+        "content": "     * @return description of the task"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "    }"
+        "content": "     */"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": ""
+        "content": "    public String getEndDate() {"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "    public HashMap\u003cString, Integer\u003e getNutritionalValue() {"
+        "content": "        return this.enddate;"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        return this.nutritionValue;"
+        "content": "    }"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": ""
+        "content": "    public String getStartDate() {"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "    /**"
+        "content": "        return this.startdate;"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "     * This function overrides the toString() function in the object class."
+        "content": "    }"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "     * @return the status icon and the description of the goal"
+        "content": ""
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "     */"
+        "content": "    public HashMap\u003cString, Integer\u003e getNutritionalValue() {"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "    @Override"
+        "content": "        return this.nutritionValue;"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "    public String toString() {"
+        "content": "    }"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        String temp \u003d \"\";"
+        "content": ""
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        for (String i : nutritionValue.keySet()) {"
+        "content": "    /**"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            temp +\u003d i + \":\" + nutritionValue.get(i) + \" \";"
+        "content": "     * This function overrides the toString() function in the object class."
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        }"
+        "content": "     * @return the status icon and the description of the goal"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        return \"[NO]\" + \" \" + this.date + \" | \" + temp;"
+        "content": "     */"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        //TODO: refactor this by using type also"
+        "content": "    @Override"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "    }"
+        "content": "    public String toString() {"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": ""
+        "content": "        String temp \u003d \"\";"
       },
       {
         "lineNumber": 80,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "        for (String i : nutritionValue.keySet()) {"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "            temp +\u003d i + \":\" + nutritionValue.get(i) + \" \";"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "        return \"[NO]\" + \" \" + this.enddate + \" | \" + temp;"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "        //TODO: refactor this by using type also"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 87,
         "author": {
           "gitId": "Fractalisk"
         },
@@ -10371,7 +10497,7 @@
       }
     ],
     "authorContributionMap": {
-      "Fractalisk": 80
+      "Fractalisk": 87
     }
   },
   {
@@ -12066,574 +12192,574 @@
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "import java.util.ArrayList;"
+        "content": "import java.time.LocalDate;"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "import java.util.Calendar;"
+        "content": "import java.time.format.DateTimeFormatter;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "import java.util.HashMap;"
+        "content": "import java.util.ArrayList;"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": ""
+        "content": "import java.util.Calendar;"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "/**"
+        "content": "import java.util.HashMap;"
       },
       {
         "lineNumber": 13,
         "author": {
-          "gitId": "HashirZahir"
+          "gitId": "Fractalisk"
         },
-        "content": " * TaskList is a public class that represents the list of meals under DIYeats."
+        "content": ""
       },
       {
         "lineNumber": 14,
         "author": {
-          "gitId": "HashirZahir"
+          "gitId": "Fractalisk"
         },
-        "content": " * A MealList object encapsulates the ArrayList of meals."
+        "content": "import static java.time.temporal.ChronoUnit.DAYS;"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": " */"
+        "content": ""
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "public class MealList {"
+        "content": "/**"
       },
       {
         "lineNumber": 17,
         "author": {
-          "gitId": "Fractalisk"
+          "gitId": "HashirZahir"
         },
-        "content": "    private DateFormat dateFormat \u003d new SimpleDateFormat(\"dd/MM/yyyy\");"
+        "content": " * TaskList is a public class that represents the list of meals under DIYeats."
       },
       {
         "lineNumber": 18,
         "author": {
-          "gitId": "Fractalisk"
+          "gitId": "HashirZahir"
         },
-        "content": "    private Calendar calendarDate \u003d Calendar.getInstance();"
+        "content": " * A MealList object encapsulates the ArrayList of meals."
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "    private String currentDate \u003d dateFormat.format(calendarDate.getTime());"
+        "content": " */"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "    private HashMap\u003cString, ArrayList\u003cMeal\u003e\u003e mealTracker \u003d new HashMap\u003c\u003e();"
+        "content": "public class MealList {"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "    private HashMap\u003cString, HashMap\u003cString, Integer\u003e\u003e storedItems \u003d new HashMap\u003c\u003e();"
+        "content": "    private DateFormat dateFormat \u003d new SimpleDateFormat(\"dd/MM/yyyy\");"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "    private Goal goal;"
+        "content": "    private Calendar calendarDate \u003d Calendar.getInstance();"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": ""
+        "content": "    private String currentDate \u003d dateFormat.format(calendarDate.getTime());"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "    /**"
+        "content": "    private HashMap\u003cString, ArrayList\u003cMeal\u003e\u003e mealTracker \u003d new HashMap\u003c\u003e();"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "     * This is the constructor of MealList object if there is no argument."
+        "content": "    private HashMap\u003cString, HashMap\u003cString, Integer\u003e\u003e storedItems \u003d new HashMap\u003c\u003e();"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "     * The MealList object will initialise a new empty arraylist of meals."
+        "content": "    private Goal goal \u003d null;"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "     */"
+        "content": ""
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "    public MealList() {"
+        "content": "    /**"
       },
       {
         "lineNumber": 29,
         "author": {
-          "gitId": "koushireo"
+          "gitId": "Fractalisk"
         },
-        "content": "    }"
+        "content": "     * This is the constructor of MealList object if there is no argument."
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": ""
+        "content": "     * The MealList object will initialise a new empty arraylist of meals."
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": ""
+        "content": "     */"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "    /**"
+        "content": "    public MealList() {"
       },
       {
         "lineNumber": 33,
         "author": {
-          "gitId": "Fractalisk"
+          "gitId": "koushireo"
         },
-        "content": "     * This function is used to delete the task of a particular index."
+        "content": "    }"
       },
       {
         "lineNumber": 34,
         "author": {
-          "gitId": "HashirZahir"
+          "gitId": "Fractalisk"
         },
-        "content": "     * @param date date of the meal to be deleted."
+        "content": ""
       },
       {
         "lineNumber": 35,
         "author": {
-          "gitId": "HashirZahir"
+          "gitId": "Fractalisk"
         },
-        "content": "     * @param index the index of task to be deleted."
+        "content": ""
       },
       {
         "lineNumber": 36,
         "author": {
-          "gitId": "HashirZahir"
+          "gitId": "Fractalisk"
         },
-        "content": "     * @return Returns the meal that was deleted."
+        "content": "    /**"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "     */"
+        "content": "     * This function is used to delete the task of a particular index."
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "HashirZahir"
         },
-        "content": "    public Meal delete(String date, int index) {"
+        "content": "     * @param date date of the meal to be deleted."
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "HashirZahir"
         },
-        "content": "        Meal deletedMeal \u003d this.mealTracker.get(date).get(index - 1);"
+        "content": "     * @param index the index of task to be deleted."
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "HashirZahir"
         },
-        "content": "        this.mealTracker.get(date).remove(index - 1);"
+        "content": "     * @return Returns the meal that was deleted."
       },
       {
         "lineNumber": 41,
         "author": {
-          "gitId": "HashirZahir"
+          "gitId": "Fractalisk"
         },
-        "content": "        return deletedMeal;"
+        "content": "     */"
       },
       {
         "lineNumber": 42,
         "author": {
-          "gitId": "Fractalisk"
+          "gitId": "HashirZahir"
         },
-        "content": "    }"
+        "content": "    public Meal delete(String date, int index) {"
       },
       {
         "lineNumber": 43,
         "author": {
-          "gitId": "Fractalisk"
+          "gitId": "HashirZahir"
         },
-        "content": ""
+        "content": "        Meal deletedMeal \u003d this.mealTracker.get(date).get(index - 1);"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "HashirZahir"
         },
-        "content": "    public void deleteAllMealsOnDate(String dateStr) {"
+        "content": "        this.mealTracker.get(date).remove(index - 1);"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "HashirZahir"
         },
-        "content": "        if (mealTracker.containsKey(dateStr)) {"
+        "content": "        return deletedMeal;"
       },
       {
         "lineNumber": 46,
         "author": {
-          "gitId": "HashirZahir"
+          "gitId": "Fractalisk"
         },
-        "content": "            this.mealTracker.get(dateStr).clear();"
+        "content": "    }"
       },
       {
         "lineNumber": 47,
         "author": {
-          "gitId": "HashirZahir"
+          "gitId": "Fractalisk"
         },
-        "content": "        }"
+        "content": ""
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "HashirZahir"
         },
-        "content": "    }"
+        "content": "    public void deleteAllMealsOnDate(String dateStr) {"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "HashirZahir"
         },
-        "content": ""
+        "content": "        if (mealTracker.containsKey(dateStr)) {"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "HashirZahir"
         },
-        "content": "    public void addMeal(Meal meal) {"
+        "content": "            this.mealTracker.get(dateStr).clear();"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "HashirZahir"
         },
-        "content": "        String dateStr \u003d meal.getDate();"
+        "content": "        }"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "HashirZahir"
         },
-        "content": "        if (!mealTracker.containsKey(dateStr)) {"
+        "content": "    }"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "HashirZahir"
         },
-        "content": "            mealTracker.put(dateStr, new ArrayList\u003cMeal\u003e());"
+        "content": ""
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "HashirZahir"
         },
-        "content": "        }"
+        "content": "    public void addMeal(Meal meal) {"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "HashirZahir"
         },
-        "content": "        mealTracker.get(dateStr).add(meal);"
+        "content": "        String dateStr \u003d meal.getDate();"
       },
       {
         "lineNumber": 56,
         "author": {
-          "gitId": "koushireo"
+          "gitId": "HashirZahir"
         },
-        "content": "    }"
+        "content": "        if (!mealTracker.containsKey(dateStr)) {"
       },
       {
         "lineNumber": 57,
         "author": {
-          "gitId": "koushireo"
+          "gitId": "HashirZahir"
         },
-        "content": ""
+        "content": "            mealTracker.put(dateStr, new ArrayList\u003cMeal\u003e());"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "HashirZahir"
         },
-        "content": "    /**"
+        "content": "        }"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "HashirZahir"
         },
-        "content": "     * Update existing meal from mealList based on date and description given."
+        "content": "        mealTracker.get(dateStr).add(meal);"
       },
       {
         "lineNumber": 60,
         "author": {
-          "gitId": "HashirZahir"
+          "gitId": "koushireo"
         },
-        "content": "     * @param newMeal Meal to be updated."
+        "content": "    }"
       },
       {
         "lineNumber": 61,
         "author": {
-          "gitId": "HashirZahir"
+          "gitId": "koushireo"
         },
-        "content": "     * @return Returns updated meal information."
+        "content": ""
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "HashirZahir"
         },
-        "content": "     * @throws DukeException Exception thrown if meal description or date not found in current list."
+        "content": "    /**"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "HashirZahir"
         },
-        "content": "     */"
+        "content": "     * Update existing meal from mealList based on date and description given."
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "HashirZahir"
         },
-        "content": "    public Meal updateMeal(Meal newMeal) throws DukeException {"
+        "content": "     * @param newMeal Meal to be updated."
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "HashirZahir"
         },
-        "content": "        String dateStr \u003d newMeal.getDate();"
+        "content": "     * @return Returns updated meal information."
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "HashirZahir"
         },
-        "content": "        if (mealTracker.containsKey(dateStr)) {"
+        "content": "     * @throws DukeException Exception thrown if meal description or date not found in current list."
       },
       {
         "lineNumber": 67,
         "author": {
-          "gitId": "Fractalisk"
+          "gitId": "HashirZahir"
         },
-        "content": "            ArrayList\u003cMeal\u003e meals \u003d getMealsList(dateStr);"
+        "content": "     */"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "HashirZahir"
         },
-        "content": "            for (int idx \u003d 0; idx \u003c meals.size(); idx++) {"
+        "content": "    public Meal updateMeal(Meal newMeal) throws DukeException {"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "HashirZahir"
         },
-        "content": "                Meal currMeal \u003d meals.get(idx);"
+        "content": "        String dateStr \u003d newMeal.getDate();"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "HashirZahir"
         },
-        "content": "                if (isSameMeal(currMeal, newMeal)) {"
+        "content": "        if (mealTracker.containsKey(dateStr)) {"
       },
       {
         "lineNumber": 71,
         "author": {
-          "gitId": "HashirZahir"
+          "gitId": "Fractalisk"
         },
-        "content": "                    HashMap\u003cString, Integer\u003e newNutrition \u003d newMeal.getNutritionalValue();"
+        "content": "            ArrayList\u003cMeal\u003e meals \u003d getMealsList(dateStr);"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "HashirZahir"
         },
-        "content": "                    for (String keyStr : newNutrition.keySet()) {"
+        "content": "            for (int idx \u003d 0; idx \u003c meals.size(); idx++) {"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "HashirZahir"
         },
-        "content": "                        currMeal.addNutritionalValue(keyStr, newNutrition.get(keyStr));"
+        "content": "                Meal currMeal \u003d meals.get(idx);"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "HashirZahir"
         },
-        "content": "                    }"
+        "content": "                if (isSameMeal(currMeal, newMeal)) {"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "HashirZahir"
         },
-        "content": "                    meals.set(idx, currMeal);"
+        "content": "                    HashMap\u003cString, Integer\u003e newNutrition \u003d newMeal.getNutritionalValue();"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "HashirZahir"
         },
-        "content": "                    newMeal \u003d currMeal;"
+        "content": "                    for (String keyStr : newNutrition.keySet()) {"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "HashirZahir"
         },
-        "content": "                    mealTracker.replace(dateStr, meals);"
+        "content": "                        currMeal.addNutritionalValue(keyStr, newNutrition.get(keyStr));"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "HashirZahir"
         },
-        "content": "                    return newMeal;"
+        "content": "                    }"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "HashirZahir"
         },
-        "content": "                }"
+        "content": "                    meals.set(idx, currMeal);"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "HashirZahir"
         },
-        "content": "            }"
+        "content": "                    newMeal \u003d currMeal;"
       },
       {
         "lineNumber": 81,
         "author": {
-          "gitId": "Fractalisk"
+          "gitId": "HashirZahir"
         },
-        "content": "            throw new DukeException(\"No meal matches description of \" + newMeal.getDescription() + \" on \""
+        "content": "                    mealTracker.replace(dateStr, meals);"
       },
       {
         "lineNumber": 82,
         "author": {
-          "gitId": "Fractalisk"
+          "gitId": "HashirZahir"
         },
-        "content": "                    + newMeal.getDate());"
+        "content": "                    return newMeal;"
       },
       {
         "lineNumber": 83,
         "author": {
-          "gitId": "Fractalisk"
+          "gitId": "HashirZahir"
         },
-        "content": "        } else {"
+        "content": "                }"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "HashirZahir"
         },
-        "content": "            throw new DukeException(\"No meal found on \" + newMeal.getDate());"
+        "content": "            }"
       },
       {
         "lineNumber": 85,
         "author": {
-          "gitId": "HashirZahir"
+          "gitId": "Fractalisk"
         },
-        "content": "        }"
+        "content": "            throw new DukeException(\"No meal matches description of \" + newMeal.getDescription() + \" on \""
       },
       {
         "lineNumber": 86,
         "author": {
-          "gitId": "HashirZahir"
+          "gitId": "Fractalisk"
         },
-        "content": "    }"
+        "content": "                    + newMeal.getDate());"
       },
       {
         "lineNumber": 87,
         "author": {
-          "gitId": "HashirZahir"
+          "gitId": "Fractalisk"
         },
-        "content": ""
+        "content": "        } else {"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "HashirZahir"
         },
-        "content": "    public boolean isSameMeal(Meal meal1, Meal meal2) {"
+        "content": "            throw new DukeException(\"No meal found on \" + newMeal.getDate());"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "HashirZahir"
         },
-        "content": "        return meal1.getDescription().equals(meal2.getDescription()) \u0026\u0026 meal1.getDate().equals(meal2.getDate());"
+        "content": "        }"
       },
       {
         "lineNumber": 90,
@@ -12652,28 +12778,28 @@
       {
         "lineNumber": 92,
         "author": {
-          "gitId": "Fractalisk"
+          "gitId": "HashirZahir"
         },
-        "content": "    public void setMealTracker(HashMap\u003cString, ArrayList\u003cMeal\u003e\u003e mealTracker) {"
+        "content": "    public boolean isSameMeal(Meal meal1, Meal meal2) {"
       },
       {
         "lineNumber": 93,
         "author": {
-          "gitId": "Fractalisk"
+          "gitId": "HashirZahir"
         },
-        "content": "        this.mealTracker \u003d mealTracker;"
+        "content": "        return meal1.getDescription().equals(meal2.getDescription()) \u0026\u0026 meal1.getDate().equals(meal2.getDate());"
       },
       {
         "lineNumber": 94,
         "author": {
-          "gitId": "Fractalisk"
+          "gitId": "HashirZahir"
         },
         "content": "    }"
       },
       {
         "lineNumber": 95,
         "author": {
-          "gitId": "Fractalisk"
+          "gitId": "HashirZahir"
         },
         "content": ""
       },
@@ -12682,537 +12808,537 @@
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "    public void addMeals(Meal data) throws DukeException {"
+        "content": "    public void setMealTracker(HashMap\u003cString, ArrayList\u003cMeal\u003e\u003e mealTracker) {"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        ArrayList\u003cMeal\u003e mealList;"
+        "content": "        this.mealTracker \u003d mealTracker;"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        if (mealTracker.containsKey(data.getDate())) {"
+        "content": "    }"
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            mealList \u003d mealTracker.get(data.getDate());"
+        "content": ""
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        } else {"
+        "content": "    public void addMeals(Meal data) throws DukeException {"
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            mealTracker.put(data.getDate(), new ArrayList\u003c\u003e());"
+        "content": "        ArrayList\u003cMeal\u003e mealList;"
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            mealList \u003d mealTracker.get(data.getDate());"
+        "content": "        if (mealTracker.containsKey(data.getDate())) {"
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        }"
+        "content": "            mealList \u003d mealTracker.get(data.getDate());"
       },
       {
         "lineNumber": 104,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        //match meal description to stored meals. If it matches a stored meal, compare nutrition data,"
+        "content": "        } else {"
       },
       {
         "lineNumber": 105,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        // and fill in any missing fields"
+        "content": "            mealTracker.put(data.getDate(), new ArrayList\u003c\u003e());"
       },
       {
         "lineNumber": 106,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        if (storedItems.get(data.getDescription()) !\u003d null) {"
+        "content": "            mealList \u003d mealTracker.get(data.getDate());"
       },
       {
         "lineNumber": 107,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            HashMap\u003cString, Integer\u003e storedNutritionValue \u003d storedItems.get(data.getDescription());"
+        "content": "        }"
       },
       {
         "lineNumber": 108,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            HashMap\u003cString, Integer\u003e nutritionValue \u003d data.getNutritionalValue();"
+        "content": "        //match meal description to stored meals. If it matches a stored meal, compare nutrition data,"
       },
       {
         "lineNumber": 109,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            for (String i: storedNutritionValue.keySet()) {"
+        "content": "        // and fill in any missing fields"
       },
       {
         "lineNumber": 110,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "                if (nutritionValue.get(i) \u003d\u003d null) {"
+        "content": "        if (storedItems.get(data.getDescription()) !\u003d null) {"
       },
       {
         "lineNumber": 111,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "                    nutritionValue.put(i, storedNutritionValue.get(i));"
+        "content": "            HashMap\u003cString, Integer\u003e storedNutritionValue \u003d storedItems.get(data.getDescription());"
       },
       {
         "lineNumber": 112,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "                }"
+        "content": "            HashMap\u003cString, Integer\u003e nutritionValue \u003d data.getNutritionalValue();"
       },
       {
         "lineNumber": 113,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            }"
+        "content": "            for (String i: storedNutritionValue.keySet()) {"
       },
       {
         "lineNumber": 114,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        }"
+        "content": "                if (nutritionValue.get(i) \u003d\u003d null) {"
       },
       {
         "lineNumber": 115,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        if (data.getNutritionalValue().size() \u003d\u003d 0) {"
+        "content": "                    nutritionValue.put(i, storedNutritionValue.get(i));"
       },
       {
         "lineNumber": 116,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            throw new DukeException(\"\\u2639 OOPS!!! It appears there are no default values associated with this meal\\n\""
+        "content": "                }"
       },
       {
         "lineNumber": 117,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "                    + \"     Please set a default value for this meal using the \\\"add\\\" command, or manually\\n\""
+        "content": "            }"
       },
       {
         "lineNumber": 118,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "                    + \"     specify nutritional values for this meal\");"
+        "content": "        }"
       },
       {
         "lineNumber": 119,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        }"
+        "content": "        if (data.getNutritionalValue().size() \u003d\u003d 0) {"
       },
       {
         "lineNumber": 120,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        mealList.add(data);"
+        "content": "            throw new DukeException(\"\\u2639 OOPS!!! It appears there are no default values associated with this meal\\n\""
       },
       {
         "lineNumber": 121,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "    }"
+        "content": "                    + \"     Please set a default value for this meal using the \\\"add\\\" command, or manually\\n\""
       },
       {
         "lineNumber": 122,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": ""
+        "content": "                    + \"     specify nutritional values for this meal\");"
       },
       {
         "lineNumber": 123,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "    public ArrayList\u003cMeal\u003e getMealsList(String inputDate) {"
+        "content": "        }"
       },
       {
         "lineNumber": 124,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        if (mealTracker.containsKey(inputDate)) {"
+        "content": "        mealList.add(data);"
       },
       {
         "lineNumber": 125,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            return mealTracker.get(inputDate);"
+        "content": "    }"
       },
       {
         "lineNumber": 126,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        } else {"
+        "content": ""
       },
       {
         "lineNumber": 127,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            mealTracker.put(inputDate, new ArrayList\u003c\u003e());"
+        "content": "    public ArrayList\u003cMeal\u003e getMealsList(String inputDate) {"
       },
       {
         "lineNumber": 128,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            return mealTracker.get(inputDate);"
+        "content": "        if (mealTracker.containsKey(inputDate)) {"
       },
       {
         "lineNumber": 129,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        }"
+        "content": "            return mealTracker.get(inputDate);"
       },
       {
         "lineNumber": 130,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "    }"
+        "content": "        } else {"
       },
       {
         "lineNumber": 131,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": ""
+        "content": "            mealTracker.put(inputDate, new ArrayList\u003c\u003e());"
       },
       {
         "lineNumber": 132,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "    /**"
+        "content": "            return mealTracker.get(inputDate);"
       },
       {
         "lineNumber": 133,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "     * This function is a getter for the mealtracker HashMap."
+        "content": "        }"
       },
       {
         "lineNumber": 134,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "     * @return mealTracker the data structure storing the list of all meals"
+        "content": "    }"
       },
       {
         "lineNumber": 135,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "     */"
+        "content": ""
       },
       {
         "lineNumber": 136,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "    public HashMap\u003cString, ArrayList\u003cMeal\u003e\u003e getMealTracker() {"
+        "content": "    /**"
       },
       {
         "lineNumber": 137,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        return mealTracker;"
+        "content": "     * This function is a getter for the mealtracker HashMap."
       },
       {
         "lineNumber": 138,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "    }"
+        "content": "     * @return mealTracker the data structure storing the list of all meals"
       },
       {
         "lineNumber": 139,
         "author": {
-          "gitId": "koushireo"
+          "gitId": "Fractalisk"
         },
-        "content": ""
+        "content": "     */"
       },
       {
         "lineNumber": 140,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": ""
+        "content": "    public HashMap\u003cString, ArrayList\u003cMeal\u003e\u003e getMealTracker() {"
       },
       {
         "lineNumber": 141,
         "author": {
-          "gitId": "HashirZahir"
+          "gitId": "Fractalisk"
         },
-        "content": "    public boolean hasMealsOnDate(String date) {"
+        "content": "        return mealTracker;"
       },
       {
         "lineNumber": 142,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        ArrayList\u003cMeal\u003e temp \u003d getMealsList(date);"
+        "content": "    }"
       },
       {
         "lineNumber": 143,
         "author": {
-          "gitId": "HashirZahir"
+          "gitId": "koushireo"
         },
-        "content": "        return temp.size() \u003e 0;"
+        "content": ""
       },
       {
         "lineNumber": 144,
         "author": {
-          "gitId": "koushireo"
+          "gitId": "Fractalisk"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 145,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": ""
+        "content": "    public int caloriesAvgToGoal() {"
       },
       {
         "lineNumber": 146,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "    /**"
+        "content": "        DateTimeFormatter formatter \u003d DateTimeFormatter.ofPattern(\"d/MM/yyyy\");"
       },
       {
         "lineNumber": 147,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "     * This function is used to check if a entry with the corresponding date is stored."
+        "content": "        LocalDate startDate \u003d LocalDate.parse(goal.getStartDate(), formatter);"
       },
       {
         "lineNumber": 148,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "     * @param date the date to be checked"
+        "content": "        LocalDate endDate \u003d LocalDate.parse(goal.getEndDate(), formatter);"
       },
       {
         "lineNumber": 149,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "     * @return boolean"
+        "content": "        LocalDate currentDate \u003d LocalDate.parse(this.currentDate, formatter);"
       },
       {
         "lineNumber": 150,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "     */"
+        "content": "        int totalConsume \u003d 0;"
       },
       {
         "lineNumber": 151,
         "author": {
-          "gitId": "koushireo"
+          "gitId": "Fractalisk"
         },
-        "content": "    public boolean checkDate(String date) {"
+        "content": "        for (LocalDate iterator \u003d startDate; iterator.isBefore(currentDate); iterator \u003d iterator.plusDays(1)) {"
       },
       {
         "lineNumber": 152,
         "author": {
-          "gitId": "koushireo"
+          "gitId": "Fractalisk"
         },
-        "content": "        return mealTracker.containsKey(date);"
+        "content": "            if (mealTracker.containsKey(iterator) \u003d\u003d false) {"
       },
       {
         "lineNumber": 153,
         "author": {
-          "gitId": "koushireo"
+          "gitId": "Fractalisk"
         },
-        "content": "    }"
+        "content": "                totalConsume +\u003d goal.getNutritionalValue().get(\"calorie\") / (int) DAYS.between(startDate, endDate);"
       },
       {
         "lineNumber": 154,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": ""
+        "content": "            } else {"
       },
       {
         "lineNumber": 155,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "    /**"
+        "content": "                ArrayList\u003cMeal\u003e meals \u003d mealTracker.get(iterator.format(formatter));"
       },
       {
         "lineNumber": 156,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "     * This function is used to add or update default values for a specified meal item."
+        "content": "                if (meals.size() \u003d\u003d 0) {"
       },
       {
         "lineNumber": 157,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "     * @param item The data to be set as default for a meal item with matching descriptor"
+        "content": "                    totalConsume +\u003d goal.getNutritionalValue().get(\"calorie\") / (int) DAYS.between(startDate, endDate);"
       },
       {
         "lineNumber": 158,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "     */"
+        "content": "                } else {"
       },
       {
         "lineNumber": 159,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "    public void addStoredItem(Meal item) {"
+        "content": "                    for (int i \u003d 0; i \u003c meals.size(); i +\u003d 1) {"
       },
       {
         "lineNumber": 160,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        String keyword \u003d item.getDescription();"
+        "content": "                        totalConsume +\u003d meals.get(i).getNutritionalValue().get(\"calorie\");"
       },
       {
         "lineNumber": 161,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        HashMap\u003cString, Integer\u003e data \u003d item.getNutritionalValue();"
+        "content": "                    }"
       },
       {
         "lineNumber": 162,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        if (storedItems.get(keyword) \u003d\u003d null) {"
+        "content": "                }"
       },
       {
         "lineNumber": 163,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            storedItems.put(keyword, data);"
+        "content": "            }"
       },
       {
         "lineNumber": 164,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        } else {"
+        "content": "        }"
       },
       {
         "lineNumber": 165,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            storedItems.remove(keyword);"
+        "content": "        long daysLeft \u003d DAYS.between(currentDate,endDate);"
       },
       {
         "lineNumber": 166,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            storedItems.put(keyword, data);"
+        "content": "        int caloriesRemaining \u003d goal.getNutritionalValue().get(\"calorie\") - totalConsume;"
       },
       {
         "lineNumber": 167,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        }"
+        "content": "        if (daysLeft \u003e\u003d 1) {"
       },
       {
         "lineNumber": 168,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "    }"
+        "content": "            return caloriesRemaining / (int)daysLeft;"
       },
       {
         "lineNumber": 169,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": ""
+        "content": "        } else {"
       },
       {
         "lineNumber": 170,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "    public HashMap\u003cString, Integer\u003e getStoredItem(String keyword) {"
+        "content": "            return -1;"
       },
       {
         "lineNumber": 171,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        return storedItems.get(keyword);"
+        "content": "        }"
       },
       {
         "lineNumber": 172,
         "author": {
-          "gitId": "Fractalisk"
+          "gitId": "koushireo"
         },
         "content": "    }"
       },
@@ -13228,199 +13354,395 @@
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "    public void removeStoredItem(String keyword) {"
+        "content": "    /**"
       },
       {
         "lineNumber": 175,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        storedItems.remove(keyword);"
+        "content": "     * This function is used to check if a entry with the corresponding date is stored."
       },
       {
         "lineNumber": 176,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "    }"
+        "content": "     * @param date the date to be checked"
       },
       {
         "lineNumber": 177,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": ""
+        "content": "     * @return boolean"
       },
       {
         "lineNumber": 178,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "    public void addGoal(Goal goal, boolean override) throws DukeException {"
+        "content": "     */"
       },
       {
         "lineNumber": 179,
         "author": {
-          "gitId": "Fractalisk"
+          "gitId": "koushireo"
         },
-        "content": "        if (this.goal !\u003d null \u0026\u0026 override \u003d\u003d false) {"
+        "content": "    public boolean checkDate(String date) {"
       },
       {
         "lineNumber": 180,
         "author": {
-          "gitId": "Fractalisk"
+          "gitId": "koushireo"
         },
-        "content": "            throw new DukeException(\"You currently have a previously set goal active\\n\""
+        "content": "        return mealTracker.containsKey(date);"
       },
       {
         "lineNumber": 181,
         "author": {
-          "gitId": "Fractalisk"
+          "gitId": "koushireo"
         },
-        "content": "                    + \"     Would you like to override the existing goal? (Y/N)\");"
+        "content": "    }"
       },
       {
         "lineNumber": 182,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        } else {"
+        "content": ""
       },
       {
         "lineNumber": 183,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            this.goal \u003d goal;"
+        "content": "    /**"
       },
       {
         "lineNumber": 184,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        }"
+        "content": "     * This function is used to add or update default values for a specified meal item."
       },
       {
         "lineNumber": 185,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "    }"
+        "content": "     * @param item The data to be set as default for a meal item with matching descriptor"
       },
       {
         "lineNumber": 186,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": ""
+        "content": "     */"
       },
       {
         "lineNumber": 187,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "    /**"
+        "content": "    public void addStoredItem(Meal item) {"
       },
       {
         "lineNumber": 188,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "     * This function is a getter for Goal."
+        "content": "        String keyword \u003d item.getDescription();"
       },
       {
         "lineNumber": 189,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "     * @return goal the data structure storing the goal"
+        "content": "        HashMap\u003cString, Integer\u003e data \u003d item.getNutritionalValue();"
       },
       {
         "lineNumber": 190,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "     */"
+        "content": "        if (storedItems.get(keyword) \u003d\u003d null) {"
       },
       {
         "lineNumber": 191,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "    public Goal getGoal() {"
+        "content": "            storedItems.put(keyword, data);"
       },
       {
         "lineNumber": 192,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        return goal;"
+        "content": "        } else {"
       },
       {
         "lineNumber": 193,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "    }"
+        "content": "            storedItems.remove(keyword);"
       },
       {
         "lineNumber": 194,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": ""
+        "content": "            storedItems.put(keyword, data);"
       },
       {
         "lineNumber": 195,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "    /**"
+        "content": "        }"
       },
       {
         "lineNumber": 196,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "     * This function is a getter for the StoredItems HashMap."
+        "content": "    }"
       },
       {
         "lineNumber": 197,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "     * @return storedItems the data structure storing the list of all meals"
+        "content": ""
       },
       {
         "lineNumber": 198,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "     */"
+        "content": "    public HashMap\u003cString, Integer\u003e getStoredItem(String keyword) {"
       },
       {
         "lineNumber": 199,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "    public HashMap\u003cString, HashMap\u003cString, Integer\u003e\u003e getStoredList() {"
+        "content": "        return storedItems.get(keyword);"
       },
       {
         "lineNumber": 200,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        return storedItems;"
+        "content": "    }"
       },
       {
         "lineNumber": 201,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 202,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "    public void removeStoredItem(String keyword) {"
+      },
+      {
+        "lineNumber": 203,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "        storedItems.remove(keyword);"
+      },
+      {
+        "lineNumber": 204,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 205,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 206,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "    public void addGoal(Goal goal, boolean override) throws DukeException {"
+      },
+      {
+        "lineNumber": 207,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "        if (this.goal !\u003d null \u0026\u0026 override \u003d\u003d false) {"
+      },
+      {
+        "lineNumber": 208,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "            throw new DukeException(\"You currently have a previously set goal active\\n\""
+      },
+      {
+        "lineNumber": 209,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "                    + \"     Would you like to override the existing goal? (Y/N)\");"
+      },
+      {
+        "lineNumber": 210,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 211,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "            this.goal \u003d goal;"
+      },
+      {
+        "lineNumber": 212,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 213,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 214,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 215,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 216,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "     * This function is a getter for Goal."
+      },
+      {
+        "lineNumber": 217,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "     * @return goal the data structure storing the goal"
+      },
+      {
+        "lineNumber": 218,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 219,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "    public Goal getGoal() {"
+      },
+      {
+        "lineNumber": 220,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "        return goal;"
+      },
+      {
+        "lineNumber": 221,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 222,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 223,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 224,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "     * This function is a getter for the StoredItems HashMap."
+      },
+      {
+        "lineNumber": 225,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "     * @return storedItems the data structure storing the list of all meals"
+      },
+      {
+        "lineNumber": 226,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 227,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "    public HashMap\u003cString, HashMap\u003cString, Integer\u003e\u003e getStoredList() {"
+      },
+      {
+        "lineNumber": 228,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "        return storedItems;"
+      },
+      {
+        "lineNumber": 229,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 230,
         "author": {
           "gitId": "Fractalisk"
         },
@@ -13428,8 +13750,8 @@
       }
     ],
     "authorContributionMap": {
-      "Fractalisk": 139,
-      "HashirZahir": 55,
+      "Fractalisk": 169,
+      "HashirZahir": 53,
       "koushireo": 8
     }
   },
@@ -13881,14 +14203,14 @@
       {
         "lineNumber": 64,
         "author": {
-          "gitId": "-"
+          "gitId": "HashirZahir"
         },
         "content": "    }"
       },
       {
         "lineNumber": 65,
         "author": {
-          "gitId": "-"
+          "gitId": "HashirZahir"
         },
         "content": ""
       },
@@ -13986,14 +14308,14 @@
       {
         "lineNumber": 79,
         "author": {
-          "gitId": "-"
+          "gitId": "GaryStu"
         },
         "content": "    }"
       },
       {
         "lineNumber": 80,
         "author": {
-          "gitId": "-"
+          "gitId": "Fractalisk"
         },
         "content": ""
       },
@@ -14021,14 +14343,14 @@
       {
         "lineNumber": 84,
         "author": {
-          "gitId": "Fractalisk"
+          "gitId": "-"
         },
         "content": "    }"
       },
       {
         "lineNumber": 85,
         "author": {
-          "gitId": "Fractalisk"
+          "gitId": "-"
         },
         "content": ""
       },
@@ -14063,14 +14385,14 @@
       {
         "lineNumber": 90,
         "author": {
-          "gitId": "GaryStu"
+          "gitId": "-"
         },
         "content": "    }"
       },
       {
         "lineNumber": 91,
         "author": {
-          "gitId": "GaryStu"
+          "gitId": "-"
         },
         "content": ""
       },
@@ -14147,9 +14469,9 @@
       {
         "lineNumber": 102,
         "author": {
-          "gitId": "-"
+          "gitId": "Fractalisk"
         },
-        "content": "    public void showError(String message) {"
+        "content": "    public void showMessage(String message) {"
       },
       {
         "lineNumber": 103,
@@ -14266,7 +14588,7 @@
       {
         "lineNumber": 119,
         "author": {
-          "gitId": "GaryStu"
+          "gitId": "-"
         },
         "content": ""
       },
@@ -14343,264 +14665,271 @@
       {
         "lineNumber": 130,
         "author": {
-          "gitId": "koushireo"
+          "gitId": "Fractalisk"
         },
-        "content": "        System.out.println(padding + \"This is your daily limit\");"
+        "content": "        System.out.println(padding + \"This is your daily calorie limit: \" + user.getDailyCalorie());"
       },
       {
         "lineNumber": 131,
         "author": {
           "gitId": "koushireo"
         },
-        "content": "        System.out.println(padding + user.getDailyCalorie());"
+        "content": "    }"
       },
       {
         "lineNumber": 132,
         "author": {
           "gitId": "koushireo"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 133,
         "author": {
-          "gitId": "-"
+          "gitId": "Fractalisk"
         },
-        "content": ""
+        "content": "    public void showRemainingCalorie(ArrayList\u003cMeal\u003e mealsOfDay, User user, int remainingCalories) {"
       },
       {
         "lineNumber": 134,
         "author": {
           "gitId": "koushireo"
         },
-        "content": "    public void showRemainingCalorie(ArrayList\u003cMeal\u003e mealsOfDay, User user) {"
-      },
-      {
-        "lineNumber": 135,
-        "author": {
-          "gitId": "Fractalisk"
-        },
-        "content": "        System.out.println(padding + \"You can consume this many calories today\");"
-      },
-      {
-        "lineNumber": 136,
-        "author": {
-          "gitId": "koushireo"
-        },
         "content": "        int limit \u003d user.getDailyCalorie();"
       },
       {
-        "lineNumber": 137,
+        "lineNumber": 135,
         "author": {
           "gitId": "koushireo"
         },
         "content": "        int consumeTotal \u003d 0;"
       },
       {
-        "lineNumber": 138,
+        "lineNumber": 136,
         "author": {
           "gitId": "koushireo"
         },
         "content": "        for (int i \u003d 0; i \u003c mealsOfDay.size(); i +\u003d 1) {"
       },
       {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "koushireo"
+        },
+        "content": "            consumeTotal +\u003d mealsOfDay.get(i).getNutritionalValue().get(\"calorie\");"
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "koushireo"
+        },
+        "content": "        }"
+      },
+      {
         "lineNumber": 139,
         "author": {
-          "gitId": "GaryStu"
+          "gitId": "Fractalisk"
         },
-        "content": "            if (mealsOfDay.get(i).getIsDone()) {"
+        "content": "        if (remainingCalories \u003d\u003d -1) {"
       },
       {
         "lineNumber": 140,
         "author": {
-          "gitId": "koushireo"
+          "gitId": "Fractalisk"
         },
-        "content": "                consumeTotal +\u003d mealsOfDay.get(i).getNutritionalValue().get(\"calorie\");"
+        "content": "            System.out.println(padding + \"You have this many calories left today: \" + (limit - consumeTotal));"
       },
       {
         "lineNumber": 141,
         "author": {
-          "gitId": "koushireo"
+          "gitId": "Fractalisk"
         },
-        "content": "            }"
+        "content": "        } else {"
       },
       {
         "lineNumber": 142,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "            System.out.println(padding + \"You have this many calories left today: \""
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "Fractalisk"
+        },
+        "content": "                    + (remainingCalories - consumeTotal));"
+      },
+      {
+        "lineNumber": 144,
         "author": {
           "gitId": "GaryStu"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 143,
-        "author": {
-          "gitId": "koushireo"
-        },
-        "content": "        System.out.println(padding + Integer.toString(limit - consumeTotal));"
-      },
-      {
-        "lineNumber": 144,
+        "lineNumber": 145,
         "author": {
           "gitId": "koushireo"
         },
         "content": "    }"
-      },
-      {
-        "lineNumber": 145,
-        "author": {
-          "gitId": "GaryStu"
-        },
-        "content": ""
       },
       {
         "lineNumber": 146,
         "author": {
           "gitId": "GaryStu"
         },
-        "content": "    public void showHelp(ArrayList\u003cString\u003e helpLines) {"
+        "content": ""
       },
       {
         "lineNumber": 147,
         "author": {
           "gitId": "GaryStu"
         },
-        "content": "        helpLines.forEach(line -\u003e {"
+        "content": "    public void showHelp(ArrayList\u003cString\u003e helpLines) {"
       },
       {
         "lineNumber": 148,
         "author": {
           "gitId": "GaryStu"
         },
-        "content": "            System.out.println(padding + line);"
+        "content": "        helpLines.forEach(line -\u003e {"
       },
       {
         "lineNumber": 149,
         "author": {
           "gitId": "GaryStu"
         },
-        "content": "        });"
+        "content": "            System.out.println(padding + line);"
       },
       {
         "lineNumber": 150,
         "author": {
           "gitId": "GaryStu"
         },
-        "content": "    }"
+        "content": "        });"
       },
       {
         "lineNumber": 151,
         "author": {
-          "gitId": "Fractalisk"
+          "gitId": "GaryStu"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 152,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "    public void showAddedGoal(Goal goal) {"
+        "content": ""
       },
       {
         "lineNumber": 153,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        System.out.println(padding + \"Got it. I\u0027ve set the goal to be met:\");"
+        "content": "    public void showAddedGoal(Goal goal) {"
       },
       {
         "lineNumber": 154,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "        System.out.println(padding + goal);"
+        "content": "        System.out.println(padding + \"Got it. I\u0027ve set the goal to be met:\");"
       },
       {
         "lineNumber": 155,
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "    }"
+        "content": "        System.out.println(padding + goal);"
       },
       {
         "lineNumber": 156,
         "author": {
-          "gitId": "HashirZahir"
+          "gitId": "Fractalisk"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 157,
         "author": {
           "gitId": "HashirZahir"
         },
-        "content": "    public void showHistory(ArrayList\u003cString\u003e commandHistoryList) {"
+        "content": ""
       },
       {
         "lineNumber": 158,
         "author": {
           "gitId": "HashirZahir"
         },
-        "content": "        if (commandHistoryList.isEmpty()) {"
+        "content": "    public void showHistory(ArrayList\u003cString\u003e commandHistoryList) {"
       },
       {
         "lineNumber": 159,
         "author": {
           "gitId": "HashirZahir"
         },
-        "content": "            System.out.println(padding + \"No commands in history\");"
+        "content": "        if (commandHistoryList.isEmpty()) {"
       },
       {
         "lineNumber": 160,
         "author": {
           "gitId": "HashirZahir"
         },
-        "content": "        } else {"
+        "content": "            System.out.println(padding + \"No commands in history\");"
       },
       {
         "lineNumber": 161,
         "author": {
           "gitId": "HashirZahir"
         },
-        "content": "            System.out.println(padding + \"History of Commands you have typed: \");"
+        "content": "        } else {"
       },
       {
         "lineNumber": 162,
         "author": {
           "gitId": "HashirZahir"
         },
-        "content": "            for (int idx \u003d 0;idx \u003c commandHistoryList.size();idx++) {"
+        "content": "            System.out.println(padding + \"History of Commands you have typed: \");"
       },
       {
         "lineNumber": 163,
         "author": {
           "gitId": "HashirZahir"
         },
-        "content": "                System.out.println(padding + padding + (idx + 1) + \". \" + commandHistoryList.get(idx));"
+        "content": "            for (int idx \u003d 0;idx \u003c commandHistoryList.size();idx++) {"
       },
       {
         "lineNumber": 164,
         "author": {
           "gitId": "HashirZahir"
         },
-        "content": "            }"
+        "content": "                System.out.println(padding + padding + (idx + 1) + \". \" + commandHistoryList.get(idx));"
       },
       {
         "lineNumber": 165,
         "author": {
           "gitId": "HashirZahir"
         },
-        "content": "        }"
+        "content": "            }"
       },
       {
         "lineNumber": 166,
         "author": {
           "gitId": "HashirZahir"
         },
-        "content": "    }"
+        "content": "        }"
       },
       {
         "lineNumber": 167,
+        "author": {
+          "gitId": "HashirZahir"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 168,
         "author": {
           "gitId": "-"
         },
@@ -14608,11 +14937,11 @@
       }
     ],
     "authorContributionMap": {
-      "Fractalisk": 23,
-      "HashirZahir": 31,
-      "GaryStu": 16,
-      "koushireo": 37,
-      "-": 60
+      "Fractalisk": 29,
+      "HashirZahir": 33,
+      "GaryStu": 13,
+      "koushireo": 34,
+      "-": 59
     }
   },
   {
@@ -16000,460 +16329,425 @@
       {
         "lineNumber": 167,
         "author": {
-          "gitId": "Fractalisk"
-        },
-        "content": "        //average kg loss per day should NOT be more than 0.13607787283kg (\u003e0.3 pounds)"
-      },
-      {
-        "lineNumber": 168,
-        "author": {
-          "gitId": "Fractalisk"
-        },
-        "content": "        /*"
-      },
-      {
-        "lineNumber": 169,
-        "author": {
-          "gitId": "Fractalisk"
-        },
-        "content": "        1) find number of days in month"
-      },
-      {
-        "lineNumber": 170,
-        "author": {
-          "gitId": "Fractalisk"
-        },
-        "content": "        2) average calories loss per day (1kg \u003d 7700cal \u003d 7.7kcal)"
-      },
-      {
-        "lineNumber": 171,
-        "author": {
-          "gitId": "Fractalisk"
-        },
-        "content": "         */"
-      },
-      {
-        "lineNumber": 172,
-        "author": {
           "gitId": "koushireo"
         },
         "content": "        this.loseWeight \u003d true;"
       },
       {
-        "lineNumber": 173,
+        "lineNumber": 168,
         "author": {
           "gitId": "koushireo"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 174,
+        "lineNumber": 169,
         "author": {
           "gitId": "koushireo"
         },
         "content": ""
       },
       {
-        "lineNumber": 175,
+        "lineNumber": 170,
         "author": {
           "gitId": "koushireo"
         },
         "content": "    public void setMaintainWeight() {"
       },
       {
-        "lineNumber": 176,
+        "lineNumber": 171,
         "author": {
-          "gitId": "koushireo"
+          "gitId": "Fractalisk"
         },
-        "content": "        this.loseWeight \u003d true;"
+        "content": "        this.loseWeight \u003d false;"
       },
       {
-        "lineNumber": 177,
+        "lineNumber": 172,
         "author": {
           "gitId": "koushireo"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 178,
+        "lineNumber": 173,
         "author": {
           "gitId": "koushireo"
         },
         "content": ""
       },
       {
-        "lineNumber": 179,
+        "lineNumber": 174,
         "author": {
           "gitId": "koushireo"
         },
         "content": "    public String getName() {"
       },
       {
-        "lineNumber": 180,
+        "lineNumber": 175,
         "author": {
           "gitId": "koushireo"
         },
         "content": "        return this.name;"
       },
       {
-        "lineNumber": 181,
+        "lineNumber": 176,
         "author": {
           "gitId": "koushireo"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 182,
+        "lineNumber": 177,
         "author": {
           "gitId": "koushireo"
         },
         "content": ""
       },
       {
-        "lineNumber": 183,
+        "lineNumber": 178,
         "author": {
           "gitId": "koushireo"
         },
         "content": "    public int getAge() {"
       },
       {
-        "lineNumber": 184,
+        "lineNumber": 179,
         "author": {
           "gitId": "koushireo"
         },
         "content": "        return this.age;"
       },
       {
-        "lineNumber": 185,
+        "lineNumber": 180,
         "author": {
           "gitId": "koushireo"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 186,
+        "lineNumber": 181,
         "author": {
           "gitId": "koushireo"
         },
         "content": ""
       },
       {
-        "lineNumber": 187,
+        "lineNumber": 182,
         "author": {
           "gitId": "koushireo"
         },
         "content": "    public int getWeight() {"
       },
       {
-        "lineNumber": 188,
+        "lineNumber": 183,
         "author": {
           "gitId": "koushireo"
         },
         "content": "        return this.weight.get(this.weight.size() - 1).weight;"
       },
       {
-        "lineNumber": 189,
+        "lineNumber": 184,
         "author": {
           "gitId": "koushireo"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 190,
+        "lineNumber": 185,
         "author": {
           "gitId": "koushireo"
         },
         "content": ""
       },
       {
-        "lineNumber": 191,
+        "lineNumber": 186,
         "author": {
           "gitId": "koushireo"
         },
         "content": "    /**"
       },
       {
-        "lineNumber": 192,
+        "lineNumber": 187,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "     * This is a function to obtain all the weight at different date."
       },
       {
-        "lineNumber": 193,
+        "lineNumber": 188,
         "author": {
           "gitId": "koushireo"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 194,
+        "lineNumber": 189,
         "author": {
           "gitId": "koushireo"
         },
         "content": ""
       },
       {
-        "lineNumber": 195,
+        "lineNumber": 190,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "    public ArrayList\u003cTuple\u003e getAllWeight() {"
       },
       {
-        "lineNumber": 196,
+        "lineNumber": 191,
         "author": {
           "gitId": "koushireo"
         },
         "content": "        return this.weight;"
       },
       {
-        "lineNumber": 197,
+        "lineNumber": 192,
         "author": {
           "gitId": "koushireo"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 198,
+        "lineNumber": 193,
         "author": {
           "gitId": "koushireo"
         },
         "content": ""
       },
       {
-        "lineNumber": 199,
+        "lineNumber": 194,
         "author": {
           "gitId": "koushireo"
         },
         "content": "    public int getHeight() {"
       },
       {
-        "lineNumber": 200,
+        "lineNumber": 195,
         "author": {
           "gitId": "koushireo"
         },
         "content": "        return this.height;"
       },
       {
-        "lineNumber": 201,
+        "lineNumber": 196,
         "author": {
           "gitId": "koushireo"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 202,
+        "lineNumber": 197,
         "author": {
           "gitId": "koushireo"
         },
         "content": ""
       },
       {
-        "lineNumber": 203,
+        "lineNumber": 198,
         "author": {
           "gitId": "koushireo"
         },
         "content": "    public int getActivityLevel() {"
       },
       {
-        "lineNumber": 204,
+        "lineNumber": 199,
         "author": {
           "gitId": "koushireo"
         },
         "content": "        return this.activityLevel;"
       },
       {
-        "lineNumber": 205,
+        "lineNumber": 200,
         "author": {
           "gitId": "koushireo"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 206,
+        "lineNumber": 201,
         "author": {
           "gitId": "koushireo"
         },
         "content": ""
       },
       {
-        "lineNumber": 207,
+        "lineNumber": 202,
         "author": {
           "gitId": "koushireo"
         },
         "content": "    public int getDailyCalorie() {"
       },
       {
-        "lineNumber": 208,
+        "lineNumber": 203,
         "author": {
           "gitId": "koushireo"
         },
         "content": "        double calorie;"
       },
       {
-        "lineNumber": 209,
+        "lineNumber": 204,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "        if (this.sex \u003d\u003d Gender.MALE) {"
       },
       {
-        "lineNumber": 210,
+        "lineNumber": 205,
         "author": {
           "gitId": "koushireo"
         },
         "content": "            calorie \u003d 10 * getWeight() + 6.25 * getHeight() + 5 * getAge() + 5;"
       },
       {
-        "lineNumber": 211,
+        "lineNumber": 206,
         "author": {
           "gitId": "koushireo"
         },
         "content": "        } else {"
       },
       {
-        "lineNumber": 212,
+        "lineNumber": 207,
         "author": {
           "gitId": "koushireo"
         },
         "content": "            calorie \u003d 10 * getWeight() + 6.25 * getHeight() + 5 * getAge() - 161;"
       },
       {
-        "lineNumber": 213,
+        "lineNumber": 208,
         "author": {
           "gitId": "koushireo"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 214,
+        "lineNumber": 209,
         "author": {
           "gitId": "koushireo"
         },
         "content": "        return (int)(((this.loseWeight) ? 0.8 : 1) * this.factor[this.activityLevel] * calorie);"
       },
       {
-        "lineNumber": 215,
+        "lineNumber": 210,
         "author": {
           "gitId": "koushireo"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 216,
+        "lineNumber": 211,
         "author": {
           "gitId": "koushireo"
         },
         "content": ""
       },
       {
-        "lineNumber": 217,
+        "lineNumber": 212,
         "author": {
           "gitId": "koushireo"
         },
         "content": "    public boolean getLoseWeight() {"
       },
       {
-        "lineNumber": 218,
+        "lineNumber": 213,
         "author": {
           "gitId": "koushireo"
         },
         "content": "        return this.loseWeight;"
       },
       {
-        "lineNumber": 219,
+        "lineNumber": 214,
         "author": {
           "gitId": "koushireo"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 220,
+        "lineNumber": 215,
         "author": {
           "gitId": "koushireo"
         },
         "content": ""
       },
       {
-        "lineNumber": 221,
+        "lineNumber": 216,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "    public Gender getSex() {"
       },
       {
-        "lineNumber": 222,
+        "lineNumber": 217,
         "author": {
           "gitId": "koushireo"
         },
         "content": "        return this.sex;"
       },
       {
-        "lineNumber": 223,
+        "lineNumber": 218,
         "author": {
           "gitId": "koushireo"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 224,
+        "lineNumber": 219,
         "author": {
           "gitId": "koushireo"
         },
         "content": ""
       },
       {
-        "lineNumber": 225,
+        "lineNumber": 220,
         "author": {
           "gitId": "koushireo"
         },
         "content": "    /**"
       },
       {
-        "lineNumber": 226,
+        "lineNumber": 221,
         "author": {
           "gitId": "Fractalisk"
         },
         "content": "     * This is a function to check if it\u0027s an empty profile."
       },
       {
-        "lineNumber": 227,
+        "lineNumber": 222,
         "author": {
           "gitId": "koushireo"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 228,
+        "lineNumber": 223,
         "author": {
           "gitId": "koushireo"
         },
         "content": ""
       },
       {
-        "lineNumber": 229,
+        "lineNumber": 224,
         "author": {
           "gitId": "koushireo"
         },
         "content": "    public boolean getIsSetup() {"
       },
       {
-        "lineNumber": 230,
+        "lineNumber": 225,
         "author": {
           "gitId": "koushireo"
         },
         "content": "        return this.isSetup;"
       },
       {
-        "lineNumber": 231,
+        "lineNumber": 226,
         "author": {
           "gitId": "koushireo"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 232,
+        "lineNumber": 227,
         "author": {
           "gitId": "koushireo"
         },
@@ -16461,8 +16755,8 @@
       }
     ],
     "authorContributionMap": {
-      "Fractalisk": 25,
-      "koushireo": 207
+      "Fractalisk": 21,
+      "koushireo": 206
     }
   },
   {
@@ -17002,7 +17296,7 @@
         "author": {
           "gitId": "Fractalisk"
         },
-        "content": "            ui.showError(e.getMessage());"
+        "content": "            ui.showMessage(e.getMessage());"
       },
       {
         "lineNumber": 46,

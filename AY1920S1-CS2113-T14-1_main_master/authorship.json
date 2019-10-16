@@ -538,7 +538,7 @@
       {
         "lineNumber": 77,
         "author": {
-          "gitId": "JacobToresson"
+          "gitId": "gowgos5"
         },
         "content": "    implementation \u0027com.google.code.gson:gson:2.8.6\u0027"
       },
@@ -551,9 +551,8 @@
       }
     ],
     "authorContributionMap": {
-      "gowgos5": 17,
+      "gowgos5": 18,
       "aquohn": 17,
-      "JacobToresson": 1,
       "-": 43
     }
   },
@@ -1709,119 +1708,119 @@
         "author": {
           "gitId": "aquohn"
         },
-        "content": "/**"
+        "content": "import java.util.HashMap;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "aquohn"
         },
-        "content": " * Abstract class for commands that involve an argument."
+        "content": ""
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "aquohn"
         },
-        "content": " */"
+        "content": "/**"
       },
       {
         "lineNumber": 9,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": " * Abstract class for commands that involve an argument."
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 11,
         "author": {
           "gitId": "-"
         },
         "content": "public abstract class ArgCommand extends Command {"
       },
       {
-        "lineNumber": 10,
-        "author": {
-          "gitId": "gowgos5"
-        },
-        "content": "    protected String arg; //argument supplied to the command"
-      },
-      {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "aquohn"
-        },
-        "content": "    protected String emptyArgMsg; //error message if the argument is empty"
-      },
-      {
         "lineNumber": 12,
         "author": {
-          "gitId": "-"
+          "gitId": "aquohn"
         },
         "content": ""
       },
       {
         "lineNumber": 13,
         "author": {
-          "gitId": "-"
+          "gitId": "aquohn"
         },
-        "content": "    /**"
+        "content": "    protected ArgLevel cmdArgLevel; //whether or not the command itself is required to have an argument"
       },
       {
         "lineNumber": 14,
         "author": {
-          "gitId": "-"
+          "gitId": "aquohn"
         },
-        "content": "     * Parse the input string entered by the user."
+        "content": "    protected String arg \u003d null; //argument supplied to the command"
       },
       {
         "lineNumber": 15,
         "author": {
-          "gitId": "-"
+          "gitId": "aquohn"
         },
-        "content": "     *"
+        "content": "    protected String emptyArgMsg; //error message if the argument is empty"
       },
       {
         "lineNumber": 16,
         "author": {
-          "gitId": "-"
+          "gitId": "aquohn"
         },
-        "content": "     * @param inputStr The input provided by the user for this command, without the command keyword and stripped."
+        "content": "    protected HashMap\u003cString, String\u003e switchVals \u003d new HashMap\u003cString, String\u003e(); //hashmap of switch parameters"
       },
       {
         "lineNumber": 17,
         "author": {
-          "gitId": "-"
+          "gitId": "aquohn"
         },
-        "content": "     * @throws DukeException If the input string entered is empty."
+        "content": "    protected HashMap\u003cString, ArgLevel\u003e switches \u003d new HashMap\u003cString, ArgLevel\u003e(); //list of recognised switches"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": ""
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "-"
         },
-        "content": "    public void parse(String inputStr) throws DukeException {"
+        "content": "    @Override"
       },
       {
         "lineNumber": 20,
         "author": {
-          "gitId": "-"
+          "gitId": "aquohn"
         },
-        "content": "        arg \u003d inputStr.strip();"
+        "content": "    public void execute(DukeCore core) throws DukeException {"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "-"
         },
-        "content": "        if (arg.length() \u003d\u003d 0) {"
+        "content": "        if (arg \u003d\u003d null) {"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "-"
         },
-        "content": "            throw new DukeException(emptyArgMsg);"
+        "content": "            throw new DukeException(\"Command needs to parse argument first!\");"
       },
       {
         "lineNumber": 23,
@@ -1840,54 +1839,89 @@
       {
         "lineNumber": 25,
         "author": {
-          "gitId": "-"
+          "gitId": "aquohn"
         },
         "content": ""
       },
       {
         "lineNumber": 26,
         "author": {
-          "gitId": "-"
+          "gitId": "aquohn"
         },
-        "content": "    @Override"
+        "content": "    String getEmptyArgMsg() {"
       },
       {
         "lineNumber": 27,
         "author": {
-          "gitId": "gowgos5"
+          "gitId": "aquohn"
         },
-        "content": "    public void execute(DukeCore core) throws DukeException, DukeException {"
+        "content": "        return emptyArgMsg;"
       },
       {
         "lineNumber": 28,
         "author": {
-          "gitId": "-"
-        },
-        "content": "        if (arg \u003d\u003d null) {"
-      },
-      {
-        "lineNumber": 29,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            throw new DukeException(\"Command needs to parse argument first!\");"
-      },
-      {
-        "lineNumber": 30,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "-"
+          "gitId": "aquohn"
         },
         "content": "    }"
       },
       {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "    HashMap\u003cString, ArgLevel\u003e getSwitches() {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        return switches;"
+      },
+      {
         "lineNumber": 32,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "    void setSwitchVals(HashMap\u003cString, String\u003e switchVals) {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        this.switchVals.putAll(switchVals);"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 37,
         "author": {
           "gitId": "-"
         },
@@ -1895,9 +1929,66 @@
       }
     ],
     "authorContributionMap": {
-      "gowgos5": 2,
-      "aquohn": 5,
-      "-": 25
+      "aquohn": 25,
+      "-": 12
+    }
+  },
+  {
+    "path": "src/main/java/duke/command/ArgLevel.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "package duke.command;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "enum ArgLevel {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "    NONE,"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "    REQUIRED,"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "    OPTIONAL"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "aquohn": 7
     }
   },
   {
@@ -2037,705 +2128,474 @@
       {
         "lineNumber": 5,
         "author": {
-          "gitId": "-"
+          "gitId": "aquohn"
         },
-        "content": "/**"
+        "content": "// TODO: Write different commands for different contexts"
       },
       {
         "lineNumber": 6,
         "author": {
-          "gitId": "-"
+          "gitId": "aquohn"
         },
-        "content": " * Maintains the associations between command keywords and commands (e.g. \"list\" -\u003e ListCommand). For use in parsing"
+        "content": ""
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "-"
         },
-        "content": " * user input."
+        "content": "/**"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "-"
         },
-        "content": " */"
+        "content": " * Maintains the associations between command keywords and commands (e.g. \"list\" -\u003e ListCommand). For use in parsing"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "-"
         },
-        "content": "public enum Cmd {"
+        "content": " * user input."
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "-"
         },
-        "content": "    LIST(\"list\") {"
+        "content": " */"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "-"
         },
-        "content": "        public Command getCommand() {"
+        "content": "public enum Cmd {"
       },
       {
         "lineNumber": 12,
         "author": {
-          "gitId": "-"
+          "gitId": "aquohn"
         },
-        "content": "            return new ListCommand();"
+        "content": ""
       },
       {
         "lineNumber": 13,
         "author": {
-          "gitId": "-"
+          "gitId": "aquohn"
         },
-        "content": "        }"
+        "content": "    DOCTOR(\"doctor\") {"
       },
       {
         "lineNumber": 14,
         "author": {
-          "gitId": "-"
-        },
-        "content": "    },"
-      },
-      {
-        "lineNumber": 15,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    BYE(\"bye\") {"
-      },
-      {
-        "lineNumber": 16,
-        "author": {
-          "gitId": "-"
+          "gitId": "aquohn"
         },
         "content": "        public Command getCommand() {"
       },
       {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            return new DoctorCommand();"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        }"
+      },
+      {
         "lineNumber": 17,
         "author": {
-          "gitId": "-"
+          "gitId": "aquohn"
         },
-        "content": "            return new ByeCommand();"
+        "content": "    },"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "    LIST(\"list\") {"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "-"
         },
-        "content": "    },"
+        "content": "        public Command getCommand() {"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "-"
         },
-        "content": "    DONE(\"done\") {"
+        "content": "            return new ListCommand();"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "-"
         },
-        "content": "        public Command getCommand() {"
+        "content": "        }"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new DoneCommand();"
+        "content": "    },"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "    BYE(\"bye\") {"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "-"
         },
-        "content": "    },"
+        "content": "        public Command getCommand() {"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "-"
         },
-        "content": "    TODO(\"todo\") {"
+        "content": "            return new ByeCommand();"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "-"
         },
-        "content": "        public Command getCommand() {"
+        "content": "        }"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new NewToDoCommand();"
+        "content": "    },"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "    DONE(\"done\") {"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "-"
         },
-        "content": "    },"
+        "content": "        public Command getCommand() {"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "-"
         },
-        "content": "    EVENT(\"event\") {"
+        "content": "            return new DoneCommand();"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "-"
         },
-        "content": "        public Command getCommand() {"
+        "content": "        }"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new NewEventCommand();"
+        "content": "    },"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "    DEL(\"delete\") {"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "-"
         },
-        "content": "    },"
+        "content": "        public Command getCommand() {"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "-"
         },
-        "content": "    DLINE(\"deadline\") {"
+        "content": "            return new DeleteCommand();"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "-"
         },
-        "content": "        public Command getCommand() {"
+        "content": "        }"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new NewDeadlineCommand();"
+        "content": "    },"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "    FIND(\"find\") {"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "-"
         },
-        "content": "    },"
+        "content": "        public Command getCommand() {"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "-"
         },
-        "content": "    RECUR(\"recurring\") {"
+        "content": "            return new FindCommand();"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "-"
         },
-        "content": "        public Command getCommand() {"
+        "content": "        }"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new NewRecurringTaskCommand();"
+        "content": "    },"
       },
       {
         "lineNumber": 43,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 44,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    },"
-      },
-      {
-        "lineNumber": 45,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    DEL(\"delete\") {"
-      },
-      {
-        "lineNumber": 46,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        public Command getCommand() {"
-      },
-      {
-        "lineNumber": 47,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            return new DeleteCommand();"
-      },
-      {
-        "lineNumber": 48,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 49,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    },"
-      },
-      {
-        "lineNumber": 50,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    FIND(\"find\") {"
-      },
-      {
-        "lineNumber": 51,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        public Command getCommand() {"
-      },
-      {
-        "lineNumber": 52,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            return new FindCommand();"
-      },
-      {
-        "lineNumber": 53,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 54,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    },"
-      },
-      {
-        "lineNumber": 55,
         "author": {
           "gitId": "gowgos5"
         },
         "content": "    VIEW(\"view\") {"
       },
       {
-        "lineNumber": 56,
+        "lineNumber": 44,
         "author": {
-          "gitId": "gowgos5"
+          "gitId": "-"
         },
         "content": "        public Command getCommand() {"
       },
       {
-        "lineNumber": 57,
+        "lineNumber": 45,
         "author": {
           "gitId": "gowgos5"
         },
         "content": "            return new ViewCommand();"
       },
       {
-        "lineNumber": 58,
-        "author": {
-          "gitId": "gowgos5"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 59,
-        "author": {
-          "gitId": "gowgos5"
-        },
-        "content": "    },"
-      },
-      {
-        "lineNumber": 60,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    SNOOZE(\"snooze\") {"
-      },
-      {
-        "lineNumber": 61,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        public Command getCommand() {"
-      },
-      {
-        "lineNumber": 62,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            return new SnoozeCommand();"
-      },
-      {
-        "lineNumber": 63,
+        "lineNumber": 46,
         "author": {
           "gitId": "-"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 64,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    },"
-      },
-      {
-        "lineNumber": 65,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    REMIND(\"remind\") {"
-      },
-      {
-        "lineNumber": 66,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        public Command getCommand() {"
-      },
-      {
-        "lineNumber": 67,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            return new NewReminderCommand();"
-      },
-      {
-        "lineNumber": 68,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 69,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    },"
-      },
-      {
-        "lineNumber": 70,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    FORP(\"fixedduration\") {"
-      },
-      {
-        "lineNumber": 71,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        public Command getCommand() {"
-      },
-      {
-        "lineNumber": 72,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            return new NewFixedDurationCommand();"
-      },
-      {
-        "lineNumber": 73,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 74,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    },"
-      },
-      {
-        "lineNumber": 75,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    BETWN(\"doin\") {"
-      },
-      {
-        "lineNumber": 76,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        @Override"
-      },
-      {
-        "lineNumber": 77,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        public Command getCommand() {"
-      },
-      {
-        "lineNumber": 78,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            return new NewDoWithinPeriodCommand();"
-      },
-      {
-        "lineNumber": 79,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 80,
+        "lineNumber": 47,
         "author": {
           "gitId": "-"
         },
         "content": "    };"
       },
       {
-        "lineNumber": 81,
+        "lineNumber": 48,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 82,
+        "lineNumber": 49,
         "author": {
           "gitId": "-"
         },
         "content": "    private final String cmdStr;"
       },
       {
-        "lineNumber": 83,
+        "lineNumber": 50,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 84,
+        "lineNumber": 51,
         "author": {
           "gitId": "-"
         },
         "content": "    /**"
       },
       {
-        "lineNumber": 85,
+        "lineNumber": 52,
         "author": {
           "gitId": "-"
         },
         "content": "     * Creates the Cmd enum instance and associates the specified keyword with it."
       },
       {
-        "lineNumber": 86,
+        "lineNumber": 53,
         "author": {
           "gitId": "-"
         },
         "content": "     *"
       },
       {
-        "lineNumber": 87,
+        "lineNumber": 54,
         "author": {
           "gitId": "-"
         },
         "content": "     * @param cmdStr The keyword to be associated with the specified task type."
       },
       {
-        "lineNumber": 88,
+        "lineNumber": 55,
         "author": {
           "gitId": "-"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 89,
+        "lineNumber": 56,
         "author": {
           "gitId": "-"
         },
         "content": "    Cmd(final String cmdStr) {"
       },
       {
-        "lineNumber": 90,
+        "lineNumber": 57,
         "author": {
           "gitId": "-"
         },
         "content": "        this.cmdStr \u003d cmdStr;"
       },
       {
-        "lineNumber": 91,
+        "lineNumber": 58,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 92,
+        "lineNumber": 59,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 93,
+        "lineNumber": 60,
         "author": {
           "gitId": "-"
         },
         "content": "    @Override"
       },
       {
-        "lineNumber": 94,
+        "lineNumber": 61,
         "author": {
           "gitId": "-"
         },
         "content": "    public String toString() {"
       },
       {
-        "lineNumber": 95,
+        "lineNumber": 62,
         "author": {
           "gitId": "-"
         },
         "content": "        return cmdStr;"
       },
       {
-        "lineNumber": 96,
+        "lineNumber": 63,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 97,
+        "lineNumber": 64,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 98,
+        "lineNumber": 65,
         "author": {
           "gitId": "-"
         },
         "content": "    /**"
       },
       {
-        "lineNumber": 99,
+        "lineNumber": 66,
         "author": {
           "gitId": "-"
         },
         "content": "     * Creates an empty (all parameters null) new Command of the specified type, to be loaded with data using its"
       },
       {
-        "lineNumber": 100,
+        "lineNumber": 67,
         "author": {
           "gitId": "-"
         },
         "content": "     * parse method."
       },
       {
-        "lineNumber": 101,
+        "lineNumber": 68,
         "author": {
           "gitId": "-"
         },
         "content": "     *"
       },
       {
-        "lineNumber": 102,
+        "lineNumber": 69,
         "author": {
           "gitId": "-"
         },
         "content": "     * @return A new Command of the specified type."
       },
       {
-        "lineNumber": 103,
+        "lineNumber": 70,
         "author": {
           "gitId": "-"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 104,
+        "lineNumber": 71,
         "author": {
           "gitId": "-"
         },
         "content": "    public abstract Command getCommand();"
       },
       {
-        "lineNumber": 105,
+        "lineNumber": 72,
         "author": {
           "gitId": "-"
         },
@@ -2743,8 +2603,9 @@
       }
     ],
     "authorContributionMap": {
-      "gowgos5": 5,
-      "-": 100
+      "gowgos5": 2,
+      "aquohn": 8,
+      "-": 62
     }
   },
   {
@@ -2819,91 +2680,91 @@
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Parses the user\u0027s input and loads the parameters for this Command from it."
+        "content": "    /**"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "-"
         },
-        "content": "     *"
+        "content": "     * Runs the command using the parameters loaded with Command\u0027s parse method."
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @param inputStr The input provided by the user for this command, without the command keyword and stripped."
+        "content": "     *"
       },
       {
         "lineNumber": 14,
         "author": {
-          "gitId": "-"
+          "gitId": "aquohn"
         },
-        "content": "     * @throws DukeException If input was in the wrong format, contained invalid values, or was otherwise unable to be"
+        "content": "     * @param core The DukeCore object for this command to operate on."
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "-"
         },
-        "content": "     *                       parsed."
+        "content": "     * @throws DukeException If command fails to execute."
       },
       {
         "lineNumber": 16,
         "author": {
-          "gitId": "-"
+          "gitId": "aquohn"
         },
-        "content": "     */"
+        "content": "     * @see DukeCore"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "-"
         },
-        "content": "    public void parse(String inputStr) throws DukeException {"
+        "content": "     */"
       },
       {
         "lineNumber": 18,
         "author": {
-          "gitId": "gowgos5"
+          "gitId": "aquohn"
         },
-        "content": "        //TODO"
+        "content": "    public abstract void execute(DukeCore core) throws DukeException;"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": "     * Runs the command using the parameters loaded with Command\u0027s parse method, but without any changes to storage and"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Runs the command using the parameters loaded with Command\u0027s parse method."
+        "content": "     * returning output that would ordinarily be printed, although not necessarily in the same format."
       },
       {
         "lineNumber": 23,
@@ -2924,122 +2785,87 @@
         "author": {
           "gitId": "-"
         },
-        "content": "     * @throws DukeException If command fails to execute."
+        "content": "     * @return String containing output would be printed during ordinary execution."
       },
       {
         "lineNumber": 26,
         "author": {
-          "gitId": "aquohn"
-        },
-        "content": "     * @see DukeCore"
-      },
-      {
-        "lineNumber": 27,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 28,
-        "author": {
-          "gitId": "aquohn"
-        },
-        "content": "    public abstract void execute(DukeCore core) throws DukeException;"
-      },
-      {
-        "lineNumber": 29,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 30,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * Runs the command using the parameters loaded with Command\u0027s parse method, but without any changes to storage and"
-      },
-      {
-        "lineNumber": 32,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * returning output that would ordinarily be printed, although not necessarily in the same format."
-      },
-      {
-        "lineNumber": 33,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     *"
-      },
-      {
-        "lineNumber": 34,
-        "author": {
-          "gitId": "aquohn"
-        },
-        "content": "     * @param core The DukeCore object for this command to operate on."
-      },
-      {
-        "lineNumber": 35,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * @return String containing output would be printed during ordinary execution."
-      },
-      {
-        "lineNumber": 36,
-        "author": {
           "gitId": "-"
         },
         "content": "     * @throws DukeException If command fails to execute."
       },
       {
-        "lineNumber": 37,
+        "lineNumber": 27,
         "author": {
           "gitId": "aquohn"
         },
         "content": "     * @see DukeCore"
       },
       {
-        "lineNumber": 38,
+        "lineNumber": 28,
         "author": {
           "gitId": "-"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 39,
+        "lineNumber": 29,
         "author": {
           "gitId": "aquohn"
         },
         "content": "    public String silentExecute(DukeCore core) throws DukeException {"
       },
       {
-        "lineNumber": 40,
+        "lineNumber": 30,
         "author": {
           "gitId": "-"
         },
         "content": "        return null;"
       },
       {
-        "lineNumber": 41,
+        "lineNumber": 31,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 42,
+        "lineNumber": 32,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "    //TODO: replace with abstract function that actually prints excerpts from the user guide"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "    public String getHelp() {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        return \"https://github.com/AY1920S1-CS2113-T14-1/main/blob/master/docs/UserGuide.adoc\";"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 37,
         "author": {
           "gitId": "-"
         },
@@ -3047,9 +2873,8 @@
       }
     ],
     "authorContributionMap": {
-      "gowgos5": 1,
-      "aquohn": 7,
-      "-": 34
+      "aquohn": 12,
+      "-": 25
     }
   },
   {
@@ -3186,6 +3011,176 @@
     "authorContributionMap": {
       "aquohn": 5,
       "-": 13
+    }
+  },
+  {
+    "path": "src/main/java/duke/command/DoctorCommand.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "package duke.command;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "import duke.DukeCore;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": " * Stub Command for testing new Parser."
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "public class DoctorCommand extends ArgCommand {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "     * Constructor for DoctorCommand command, specifying 1 possible switch."
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "    public DoctorCommand() {"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        cmdArgLevel \u003d ArgLevel.OPTIONAL;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        emptyArgMsg \u003d \"You didn\u0027t tell me what to do!\";"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        switches.put(\"switch\", ArgLevel.OPTIONAL);"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "    public void execute(DukeCore core) {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        core.ui.print(\"Argument: \" + arg + System.lineSeparator() + \"Switch: \" + switchVals.get(\"switch\"));"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "aquohn": 23
     }
   },
   {
@@ -3696,94 +3691,87 @@
         "author": {
           "gitId": "-"
         },
-        "content": "        super.parse(inputStr);"
+        "content": ""
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        //remove excess whitespace between commands"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "-"
         },
-        "content": "        //remove excess whitespace between commands"
+        "content": "        //primarily to prevent space-delimited commands from throwing errors if there are two spaces"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "-"
         },
-        "content": "        //primarily to prevent space-delimited commands from throwing errors if there are two spaces"
+        "content": "        argv \u003d arg.split(\"\\\\s*\" + delim + \"\\\\s*\");"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "-"
         },
-        "content": "        argv \u003d arg.split(\"\\\\s*\" + delim + \"\\\\s*\");"
+        "content": "        if (argv.length \u003c argc) {"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "-"
         },
-        "content": "        if (argv.length \u003c argc) {"
+        "content": "            argv \u003d null;"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "-"
         },
-        "content": "            argv \u003d null;"
+        "content": "            throw new DukeException(invalidArgMsg);"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "-"
         },
-        "content": "            throw new DukeException(invalidArgMsg);"
+        "content": "        }"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "        for (int i \u003d 0; i \u003c argv.length; ++i) {"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "-"
         },
-        "content": "        for (int i \u003d 0; i \u003c argv.length; ++i) {"
+        "content": "            argv[i] \u003d argv[i].strip();"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "-"
         },
-        "content": "            argv[i] \u003d argv[i].strip();"
+        "content": "        }"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 33,
-        "author": {
-          "gitId": "-"
-        },
         "content": "    }"
       },
       {
-        "lineNumber": 34,
+        "lineNumber": 33,
         "author": {
           "gitId": "-"
         },
@@ -3792,7 +3780,7 @@
     ],
     "authorContributionMap": {
       "gowgos5": 4,
-      "-": 30
+      "-": 29
     }
   },
   {
@@ -6902,6 +6890,1962 @@
     }
   },
   {
+    "path": "src/main/java/duke/command/Parser.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "package duke.command;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import duke.exception.DukeException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "import duke.exception.DukeHelpException;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.util.HashMap;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "import static duke.command.Parser.ParseState.EMPTY;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "import static java.lang.Math.min;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "public class Parser {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "    enum ParseState {"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        EMPTY, //not parsing anything currently"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        ARG, //parsing a single-word argument for a switch or the command itself"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        STRING, //parsing a quoted string"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        SWITCH //parsing a switch name"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private final HashMap\u003cString, Cmd\u003e commandMap \u003d new HashMap\u003cString, Cmd\u003e();"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "    private ArgCommand currCommand;"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "    private StringBuilder elementBuilder;"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "    private ParseState state;"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "    private String currSwitch;"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "    private boolean isEscaped;"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "    private HashMap\u003cString, ArgLevel\u003e switches;"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "    private HashMap\u003cString, String\u003e switchVals;"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Constructs a new Parser, generating a HashMap from Cmd enum values to allow fast lookup of command types."
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public Parser() {"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        for (Cmd cmd : Cmd.values()) {"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            commandMap.put(cmd.toString(), cmd);"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Creates a new Command of the type requested by the user, and extracts the necessary data for the command from"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "     * the arguments. Literal line separators in the text will be converted to \\n for consistency."
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @param inputStr The input to the command line"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @return A new instance of the Command object requested"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @throws DukeException If there is no matching command or the arguments do not meet the command\u0027s requirements."
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public Command parse(String inputStr) throws DukeException {"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        inputStr \u003d inputStr.replace(\"\\t\", \"    \"); //sanitise input"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        int spaceIdx \u003d inputStr.indexOf(\" \");"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        int sepIdx \u003d inputStr.indexOf(System.lineSeparator());"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        String cmdStr \u003d inputStr;"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        if (!(spaceIdx \u003d\u003d -1 \u0026\u0026 sepIdx \u003d\u003d -1)) {"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            if (spaceIdx \u003d\u003d -1) {"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "                cmdStr \u003d inputStr.substring(0, sepIdx);"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            } else if (sepIdx \u003d\u003d -1) {"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "                cmdStr \u003d inputStr.substring(0, spaceIdx);"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            } else {"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "                cmdStr \u003d inputStr.substring(0, min(sepIdx, spaceIdx));"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        Cmd cmd \u003d commandMap.get(cmdStr);"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        if (cmd \u003d\u003d null) {"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            throw new DukeException(\"I\u0027m sorry, but I don\u0027t recognise this command: \" + cmdStr);"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        Command command \u003d cmd.getCommand();"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        // TODO: autocorrect system"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        // trim command and first space after it from input if needed, and standardise newlines"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        if (command instanceof ArgCommand) { // stripping not required otherwise"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            currCommand \u003d (ArgCommand) command;"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            inputStr \u003d inputStr.replaceAll(\"(\\\\r\\\\n|\\\\n|\\\\r)\", \"\\n\");"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            parseArgument(inputStr.substring(cmdStr.length()));"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return command;"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "     * Parses the user\u0027s input after the Command name and loads the parameters for the Command from it."
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "     * @param inputStr The input provided by the user for this command, without the command keyword and stripped."
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "     * @throws DukeException If input was in the wrong format, contained invalid values, or was otherwise unable to be"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "     *                       parsed."
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "    private void parseArgument(String inputStr) throws DukeException {"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        assert (!inputStr.contains(\"\\r\"));"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        if (inputStr.length() \u003d\u003d 0) {"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            throw new DukeException(currCommand.getEmptyArgMsg());"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        state \u003d EMPTY;"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        currSwitch \u003d null;"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        switches \u003d currCommand.getSwitches();"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        switchVals \u003d new HashMap\u003cString, String\u003e();"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        elementBuilder \u003d new StringBuilder();"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        isEscaped \u003d false;"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        //FSM :D"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        for (int i \u003d 0; i \u003c inputStr.length(); ++i) {"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            char curr \u003d inputStr.charAt(i);"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            switch (state) {"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            case EMPTY:"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "                handleEmpty(curr);"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            case ARG:"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "                handleArg(curr);"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            case STRING:"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "                handleString(curr);"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            case SWITCH:"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "                handleSwitch(curr);"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            default:"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "                throw new DukeException(\"Invalid parser state!\");"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        //cleanup and check if states exited correctly"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        switch (state) {"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        case EMPTY:"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            break;"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        case ARG:"
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            writeElement();"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            break;"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        case STRING:"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            // TODO: disambiguate/autocorrect?"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            throw new DukeHelpException(\"String in argument was not closed: \" + elementBuilder.toString(),"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "                    currCommand);"
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        case SWITCH:"
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            addSwitch();"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            break;"
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        default:"
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            throw new DukeException(\"Invalid parser state!\");"
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        checkCommandValid();"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        currCommand.setSwitchVals(switchVals);"
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "    private void handleEmpty(char curr) throws DukeHelpException {"
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        switch (curr) {"
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        case \u0027-\u0027:"
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            state \u003d ParseState.SWITCH;"
+      },
+      {
+        "lineNumber": 142,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            break;"
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        case \u0027\"\u0027:"
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            checkInputAllowed();"
+      },
+      {
+        "lineNumber": 145,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            state \u003d ParseState.STRING;"
+      },
+      {
+        "lineNumber": 146,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            break;"
+      },
+      {
+        "lineNumber": 147,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        case \u0027\\n\u0027: //fallthrough"
+      },
+      {
+        "lineNumber": 148,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        case \u0027 \u0027: //skip spaces"
+      },
+      {
+        "lineNumber": 149,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            break;"
+      },
+      {
+        "lineNumber": 150,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        default:"
+      },
+      {
+        "lineNumber": 151,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            checkInputAllowed();"
+      },
+      {
+        "lineNumber": 152,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            elementBuilder.append(curr);"
+      },
+      {
+        "lineNumber": 153,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            state \u003d ParseState.ARG;"
+      },
+      {
+        "lineNumber": 154,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            break;"
+      },
+      {
+        "lineNumber": 155,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 156,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 157,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 158,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "    private void handleArg(char curr) throws DukeException {"
+      },
+      {
+        "lineNumber": 159,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        switch (curr) {"
+      },
+      {
+        "lineNumber": 160,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        case \u0027\"\u0027:"
+      },
+      {
+        "lineNumber": 161,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            if (!isEscaped) {"
+      },
+      {
+        "lineNumber": 162,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "                throw new DukeException(\"Unescaped double quotes in argument: \" + elementBuilder.toString());"
+      },
+      {
+        "lineNumber": 163,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            } //fallthrough"
+      },
+      {
+        "lineNumber": 164,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        case \u0027-\u0027:"
+      },
+      {
+        "lineNumber": 165,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            if (!isEscaped) {"
+      },
+      {
+        "lineNumber": 166,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "                throw new DukeException(\"Unescaped hyphen in argument: \" + elementBuilder.toString());"
+      },
+      {
+        "lineNumber": 167,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            } //fallthrough"
+      },
+      {
+        "lineNumber": 168,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        case \u0027\\\\\u0027:"
+      },
+      {
+        "lineNumber": 169,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            if (!isEscaped) {"
+      },
+      {
+        "lineNumber": 170,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "                isEscaped \u003d true;"
+      },
+      {
+        "lineNumber": 171,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 172,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            } //fallthrough"
+      },
+      {
+        "lineNumber": 173,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        case \u0027\\n\u0027: //fallthrough"
+      },
+      {
+        "lineNumber": 174,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        case \u0027 \u0027:"
+      },
+      {
+        "lineNumber": 175,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            if (!isEscaped) {"
+      },
+      {
+        "lineNumber": 176,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "                writeElement();"
+      },
+      {
+        "lineNumber": 177,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 178,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            } //fallthrough"
+      },
+      {
+        "lineNumber": 179,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        default:"
+      },
+      {
+        "lineNumber": 180,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            isEscaped \u003d false;"
+      },
+      {
+        "lineNumber": 181,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            elementBuilder.append(curr);"
+      },
+      {
+        "lineNumber": 182,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            break;"
+      },
+      {
+        "lineNumber": 183,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 184,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 185,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 186,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "    private void handleString(char curr) throws DukeHelpException {"
+      },
+      {
+        "lineNumber": 187,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        switch (curr) {"
+      },
+      {
+        "lineNumber": 188,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        case \u0027\"\u0027:"
+      },
+      {
+        "lineNumber": 189,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            if (!isEscaped) {"
+      },
+      {
+        "lineNumber": 190,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "                writeElement();"
+      },
+      {
+        "lineNumber": 191,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 192,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            } //fallthrough"
+      },
+      {
+        "lineNumber": 193,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        case \u0027\\\\\u0027:"
+      },
+      {
+        "lineNumber": 194,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            if (!isEscaped) {"
+      },
+      {
+        "lineNumber": 195,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "                isEscaped \u003d true;"
+      },
+      {
+        "lineNumber": 196,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 197,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            } //fallthrough"
+      },
+      {
+        "lineNumber": 198,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        default:"
+      },
+      {
+        "lineNumber": 199,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            isEscaped \u003d false;"
+      },
+      {
+        "lineNumber": 200,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            elementBuilder.append(curr);"
+      },
+      {
+        "lineNumber": 201,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            break;"
+      },
+      {
+        "lineNumber": 202,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 203,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 204,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 205,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "    // TODO: requires major rewrite for autocorrect"
+      },
+      {
+        "lineNumber": 206,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "    private void handleSwitch(char curr) throws DukeHelpException {"
+      },
+      {
+        "lineNumber": 207,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        switch (curr) {"
+      },
+      {
+        "lineNumber": 208,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        case \u0027\"\u0027:"
+      },
+      {
+        "lineNumber": 209,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            state \u003d ParseState.STRING;"
+      },
+      {
+        "lineNumber": 210,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            addSwitch();"
+      },
+      {
+        "lineNumber": 211,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            break;"
+      },
+      {
+        "lineNumber": 212,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        case \u0027\\n\u0027: //fallthrough"
+      },
+      {
+        "lineNumber": 213,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        case \u0027 \u0027:"
+      },
+      {
+        "lineNumber": 214,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            state \u003d EMPTY;"
+      },
+      {
+        "lineNumber": 215,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            addSwitch();"
+      },
+      {
+        "lineNumber": 216,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            break;"
+      },
+      {
+        "lineNumber": 217,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        case \u0027-\u0027:"
+      },
+      {
+        "lineNumber": 218,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            addSwitch();"
+      },
+      {
+        "lineNumber": 219,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            break;"
+      },
+      {
+        "lineNumber": 220,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        default:"
+      },
+      {
+        "lineNumber": 221,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            elementBuilder.append(curr);"
+      },
+      {
+        "lineNumber": 222,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            break;"
+      },
+      {
+        "lineNumber": 223,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 224,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 225,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 226,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "    private void writeElement() {"
+      },
+      {
+        "lineNumber": 227,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        assert (currSwitch !\u003d null || currCommand.arg \u003d\u003d null);"
+      },
+      {
+        "lineNumber": 228,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        if (currSwitch !\u003d null) {"
+      },
+      {
+        "lineNumber": 229,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            switchVals.put(currSwitch, elementBuilder.toString());"
+      },
+      {
+        "lineNumber": 230,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            currSwitch \u003d null;"
+      },
+      {
+        "lineNumber": 231,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        } else { //currCommand.arg \u003d\u003d null"
+      },
+      {
+        "lineNumber": 232,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            currCommand.arg \u003d elementBuilder.toString();"
+      },
+      {
+        "lineNumber": 233,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 234,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        elementBuilder.setLength(0); //clear elementBuilder"
+      },
+      {
+        "lineNumber": 235,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        state \u003d EMPTY;"
+      },
+      {
+        "lineNumber": 236,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 237,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 238,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "    // TODO: this function is going to become very big with autocorrect"
+      },
+      {
+        "lineNumber": 239,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "    private void addSwitch() throws DukeHelpException {"
+      },
+      {
+        "lineNumber": 240,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        String newSwitch \u003d elementBuilder.toString();"
+      },
+      {
+        "lineNumber": 241,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        if (!switches.containsKey(newSwitch)) {"
+      },
+      {
+        "lineNumber": 242,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            throw new DukeHelpException(\"I don\u0027t know what this switch is: \" + newSwitch, currCommand);"
+      },
+      {
+        "lineNumber": 243,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        } else if (switchVals.containsKey(newSwitch)) {"
+      },
+      {
+        "lineNumber": 244,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            throw new DukeHelpException(\"Multiple values supplied for switch: \" + newSwitch, currCommand);"
+      },
+      {
+        "lineNumber": 245,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 246,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            if (switches.get(newSwitch) !\u003d ArgLevel.NONE) {"
+      },
+      {
+        "lineNumber": 247,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "                currSwitch \u003d newSwitch;"
+      },
+      {
+        "lineNumber": 248,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            } else {"
+      },
+      {
+        "lineNumber": 249,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "                switchVals.put(newSwitch, null);"
+      },
+      {
+        "lineNumber": 250,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 251,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            elementBuilder.setLength(0); //clear elementBuilder"
+      },
+      {
+        "lineNumber": 252,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 253,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 254,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 255,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "    private void checkInputAllowed() throws DukeHelpException {"
+      },
+      {
+        "lineNumber": 256,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        if (currSwitch \u003d\u003d null) {"
+      },
+      {
+        "lineNumber": 257,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            if (currCommand.cmdArgLevel \u003d\u003d ArgLevel.NONE) {"
+      },
+      {
+        "lineNumber": 258,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "                throw new DukeHelpException(\"This command should not have an argument!\", currCommand);"
+      },
+      {
+        "lineNumber": 259,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            } else if (currCommand.arg !\u003d null) {"
+      },
+      {
+        "lineNumber": 260,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "                throw new DukeHelpException(\"Multiple arguments supplied! You already gave: \" + currCommand.arg,"
+      },
+      {
+        "lineNumber": 261,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "                        currCommand);"
+      },
+      {
+        "lineNumber": 262,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 263,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 264,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 265,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 266,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "    private void checkCommandValid() throws DukeException {"
+      },
+      {
+        "lineNumber": 267,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        if (currCommand.cmdArgLevel \u003d\u003d ArgLevel.REQUIRED) {"
+      },
+      {
+        "lineNumber": 268,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            throw new DukeHelpException(\"You need to give an argument for the command!\", currCommand);"
+      },
+      {
+        "lineNumber": 269,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 270,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        for (HashMap.Entry\u003cString, ArgLevel\u003e switchEntry : switches.entrySet()) {"
+      },
+      {
+        "lineNumber": 271,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            if (switchEntry.getValue() \u003d\u003d ArgLevel.REQUIRED"
+      },
+      {
+        "lineNumber": 272,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "                    \u0026\u0026 switchVals.get(switchEntry.getKey()) \u003d\u003d null) {"
+      },
+      {
+        "lineNumber": 273,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "                throw new DukeHelpException(\"You need to give me this switch: \""
+      },
+      {
+        "lineNumber": 274,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "                        + switchEntry.getKey(), currCommand);"
+      },
+      {
+        "lineNumber": 275,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 276,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 277,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 278,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "aquohn": 242,
+      "-": 36
+    }
+  },
+  {
     "path": "src/main/java/duke/command/SnoozeCommand.java",
     "fileType": "functional",
     "lines": [
@@ -7422,110 +9366,33 @@
       {
         "lineNumber": 29,
         "author": {
-          "gitId": "gowgos5"
+          "gitId": "aquohn"
         },
-        "content": "    public void parse(String inputStr) throws DukeException {"
+        "content": "    public void execute(DukeCore core) throws DukeException {"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "gowgos5"
         },
-        "content": "        super.parse(inputStr);"
-      },
-      {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "gowgos5"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 32,
-        "author": {
-          "gitId": "gowgos5"
-        },
-        "content": "        try {"
-      },
-      {
-        "lineNumber": 33,
-        "author": {
-          "gitId": "gowgos5"
-        },
-        "content": "            date \u003d LocalDate.parse(arg, PAT_DATE);"
-      },
-      {
-        "lineNumber": 34,
-        "author": {
-          "gitId": "gowgos5"
-        },
-        "content": "        } catch (DateTimeParseException excp) {"
-      },
-      {
-        "lineNumber": 35,
-        "author": {
-          "gitId": "gowgos5"
-        },
-        "content": "            throw new DukeException(\"Date must be given as e.g. \" + LocalDateTime.now().format(PAT_DATE) + \".\");"
-      },
-      {
-        "lineNumber": 36,
-        "author": {
-          "gitId": "gowgos5"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 37,
-        "author": {
-          "gitId": "gowgos5"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 38,
-        "author": {
-          "gitId": "gowgos5"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 39,
-        "author": {
-          "gitId": "gowgos5"
-        },
-        "content": "    @Override"
-      },
-      {
-        "lineNumber": 40,
-        "author": {
-          "gitId": "aquohn"
-        },
-        "content": "    public void execute(DukeCore core) throws DukeException {"
-      },
-      {
-        "lineNumber": 41,
-        "author": {
-          "gitId": "gowgos5"
-        },
         "content": "        String scheduleStr \u003d \"Here are your tasks for \" + arg + \":\";"
       },
       {
-        "lineNumber": 42,
+        "lineNumber": 31,
         "author": {
           "gitId": "aquohn"
         },
         "content": "        core.ui.print(scheduleStr + core.taskList.listSchedule(date));"
       },
       {
-        "lineNumber": 43,
+        "lineNumber": 32,
         "author": {
           "gitId": "gowgos5"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 44,
+        "lineNumber": 33,
         "author": {
           "gitId": "gowgos5"
         },
@@ -7533,7 +9400,7 @@
       }
     ],
     "authorContributionMap": {
-      "gowgos5": 41,
+      "gowgos5": 30,
       "aquohn": 3
     }
   },
@@ -7713,6 +9580,85 @@
     "authorContributionMap": {
       "gowgos5": 3,
       "-": 21
+    }
+  },
+  {
+    "path": "src/main/java/duke/exception/DukeHelpException.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "package duke.exception;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "import duke.command.Command;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "public class DukeHelpException extends DukeException {"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "    public DukeHelpException(String msg, Command command) {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        super(msg + System.lineSeparator() + System.lineSeparator() + command.getHelp());"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "aquohn": 10
     }
   },
   {
@@ -9766,6 +11712,373 @@
     }
   },
   {
+    "path": "src/main/java/duke/task/EventTask.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "package duke.task;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.time.DateTimeException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.time.LocalDateTime;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "public class EventTask extends TimedTask {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private LocalDateTime endTime;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Constructor for Event with Reminders."
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @param name description of event"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @param time start time of event"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @param endTime end time of event"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @param reminder reminder for event"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public EventTask(String name, LocalDateTime time, LocalDateTime endTime, Reminder reminder) {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        super(name, time, reminder);"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        this.endTime \u003d endTime;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        type \u003d \u0027E\u0027;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Constructor for Events without Reminders."
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @param name description of event"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @param at start time of event"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @param endTime end time of event"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public EventTask(String name, LocalDateTime at, LocalDateTime endTime) {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        super(name, at);"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        this.endTime \u003d endTime;"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        type \u003d \u0027E\u0027;"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    String getEndTime() throws DateTimeException {"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "aquohn"
+        },
+        "content": "        return endTime.format(getPatDatetimeDisplay());"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public String toData() {"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return super.toData() + \"\\t\" + endTime.format(getPatDatetime());"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public String toString() throws DateTimeException {"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        if (type \u003d\u003d \u0027E\u0027) {"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return \"[\" + type + \"]\" + super.toString() + \" (at: \" + getTime() + \" - \" + getEndTime() + \")\";"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return \"[\" + type + \"]\" + super.toString();"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "aquohn": 1,
+      "-": 50
+    }
+  },
+  {
     "path": "src/main/java/duke/task/Evidence.java",
     "fileType": "functional",
     "lines": [
@@ -9992,6 +12305,729 @@
     }
   },
   {
+    "path": "src/main/java/duke/task/GsonStorage.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "package duke.task;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "import com.google.gson.Gson;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "import duke.exception.DukeFatalException;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "import java.io.File;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "import java.io.FileWriter;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "import java.io.IOException;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "import java.nio.charset.StandardCharsets;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "import java.nio.file.Files;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "import java.nio.file.Paths;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "import java.util.HashMap;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "public class GsonStorage {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "    private final File jsonFile;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "    private final String filePath;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "    private HashMap\u003cString, Patient\u003e patientMap \u003d new HashMap\u003cString, Patient\u003e();"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "     * Looks if a Json file exists at the specified filepath and creates one if it does not exist."
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "     * @throws DukeFatalException If data file cannot be setup."
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "    public GsonStorage(String path) throws DukeFatalException {"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "        File dataDir \u003d new File(\"data\");"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "        if (!dataDir.exists()) {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "            dataDir.mkdir();"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "        filePath \u003d path;"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "        jsonFile \u003d new File(filePath);"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "        if (!jsonFile.exists()) {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "            try {"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "                if (!jsonFile.createNewFile()) {"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "                    throw new IOException();"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "            } catch (IOException excp) {"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "                throw new DukeFatalException(\"Unable to setup data file, try checking your permissions?\");"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "     * Loads all the patients in the Jsonfilen to the patient hashmap for quick patient lookup (Deserialization)."
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "     * @throws DukeFatalException If data file cannot be setup."
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "    public void loadPatientHashMap() throws DukeFatalException {"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "            String json \u003d Files.readString(Paths.get(filePath), StandardCharsets.US_ASCII);"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "            Patient[] patientList \u003d new Gson().fromJson(json, Patient[].class);"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "            for (Patient patient : patientList) {"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "                addPatientToMap(patient);"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "        } catch (IOException excp) {"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "            throw new DukeFatalException(\"Unable to load data file, try checking your permissions?\");"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "     * Creates a list with the patients in the patient hash map and add the lists json representation"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "     * to the json file (Serialization)."
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "     * @throws DukeFatalException If the file writer cannot be setup."
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "    public void writeJsonFile() throws DukeFatalException {"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "        ArrayList\u003cPatient\u003e patientArrList \u003d new ArrayList\u003cPatient\u003e(patientMap.values());"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "            FileWriter fileWriter \u003d new FileWriter(jsonFile);"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "            fileWriter.write(new Gson().toJson(patientArrList));"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "            fileWriter.close();"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "        } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "            throw new DukeFatalException(\"Unable to write data! Some data may have been lost,\");"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "     * Adds a patient object to the hash map with all the patients - used when testing."
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "    public void addPatientToMap(Patient patient) {"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "        patientMap.put(patient.getName(), patient);"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "    public Patient getPatient(String name) {"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "        return patientMap.get(name);"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "    public String getFilePath() {"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "        return filePath;"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "     * Clears the json file and the paitent hash map - used when testing."
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "    public void resetAllData() throws IOException {"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "        FileWriter fileWriter \u003d new FileWriter(jsonFile);"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "        fileWriter.close();"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "        patientMap.clear();"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "gowgos5": 102
+    }
+  },
+  {
     "path": "src/main/java/duke/task/Impression.java",
     "fileType": "functional",
     "lines": [
@@ -10075,7 +13111,7 @@
       {
         "lineNumber": 12,
         "author": {
-          "gitId": "-"
+          "gitId": "gowgos5"
         },
         "content": "    private String patientName;"
       },
@@ -10180,7 +13216,7 @@
       {
         "lineNumber": 27,
         "author": {
-          "gitId": "-"
+          "gitId": "gowgos5"
         },
         "content": "    public Impression(String name, String description, String patientName) {"
       },
@@ -10201,7 +13237,7 @@
       {
         "lineNumber": 30,
         "author": {
-          "gitId": "-"
+          "gitId": "gowgos5"
         },
         "content": "        this.patientName \u003d patientName;"
       },
@@ -11153,14 +14189,14 @@
       {
         "lineNumber": 166,
         "author": {
-          "gitId": "-"
+          "gitId": "gowgos5"
         },
         "content": "    public String getPatient() {"
       },
       {
         "lineNumber": 167,
         "author": {
-          "gitId": "-"
+          "gitId": "gowgos5"
         },
         "content": "        return patientName;"
       },
@@ -11236,8 +14272,8 @@
       }
     ],
     "authorContributionMap": {
-      "JeremyKwok": 172,
-      "-": 5
+      "gowgos5": 5,
+      "JeremyKwok": 172
     }
   },
   {
@@ -13584,7 +16620,7 @@
       {
         "lineNumber": 138,
         "author": {
-          "gitId": "-"
+          "gitId": "gowgos5"
         },
         "content": "        return getName() + \" \" +  getClass(); // change back to null later"
       },
@@ -14164,8 +17200,8 @@
       }
     ],
     "authorContributionMap": {
-      "JeremyKwok": 219,
-      "-": 1
+      "gowgos5": 1,
+      "JeremyKwok": 219
     }
   },
   {
@@ -19027,676 +22063,1003 @@
     }
   },
   {
-    "path": "src/test/java/NewRecurringTaskCommandTest.java",
+    "path": "src/test/java/GsonStorageTest.java",
     "fileType": "tests",
     "lines": [
       {
         "lineNumber": 1,
         "author": {
-          "gitId": "-"
-        },
-        "content": "import duke.command.NewRecurringTaskCommand;"
-      },
-      {
-        "lineNumber": 2,
-        "author": {
-          "gitId": "-"
+          "gitId": "gowgos5"
         },
         "content": "import duke.exception.DukeException;"
       },
       {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "import duke.exception.DukeFatalException;"
+      },
+      {
         "lineNumber": 3,
         "author": {
-          "gitId": "-"
+          "gitId": "gowgos5"
         },
-        "content": "import org.junit.jupiter.api.Test;"
+        "content": "import duke.task.GsonStorage;"
       },
       {
         "lineNumber": 4,
         "author": {
-          "gitId": "-"
+          "gitId": "gowgos5"
         },
-        "content": ""
+        "content": "import duke.task.Impression;"
       },
       {
         "lineNumber": 5,
         "author": {
-          "gitId": "-"
+          "gitId": "gowgos5"
         },
-        "content": "import static org.junit.jupiter.api.Assertions.assertEquals;"
+        "content": "import duke.task.Patient;"
       },
       {
         "lineNumber": 6,
         "author": {
-          "gitId": "-"
+          "gitId": "gowgos5"
         },
-        "content": "import static org.junit.jupiter.api.Assertions.assertThrows;"
+        "content": "import org.junit.jupiter.api.Test;"
       },
       {
         "lineNumber": 7,
         "author": {
-          "gitId": "-"
+          "gitId": "gowgos5"
         },
-        "content": "import static org.junit.jupiter.api.Assertions.fail;"
+        "content": ""
       },
       {
         "lineNumber": 8,
         "author": {
-          "gitId": "-"
+          "gitId": "gowgos5"
         },
-        "content": ""
+        "content": "import java.io.File;"
       },
       {
         "lineNumber": 9,
         "author": {
-          "gitId": "-"
+          "gitId": "gowgos5"
         },
-        "content": "public class NewRecurringTaskCommandTest extends CommandTest {"
+        "content": "import java.io.FileWriter;"
       },
       {
         "lineNumber": 10,
         "author": {
-          "gitId": "-"
+          "gitId": "gowgos5"
         },
-        "content": "    private static String successStr \u003d"
+        "content": "import java.io.IOException;"
       },
       {
         "lineNumber": 11,
         "author": {
-          "gitId": "-"
+          "gitId": "gowgos5"
         },
-        "content": "            \"    ________________________________________________________________________________\""
+        "content": "import java.nio.charset.StandardCharsets;"
       },
       {
         "lineNumber": 12,
         "author": {
-          "gitId": "aquohn"
+          "gitId": "gowgos5"
         },
-        "content": "                    + System.lineSeparator() + \"    Got it, I\u0027ve added these 10 tasks:\""
+        "content": "import java.nio.file.Files;"
       },
       {
         "lineNumber": 13,
         "author": {
-          "gitId": "-"
+          "gitId": "gowgos5"
         },
-        "content": "                    + System.lineSeparator() + \"      [D][N] submission (by: Wed, 18 Sep 2019 11:59 PM)\""
+        "content": "import java.nio.file.Paths;"
       },
       {
         "lineNumber": 14,
         "author": {
-          "gitId": "-"
+          "gitId": "gowgos5"
         },
-        "content": "                    + System.lineSeparator() + \"      [D][N] submission (by: Wed, 25 Sep 2019 11:59 PM)\""
+        "content": ""
       },
       {
         "lineNumber": 15,
         "author": {
-          "gitId": "-"
+          "gitId": "gowgos5"
         },
-        "content": "                    + System.lineSeparator() + \"      [D][N] submission (by: Wed, 2 Oct 2019 11:59 PM)\""
+        "content": "import static org.junit.jupiter.api.Assertions.assertEquals;"
       },
       {
         "lineNumber": 16,
         "author": {
-          "gitId": "-"
+          "gitId": "gowgos5"
         },
-        "content": "                    + System.lineSeparator() + \"      [D][N] submission (by: Wed, 9 Oct 2019 11:59 PM)\""
+        "content": "import static org.junit.jupiter.api.Assertions.assertTrue;"
       },
       {
         "lineNumber": 17,
         "author": {
-          "gitId": "-"
+          "gitId": "gowgos5"
         },
-        "content": "                    + System.lineSeparator() + \"      [D][N] submission (by: Wed, 16 Oct 2019 11:59 PM)\""
+        "content": ""
       },
       {
         "lineNumber": 18,
         "author": {
-          "gitId": "-"
+          "gitId": "gowgos5"
         },
-        "content": "                    + System.lineSeparator() + \"      [D][N] submission (by: Wed, 23 Oct 2019 11:59 PM)\""
+        "content": "/**"
       },
       {
         "lineNumber": 19,
         "author": {
-          "gitId": "-"
+          "gitId": "gowgos5"
         },
-        "content": "                    + System.lineSeparator() + \"      [D][N] submission (by: Wed, 30 Oct 2019 11:59 PM)\""
+        "content": " * JUnit class testing the class GsonStorage."
       },
       {
         "lineNumber": 20,
         "author": {
-          "gitId": "-"
+          "gitId": "gowgos5"
         },
-        "content": "                    + System.lineSeparator() + \"      [D][N] submission (by: Wed, 6 Nov 2019 11:59 PM)\""
+        "content": " */"
       },
       {
         "lineNumber": 21,
         "author": {
-          "gitId": "-"
+          "gitId": "gowgos5"
         },
-        "content": "                    + System.lineSeparator() + \"      [D][N] submission (by: Wed, 13 Nov 2019 11:59 PM)\""
+        "content": "public class GsonStorageTest {"
       },
       {
         "lineNumber": 22,
         "author": {
-          "gitId": "aquohn"
+          "gitId": "gowgos5"
         },
-        "content": "                    + System.lineSeparator() + \"      [D][N] submission (by: Wed, 20 Nov 2019 11:59 PM)\""
+        "content": ""
       },
       {
         "lineNumber": 23,
         "author": {
-          "gitId": "aquohn"
+          "gitId": "gowgos5"
         },
-        "content": "                    + System.lineSeparator() + \"    Now you have 10 tasks in the list.\" + System.lineSeparator()"
+        "content": "    private String filePath \u003d \"data/patients.json\";"
       },
       {
         "lineNumber": 24,
         "author": {
-          "gitId": "-"
+          "gitId": "gowgos5"
         },
-        "content": "                    + \"    ________________________________________________________________________________\""
+        "content": "    private GsonStorage gsonStorage \u003d new GsonStorage(filePath);"
       },
       {
         "lineNumber": 25,
         "author": {
-          "gitId": "-"
+          "gitId": "gowgos5"
         },
-        "content": "                    + System.lineSeparator() + System.lineSeparator();"
+        "content": "    private Patient dummy1 \u003d new Patient(\"dummy1\", 100, \"nuts\");"
       },
       {
         "lineNumber": 26,
         "author": {
-          "gitId": "-"
+          "gitId": "gowgos5"
         },
-        "content": ""
+        "content": "    private Patient dummy2 \u003d new Patient(\"dummy2\", 200, null);"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "gowgos5"
         },
-        "content": "    //    @Test"
+        "content": "    private Patient dummy3 \u003d new Patient(\"dummy3\", 300, \"cats\");"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "gowgos5"
         },
-        "content": "    //    public void addRecurringTasks_countNumber_successMessageReturned() {"
+        "content": "    private String expected \u003d \"[{\\\"bedNo\\\":100,\\\"allergies\\\":\\\"nuts\\\",\\\"impressions\\\":[],\\\"height\\\":0,\\\"we\""
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "gowgos5"
         },
-        "content": "    //        NewRecurringTaskCommand uut \u003d new NewRecurringTaskCommand();"
+        "content": "            + \"ight\\\":0,\\\"age\\\":0,\\\"number\\\":0,\\\"name\\\":\\\"dummy1\\\"},{\\\"bedNo\\\":200,\\\"impressions\\\":[],\\\"heig\""
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "gowgos5"
         },
-        "content": "    //        try {"
+        "content": "            + \"ht\\\":0,\\\"weight\\\":0,\\\"age\\\":0,\\\"number\\\":0,\\\"name\\\":\\\"dummy2\\\"},{\\\"bedNo\\\":300,\\\"allergies\\\":\\\"ca\""
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "gowgos5"
         },
-        "content": "    //            uut.parse(\"deadline submission /by 18/09/2019 2359 /repeats weekly /count 9\");"
+        "content": "            + \"ts\\\",\\\"impressions\\\":[],\\\"height\\\":0,\\\"weight\\\":0,\\\"age\\\":0,\\\"number\\\":0,\\\"name\\\":\\\"dummy3\\\"}]\";"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "gowgos5"
         },
-        "content": "    //            uut.execute(core);"
+        "content": ""
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "gowgos5"
         },
-        "content": "    //        } catch (DukeException excp) {"
+        "content": "    GsonStorageTest() throws DukeFatalException, IOException {"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "gowgos5"
         },
-        "content": "    //            fail(\"Exception thrown on valid recurring task!\");"
+        "content": "        gsonStorage.resetAllData();"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "gowgos5"
         },
-        "content": "    //        }"
+        "content": "    }"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "gowgos5"
         },
-        "content": "    //        assertEquals(successStr, testOut.toString());"
+        "content": ""
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "gowgos5"
         },
-        "content": "    //    }"
+        "content": "    /**"
       },
       {
         "lineNumber": 38,
         "author": {
-          "gitId": "-"
+          "gitId": "gowgos5"
         },
-        "content": ""
+        "content": "     * Creates a patient object and assign values to all of its attributes - used to test if the nesting works."
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "gowgos5"
         },
-        "content": "    //    @Test"
+        "content": "     */"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "gowgos5"
         },
-        "content": "    //    public void addRecurringTasks_untilDate_successMessageReturned() {"
+        "content": "    private Patient createComplexPatient() throws DukeException {"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "gowgos5"
         },
-        "content": "    //        NewRecurringTaskCommand uut \u003d new NewRecurringTaskCommand();"
+        "content": "        Patient complexPatient \u003d new Patient(\"Complexia\", 100, \"cookies\");"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "gowgos5"
         },
-        "content": "    //"
+        "content": "        complexPatient.addNewImpression(new Impression(\"Afraid\", \"bit me\", complexPatient.getName()));"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "gowgos5"
         },
-        "content": "    //        try {"
+        "content": "        complexPatient.setPriDiagnosis(0);"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "gowgos5"
         },
-        "content": "    //            uut.parse(\"deadline submission /by 18/09/2019 2359 /repeats weekly \""
+        "content": "        complexPatient.setAllergies(\"dogs\");"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "gowgos5"
         },
-        "content": "    //                    + \"/until 23/11/2019 1300\");"
+        "content": "        complexPatient.setHeight(124);"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "gowgos5"
         },
-        "content": "    //            uut.execute(core);"
+        "content": "        complexPatient.setWeight(250);"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "gowgos5"
         },
-        "content": "    //        } catch (DukeException excp) {"
+        "content": "        complexPatient.setAge(84);"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "gowgos5"
         },
-        "content": "    //            fail(\"Exception thrown on valid recurring task!\");"
+        "content": "        complexPatient.setNumber(6582447);"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "gowgos5"
         },
-        "content": "    //        }"
+        "content": "        complexPatient.setAddress(\"Broadway 12a\");"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "gowgos5"
         },
-        "content": "    //        assertEquals(successStr, testOut.toString());"
+        "content": "        complexPatient.setHistory(\"Operated the left arm in 2014 and have been feeling weak ever since\");"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "gowgos5"
         },
-        "content": "    //    }"
+        "content": "        return complexPatient;"
       },
       {
         "lineNumber": 52,
         "author": {
-          "gitId": "-"
+          "gitId": "gowgos5"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 53,
         "author": {
-          "gitId": "-"
-        },
-        "content": "    //TODO create unit tests for abstract Command classes"
-      },
-      {
-        "lineNumber": 54,
-        "author": {
-          "gitId": "-"
+          "gitId": "gowgos5"
         },
         "content": ""
       },
       {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "    /**"
+      },
+      {
         "lineNumber": 55,
         "author": {
-          "gitId": "-"
+          "gitId": "gowgos5"
         },
-        "content": "    @Test"
+        "content": "     * Compares all the attributes of two patients and returns true if they all are the same, otherwise it returns"
       },
       {
         "lineNumber": 56,
         "author": {
-          "gitId": "-"
+          "gitId": "gowgos5"
         },
-        "content": "    public void addRecurringTasks_ambiguousOrMissingCount_exceptionThrown() {"
+        "content": "     * false."
       },
       {
         "lineNumber": 57,
         "author": {
-          "gitId": "-"
+          "gitId": "gowgos5"
         },
-        "content": "        NewRecurringTaskCommand uut \u003d new NewRecurringTaskCommand();"
+        "content": "     * TODO: compare impressions as well"
       },
       {
         "lineNumber": 58,
         "author": {
-          "gitId": "-"
+          "gitId": "gowgos5"
         },
-        "content": "        try {"
+        "content": "     */"
       },
       {
         "lineNumber": 59,
         "author": {
-          "gitId": "-"
+          "gitId": "gowgos5"
         },
-        "content": "            uut.parse(\"deadline submission /by 18/09/2019 2359 /repeats weekly\");"
+        "content": "    private boolean identical(Patient patient1, Patient patient2) {"
       },
       {
         "lineNumber": 60,
         "author": {
-          "gitId": "-"
+          "gitId": "gowgos5"
         },
-        "content": "            assertThrows(DukeException.class, () -\u003e {"
+        "content": "        if (patient1.getBedNo() !\u003d patient2.getBedNo()) {"
       },
       {
         "lineNumber": 61,
         "author": {
-          "gitId": "aquohn"
+          "gitId": "gowgos5"
         },
-        "content": "                uut.execute(core);"
+        "content": "            return false;"
       },
       {
         "lineNumber": 62,
         "author": {
-          "gitId": "-"
+          "gitId": "gowgos5"
         },
-        "content": "            });"
+        "content": "        } else if (!(java.util.Objects.equals(patient1.getAllergies(), patient2.getAllergies()))) {"
       },
       {
         "lineNumber": 63,
         "author": {
-          "gitId": "-"
+          "gitId": "gowgos5"
         },
-        "content": "            uut.parse(\"deadline submission /by 18/09/2019 2359 /repeats weekly \""
+        "content": "            return false;"
       },
       {
         "lineNumber": 64,
         "author": {
-          "gitId": "-"
+          "gitId": "gowgos5"
         },
-        "content": "                    + \"/until 23/11/2019 1300 /count 100\");"
+        "content": "        } else if (patient1.getHeight() !\u003d patient2.getHeight()) {"
       },
       {
         "lineNumber": 65,
         "author": {
-          "gitId": "-"
+          "gitId": "gowgos5"
         },
-        "content": "            assertThrows(DukeException.class, () -\u003e {"
+        "content": "            return false;"
       },
       {
         "lineNumber": 66,
         "author": {
-          "gitId": "aquohn"
+          "gitId": "gowgos5"
         },
-        "content": "                uut.execute(core);"
+        "content": "        } else if (patient1.getWeight() !\u003d patient2.getWeight()) {"
       },
       {
         "lineNumber": 67,
         "author": {
-          "gitId": "-"
+          "gitId": "gowgos5"
         },
-        "content": "            });"
+        "content": "            return false;"
       },
       {
         "lineNumber": 68,
         "author": {
-          "gitId": "-"
+          "gitId": "gowgos5"
         },
-        "content": "            uut.parse(\"deadline submission /by 18/09/2019 2359 /repeats weekly \""
+        "content": "        } else if (patient1.getAge() !\u003d patient2.getAge()) {"
       },
       {
         "lineNumber": 69,
         "author": {
-          "gitId": "-"
+          "gitId": "gowgos5"
         },
-        "content": "                    + \"/until 231119 1300\");"
+        "content": "            return false;"
       },
       {
         "lineNumber": 70,
         "author": {
-          "gitId": "-"
+          "gitId": "gowgos5"
         },
-        "content": "            assertThrows(DukeException.class, () -\u003e {"
+        "content": "        } else if (patient1.getNumber() !\u003d patient2.getNumber()) {"
       },
       {
         "lineNumber": 71,
         "author": {
-          "gitId": "aquohn"
+          "gitId": "gowgos5"
         },
-        "content": "                uut.execute(core);"
+        "content": "            return false;"
       },
       {
         "lineNumber": 72,
         "author": {
-          "gitId": "-"
+          "gitId": "gowgos5"
         },
-        "content": "            });"
+        "content": "        } else if (!(java.util.Objects.equals(patient1.getAddress(), patient2.getAddress()))) {"
       },
       {
         "lineNumber": 73,
         "author": {
-          "gitId": "-"
+          "gitId": "gowgos5"
         },
-        "content": "            uut.parse(\"deadline submission /by 18/09/2019 2359 /repeats weekly \""
+        "content": "            return false;"
       },
       {
         "lineNumber": 74,
         "author": {
-          "gitId": "-"
+          "gitId": "gowgos5"
         },
-        "content": "                    + \"/count -100\");"
+        "content": "        } else {"
       },
       {
         "lineNumber": 75,
         "author": {
-          "gitId": "-"
+          "gitId": "gowgos5"
         },
-        "content": "            assertThrows(DukeException.class, () -\u003e {"
+        "content": "            return java.util.Objects.equals(patient1.getHistory(), patient2.getHistory());"
       },
       {
         "lineNumber": 76,
         "author": {
-          "gitId": "aquohn"
-        },
-        "content": "                uut.execute(core);"
-      },
-      {
-        "lineNumber": 77,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            });"
-      },
-      {
-        "lineNumber": 78,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            uut.parse(\"deadline submission /by 18/09/2019 2359 /repeats weekly \""
-      },
-      {
-        "lineNumber": 79,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                    + \"/until 23/11/2019 1300 /until 23/11/2019 1500\");"
-      },
-      {
-        "lineNumber": 80,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            assertThrows(DukeException.class, () -\u003e {"
-      },
-      {
-        "lineNumber": 81,
-        "author": {
-          "gitId": "aquohn"
-        },
-        "content": "                uut.execute(core);"
-      },
-      {
-        "lineNumber": 82,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            });"
-      },
-      {
-        "lineNumber": 83,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            uut.parse(\"deadline submission /by 18/09/2019 2359 /repeats weekly \""
-      },
-      {
-        "lineNumber": 84,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                    + \"/count 100 /count 10\");"
-      },
-      {
-        "lineNumber": 85,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            assertThrows(DukeException.class, () -\u003e {"
-      },
-      {
-        "lineNumber": 86,
-        "author": {
-          "gitId": "aquohn"
-        },
-        "content": "                uut.execute(core);"
-      },
-      {
-        "lineNumber": 87,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            });"
-      },
-      {
-        "lineNumber": 88,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        } catch (DukeException excp) {"
-      },
-      {
-        "lineNumber": 89,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            fail(\"Parser failed to recognise valid command with \u0027/repeats\u0027!\");"
-      },
-      {
-        "lineNumber": 90,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        } catch (AssertionError excp) {"
-      },
-      {
-        "lineNumber": 91,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            fail(\"Command failed to reject ambiguous count!\");"
-      },
-      {
-        "lineNumber": 92,
-        "author": {
-          "gitId": "-"
+          "gitId": "gowgos5"
         },
         "content": "        }"
       },
       {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "     * Tests if patients are transformed from the json file to the hashmap properly."
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "    public void loadPatientHashMapTest() throws DukeFatalException, IOException {"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "        gsonStorage.resetAllData();"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "        FileWriter fileWriter \u003d new FileWriter(new File(gsonStorage.getFilePath()));"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "        fileWriter.write(expected);"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "        fileWriter.close();"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "        gsonStorage.loadPatientHashMap();"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "        assertTrue(identical(gsonStorage.getPatient(\"dummy1\"), dummy1));"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "        assertTrue(identical(gsonStorage.getPatient(\"dummy2\"), dummy2));"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "        assertTrue(identical(gsonStorage.getPatient(\"dummy3\"), dummy3));"
+      },
+      {
         "lineNumber": 93,
         "author": {
-          "gitId": "-"
+          "gitId": "gowgos5"
         },
         "content": "    }"
       },
       {
         "lineNumber": 94,
         "author": {
-          "gitId": "-"
+          "gitId": "gowgos5"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "     * Creates the Json representation of a dummy patient"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "     * Then recreates the patient objects based on what is in the json file."
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "     * When the recreation is done it checks if the first patients are identical to the new ones."
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "    public void identicalDummyPatient() throws IOException, DukeException, DukeFatalException {"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "        gsonStorage.resetAllData();"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "        gsonStorage.addPatientToMap(dummy1);"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "        gsonStorage.writeJsonFile();"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "        gsonStorage.loadPatientHashMap();"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "        Patient dummyPatientRecreated \u003d gsonStorage.getPatient(dummy1.getName());"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "        boolean equals \u003d identical(dummy1, dummyPatientRecreated);"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "        assertTrue(equals);"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "     * Creates the Json representation of a complex patient"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "     * Then recreates the patient objects based on what is in the json file."
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "     * When the recreation is done it checks if the first patients are identical to the new ones."
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "    public void identicalComplexPatient() throws IOException, DukeException, DukeFatalException {"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "        gsonStorage.resetAllData();"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "        Patient complexPatient \u003d createComplexPatient();"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "        gsonStorage.addPatientToMap(complexPatient);"
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "        gsonStorage.writeJsonFile();"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "        gsonStorage.loadPatientHashMap();"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "        Patient complexPatientRecreated \u003d gsonStorage.getPatient(\"Complexia\");"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "        boolean equals \u003d identical(complexPatient, complexPatientRecreated);"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "        assertTrue(equals);"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "     * Tests if patients are transformed from the hashmap to the json file properly."
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "    public void writeJsonFileTest() throws DukeFatalException, IOException, DukeFatalException {"
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "        gsonStorage.resetAllData();"
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "        gsonStorage.addPatientToMap(dummy1);"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "        gsonStorage.addPatientToMap(dummy2);"
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "        gsonStorage.addPatientToMap(dummy3);"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "        gsonStorage.writeJsonFile();"
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "        String json \u003d Files.readString(Paths.get(filePath), StandardCharsets.US_ASCII);"
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "        assertEquals(expected, json);"
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "gowgos5"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "gowgos5"
         },
         "content": "}"
       }
     ],
     "authorContributionMap": {
-      "gowgos5": 24,
-      "aquohn": 9,
-      "-": 61
+      "gowgos5": 141
     }
   },
   {
-    "path": "src/test/java/NewReminderCommandTest.java",
+    "path": "src/test/java/ParserTest.java",
     "fileType": "tests",
     "lines": [
       {
@@ -19704,248 +23067,129 @@
         "author": {
           "gitId": "-"
         },
-        "content": "import duke.command.NewReminderCommand;"
+        "content": "public class ParserTest {"
       },
       {
         "lineNumber": 2,
         "author": {
           "gitId": "-"
         },
-        "content": "import duke.exception.DukeException;"
+        "content": ""
       },
       {
         "lineNumber": 3,
         "author": {
-          "gitId": "-"
+          "gitId": "aquohn"
         },
-        "content": "import org.junit.jupiter.api.Test;"
+        "content": "    // TODO check whether every task can be detected"
       },
       {
         "lineNumber": 4,
         "author": {
-          "gitId": "-"
+          "gitId": "aquohn"
         },
-        "content": ""
+        "content": "    // TODO check if exception are thrown for incorrect input formats"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "-"
         },
-        "content": "import static org.junit.jupiter.api.Assertions.assertThrows;"
+        "content": ""
       },
       {
         "lineNumber": 6,
         "author": {
-          "gitId": "-"
+          "gitId": "aquohn"
         },
-        "content": ""
+        "content": "    //private Parser uut \u003d new Parser();"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "-"
         },
-        "content": "/**"
+        "content": ""
       },
       {
         "lineNumber": 8,
         "author": {
-          "gitId": "-"
+          "gitId": "aquohn"
         },
-        "content": " * JUnit class testing the class NewReminderCommand."
+        "content": "    /*@Test"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "-"
         },
-        "content": " *"
+        "content": "    public void parseCommands_validCommands_correctCommandsReturned() {"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "-"
         },
-        "content": " * @author Pang Jia Jun Vernon"
+        "content": "        try {"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "-"
         },
-        "content": " */"
+        "content": "            assertEquals(uut.parse(\"list\").getClass(), ListCommand.class);"
       },
       {
         "lineNumber": 12,
         "author": {
-          "gitId": "gowgos5"
+          "gitId": "-"
         },
-        "content": "public class NewReminderCommandTest extends CommandTest {"
+        "content": "            assertEquals(uut.parse(\"todo JUnit tests\").getClass(), NewToDoCommand.class);"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": "            assertEquals(uut.parse(\"event tutorial /at 12/09/2019 1400 /to 12/10/2019 1200\").getClass(),"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Tests parse() with valid input. Except test to be successful."
+        "content": "                        NewEventCommand.class);"
       },
       {
         "lineNumber": 15,
         "author": {
-          "gitId": "-"
+          "gitId": "aquohn"
         },
-        "content": "     *"
+        "content": "       } catch (DukeException excp) {"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @throws DukeException If the input specified is in an incorrect format."
+        "content": "            fail(\"Exception thrown while extracting commands!\");"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "        }"
       },
       {
         "lineNumber": 18,
         "author": {
-          "gitId": "-"
+          "gitId": "aquohn"
         },
-        "content": "    @Test"
+        "content": "    }*/"
       },
       {
         "lineNumber": 19,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public void parseInputs_validInputs_success() throws DukeException {"
-      },
-      {
-        "lineNumber": 20,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        new NewReminderCommand().parse(\"remind 1 /after 18/09/2019 0200\");"
-      },
-      {
-        "lineNumber": 21,
-        "author": {
-          "gitId": "gowgos5"
-        },
-        "content": "        //TODO: assert"
-      },
-      {
-        "lineNumber": 22,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 23,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 24,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 25,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * Tests parse() with invalid inputs. Expect exceptions to be thrown."
-      },
-      {
-        "lineNumber": 26,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 27,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    @Test"
-      },
-      {
-        "lineNumber": 28,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public void parseInputs_invalidInputs_exceptionThrown() {"
-      },
-      {
-        "lineNumber": 29,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        assertThrows(DukeException.class, () -\u003e new NewReminderCommand().parse(\"remind\"));"
-      },
-      {
-        "lineNumber": 30,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        assertThrows(DukeException.class, () -\u003e new NewReminderCommand().parse(\"remind 1\"));"
-      },
-      {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        assertThrows(DukeException.class, () -\u003e new NewReminderCommand().parse(\"remind 1 /after\"));"
-      },
-      {
-        "lineNumber": 32,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        assertThrows(DukeException.class, () -\u003e new NewReminderCommand().parse(\"remind 1 /after 18/09/2019\"));"
-      },
-      {
-        "lineNumber": 33,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        assertThrows(DukeException.class, () -\u003e new NewReminderCommand().parse(\"remind 1 /after 0200\"));"
-      },
-      {
-        "lineNumber": 34,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        assertThrows(DukeException.class, () -\u003e new NewReminderCommand().parse(\"remind 1 18/09/2019 0200\"));"
-      },
-      {
-        "lineNumber": 35,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 36,
         "author": {
           "gitId": "-"
         },
@@ -19953,8 +23197,8 @@
       }
     ],
     "authorContributionMap": {
-      "gowgos5": 2,
-      "-": 34
+      "aquohn": 6,
+      "-": 13
     }
   },
   {
@@ -20294,507 +23538,6 @@
     "authorContributionMap": {
       "gowgos5": 3,
       "-": 44
-    }
-  },
-  {
-    "path": "src/test/java/SnoozeCommandTest.java",
-    "fileType": "tests",
-    "lines": [
-      {
-        "lineNumber": 1,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import duke.command.SnoozeCommand;"
-      },
-      {
-        "lineNumber": 2,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import duke.exception.DukeException;"
-      },
-      {
-        "lineNumber": 3,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import duke.task.DeadlineTask;"
-      },
-      {
-        "lineNumber": 4,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import duke.task.EventTask;"
-      },
-      {
-        "lineNumber": 5,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import duke.task.TaskList;"
-      },
-      {
-        "lineNumber": 6,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import duke.task.TimedTask;"
-      },
-      {
-        "lineNumber": 7,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import duke.task.ToDoTask;"
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import org.junit.jupiter.api.BeforeEach;"
-      },
-      {
-        "lineNumber": 9,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import org.junit.jupiter.api.Test;"
-      },
-      {
-        "lineNumber": 10,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import java.time.LocalDateTime;"
-      },
-      {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 13,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import static org.junit.jupiter.api.Assertions.assertEquals;"
-      },
-      {
-        "lineNumber": 14,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import static org.junit.jupiter.api.Assertions.assertThrows;"
-      },
-      {
-        "lineNumber": 15,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import static org.junit.jupiter.api.Assertions.fail;"
-      },
-      {
-        "lineNumber": 16,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 17,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "public class SnoozeCommandTest extends CommandTest {"
-      },
-      {
-        "lineNumber": 18,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 19,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 20,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * Sets up task list so we have tasks to snooze before each test."
-      },
-      {
-        "lineNumber": 21,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 22,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    @BeforeEach"
-      },
-      {
-        "lineNumber": 23,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public void setupTaskList() {"
-      },
-      {
-        "lineNumber": 24,
-        "author": {
-          "gitId": "aquohn"
-        },
-        "content": "        core.taskList \u003d new TaskList();"
-      },
-      {
-        "lineNumber": 25,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        ToDoTask todo \u003d new ToDoTask(\"JUnit tests\");"
-      },
-      {
-        "lineNumber": 26,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        LocalDateTime t \u003d LocalDateTime.parse(\"12/09/2019 1400\", TimedTask.getPatDatetime());"
-      },
-      {
-        "lineNumber": 27,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        EventTask event \u003d new EventTask(\"tutorial\", t, t);"
-      },
-      {
-        "lineNumber": 28,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        DeadlineTask deadline \u003d new DeadlineTask(\"submission\", t);"
-      },
-      {
-        "lineNumber": 29,
-        "author": {
-          "gitId": "aquohn"
-        },
-        "content": "        core.taskList.addTask(todo);"
-      },
-      {
-        "lineNumber": 30,
-        "author": {
-          "gitId": "aquohn"
-        },
-        "content": "        core.taskList.addTask(event);"
-      },
-      {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "aquohn"
-        },
-        "content": "        core.taskList.addTask(deadline);"
-      },
-      {
-        "lineNumber": 32,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 33,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 34,
-        "author": {
-          "gitId": "gowgos5"
-        },
-        "content": "    //    @Test"
-      },
-      {
-        "lineNumber": 35,
-        "author": {
-          "gitId": "gowgos5"
-        },
-        "content": "    //    public void snooze_validCommand_correctDateTimeSet() {"
-      },
-      {
-        "lineNumber": 36,
-        "author": {
-          "gitId": "gowgos5"
-        },
-        "content": "    //        SnoozeCommand uut \u003d new SnoozeCommand();"
-      },
-      {
-        "lineNumber": 37,
-        "author": {
-          "gitId": "gowgos5"
-        },
-        "content": "    //        String taskListStr \u003d null;"
-      },
-      {
-        "lineNumber": 38,
-        "author": {
-          "gitId": "gowgos5"
-        },
-        "content": "    //        try {"
-      },
-      {
-        "lineNumber": 39,
-        "author": {
-          "gitId": "gowgos5"
-        },
-        "content": "    //            uut.parse(\"3 19/09/2019 1400\");"
-      },
-      {
-        "lineNumber": 40,
-        "author": {
-          "gitId": "gowgos5"
-        },
-        "content": "    //            uut.execute(core);"
-      },
-      {
-        "lineNumber": 41,
-        "author": {
-          "gitId": "gowgos5"
-        },
-        "content": "    //            taskListStr \u003d core.taskList.listTasks();"
-      },
-      {
-        "lineNumber": 42,
-        "author": {
-          "gitId": "gowgos5"
-        },
-        "content": "    //        } catch (DukeException excp) {"
-      },
-      {
-        "lineNumber": 43,
-        "author": {
-          "gitId": "gowgos5"
-        },
-        "content": "    //            System.out.println(excp.getMessage());"
-      },
-      {
-        "lineNumber": 44,
-        "author": {
-          "gitId": "gowgos5"
-        },
-        "content": "    //            fail(\"Exception thrown on valid command!\");"
-      },
-      {
-        "lineNumber": 45,
-        "author": {
-          "gitId": "gowgos5"
-        },
-        "content": "    //        }"
-      },
-      {
-        "lineNumber": 46,
-        "author": {
-          "gitId": "gowgos5"
-        },
-        "content": "    //        assertEquals(taskListStr, System.lineSeparator() + \"1.[T][N] JUnit tests\""
-      },
-      {
-        "lineNumber": 47,
-        "author": {
-          "gitId": "gowgos5"
-        },
-        "content": "    //                + System.lineSeparator() + \"2.[E][N] tutorial (at: Thu, 12 Sep 2019 2:00 PM - \""
-      },
-      {
-        "lineNumber": 48,
-        "author": {
-          "gitId": "gowgos5"
-        },
-        "content": "    //                + \"Thu, 12 Sep 2019 2:00 PM)\""
-      },
-      {
-        "lineNumber": 49,
-        "author": {
-          "gitId": "gowgos5"
-        },
-        "content": "    //                + System.lineSeparator() + \"3.[D][N] submission (by: Thu, 19 Sep 2019 2:00 PM)\");"
-      },
-      {
-        "lineNumber": 50,
-        "author": {
-          "gitId": "gowgos5"
-        },
-        "content": "    //    }"
-      },
-      {
-        "lineNumber": 51,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 52,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    @Test"
-      },
-      {
-        "lineNumber": 53,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public void snooze_invalidTarget_exceptionThrown() {"
-      },
-      {
-        "lineNumber": 54,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        SnoozeCommand uut \u003d new SnoozeCommand();"
-      },
-      {
-        "lineNumber": 55,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        try {"
-      },
-      {
-        "lineNumber": 56,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            uut.parse(\"4 19/09/2019 1400\");"
-      },
-      {
-        "lineNumber": 57,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            assertThrows(DukeException.class, () -\u003e {"
-      },
-      {
-        "lineNumber": 58,
-        "author": {
-          "gitId": "aquohn"
-        },
-        "content": "                uut.execute(core);"
-      },
-      {
-        "lineNumber": 59,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            });"
-      },
-      {
-        "lineNumber": 60,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            uut.parse(\"1 19/09/2019 1400\");"
-      },
-      {
-        "lineNumber": 61,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            assertThrows(DukeException.class, () -\u003e {"
-      },
-      {
-        "lineNumber": 62,
-        "author": {
-          "gitId": "aquohn"
-        },
-        "content": "                uut.execute(core);"
-      },
-      {
-        "lineNumber": 63,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            });"
-      },
-      {
-        "lineNumber": 64,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        } catch (AssertionError excp) {"
-      },
-      {
-        "lineNumber": 65,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            fail(\"Failed to catch command snoozing invalid targets!\");"
-      },
-      {
-        "lineNumber": 66,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        } catch (DukeException excp) {"
-      },
-      {
-        "lineNumber": 67,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            fail(\"Failed to parse command with valid delimiter!\");"
-      },
-      {
-        "lineNumber": 68,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 69,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 70,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "}"
-      }
-    ],
-    "authorContributionMap": {
-      "gowgos5": 17,
-      "aquohn": 6,
-      "-": 47
     }
   },
   {

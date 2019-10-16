@@ -2842,6 +2842,1849 @@
     }
   },
   {
+    "path": "src/main/java/duke/storage/RuntimeTypeAdapterFactory.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "package duke.storage;/*"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " * Copyright (C) 2011 Google Inc."
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " * Licensed under the Apache License, Version 2.0 (the \"License\");"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " * you may not use this file except in compliance with the License."
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " * You may obtain a copy of the License at"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *      http://www.apache.org/licenses/LICENSE-2.0"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " * Unless required by applicable law or agreed to in writing, software"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " * distributed under the License is distributed on an \"AS IS\" BASIS,"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied."
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " * See the License for the specific language governing permissions and"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " * limitations under the License."
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "import java.io.IOException;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "import java.util.LinkedHashMap;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "import java.util.Map;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "import com.google.gson.Gson;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "import com.google.gson.JsonElement;"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "import com.google.gson.JsonObject;"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "import com.google.gson.JsonParseException;"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "import com.google.gson.JsonPrimitive;"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "import com.google.gson.TypeAdapter;"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "import com.google.gson.TypeAdapterFactory;"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "import com.google.gson.internal.Streams;"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "import com.google.gson.reflect.TypeToken;"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "import com.google.gson.stream.JsonReader;"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "import com.google.gson.stream.JsonWriter;"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " * Adapts values whose runtime type may differ from their declaration type. This"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " * is necessary when a field\u0027s type is not the same type that GSON should create"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " * when deserializing that field. For example, consider these types:"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " * \u003cpre\u003e   {@code"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *   abstract class Shape {"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *     int x;"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *     int y;"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *   }"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *   class Circle extends Shape {"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *     int radius;"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *   }"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *   class Rectangle extends Shape {"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *     int width;"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *     int height;"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *   }"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *   class Diamond extends Shape {"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *     int width;"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *     int height;"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *   }"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *   class Drawing {"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *     Shape bottomShape;"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *     Shape topShape;"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *   }"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " * }\u003c/pre\u003e"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " * \u003cp\u003eWithout additional type information, the serialized JSON is ambiguous. Is"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " * the bottom shape in this drawing a rectangle or a diamond? \u003cpre\u003e   {@code"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *   {"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *     \"bottomShape\": {"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *       \"width\": 10,"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *       \"height\": 5,"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *       \"x\": 0,"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *       \"y\": 0"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *     },"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *     \"topShape\": {"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *       \"radius\": 2,"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *       \"x\": 4,"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *       \"y\": 1"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *     }"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *   }}\u003c/pre\u003e"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " * This class addresses this problem by adding type information to the"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " * serialized JSON and honoring that type information when the JSON is"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " * deserialized: \u003cpre\u003e   {@code"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *   {"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *     \"bottomShape\": {"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *       \"type\": \"Diamond\","
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *       \"width\": 10,"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *       \"height\": 5,"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *       \"x\": 0,"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *       \"y\": 0"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *     },"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *     \"topShape\": {"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *       \"type\": \"Circle\","
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *       \"radius\": 2,"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *       \"x\": 4,"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *       \"y\": 1"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *     }"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *   }}\u003c/pre\u003e"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " * Both the type field name ({@code \"type\"}) and the type labels ({@code"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " * \"Rectangle\"}) are configurable."
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " * \u003ch3\u003eRegistering Types\u003c/h3\u003e"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " * Create a {@code RuntimeTypeAdapterFactory} by passing the base type and type field"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " * name to the {@link #of} factory method. If you don\u0027t supply an explicit type"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " * field name, {@code \"type\"} will be used. \u003cpre\u003e   {@code"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *   RuntimeTypeAdapterFactory\u003cShape\u003e shapeAdapterFactory"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *       \u003d RuntimeTypeAdapterFactory.of(Shape.class, \"type\");"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " * }\u003c/pre\u003e"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " * Next register all of your subtypes. Every subtype must be explicitly"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " * registered. This protects your application from injection attacks. If you"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " * don\u0027t supply an explicit type label, the type\u0027s simple name will be used."
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " * \u003cpre\u003e   {@code"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *   shapeAdapterFactory.registerSubtype(Rectangle.class, \"Rectangle\");"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *   shapeAdapterFactory.registerSubtype(Circle.class, \"Circle\");"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *   shapeAdapterFactory.registerSubtype(Diamond.class, \"Diamond\");"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " * }\u003c/pre\u003e"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " * Finally, register the type adapter factory in your application\u0027s GSON builder:"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " * \u003cpre\u003e   {@code"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *   Gson gson \u003d new GsonBuilder()"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *       .registerTypeAdapterFactory(shapeAdapterFactory)"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *       .create();"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " * }\u003c/pre\u003e"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " * Like {@code GsonBuilder}, this API supports chaining: \u003cpre\u003e   {@code"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *   RuntimeTypeAdapterFactory\u003cShape\u003e shapeAdapterFactory \u003d RuntimeTypeAdapterFactory.of(Shape.class)"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *       .registerSubtype(Rectangle.class)"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *       .registerSubtype(Circle.class)"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " *       .registerSubtype(Diamond.class);"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " * }\u003c/pre\u003e"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "public final class RuntimeTypeAdapterFactory\u003cT\u003e implements TypeAdapterFactory {"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\tprivate final Class\u003c?\u003e baseType;"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\tprivate final String typeFieldName;"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\tprivate final Map\u003cString, Class\u003c?\u003e\u003e labelToSubtype \u003d new LinkedHashMap\u003cString, Class\u003c?\u003e\u003e();"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\tprivate final Map\u003cClass\u003c?\u003e, String\u003e subtypeToLabel \u003d new LinkedHashMap\u003cClass\u003c?\u003e, String\u003e();"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\tprivate final boolean maintainType;"
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\tprivate RuntimeTypeAdapterFactory(Class\u003c?\u003e baseType, String typeFieldName, boolean maintainType) {"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\tif (typeFieldName \u003d\u003d null || baseType \u003d\u003d null) {"
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\tthrow new NullPointerException();"
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t}"
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\tthis.baseType \u003d baseType;"
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\tthis.typeFieldName \u003d typeFieldName;"
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\tthis.maintainType \u003d maintainType;"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t}"
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t/**"
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t * Creates a new runtime type adapter using for {@code baseType} using {@code"
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t * typeFieldName} as the type field name. Type field names are case sensitive."
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t * {@code maintainType} flag decide if the type will be stored in pojo or not."
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t */"
+      },
+      {
+        "lineNumber": 142,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\tpublic static \u003cT\u003e RuntimeTypeAdapterFactory\u003cT\u003e of(Class\u003cT\u003e baseType, String typeFieldName, boolean maintainType) {"
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\treturn new RuntimeTypeAdapterFactory\u003cT\u003e(baseType, typeFieldName, maintainType);"
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t}"
+      },
+      {
+        "lineNumber": 145,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 146,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t/**"
+      },
+      {
+        "lineNumber": 147,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t * Creates a new runtime type adapter using for {@code baseType} using {@code"
+      },
+      {
+        "lineNumber": 148,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t * typeFieldName} as the type field name. Type field names are case sensitive."
+      },
+      {
+        "lineNumber": 149,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t */"
+      },
+      {
+        "lineNumber": 150,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\tpublic static \u003cT\u003e RuntimeTypeAdapterFactory\u003cT\u003e of(Class\u003cT\u003e baseType, String typeFieldName) {"
+      },
+      {
+        "lineNumber": 151,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\treturn new RuntimeTypeAdapterFactory\u003cT\u003e(baseType, typeFieldName, false);"
+      },
+      {
+        "lineNumber": 152,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t}"
+      },
+      {
+        "lineNumber": 153,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 154,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t/**"
+      },
+      {
+        "lineNumber": 155,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t * Creates a new runtime type adapter for {@code baseType} using {@code \"type\"} as"
+      },
+      {
+        "lineNumber": 156,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t * the type field name."
+      },
+      {
+        "lineNumber": 157,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t */"
+      },
+      {
+        "lineNumber": 158,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\tpublic static \u003cT\u003e RuntimeTypeAdapterFactory\u003cT\u003e of(Class\u003cT\u003e baseType) {"
+      },
+      {
+        "lineNumber": 159,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\treturn new RuntimeTypeAdapterFactory\u003cT\u003e(baseType, \"type\", false);"
+      },
+      {
+        "lineNumber": 160,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t}"
+      },
+      {
+        "lineNumber": 161,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 162,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t/**"
+      },
+      {
+        "lineNumber": 163,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t * Registers {@code type} identified by {@code label}. Labels are case"
+      },
+      {
+        "lineNumber": 164,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t * sensitive."
+      },
+      {
+        "lineNumber": 165,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t *"
+      },
+      {
+        "lineNumber": 166,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t * @throws IllegalArgumentException if either {@code type} or {@code label}"
+      },
+      {
+        "lineNumber": 167,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t *     have already been registered on this type adapter."
+      },
+      {
+        "lineNumber": 168,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t */"
+      },
+      {
+        "lineNumber": 169,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\tpublic RuntimeTypeAdapterFactory\u003cT\u003e registerSubtype(Class\u003c? extends T\u003e type, String label) {"
+      },
+      {
+        "lineNumber": 170,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\tif (type \u003d\u003d null || label \u003d\u003d null) {"
+      },
+      {
+        "lineNumber": 171,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\tthrow new NullPointerException();"
+      },
+      {
+        "lineNumber": 172,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t}"
+      },
+      {
+        "lineNumber": 173,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\tif (subtypeToLabel.containsKey(type) || labelToSubtype.containsKey(label)) {"
+      },
+      {
+        "lineNumber": 174,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\tthrow new IllegalArgumentException(\"types and labels must be unique\");"
+      },
+      {
+        "lineNumber": 175,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t}"
+      },
+      {
+        "lineNumber": 176,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\tlabelToSubtype.put(label, type);"
+      },
+      {
+        "lineNumber": 177,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\tsubtypeToLabel.put(type, label);"
+      },
+      {
+        "lineNumber": 178,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\treturn this;"
+      },
+      {
+        "lineNumber": 179,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t}"
+      },
+      {
+        "lineNumber": 180,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 181,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t/**"
+      },
+      {
+        "lineNumber": 182,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t * Registers {@code type} identified by its {@link Class#getSimpleName simple"
+      },
+      {
+        "lineNumber": 183,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t * name}. Labels are case sensitive."
+      },
+      {
+        "lineNumber": 184,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t *"
+      },
+      {
+        "lineNumber": 185,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t * @throws IllegalArgumentException if either {@code type} or its simple name"
+      },
+      {
+        "lineNumber": 186,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t *     have already been registered on this type adapter."
+      },
+      {
+        "lineNumber": 187,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t */"
+      },
+      {
+        "lineNumber": 188,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\tpublic RuntimeTypeAdapterFactory\u003cT\u003e registerSubtype(Class\u003c? extends T\u003e type) {"
+      },
+      {
+        "lineNumber": 189,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\treturn registerSubtype(type, type.getSimpleName());"
+      },
+      {
+        "lineNumber": 190,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t}"
+      },
+      {
+        "lineNumber": 191,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 192,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\tpublic \u003cR\u003e TypeAdapter\u003cR\u003e create(Gson gson, TypeToken\u003cR\u003e type) {"
+      },
+      {
+        "lineNumber": 193,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\tif (null \u003d\u003d type || !baseType.isAssignableFrom(type.getRawType())) {"
+      },
+      {
+        "lineNumber": 194,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\treturn null;"
+      },
+      {
+        "lineNumber": 195,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t}"
+      },
+      {
+        "lineNumber": 196,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 197,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\tfinal Map\u003cString, TypeAdapter\u003c?\u003e\u003e labelToDelegate"
+      },
+      {
+        "lineNumber": 198,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\t\u003d new LinkedHashMap\u003cString, TypeAdapter\u003c?\u003e\u003e();"
+      },
+      {
+        "lineNumber": 199,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\tfinal Map\u003cClass\u003c?\u003e, TypeAdapter\u003c?\u003e\u003e subtypeToDelegate"
+      },
+      {
+        "lineNumber": 200,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\t\u003d new LinkedHashMap\u003cClass\u003c?\u003e, TypeAdapter\u003c?\u003e\u003e();"
+      },
+      {
+        "lineNumber": 201,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\tfor (Map.Entry\u003cString, Class\u003c?\u003e\u003e entry : labelToSubtype.entrySet()) {"
+      },
+      {
+        "lineNumber": 202,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\tTypeAdapter\u003c?\u003e delegate \u003d gson.getDelegateAdapter(this, TypeToken.get(entry.getValue()));"
+      },
+      {
+        "lineNumber": 203,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\tlabelToDelegate.put(entry.getKey(), delegate);"
+      },
+      {
+        "lineNumber": 204,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\tsubtypeToDelegate.put(entry.getValue(), delegate);"
+      },
+      {
+        "lineNumber": 205,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t}"
+      },
+      {
+        "lineNumber": 206,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 207,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\treturn new TypeAdapter\u003cR\u003e() {"
+      },
+      {
+        "lineNumber": 208,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t@Override public R read(JsonReader in) throws IOException {"
+      },
+      {
+        "lineNumber": 209,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\tJsonElement jsonElement \u003d Streams.parse(in);"
+      },
+      {
+        "lineNumber": 210,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\tJsonElement labelJsonElement;"
+      },
+      {
+        "lineNumber": 211,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\tif (maintainType) {"
+      },
+      {
+        "lineNumber": 212,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\t\tlabelJsonElement \u003d jsonElement.getAsJsonObject().get(typeFieldName);"
+      },
+      {
+        "lineNumber": 213,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\t} else {"
+      },
+      {
+        "lineNumber": 214,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\t\tlabelJsonElement \u003d jsonElement.getAsJsonObject().remove(typeFieldName);"
+      },
+      {
+        "lineNumber": 215,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\t}"
+      },
+      {
+        "lineNumber": 216,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 217,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\tif (labelJsonElement \u003d\u003d null) {"
+      },
+      {
+        "lineNumber": 218,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\t\tthrow new JsonParseException(\"cannot deserialize \" + baseType"
+      },
+      {
+        "lineNumber": 219,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\t\t\t\t+ \" because it does not define a field named \" + typeFieldName);"
+      },
+      {
+        "lineNumber": 220,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\t}"
+      },
+      {
+        "lineNumber": 221,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\tString label \u003d labelJsonElement.getAsString();"
+      },
+      {
+        "lineNumber": 222,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\t@SuppressWarnings(\"unchecked\") // registration requires that subtype extends T"
+      },
+      {
+        "lineNumber": 223,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\t\t\tTypeAdapter\u003cR\u003e delegate \u003d (TypeAdapter\u003cR\u003e) labelToDelegate.get(label);"
+      },
+      {
+        "lineNumber": 224,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\tif (delegate \u003d\u003d null) {"
+      },
+      {
+        "lineNumber": 225,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\t\tthrow new JsonParseException(\"cannot deserialize \" + baseType + \" subtype named \""
+      },
+      {
+        "lineNumber": 226,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\t\t\t\t+ label + \"; did you forget to register a subtype?\");"
+      },
+      {
+        "lineNumber": 227,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\t}"
+      },
+      {
+        "lineNumber": 228,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\treturn delegate.fromJsonTree(jsonElement);"
+      },
+      {
+        "lineNumber": 229,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t}"
+      },
+      {
+        "lineNumber": 230,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 231,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t@Override public void write(JsonWriter out, R value) throws IOException {"
+      },
+      {
+        "lineNumber": 232,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\tClass\u003c?\u003e srcType \u003d value.getClass();"
+      },
+      {
+        "lineNumber": 233,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\tString label \u003d subtypeToLabel.get(srcType);"
+      },
+      {
+        "lineNumber": 234,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\t@SuppressWarnings(\"unchecked\") // registration requires that subtype extends T"
+      },
+      {
+        "lineNumber": 235,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\t\t\tTypeAdapter\u003cR\u003e delegate \u003d (TypeAdapter\u003cR\u003e) subtypeToDelegate.get(srcType);"
+      },
+      {
+        "lineNumber": 236,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\tif (delegate \u003d\u003d null) {"
+      },
+      {
+        "lineNumber": 237,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\t\tthrow new JsonParseException(\"cannot serialize \" + srcType.getName()"
+      },
+      {
+        "lineNumber": 238,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\t\t\t\t+ \"; did you forget to register a subtype?\");"
+      },
+      {
+        "lineNumber": 239,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\t}"
+      },
+      {
+        "lineNumber": 240,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\tJsonObject jsonObject \u003d delegate.toJsonTree(value).getAsJsonObject();"
+      },
+      {
+        "lineNumber": 241,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 242,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\tif (maintainType) {"
+      },
+      {
+        "lineNumber": 243,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\t\tStreams.write(jsonObject, out);"
+      },
+      {
+        "lineNumber": 244,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\t\treturn;"
+      },
+      {
+        "lineNumber": 245,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\t}"
+      },
+      {
+        "lineNumber": 246,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 247,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\tJsonObject clone \u003d new JsonObject();"
+      },
+      {
+        "lineNumber": 248,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 249,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\tif (jsonObject.has(typeFieldName)) {"
+      },
+      {
+        "lineNumber": 250,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\t\tthrow new JsonParseException(\"cannot serialize \" + srcType.getName()"
+      },
+      {
+        "lineNumber": 251,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\t\t\t\t+ \" because it already defines a field named \" + typeFieldName);"
+      },
+      {
+        "lineNumber": 252,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\t}"
+      },
+      {
+        "lineNumber": 253,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\tclone.add(typeFieldName, new JsonPrimitive(label));"
+      },
+      {
+        "lineNumber": 254,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 255,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\tfor (Map.Entry\u003cString, JsonElement\u003e e : jsonObject.entrySet()) {"
+      },
+      {
+        "lineNumber": 256,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\t\tclone.add(e.getKey(), e.getValue());"
+      },
+      {
+        "lineNumber": 257,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\t}"
+      },
+      {
+        "lineNumber": 258,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\tStreams.write(clone, out);"
+      },
+      {
+        "lineNumber": 259,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t}"
+      },
+      {
+        "lineNumber": 260,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t}.nullSafe();"
+      },
+      {
+        "lineNumber": 261,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t}"
+      },
+      {
+        "lineNumber": 262,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "nicholasnovakovic": 262
+    }
+  },
+  {
     "path": "src/main/java/duke/storage/Storage.java",
     "fileType": "functional",
     "lines": [
@@ -3149,145 +4992,243 @@
       {
         "lineNumber": 44,
         "author": {
-          "gitId": "-"
+          "gitId": "nicholasnovakovic"
         },
-        "content": "\t\tGson gson \u003d new Gson();"
+        "content": "\t\tGson gson \u003d new GsonBuilder()"
       },
       {
         "lineNumber": 45,
         "author": {
-          "gitId": "-"
+          "gitId": "nicholasnovakovic"
         },
-        "content": "\t\tJsonReader reader \u003d new JsonReader(new FileReader(\"data/duke.json\"));"
+        "content": "\t\t\t\t.registerTypeAdapterFactory(RuntimeTypeAdapterFactory"
       },
       {
         "lineNumber": 46,
         "author": {
-          "gitId": "-"
+          "gitId": "nicholasnovakovic"
         },
-        "content": "\t\tType type \u003d new TypeToken\u003cArrayList\u003cTask\u003e\u003e() {}.getType();"
+        "content": "\t\t\t\t\t\t.of(Task.class)"
       },
       {
         "lineNumber": 47,
         "author": {
-          "gitId": "-"
+          "gitId": "nicholasnovakovic"
         },
-        "content": "\t\tArrayList\u003cTask\u003e tasks \u003d gson.fromJson(reader, type);"
+        "content": "\t\t\t\t\t\t.registerSubtype(ToDo.class)"
       },
       {
         "lineNumber": 48,
         "author": {
-          "gitId": "-"
+          "gitId": "nicholasnovakovic"
         },
-        "content": "\t\treturn tasks;"
+        "content": "\t\t\t\t\t\t.registerSubtype(Deadline.class)"
       },
       {
         "lineNumber": 49,
         "author": {
-          "gitId": "-"
+          "gitId": "nicholasnovakovic"
         },
-        "content": "\t}"
+        "content": "\t\t\t\t\t\t.registerSubtype(Event.class)"
       },
       {
         "lineNumber": 50,
         "author": {
-          "gitId": "-"
+          "gitId": "nicholasnovakovic"
         },
-        "content": ""
+        "content": "\t\t\t\t\t\t.registerSubtype(FixedDurationTask.class))"
       },
       {
         "lineNumber": 51,
         "author": {
-          "gitId": "-"
+          "gitId": "nicholasnovakovic"
         },
-        "content": "\t/**"
+        "content": "\t\t\t\t.create();"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "-"
         },
-        "content": "\t * Transfers all current duke.task.Task data saved in the duke.tasklist.TaskList into an ArrayList of Tasks"
+        "content": "\t\tJsonReader reader \u003d new JsonReader(new FileReader(\"data/duke.json\"));"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "-"
         },
-        "content": "\t * Writes all data in this ArrayList onto the JSON file specified in the filePath attribute"
+        "content": "\t\tType type \u003d new TypeToken\u003cArrayList\u003cTask\u003e\u003e() {}.getType();"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "-"
         },
-        "content": "\t * @param tasks the duke.tasklist.TaskList with all the saved duke.task.Task data"
+        "content": "\t\tArrayList\u003cTask\u003e tasks \u003d gson.fromJson(reader, type);"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "-"
         },
-        "content": "\t * @throws IOException in case of IOException then the error in failure of saving should be shown to user"
+        "content": "\t\treturn tasks;"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "-"
         },
-        "content": "\t */"
+        "content": "\t}"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "-"
         },
-        "content": "\tpublic void save(TaskList tasks) throws IOException {"
+        "content": ""
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "-"
         },
-        "content": "\t\tFileWriter writer \u003d new FileWriter(\"data/duke.json\");"
+        "content": "\t/**"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "-"
         },
-        "content": "\t\tArrayList\u003cTask\u003e list\u003d tasks.getList();"
+        "content": "\t * Transfers all current duke.task.Task data saved in the duke.tasklist.TaskList into an ArrayList of Tasks"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "-"
         },
-        "content": "\t\tGson gson \u003d new GsonBuilder().create();"
+        "content": "\t * Writes all data in this ArrayList onto the JSON file specified in the filePath attribute"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "-"
         },
-        "content": "\t\tgson.toJson(list, writer);"
+        "content": "\t * @param tasks the duke.tasklist.TaskList with all the saved duke.task.Task data"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "-"
         },
-        "content": "\t\twriter.close();"
+        "content": "\t * @throws IOException in case of IOException then the error in failure of saving should be shown to user"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "-"
         },
-        "content": "\t}"
+        "content": "\t */"
       },
       {
         "lineNumber": 64,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\tpublic void save(TaskList tasks) throws IOException {"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\t\tFileWriter writer \u003d new FileWriter(\"data/duke.json\");"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\t\tArrayList\u003cTask\u003e list\u003d tasks.getList();"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\tGson gson \u003d new GsonBuilder()"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\t.registerTypeAdapterFactory(RuntimeTypeAdapterFactory"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\t\t\t.of(Task.class)"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\t\t\t.registerSubtype(ToDo.class)"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\t\t\t.registerSubtype(Deadline.class)"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\t\t\t.registerSubtype(Event.class)"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\t\t\t.registerSubtype(FixedDurationTask.class))"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "nicholasnovakovic"
+        },
+        "content": "\t\t\t\t.create();"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\t\tgson.toJson(list, writer);"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\t\twriter.close();"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\t}"
+      },
+      {
+        "lineNumber": 78,
         "author": {
           "gitId": "-"
         },
@@ -3295,8 +5236,8 @@
       }
     ],
     "authorContributionMap": {
-      "nicholasnovakovic": 1,
-      "-": 63
+      "nicholasnovakovic": 17,
+      "-": 61
     }
   },
   {
@@ -3462,7 +5403,7 @@
         "author": {
           "gitId": "nicholasnovakovic"
         },
-        "content": "        this.type \u003d \"[D]\";"
+        "content": "        this.key \u003d \"[D]\";"
       },
       {
         "lineNumber": 24,
@@ -3737,21 +5678,21 @@
       {
         "lineNumber": 23,
         "author": {
-          "gitId": "-"
+          "gitId": "nicholasnovakovic"
         },
-        "content": "\t\tthis.type \u003d \"[E]\";"
+        "content": "\t\tthis.key \u003d \"[E]\";"
       },
       {
         "lineNumber": 24,
         "author": {
-          "gitId": "-"
+          "gitId": "nicholasnovakovic"
         },
         "content": "\t}"
       },
       {
         "lineNumber": 25,
         "author": {
-          "gitId": "-"
+          "gitId": "nicholasnovakovic"
         },
         "content": ""
       },
@@ -3772,14 +5713,14 @@
       {
         "lineNumber": 28,
         "author": {
-          "gitId": "shaun97"
+          "gitId": "-"
         },
         "content": "\t}"
       },
       {
         "lineNumber": 29,
         "author": {
-          "gitId": "shaun97"
+          "gitId": "-"
         },
         "content": ""
       },
@@ -3848,8 +5789,9 @@
       }
     ],
     "authorContributionMap": {
-      "shaun97": 6,
-      "-": 32
+      "shaun97": 4,
+      "nicholasnovakovic": 3,
+      "-": 31
     }
   },
   {
@@ -3994,7 +5936,7 @@
         "author": {
           "gitId": "nicholasnovakovic"
         },
-        "content": "\t\tthis.type \u003d \"[F]\";"
+        "content": "\t\tthis.key \u003d \"[F]\";"
       },
       {
         "lineNumber": 21,
@@ -4171,7 +6113,7 @@
         "author": {
           "gitId": "nicholasnovakovic"
         },
-        "content": "    protected String type;"
+        "content": "    protected String key;"
       },
       {
         "lineNumber": 18,
@@ -4283,7 +6225,7 @@
         "author": {
           "gitId": "nicholasnovakovic"
         },
-        "content": "        this.type \u003d \"\";"
+        "content": "        this.key \u003d \"\";"
       },
       {
         "lineNumber": 34,
@@ -5051,9 +6993,9 @@
       {
         "lineNumber": 143,
         "author": {
-          "gitId": "shaun97"
+          "gitId": "nicholasnovakovic"
         },
-        "content": "        return recurringIcon + type + \"[\" + this.getStatusIcon() + \"] \" + description + recurringDescription;"
+        "content": "        return recurringIcon + key + \"[\" + this.getStatusIcon() + \"] \" + description + recurringDescription;"
       },
       {
         "lineNumber": 144,
@@ -5071,8 +7013,8 @@
       }
     ],
     "authorContributionMap": {
-      "shaun97": 62,
-      "nicholasnovakovic": 71,
+      "shaun97": 61,
+      "nicholasnovakovic": 72,
       "-": 12
     }
   },
@@ -5188,28 +7130,28 @@
       {
         "lineNumber": 16,
         "author": {
-          "gitId": "-"
+          "gitId": "nicholasnovakovic"
         },
-        "content": "\t\tthis.type \u003d \"[T]\";"
+        "content": "\t\tthis.key \u003d \"[T]\";"
       },
       {
         "lineNumber": 17,
         "author": {
-          "gitId": "-"
+          "gitId": "nicholasnovakovic"
         },
         "content": "\t}"
       },
       {
         "lineNumber": 18,
         "author": {
-          "gitId": "-"
+          "gitId": "nicholasnovakovic"
         },
         "content": ""
       },
       {
         "lineNumber": 19,
         "author": {
-          "gitId": "shaun97"
+          "gitId": "-"
         },
         "content": "\tpublic ToDo(String description) {"
       },
@@ -5223,14 +7165,14 @@
       {
         "lineNumber": 21,
         "author": {
-          "gitId": "shaun97"
+          "gitId": "-"
         },
         "content": "\t}"
       },
       {
         "lineNumber": 22,
         "author": {
-          "gitId": "shaun97"
+          "gitId": "-"
         },
         "content": ""
       },
@@ -5271,8 +7213,8 @@
       }
     ],
     "authorContributionMap": {
-      "shaun97": 6,
-      "nicholasnovakovic": 1,
+      "shaun97": 3,
+      "nicholasnovakovic": 4,
       "-": 20
     }
   },

@@ -2204,26 +2204,40 @@
       {
         "lineNumber": 54,
         "author": {
-          "gitId": "SholihinK"
+          "gitId": "jaedonkey"
         },
-        "content": "    private static Date currentDate \u003d java.util.Calendar.getInstance().getTime();"
+        "content": "    public static final String MESSAGE_INVALID_TASK_ID \u003d \"TaskIDError: No such task found\";"
       },
       {
         "lineNumber": 55,
         "author": {
-          "gitId": "SholihinK"
+          "gitId": "jaedonkey"
         },
-        "content": "    public static final String MESSAGE_INVALID_DATE_TIME_INPUT \u003d \"DateTimeError: You can only add \""
+        "content": "    public static final String MESSAGE_INVALID_PRIORITY \u003d \"No such priority level\";"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "            + \"task after current date and time:\\n\" + currentDate;"
+        "content": "    private static Date currentDate \u003d java.util.Calendar.getInstance().getTime();"
       },
       {
         "lineNumber": 57,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "    public static final String MESSAGE_INVALID_DATE_TIME_INPUT \u003d \"DateTimeError: You can only add \""
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "            + \"task after current date and time:\\n\" + currentDate;"
+      },
+      {
+        "lineNumber": 59,
         "author": {
           "gitId": "SholihinK"
         },
@@ -2234,6 +2248,7 @@
       "LTPZ": 3,
       "Catherinetan99": 7,
       "SholihinK": 38,
+      "jaedonkey": 2,
       "yueyeah": 9
     }
   },
@@ -7822,6 +7837,540 @@
       "Catherinetan99": 19,
       "SholihinK": 22,
       "-": 18
+    }
+  },
+  {
+    "path": "src/main/java/compal/logic/commands/EditCommand.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "package compal.logic.commands;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "import compal.commons.Compal;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "import compal.logic.parser.CommandParser;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "import compal.model.tasks.Task;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "import compal.model.tasks.TaskList;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "import java.text.ParseException;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "import java.util.Scanner;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "import java.util.regex.Pattern;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "import static compal.commons.Messages.MESSAGE_INVALID_PRIORITY;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": " * Edit command is the command object handling the editing of tasks."
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": " * Syntax: edit task id /field-to-edit new value"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": " * Currently only 1 editable field per edit command. Will slowly implement changing of multiple fields."
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": " *"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": " * @author jaedonkey"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "public class EditCommand extends Command implements CommandParser {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "     * Constructs a Command object."
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "     * @param d Compal object"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "    public EditCommand(Compal d) {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "        super(d);"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "    public void parseCommand(String userIn) throws Compal.DukeException, ParseException {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "        Scanner sc \u003d new Scanner(userIn);"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "        sc.next(); //skip command string"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "        int taskId \u003d sc.nextInt();"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "        Task taskToEdit \u003d compal.tasklist.getTaskById(taskId);"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "        while (sc.hasNext()) {"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "            String fieldToEdit \u003d sc.next().replace(\"/\",\"\");"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "            String newValue \u003d sc.nextLine();"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "            //for now only 2 cases for testing purposes"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "            switch (fieldToEdit) {"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "            case \"description\":"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "                taskToEdit.setDescription(newValue);"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "            case \"priority\":"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "                switch (newValue.trim()) {"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "                case \"high\":"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "                    taskToEdit.setPriority(Task.Priority.high);"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "                case \"medium\":"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "                    taskToEdit.setPriority(Task.Priority.high);"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "                case \"low\":"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "                    taskToEdit.setPriority(Task.Priority.high);"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "                default:"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "                    throw new Compal.DukeException(MESSAGE_INVALID_PRIORITY);"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "            default:"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "                System.out.println(\"EditCommand:LOG: Default case\");"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "        //save the changes"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "        compal.storage.saveCompal(compal.tasklist.arrlist);"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "jaedonkey": 75
     }
   },
   {
@@ -13481,1335 +14030,1384 @@
       {
         "lineNumber": 5,
         "author": {
-          "gitId": "LTPZ"
+          "gitId": "jaedonkey"
         },
         "content": "import compal.logic.commands.HelpCommand;"
       },
       {
         "lineNumber": 6,
         "author": {
-          "gitId": "LTPZ"
+          "gitId": "jaedonkey"
         },
         "content": "import compal.logic.commands.ListCommand;"
       },
       {
         "lineNumber": 7,
         "author": {
-          "gitId": "LTPZ"
+          "gitId": "jaedonkey"
         },
         "content": "import compal.logic.commands.AcadCommand;"
       },
       {
         "lineNumber": 8,
         "author": {
-          "gitId": "LTPZ"
+          "gitId": "jaedonkey"
         },
         "content": "import compal.logic.commands.ViewCommand;"
       },
       {
         "lineNumber": 9,
         "author": {
-          "gitId": "LTPZ"
+          "gitId": "jaedonkey"
         },
         "content": "import compal.logic.commands.SetReminderCommand;"
       },
       {
         "lineNumber": 10,
         "author": {
-          "gitId": "LTPZ"
+          "gitId": "jaedonkey"
         },
         "content": "import compal.logic.commands.RecurTaskCommand;"
       },
       {
         "lineNumber": 11,
         "author": {
-          "gitId": "LTPZ"
+          "gitId": "jaedonkey"
         },
         "content": "import compal.logic.commands.FindCommand;"
       },
       {
         "lineNumber": 12,
         "author": {
-          "gitId": "LTPZ"
+          "gitId": "jaedonkey"
         },
         "content": "import compal.logic.commands.EventCommand;"
       },
       {
         "lineNumber": 13,
         "author": {
-          "gitId": "LTPZ"
+          "gitId": "jaedonkey"
         },
         "content": "import compal.logic.commands.DoneCommand;"
       },
       {
         "lineNumber": 14,
         "author": {
-          "gitId": "LTPZ"
+          "gitId": "jaedonkey"
         },
         "content": "import compal.logic.commands.DeleteCommand;"
       },
       {
         "lineNumber": 15,
         "author": {
-          "gitId": "LTPZ"
+          "gitId": "jaedonkey"
         },
         "content": "import compal.logic.commands.DeadlineCommand;"
       },
       {
         "lineNumber": 16,
         "author": {
-          "gitId": "LTPZ"
+          "gitId": "jaedonkey"
         },
         "content": "import compal.logic.commands.ByeCommand;"
       },
       {
         "lineNumber": 17,
         "author": {
-          "gitId": "LTPZ"
+          "gitId": "jaedonkey"
         },
         "content": "import compal.logic.commands.ClearCommand;"
       },
       {
         "lineNumber": 18,
         "author": {
-          "gitId": "Catherinetan99"
+          "gitId": "jaedonkey"
         },
         "content": "import compal.logic.commands.FindFreeSlotCommand;"
       },
       {
         "lineNumber": 19,
         "author": {
-          "gitId": "yueyeah"
+          "gitId": "jaedonkey"
         },
-        "content": ""
+        "content": "import compal.logic.commands.EditCommand;"
       },
       {
         "lineNumber": 20,
         "author": {
-          "gitId": "SholihinK"
+          "gitId": "yueyeah"
         },
-        "content": "import compal.model.tasks.TaskList;"
+        "content": ""
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": ""
+        "content": "import compal.model.tasks.TaskList;"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "import static compal.commons.Messages.MESSAGE_INVALID_COMMAND;"
+        "content": ""
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "import static compal.commons.Messages.MESSAGE_MISSING_INPUT;"
+        "content": "import static compal.commons.Messages.MESSAGE_INVALID_COMMAND;"
       },
       {
         "lineNumber": 24,
         "author": {
-          "gitId": "-"
+          "gitId": "SholihinK"
         },
-        "content": ""
+        "content": "import static compal.commons.Messages.MESSAGE_MISSING_INPUT;"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "-"
         },
-        "content": "import java.text.ParseException;"
+        "content": ""
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "-"
         },
-        "content": "import java.util.Scanner;"
+        "content": "import java.text.ParseException;"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "import java.util.Scanner;"
       },
       {
         "lineNumber": 28,
         "author": {
-          "gitId": "Catherinetan99"
+          "gitId": "-"
         },
-        "content": "/**"
+        "content": ""
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "Catherinetan99"
         },
-        "content": " * Deals with user inputs."
+        "content": "/**"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "Catherinetan99"
         },
-        "content": " */"
+        "content": " * Deals with user inputs."
       },
       {
         "lineNumber": 31,
+        "author": {
+          "gitId": "Catherinetan99"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 32,
         "author": {
           "gitId": "SholihinK"
         },
         "content": "public class ParserManager {"
       },
       {
-        "lineNumber": 32,
+        "lineNumber": 33,
         "author": {
           "gitId": "-"
         },
         "content": "    //***Class Properties/Variables***---------------------------------------------------------------------------------\u003e"
       },
       {
-        "lineNumber": 33,
+        "lineNumber": 34,
         "author": {
           "gitId": "-"
         },
         "content": ""
-      },
-      {
-        "lineNumber": 34,
-        "author": {
-          "gitId": "LTPZ"
-        },
-        "content": "    public static final String CMD_EXIT \u003d \"bye\";"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "LTPZ"
         },
-        "content": "    public static final String CMD_LIST \u003d \"list\";"
+        "content": "    public static final String CMD_EXIT \u003d \"bye\";"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "LTPZ"
         },
-        "content": "    public static final String CMD_CLEAR \u003d \"clear\";"
+        "content": "    public static final String CMD_LIST \u003d \"list\";"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "LTPZ"
         },
-        "content": "    public static final String CMD_DONE \u003d \"done\";"
+        "content": "    public static final String CMD_CLEAR \u003d \"clear\";"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "LTPZ"
         },
-        "content": "    public static final String CMD_DELETE \u003d \"delete\";"
+        "content": "    public static final String CMD_DONE \u003d \"done\";"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "LTPZ"
         },
-        "content": "    public static final String CMD_EVENT \u003d \"event\";"
+        "content": "    public static final String CMD_DELETE \u003d \"delete\";"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "LTPZ"
         },
-        "content": "    public static final String CMD_DEADLINE \u003d \"deadline\";"
+        "content": "    public static final String CMD_EVENT \u003d \"event\";"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "LTPZ"
         },
-        "content": "    public static final String CMD_RECUR_TASK \u003d \"recurtask\";"
+        "content": "    public static final String CMD_DEADLINE \u003d \"deadline\";"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "LTPZ"
         },
-        "content": "    public static final String CMD_VIEW \u003d \"view\";"
+        "content": "    public static final String CMD_RECUR_TASK \u003d \"recurtask\";"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "LTPZ"
         },
-        "content": "    public static final String CMD_FIND \u003d \"find\";"
+        "content": "    public static final String CMD_VIEW \u003d \"view\";"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "LTPZ"
         },
-        "content": "    public static final String CMD_SET_REMINDER \u003d \"set-reminder\";"
+        "content": "    public static final String CMD_FIND \u003d \"find\";"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "LTPZ"
         },
-        "content": "    public static final String CMD_VIEW_REMIND \u003d \"view-reminder\";"
+        "content": "    public static final String CMD_SET_REMINDER \u003d \"set-reminder\";"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "LTPZ"
         },
-        "content": "    public static final String CMD_LECT \u003d \"lect\";"
+        "content": "    public static final String CMD_VIEW_REMIND \u003d \"view-reminder\";"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "LTPZ"
         },
-        "content": "    public static final String CMD_TUT \u003d \"tut\";"
+        "content": "    public static final String CMD_LECT \u003d \"lect\";"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "LTPZ"
         },
-        "content": "    public static final String CMD_SECT \u003d \"sect\";"
+        "content": "    public static final String CMD_TUT \u003d \"tut\";"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "LTPZ"
         },
-        "content": "    public static final String CMD_LAB \u003d \"lab\";"
+        "content": "    public static final String CMD_SECT \u003d \"sect\";"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "LTPZ"
         },
-        "content": "    public static final String CMD_HELP \u003d \"help\";"
+        "content": "    public static final String CMD_LAB \u003d \"lab\";"
       },
       {
         "lineNumber": 51,
+        "author": {
+          "gitId": "LTPZ"
+        },
+        "content": "    public static final String CMD_HELP \u003d \"help\";"
+      },
+      {
+        "lineNumber": 52,
         "author": {
           "gitId": "Catherinetan99"
         },
         "content": "    public static final String CMD_FIND_FREE_SLOT \u003d \"findfreeslot\";"
       },
       {
-        "lineNumber": 52,
+        "lineNumber": 53,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "    public static final String CMD_EDIT \u003d \"edit\";"
+      },
+      {
+        "lineNumber": 54,
         "author": {
           "gitId": "SholihinK"
         },
         "content": ""
       },
       {
-        "lineNumber": 53,
+        "lineNumber": 55,
         "author": {
           "gitId": "Catherinetan99"
         },
         "content": "    /*"
       },
       {
-        "lineNumber": 54,
+        "lineNumber": 56,
         "author": {
           "gitId": "Catherinetan99"
         },
         "content": "     * Status tells the parser if ComPAL is expecting an answer from a prompt it gave. Parser will then"
       },
       {
-        "lineNumber": 55,
+        "lineNumber": 57,
         "author": {
           "gitId": "-"
         },
         "content": "     * know where to redirect the input command."
       },
       {
-        "lineNumber": 56,
+        "lineNumber": 58,
         "author": {
           "gitId": "-"
         },
         "content": "     * Can be an enum e.g State.INIT, State.NORMAL, State.READTIMETABLE etc."
       },
       {
-        "lineNumber": 57,
+        "lineNumber": 59,
         "author": {
           "gitId": "-"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 58,
+        "lineNumber": 60,
         "author": {
           "gitId": "-"
         },
         "content": "    public String status \u003d \"normal\";"
       },
       {
-        "lineNumber": 59,
+        "lineNumber": 61,
         "author": {
           "gitId": "Catherinetan99"
         },
         "content": ""
       },
       {
-        "lineNumber": 60,
+        "lineNumber": 62,
         "author": {
           "gitId": "Catherinetan99"
         },
         "content": "    /*"
       },
       {
-        "lineNumber": 61,
+        "lineNumber": 63,
         "author": {
           "gitId": "Catherinetan99"
         },
         "content": "     * Stage tells the parser which stage of the current prompt sequence ComPAL is on."
       },
       {
-        "lineNumber": 62,
+        "lineNumber": 64,
         "author": {
           "gitId": "-"
         },
         "content": "     * e.g if stage \u003d\u003d 1 and status \u003d\u003d \"init\", then ComPAL is currently expecting the user to"
       },
       {
-        "lineNumber": 63,
+        "lineNumber": 65,
         "author": {
           "gitId": "-"
         },
         "content": "     * confirm his/her name (YES or NO)"
       },
       {
-        "lineNumber": 64,
+        "lineNumber": 66,
         "author": {
           "gitId": "-"
         },
         "content": "     * Note: stage is always reset to 0 upon a status change. This is done in the function below called setStatus()"
       },
       {
-        "lineNumber": 65,
+        "lineNumber": 67,
         "author": {
           "gitId": "-"
         },
         "content": "     */"
-      },
-      {
-        "lineNumber": 66,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public int stage \u003d 0;"
-      },
-      {
-        "lineNumber": 67,
-        "author": {
-          "gitId": "SholihinK"
-        },
-        "content": "    Compal compal;"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "-"
         },
-        "content": "    TaskList tasklist;"
+        "content": "    public int stage \u003d 0;"
       },
       {
         "lineNumber": 69,
         "author": {
-          "gitId": "-"
+          "gitId": "SholihinK"
         },
-        "content": "    //-----------------------\u003e"
+        "content": "    Compal compal;"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    TaskList tasklist;"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "-"
         },
-        "content": "    //***CONSTRUCTORS***------------------------------------------------------------------------------------------------"
+        "content": "    //-----------------------\u003e"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "-"
         },
-        "content": "    //------------------------------------------------------------------------------------------------------------------"
+        "content": ""
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "-"
         },
-        "content": "    //-----------------------------------------------------------------------------------------------------------------\u003e"
+        "content": "    //***CONSTRUCTORS***------------------------------------------------------------------------------------------------"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    //------------------------------------------------------------------------------------------------------------------"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": "    //-----------------------------------------------------------------------------------------------------------------\u003e"
       },
       {
         "lineNumber": 76,
         "author": {
-          "gitId": "Catherinetan99"
+          "gitId": "-"
         },
-        "content": "     * Constructs ParserManager object."
+        "content": ""
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "-"
         },
-        "content": "     *"
+        "content": "    /**"
       },
       {
         "lineNumber": 78,
+        "author": {
+          "gitId": "Catherinetan99"
+        },
+        "content": "     * Constructs ParserManager object."
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 80,
         "author": {
           "gitId": "SholihinK"
         },
         "content": "     * @param d        Compal."
       },
       {
-        "lineNumber": 79,
+        "lineNumber": 81,
         "author": {
           "gitId": "Catherinetan99"
         },
         "content": "     * @param tasklist list of tasks."
       },
       {
-        "lineNumber": 80,
+        "lineNumber": 82,
         "author": {
           "gitId": "-"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 81,
+        "lineNumber": 83,
         "author": {
           "gitId": "SholihinK"
         },
         "content": "    public ParserManager(Compal d, TaskList tasklist) {"
       },
       {
-        "lineNumber": 82,
+        "lineNumber": 84,
         "author": {
           "gitId": "SholihinK"
         },
         "content": "        this.compal \u003d d;"
       },
       {
-        "lineNumber": 83,
+        "lineNumber": 85,
         "author": {
           "gitId": "-"
         },
         "content": "        this.tasklist \u003d tasklist;"
       },
       {
-        "lineNumber": 84,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 85,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    //-----------------------\u003e"
-      },
-      {
         "lineNumber": 86,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    //-----------------------\u003e"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "-"
         },
-        "content": "    //***COMMAND PROCESSING***------------------------------------------------------------------------------------------"
+        "content": ""
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "-"
         },
-        "content": "    //------------------------------------------------------------------------------------------------------------------"
+        "content": ""
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "-"
         },
-        "content": "    //-----------------------------------------------------------------------------------------------------------------\u003e"
+        "content": "    //***COMMAND PROCESSING***------------------------------------------------------------------------------------------"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    //------------------------------------------------------------------------------------------------------------------"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": "    //-----------------------------------------------------------------------------------------------------------------\u003e"
       },
       {
         "lineNumber": 93,
         "author": {
-          "gitId": "Catherinetan99"
+          "gitId": "-"
         },
-        "content": "     * Processes command input by user."
+        "content": ""
       },
       {
         "lineNumber": 94,
         "author": {
-          "gitId": "Catherinetan99"
+          "gitId": "-"
         },
-        "content": "     * Based on the command input by user, it instantiates different command classes"
+        "content": "    /**"
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "Catherinetan99"
         },
-        "content": "     * and executes the respective methods implemented."
+        "content": "     * Processes command input by user."
       },
       {
         "lineNumber": 96,
         "author": {
-          "gitId": "-"
+          "gitId": "Catherinetan99"
         },
-        "content": "     *"
+        "content": "     * Based on the command input by user, it instantiates different command classes"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "Catherinetan99"
         },
-        "content": "     * @param userInput Entire user string input."
+        "content": "     * and executes the respective methods implemented."
       },
       {
         "lineNumber": 98,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "Catherinetan99"
+        },
+        "content": "     * @param userInput Entire user string input."
+      },
+      {
+        "lineNumber": 100,
         "author": {
           "gitId": "Catherinetan99"
         },
         "content": "     * @throws ParseException       If input date is invalid."
       },
       {
-        "lineNumber": 99,
+        "lineNumber": 101,
         "author": {
           "gitId": "SholihinK"
         },
         "content": "     * @throws Compal.DukeException If command input is unknown or user input is empty."
       },
       {
-        "lineNumber": 100,
+        "lineNumber": 102,
         "author": {
           "gitId": "-"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 101,
+        "lineNumber": 103,
         "author": {
           "gitId": "SholihinK"
         },
         "content": "    public void processCmd(String userInput) throws ParseException, Compal.DukeException {"
       },
       {
-        "lineNumber": 102,
+        "lineNumber": 104,
         "author": {
           "gitId": "SholihinK"
         },
         "content": "        compal.ui.clearPrimary();"
       },
       {
-        "lineNumber": 103,
+        "lineNumber": 105,
         "author": {
           "gitId": "-"
         },
         "content": "        Scanner sc \u003d new Scanner(userInput);"
       },
       {
-        "lineNumber": 104,
+        "lineNumber": 106,
         "author": {
           "gitId": "SholihinK"
         },
         "content": "        if (sc.hasNext()) {"
       },
       {
-        "lineNumber": 105,
+        "lineNumber": 107,
         "author": {
           "gitId": "SholihinK"
         },
         "content": "            String cmd \u003d sc.next();"
       },
       {
-        "lineNumber": 106,
+        "lineNumber": 108,
         "author": {
           "gitId": "SholihinK"
         },
         "content": "            if (status.equals(\"init\")) {"
       },
       {
-        "lineNumber": 107,
+        "lineNumber": 109,
         "author": {
           "gitId": "SholihinK"
         },
         "content": "                compal.ui.firstTimeInit(cmd, stage++);"
       },
       {
-        "lineNumber": 108,
+        "lineNumber": 110,
         "author": {
           "gitId": "SholihinK"
         },
         "content": "            } else {"
       },
       {
-        "lineNumber": 109,
+        "lineNumber": 111,
         "author": {
           "gitId": "SholihinK"
         },
         "content": "                switch (cmd) {"
       },
       {
-        "lineNumber": 110,
+        "lineNumber": 112,
         "author": {
           "gitId": "SholihinK"
         },
         "content": "                case CMD_EXIT:"
       },
       {
-        "lineNumber": 111,
+        "lineNumber": 113,
         "author": {
           "gitId": "SholihinK"
         },
         "content": "                    ByeCommand bye \u003d new ByeCommand(compal);"
       },
       {
-        "lineNumber": 112,
+        "lineNumber": 114,
         "author": {
           "gitId": "SholihinK"
         },
         "content": "                    bye.parseCommand(cmd);"
       },
       {
-        "lineNumber": 113,
-        "author": {
-          "gitId": "SholihinK"
-        },
-        "content": "                    break;"
-      },
-      {
-        "lineNumber": 114,
-        "author": {
-          "gitId": "SholihinK"
-        },
-        "content": "                case CMD_LIST:"
-      },
-      {
         "lineNumber": 115,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "                    ListCommand list \u003d new ListCommand(compal);"
+        "content": "                    break;"
       },
       {
         "lineNumber": 116,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "                    list.parseCommand(cmd);"
+        "content": "                case CMD_LIST:"
       },
       {
         "lineNumber": 117,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "                    break;"
+        "content": "                    ListCommand list \u003d new ListCommand(compal);"
       },
       {
         "lineNumber": 118,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "                case CMD_CLEAR:"
+        "content": "                    list.parseCommand(cmd);"
       },
       {
         "lineNumber": 119,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "                    ClearCommand clear \u003d new ClearCommand(compal);"
+        "content": "                    break;"
       },
       {
         "lineNumber": 120,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "                    clear.parseCommand(cmd);"
+        "content": "                case CMD_CLEAR:"
       },
       {
         "lineNumber": 121,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "                    break;"
+        "content": "                    ClearCommand clear \u003d new ClearCommand(compal);"
       },
       {
         "lineNumber": 122,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "                case CMD_DONE:"
+        "content": "                    clear.parseCommand(cmd);"
       },
       {
         "lineNumber": 123,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "                    DoneCommand done \u003d new DoneCommand(compal);"
+        "content": "                    break;"
       },
       {
         "lineNumber": 124,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "                    done.parseCommand(userInput);"
+        "content": "                case CMD_DONE:"
       },
       {
         "lineNumber": 125,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "                    break;"
+        "content": "                    DoneCommand done \u003d new DoneCommand(compal);"
       },
       {
         "lineNumber": 126,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "                case CMD_DELETE:"
+        "content": "                    done.parseCommand(userInput);"
       },
       {
         "lineNumber": 127,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "                    DeleteCommand delete \u003d new DeleteCommand(compal);"
+        "content": "                    break;"
       },
       {
         "lineNumber": 128,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "                    delete.parseCommand(userInput);"
+        "content": "                case CMD_DELETE:"
       },
       {
         "lineNumber": 129,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "                    break;"
+        "content": "                    DeleteCommand delete \u003d new DeleteCommand(compal);"
       },
       {
         "lineNumber": 130,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "                case CMD_EVENT:"
+        "content": "                    delete.parseCommand(userInput);"
       },
       {
         "lineNumber": 131,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "                    EventCommand event \u003d new EventCommand(compal);"
+        "content": "                    break;"
       },
       {
         "lineNumber": 132,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "                    event.parseCommand(userInput);"
+        "content": "                case CMD_EVENT:"
       },
       {
         "lineNumber": 133,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "                    break;"
+        "content": "                    EventCommand event \u003d new EventCommand(compal);"
       },
       {
         "lineNumber": 134,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "                case CMD_DEADLINE:"
+        "content": "                    event.parseCommand(userInput);"
       },
       {
         "lineNumber": 135,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "                    DeadlineCommand deadline \u003d new DeadlineCommand(compal);"
+        "content": "                    break;"
       },
       {
         "lineNumber": 136,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "                    deadline.parseCommand(userInput);"
+        "content": "                case CMD_DEADLINE:"
       },
       {
         "lineNumber": 137,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "                    break;"
+        "content": "                    DeadlineCommand deadline \u003d new DeadlineCommand(compal);"
       },
       {
         "lineNumber": 138,
         "author": {
-          "gitId": "yueyeah"
+          "gitId": "SholihinK"
         },
-        "content": "                case CMD_LECT:"
+        "content": "                    deadline.parseCommand(userInput);"
       },
       {
         "lineNumber": 139,
         "author": {
-          "gitId": "yueyeah"
+          "gitId": "SholihinK"
         },
-        "content": "                case CMD_TUT:"
+        "content": "                    break;"
       },
       {
         "lineNumber": 140,
         "author": {
           "gitId": "yueyeah"
         },
-        "content": "                case CMD_SECT:"
+        "content": "                case CMD_LECT:"
       },
       {
         "lineNumber": 141,
         "author": {
           "gitId": "yueyeah"
         },
-        "content": "                case CMD_LAB:"
+        "content": "                case CMD_TUT:"
       },
       {
         "lineNumber": 142,
         "author": {
           "gitId": "yueyeah"
         },
-        "content": "                    AcadCommand acad \u003d new AcadCommand(compal);"
+        "content": "                case CMD_SECT:"
       },
       {
         "lineNumber": 143,
         "author": {
           "gitId": "yueyeah"
         },
-        "content": "                    acad.parseCommand(userInput);"
+        "content": "                case CMD_LAB:"
       },
       {
         "lineNumber": 144,
         "author": {
           "gitId": "yueyeah"
         },
-        "content": "                    break;"
+        "content": "                    AcadCommand acad \u003d new AcadCommand(compal);"
       },
       {
         "lineNumber": 145,
         "author": {
           "gitId": "yueyeah"
         },
-        "content": "                case CMD_RECUR_TASK:"
+        "content": "                    acad.parseCommand(userInput);"
       },
       {
         "lineNumber": 146,
         "author": {
-          "gitId": "SholihinK"
+          "gitId": "yueyeah"
         },
-        "content": "                    RecurTaskCommand recurTask \u003d new RecurTaskCommand(compal);"
+        "content": "                    break;"
       },
       {
         "lineNumber": 147,
         "author": {
-          "gitId": "SholihinK"
+          "gitId": "yueyeah"
         },
-        "content": "                    recurTask.parseCommand(userInput);"
+        "content": "                case CMD_RECUR_TASK:"
       },
       {
         "lineNumber": 148,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "                    break;"
+        "content": "                    RecurTaskCommand recurTask \u003d new RecurTaskCommand(compal);"
       },
       {
         "lineNumber": 149,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "                case CMD_FIND:"
+        "content": "                    recurTask.parseCommand(userInput);"
       },
       {
         "lineNumber": 150,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "                    FindCommand findCommand \u003d new FindCommand(compal);"
+        "content": "                    break;"
       },
       {
         "lineNumber": 151,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "                    findCommand.parseCommand(userInput);"
+        "content": "                case CMD_FIND:"
       },
       {
         "lineNumber": 152,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "                    break;"
+        "content": "                    FindCommand findCommand \u003d new FindCommand(compal);"
       },
       {
         "lineNumber": 153,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "                case CMD_VIEW:"
+        "content": "                    findCommand.parseCommand(userInput);"
       },
       {
         "lineNumber": 154,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "                    ViewCommand viewCommand \u003d new ViewCommand(compal);"
+        "content": "                    break;"
       },
       {
         "lineNumber": 155,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "                    viewCommand.parseCommand(userInput);"
+        "content": "                case CMD_VIEW:"
       },
       {
         "lineNumber": 156,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "                    break;"
+        "content": "                    ViewCommand viewCommand \u003d new ViewCommand(compal);"
       },
       {
         "lineNumber": 157,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "                case CMD_SET_REMINDER:"
+        "content": "                    viewCommand.parseCommand(userInput);"
       },
       {
         "lineNumber": 158,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "                    SetReminderCommand setReminderCommand \u003d new SetReminderCommand(compal);"
+        "content": "                    break;"
       },
       {
         "lineNumber": 159,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "                    setReminderCommand.parseCommand(userInput);"
+        "content": "                case CMD_SET_REMINDER:"
       },
       {
         "lineNumber": 160,
         "author": {
-          "gitId": "Catherinetan99"
+          "gitId": "SholihinK"
         },
-        "content": "                    break;"
+        "content": "                    SetReminderCommand setReminderCommand \u003d new SetReminderCommand(compal);"
       },
       {
         "lineNumber": 161,
         "author": {
-          "gitId": "LTPZ"
+          "gitId": "SholihinK"
         },
-        "content": "                case CMD_HELP:"
+        "content": "                    setReminderCommand.parseCommand(userInput);"
       },
       {
         "lineNumber": 162,
         "author": {
-          "gitId": "LTPZ"
+          "gitId": "Catherinetan99"
         },
-        "content": "                    HelpCommand helpCommand \u003d new HelpCommand(compal);"
+        "content": "                    break;"
       },
       {
         "lineNumber": 163,
         "author": {
           "gitId": "LTPZ"
         },
-        "content": "                    helpCommand.parseCommand(userInput);"
+        "content": "                case CMD_HELP:"
       },
       {
         "lineNumber": 164,
         "author": {
           "gitId": "LTPZ"
         },
-        "content": "                    break;"
+        "content": "                    HelpCommand helpCommand \u003d new HelpCommand(compal);"
       },
       {
         "lineNumber": 165,
         "author": {
-          "gitId": "Catherinetan99"
+          "gitId": "LTPZ"
         },
-        "content": "                case CMD_FIND_FREE_SLOT:"
+        "content": "                    helpCommand.parseCommand(userInput);"
       },
       {
         "lineNumber": 166,
         "author": {
-          "gitId": "Catherinetan99"
+          "gitId": "LTPZ"
         },
-        "content": "                    FindFreeSlotCommand findFreeSlotCommand \u003d new FindFreeSlotCommand(compal);"
+        "content": "                    break;"
       },
       {
         "lineNumber": 167,
         "author": {
           "gitId": "Catherinetan99"
         },
-        "content": "                    findFreeSlotCommand.parseCommand(userInput);"
+        "content": "                case CMD_FIND_FREE_SLOT:"
       },
       {
         "lineNumber": 168,
         "author": {
           "gitId": "Catherinetan99"
         },
-        "content": "                    break;"
+        "content": "                    FindFreeSlotCommand findFreeSlotCommand \u003d new FindFreeSlotCommand(compal);"
       },
       {
         "lineNumber": 169,
         "author": {
-          "gitId": "SholihinK"
+          "gitId": "Catherinetan99"
         },
-        "content": "                default:"
+        "content": "                    findFreeSlotCommand.parseCommand(userInput);"
       },
       {
         "lineNumber": 170,
         "author": {
-          "gitId": "SholihinK"
+          "gitId": "Catherinetan99"
         },
-        "content": "                    compal.ui.printg(MESSAGE_INVALID_COMMAND);"
+        "content": "                    break;"
       },
       {
         "lineNumber": 171,
         "author": {
-          "gitId": "SholihinK"
+          "gitId": "jaedonkey"
         },
-        "content": "                    throw new Compal.DukeException(MESSAGE_INVALID_COMMAND);"
+        "content": "                case CMD_EDIT:"
       },
       {
         "lineNumber": 172,
         "author": {
-          "gitId": "SholihinK"
+          "gitId": "jaedonkey"
         },
-        "content": "                }"
+        "content": "                    EditCommand ec \u003d new EditCommand(compal);"
       },
       {
         "lineNumber": 173,
         "author": {
-          "gitId": "SholihinK"
+          "gitId": "jaedonkey"
         },
-        "content": "            }"
+        "content": "                    ec.parseCommand(userInput);"
       },
       {
         "lineNumber": 174,
         "author": {
-          "gitId": "SholihinK"
+          "gitId": "jaedonkey"
         },
-        "content": "        } else {"
+        "content": "                    break;"
       },
       {
         "lineNumber": 175,
         "author": {
-          "gitId": "SholihinK"
+          "gitId": "jaedonkey"
         },
-        "content": "            compal.ui.printg(MESSAGE_MISSING_INPUT);"
+        "content": ""
       },
       {
         "lineNumber": 176,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "            throw new Compal.DukeException(MESSAGE_MISSING_INPUT);"
+        "content": "                default:"
       },
       {
         "lineNumber": 177,
         "author": {
-          "gitId": "-"
+          "gitId": "SholihinK"
         },
-        "content": "        }"
+        "content": "                    compal.ui.printg(MESSAGE_INVALID_COMMAND);"
       },
       {
         "lineNumber": 178,
         "author": {
-          "gitId": "-"
+          "gitId": "SholihinK"
         },
-        "content": "    }"
+        "content": "                    throw new Compal.DukeException(MESSAGE_INVALID_COMMAND);"
       },
       {
         "lineNumber": 179,
         "author": {
-          "gitId": "-"
+          "gitId": "SholihinK"
         },
-        "content": "    //-----------------------\u003e"
+        "content": "                }"
       },
       {
         "lineNumber": 180,
         "author": {
-          "gitId": "-"
+          "gitId": "SholihinK"
         },
-        "content": ""
+        "content": "            }"
       },
       {
         "lineNumber": 181,
         "author": {
-          "gitId": "-"
+          "gitId": "SholihinK"
         },
-        "content": "    //***CONTROL PARSING LOGIC***---------------------------------------------------------------------------------------"
+        "content": "        } else {"
       },
       {
         "lineNumber": 182,
         "author": {
-          "gitId": "-"
+          "gitId": "SholihinK"
         },
-        "content": "    //------------------------------------------------------------------------------------------------------------------"
+        "content": "            compal.ui.printg(MESSAGE_MISSING_INPUT);"
       },
       {
         "lineNumber": 183,
         "author": {
-          "gitId": "-"
+          "gitId": "SholihinK"
         },
-        "content": "    //-----------------------------------------------------------------------------------------------------------------\u003e"
+        "content": "            throw new Compal.DukeException(MESSAGE_MISSING_INPUT);"
       },
       {
         "lineNumber": 184,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 185,
-        "author": {
-          "gitId": "Catherinetan99"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 186,
-        "author": {
-          "gitId": "Catherinetan99"
-        },
-        "content": "     * Resets stage by setting stage to be 0."
-      },
-      {
-        "lineNumber": 187,
-        "author": {
-          "gitId": "Catherinetan99"
-        },
-        "content": "     *"
-      },
-      {
-        "lineNumber": 188,
-        "author": {
-          "gitId": "Catherinetan99"
-        },
-        "content": "     * @param status Input status."
-      },
-      {
-        "lineNumber": 189,
-        "author": {
-          "gitId": "Catherinetan99"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 190,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public void setStatus(String status) {"
-      },
-      {
-        "lineNumber": 191,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        this.status \u003d status;"
-      },
-      {
-        "lineNumber": 192,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        stage \u003d 0; //reset stage everytime status is changed"
-      },
-      {
-        "lineNumber": 193,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 194,
+        "lineNumber": 186,
         "author": {
           "gitId": "-"
         },
         "content": "    //-----------------------\u003e"
       },
       {
+        "lineNumber": 187,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 188,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    //***CONTROL PARSING LOGIC***---------------------------------------------------------------------------------------"
+      },
+      {
+        "lineNumber": 189,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    //------------------------------------------------------------------------------------------------------------------"
+      },
+      {
+        "lineNumber": 190,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    //-----------------------------------------------------------------------------------------------------------------\u003e"
+      },
+      {
+        "lineNumber": 191,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 192,
+        "author": {
+          "gitId": "Catherinetan99"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 193,
+        "author": {
+          "gitId": "Catherinetan99"
+        },
+        "content": "     * Resets stage by setting stage to be 0."
+      },
+      {
+        "lineNumber": 194,
+        "author": {
+          "gitId": "Catherinetan99"
+        },
+        "content": "     *"
+      },
+      {
         "lineNumber": 195,
+        "author": {
+          "gitId": "Catherinetan99"
+        },
+        "content": "     * @param status Input status."
+      },
+      {
+        "lineNumber": 196,
+        "author": {
+          "gitId": "Catherinetan99"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 197,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void setStatus(String status) {"
+      },
+      {
+        "lineNumber": 198,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        this.status \u003d status;"
+      },
+      {
+        "lineNumber": 199,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        stage \u003d 0; //reset stage everytime status is changed"
+      },
+      {
+        "lineNumber": 200,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 201,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    //-----------------------\u003e"
+      },
+      {
+        "lineNumber": 202,
         "author": {
           "gitId": "-"
         },
@@ -14817,9 +15415,10 @@
       }
     ],
     "authorContributionMap": {
-      "LTPZ": 34,
-      "Catherinetan99": 28,
+      "LTPZ": 21,
+      "Catherinetan99": 27,
       "SholihinK": 70,
+      "jaedonkey": 21,
       "yueyeah": 9,
       "-": 54
     }
@@ -17948,177 +18547,177 @@
       {
         "lineNumber": 343,
         "author": {
-          "gitId": "SholihinK"
-        },
-        "content": "    public Date getEndTime() {"
-      },
-      {
-        "lineNumber": 344,
-        "author": {
-          "gitId": "SholihinK"
-        },
-        "content": "        return endTime;"
-      },
-      {
-        "lineNumber": 345,
-        "author": {
-          "gitId": "SholihinK"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 346,
-        "author": {
-          "gitId": "SholihinK"
+          "gitId": "jaedonkey"
         },
         "content": ""
       },
       {
-        "lineNumber": 347,
+        "lineNumber": 344,
         "author": {
-          "gitId": "SholihinK"
+          "gitId": "jaedonkey"
         },
         "content": "    /**"
       },
       {
+        "lineNumber": 345,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "     * Gets the end time for the task."
+      },
+      {
+        "lineNumber": 346,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 347,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "     * @return date end time"
+      },
+      {
         "lineNumber": 348,
         "author": {
-          "gitId": "SholihinK"
+          "gitId": "jaedonkey"
         },
-        "content": "     * Formats end timeInput then sets end time as timeInput."
+        "content": "     */"
       },
       {
         "lineNumber": 349,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "     *"
+        "content": "    public Date getEndTime() {"
       },
       {
         "lineNumber": 350,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "     * @param timeInput Input time of task."
+        "content": "        return endTime;"
       },
       {
         "lineNumber": 351,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "     */"
+        "content": "    }"
       },
       {
         "lineNumber": 352,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "    public void setEndTime(String timeInput) {"
+        "content": ""
       },
       {
         "lineNumber": 353,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "        SimpleDateFormat format \u003d new SimpleDateFormat(\"HHmm\");"
+        "content": "    /**"
       },
       {
         "lineNumber": 354,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "        Date time \u003d null;"
+        "content": "     * Formats end timeInput then sets end time as timeInput."
       },
       {
         "lineNumber": 355,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "        try {"
+        "content": "     *"
       },
       {
         "lineNumber": 356,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "            time \u003d format.parse(timeInput);"
+        "content": "     * @param timeInput Input time of task."
       },
       {
         "lineNumber": 357,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "        } catch (ParseException e) {"
+        "content": "     */"
       },
       {
         "lineNumber": 358,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "            e.printStackTrace();"
+        "content": "    public void setEndTime(String timeInput) {"
       },
       {
         "lineNumber": 359,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "        }"
+        "content": "        SimpleDateFormat format \u003d new SimpleDateFormat(\"HHmm\");"
       },
       {
         "lineNumber": 360,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "        this.endTime \u003d time;"
+        "content": "        Date time \u003d null;"
       },
       {
         "lineNumber": 361,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "    }"
+        "content": "        try {"
       },
       {
         "lineNumber": 362,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": ""
+        "content": "            time \u003d format.parse(timeInput);"
       },
       {
         "lineNumber": 363,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "    /**"
+        "content": "        } catch (ParseException e) {"
       },
       {
         "lineNumber": 364,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "     * Gets end time of task in string."
+        "content": "            e.printStackTrace();"
       },
       {
         "lineNumber": 365,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "     *"
+        "content": "        }"
       },
       {
         "lineNumber": 366,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "     * @return Time of task."
+        "content": "        this.endTime \u003d time;"
       },
       {
         "lineNumber": 367,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "     */"
+        "content": "    }"
       },
       {
         "lineNumber": 368,
@@ -18132,87 +18731,185 @@
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "    public String getStringEndTime() {"
+        "content": "    /**"
       },
       {
         "lineNumber": 370,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "        SimpleDateFormat formatter \u003d new SimpleDateFormat(\"HHmm\");"
+        "content": "     * Gets end time of task in string."
       },
       {
         "lineNumber": 371,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "        if (this.endTime \u003d\u003d null) {"
+        "content": "     *"
       },
       {
         "lineNumber": 372,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "            return \"-\";"
+        "content": "     * @return Time of task."
       },
       {
         "lineNumber": 373,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "        } else {"
+        "content": "     */"
       },
       {
         "lineNumber": 374,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "            return formatter.format(this.endTime);"
+        "content": ""
       },
       {
         "lineNumber": 375,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "        }"
+        "content": "    public String getStringEndTime() {"
       },
       {
         "lineNumber": 376,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "    }"
+        "content": "        SimpleDateFormat formatter \u003d new SimpleDateFormat(\"HHmm\");"
       },
       {
         "lineNumber": 377,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": ""
+        "content": "        if (this.endTime \u003d\u003d null) {"
       },
       {
         "lineNumber": 378,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "    public enum Priority {"
+        "content": "            return \"-\";"
       },
       {
         "lineNumber": 379,
         "author": {
-          "gitId": "LTPZ"
+          "gitId": "SholihinK"
         },
-        "content": "        high, medium, low;"
+        "content": "        } else {"
       },
       {
         "lineNumber": 380,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "    }"
+        "content": "            return formatter.format(this.endTime);"
       },
       {
         "lineNumber": 381,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 382,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 383,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 384,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 385,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "     * Sets the description of task."
+      },
+      {
+        "lineNumber": 386,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 387,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 388,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "    public void setDescription(String newDescription) {"
+      },
+      {
+        "lineNumber": 389,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "        this.description \u003d newDescription;"
+      },
+      {
+        "lineNumber": 390,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 391,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 392,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "    public enum Priority {"
+      },
+      {
+        "lineNumber": 393,
+        "author": {
+          "gitId": "LTPZ"
+        },
+        "content": "        high, medium, low;"
+      },
+      {
+        "lineNumber": 394,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 395,
         "author": {
           "gitId": "SholihinK"
         },
@@ -18223,7 +18920,7 @@
       "LTPZ": 1,
       "Catherinetan99": 93,
       "SholihinK": 144,
-      "jaedonkey": 126,
+      "jaedonkey": 140,
       "yueyeah": 17
     }
   },
@@ -18325,16 +19022,16 @@
       {
         "lineNumber": 14,
         "author": {
-          "gitId": "SholihinK"
+          "gitId": "jaedonkey"
         },
-        "content": ""
+        "content": "import static compal.commons.Messages.MESSAGE_INVALID_TASK_ID;"
       },
       {
         "lineNumber": 15,
         "author": {
-          "gitId": "SholihinK"
+          "gitId": "jaedonkey"
         },
-        "content": "public class TaskList {"
+        "content": ""
       },
       {
         "lineNumber": 16,
@@ -18346,184 +19043,184 @@
       {
         "lineNumber": 17,
         "author": {
-          "gitId": "jaedonkey"
+          "gitId": "SholihinK"
         },
-        "content": "    //***Class Properties/Variables***---------------------------------------------------------------------------------\u003e"
+        "content": "public class TaskList {"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "    public ArrayList\u003cTask\u003e arrlist;"
+        "content": ""
       },
       {
         "lineNumber": 19,
         "author": {
-          "gitId": "SholihinK"
+          "gitId": "jaedonkey"
         },
-        "content": "    public Compal compal;"
+        "content": "    //***Class Properties/Variables***---------------------------------------------------------------------------------\u003e"
       },
       {
         "lineNumber": 20,
         "author": {
-          "gitId": "jaedonkey"
+          "gitId": "SholihinK"
         },
-        "content": "    private BitSet idBitSet;"
+        "content": "    public ArrayList\u003cTask\u003e arrlist;"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": ""
+        "content": "    public Compal compal;"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "jaedonkey"
         },
-        "content": "    //-----------------------\u003e"
+        "content": "    private BitSet idBitSet;"
       },
       {
         "lineNumber": 23,
         "author": {
-          "gitId": "jaedonkey"
+          "gitId": "SholihinK"
         },
-        "content": "    //***CONSTRUCTORS***------------------------------------------------------------------------------------------------"
+        "content": ""
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "jaedonkey"
         },
-        "content": "    //------------------------------------------------------------------------------------------------------------------"
+        "content": "    //-----------------------\u003e"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "jaedonkey"
         },
-        "content": "    //-----------------------------------------------------------------------------------------------------------------\u003e"
+        "content": "    //***CONSTRUCTORS***------------------------------------------------------------------------------------------------"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "jaedonkey"
         },
-        "content": ""
+        "content": "    //------------------------------------------------------------------------------------------------------------------"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "jaedonkey"
         },
-        "content": "    /**"
+        "content": "    //-----------------------------------------------------------------------------------------------------------------\u003e"
       },
       {
         "lineNumber": 28,
-        "author": {
-          "gitId": "Catherinetan99"
-        },
-        "content": "     * Constructs TaskList object."
-      },
-      {
-        "lineNumber": 29,
-        "author": {
-          "gitId": "SholihinK"
-        },
-        "content": "     *"
-      },
-      {
-        "lineNumber": 30,
-        "author": {
-          "gitId": "SholihinK"
-        },
-        "content": "     * @param d Compal."
-      },
-      {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "jaedonkey"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 32,
-        "author": {
-          "gitId": "SholihinK"
-        },
-        "content": "    public TaskList(Compal d) {"
-      },
-      {
-        "lineNumber": 33,
-        "author": {
-          "gitId": "SholihinK"
-        },
-        "content": "        this.compal \u003d d;"
-      },
-      {
-        "lineNumber": 34,
-        "author": {
-          "gitId": "jaedonkey"
-        },
-        "content": "        BitSet bs \u003d readIdBitSet();"
-      },
-      {
-        "lineNumber": 35,
-        "author": {
-          "gitId": "jaedonkey"
-        },
-        "content": "        if (bs !\u003d null) {"
-      },
-      {
-        "lineNumber": 36,
-        "author": {
-          "gitId": "jaedonkey"
-        },
-        "content": "            idBitSet \u003d (BitSet) readIdBitSet().clone();"
-      },
-      {
-        "lineNumber": 37,
-        "author": {
-          "gitId": "jaedonkey"
-        },
-        "content": "        } else {"
-      },
-      {
-        "lineNumber": 38,
-        "author": {
-          "gitId": "jaedonkey"
-        },
-        "content": "            System.out.println(\"TaskList:LOG: No saved idbitset found\");"
-      },
-      {
-        "lineNumber": 39,
-        "author": {
-          "gitId": "jaedonkey"
-        },
-        "content": "            idBitSet \u003d new BitSet(1_000_000); //bitset of 1,000,000 bits (hard limit of no. of tasks)"
-      },
-      {
-        "lineNumber": 40,
-        "author": {
-          "gitId": "SholihinK"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 41,
         "author": {
           "gitId": "jaedonkey"
         },
         "content": ""
       },
       {
-        "lineNumber": 42,
+        "lineNumber": 29,
         "author": {
           "gitId": "jaedonkey"
         },
-        "content": "    }"
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "Catherinetan99"
+        },
+        "content": "     * Constructs TaskList object."
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "     * @param d Compal."
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "    public TaskList(Compal d) {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "        this.compal \u003d d;"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "        BitSet bs \u003d readIdBitSet();"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "        if (bs !\u003d null) {"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "            idBitSet \u003d (BitSet) readIdBitSet().clone();"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "            System.out.println(\"TaskList:LOG: No saved idbitset found\");"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "            idBitSet \u003d new BitSet(1_000_000); //bitset of 1,000,000 bits (hard limit of no. of tasks)"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "        }"
       },
       {
         "lineNumber": 43,
@@ -18537,7 +19234,7 @@
         "author": {
           "gitId": "jaedonkey"
         },
-        "content": "    //-----------------------\u003e"
+        "content": "    }"
       },
       {
         "lineNumber": 45,
@@ -18551,406 +19248,406 @@
         "author": {
           "gitId": "jaedonkey"
         },
-        "content": "    //***FUNCTIONS FOR ADDING TASKS***----------------------------------------------------------------------------------"
+        "content": "    //-----------------------\u003e"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "jaedonkey"
         },
-        "content": "    //------------------------------------------------------------------------------------------------------------------"
+        "content": ""
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "jaedonkey"
         },
-        "content": "    //-----------------------------------------------------------------------------------------------------------------\u003e"
+        "content": "    //***FUNCTIONS FOR ADDING TASKS***----------------------------------------------------------------------------------"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "jaedonkey"
         },
-        "content": ""
+        "content": "    //------------------------------------------------------------------------------------------------------------------"
       },
       {
         "lineNumber": 50,
         "author": {
-          "gitId": "SholihinK"
+          "gitId": "jaedonkey"
         },
-        "content": "    /**"
+        "content": "    //-----------------------------------------------------------------------------------------------------------------\u003e"
       },
       {
         "lineNumber": 51,
         "author": {
-          "gitId": "Catherinetan99"
+          "gitId": "jaedonkey"
         },
-        "content": "     * Handles the adding of the tasks."
+        "content": ""
       },
       {
         "lineNumber": 52,
         "author": {
-          "gitId": "Catherinetan99"
+          "gitId": "SholihinK"
         },
-        "content": "     * It tests for the task type, then parses it according to the correct syntax."
+        "content": "    /**"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "Catherinetan99"
         },
-        "content": "     * Used in parser.processCommands."
+        "content": "     * Handles the adding of the tasks."
       },
       {
         "lineNumber": 54,
         "author": {
-          "gitId": "SholihinK"
+          "gitId": "Catherinetan99"
         },
-        "content": "     *"
+        "content": "     * It tests for the task type, then parses it according to the correct syntax."
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "Catherinetan99"
         },
-        "content": "     * @param task Task to be added to the list of tasks."
+        "content": "     * Used in parser.processCommands."
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "     */"
+        "content": "     *"
       },
       {
         "lineNumber": 57,
         "author": {
-          "gitId": "jaedonkey"
+          "gitId": "Catherinetan99"
         },
-        "content": "    public void addTask(Task task) {"
+        "content": "     * @param task Task to be added to the list of tasks."
       },
       {
         "lineNumber": 58,
         "author": {
-          "gitId": "jaedonkey"
+          "gitId": "SholihinK"
         },
-        "content": ""
+        "content": "     */"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "jaedonkey"
         },
-        "content": "        //generate unique ID for task"
+        "content": "    public void addTask(Task task) {"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "jaedonkey"
         },
-        "content": "        int taskID;"
+        "content": ""
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "jaedonkey"
         },
-        "content": "        for (int i \u003d 0; i \u003c 1000000; i++) { //search for an unused task ID"
+        "content": "        //generate unique ID for task"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "jaedonkey"
         },
-        "content": "            if (!idBitSet.get(i)) {"
+        "content": "        int taskID;"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "jaedonkey"
         },
-        "content": "                idBitSet.set(i);"
+        "content": "        for (int i \u003d 0; i \u003c 1000000; i++) { //search for an unused task ID"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "jaedonkey"
         },
-        "content": "                taskID \u003d i;"
+        "content": "            if (!idBitSet.get(i)) {"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "jaedonkey"
         },
-        "content": "                task.setId(taskID);"
+        "content": "                idBitSet.set(i);"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "jaedonkey"
         },
-        "content": "                System.out.println(\"Task assigned id of \" + taskID);"
+        "content": "                taskID \u003d i;"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "jaedonkey"
         },
-        "content": "                writeIdBitSet();"
+        "content": "                task.setId(taskID);"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "jaedonkey"
         },
-        "content": "                break;"
+        "content": "                System.out.println(\"Task assigned id of \" + taskID);"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "jaedonkey"
         },
-        "content": "            }"
+        "content": "                writeIdBitSet();"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "jaedonkey"
         },
-        "content": "        }"
+        "content": "                break;"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "jaedonkey"
         },
-        "content": ""
+        "content": "            }"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "jaedonkey"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 73,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 75,
         "author": {
           "gitId": "yueyeah"
         },
         "content": "        arrlist.add(task);"
       },
       {
-        "lineNumber": 74,
+        "lineNumber": 76,
         "author": {
           "gitId": "Catherinetan99"
         },
         "content": "        sortTask(arrlist);"
       },
       {
-        "lineNumber": 75,
+        "lineNumber": 77,
         "author": {
           "gitId": "SholihinK"
         },
         "content": "        compal.storage.saveCompal(arrlist);"
       },
       {
-        "lineNumber": 76,
+        "lineNumber": 78,
         "author": {
           "gitId": "SholihinK"
         },
         "content": "        /*if (compal.ui.dateState.equals(task.getStringDate())) {"
       },
       {
-        "lineNumber": 77,
-        "author": {
-          "gitId": "SholihinK"
-        },
-        "content": "            compal.ui.dateViewRefresh(task.getStringDate());"
-      },
-      {
-        "lineNumber": 78,
-        "author": {
-          "gitId": "SholihinK"
-        },
-        "content": "        }*/"
-      },
-      {
         "lineNumber": 79,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "        if (!task.getSymbol().equals(\"D\")) {"
+        "content": "            compal.ui.dateViewRefresh(task.getStringDate());"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "            compal.ui.dateViewRefresh(task.getStringDate());"
+        "content": "        }*/"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "        }"
+        "content": "        if (!task.getSymbol().equals(\"D\")) {"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "        compal.ui.secondaryScreenRefresh(task.getDate());"
+        "content": "            compal.ui.dateViewRefresh(task.getStringDate());"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "        compal.ui.showSize();"
+        "content": "        compal.ui.secondaryScreenRefresh(task.getDate());"
       },
       {
         "lineNumber": 85,
         "author": {
-          "gitId": "jaedonkey"
+          "gitId": "SholihinK"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 86,
         "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "        compal.ui.showSize();"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
           "gitId": "jaedonkey"
         },
         "content": ""
       },
       {
-        "lineNumber": 87,
-        "author": {
-          "gitId": "SholihinK"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 88,
-        "author": {
-          "gitId": "SholihinK"
-        },
-        "content": "     * Remove a task from the arrayList."
-      },
-      {
         "lineNumber": 89,
         "author": {
-          "gitId": "SholihinK"
+          "gitId": "jaedonkey"
         },
-        "content": "     */"
+        "content": ""
       },
       {
         "lineNumber": 90,
         "author": {
-          "gitId": "SholihinK"
+          "gitId": "jaedonkey"
         },
-        "content": "    public void removeTask(int index) {"
+        "content": "    /**"
       },
       {
         "lineNumber": 91,
         "author": {
-          "gitId": "SholihinK"
+          "gitId": "jaedonkey"
         },
-        "content": "        arrlist.remove(index);"
+        "content": "     * Returns a task that has an id value of id."
       },
       {
         "lineNumber": 92,
         "author": {
-          "gitId": "SholihinK"
+          "gitId": "jaedonkey"
         },
-        "content": "    }"
+        "content": "     */"
       },
       {
         "lineNumber": 93,
         "author": {
-          "gitId": "SholihinK"
+          "gitId": "jaedonkey"
         },
-        "content": ""
+        "content": "    public Task getTaskById(int id) throws Compal.DukeException {"
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "jaedonkey"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "jaedonkey"
         },
-        "content": "     * Clears the current id for future tasks to use (used in deletion of tasks)."
+        "content": "        //search for task with id of id"
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "jaedonkey"
         },
-        "content": "     * @param id task id"
+        "content": "        for (Task t:arrlist) {"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "jaedonkey"
         },
-        "content": "     */"
+        "content": "            if (t.getId() \u003d\u003d id) {"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "jaedonkey"
         },
-        "content": "    public void unsetId(int id) {"
+        "content": "                return t;"
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "jaedonkey"
         },
-        "content": "        System.out.println(\"TaskList:LOG:\" + id + \" unset\");"
+        "content": "            }"
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "jaedonkey"
         },
-        "content": "        idBitSet.clear(id);"
+        "content": "        }"
       },
       {
         "lineNumber": 101,
         "author": {
-          "gitId": "SholihinK"
+          "gitId": "jaedonkey"
         },
-        "content": "    }"
+        "content": "        throw new Compal.DukeException(MESSAGE_INVALID_TASK_ID);"
       },
       {
         "lineNumber": 102,
         "author": {
-          "gitId": "SholihinK"
+          "gitId": "jaedonkey"
         },
         "content": ""
       },
       {
         "lineNumber": 103,
         "author": {
-          "gitId": "SholihinK"
+          "gitId": "jaedonkey"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 104,
@@ -18962,7 +19659,7 @@
       {
         "lineNumber": 105,
         "author": {
-          "gitId": "SholihinK"
+          "gitId": "jaedonkey"
         },
         "content": "    /**"
       },
@@ -18971,570 +19668,808 @@
         "author": {
           "gitId": "jaedonkey"
         },
-        "content": "     * Sorts all the tasks in arrlist by date."
+        "content": "     * Removes a task that has an id value of id."
       },
       {
         "lineNumber": 107,
         "author": {
-          "gitId": "SholihinK"
+          "gitId": "jaedonkey"
         },
-        "content": "     *"
+        "content": "     */"
       },
       {
         "lineNumber": 108,
         "author": {
           "gitId": "jaedonkey"
         },
-        "content": "     * @param arrlist sorted"
+        "content": "    public Task removeTaskById(int id) throws Compal.DukeException {"
       },
       {
         "lineNumber": 109,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "        //search for task with id of id"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "        for (Task t:arrlist) {"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "            if (t.getId() \u003d\u003d id) {"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "                arrlist.remove(t);"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "        throw new Compal.DukeException(MESSAGE_INVALID_TASK_ID);"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "     * Remove a task from the arrayList."
+      },
+      {
+        "lineNumber": 123,
         "author": {
           "gitId": "SholihinK"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 110,
-        "author": {
-          "gitId": "Catherinetan99"
-        },
-        "content": "    public void sortTask(ArrayList\u003cTask\u003e arrlist) {"
-      },
-      {
-        "lineNumber": 111,
-        "author": {
-          "gitId": "Catherinetan99"
-        },
-        "content": "        boolean sorted \u003d false;"
-      },
-      {
-        "lineNumber": 112,
-        "author": {
-          "gitId": "Catherinetan99"
-        },
-        "content": "        int arraySize \u003d arrlist.size();"
-      },
-      {
-        "lineNumber": 113,
-        "author": {
-          "gitId": "Catherinetan99"
-        },
-        "content": "        while (!sorted) {"
-      },
-      {
-        "lineNumber": 114,
-        "author": {
-          "gitId": "Catherinetan99"
-        },
-        "content": "            sorted \u003d true;"
-      },
-      {
-        "lineNumber": 115,
-        "author": {
-          "gitId": "Catherinetan99"
-        },
-        "content": "            for (int i \u003d 0; i \u003c arraySize - 1; i++) {"
-      },
-      {
-        "lineNumber": 116,
-        "author": {
-          "gitId": "Catherinetan99"
-        },
-        "content": "                Date task1Date \u003d arrlist.get(i).getDate();"
-      },
-      {
-        "lineNumber": 117,
-        "author": {
-          "gitId": "Catherinetan99"
-        },
-        "content": "                Date task2Date \u003d arrlist.get(i + 1).getDate();"
-      },
-      {
-        "lineNumber": 118,
-        "author": {
-          "gitId": "Catherinetan99"
-        },
-        "content": "                if (task1Date.after(task2Date)) {"
-      },
-      {
-        "lineNumber": 119,
-        "author": {
-          "gitId": "Catherinetan99"
-        },
-        "content": "                    Task temp \u003d arrlist.get(i);"
-      },
-      {
-        "lineNumber": 120,
-        "author": {
-          "gitId": "Catherinetan99"
-        },
-        "content": "                    arrlist.set(i, arrlist.get(i + 1));"
-      },
-      {
-        "lineNumber": 121,
-        "author": {
-          "gitId": "Catherinetan99"
-        },
-        "content": "                    arrlist.set(i + 1, temp);"
-      },
-      {
-        "lineNumber": 122,
-        "author": {
-          "gitId": "Catherinetan99"
-        },
-        "content": "                    sorted \u003d false;"
-      },
-      {
-        "lineNumber": 123,
-        "author": {
-          "gitId": "Catherinetan99"
-        },
-        "content": "                }"
-      },
-      {
         "lineNumber": 124,
         "author": {
-          "gitId": "Catherinetan99"
+          "gitId": "SholihinK"
         },
-        "content": "                if (task1Date.equals(task2Date)) {"
+        "content": "    public void removeTask(int index) {"
       },
       {
         "lineNumber": 125,
         "author": {
-          "gitId": "Catherinetan99"
+          "gitId": "SholihinK"
         },
-        "content": "                    Date task1Time \u003d arrlist.get(i).getStartTime();"
+        "content": "        arrlist.remove(index);"
       },
       {
         "lineNumber": 126,
         "author": {
-          "gitId": "Catherinetan99"
+          "gitId": "SholihinK"
         },
-        "content": "                    Date task2Time \u003d arrlist.get(i + 1).getStartTime();"
+        "content": "    }"
       },
       {
         "lineNumber": 127,
         "author": {
-          "gitId": "Catherinetan99"
+          "gitId": "SholihinK"
         },
         "content": ""
       },
       {
         "lineNumber": 128,
         "author": {
-          "gitId": "Catherinetan99"
+          "gitId": "jaedonkey"
         },
-        "content": "                    if (task1Time \u003d\u003d null) {"
+        "content": "    /**"
       },
       {
         "lineNumber": 129,
         "author": {
-          "gitId": "Catherinetan99"
+          "gitId": "jaedonkey"
         },
-        "content": "                        task1Time \u003d arrlist.get(i).getEndTime();"
+        "content": "     * Clears the current id for future tasks to use (used in deletion of tasks)."
       },
       {
         "lineNumber": 130,
         "author": {
-          "gitId": "Catherinetan99"
+          "gitId": "jaedonkey"
         },
-        "content": "                    }"
+        "content": "     * @param id task id"
       },
       {
         "lineNumber": 131,
         "author": {
-          "gitId": "Catherinetan99"
+          "gitId": "jaedonkey"
         },
-        "content": "                    if (task2Time \u003d\u003d null) {"
+        "content": "     */"
       },
       {
         "lineNumber": 132,
         "author": {
-          "gitId": "Catherinetan99"
+          "gitId": "jaedonkey"
         },
-        "content": "                        task2Time \u003d arrlist.get(i + 1).getEndTime();"
+        "content": "    public void unsetId(int id) {"
       },
       {
         "lineNumber": 133,
         "author": {
-          "gitId": "Catherinetan99"
+          "gitId": "jaedonkey"
         },
-        "content": "                    }"
+        "content": "        System.out.println(\"TaskList:LOG:\" + id + \" unset\");"
       },
       {
         "lineNumber": 134,
         "author": {
-          "gitId": "Catherinetan99"
+          "gitId": "jaedonkey"
         },
-        "content": "                    if (task1Time.after(task2Time)) {"
+        "content": "        idBitSet.clear(id);"
       },
       {
         "lineNumber": 135,
         "author": {
-          "gitId": "Catherinetan99"
+          "gitId": "SholihinK"
         },
-        "content": "                        Task temp \u003d arrlist.get(i);"
+        "content": "    }"
       },
       {
         "lineNumber": 136,
         "author": {
-          "gitId": "Catherinetan99"
+          "gitId": "SholihinK"
         },
-        "content": "                        arrlist.set(i, arrlist.get(i + 1));"
+        "content": ""
       },
       {
         "lineNumber": 137,
         "author": {
-          "gitId": "Catherinetan99"
+          "gitId": "SholihinK"
         },
-        "content": "                        arrlist.set(i + 1, temp);"
+        "content": ""
       },
       {
         "lineNumber": 138,
         "author": {
-          "gitId": "Catherinetan99"
+          "gitId": "jaedonkey"
         },
-        "content": "                        sorted \u003d false;"
+        "content": ""
       },
       {
         "lineNumber": 139,
         "author": {
-          "gitId": "Catherinetan99"
+          "gitId": "SholihinK"
         },
-        "content": "                    }"
+        "content": "    /**"
       },
       {
         "lineNumber": 140,
         "author": {
-          "gitId": "Catherinetan99"
+          "gitId": "jaedonkey"
         },
-        "content": "                }"
+        "content": "     * Sorts all the tasks in arrlist by date."
       },
       {
         "lineNumber": 141,
         "author": {
-          "gitId": "Catherinetan99"
+          "gitId": "SholihinK"
         },
-        "content": "            }"
+        "content": "     *"
       },
       {
         "lineNumber": 142,
         "author": {
-          "gitId": "Catherinetan99"
+          "gitId": "jaedonkey"
         },
-        "content": "        }"
+        "content": "     * @param arrlist sorted"
       },
       {
         "lineNumber": 143,
         "author": {
-          "gitId": "Catherinetan99"
+          "gitId": "SholihinK"
         },
-        "content": "    }"
+        "content": "     */"
       },
       {
         "lineNumber": 144,
         "author": {
           "gitId": "Catherinetan99"
         },
-        "content": ""
+        "content": "    public void sortTask(ArrayList\u003cTask\u003e arrlist) {"
       },
       {
         "lineNumber": 145,
         "author": {
-          "gitId": "jaedonkey"
+          "gitId": "Catherinetan99"
         },
-        "content": ""
+        "content": "        boolean sorted \u003d false;"
       },
       {
         "lineNumber": 146,
         "author": {
-          "gitId": "jaedonkey"
+          "gitId": "Catherinetan99"
         },
-        "content": "    /**"
+        "content": "        int arraySize \u003d arrlist.size();"
       },
       {
         "lineNumber": 147,
         "author": {
-          "gitId": "jaedonkey"
+          "gitId": "Catherinetan99"
         },
-        "content": "     * Writes(saves) the current id bitset to file."
+        "content": "        while (!sorted) {"
       },
       {
         "lineNumber": 148,
         "author": {
-          "gitId": "jaedonkey"
+          "gitId": "Catherinetan99"
         },
-        "content": "     */"
+        "content": "            sorted \u003d true;"
       },
       {
         "lineNumber": 149,
         "author": {
-          "gitId": "jaedonkey"
+          "gitId": "Catherinetan99"
         },
-        "content": "    public void writeIdBitSet() {"
+        "content": "            for (int i \u003d 0; i \u003c arraySize - 1; i++) {"
       },
       {
         "lineNumber": 150,
         "author": {
-          "gitId": "jaedonkey"
+          "gitId": "Catherinetan99"
         },
-        "content": ""
+        "content": "                Date task1Date \u003d arrlist.get(i).getDate();"
       },
       {
         "lineNumber": 151,
         "author": {
-          "gitId": "jaedonkey"
+          "gitId": "Catherinetan99"
         },
-        "content": "        try {"
+        "content": "                Date task2Date \u003d arrlist.get(i + 1).getDate();"
       },
       {
         "lineNumber": 152,
         "author": {
-          "gitId": "jaedonkey"
+          "gitId": "Catherinetan99"
         },
-        "content": "            ObjectOutputStream oos \u003d new ObjectOutputStream(new FileOutputStream(\"serial\"));"
+        "content": "                if (task1Date.after(task2Date)) {"
       },
       {
         "lineNumber": 153,
         "author": {
-          "gitId": "jaedonkey"
+          "gitId": "Catherinetan99"
         },
-        "content": "            oos.writeObject(idBitSet);"
+        "content": "                    Task temp \u003d arrlist.get(i);"
       },
       {
         "lineNumber": 154,
         "author": {
-          "gitId": "jaedonkey"
+          "gitId": "Catherinetan99"
         },
-        "content": "        } catch (IOException e) {"
+        "content": "                    arrlist.set(i, arrlist.get(i + 1));"
       },
       {
         "lineNumber": 155,
         "author": {
-          "gitId": "jaedonkey"
+          "gitId": "Catherinetan99"
         },
-        "content": "            e.printStackTrace();"
+        "content": "                    arrlist.set(i + 1, temp);"
       },
       {
         "lineNumber": 156,
         "author": {
-          "gitId": "jaedonkey"
+          "gitId": "Catherinetan99"
         },
-        "content": "        }"
+        "content": "                    sorted \u003d false;"
       },
       {
         "lineNumber": 157,
         "author": {
-          "gitId": "jaedonkey"
+          "gitId": "Catherinetan99"
         },
-        "content": ""
+        "content": "                }"
       },
       {
         "lineNumber": 158,
         "author": {
-          "gitId": "jaedonkey"
+          "gitId": "Catherinetan99"
         },
-        "content": ""
+        "content": "                if (task1Date.equals(task2Date)) {"
       },
       {
         "lineNumber": 159,
         "author": {
-          "gitId": "jaedonkey"
+          "gitId": "Catherinetan99"
         },
-        "content": "    }"
+        "content": "                    Date task1Time \u003d arrlist.get(i).getStartTime();"
       },
       {
         "lineNumber": 160,
         "author": {
-          "gitId": "jaedonkey"
+          "gitId": "Catherinetan99"
         },
-        "content": ""
+        "content": "                    Date task2Time \u003d arrlist.get(i + 1).getStartTime();"
       },
       {
         "lineNumber": 161,
         "author": {
-          "gitId": "SholihinK"
+          "gitId": "Catherinetan99"
         },
         "content": ""
       },
       {
         "lineNumber": 162,
         "author": {
-          "gitId": "SholihinK"
+          "gitId": "Catherinetan99"
         },
-        "content": ""
+        "content": "                    if (task1Time \u003d\u003d null) {"
       },
       {
         "lineNumber": 163,
         "author": {
-          "gitId": "SholihinK"
+          "gitId": "Catherinetan99"
         },
-        "content": ""
+        "content": "                        task1Time \u003d arrlist.get(i).getEndTime();"
       },
       {
         "lineNumber": 164,
         "author": {
-          "gitId": "jaedonkey"
+          "gitId": "Catherinetan99"
         },
-        "content": "    /**"
+        "content": "                    }"
       },
       {
         "lineNumber": 165,
         "author": {
-          "gitId": "jaedonkey"
+          "gitId": "Catherinetan99"
         },
-        "content": "     * Reads in the saved idbitset as an object and returns it."
+        "content": "                    if (task2Time \u003d\u003d null) {"
       },
       {
         "lineNumber": 166,
         "author": {
-          "gitId": "jaedonkey"
+          "gitId": "Catherinetan99"
         },
-        "content": "     *"
+        "content": "                        task2Time \u003d arrlist.get(i + 1).getEndTime();"
       },
       {
         "lineNumber": 167,
         "author": {
-          "gitId": "jaedonkey"
+          "gitId": "Catherinetan99"
         },
-        "content": "     * @return saved idbitset"
+        "content": "                    }"
       },
       {
         "lineNumber": 168,
         "author": {
-          "gitId": "jaedonkey"
+          "gitId": "Catherinetan99"
         },
-        "content": "     * @author Jaedonkey"
+        "content": "                    if (task1Time.after(task2Time)) {"
       },
       {
         "lineNumber": 169,
         "author": {
-          "gitId": "jaedonkey"
+          "gitId": "Catherinetan99"
         },
-        "content": "     */"
+        "content": "                        Task temp \u003d arrlist.get(i);"
       },
       {
         "lineNumber": 170,
         "author": {
-          "gitId": "jaedonkey"
+          "gitId": "Catherinetan99"
         },
-        "content": "    public BitSet readIdBitSet() {"
+        "content": "                        arrlist.set(i, arrlist.get(i + 1));"
       },
       {
         "lineNumber": 171,
         "author": {
-          "gitId": "jaedonkey"
+          "gitId": "Catherinetan99"
         },
-        "content": "        BitSet bs \u003d null;"
+        "content": "                        arrlist.set(i + 1, temp);"
       },
       {
         "lineNumber": 172,
         "author": {
-          "gitId": "jaedonkey"
+          "gitId": "Catherinetan99"
         },
-        "content": "        try {"
+        "content": "                        sorted \u003d false;"
       },
       {
         "lineNumber": 173,
         "author": {
-          "gitId": "jaedonkey"
+          "gitId": "Catherinetan99"
         },
-        "content": "            ObjectInputStream ois \u003d new ObjectInputStream(new FileInputStream(\"serial\"));"
+        "content": "                    }"
       },
       {
         "lineNumber": 174,
         "author": {
-          "gitId": "jaedonkey"
+          "gitId": "Catherinetan99"
         },
-        "content": "            bs \u003d (BitSet) ois.readObject();"
+        "content": "                }"
       },
       {
         "lineNumber": 175,
         "author": {
-          "gitId": "jaedonkey"
+          "gitId": "Catherinetan99"
         },
-        "content": "        } catch (IOException e) {"
+        "content": "            }"
       },
       {
         "lineNumber": 176,
         "author": {
-          "gitId": "jaedonkey"
+          "gitId": "Catherinetan99"
         },
-        "content": "            e.printStackTrace();"
+        "content": "        }"
       },
       {
         "lineNumber": 177,
         "author": {
-          "gitId": "jaedonkey"
+          "gitId": "Catherinetan99"
         },
-        "content": "        } catch (ClassNotFoundException e) {"
+        "content": "    }"
       },
       {
         "lineNumber": 178,
         "author": {
-          "gitId": "jaedonkey"
+          "gitId": "Catherinetan99"
         },
-        "content": "            e.printStackTrace();"
+        "content": ""
       },
       {
         "lineNumber": 179,
         "author": {
           "gitId": "jaedonkey"
         },
-        "content": "        }"
+        "content": ""
       },
       {
         "lineNumber": 180,
         "author": {
           "gitId": "jaedonkey"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 181,
         "author": {
           "gitId": "jaedonkey"
         },
-        "content": ""
+        "content": "     * Writes(saves) the current id bitset to file."
       },
       {
         "lineNumber": 182,
         "author": {
           "gitId": "jaedonkey"
         },
-        "content": "        return bs;"
+        "content": "     */"
       },
       {
         "lineNumber": 183,
         "author": {
           "gitId": "jaedonkey"
         },
-        "content": ""
+        "content": "    public void writeIdBitSet() {"
       },
       {
         "lineNumber": 184,
         "author": {
           "gitId": "jaedonkey"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 185,
         "author": {
           "gitId": "jaedonkey"
         },
-        "content": ""
+        "content": "        try {"
       },
       {
         "lineNumber": 186,
         "author": {
           "gitId": "jaedonkey"
         },
-        "content": ""
+        "content": "            ObjectOutputStream oos \u003d new ObjectOutputStream(new FileOutputStream(\"serial\"));"
       },
       {
         "lineNumber": 187,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "            oos.writeObject(idBitSet);"
+      },
+      {
+        "lineNumber": 188,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "        } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 189,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "            e.printStackTrace();"
+      },
+      {
+        "lineNumber": 190,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 191,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 192,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 193,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 194,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 195,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 196,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 197,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 198,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 199,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "     * Reads in the saved idbitset as an object and returns it."
+      },
+      {
+        "lineNumber": 200,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 201,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "     * @return saved idbitset"
+      },
+      {
+        "lineNumber": 202,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "     * @author Jaedonkey"
+      },
+      {
+        "lineNumber": 203,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 204,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "    public BitSet readIdBitSet() {"
+      },
+      {
+        "lineNumber": 205,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "        BitSet bs \u003d null;"
+      },
+      {
+        "lineNumber": 206,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 207,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "            ObjectInputStream ois \u003d new ObjectInputStream(new FileInputStream(\"serial\"));"
+      },
+      {
+        "lineNumber": 208,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "            bs \u003d (BitSet) ois.readObject();"
+      },
+      {
+        "lineNumber": 209,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "        } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 210,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "            e.printStackTrace();"
+      },
+      {
+        "lineNumber": 211,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "        } catch (ClassNotFoundException e) {"
+      },
+      {
+        "lineNumber": 212,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "            e.printStackTrace();"
+      },
+      {
+        "lineNumber": 213,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 214,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 215,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 216,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "        return bs;"
+      },
+      {
+        "lineNumber": 217,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 218,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 219,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 220,
+        "author": {
+          "gitId": "jaedonkey"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 221,
         "author": {
           "gitId": "SholihinK"
         },
@@ -19544,7 +20479,7 @@
     "authorContributionMap": {
       "Catherinetan99": 42,
       "SholihinK": 48,
-      "jaedonkey": 96,
+      "jaedonkey": 130,
       "yueyeah": 1
     }
   },

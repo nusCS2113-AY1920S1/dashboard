@@ -2701,201 +2701,299 @@
       {
         "lineNumber": 90,
         "author": {
-          "gitId": "tran-quang-thanh"
+          "gitId": "tessa-z"
         },
-        "content": "            } else if (taskInfo[0].equals(\"edit\")) {"
+        "content": "            } else if (taskInfo[0].equals(\"history\")) {"
       },
       {
         "lineNumber": 91,
         "author": {
-          "gitId": "tran-quang-thanh"
+          "gitId": "tessa-z"
         },
-        "content": "                // CREATE AN EDIT COMMAND TO DEAL WITH EDIT WORD"
+        "content": "                int numberOfWordsToDisplay;"
       },
       {
         "lineNumber": 92,
         "author": {
-          "gitId": "tran-quang-thanh"
+          "gitId": "tessa-z"
         },
-        "content": "                return null;"
+        "content": "                if (taskInfo.length \u003d\u003d 1){"
       },
       {
         "lineNumber": 93,
         "author": {
-          "gitId": "tran-quang-thanh"
+          "gitId": "tessa-z"
         },
-        "content": "            } else if (taskInfo[0].equals(\"tag\")) {"
+        "content": "                    throw new WrongHistoryFormatException();"
       },
       {
         "lineNumber": 94,
         "author": {
-          "gitId": "tran-quang-thanh"
+          "gitId": "-"
         },
-        "content": "                if (taskInfo.length \u003d\u003d 1 || !taskInfo[1].startsWith(\"w/\")) {"
+        "content": "                }"
       },
       {
         "lineNumber": 95,
         "author": {
-          "gitId": "tran-quang-thanh"
+          "gitId": "tessa-z"
         },
-        "content": "                    throw new WrongAddTagFormatException();"
+        "content": "                if (taskInfo[1].equals(\"0\")) {"
       },
       {
         "lineNumber": 96,
         "author": {
-          "gitId": "-"
+          "gitId": "tessa-z"
         },
-        "content": "                }"
+        "content": "                    throw new ZeroHistoryRequestException();"
       },
       {
         "lineNumber": 97,
         "author": {
-          "gitId": "tran-quang-thanh"
+          "gitId": "tessa-z"
         },
-        "content": "                String[] wordAndTags \u003d taskInfo[1].split(\"t/\");"
+        "content": "                }"
       },
       {
         "lineNumber": 98,
-        "author": {
-          "gitId": "tran-quang-thanh"
-        },
-        "content": "                if (wordAndTags.length \u003d\u003d 1) {"
-      },
-      {
-        "lineNumber": 99,
-        "author": {
-          "gitId": "tran-quang-thanh"
-        },
-        "content": "                    throw new WrongAddTagFormatException();"
-      },
-      {
-        "lineNumber": 100,
-        "author": {
-          "gitId": "tran-quang-thanh"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 101,
-        "author": {
-          "gitId": "tran-quang-thanh"
-        },
-        "content": "                String wordDescription \u003d wordAndTags[0].substring(2).trim();"
-      },
-      {
-        "lineNumber": 102,
-        "author": {
-          "gitId": "tran-quang-thanh"
-        },
-        "content": "                ArrayList\u003cString\u003e tags \u003d new ArrayList\u003c\u003e();"
-      },
-      {
-        "lineNumber": 103,
-        "author": {
-          "gitId": "tran-quang-thanh"
-        },
-        "content": "                for (int i \u003d 1; i \u003c wordAndTags.length; ++i) {"
-      },
-      {
-        "lineNumber": 104,
-        "author": {
-          "gitId": "tran-quang-thanh"
-        },
-        "content": "                    tags.add(wordAndTags[i].trim());"
-      },
-      {
-        "lineNumber": 105,
-        "author": {
-          "gitId": "tran-quang-thanh"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 106,
-        "author": {
-          "gitId": "tran-quang-thanh"
-        },
-        "content": "                return new AddTagCommand(wordDescription, tags);"
-      },
-      {
-        "lineNumber": 107,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            } else {"
-      },
-      {
-        "lineNumber": 108,
         "author": {
           "gitId": "tessa-z"
         },
         "content": "                try {"
       },
       {
-        "lineNumber": 109,
+        "lineNumber": 99,
         "author": {
-          "gitId": "tran-quang-thanh"
+          "gitId": "tessa-z"
         },
-        "content": "                    throw new CommandInvalidException(input);"
+        "content": "                    numberOfWordsToDisplay \u003d Integer.parseInt(taskInfo[1]);"
       },
       {
-        "lineNumber": 110,
+        "lineNumber": 100,
         "author": {
-          "gitId": "tran-quang-thanh"
+          "gitId": "tessa-z"
         },
-        "content": "                } catch (CommandInvalidException e){"
+        "content": "                } catch (NumberFormatException nfe){"
       },
       {
-        "lineNumber": 111,
+        "lineNumber": 101,
         "author": {
-          "gitId": "tran-quang-thanh"
+          "gitId": "tessa-z"
         },
-        "content": "                    return new BadCommand(e.showError());"
+        "content": "                    throw new WrongHistoryFormatException();"
       },
       {
-        "lineNumber": 112,
+        "lineNumber": 102,
         "author": {
           "gitId": "tessa-z"
         },
         "content": "                }"
       },
       {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "                return new HistoryCommand(numberOfWordsToDisplay);"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "tran-quang-thanh"
+        },
+        "content": "            } else if (taskInfo[0].equals(\"edit\")) {"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "tran-quang-thanh"
+        },
+        "content": "                // CREATE AN EDIT COMMAND TO DEAL WITH EDIT WORD"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "tran-quang-thanh"
+        },
+        "content": "                return null;"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "tran-quang-thanh"
+        },
+        "content": "            } else if (taskInfo[0].equals(\"tag\")) {"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "tran-quang-thanh"
+        },
+        "content": "                if (taskInfo.length \u003d\u003d 1 || !taskInfo[1].startsWith(\"w/\")) {"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "tran-quang-thanh"
+        },
+        "content": "                    throw new WrongAddTagFormatException();"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "tran-quang-thanh"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "tran-quang-thanh"
+        },
+        "content": "                String[] wordAndTags \u003d taskInfo[1].split(\"t/\");"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "tran-quang-thanh"
+        },
+        "content": "                if (wordAndTags.length \u003d\u003d 1) {"
+      },
+      {
         "lineNumber": 113,
         "author": {
-          "gitId": "-"
+          "gitId": "tran-quang-thanh"
         },
-        "content": "            }"
+        "content": "                    throw new WrongAddTagFormatException();"
       },
       {
         "lineNumber": 114,
         "author": {
-          "gitId": "tessa-z"
+          "gitId": "tran-quang-thanh"
         },
-        "content": "        } catch (WordUpException e) {"
+        "content": "                }"
       },
       {
         "lineNumber": 115,
         "author": {
           "gitId": "tran-quang-thanh"
         },
-        "content": "            return new BadCommand(e.showError());"
+        "content": "                String wordDescription \u003d wordAndTags[0].substring(2).trim();"
       },
       {
         "lineNumber": 116,
+        "author": {
+          "gitId": "tran-quang-thanh"
+        },
+        "content": "                ArrayList\u003cString\u003e tags \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "tran-quang-thanh"
+        },
+        "content": "                for (int i \u003d 1; i \u003c wordAndTags.length; ++i) {"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "tran-quang-thanh"
+        },
+        "content": "                    tags.add(wordAndTags[i].trim());"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "tran-quang-thanh"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "tran-quang-thanh"
+        },
+        "content": "                return new AddTagCommand(wordDescription, tags);"
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            } else {"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "                try {"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "tran-quang-thanh"
+        },
+        "content": "                    throw new CommandInvalidException(input);"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "tran-quang-thanh"
+        },
+        "content": "                } catch (CommandInvalidException e){"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "tran-quang-thanh"
+        },
+        "content": "                    return new BadCommand(e.showError());"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "        } catch (WordUpException e) {"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "tran-quang-thanh"
+        },
+        "content": "            return new BadCommand(e.showError());"
+      },
+      {
+        "lineNumber": 130,
         "author": {
           "gitId": "-"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 117,
+        "lineNumber": 131,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 118,
+        "lineNumber": 132,
         "author": {
           "gitId": "-"
         },
@@ -2903,9 +3001,9 @@
       }
     ],
     "authorContributionMap": {
-      "tessa-z": 11,
+      "tessa-z": 24,
       "-": 23,
-      "tran-quang-thanh": 84
+      "tran-quang-thanh": 85
     }
   },
   {
@@ -5265,6 +5363,232 @@
     }
   },
   {
+    "path": "src/main/java/command/HistoryCommand.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "package command;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "import Dictionary.Word;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "import Dictionary.WordBank;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "import storage.Storage;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "import ui.Ui;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "import java.util.Stack;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": " * Represents a command from user to delete a task."
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": " * Inherits from Command class."
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "public class HistoryCommand extends Command {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "    protected int numberOfWordsToDisplay;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "    protected Stack\u003cWord\u003e wordHistory;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "    public HistoryCommand(int numberOfWordsToDisplay) {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "        this.numberOfWordsToDisplay \u003d numberOfWordsToDisplay;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "    public void execute(Ui ui, WordBank wordBank, Storage storage) {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "        //ask ui to print something"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "        //ask tasks to store the thing in arraylist"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "        //ask storage to write to file"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "        wordHistory \u003d storage.loadHistoryFromFile();"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "        ui.showHistory(wordHistory, numberOfWordsToDisplay);"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "tessa-z": 31
+    }
+  },
+  {
     "path": "src/main/java/command/ListCommand.java",
     "fileType": "functional",
     "lines": [
@@ -7088,6 +7412,64 @@
     }
   },
   {
+    "path": "src/main/java/exception/WrongHistoryFormatException.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "package exception;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "public class WrongHistoryFormatException extends WrongFormatException {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "    public WrongHistoryFormatException() {"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "        super(\"     ☹ OOPS: Expected format \\\"history {int value}\\\"\");"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "tessa-z": 7
+    }
+  },
+  {
     "path": "src/main/java/exception/WrongListFormatDescription.java",
     "fileType": "functional",
     "lines": [
@@ -7211,6 +7593,64 @@
     }
   },
   {
+    "path": "src/main/java/exception/ZeroHistoryRequestException.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "package exception;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "public class ZeroHistoryRequestException extends WrongFormatException {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "    public ZeroHistoryRequestException() {"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "        super(\"     ☹ OOPS: Please enter a number more than 0.\");"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "tessa-z": 7
+    }
+  },
+  {
     "path": "src/main/java/storage/Storage.java",
     "fileType": "functional",
     "lines": [
@@ -7289,738 +7729,990 @@
         "author": {
           "gitId": "tessa-z"
         },
-        "content": "import java.util.TreeMap;"
+        "content": "import java.lang.reflect.Array;"
       },
       {
         "lineNumber": 12,
         "author": {
-          "gitId": "tessa-z"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "import java.util.ArrayList;"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "tessa-z"
         },
-        "content": "/**"
+        "content": "import java.util.Stack;"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "tessa-z"
         },
-        "content": " * Represents the object that reads and writes to the text files where data is stored."
+        "content": "import java.util.TreeMap;"
       },
       {
         "lineNumber": 15,
         "author": {
-          "gitId": "tessa-z"
+          "gitId": "-"
         },
-        "content": " */"
+        "content": ""
       },
       {
         "lineNumber": 16,
         "author": {
-          "gitId": "-"
+          "gitId": "tessa-z"
         },
-        "content": "public class Storage {"
+        "content": "/**"
       },
       {
         "lineNumber": 17,
         "author": {
-          "gitId": "-"
+          "gitId": "tessa-z"
         },
-        "content": ""
+        "content": " * Represents the object that reads and writes to the text files where data is stored."
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "tessa-z"
         },
-        "content": "    private static String FILE_PATH;"
+        "content": " */"
       },
       {
         "lineNumber": 19,
         "author": {
-          "gitId": "tessa-z"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "public class Storage {"
       },
       {
         "lineNumber": 20,
         "author": {
-          "gitId": "tessa-z"
+          "gitId": "-"
         },
-        "content": "    public Storage() {"
+        "content": ""
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "tessa-z"
         },
-        "content": "    }"
+        "content": "    private static String FILE_PATH;"
       },
       {
         "lineNumber": 22,
         "author": {
-          "gitId": "-"
+          "gitId": "tessa-z"
         },
         "content": ""
       },
       {
         "lineNumber": 23,
         "author": {
-          "gitId": "-"
+          "gitId": "tessa-z"
         },
-        "content": "    public Storage(String filePath) {"
+        "content": "    public Storage() {"
       },
       {
         "lineNumber": 24,
         "author": {
-          "gitId": "-"
+          "gitId": "tessa-z"
         },
-        "content": "        FILE_PATH \u003d filePath;"
+        "content": "    }"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    public Storage(String filePath) {"
       },
       {
         "lineNumber": 27,
         "author": {
-          "gitId": "tran-quang-thanh"
+          "gitId": "-"
         },
-        "content": "    /**"
+        "content": "        FILE_PATH \u003d filePath;"
       },
       {
         "lineNumber": 28,
         "author": {
-          "gitId": "tran-quang-thanh"
+          "gitId": "-"
         },
-        "content": "     * Convert all data from text file in storage to list of words"
+        "content": "    }"
       },
       {
         "lineNumber": 29,
         "author": {
-          "gitId": "tran-quang-thanh"
+          "gitId": "-"
         },
-        "content": "     * @return an arraylist containing all words in dictionary"
+        "content": ""
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "tran-quang-thanh"
         },
-        "content": "     */"
+        "content": "    /**"
       },
       {
         "lineNumber": 31,
+        "author": {
+          "gitId": "tran-quang-thanh"
+        },
+        "content": "     * Convert all data from text file in storage to list of words"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "tran-quang-thanh"
+        },
+        "content": "     * @return an arraylist containing all words in dictionary"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "tran-quang-thanh"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 34,
         "author": {
           "gitId": "tessa-z"
         },
         "content": "    public TreeMap\u003cString, Word\u003e loadFile() {"
       },
       {
-        "lineNumber": 32,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        File file \u003d new File(FILE_PATH);"
-      },
-      {
-        "lineNumber": 33,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        FileReader fr \u003d null;"
-      },
-      {
-        "lineNumber": 34,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        BufferedReader br \u003d null;"
-      },
-      {
         "lineNumber": 35,
         "author": {
           "gitId": "-"
         },
-        "content": "        try {"
+        "content": "        File file \u003d new File(FILE_PATH);"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "-"
         },
-        "content": "            fr \u003d new FileReader(file);"
+        "content": "        FileReader fr \u003d null;"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "-"
         },
-        "content": "            br \u003d new BufferedReader(fr);"
+        "content": "        BufferedReader br \u003d null;"
       },
       {
         "lineNumber": 38,
         "author": {
-          "gitId": "tessa-z"
+          "gitId": "-"
         },
-        "content": "            TreeMap\u003cString, Word\u003e wordBank \u003d new TreeMap\u003c\u003e();"
+        "content": "        try {"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "-"
         },
-        "content": "            String line \u003d br.readLine();"
+        "content": "            fr \u003d new FileReader(file);"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "-"
         },
-        "content": "            while (line !\u003d null) {"
+        "content": "            br \u003d new BufferedReader(fr);"
       },
       {
         "lineNumber": 41,
         "author": {
-          "gitId": "tran-quang-thanh"
+          "gitId": "tessa-z"
         },
-        "content": "                // get data from storage"
+        "content": "            TreeMap\u003cString, Word\u003e wordBank \u003d new TreeMap\u003c\u003e();"
       },
       {
         "lineNumber": 42,
-        "author": {
-          "gitId": "tessa-z"
-        },
-        "content": "                // parse the line first"
-      },
-      {
-        "lineNumber": 43,
-        "author": {
-          "gitId": "tessa-z"
-        },
-        "content": "                if (line.equals(\"\")) {"
-      },
-      {
-        "lineNumber": 44,
-        "author": {
-          "gitId": "tessa-z"
-        },
-        "content": "                    line \u003d br.readLine(); continue;"
-      },
-      {
-        "lineNumber": 45,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 46,
-        "author": {
-          "gitId": "tessa-z"
-        },
-        "content": "                String[] parsedWordAndMeaning \u003d line.split(\":\");"
-      },
-      {
-        "lineNumber": 47,
-        "author": {
-          "gitId": "tessa-z"
-        },
-        "content": "                Word word \u003d new Word(parsedWordAndMeaning[0].trim(), parsedWordAndMeaning[1].trim());"
-      },
-      {
-        "lineNumber": 48,
-        "author": {
-          "gitId": "tessa-z"
-        },
-        "content": "                wordBank.put(word.getWord(), word);"
-      },
-      {
-        "lineNumber": 49,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                line \u003d br.readLine();"
-      },
-      {
-        "lineNumber": 50,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 51,
-        "author": {
-          "gitId": "tessa-z"
-        },
-        "content": "            return wordBank;"
-      },
-      {
-        "lineNumber": 52,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        } catch (IOException e) {"
-      },
-      {
-        "lineNumber": 53,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            e.printStackTrace();"
-      },
-      {
-        "lineNumber": 54,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            return null;"
-      },
-      {
-        "lineNumber": 55,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        } finally {"
-      },
-      {
-        "lineNumber": 56,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            try {"
-      },
-      {
-        "lineNumber": 57,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                br.close();"
-      },
-      {
-        "lineNumber": 58,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                fr.close();"
-      },
-      {
-        "lineNumber": 59,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            } catch (IOException e) {"
-      },
-      {
-        "lineNumber": 60,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                e.printStackTrace();"
-      },
-      {
-        "lineNumber": 61,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 62,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 63,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 64,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 65,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public void writeFile(String s, boolean append) {"
-      },
-      {
-        "lineNumber": 66,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        File file \u003d new File(FILE_PATH);"
-      },
-      {
-        "lineNumber": 67,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        FileWriter fw \u003d null;"
-      },
-      {
-        "lineNumber": 68,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        BufferedWriter bw \u003d null;"
-      },
-      {
-        "lineNumber": 69,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        try {"
-      },
-      {
-        "lineNumber": 70,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            fw \u003d new FileWriter(file, append);"
-      },
-      {
-        "lineNumber": 71,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            bw \u003d new BufferedWriter(fw);"
-      },
-      {
-        "lineNumber": 72,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            bw.write(s);"
-      },
-      {
-        "lineNumber": 73,
-        "author": {
-          "gitId": "tessa-z"
-        },
-        "content": "//            bw.newLine();"
-      },
-      {
-        "lineNumber": 74,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        } catch (IOException e) {"
-      },
-      {
-        "lineNumber": 75,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            e.printStackTrace();"
-      },
-      {
-        "lineNumber": 76,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        } finally {"
-      },
-      {
-        "lineNumber": 77,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            try {"
-      },
-      {
-        "lineNumber": 78,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                bw.close();"
-      },
-      {
-        "lineNumber": 79,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                fw.close();"
-      },
-      {
-        "lineNumber": 80,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            } catch (IOException e) {"
-      },
-      {
-        "lineNumber": 81,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                e.printStackTrace();"
-      },
-      {
-        "lineNumber": 82,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 83,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 84,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 85,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 86,
-        "author": {
-          "gitId": "tessa-z"
-        },
-        "content": "    public void deleteFromFile(String oldString) {"
-      },
-      {
-        "lineNumber": 87,
-        "author": {
-          "gitId": "tessa-z"
-        },
-        "content": "        File file \u003d new File(FILE_PATH);"
-      },
-      {
-        "lineNumber": 88,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        FileReader fr \u003d null;"
-      },
-      {
-        "lineNumber": 89,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        BufferedReader br \u003d null;"
-      },
-      {
-        "lineNumber": 90,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        try {"
-      },
-      {
-        "lineNumber": 91,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            fr \u003d new FileReader(file);"
-      },
-      {
-        "lineNumber": 92,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            br \u003d new BufferedReader(fr);"
-      },
-      {
-        "lineNumber": 93,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            String oldContent \u003d \"\";"
-      },
-      {
-        "lineNumber": 94,
         "author": {
           "gitId": "-"
         },
         "content": "            String line \u003d br.readLine();"
       },
       {
-        "lineNumber": 95,
+        "lineNumber": 43,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            while (line !\u003d null) {"
       },
       {
-        "lineNumber": 96,
+        "lineNumber": 44,
+        "author": {
+          "gitId": "tran-quang-thanh"
+        },
+        "content": "                // get data from storage"
+      },
+      {
+        "lineNumber": 45,
         "author": {
           "gitId": "tessa-z"
         },
-        "content": "            while ((line !\u003d null) \u0026\u0026 (!line.equals(\"\\n\"))){"
+        "content": "                // parse the line first"
       },
       {
-        "lineNumber": 97,
+        "lineNumber": 46,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "                if (line.equals(\"\")) {"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "                    line \u003d br.readLine(); continue;"
+      },
+      {
+        "lineNumber": 48,
         "author": {
           "gitId": "-"
         },
-        "content": "                oldContent \u003d oldContent + line + System.lineSeparator();"
+        "content": "                }"
       },
       {
-        "lineNumber": 98,
+        "lineNumber": 49,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "                String[] parsedWordAndMeaning \u003d line.split(\":\");"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "                Word word \u003d new Word(parsedWordAndMeaning[0].trim(), parsedWordAndMeaning[1].trim());"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "                wordBank.put(word.getWord(), word);"
+      },
+      {
+        "lineNumber": 52,
         "author": {
           "gitId": "-"
         },
         "content": "                line \u003d br.readLine();"
       },
       {
-        "lineNumber": 99,
+        "lineNumber": 53,
         "author": {
           "gitId": "-"
         },
         "content": "            }"
       },
       {
-        "lineNumber": 100,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            oldContent \u003d oldContent.substring(0, oldContent.length() - 1);"
-      },
-      {
-        "lineNumber": 101,
+        "lineNumber": 54,
         "author": {
           "gitId": "tessa-z"
         },
-        "content": "            String newContent \u003d oldContent.replace(oldString, \"\").trim();"
+        "content": "            return wordBank;"
       },
       {
-        "lineNumber": 102,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            Storage writer \u003d new Storage();"
-      },
-      {
-        "lineNumber": 103,
-        "author": {
-          "gitId": "tessa-z"
-        },
-        "content": "            writer.writeFile(newContent,false);"
-      },
-      {
-        "lineNumber": 104,
+        "lineNumber": 55,
         "author": {
           "gitId": "-"
         },
         "content": "        } catch (IOException e) {"
       },
       {
-        "lineNumber": 105,
+        "lineNumber": 56,
         "author": {
           "gitId": "-"
         },
         "content": "            e.printStackTrace();"
       },
       {
-        "lineNumber": 106,
+        "lineNumber": 57,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return null;"
+      },
+      {
+        "lineNumber": 58,
         "author": {
           "gitId": "-"
         },
         "content": "        } finally {"
       },
       {
-        "lineNumber": 107,
+        "lineNumber": 59,
         "author": {
           "gitId": "-"
         },
         "content": "            try {"
       },
       {
-        "lineNumber": 108,
+        "lineNumber": 60,
         "author": {
           "gitId": "-"
         },
         "content": "                br.close();"
       },
       {
-        "lineNumber": 109,
+        "lineNumber": 61,
         "author": {
           "gitId": "-"
         },
         "content": "                fr.close();"
       },
       {
-        "lineNumber": 110,
+        "lineNumber": 62,
         "author": {
           "gitId": "-"
         },
         "content": "            } catch (IOException e) {"
       },
       {
-        "lineNumber": 111,
+        "lineNumber": 63,
         "author": {
           "gitId": "-"
         },
         "content": "                e.printStackTrace();"
       },
       {
-        "lineNumber": 112,
+        "lineNumber": 64,
         "author": {
           "gitId": "-"
         },
         "content": "            }"
       },
       {
-        "lineNumber": 113,
+        "lineNumber": 65,
         "author": {
           "gitId": "-"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 114,
+        "lineNumber": 66,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 115,
+        "lineNumber": 67,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "    public Stack\u003cWord\u003e loadHistoryFromFile() {"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "        File file \u003d new File(FILE_PATH);"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        FileReader fr \u003d null;"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        BufferedReader br \u003d null;"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            fr \u003d new FileReader(file);"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            br \u003d new BufferedReader(fr);"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "            Stack\u003cWord\u003e wordHistory \u003d new Stack\u003c\u003e();"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            String line \u003d br.readLine();"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            while (line !\u003d null) {"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "                // get data from storage"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "                // parse the line first"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "                if (line.equals(\"\")) {"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "                    line \u003d br.readLine(); continue;"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "                String[] parsedWordAndMeaning \u003d line.split(\":\");"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "                Word word \u003d new Word(parsedWordAndMeaning[0].trim(), parsedWordAndMeaning[1].trim());"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "                wordHistory.add(word);"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                line \u003d br.readLine();"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "            return wordHistory;"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            e.printStackTrace();"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return null;"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        } finally {"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            try {"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                br.close();"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                fr.close();"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                e.printStackTrace();"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void writeFile(String s, boolean append) {"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        File file \u003d new File(FILE_PATH);"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        FileWriter fw \u003d null;"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        BufferedWriter bw \u003d null;"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            fw \u003d new FileWriter(file, append);"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            bw \u003d new BufferedWriter(fw);"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            bw.write(s);"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            bw.newLine();"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            e.printStackTrace();"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        } finally {"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            try {"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                bw.close();"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                fw.close();"
+      },
+      {
         "lineNumber": 116,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                e.printStackTrace();"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "    public void deleteFromFile(String oldString) {"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "        File file \u003d new File(FILE_PATH);"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        FileReader fr \u003d null;"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        BufferedReader br \u003d null;"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            fr \u003d new FileReader(file);"
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            br \u003d new BufferedReader(fr);"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            String oldContent \u003d \"\";"
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            String line \u003d br.readLine();"
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "            while ((line !\u003d null) \u0026\u0026 (!line.equals(\"\\n\"))){"
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                oldContent \u003d oldContent + line + System.lineSeparator();"
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                line \u003d br.readLine();"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            oldContent \u003d oldContent.substring(0, oldContent.length() - 1);"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "            String newContent \u003d oldContent.replace(oldString, \"\").trim();"
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            Storage writer \u003d new Storage();"
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "            writer.writeFile(newContent,false);"
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            e.printStackTrace();"
+      },
+      {
+        "lineNumber": 142,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        } finally {"
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            try {"
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                br.close();"
+      },
+      {
+        "lineNumber": 145,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                fr.close();"
+      },
+      {
+        "lineNumber": 146,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 147,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                e.printStackTrace();"
+      },
+      {
+        "lineNumber": 148,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 149,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 150,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 151,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 152,
         "author": {
           "gitId": "-"
         },
@@ -8028,8 +8720,8 @@
       }
     ],
     "authorContributionMap": {
-      "tessa-z": 32,
-      "-": 79,
+      "tessa-z": 44,
+      "-": 103,
       "tran-quang-thanh": 5
     }
   },
@@ -8082,593 +8774,712 @@
       {
         "lineNumber": 7,
         "author": {
-          "gitId": "tran-quang-thanh"
+          "gitId": "chelsea148629"
         },
-        "content": "import java.util.HashSet;"
+        "content": ""
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "tran-quang-thanh"
         },
-        "content": "import java.util.Map;"
+        "content": "import java.util.HashSet;"
       },
       {
         "lineNumber": 9,
         "author": {
-          "gitId": "-"
+          "gitId": "tran-quang-thanh"
         },
-        "content": "import java.util.Scanner;"
+        "content": "import java.util.Map;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "import java.util.Scanner;"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "tessa-z"
         },
-        "content": "/**"
+        "content": "import java.util.Stack;"
       },
       {
         "lineNumber": 12,
         "author": {
-          "gitId": "tessa-z"
+          "gitId": "-"
         },
-        "content": " * Represents the object that displays prompts and feedback from the system to the user\u0027s commands."
+        "content": ""
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "tessa-z"
         },
-        "content": " */"
+        "content": "/**"
       },
       {
         "lineNumber": 14,
         "author": {
-          "gitId": "-"
+          "gitId": "tessa-z"
         },
-        "content": "public class Ui {"
+        "content": " * Represents the object that displays prompts and feedback from the system to the user\u0027s commands."
       },
       {
         "lineNumber": 15,
         "author": {
-          "gitId": "-"
+          "gitId": "tessa-z"
         },
-        "content": ""
+        "content": " */"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "-"
         },
-        "content": "    public String readCommand() {"
+        "content": "public class Ui {"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "-"
         },
-        "content": "        Scanner in \u003d new Scanner(System.in);"
+        "content": ""
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "-"
         },
-        "content": "        return in.nextLine();"
+        "content": "    public String readCommand() {"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "        Scanner in \u003d new Scanner(System.in);"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        return in.nextLine();"
       },
       {
         "lineNumber": 21,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
         "author": {
           "gitId": "tran-quang-thanh"
         },
         "content": "    public String greet() {"
       },
       {
-        "lineNumber": 22,
+        "lineNumber": 24,
         "author": {
           "gitId": "tran-quang-thanh"
         },
         "content": "        return (\"\\n                      |   | _ _ _|   /  \\\\ _  \\n\""
       },
       {
-        "lineNumber": 23,
+        "lineNumber": 25,
         "author": {
           "gitId": "tessa-z"
         },
         "content": "                + \"                      |/\\\\|(_)| (_|  \\\\__/|_) \\n\""
       },
       {
-        "lineNumber": 24,
+        "lineNumber": 26,
         "author": {
           "gitId": "tessa-z"
         },
         "content": "                + \"                                            |   \\n\\n\""
       },
       {
-        "lineNumber": 25,
+        "lineNumber": 27,
         "author": {
           "gitId": "tessa-z"
         },
         "content": "                + \"Welcome, what would you like to do today?\""
       },
       {
-        "lineNumber": 26,
+        "lineNumber": 28,
         "author": {
           "gitId": "tessa-z"
         },
         "content": "        );"
       },
       {
-        "lineNumber": 27,
+        "lineNumber": 29,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 28,
+        "lineNumber": 30,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 29,
+        "lineNumber": 31,
         "author": {
           "gitId": "tran-quang-thanh"
         },
         "content": "    public String showDeleted(Word w) {"
       },
       {
-        "lineNumber": 30,
+        "lineNumber": 32,
         "author": {
           "gitId": "tran-quang-thanh"
         },
         "content": "        return \"Noted. I\u0027ve removed this word:\\n\" + w.toString();"
       },
       {
-        "lineNumber": 31,
+        "lineNumber": 33,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 32,
+        "lineNumber": 34,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 33,
+        "lineNumber": 35,
         "author": {
           "gitId": "tran-quang-thanh"
         },
         "content": "    public String showAdded(Word w) {"
       },
       {
-        "lineNumber": 34,
+        "lineNumber": 36,
         "author": {
           "gitId": "tran-quang-thanh"
         },
         "content": "        return \"Got it. I\u0027ve added this word:\\n\" + w.toString();"
       },
       {
-        "lineNumber": 35,
+        "lineNumber": 37,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 36,
+        "lineNumber": 38,
         "author": {
           "gitId": "-"
         },
         "content": ""
-      },
-      {
-        "lineNumber": 37,
-        "author": {
-          "gitId": "tran-quang-thanh"
-        },
-        "content": "    public String showAddTag(String word, ArrayList\u003cString\u003e tags, HashSet\u003cString\u003e tagList) {"
-      },
-      {
-        "lineNumber": 38,
-        "author": {
-          "gitId": "tran-quang-thanh"
-        },
-        "content": "        String returnedString \u003d \"I have added \" + (tags.size() \u003d\u003d 1 ? \"this tag \\\"\" + tags.get(0) + \"\\\"\" : \"these tags\")"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "tran-quang-thanh"
         },
-        "content": "                + \" to word \\\"\" + word + \"\\\"\" + \"\\n\";"
+        "content": "    public String showAddTag(String word, ArrayList\u003cString\u003e tags, HashSet\u003cString\u003e tagList) {"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "tran-quang-thanh"
         },
-        "content": "        returnedString +\u003d \"Here \" + (tagList.size() \u003d\u003d 1 ? \"is the tag \" : \"are the tags \") + \"of word \\\"\" + word + \"\\\"\" + \"\\n\";"
+        "content": "        String returnedString \u003d \"I have added \" + (tags.size() \u003d\u003d 1 ? \"this tag \\\"\" + tags.get(0) + \"\\\"\" : \"these tags\")"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "tran-quang-thanh"
         },
-        "content": "        StringBuilder stringBuilder \u003d new StringBuilder();"
+        "content": "                + \" to word \\\"\" + word + \"\\\"\" + \"\\n\";"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "tran-quang-thanh"
         },
-        "content": "        for (String tag : tagList) {"
+        "content": "        returnedString +\u003d \"Here \" + (tagList.size() \u003d\u003d 1 ? \"is the tag \" : \"are the tags \") + \"of word \\\"\" + word + \"\\\"\" + \"\\n\";"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "tran-quang-thanh"
         },
-        "content": "             stringBuilder.append(tag + \"\\n\");"
+        "content": "        StringBuilder stringBuilder \u003d new StringBuilder();"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "tran-quang-thanh"
         },
-        "content": "        }"
+        "content": "        for (String tag : tagList) {"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "tran-quang-thanh"
         },
-        "content": "        return returnedString + stringBuilder.toString();"
+        "content": "             stringBuilder.append(tag + \"\\n\");"
       },
       {
         "lineNumber": 46,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "tran-quang-thanh"
+        },
+        "content": "        return returnedString + stringBuilder.toString();"
+      },
+      {
+        "lineNumber": 48,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 47,
+        "lineNumber": 49,
         "author": {
           "gitId": "-"
         },
         "content": ""
-      },
-      {
-        "lineNumber": 48,
-        "author": {
-          "gitId": "tran-quang-thanh"
-        },
-        "content": "    public String showList(WordBank wordBank, String order) {"
-      },
-      {
-        "lineNumber": 49,
-        "author": {
-          "gitId": "tran-quang-thanh"
-        },
-        "content": "        String returnedString \u003d \"Here are your words:\\n\";"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "tran-quang-thanh"
         },
-        "content": "        if (order.equals(\"asc\") || order.equals(\"\")) {"
+        "content": "    public String showList(WordBank wordBank, String order) {"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "tran-quang-thanh"
         },
-        "content": "            for (Map.Entry\u003cString, Word\u003e entry : wordBank.getWordBank().entrySet()) {"
+        "content": "        String returnedString \u003d \"Here are your words:\\n\";"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "tran-quang-thanh"
         },
-        "content": "                returnedString +\u003d entry.getValue() + \"\\n\";"
+        "content": "        if (order.equals(\"asc\") || order.equals(\"\")) {"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "tran-quang-thanh"
         },
-        "content": "            }"
+        "content": "            for (Map.Entry\u003cString, Word\u003e entry : wordBank.getWordBank().entrySet()) {"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "tran-quang-thanh"
         },
-        "content": "        }"
+        "content": "                returnedString +\u003d entry.getValue() + \"\\n\";"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "tran-quang-thanh"
         },
-        "content": "        else {"
+        "content": "            }"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "tran-quang-thanh"
         },
-        "content": "            for (String description : wordBank.getWordBank().descendingKeySet()) {"
+        "content": "        }"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "tran-quang-thanh"
         },
-        "content": "                returnedString +\u003d wordBank.getWordBank().get(description) + \"\\n\";"
+        "content": "        else {"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "tran-quang-thanh"
         },
-        "content": "            }"
+        "content": "            for (String description : wordBank.getWordBank().descendingKeySet()) {"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "tran-quang-thanh"
         },
-        "content": "        }"
+        "content": "                returnedString +\u003d wordBank.getWordBank().get(description) + \"\\n\";"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "tran-quang-thanh"
         },
-        "content": "        return returnedString;"
+        "content": "            }"
       },
       {
         "lineNumber": 61,
+        "author": {
+          "gitId": "tran-quang-thanh"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "tran-quang-thanh"
+        },
+        "content": "        return returnedString;"
+      },
+      {
+        "lineNumber": 63,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 62,
+        "lineNumber": 64,
         "author": {
           "gitId": "-"
         },
         "content": ""
-      },
-      {
-        "lineNumber": 63,
-        "author": {
-          "gitId": "tran-quang-thanh"
-        },
-        "content": "    public String showDeletedTags(String word, ArrayList\u003cString\u003e deletedTags) {"
-      },
-      {
-        "lineNumber": 64,
-        "author": {
-          "gitId": "tran-quang-thanh"
-        },
-        "content": "        StringBuilder stringBuilder \u003d new StringBuilder();"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "tran-quang-thanh"
         },
-        "content": "        if (deletedTags.size() \u003e 0) {"
+        "content": "    public String showDeletedTags(String word, ArrayList\u003cString\u003e deletedTags) {"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "tran-quang-thanh"
         },
-        "content": "            stringBuilder.append(\"I have removed \" + (deletedTags.size() \u003d\u003d 1 ? \"this tag \" : \"these tags \") +"
+        "content": "        StringBuilder stringBuilder \u003d new StringBuilder();"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "tran-quang-thanh"
         },
-        "content": "                    \"from the word \\\"\" + word + \"\\\"\" + \"\\n\");"
+        "content": "        if (deletedTags.size() \u003e 0) {"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "tran-quang-thanh"
         },
-        "content": "            for (String tag : deletedTags) {"
+        "content": "            stringBuilder.append(\"I have removed \" + (deletedTags.size() \u003d\u003d 1 ? \"this tag \" : \"these tags \") +"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "tran-quang-thanh"
         },
-        "content": "                stringBuilder.append(tag + \"\\n\");"
+        "content": "                    \"from the word \\\"\" + word + \"\\\"\" + \"\\n\");"
       },
       {
         "lineNumber": 70,
         "author": {
-          "gitId": "-"
+          "gitId": "tran-quang-thanh"
         },
-        "content": "            }"
+        "content": "            for (String tag : deletedTags) {"
       },
       {
         "lineNumber": 71,
         "author": {
-          "gitId": "-"
+          "gitId": "tran-quang-thanh"
         },
-        "content": "        }"
+        "content": "                stringBuilder.append(tag + \"\\n\");"
       },
       {
         "lineNumber": 72,
         "author": {
-          "gitId": "tran-quang-thanh"
+          "gitId": "-"
         },
-        "content": "        return stringBuilder.toString();"
+        "content": "            }"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 74,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 75,
-        "author": {
-          "gitId": "tran-quang-thanh"
-        },
-        "content": "    public String showNullTags(String word, ArrayList\u003cString\u003e nullTags) {"
-      },
-      {
-        "lineNumber": 76,
-        "author": {
-          "gitId": "tran-quang-thanh"
-        },
-        "content": "        StringBuilder stringBuilder \u003d new StringBuilder();"
-      },
-      {
-        "lineNumber": 77,
-        "author": {
-          "gitId": "tran-quang-thanh"
-        },
-        "content": "        if (nullTags.size() \u003e 0) {"
-      },
-      {
-        "lineNumber": 78,
-        "author": {
-          "gitId": "tran-quang-thanh"
-        },
-        "content": "            stringBuilder.append((nullTags.size() \u003d\u003d 1 ? \"This tag \" : \"These tags \") +"
-      },
-      {
-        "lineNumber": 79,
-        "author": {
-          "gitId": "tran-quang-thanh"
-        },
-        "content": "                    \"doesn\u0027t exist in the word \\\"\" + word + \"\\\"\" + \"\\n\");"
-      },
-      {
-        "lineNumber": 80,
-        "author": {
-          "gitId": "tran-quang-thanh"
-        },
-        "content": "            for (String tag : nullTags) {"
-      },
-      {
-        "lineNumber": 81,
-        "author": {
-          "gitId": "tran-quang-thanh"
-        },
-        "content": "                stringBuilder.append(tag + \"\\n\");"
-      },
-      {
-        "lineNumber": 82,
-        "author": {
-          "gitId": "tran-quang-thanh"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 83,
-        "author": {
-          "gitId": "tran-quang-thanh"
-        },
         "content": "        }"
       },
       {
-        "lineNumber": 84,
+        "lineNumber": 74,
         "author": {
           "gitId": "tran-quang-thanh"
         },
         "content": "        return stringBuilder.toString();"
       },
       {
-        "lineNumber": 85,
+        "lineNumber": 75,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 86,
+        "lineNumber": 76,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "tran-quang-thanh"
+        },
+        "content": "    public String showNullTags(String word, ArrayList\u003cString\u003e nullTags) {"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "tran-quang-thanh"
+        },
+        "content": "        StringBuilder stringBuilder \u003d new StringBuilder();"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "tran-quang-thanh"
+        },
+        "content": "        if (nullTags.size() \u003e 0) {"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "tran-quang-thanh"
+        },
+        "content": "            stringBuilder.append((nullTags.size() \u003d\u003d 1 ? \"This tag \" : \"These tags \") +"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "tran-quang-thanh"
+        },
+        "content": "                    \"doesn\u0027t exist in the word \\\"\" + word + \"\\\"\" + \"\\n\");"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "tran-quang-thanh"
+        },
+        "content": "            for (String tag : nullTags) {"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "tran-quang-thanh"
+        },
+        "content": "                stringBuilder.append(tag + \"\\n\");"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "tran-quang-thanh"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "tran-quang-thanh"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "tran-quang-thanh"
+        },
+        "content": "        return stringBuilder.toString();"
+      },
+      {
         "lineNumber": 87,
         "author": {
           "gitId": "tran-quang-thanh"
         },
-        "content": "    public String showSearch(String description, String meaning){"
+        "content": "    }"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "tran-quang-thanh"
         },
-        "content": "        return (\"Here is the meaning of \" + description + \": \" + meaning);"
+        "content": ""
       },
       {
         "lineNumber": 89,
+        "author": {
+          "gitId": "tran-quang-thanh"
+        },
+        "content": "    public String showSearch(String description, String meaning){"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "tran-quang-thanh"
+        },
+        "content": "        return (\"Here is the meaning of \" + description + \": \" + meaning);"
+      },
+      {
+        "lineNumber": 91,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 90,
+        "lineNumber": 92,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "    public void showHistory(Stack\u003cWord\u003e wordHistory, int numberOfWordsToDisplay) {"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "        int numberOfWords;"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "        if (numberOfWordsToDisplay \u003e wordHistory.size()) {"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "            System.out.println(\"     The number of words requested exceeds the number of words in your word bank.\");"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "            numberOfWords \u003d wordHistory.size();"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "            numberOfWords\u003d numberOfWordsToDisplay;"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "        System.out.println(\"     Here are the last \" + numberOfWords + \" words you have added:\");"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "        for (int i \u003d 0; i \u003c numberOfWords; i++) {"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "            System.out.println(\"     \" + wordHistory.peek());"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "tessa-z"
+        },
+        "content": "            wordHistory.pop();"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 107,
         "author": {
           "gitId": "-"
         },
         "content": "}"
       },
       {
-        "lineNumber": 91,
+        "lineNumber": 108,
         "author": {
           "gitId": "-"
         },
@@ -8676,9 +9487,10 @@
       }
     ],
     "authorContributionMap": {
-      "tessa-z": 7,
-      "-": 32,
-      "tran-quang-thanh": 52
+      "chelsea148629": 1,
+      "tessa-z": 21,
+      "-": 33,
+      "tran-quang-thanh": 53
     }
   },
   {
