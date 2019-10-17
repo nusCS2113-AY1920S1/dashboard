@@ -5028,23 +5028,23 @@
       {
         "lineNumber": 15,
         "author": {
-          "gitId": "qjie7"
+          "gitId": "-"
         },
-        "content": "    private int Id;"
+        "content": "    private String command;"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "qjie7"
         },
-        "content": "    private String targetInfo;"
+        "content": ""
       },
       {
         "lineNumber": 17,
         "author": {
-          "gitId": "qjie7"
+          "gitId": "-"
         },
-        "content": "    private String updatedValue;"
+        "content": "    public UpdatePatientCommand(String command) { this.command \u003d command; }"
       },
       {
         "lineNumber": 18,
@@ -5058,152 +5058,152 @@
         "author": {
           "gitId": "qjie7"
         },
-        "content": "    public UpdatePatientCommand(int Id , String targetInfo , String updatedValue) {"
-      },
-      {
-        "lineNumber": 20,
-        "author": {
-          "gitId": "qjie7"
-        },
-        "content": "        super();"
-      },
-      {
-        "lineNumber": 21,
-        "author": {
-          "gitId": "qjie7"
-        },
-        "content": "        this.Id \u003d Id;"
-      },
-      {
-        "lineNumber": 22,
-        "author": {
-          "gitId": "qjie7"
-        },
-        "content": "        this.targetInfo \u003d targetInfo;"
-      },
-      {
-        "lineNumber": 23,
-        "author": {
-          "gitId": "qjie7"
-        },
-        "content": "        this.updatedValue \u003d updatedValue;"
-      },
-      {
-        "lineNumber": 24,
-        "author": {
-          "gitId": "qjie7"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 25,
-        "author": {
-          "gitId": "qjie7"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 26,
-        "author": {
-          "gitId": "qjie7"
-        },
         "content": "    @Override"
       },
       {
-        "lineNumber": 27,
+        "lineNumber": 20,
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
         "content": "    public void execute(PatientTaskList patientTask, TaskManager tasks, PatientManager patientManager, Ui ui, PatientTaskStorage patientTaskStorage, TaskStorage taskStorage, PatientStorage patientStorage) throws DukeException {"
       },
       {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        String[] tempCommand \u003d command.split(\" \", 3);"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        char firstChar \u003d tempCommand[0].charAt(0);"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        if (firstChar \u003d\u003d \u0027#\u0027){"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            int id;"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            try {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                id \u003d Integer.parseInt(tempCommand[0].substring(1, tempCommand[0].length()));"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                Patient patientToBeUpdated \u003d patientManager.getPatient(id);"
+      },
+      {
         "lineNumber": 28,
         "author": {
-          "gitId": "qjie7"
+          "gitId": "-"
         },
-        "content": "        Patient targetPatient \u003d patientManager.getPatient(Id);"
+        "content": "                if (tempCommand[1].toLowerCase().equals(\"name\")) {"
       },
       {
         "lineNumber": 29,
         "author": {
-          "gitId": "qjie7"
+          "gitId": "-"
         },
-        "content": "            if (targetInfo.equals(\"name\")) {"
+        "content": "                    patientToBeUpdated.setName(tempCommand[2]);"
       },
       {
         "lineNumber": 30,
         "author": {
-          "gitId": "qjie7"
+          "gitId": "-"
         },
-        "content": "                targetPatient.setName(updatedValue);"
+        "content": "                }"
       },
       {
         "lineNumber": 31,
         "author": {
-          "gitId": "qjie7"
+          "gitId": "-"
         },
-        "content": "            } else if (targetInfo.equals(\"nric\")) {"
+        "content": "                else if (tempCommand[1].toLowerCase().equals(\"nric\")) {"
       },
       {
         "lineNumber": 32,
         "author": {
-          "gitId": "qjie7"
+          "gitId": "-"
         },
-        "content": "                targetPatient.setNric(updatedValue);"
+        "content": "                    patientToBeUpdated.setNric(tempCommand[2]);"
       },
       {
         "lineNumber": 33,
         "author": {
-          "gitId": "qjie7"
+          "gitId": "-"
         },
-        "content": "            } else if (targetInfo.equals(\"room\")) {"
+        "content": "                }"
       },
       {
         "lineNumber": 34,
         "author": {
-          "gitId": "qjie7"
+          "gitId": "-"
         },
-        "content": "                targetPatient.setRoom(updatedValue);"
+        "content": "                else if (tempCommand[1].toLowerCase().equals(\"room\")) {"
       },
       {
         "lineNumber": 35,
         "author": {
-          "gitId": "qjie7"
+          "gitId": "-"
         },
-        "content": "            } else {"
+        "content": "                    patientToBeUpdated.setRoom(tempCommand[2]);"
       },
       {
         "lineNumber": 36,
         "author": {
-          "gitId": "qjie7"
+          "gitId": "-"
         },
-        "content": "                throw new DukeException(\"No such Patient information existed. Please Enter a valid Patient information\");"
+        "content": "                }"
       },
       {
         "lineNumber": 37,
         "author": {
-          "gitId": "qjie7"
+          "gitId": "-"
         },
-        "content": "            }"
+        "content": "                else {"
       },
       {
         "lineNumber": 38,
         "author": {
-          "gitId": "qjie7"
+          "gitId": "-"
         },
-        "content": "            patientStorage.save(patientManager.getPatientList());"
+        "content": "                    throw new DukeException(\"You can only update \u0027Name\u0027, \u0027NRIC\u0027, or \u0027Room\u0027 of the patient\");"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "qjie7"
         },
-        "content": "            ui.showUpdateStatus(targetPatient , targetInfo);"
+        "content": "                }"
       },
       {
         "lineNumber": 40,
         "author": {
-          "gitId": "qjie7"
+          "gitId": "-"
         },
         "content": ""
       },
@@ -5212,7 +5212,7 @@
         "author": {
           "gitId": "qjie7"
         },
-        "content": "    }"
+        "content": "                patientStorage.save(patientManager.getPatientList());"
       },
       {
         "lineNumber": 42,
@@ -5224,33 +5224,110 @@
       {
         "lineNumber": 43,
         "author": {
-          "gitId": "qjie7"
+          "gitId": "-"
         },
-        "content": "    @Override"
+        "content": "                ui.showUpdatedSuccessfully();"
       },
       {
         "lineNumber": 44,
         "author": {
-          "gitId": "qjie7"
+          "gitId": "-"
         },
-        "content": "    public boolean isExit() {"
+        "content": "                ui.showPatientInfo(patientToBeUpdated);"
       },
       {
         "lineNumber": 45,
         "author": {
-          "gitId": "qjie7"
+          "gitId": "-"
         },
-        "content": "        return false;"
+        "content": "            }catch(Exception e) {"
       },
       {
         "lineNumber": 46,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                throw new DukeException(\"Please follow the format \u0027update patient #\u003cid\u003e \u003cName/NRIC/Room\u003e \u003cnew information\u003e\u0027.\");"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "kkeejjuunn"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "kkeejjuunn"
+        },
+        "content": "        else {"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "kkeejjuunn"
+        },
+        "content": "            throw new DukeException(\"Please follow the format \u0027update patient #\u003cid\u003e \u003cName/NRIC/Room\u003e \u003cnew information\u003e\u0027.\");"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 52,
         "author": {
           "gitId": "qjie7"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 47,
+        "lineNumber": 53,
+        "author": {
+          "gitId": "qjie7"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "qjie7"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "qjie7"
+        },
+        "content": "    public boolean isExit() {"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "qjie7"
+        },
+        "content": "        return false;"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "qjie7"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 58,
         "author": {
           "gitId": "qjie7"
         },
@@ -5259,7 +5336,9 @@
     ],
     "authorContributionMap": {
       "WEIFENG-NUSCEG": 3,
-      "qjie7": 44
+      "kkeejjuunn": 3,
+      "qjie7": 25,
+      "-": 27
     }
   },
   {
@@ -5920,131 +5999,159 @@
       {
         "lineNumber": 94,
         "author": {
-          "gitId": "qjie7"
+          "gitId": "-"
         },
-        "content": "                    String[] descriptions \u003d command[1].split(\"\\\\s+\");"
+        "content": "                    secondKeyword \u003d command[1].toLowerCase();"
       },
       {
         "lineNumber": 95,
         "author": {
-          "gitId": "qjie7"
+          "gitId": "-"
         },
-        "content": "                    int targetId \u003d Integer.parseInt(descriptions[1]);"
+        "content": "                    if (secondKeyword.equals(\"patient\")){"
       },
       {
         "lineNumber": 96,
         "author": {
-          "gitId": "qjie7"
+          "gitId": "-"
         },
-        "content": "                    String targetInfo \u003d descriptions[2];"
+        "content": "                        String formattedInput \u003d parser.parseUpdatePatient();"
       },
       {
         "lineNumber": 97,
         "author": {
-          "gitId": "qjie7"
+          "gitId": "-"
         },
-        "content": "                    String updateValue \u003d descriptions[3];"
+        "content": "                        return new UpdatePatientCommand(formattedInput);"
       },
       {
         "lineNumber": 98,
         "author": {
-          "gitId": "qjie7"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "                    }"
       },
       {
         "lineNumber": 99,
         "author": {
-          "gitId": "qjie7"
+          "gitId": "-"
         },
-        "content": "                    return new UpdatePatientCommand(targetId, targetInfo, updateValue);"
+        "content": "                    else if (secondKeyword.equals(\"task\")){"
       },
       {
         "lineNumber": 100,
         "author": {
-          "gitId": "qjie7"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "                        String formattedInput \u003d parser.parseUpdateTask();"
       },
       {
         "lineNumber": 101,
         "author": {
-          "gitId": "qjie7"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "                        return new UpdateTaskCommand(formattedInput);"
       },
       {
         "lineNumber": 102,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                    else {"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                        throw new Exception(\"Invalid format. \");"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 106,
         "author": {
           "gitId": "qjie7"
         },
         "content": "                } catch (Exception e) {"
       },
       {
-        "lineNumber": 103,
+        "lineNumber": 107,
         "author": {
           "gitId": "qjie7"
         },
         "content": "                    throw new DukeException(\"update command fails. \" + e.getMessage());"
       },
       {
-        "lineNumber": 104,
+        "lineNumber": 108,
         "author": {
           "gitId": "qjie7"
         },
         "content": "                }"
       },
       {
-        "lineNumber": 105,
+        "lineNumber": 109,
         "author": {
           "gitId": "lmtaek"
         },
         "content": "            case \"bye\":"
       },
       {
-        "lineNumber": 106,
+        "lineNumber": 110,
         "author": {
           "gitId": "lmtaek"
         },
         "content": "                return new ExitCommand();"
       },
       {
-        "lineNumber": 107,
+        "lineNumber": 111,
         "author": {
           "gitId": "lmtaek"
         },
         "content": "            default:"
       },
       {
-        "lineNumber": 108,
+        "lineNumber": 112,
         "author": {
           "gitId": "lmtaek"
         },
         "content": "                throw new DukeException(\"Could not understand user input.\");"
       },
       {
-        "lineNumber": 109,
+        "lineNumber": 113,
         "author": {
           "gitId": "lmtaek"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 110,
+        "lineNumber": 114,
         "author": {
           "gitId": "lmtaek"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 111,
+        "lineNumber": 115,
         "author": {
           "gitId": "lmtaek"
         },
         "content": ""
       },
       {
-        "lineNumber": 112,
+        "lineNumber": 116,
         "author": {
           "gitId": "lmtaek"
         },
@@ -6054,8 +6161,8 @@
     "authorContributionMap": {
       "lmtaek": 40,
       "WEIFENG-NUSCEG": 8,
-      "qjie7": 14,
-      "-": 3,
+      "qjie7": 6,
+      "-": 15,
       "HUANGXUANKUN": 47
     }
   },
@@ -7166,12 +7273,96 @@
       {
         "lineNumber": 74,
         "author": {
-          "gitId": "lmtaek"
+          "gitId": "-"
         },
-        "content": "    "
+        "content": "    public String parseUpdatePatient() throws DukeException {"
       },
       {
         "lineNumber": 75,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        String formattedInput;"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        String inputToParse \u003d userInput.replaceAll(\"(?i)update patient \", \"\").trim();"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        formattedInput \u003d inputToParse;"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return formattedInput;"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public String parseUpdateTask() throws DukeException {"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        String formattedInput;"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        String inputToParse \u003d userInput.replaceAll(\"(?i)update task \", \"\").trim();"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        formattedInput \u003d inputToParse;"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return formattedInput;"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 87,
         "author": {
           "gitId": "-"
         },
@@ -7180,7 +7371,7 @@
     ],
     "authorContributionMap": {
       "lmtaek": 61,
-      "-": 14
+      "-": 26
     }
   },
   {
@@ -8352,21 +8543,21 @@
       {
         "lineNumber": 167,
         "author": {
-          "gitId": "HUANGXUANKUN"
+          "gitId": "-"
         },
         "content": "        }"
       },
       {
         "lineNumber": 168,
         "author": {
-          "gitId": "HUANGXUANKUN"
+          "gitId": "-"
         },
         "content": "    }"
       },
       {
         "lineNumber": 169,
         "author": {
-          "gitId": "HUANGXUANKUN"
+          "gitId": "-"
         },
         "content": ""
       },
@@ -8394,7 +8585,7 @@
       {
         "lineNumber": 173,
         "author": {
-          "gitId": "HUANGXUANKUN"
+          "gitId": "-"
         },
         "content": ""
       },
@@ -8457,21 +8648,21 @@
       {
         "lineNumber": 182,
         "author": {
-          "gitId": "-"
+          "gitId": "HUANGXUANKUN"
         },
         "content": "        }"
       },
       {
         "lineNumber": 183,
         "author": {
-          "gitId": "-"
+          "gitId": "HUANGXUANKUN"
         },
         "content": "    }"
       },
       {
         "lineNumber": 184,
         "author": {
-          "gitId": "-"
+          "gitId": "HUANGXUANKUN"
         },
         "content": ""
       },
@@ -8576,7 +8767,7 @@
       {
         "lineNumber": 199,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
         "content": ""
       },
@@ -8933,16 +9124,16 @@
       {
         "lineNumber": 250,
         "author": {
-          "gitId": "qjie7"
+          "gitId": "-"
         },
-        "content": "    public void showUpdateStatus(Patient patient , String targetInfo) {"
+        "content": "    public void showUpdatedSuccessfully() {"
       },
       {
         "lineNumber": 251,
         "author": {
-          "gitId": "qjie7"
+          "gitId": "-"
         },
-        "content": "        System.out.println(\"I have successfully updated the \" + targetInfo + \" of \" + patient.getName() + \" ID:\" + patient.getID()  );"
+        "content": "        System.out.println(\"I have successfully updated the following information: \\n\");"
       },
       {
         "lineNumber": 252,
@@ -8963,70 +9154,70 @@
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": "    public void showLoadingError() {"
       },
       {
         "lineNumber": 255,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Shows an error in loading the file where past tasks are stored."
+        "content": "        System.out.println(\"Failed to Load from local text file!\");"
       },
       {
         "lineNumber": 256,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 257,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public void showLoadingError() {"
-      },
-      {
-        "lineNumber": 258,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        System.out.println(\"Failed to Load from local text file!\");"
-      },
-      {
-        "lineNumber": 259,
-        "author": {
-          "gitId": "-"
-        },
         "content": "    }"
       },
       {
-        "lineNumber": 260,
+        "lineNumber": 257,
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
         "content": ""
       },
       {
-        "lineNumber": 261,
+        "lineNumber": 258,
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
         "content": "    public void patientTaskFound(Patient patient, ArrayList\u003cPatientTask\u003e patientTask, ArrayList\u003cTask\u003e tasks) {"
       },
       {
-        "lineNumber": 262,
+        "lineNumber": 259,
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
         "content": "        System.out.println(\"The tasks of patient \" + patient.getID() + \" \" + patient.getName() + \" is found : \\n\");"
       },
       {
-        "lineNumber": 263,
+        "lineNumber": 260,
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
         "content": "        for (int i \u003d 0; i \u003c patientTask.size(); i++){"
+      },
+      {
+        "lineNumber": 261,
+        "author": {
+          "gitId": "WEIFENG-NUSCEG"
+        },
+        "content": "            showLine();"
+      },
+      {
+        "lineNumber": 262,
+        "author": {
+          "gitId": "WEIFENG-NUSCEG"
+        },
+        "content": "            System.out.println( tasks.get(i).getID() + \". \" + tasks.get(i).getDescription() +\"\\n\");"
+      },
+      {
+        "lineNumber": 263,
+        "author": {
+          "gitId": "WEIFENG-NUSCEG"
+        },
+        "content": "            System.out.println( patientTask.get(i).toString());"
       },
       {
         "lineNumber": 264,
@@ -9040,45 +9231,24 @@
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "            System.out.println( tasks.get(i).getID() + \". \" + tasks.get(i).getDescription() +\"\\n\");"
+        "content": "        }"
       },
       {
         "lineNumber": 266,
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "            System.out.println( patientTask.get(i).toString());"
+        "content": "    }"
       },
       {
         "lineNumber": 267,
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "            showLine();"
-      },
-      {
-        "lineNumber": 268,
-        "author": {
-          "gitId": "WEIFENG-NUSCEG"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 269,
-        "author": {
-          "gitId": "WEIFENG-NUSCEG"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 270,
-        "author": {
-          "gitId": "WEIFENG-NUSCEG"
-        },
         "content": ""
       },
       {
-        "lineNumber": 271,
+        "lineNumber": 268,
         "author": {
           "gitId": "-"
         },
@@ -9086,11 +9256,11 @@
       }
     ],
     "authorContributionMap": {
-      "lmtaek": 14,
+      "lmtaek": 15,
       "WEIFENG-NUSCEG": 19,
-      "qjie7": 29,
-      "-": 139,
-      "HUANGXUANKUN": 70
+      "qjie7": 27,
+      "-": 138,
+      "HUANGXUANKUN": 69
     }
   },
   {
@@ -12335,44 +12505,44 @@
       {
         "lineNumber": 14,
         "author": {
-          "gitId": "WEIFENG-NUSCEG"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "public class PatientStorage {"
+        "content": "/**"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": ""
+        "content": " * TaskStorage.java - a class for writing/reading patient info to/from local in csv format."
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "    /**"
+        "content": " * @author  HUANG XUAN KUN"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "     * A string that represents a relative file path from the project folder."
+        "content": " * @version 1.2"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "     */"
+        "content": " */"
       },
       {
         "lineNumber": 19,
         "author": {
-          "gitId": "HUANGXUANKUN"
+          "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "    private String filePath;"
+        "content": "public class PatientStorage {"
       },
       {
         "lineNumber": 20,
@@ -12393,325 +12563,486 @@
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "     * Constructs a Storage object with a specific file path."
+        "content": "     * A string that represents a relative file path from the project folder."
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "     *"
+        "content": "     */"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "     * @param filePath A string that represents the path of the file to read or"
+        "content": "    private String filePath;"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "     *                 write."
+        "content": ""
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "     */"
+        "content": "    /**"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "    public PatientStorage(String filePath) {"
+        "content": "     * Constructs a Storage object with a specific file path."
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "        this.filePath \u003d filePath;"
+        "content": "     *"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "    }"
+        "content": "     * @param filePath A string that represents the path of the file to read or"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": ""
+        "content": "     *                 write."
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "    public ArrayList\u003cPatient\u003e load() throws DukeException {"
+        "content": "     */"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "        ArrayList\u003cPatient\u003e patientList \u003d new ArrayList\u003cPatient\u003e();"
+        "content": "    public PatientStorage(String filePath) {"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "        try {"
+        "content": "        this.filePath \u003d filePath;"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "            Reader in \u003d new FileReader(filePath);"
+        "content": "    }"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "            Iterable\u003cCSVRecord\u003e records \u003d CSVFormat.EXCEL.withFirstRecordAsHeader().parse(in);"
+        "content": ""
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "            for (CSVRecord record : records) {"
+        "content": "    /**"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "                int id \u003d Integer.parseInt(record.get(\"Id\"));"
+        "content": "     * Load the patients\u0027 info from local csv files"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "                String name \u003d record.get(\"Name\");"
+        "content": "     *"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "                String nric \u003d record.get(\"NRIC\");"
+        "content": "     * @return A arrayList of Patient which contain info of patients"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "                String remark \u003d record.get(\"Remark\");"
+        "content": "     * @throws DukeException throw a dukeException with error message for debugging"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "                String room \u003d record.get(\"Room\");"
+        "content": "     */"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "                patientList.add(new Patient(id, name, nric, room, remark));"
+        "content": "    public ArrayList\u003cPatient\u003e load() throws DukeException {"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "            }"
+        "content": "        ArrayList\u003cPatient\u003e patientList \u003d new ArrayList\u003cPatient\u003e();"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "            return patientList;"
+        "content": "        File csvFile \u003d new File(filePath);"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "        } catch (IOException e) {"
+        "content": "        try {"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "            throw new DukeException(e.getMessage());"
+        "content": "            if (csvFile.createNewFile()) {"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "        }"
+        "content": "                System.out.println(\"File \" + filePath + \" is created.\");"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "    }"
+        "content": "            } else {"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": ""
+        "content": "                Reader in \u003d new FileReader(filePath);"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "    public void save(ArrayList\u003cPatient\u003e patients) throws DukeException {"
+        "content": "                Iterable\u003cCSVRecord\u003e records \u003d CSVFormat.EXCEL.withFirstRecordAsHeader().parse(in);"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "        try {"
+        "content": "                for (CSVRecord record : records) {"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "            BufferedWriter writer \u003d Files.newBufferedWriter(Paths.get(filePath));"
+        "content": "                    int id \u003d Integer.parseInt(record.get(\"Id\"));"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "            CSVPrinter csvPrinter \u003d new CSVPrinter(writer, CSVFormat.DEFAULT"
+        "content": "                    String name \u003d record.get(\"Name\");"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "                    .withHeader(\"Id\", \"Name\", \"NRIC\", \"Room\", \"Remark\"));"
+        "content": "                    String nric \u003d record.get(\"NRIC\");"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "            for (Patient patient : patients) {"
+        "content": "                    String remark \u003d record.get(\"Remark\");"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "                int id \u003d patient.getID();"
+        "content": "                    String room \u003d record.get(\"Room\");"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "                String room \u003d patient.getRoom();"
+        "content": "                    patientList.add(new Patient(id, name, nric, room, remark));"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "                String NRIC \u003d patient.getNRIC();"
+        "content": "                }"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "                String name \u003d patient.getName();"
+        "content": "            }"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "                String remark \u003d patient.getRemark();"
+        "content": "            return patientList;"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "                csvPrinter.printRecord(id, name, NRIC, room, remark);"
+        "content": "        } catch (Exception e) {"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "            }"
+        "content": "            throw new DukeException(\"Loading of \" + filePath + \"is unsuccessful.\\n\" +"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "            csvPrinter.flush();"
+        "content": "                    \"e.getMessage()\");"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "        } catch (IOException e) {"
+        "content": "        }"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "            throw new DukeException(e.getMessage());"
+        "content": "    }"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "        }"
+        "content": ""
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "    }"
+        "content": "    /**"
       },
       {
         "lineNumber": 68,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "     * Write the patients\u0027 info to local csv files"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "     * @param patients A list of patients containing info of patients to be written"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "     * @throws DukeException throw exception with error message when i/o fails"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "    public void save(ArrayList\u003cPatient\u003e patients) throws DukeException {"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "            BufferedWriter writer \u003d Files.newBufferedWriter(Paths.get(filePath));"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "            CSVPrinter csvPrinter \u003d new CSVPrinter(writer, CSVFormat.DEFAULT"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "                    .withHeader(\"Id\", \"Name\", \"NRIC\", \"Room\", \"Remark\"));"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "            for (Patient patient : patients) {"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "                int id \u003d patient.getID();"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "                String room \u003d patient.getRoom();"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "                String NRIC \u003d patient.getNRIC();"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "                String name \u003d patient.getName();"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "                String remark \u003d patient.getRemark();"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "                csvPrinter.printRecord(id, name, NRIC, room, remark);"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "            csvPrinter.flush();"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "        } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "            throw new DukeException(e.getMessage());"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 91,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
@@ -12720,7 +13051,7 @@
     ],
     "authorContributionMap": {
       "WEIFENG-NUSCEG": 1,
-      "HUANGXUANKUN": 67
+      "HUANGXUANKUN": 90
     }
   },
   {
@@ -12835,44 +13166,44 @@
       {
         "lineNumber": 16,
         "author": {
-          "gitId": "WEIFENG-NUSCEG"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "public class PatientTaskStorage {"
+        "content": "/**"
       },
       {
         "lineNumber": 17,
         "author": {
-          "gitId": "WEIFENG-NUSCEG"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": ""
+        "content": " * TaskStorage.java - a class for writing/reading info of task associated with patient info to/from local in csv format."
       },
       {
         "lineNumber": 18,
         "author": {
-          "gitId": "WEIFENG-NUSCEG"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "    /**"
+        "content": " * @author  HUANG XUAN KUN"
       },
       {
         "lineNumber": 19,
         "author": {
-          "gitId": "WEIFENG-NUSCEG"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "     * A string that represents a relative file path from the project folder."
+        "content": " * @version 1.2"
       },
       {
         "lineNumber": 20,
         "author": {
-          "gitId": "WEIFENG-NUSCEG"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "     */"
+        "content": " */"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "    private String filePath;"
+        "content": "public class PatientTaskStorage {"
       },
       {
         "lineNumber": 22,
@@ -12893,465 +13224,633 @@
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "     * Constructs a Storage object with a specific file path."
+        "content": "     * A string that represents a relative file path from the project folder."
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "     *"
+        "content": "     */"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "     * @param filePath A string that represents the path of the file to read or"
+        "content": "    private String filePath;"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "     *                 write."
+        "content": ""
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "     */"
+        "content": "    /**"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "    public PatientTaskStorage(String filePath) {"
+        "content": "     * Constructs a Storage object with a specific file path."
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "        this.filePath \u003d filePath;"
+        "content": "     *"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "    }"
+        "content": "     * @param filePath A string that represents the path of the file to read or"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
-        "content": ""
+        "content": "     *                 write."
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "    public ArrayList\u003cPatientTask\u003e load() throws DukeException {"
+        "content": "     */"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "        ArrayList\u003cPatientTask\u003e patientTaskList \u003d new ArrayList\u003cPatientTask\u003e();"
+        "content": "    public PatientTaskStorage(String filePath) {"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "        try {"
+        "content": "        this.filePath \u003d filePath;"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "            Reader in \u003d new FileReader(filePath);"
+        "content": "    }"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "            Iterable\u003cCSVRecord\u003e records \u003d CSVFormat.EXCEL.withFirstRecordAsHeader().parse(in);"
+        "content": ""
       },
       {
         "lineNumber": 38,
         "author": {
-          "gitId": "WEIFENG-NUSCEG"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "            for (CSVRecord record : records) {"
+        "content": "    /**"
       },
       {
         "lineNumber": 39,
         "author": {
-          "gitId": "WEIFENG-NUSCEG"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "                Integer pid \u003d Integer.parseInt(record.get(\"PID\"));"
+        "content": "     * Load the task info with associated patient from local csv files"
       },
       {
         "lineNumber": 40,
         "author": {
-          "gitId": "WEIFENG-NUSCEG"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "                Integer tid \u003d Integer.parseInt(record.get(\"TID\"));"
+        "content": "     *"
       },
       {
         "lineNumber": 41,
         "author": {
-          "gitId": "WEIFENG-NUSCEG"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "                boolean isDone \u003d Boolean.parseBoolean(record.get(\"DONE\"));"
+        "content": "     * @return A arrayList of PatientTask which contain info of task with associated patient"
       },
       {
         "lineNumber": 42,
         "author": {
-          "gitId": "WEIFENG-NUSCEG"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "                boolean isRecursive \u003d Boolean.parseBoolean(record.get(\"RECURRENCE\"));"
+        "content": "     * @throws DukeException throw a dukeException with error message for debugging"
       },
       {
         "lineNumber": 43,
         "author": {
-          "gitId": "WEIFENG-NUSCEG"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "                String deadline \u003d record.get(\"DEADLINE\");"
+        "content": "     */"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "                String startTime \u003d record.get(\"STARTTIME\");"
+        "content": "    public ArrayList\u003cPatientTask\u003e load() throws DukeException {"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "                String endTime \u003d record.get(\"ENDTIME\");"
+        "content": "        ArrayList\u003cPatientTask\u003e patientTaskList \u003d new ArrayList\u003cPatientTask\u003e();"
       },
       {
         "lineNumber": 46,
         "author": {
-          "gitId": "WEIFENG-NUSCEG"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "                String taskType \u003d record.get(\"TASKTYPE\");"
+        "content": "        File csvFile \u003d new File(filePath);"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "                if (taskType.equals(\"S\")){"
+        "content": "        try {"
       },
       {
         "lineNumber": 48,
         "author": {
-          "gitId": "WEIFENG-NUSCEG"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "                    patientTaskList.add(new StandardPatientTask(pid,tid,isDone,isRecursive,deadline,taskType));"
+        "content": "            if (csvFile.createNewFile()) {"
       },
       {
         "lineNumber": 49,
         "author": {
-          "gitId": "WEIFENG-NUSCEG"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "                }"
+        "content": "                System.out.println(\"File \" + filePath + \" is created.\");"
       },
       {
         "lineNumber": 50,
         "author": {
-          "gitId": "WEIFENG-NUSCEG"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "                else if (taskType.equals(\"E\")){"
+        "content": "            } else {"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "                    patientTaskList.add(new EventPatientTask(pid,tid,isDone,isRecursive,startTime,endTime,taskType));"
+        "content": "                Reader in \u003d new FileReader(filePath);"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "                }"
+        "content": "                Iterable\u003cCSVRecord\u003e records \u003d CSVFormat.EXCEL.withFirstRecordAsHeader().parse(in);"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "            }"
+        "content": "                for (CSVRecord record : records) {"
       },
       {
         "lineNumber": 54,
         "author": {
-          "gitId": "WEIFENG-NUSCEG"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "            return patientTaskList;"
+        "content": "                    int pid \u003d Integer.parseInt(record.get(\"PID\"));"
       },
       {
         "lineNumber": 55,
         "author": {
-          "gitId": "WEIFENG-NUSCEG"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "        } catch (IOException e) {"
+        "content": "                    int tid \u003d Integer.parseInt(record.get(\"TID\"));"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "            throw new DukeException(e.getMessage());"
+        "content": "                    boolean isDone \u003d Boolean.parseBoolean(record.get(\"DONE\"));"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "        }"
+        "content": "                    boolean isRecursive \u003d Boolean.parseBoolean(record.get(\"RECURRENCE\"));"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "    }"
+        "content": "                    String deadline \u003d record.get(\"DEADLINE\");"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
-        "content": ""
+        "content": "                    String startTime \u003d record.get(\"STARTTIME\");"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "    public void save(ArrayList\u003cPatientTask\u003e patientTask) throws DukeException {"
+        "content": "                    String endTime \u003d record.get(\"ENDTIME\");"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "        try {"
+        "content": "                    String taskType \u003d record.get(\"TASKTYPE\");"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "            BufferedWriter writer \u003d Files.newBufferedWriter(Paths.get(filePath));"
+        "content": "                    if (taskType.equals(\"S\")){"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "            CSVPrinter csvPrinter \u003d new CSVPrinter(writer, CSVFormat.DEFAULT"
+        "content": "                        patientTaskList.add(new StandardPatientTask(pid,tid,isDone,isRecursive,deadline,taskType));"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "                    .withHeader(\"PID\", \"TID\", \"DONE\", \"RECURRENCE\", \"DEADLINE\", \"STARTTIME\", \"ENDTIME\", \"TASKTYPE\" ));"
+        "content": "                    }"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "            for (PatientTask patient : patientTask) {"
+        "content": "                    else if (taskType.equals(\"E\")){"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "                int pid \u003d patient.getPatientId();"
+        "content": "                        patientTaskList.add(new EventPatientTask(pid,tid,isDone,isRecursive,startTime,endTime,taskType));"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "                int tid \u003d patient.getTaskID();"
+        "content": "                    }"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "                boolean isDone \u003d patient.isDone();"
+        "content": "                }"
       },
       {
         "lineNumber": 69,
         "author": {
-          "gitId": "WEIFENG-NUSCEG"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "                boolean isRecurr \u003d patient.isRecurrsive();"
+        "content": "            }"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "                String deadline \u003d null;"
+        "content": "            return patientTaskList;"
       },
       {
         "lineNumber": 71,
         "author": {
-          "gitId": "WEIFENG-NUSCEG"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "                String startTime \u003d null;"
+        "content": "        } catch (Exception e) {"
       },
       {
         "lineNumber": 72,
         "author": {
-          "gitId": "WEIFENG-NUSCEG"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "                String endTime \u003d null;"
+        "content": "            throw new DukeException(\"Loading of \" + filePath + \"is unsuccessful.\" +"
       },
       {
         "lineNumber": 73,
         "author": {
-          "gitId": "WEIFENG-NUSCEG"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "                String type \u003d patient.getTaskType();"
+        "content": "                    \"e.getMessage()\");"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "                if (patient instanceof  StandardPatientTask)"
+        "content": "        }"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "                {"
+        "content": "    }"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "                    deadline \u003d ((StandardPatientTask) patient).getDeadline();"
+        "content": ""
       },
       {
         "lineNumber": 77,
         "author": {
-          "gitId": "WEIFENG-NUSCEG"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "                }"
+        "content": ""
       },
       {
         "lineNumber": 78,
         "author": {
-          "gitId": "WEIFENG-NUSCEG"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "                else if (patient instanceof EventPatientTask)"
+        "content": "    /**"
       },
       {
         "lineNumber": 79,
         "author": {
-          "gitId": "WEIFENG-NUSCEG"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "                {"
+        "content": "     * Write info of task with associated patient to local csv files"
       },
       {
         "lineNumber": 80,
         "author": {
-          "gitId": "WEIFENG-NUSCEG"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "                    startTime \u003d ((EventPatientTask) patient).getStartTimeRaw();"
+        "content": "     *"
       },
       {
         "lineNumber": 81,
         "author": {
-          "gitId": "WEIFENG-NUSCEG"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "                    endTime \u003d ((EventPatientTask) patient).getEndTimeRaw();"
+        "content": "     * @param patientTask A list of patients containing info of patients to be written"
       },
       {
         "lineNumber": 82,
         "author": {
-          "gitId": "WEIFENG-NUSCEG"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "                }"
+        "content": "     * @throws DukeException throw exception with error message when i/o fails"
       },
       {
         "lineNumber": 83,
         "author": {
-          "gitId": "WEIFENG-NUSCEG"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "                csvPrinter.printRecord(pid, tid, String.valueOf(isDone), String.valueOf(isRecurr), deadline, startTime,endTime,type);"
+        "content": "     */"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "            }"
+        "content": "    public void save(ArrayList\u003cPatientTask\u003e patientTask) throws DukeException {"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "            csvPrinter.flush();"
+        "content": "        try {"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "        } catch (IOException e) {"
+        "content": "            BufferedWriter writer \u003d Files.newBufferedWriter(Paths.get(filePath));"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "            throw new DukeException(e.getMessage());"
+        "content": "            CSVPrinter csvPrinter \u003d new CSVPrinter(writer, CSVFormat.DEFAULT"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "        }"
+        "content": "                    .withHeader(\"PID\", \"TID\", \"DONE\", \"RECURRENCE\", \"DEADLINE\", \"STARTTIME\", \"ENDTIME\", \"TASKTYPE\" ));"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "    }"
+        "content": "            for (PatientTask patient : patientTask) {"
       },
       {
         "lineNumber": 90,
+        "author": {
+          "gitId": "WEIFENG-NUSCEG"
+        },
+        "content": "                int pid \u003d patient.getPatientId();"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "WEIFENG-NUSCEG"
+        },
+        "content": "                int tid \u003d patient.getTaskID();"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "WEIFENG-NUSCEG"
+        },
+        "content": "                boolean isDone \u003d patient.isDone();"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "WEIFENG-NUSCEG"
+        },
+        "content": "                boolean isRecurr \u003d patient.isRecurrsive();"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "WEIFENG-NUSCEG"
+        },
+        "content": "                String deadline \u003d null;"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "WEIFENG-NUSCEG"
+        },
+        "content": "                String startTime \u003d null;"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "WEIFENG-NUSCEG"
+        },
+        "content": "                String endTime \u003d null;"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "WEIFENG-NUSCEG"
+        },
+        "content": "                String type \u003d patient.getTaskType();"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "WEIFENG-NUSCEG"
+        },
+        "content": "                if (patient instanceof  StandardPatientTask)"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "WEIFENG-NUSCEG"
+        },
+        "content": "                {"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "WEIFENG-NUSCEG"
+        },
+        "content": "                    deadline \u003d ((StandardPatientTask) patient).getDeadline();"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "WEIFENG-NUSCEG"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "WEIFENG-NUSCEG"
+        },
+        "content": "                else if (patient instanceof EventPatientTask)"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "WEIFENG-NUSCEG"
+        },
+        "content": "                {"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "WEIFENG-NUSCEG"
+        },
+        "content": "                    startTime \u003d ((EventPatientTask) patient).getStartTimeRaw();"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "WEIFENG-NUSCEG"
+        },
+        "content": "                    endTime \u003d ((EventPatientTask) patient).getEndTimeRaw();"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "WEIFENG-NUSCEG"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "WEIFENG-NUSCEG"
+        },
+        "content": "                csvPrinter.printRecord(pid, tid, String.valueOf(isDone), String.valueOf(isRecurr), deadline, startTime,endTime,type);"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "WEIFENG-NUSCEG"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "WEIFENG-NUSCEG"
+        },
+        "content": "            csvPrinter.flush();"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "WEIFENG-NUSCEG"
+        },
+        "content": "        } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "WEIFENG-NUSCEG"
+        },
+        "content": "            throw new DukeException(e.getMessage());"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "WEIFENG-NUSCEG"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "WEIFENG-NUSCEG"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 114,
         "author": {
           "gitId": "WEIFENG-NUSCEG"
         },
@@ -13359,7 +13858,8 @@
       }
     ],
     "authorContributionMap": {
-      "WEIFENG-NUSCEG": 90
+      "WEIFENG-NUSCEG": 86,
+      "HUANGXUANKUN": 28
     }
   },
   {
@@ -13460,44 +13960,44 @@
       {
         "lineNumber": 14,
         "author": {
-          "gitId": "WEIFENG-NUSCEG"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "public class TaskStorage {"
+        "content": "/**"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": ""
+        "content": " * TaskStorage.java - a simple class for writing/reading taskInfo to/from local in csv format."
       },
       {
         "lineNumber": 16,
         "author": {
-          "gitId": "-"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "    /**"
+        "content": " * @author  HUANG XUAN KUN"
       },
       {
         "lineNumber": 17,
         "author": {
-          "gitId": "-"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "     * A string that represents a relative file path from the project folder."
+        "content": " * @version 1.2"
       },
       {
         "lineNumber": 18,
         "author": {
-          "gitId": "-"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "     */"
+        "content": " */"
       },
       {
         "lineNumber": 19,
         "author": {
-          "gitId": "HUANGXUANKUN"
+          "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "    private String filePath;"
+        "content": "public class TaskStorage {"
       },
       {
         "lineNumber": 20,
@@ -13518,388 +14018,458 @@
         "author": {
           "gitId": "-"
         },
-        "content": "     * Constructs a Storage object with a specific file path."
+        "content": "     * A string that represents a relative file path from the project folder."
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "-"
         },
-        "content": "     *"
+        "content": "     */"
       },
       {
         "lineNumber": 24,
         "author": {
-          "gitId": "-"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "     * @param filePath A string that represents the path of the file to read or"
+        "content": "    private String filePath;"
       },
       {
         "lineNumber": 25,
         "author": {
-          "gitId": "-"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "     *             write."
+        "content": ""
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "    /**"
       },
       {
         "lineNumber": 27,
         "author": {
-          "gitId": "HUANGXUANKUN"
+          "gitId": "-"
         },
-        "content": "    public TaskStorage(String filePath) {"
+        "content": "     * Constructs a Storage object with a specific file path."
       },
       {
         "lineNumber": 28,
         "author": {
-          "gitId": "HUANGXUANKUN"
+          "gitId": "-"
         },
-        "content": "        this.filePath \u003d filePath;"
+        "content": "     *"
       },
       {
         "lineNumber": 29,
         "author": {
-          "gitId": "HUANGXUANKUN"
+          "gitId": "-"
         },
-        "content": "    }"
+        "content": "     * @param filePath A string that represents the path of the file to read or"
       },
       {
         "lineNumber": 30,
         "author": {
-          "gitId": "HUANGXUANKUN"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "     *             write."
       },
       {
         "lineNumber": 31,
         "author": {
-          "gitId": "HUANGXUANKUN"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "     */"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "    /**"
+        "content": "    public TaskStorage(String filePath) {"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "     * Read tasks from the file and store into a ArrayList of task."
+        "content": "        this.filePath \u003d filePath;"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "     *"
+        "content": "    }"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "     * @return A ArrayList of tasks from the file."
+        "content": ""
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "     * @throws DukeException If file is not found."
+        "content": ""
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "     */"
+        "content": "    /**"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "    public ArrayList\u003cTask\u003e load() throws DukeException {"
+        "content": "     * Read tasks from the file and store into a ArrayList of task."
       },
       {
         "lineNumber": 39,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        ArrayList\u003cTask\u003e taskList \u003d new ArrayList\u003cTask\u003e();"
-      },
-      {
-        "lineNumber": 40,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        try {"
-      },
-      {
-        "lineNumber": 41,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            Reader in \u003d new FileReader(filePath);"
-      },
-      {
-        "lineNumber": 42,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            Iterable\u003cCSVRecord\u003e records \u003d CSVFormat.EXCEL.withFirstRecordAsHeader().parse(in);"
-      },
-      {
-        "lineNumber": 43,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            for (CSVRecord record : records) {"
-      },
-      {
-        "lineNumber": 44,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                int id \u003d Integer.parseInt(record.get(\"Id\"));"
-      },
-      {
-        "lineNumber": 45,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                String description \u003d record.get(\"Description\");"
-      },
-      {
-        "lineNumber": 46,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                taskList.add(new Task(id, description));"
-      },
-      {
-        "lineNumber": 47,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 48,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            return taskList;"
-      },
-      {
-        "lineNumber": 49,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        } catch (IOException e) {"
-      },
-      {
-        "lineNumber": 50,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            throw new DukeException(e.getMessage());"
-      },
-      {
-        "lineNumber": 51,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 52,
-        "author": {
-          "gitId": "HUANGXUANKUN"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 53,
-        "author": {
-          "gitId": "HUANGXUANKUN"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 54,
-        "author": {
-          "gitId": "HUANGXUANKUN"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 55,
-        "author": {
-          "gitId": "HUANGXUANKUN"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 56,
-        "author": {
-          "gitId": "HUANGXUANKUN"
-        },
-        "content": "     * Saves tasks to the local file."
-      },
-      {
-        "lineNumber": 57,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
         "content": "     *"
       },
       {
-        "lineNumber": 58,
+        "lineNumber": 40,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "     * @param tasks The TaskList storing tasks."
+        "content": "     * @return A ArrayList of tasks from the file."
       },
       {
-        "lineNumber": 59,
+        "lineNumber": 41,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "     * @throws DukeException If writing to the local file failed."
+        "content": "     * @throws DukeException If file is not found."
       },
       {
-        "lineNumber": 60,
+        "lineNumber": 42,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
         "content": "     */"
       },
       {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "    public ArrayList\u003cTask\u003e load() throws DukeException {"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        ArrayList\u003cTask\u003e taskList \u003d new ArrayList\u003cTask\u003e();"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "        File csvFile \u003d new File(filePath);"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "            if (csvFile.createNewFile()) {"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "                System.out.println(\"File \" + filePath + \" is created.\");"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "            } else {"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                Reader in \u003d new FileReader(filePath);"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                Iterable\u003cCSVRecord\u003e records \u003d CSVFormat.EXCEL.withFirstRecordAsHeader().parse(in);"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                for (CSVRecord record : records) {"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                    int id \u003d Integer.parseInt(record.get(\"Id\"));"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                    String description \u003d record.get(\"Description\");"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                    taskList.add(new Task(id, description));"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return taskList;"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "        } catch (Exception e) {"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "            throw new DukeException(\"Loading of \" + filePath + \"is unsuccessful.\\n\" +"
+      },
+      {
         "lineNumber": 61,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "    public void save(ArrayList\u003cTask\u003e tasks) throws DukeException {"
+        "content": "                    \"e.getMessage()\");"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "-"
         },
-        "content": "        try{"
+        "content": "        }"
       },
       {
         "lineNumber": 63,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            BufferedWriter writer \u003d Files.newBufferedWriter(Paths.get(filePath));"
-      },
-      {
-        "lineNumber": 64,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            CSVPrinter csvPrinter \u003d new CSVPrinter(writer, CSVFormat.DEFAULT"
-      },
-      {
-        "lineNumber": 65,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                    .withHeader(\"Id\", \"Description\"));"
-      },
-      {
-        "lineNumber": 66,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            for (Task task : tasks){"
-      },
-      {
-        "lineNumber": 67,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                int id \u003d task.getID();"
-      },
-      {
-        "lineNumber": 68,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                String description \u003d task.getDescription();"
-      },
-      {
-        "lineNumber": 69,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                csvPrinter.printRecord(id, description);"
-      },
-      {
-        "lineNumber": 70,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 71,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            csvPrinter.flush();"
-      },
-      {
-        "lineNumber": 72,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 73,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        catch(IOException e){"
-      },
-      {
-        "lineNumber": 74,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            throw new DukeException(e.getMessage());"
-      },
-      {
-        "lineNumber": 75,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 76,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
         "content": "    }"
       },
       {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "     * Saves tasks to the local file."
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "     * @param tasks The TaskList storing tasks."
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "     * @throws DukeException throw with error message if writing to the local file failed."
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "    public void save(ArrayList\u003cTask\u003e tasks) throws DukeException {"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        try{"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            BufferedWriter writer \u003d Files.newBufferedWriter(Paths.get(filePath));"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            CSVPrinter csvPrinter \u003d new CSVPrinter(writer, CSVFormat.DEFAULT"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                    .withHeader(\"Id\", \"Description\"));"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            for (Task task : tasks){"
+      },
+      {
         "lineNumber": 77,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                int id \u003d task.getID();"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                String description \u003d task.getDescription();"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                csvPrinter.printRecord(id, description);"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            csvPrinter.flush();"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        catch(IOException e){"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            throw new DukeException(e.getMessage());"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 87,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
@@ -13908,8 +14478,8 @@
     ],
     "authorContributionMap": {
       "WEIFENG-NUSCEG": 1,
-      "-": 42,
-      "HUANGXUANKUN": 34
+      "-": 40,
+      "HUANGXUANKUN": 46
     }
   },
   {
@@ -14215,13 +14785,27 @@
         "author": {
           "gitId": "-"
         },
+        "content": ""
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void setDescription(String description) { this.description \u003d description; }"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "-"
+        },
         "content": "}"
       }
     ],
     "authorContributionMap": {
       "lmtaek": 1,
       "WEIFENG-NUSCEG": 8,
-      "-": 34
+      "-": 36
     }
   },
   {
@@ -15002,7 +15586,7 @@
     }
   },
   {
-    "path": "src/test/java/duke/core/CommandManagerTest.java",
+    "path": "src/test/java/duke/core/ParserTest.java",
     "fileType": "tests",
     "lines": [
       {
@@ -15024,300 +15608,16 @@
         "author": {
           "gitId": "-"
         },
-        "content": "import duke.command.*;"
-      },
-      {
-        "lineNumber": 4,
-        "author": {
-          "gitId": "-"
-        },
         "content": "import org.junit.jupiter.api.Test;"
       },
       {
-        "lineNumber": 5,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 6,
+        "lineNumber": 4,
         "author": {
           "gitId": "-"
         },
         "content": "import static org.junit.jupiter.api.Assertions.assertTrue;"
       },
       {
-        "lineNumber": 7,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "public class CommandManagerTest {"
-      },
-      {
-        "lineNumber": 9,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 10,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * Test the return command type of Parser.parse(userInput)"
-      },
-      {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * @throws DukeException referencing a Duke specified exception with error log"
-      },
-      {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 13,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    @Test"
-      },
-      {
-        "lineNumber": 14,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public void commandTypeTest() throws DukeException {"
-      },
-      {
-        "lineNumber": 15,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        Command c1 \u003d CommandManager.manageCommand(\"bye\");"
-      },
-      {
-        "lineNumber": 16,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        Command c2 \u003d CommandManager.manageCommand(\"done 1\");"
-      },
-      {
-        "lineNumber": 17,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        Command c3 \u003d CommandManager.manageCommand(\"delete 2\");"
-      },
-      {
-        "lineNumber": 18,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        Command c4 \u003d CommandManager.manageCommand(\"list\");"
-      },
-      {
-        "lineNumber": 19,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        Command c5 \u003d CommandManager.manageCommand(\"find MEETING\");"
-      },
-      {
-        "lineNumber": 20,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        Command c6 \u003d CommandManager.manageCommand(\"todo abc\");"
-      },
-      {
-        "lineNumber": 21,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        Command c7 \u003d CommandManager.manageCommand(\"event Meeting /at 27/07/2020 1630\");"
-      },
-      {
-        "lineNumber": 22,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        Command c8 \u003d CommandManager.manageCommand(\"deadline event Homework ABC /by 27/07/2020 1630\");"
-      },
-      {
-        "lineNumber": 23,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        Command c9 \u003d CommandManager.manageCommand(\"view 16/09/2019\");"
-      },
-      {
-        "lineNumber": 24,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        Command c10 \u003d CommandManager.manageCommand(\"period periodTaskTest /from 27/07/2020 1630 /to 27/08/2020 1630\");"
-      },
-      {
-        "lineNumber": 25,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        Command c11 \u003d CommandManager.manageCommand(\"reschedule 1 27/07/2020 1630\");"
-      },
-      {
-        "lineNumber": 26,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 27,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        assertTrue(c1 instanceof ExitCommand, \"The command type should be \");"
-      },
-      {
-        "lineNumber": 28,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        assertTrue(c2 instanceof DoneCommand, \"The command type should be \u0027DoneCommand\u0027\");"
-      },
-      {
-        "lineNumber": 29,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        assertTrue(c3 instanceof DeleteCommand, \"The command type should be \u0027DeleteCommand\u0027\");"
-      },
-      {
-        "lineNumber": 30,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        assertTrue(c4 instanceof ListCommand, \"The command type should be \u0027ListCommand\u0027\");"
-      },
-      {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        assertTrue(c5 instanceof FindCommand, \"The command type should be \u0027FindCommand\u0027\");"
-      },
-      {
-        "lineNumber": 32,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        assertTrue(c6 instanceof AddCommand, \"The command type should be \u0027AddCommand\u0027\");"
-      },
-      {
-        "lineNumber": 33,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        assertTrue(c7 instanceof AddCommand, \"The command type should be \u0027AddCommand\u0027\");"
-      },
-      {
-        "lineNumber": 34,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        assertTrue(c8 instanceof AddCommand, \"The command type should be \u0027AddCommand\u0027\");"
-      },
-      {
-        "lineNumber": 35,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        assertTrue(c9 instanceof ViewCommand, \"The command type should be \u0027ViewCommand\u0027\");"
-      },
-      {
-        "lineNumber": 36,
-        "author": {
-          "gitId": "HUANGXUANKUN"
-        },
-        "content": "        assertTrue(c10 instanceof AddCommand, \"The command type should be \u0027AddCommand\u0027\");"
-      },
-      {
-        "lineNumber": 37,
-        "author": {
-          "gitId": "HUANGXUANKUN"
-        },
-        "content": "        assertTrue(c11 instanceof RescheduleCommand, \"The command type should be \u0027RescheduleCommand\u0027\");"
-      },
-      {
-        "lineNumber": 38,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 39,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "}"
-      }
-    ],
-    "authorContributionMap": {
-      "lmtaek": 12,
-      "-": 25,
-      "HUANGXUANKUN": 2
-    }
-  },
-  {
-    "path": "src/test/java/duke/task/DeadlineTest.java",
-    "fileType": "tests",
-    "lines": [
-      {
-        "lineNumber": 1,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "package duke.task;"
-      },
-      {
-        "lineNumber": 2,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 3,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import duke.core.DukeException;"
-      },
-      {
-        "lineNumber": 4,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import org.junit.jupiter.api.Test;"
-      },
-      {
         "lineNumber": 5,
         "author": {
           "gitId": "-"
@@ -15329,89 +15629,89 @@
         "author": {
           "gitId": "-"
         },
-        "content": "import static org.junit.jupiter.api.Assertions.*;"
+        "content": "public class ParserTest {"
       },
       {
         "lineNumber": 7,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
         "content": ""
       },
       {
         "lineNumber": 8,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": ""
+        "content": "    String patientDummyInput \u003d \"add patient name NRIC room remark\";"
       },
       {
         "lineNumber": 9,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "public class DeadlineTest {"
+        "content": "    String taskDummyInput \u003d \"add task Walk the dog\";"
       },
       {
         "lineNumber": 10,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
         "content": ""
       },
       {
         "lineNumber": 11,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "    /**"
+        "content": "    String assignPatientIDToTaskS \u003d \"assign by id: S 1 2 02/02/2002 2222\";"
       },
       {
         "lineNumber": 12,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "     * Test the Deadline.toString()"
+        "content": "    String assignPatientIDToTaskE \u003d \"assign by id: E 2 1 02/02/2002 2222 to 03/02/2002 1234\";"
       },
       {
         "lineNumber": 13,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "     */"
+        "content": ""
       },
       {
         "lineNumber": 14,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "    @Test"
+        "content": "    String deletePatientInputWithID \u003d \"delete patient #123\";"
       },
       {
         "lineNumber": 15,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "    public void deadlineStringTest() throws DukeException {"
+        "content": "    String deletePatientInputWithName \u003d \"delete patient billy joe\";"
       },
       {
         "lineNumber": 16,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "        assertEquals( \"[D][\\u2718] abc (by: 2nd of December 1996, 12PM)\", new Deadline(\"abc\", \"02/12/1996 1235\").toString(),\"Deadline toString() is not expected\");"
+        "content": "    String deleteTaskInputWithID \u003d \"delete task 10\";"
       },
       {
         "lineNumber": 17,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "    }"
+        "content": "    String deleteTaskInputWithName \u003d \"delete task Take medicine\";"
       },
       {
         "lineNumber": 18,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
         "content": ""
       },
@@ -15420,706 +15720,458 @@
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": "    @Test"
       },
       {
         "lineNumber": 20,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "     * Test the Deadline.writeTxt()"
+        "content": "    public void parseAddPatientTest() throws DukeException {"
       },
       {
         "lineNumber": 21,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "     */"
+        "content": "        Parser testParser \u003d new Parser(patientDummyInput);"
       },
       {
         "lineNumber": 22,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "    @Test"
+        "content": "        String[] testOutput \u003d testParser.parseAdd();"
       },
       {
         "lineNumber": 23,
         "author": {
-          "gitId": "-"
-        },
-        "content": "    public void writeFormatTest() throws DukeException {"
-      },
-      {
-        "lineNumber": 24,
-        "author": {
-          "gitId": "HUANGXUANKUN"
-        },
-        "content": "        assertEquals( \"D | 0 | deadlineTest | 02/12/1996 1235 | ONCE\",new Deadline(\"deadlineTest\", \"02/12/1996 1235\").writeTxt(), \"The writeToFile format is not expected\");"
-      },
-      {
-        "lineNumber": 25,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 26,
-        "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
         "content": ""
       },
       {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        assertTrue(testOutput[0].equals(\"name\"), \"Name field did not parse correctly. Expected: \u0027name\u0027, but got: \" + testOutput[0]);"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        assertTrue(testOutput[1].equals(\"NRIC\"), \"NRIC field did not parse correctly. Expected: \u0027NRIC\u0027, but got: \" + testOutput[1]);"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        assertTrue(testOutput[2].equals(\"room\"), \"Room field did not parse correctly. Expected: \u0027room\u0027, but got: \" + testOutput[2]);"
+      },
+      {
         "lineNumber": 27,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "    /**"
+        "content": "        assertTrue(testOutput[3].equals(\"remark\"), \"Remark field did not parse correctly. Expected: \u0027remark\u0027, but got: \" + testOutput[3]);"
       },
       {
         "lineNumber": 28,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "     * Test the Deadline.isDone() after a new Deadline object is being initialized"
+        "content": ""
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "    }"
       },
       {
         "lineNumber": 30,
         "author": {
-          "gitId": "-"
-        },
-        "content": "    @Test"
-      },
-      {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public void doneStatusTest() throws DukeException {"
-      },
-      {
-        "lineNumber": 32,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        assertFalse(new Deadline(\"abc\", \"02/12/1996 1235\").isDone(), \"The newly created Deadline should not be done\");"
-      },
-      {
-        "lineNumber": 33,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 34,
-        "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
         "content": ""
       },
       {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    public void parseAddTask() throws DukeException {"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        Parser testParser \u003d new Parser(taskDummyInput);"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        String[] testOutput \u003d testParser.parseAdd();"
+      },
+      {
         "lineNumber": 35,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 36,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "     * A general test case to test Deadline class"
+        "content": "        assertTrue(testOutput[0].equals(\"Walk the dog\"), \"Task description did not parse correctly. Expected \u0027Walk the dog\u0027 but got: \" + testOutput[0]);"
       },
       {
         "lineNumber": 37,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "     * Test steps:"
+        "content": "    }"
       },
       {
         "lineNumber": 38,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "     * 1. Create a Deadline object"
+        "content": ""
       },
       {
         "lineNumber": 39,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "     * 2. Verify Deadline.isdone(), Deadline.toString(), Deadline.writeTxt()"
+        "content": "    @Test"
       },
       {
         "lineNumber": 40,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "     * 3. Mark the Deadline object to isDone status."
+        "content": "    public void parseAssignPatientByID() throws DukeException {"
       },
       {
         "lineNumber": 41,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "     * 4. Repeat step 2"
+        "content": "        Parser testParserStandard \u003d new Parser(assignPatientIDToTaskS);"
       },
       {
         "lineNumber": 42,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "     *"
+        "content": "        Parser testParserEvent \u003d new Parser(assignPatientIDToTaskE);"
       },
       {
         "lineNumber": 43,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "     * @throws DukeException if markAsDone is applied to a done task, throw exception with log"
+        "content": ""
       },
       {
         "lineNumber": 44,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "     */"
+        "content": "        String[] testOutputStandard \u003d testParserStandard.parseAssign();"
       },
       {
         "lineNumber": 45,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "    @Test"
+        "content": "        String[] testOutputEvent \u003d testParserEvent.parseAssign();"
       },
       {
         "lineNumber": 46,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "    public void deadlineTestCase() throws DukeException {"
+        "content": ""
       },
       {
         "lineNumber": 47,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "        // Create a new deadline and check its toString() and writeTxt()"
+        "content": "        assertTrue(testOutputStandard[0].equals(\"S\"), \"Task type parsed incorrectly. Expected \u0027S\u0027 but got: \" + testOutputStandard[0]);"
       },
       {
         "lineNumber": 48,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "        Deadline deadline \u003d new Deadline(\"deadlineTest\", \"02/12/1996 1235\");"
+        "content": "        assertTrue(testOutputStandard[1].equals(\"1\") \u0026\u0026 testOutputStandard[2].equals(\"2\"), \"IDs parsed incorrectly.\\n\""
       },
       {
         "lineNumber": 49,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "        assertFalse(deadline.isDone(), \"The newly created deadline should not be done\");"
+        "content": "        + \"Expected patient ID of 1, and got: \" + testOutputStandard[1] + \".\\n Expected task ID of 2 and got: \" + testOutputStandard[2]);"
       },
       {
         "lineNumber": 50,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "        assertEquals( \"[D][\\u2718] deadlineTest (by: 2nd of December 1996, 12PM)\",deadline.toString(), \"The writeToFile format is not expected\");"
+        "content": "        assertTrue(testOutputStandard[3].equals(\"02/02/2002 2222\"));"
       },
       {
         "lineNumber": 51,
         "author": {
-          "gitId": "HUANGXUANKUN"
+          "gitId": "lmtaek"
         },
-        "content": "        assertEquals( \"D | 0 | deadlineTest | 02/12/1996 1235 | ONCE\",deadline.writeTxt(), \"The writeToFile format is not expected\");"
+        "content": ""
       },
       {
         "lineNumber": 52,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": ""
+        "content": "        assertTrue(testOutputEvent[0].equals(\"E\"), \"Task type parsed incorrectly. Expected \u0027E\u0027 but got: \" + testOutputEvent[0]);"
       },
       {
         "lineNumber": 53,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "        // Mark the deadline as done and check its toString() and writeTxt()"
+        "content": "        assertTrue(testOutputEvent[1].equals(\"2\") \u0026\u0026 testOutputEvent[2].equals(\"1\"), \"IDs parsed incorrectly.\\n\""
       },
       {
         "lineNumber": 54,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "        deadline.markAsDone();"
+        "content": "                + \"Expected patient ID of 2, and got: \" + testOutputEvent[1] + \".\\n Expected task ID of 1 and got: \" + testOutputEvent[2]);"
       },
       {
         "lineNumber": 55,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "        assertTrue(deadline.isDone(), \"The deadline should be marked as done\");"
+        "content": "        assertTrue(testOutputEvent[3].equals(\"02/02/2002 2222\"), \"Start date parsed incorrectly. Expected \u002702/02/2002 2222\u0027 but got: \" + testOutputEvent[3]);"
       },
       {
         "lineNumber": 56,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "        assertEquals(\"[D][\\u2713] deadlineTest (by: 2nd of December 1996, 12PM)\", deadline.toString(), \"The deadline.toString() is not expected\");"
+        "content": "        assertTrue(testOutputEvent[4].equals(\"03/02/2002 1234\"), \"End date parsed incorrectly. Expected \u002703/02/2002 1234\u0027 but got: \" + testOutputEvent[4]);"
       },
       {
         "lineNumber": 57,
         "author": {
-          "gitId": "HUANGXUANKUN"
+          "gitId": "lmtaek"
         },
-        "content": "        assertEquals( \"D | 1 | deadlineTest | 02/12/1996 1235 | ONCE\",deadline.writeTxt(), \"The writeToFile format is not expected\");"
+        "content": "    }"
       },
       {
         "lineNumber": 58,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 59,
         "author": {
-          "gitId": "-"
-        },
-        "content": "}"
-      }
-    ],
-    "authorContributionMap": {
-      "-": 56,
-      "HUANGXUANKUN": 3
-    }
-  },
-  {
-    "path": "src/test/java/duke/task/EventTest.java",
-    "fileType": "tests",
-    "lines": [
-      {
-        "lineNumber": 1,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 2,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "package duke.task;"
-      },
-      {
-        "lineNumber": 3,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 4,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import duke.core.DukeException;"
-      },
-      {
-        "lineNumber": 5,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import org.junit.jupiter.api.Test;"
-      },
-      {
-        "lineNumber": 6,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 7,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import static org.junit.jupiter.api.Assertions.*;"
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 9,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 10,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "public class EventTest {"
-      },
-      {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * Test the Event.toString()"
-      },
-      {
-        "lineNumber": 13,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 14,
-        "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
         "content": "    @Test"
       },
       {
-        "lineNumber": 15,
+        "lineNumber": 60,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "    public void EventStringTest() throws DukeException {"
+        "content": "    public void parseDeletePatient() throws DukeException {"
       },
       {
-        "lineNumber": 16,
+        "lineNumber": 61,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "        assertEquals(\"[E][\\u2718] eventTest (at: 2nd of December 1996, 12PM)\", new Event(\"eventTest\", \"02/12/1996 1235\").toString(), \"toString result is not expected\");"
+        "content": "        Parser testParserID \u003d new Parser(deletePatientInputWithID);"
       },
       {
-        "lineNumber": 17,
+        "lineNumber": 62,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "    }"
+        "content": "        Parser testParserName \u003d new Parser(deletePatientInputWithName);"
       },
       {
-        "lineNumber": 18,
+        "lineNumber": 63,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
         "content": ""
       },
       {
-        "lineNumber": 19,
+        "lineNumber": 64,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "    /**"
+        "content": "        String testOutputID \u003d testParserID.parseDeletePatient();"
       },
       {
-        "lineNumber": 20,
+        "lineNumber": 65,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "     * Test the Event.writeTxt()"
+        "content": "        String testOutputName \u003d testParserName.parseDeletePatient();"
       },
       {
-        "lineNumber": 21,
+        "lineNumber": 66,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "     */"
+        "content": ""
       },
       {
-        "lineNumber": 22,
+        "lineNumber": 67,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
+        },
+        "content": "        assertTrue(testOutputID.charAt(0) \u003d\u003d \u0027#\u0027 \u0026\u0026 testOutputID.equals(\"#123\"), \"Delete patient by ID parsing failed. Expected \u0027#123\u0027 but got: \" + testOutputID);"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        assertTrue(testOutputName.equals(\"billy joe\"), \"Delete patient by name parsing failed. Expected \u0027billy joe\u0027 but got: \" + testOutputName);"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "lmtaek"
         },
         "content": "    @Test"
       },
       {
-        "lineNumber": 23,
+        "lineNumber": 72,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "    public void writeFormatTest() throws DukeException {"
+        "content": "    public void parseDeleteTask() throws DukeException {"
       },
       {
-        "lineNumber": 24,
+        "lineNumber": 73,
         "author": {
-          "gitId": "HUANGXUANKUN"
+          "gitId": "lmtaek"
         },
-        "content": "        assertEquals( \"E | 0 | test | 02/12/1996 1235 | ONCE\",new Event(\"test\", \"02/12/1996 1235\").writeTxt(), \"The writeToFile format is not expected\");"
+        "content": "        Parser testParserID \u003d new Parser(deleteTaskInputWithID);"
       },
       {
-        "lineNumber": 25,
+        "lineNumber": 74,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "    }"
+        "content": "        Parser testParserName \u003d new Parser(deleteTaskInputWithName);"
       },
       {
-        "lineNumber": 26,
+        "lineNumber": 75,
         "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 27,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 28,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * Test the Event.isDone() after a new Event object is being initialized"
-      },
-      {
-        "lineNumber": 29,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 30,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    @Test"
-      },
-      {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public void doneStatusTest() throws DukeException {"
-      },
-      {
-        "lineNumber": 32,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        assertFalse(new Event(\"test\", \"02/12/1996 1235\").isDone(), \"The newly created Deadline should not be done\");"
-      },
-      {
-        "lineNumber": 33,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 34,
-        "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
         "content": ""
       },
       {
-        "lineNumber": 35,
+        "lineNumber": 76,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "    /**"
+        "content": "        String testOutputID \u003d testParserID.parseDeleteTask();"
       },
       {
-        "lineNumber": 36,
+        "lineNumber": 77,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "     * A general test case to test Event class"
+        "content": "        String testOutputName \u003d testParserName.parseDeleteTask();"
       },
       {
-        "lineNumber": 37,
+        "lineNumber": 78,
         "author": {
-          "gitId": "-"
-        },
-        "content": "     * Test steps:"
-      },
-      {
-        "lineNumber": 38,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * 1. Create a Event object"
-      },
-      {
-        "lineNumber": 39,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * 2. Verify Event.isdone(), Event.toString(), Event.writeTxt()"
-      },
-      {
-        "lineNumber": 40,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * 3. Mark the Event object to isDone status."
-      },
-      {
-        "lineNumber": 41,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * 4. Repeat step 2"
-      },
-      {
-        "lineNumber": 42,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     *"
-      },
-      {
-        "lineNumber": 43,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * @throws DukeException if markAsDone is applied to a done task, throw exception with log"
-      },
-      {
-        "lineNumber": 44,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 45,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    @Test"
-      },
-      {
-        "lineNumber": 46,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public void eventTestCase() throws DukeException {"
-      },
-      {
-        "lineNumber": 47,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        // Creata a new event and check its toString() and writeTxt()"
-      },
-      {
-        "lineNumber": 48,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        Event event \u003d new Event(\"eventTest\", \"02/12/1996 1235\");"
-      },
-      {
-        "lineNumber": 49,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        assertFalse(event.isDone(), \"The newly created event should not be done\");"
-      },
-      {
-        "lineNumber": 50,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        assertEquals( \"[E][\\u2718] eventTest (at: 2nd of December 1996, 12PM)\",event.toString(), \"The writeToFile format is not expected\");"
-      },
-      {
-        "lineNumber": 51,
-        "author": {
-          "gitId": "HUANGXUANKUN"
-        },
-        "content": "        assertEquals( \"E | 0 | eventTest | 02/12/1996 1235 | ONCE\",event.writeTxt(), \"The writeToFile format is not expected\");"
-      },
-      {
-        "lineNumber": 52,
-        "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
         "content": ""
       },
       {
-        "lineNumber": 53,
+        "lineNumber": 79,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "        // Mark the event as done and check its toString() and writeTxt()"
+        "content": "        assertTrue(testOutputID.charAt(0) \u003d\u003d \u0027#\u0027 \u0026\u0026 testOutputID.equals(\"#10\"), \"Delete task by ID parsing failed. Expected \u0027#10\u0027 but got: \" + testOutputID);"
       },
       {
-        "lineNumber": 54,
+        "lineNumber": 80,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "        event.markAsDone();"
+        "content": "        assertTrue(testOutputName.equals(\"Take medicine\"), \"Delete task by name parsing failed. Expected \u0027Take medicine\u0027 but got: \" + testOutputName);"
       },
       {
-        "lineNumber": 55,
+        "lineNumber": 81,
         "author": {
-          "gitId": "-"
-        },
-        "content": "        assertTrue(event.isDone(), \"The event should be marked as done\");"
-      },
-      {
-        "lineNumber": 56,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        assertEquals(\"[E][\\u2713] eventTest (at: 2nd of December 1996, 12PM)\", event.toString(), \"The event.toString() is not expected\");"
-      },
-      {
-        "lineNumber": 57,
-        "author": {
-          "gitId": "HUANGXUANKUN"
-        },
-        "content": "        assertEquals( \"E | 1 | eventTest | 02/12/1996 1235 | ONCE\",event.writeTxt(), \"The writeToFile format is not expected\");"
-      },
-      {
-        "lineNumber": 58,
-        "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 59,
+        "lineNumber": 82,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 84,
         "author": {
           "gitId": "-"
         },
@@ -16127,608 +16179,8 @@
       }
     ],
     "authorContributionMap": {
-      "-": 56,
-      "HUANGXUANKUN": 3
-    }
-  },
-  {
-    "path": "src/test/java/duke/task/FixedDurationTaskTest.java",
-    "fileType": "tests",
-    "lines": [
-      {
-        "lineNumber": 1,
-        "author": {
-          "gitId": "kkeejjuunn"
-        },
-        "content": "package duke.task;"
-      },
-      {
-        "lineNumber": 2,
-        "author": {
-          "gitId": "kkeejjuunn"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 3,
-        "author": {
-          "gitId": "kkeejjuunn"
-        },
-        "content": "import duke.core.DukeException;"
-      },
-      {
-        "lineNumber": 4,
-        "author": {
-          "gitId": "kkeejjuunn"
-        },
-        "content": "import org.junit.jupiter.api.Test;"
-      },
-      {
-        "lineNumber": 5,
-        "author": {
-          "gitId": "kkeejjuunn"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 6,
-        "author": {
-          "gitId": "kkeejjuunn"
-        },
-        "content": "import static org.junit.jupiter.api.Assertions.*;"
-      },
-      {
-        "lineNumber": 7,
-        "author": {
-          "gitId": "kkeejjuunn"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "kkeejjuunn"
-        },
-        "content": "public class FixedDurationTaskTest {"
-      },
-      {
-        "lineNumber": 9,
-        "author": {
-          "gitId": "kkeejjuunn"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 10,
-        "author": {
-          "gitId": "kkeejjuunn"
-        },
-        "content": "     * Test the FixedDurationTask.toString()"
-      },
-      {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "kkeejjuunn"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "kkeejjuunn"
-        },
-        "content": "    @Test"
-      },
-      {
-        "lineNumber": 13,
-        "author": {
-          "gitId": "kkeejjuunn"
-        },
-        "content": "    public void FixedDurationTaskStringTest() throws DukeException {"
-      },
-      {
-        "lineNumber": 14,
-        "author": {
-          "gitId": "kkeejjuunn"
-        },
-        "content": "        assertEquals(\"[F][\\u2718] FixedDurationTaskTest (duration: 2 hours)\", new FixedDurationTask(\"FixedDurationTaskTest\", \"2 hours\").toString());"
-      },
-      {
-        "lineNumber": 15,
-        "author": {
-          "gitId": "kkeejjuunn"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 16,
-        "author": {
-          "gitId": "kkeejjuunn"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 17,
-        "author": {
-          "gitId": "kkeejjuunn"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 18,
-        "author": {
-          "gitId": "kkeejjuunn"
-        },
-        "content": "     * Test the fixeddurationtask.writeTxt()"
-      },
-      {
-        "lineNumber": 19,
-        "author": {
-          "gitId": "kkeejjuunn"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 20,
-        "author": {
-          "gitId": "kkeejjuunn"
-        },
-        "content": "    @Test"
-      },
-      {
-        "lineNumber": 21,
-        "author": {
-          "gitId": "kkeejjuunn"
-        },
-        "content": "    public void writeFormatTest() {"
-      },
-      {
-        "lineNumber": 22,
-        "author": {
-          "gitId": "kkeejjuunn"
-        },
-        "content": "        assertEquals( \"F | 0 | FixedDurationTest | 1 hour | false\",new FixedDurationTask(\"FixedDurationTest\", \"1 hour\").writeTxt(), \"The writeToFile format is not expected\");"
-      },
-      {
-        "lineNumber": 23,
-        "author": {
-          "gitId": "kkeejjuunn"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 24,
-        "author": {
-          "gitId": "kkeejjuunn"
-        },
-        "content": "}"
-      }
-    ],
-    "authorContributionMap": {
-      "kkeejjuunn": 24
-    }
-  },
-  {
-    "path": "src/test/java/duke/task/TodoTest.java",
-    "fileType": "tests",
-    "lines": [
-      {
-        "lineNumber": 1,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "package duke.task;"
-      },
-      {
-        "lineNumber": 2,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 3,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import duke.core.DukeException;"
-      },
-      {
-        "lineNumber": 4,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import org.junit.jupiter.api.Test;"
-      },
-      {
-        "lineNumber": 5,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 6,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import static org.junit.jupiter.api.Assertions.*;"
-      },
-      {
-        "lineNumber": 7,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 9,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "public class TodoTest {"
-      },
-      {
-        "lineNumber": 10,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * Test the todo.toString()"
-      },
-      {
-        "lineNumber": 13,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 14,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    @Test"
-      },
-      {
-        "lineNumber": 15,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public void todoStringTest(){"
-      },
-      {
-        "lineNumber": 16,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        assertEquals(new Todo(\"todoTest\").toString(), \"[T][\\u2718] todoTest\", \"todo string test fails\");"
-      },
-      {
-        "lineNumber": 17,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 18,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 19,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 20,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * Test the todo.writeTxt()"
-      },
-      {
-        "lineNumber": 21,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 22,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    @Test"
-      },
-      {
-        "lineNumber": 23,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public void writeFormatTest() {"
-      },
-      {
-        "lineNumber": 24,
-        "author": {
-          "gitId": "HUANGXUANKUN"
-        },
-        "content": "        assertEquals( \"T | 0 | todoTest | ONCE\",new Todo(\"todoTest\").writeTxt(), \"The writeToFile format is not expected\");"
-      },
-      {
-        "lineNumber": 25,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 26,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 27,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 28,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * Test the todo.isDone() after a new Todo object is being initialized"
-      },
-      {
-        "lineNumber": 29,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 30,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    @Test"
-      },
-      {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public void doneStatusTest() {"
-      },
-      {
-        "lineNumber": 32,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        assertFalse(new Todo(\"abc\").isDone(), \"The newly created Deadline should not be done\");"
-      },
-      {
-        "lineNumber": 33,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 34,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 35,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 36,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * A general test case to test Todo class"
-      },
-      {
-        "lineNumber": 37,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * Test steps:"
-      },
-      {
-        "lineNumber": 38,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * 1. Create a Todo object"
-      },
-      {
-        "lineNumber": 39,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * 2. Verify todo.isdone(), todo.toString(), todo.writeTxt()"
-      },
-      {
-        "lineNumber": 40,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * 3. Mark the todo object to isDone status."
-      },
-      {
-        "lineNumber": 41,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * 4. Repeat step 2"
-      },
-      {
-        "lineNumber": 42,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     *"
-      },
-      {
-        "lineNumber": 43,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * @throws DukeException if markAsDone is applied to a done task, throw exception with log"
-      },
-      {
-        "lineNumber": 44,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 45,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    @Test"
-      },
-      {
-        "lineNumber": 46,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public void todoTestCase() throws DukeException {"
-      },
-      {
-        "lineNumber": 47,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        // Creata a new task and check its toString() and writeTxt()"
-      },
-      {
-        "lineNumber": 48,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        Todo todo \u003d new Todo(\"todoTest\");"
-      },
-      {
-        "lineNumber": 49,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        assertFalse(todo.isDone(), \"The newly created todo should not be done\");"
-      },
-      {
-        "lineNumber": 50,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        assertEquals( \"[T][\\u2718] todoTest\",todo.toString(), \"The writeToFile format is not expected\");"
-      },
-      {
-        "lineNumber": 51,
-        "author": {
-          "gitId": "HUANGXUANKUN"
-        },
-        "content": "        assertEquals( \"T | 0 | todoTest | ONCE\",todo.writeTxt(), \"The writeToFile format is not expected\");"
-      },
-      {
-        "lineNumber": 52,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 53,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        // Mark the task as done and check its toString() and writeTxt()"
-      },
-      {
-        "lineNumber": 54,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        todo.markAsDone();"
-      },
-      {
-        "lineNumber": 55,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        assertTrue(todo.isDone(), \"The todo should be marked as done\");"
-      },
-      {
-        "lineNumber": 56,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        assertEquals(\"[T][\\u2713] todoTest\", todo.toString(), \"The todo.toString() is not expected\");"
-      },
-      {
-        "lineNumber": 57,
-        "author": {
-          "gitId": "HUANGXUANKUN"
-        },
-        "content": "        assertEquals( \"T | 1 | todoTest | ONCE\",todo.writeTxt(), \"The writeToFile format is not expected\");"
-      },
-      {
-        "lineNumber": 58,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 59,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "}"
-      }
-    ],
-    "authorContributionMap": {
-      "-": 56,
-      "HUANGXUANKUN": 3
+      "lmtaek": 75,
+      "-": 9
     }
   }
 ]
