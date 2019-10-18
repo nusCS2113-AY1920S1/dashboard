@@ -2273,16 +2273,16 @@
       {
         "lineNumber": 40,
         "author": {
-          "gitId": "AmosChan97"
+          "gitId": "zkchang97"
         },
-        "content": "        String temp \u003d input.substring(4);"
+        "content": "        String temp \u003d input.substring(4); // description /at roomcode /at dd/mm/yyyy hhmm /to dd/mm/yyyy hhmm"
       },
       {
         "lineNumber": 41,
         "author": {
-          "gitId": "AmosChan97"
+          "gitId": "zkchang97"
         },
-        "content": "        splitC \u003d temp.split(\" /at \", 3);"
+        "content": "        splitC \u003d temp.split(\" /at \", 3); // splitC[] \u003d {description, roomcode, dd/mm/yyyy hhmm /to dd/mm/yyyy hhmm)"
       },
       {
         "lineNumber": 42,
@@ -2308,23 +2308,23 @@
       {
         "lineNumber": 45,
         "author": {
-          "gitId": "AmosChan97"
+          "gitId": "zkchang97"
         },
-        "content": "        this.description \u003d splitC[0];"
+        "content": "        this.description \u003d splitC[0]; // description"
       },
       {
         "lineNumber": 46,
         "author": {
-          "gitId": "AmosChan97"
+          "gitId": "zkchang97"
         },
-        "content": "        this.room \u003d splitC[1];"
+        "content": "        this.room \u003d splitC[1]; // roomcode"
       },
       {
         "lineNumber": 47,
         "author": {
-          "gitId": "AmosChan97"
+          "gitId": "zkchang97"
         },
-        "content": "        this.datetime \u003d splitC[2].split(\" /to \", 2);"
+        "content": "        this.datetime \u003d splitC[2].split(\" /to \", 2); // datetime[] \u003d {dd/mm/yyyy hhmm, dd/mm/yyyy hhmm}"
       },
       {
         "lineNumber": 48,
@@ -2441,7 +2441,8 @@
     ],
     "authorContributionMap": {
       "Alex-Teo": 36,
-      "AmosChan97": 27
+      "zkchang97": 5,
+      "AmosChan97": 22
     }
   },
   {
@@ -2467,255 +2468,325 @@
         "author": {
           "gitId": "zkchang97"
         },
-        "content": "import exception.DukeException;"
+        "content": "import control.Duke;"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "zkchang97"
         },
-        "content": "import storage.Storage;"
+        "content": "import exception.DukeException;"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "zkchang97"
         },
-        "content": "import room.AddRoom;"
+        "content": "import storage.Storage;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "zkchang97"
         },
-        "content": "import room.RoomList;"
+        "content": "import room.AddRoom;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "zkchang97"
         },
-        "content": "import ui.Ui;"
+        "content": "import room.RoomList;"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "zkchang97"
         },
-        "content": "import java.io.IOException;"
+        "content": "import ui.Ui;"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "zkchang97"
         },
-        "content": ""
+        "content": "import java.io.IOException;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "zkchang97"
         },
-        "content": "public class AddRoomCommand extends Command {"
+        "content": ""
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "zkchang97"
         },
-        "content": "    String[] date;"
+        "content": ""
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "zkchang97"
         },
-        "content": "    String[] timeslot;"
+        "content": "public class AddRoomCommand extends Command {"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "zkchang97"
         },
-        "content": ""
+        "content": "    private String[] splitC;"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "zkchang97"
         },
-        "content": "    public AddRoomCommand(String input, String[] splitStr) throws DukeException {"
+        "content": "    private String roomcode;"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "zkchang97"
         },
-        "content": "        if (splitStr.length \u003d\u003d 1) {"
+        "content": "    private String[] datesplit;"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "zkchang97"
         },
-        "content": "            throw new DukeException(\"Please enter the following to add a room:\\n\""
+        "content": "    private String date;"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "zkchang97"
         },
-        "content": "                    + \"addroom ROOMCODE /date DATE /timeslot TIMESLOT.\\n\""
+        "content": "    private String timeslot;"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "zkchang97"
         },
-        "content": "                    + \"DATE format: DD/MM/YYYY.\\n\""
+        "content": ""
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "zkchang97"
         },
-        "content": "                    + \"TIMESLOT format: HH:MM AM/PM to HH:MM AM/PM.\");"
+        "content": "    public AddRoomCommand(String input, String[] splitStr) throws DukeException {"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "zkchang97"
         },
-        "content": "        }"
+        "content": "        if (splitStr.length \u003d\u003d 1) {"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "zkchang97"
         },
-        "content": "        String tempAR \u003d input.substring(8);"
+        "content": "            throw new DukeException(\"Please enter the following to add a room:\\n\""
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "zkchang97"
         },
-        "content": "        if (!tempAR.contains(\" /date \")) {"
+        "content": "                    + \"addroom ROOMCODE /date DATE /timeslot TIMESLOT.\\n\""
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "zkchang97"
         },
-        "content": "            throw new DukeException(\"Please enter correct date for the room.\");"
+        "content": "                    + \"DATE format: DD/MM/YYYY.\\n\""
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "zkchang97"
         },
-        "content": "        }"
+        "content": "                    + \"TIMESLOT format: HH:MM AM/PM to HH:MM AM/PM.\");"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "zkchang97"
         },
-        "content": "        if (!tempAR.contains(\" /timeslot \")) {"
+        "content": "        }"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "zkchang97"
         },
-        "content": "            throw new DukeException(\"Please enter a timeslot for the room.\");"
+        "content": "        if (!input.contains(\" /date \")) {"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "zkchang97"
         },
-        "content": "        }"
+        "content": "            throw new DukeException(\"Please enter correct date for the room.\");"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "zkchang97"
         },
-        "content": "        this.date \u003d tempAR.split(\" /date \");"
+        "content": "        }"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "zkchang97"
         },
-        "content": "        this.timeslot \u003d date[1].split(\" /timeslot \");"
+        "content": "        if (!input.contains(\" /timeslot \")) {"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "zkchang97"
         },
-        "content": "    }"
+        "content": "            throw new DukeException(\"Please enter a timeslot for the room.\");"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "zkchang97"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "zkchang97"
         },
-        "content": "    public void execute(RoomList rooms, Ui ui, Storage storage) throws IOException {"
+        "content": "        // addroom ROOMCODE /date DATE /timeslot TIMESLOT"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "zkchang97"
         },
-        "content": "        AddRoom addroom \u003d new AddRoom(date[0], timeslot[0], timeslot[1]);"
+        "content": "        String tempAR \u003d input.substring(8);"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "zkchang97"
         },
-        "content": "        rooms.add(addroom);"
+        "content": "        splitC \u003d tempAR.split(\" /date \", 2); // splitC[] \u003d {ROOMCODE, DATE /timeslot TIMESLOT}"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "zkchang97"
         },
-        "content": "        //storage.saveToFile(rooms);"
+        "content": "        this.roomcode \u003d splitC[0]; // ROOMCODE"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "zkchang97"
         },
-        "content": "        ui.addToOutput(\"Got it, I\u0027ve added this task:\\n\""
+        "content": "        this.datesplit \u003d splitC[1].split(\" /timeslot \", 2); // datesplit[] \u003d\u003d {DATE, TIMESLOT}"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "zkchang97"
         },
-        "content": "            + addroom.toString() + \"\\n\" + \"Now you have \" + rooms.size() + \" room(s) in the list.\");"
+        "content": "        this.date \u003d datesplit[0];"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "zkchang97"
         },
-        "content": "    }"
+        "content": "        this.timeslot \u003d datesplit[1];"
       },
       {
         "lineNumber": 39,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "    public void execute(RoomList rooms, Ui ui, Storage storage) throws IOException {"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "        AddRoom addroom \u003d new AddRoom(roomcode, date, timeslot);"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "        rooms.add(addroom);"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "        storage.saveToFile(rooms);"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "        ui.addToOutput(\"Got it, I\u0027ve added this task:\\n\""
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "            + addroom.toString() + \"\\n\" + \"Now you have \" + rooms.size() + \" room(s) in the list.\");"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 49,
         "author": {
           "gitId": "zkchang97"
         },
@@ -2723,7 +2794,7 @@
       }
     ],
     "authorContributionMap": {
-      "zkchang97": 39
+      "zkchang97": 49
     }
   },
   {
@@ -2967,418 +3038,453 @@
       {
         "lineNumber": 4,
         "author": {
-          "gitId": "-"
+          "gitId": "zkchang97"
         },
-        "content": "import storage.Storage;"
+        "content": "import room.RoomList;"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "-"
         },
-        "content": "import task.TaskList;"
+        "content": "import storage.Storage;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "-"
         },
-        "content": "import ui.Ui;"
+        "content": "import task.TaskList;"
       },
       {
         "lineNumber": 7,
         "author": {
-          "gitId": "AmosChan97"
+          "gitId": "-"
         },
-        "content": "import booking.BookingList;"
+        "content": "import ui.Ui;"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "AmosChan97"
         },
-        "content": "import user.User;"
+        "content": "import booking.BookingList;"
       },
       {
         "lineNumber": 9,
         "author": {
-          "gitId": "-"
+          "gitId": "AmosChan97"
         },
-        "content": ""
+        "content": "import user.User;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "-"
         },
-        "content": "import java.io.IOException;"
+        "content": ""
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "-"
         },
-        "content": "import java.text.ParseException;"
+        "content": "import java.io.IOException;"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "-"
         },
-        "content": "import java.text.SimpleDateFormat;"
+        "content": "import java.text.ParseException;"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "import java.text.SimpleDateFormat;"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "-"
         },
-        "content": "/**"
+        "content": ""
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "-"
         },
-        "content": " * Abstract class from which all Commands are the extended from."
+        "content": "/**"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "-"
         },
-        "content": " */"
+        "content": " * Abstract class from which all Commands are the extended from."
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "-"
         },
-        "content": "public abstract class Command {"
+        "content": " */"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "-"
         },
-        "content": "    protected boolean isExit;"
+        "content": "public abstract class Command {"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    protected boolean isExit;"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Execute command logic."
+        "content": "    /**"
       },
       {
         "lineNumber": 22,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Execute command logic."
+      },
+      {
+        "lineNumber": 23,
         "author": {
           "gitId": "AmosChan97"
         },
         "content": "     * @param bookingList bookings list"
       },
       {
-        "lineNumber": 23,
+        "lineNumber": 24,
         "author": {
           "gitId": "-"
         },
         "content": "     * @param ui user interface"
       },
       {
-        "lineNumber": 24,
+        "lineNumber": 25,
         "author": {
           "gitId": "AmosChan97"
         },
         "content": "     * @param bookingStorage handles read write of text file"
       },
       {
-        "lineNumber": 25,
+        "lineNumber": 26,
         "author": {
           "gitId": "AmosChan97"
         },
         "content": "     * @param user Current user"
       },
       {
-        "lineNumber": 26,
+        "lineNumber": 27,
         "author": {
           "gitId": "AmosChan97"
         },
         "content": "     * @throws DukeException if control.Duke specific exception found"
       },
       {
-        "lineNumber": 27,
+        "lineNumber": 28,
         "author": {
           "gitId": "-"
         },
         "content": "     * @throws IOException if IO exception found"
       },
       {
-        "lineNumber": 28,
+        "lineNumber": 29,
         "author": {
           "gitId": "-"
         },
         "content": "     */"
-      },
-      {
-        "lineNumber": 29,
-        "author": {
-          "gitId": "AmosChan97"
-        },
-        "content": "    public void execute(BookingList bookingList, Ui ui, Storage bookingStorage, User user)"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "AmosChan97"
         },
-        "content": "            throws DukeException, IOException, ParseException {"
+        "content": "    public void execute(BookingList bookingList, Ui ui, Storage bookingStorage, User user)"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "AmosChan97"
         },
-        "content": "    }"
+        "content": "            throws DukeException, IOException, ParseException {"
       },
       {
         "lineNumber": 32,
         "author": {
-          "gitId": "-"
+          "gitId": "AmosChan97"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 33,
         "author": {
-          "gitId": "-"
+          "gitId": "AmosChan97"
         },
-        "content": "    public boolean isExit() {"
+        "content": ""
       },
       {
         "lineNumber": 34,
         "author": {
-          "gitId": "-"
+          "gitId": "zkchang97"
         },
-        "content": "        return this.isExit;"
+        "content": "    public void execute(RoomList roomList, Ui ui, Storage roomStorage) throws IOException {"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 36,
         "author": {
-          "gitId": "-"
+          "gitId": "zkchang97"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Check if date-time input is in valid format."
+        "content": "    public boolean isExit() {"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @param dateTime date and time for some tasks"
+        "content": "        return this.isExit;"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @return true is input is valid"
+        "content": "    }"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": ""
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "-"
         },
-        "content": "    protected static boolean isValidDateTime(String dateTime) {"
+        "content": "    /**"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "-"
         },
-        "content": "        SimpleDateFormat dateTimeFormat \u003d  new SimpleDateFormat(\"d/M/yyyy HHmm\");"
+        "content": "     * Check if date-time input is in valid format."
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "-"
         },
-        "content": "        try {"
+        "content": "     * @param dateTime date and time for some tasks"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "-"
         },
-        "content": "            dateTimeFormat.parse(dateTime);"
+        "content": "     * @return true is input is valid"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "-"
         },
-        "content": "            return true;"
+        "content": "     */"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "-"
         },
-        "content": "        } catch (ParseException e) {"
+        "content": "    protected static boolean isValidDateTime(String dateTime) {"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "-"
         },
-        "content": "            return false;"
+        "content": "        SimpleDateFormat dateTimeFormat \u003d  new SimpleDateFormat(\"d/M/yyyy HHmm\");"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "        try {"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "            dateTimeFormat.parse(dateTime);"
       },
       {
         "lineNumber": 51,
         "author": {
-          "gitId": "Alex-Teo"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "            return true;"
       },
       {
         "lineNumber": 52,
         "author": {
-          "gitId": "Alex-Teo"
+          "gitId": "-"
         },
-        "content": "    protected static boolean isAdd (String dateTime, TaskList tasks) {"
+        "content": "        } catch (ParseException e) {"
       },
       {
         "lineNumber": 53,
         "author": {
-          "gitId": "Alex-Teo"
+          "gitId": "-"
         },
-        "content": "        SimpleDateFormat dateTimeFormat \u003d  new SimpleDateFormat(\"d/M/yyyy HHmm\");"
+        "content": "            return false;"
       },
       {
         "lineNumber": 54,
         "author": {
-          "gitId": "Alex-Teo"
+          "gitId": "-"
         },
-        "content": "        boolean found \u003d false;"
+        "content": "        }"
       },
       {
         "lineNumber": 55,
         "author": {
-          "gitId": "Alex-Teo"
+          "gitId": "-"
         },
-        "content": "        for (int i \u003d 0; i \u003c tasks.size(); i++) {"
+        "content": "    }"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "Alex-Teo"
         },
-        "content": "            if (tasks.get(i).toString().contains(dateTime)) {"
+        "content": ""
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "Alex-Teo"
         },
-        "content": "                found \u003d true;"
+        "content": "    protected static boolean isAdd (String dateTime, TaskList tasks) {"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "Alex-Teo"
         },
-        "content": "                break;"
+        "content": "        SimpleDateFormat dateTimeFormat \u003d  new SimpleDateFormat(\"d/M/yyyy HHmm\");"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "Alex-Teo"
         },
-        "content": "            }"
+        "content": "        boolean found \u003d false;"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "Alex-Teo"
         },
-        "content": "        }"
+        "content": "        for (int i \u003d 0; i \u003c tasks.size(); i++) {"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "Alex-Teo"
         },
-        "content": "        return found;"
+        "content": "            if (tasks.get(i).toString().contains(dateTime)) {"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "Alex-Teo"
         },
-        "content": "    }"
+        "content": "                found \u003d true;"
       },
       {
         "lineNumber": 63,
+        "author": {
+          "gitId": "Alex-Teo"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "Alex-Teo"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "Alex-Teo"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "Alex-Teo"
+        },
+        "content": "        return found;"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "Alex-Teo"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 68,
         "author": {
           "gitId": "-"
         },
@@ -3387,8 +3493,9 @@
     ],
     "authorContributionMap": {
       "Alex-Teo": 12,
-      "-": 42,
-      "AmosChan97": 9
+      "zkchang97": 3,
+      "-": 43,
+      "AmosChan97": 10
     }
   },
   {
@@ -4452,7 +4559,7 @@
         "author": {
           "gitId": "zkchang97"
         },
-        "content": "    private RoomList rooms;"
+        "content": "    private RoomList roomList;"
       },
       {
         "lineNumber": 30,
@@ -4550,7 +4657,7 @@
         "author": {
           "gitId": "zkchang97"
         },
-        "content": "            rooms \u003d new RoomList(roomStorage.load());"
+        "content": "            roomList \u003d new RoomList(roomStorage.load());"
       },
       {
         "lineNumber": 44,
@@ -4674,194 +4781,208 @@
       {
         "lineNumber": 61,
         "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "                c.execute(roomList, ui, roomStorage);"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
           "gitId": "AmosChan97"
         },
         "content": "                isExit \u003d c.isExit();"
       },
       {
-        "lineNumber": 62,
+        "lineNumber": 63,
         "author": {
           "gitId": "AmirAzhar"
         },
         "content": "            } catch (DukeException | IOException | ParseException e) {"
       },
       {
-        "lineNumber": 63,
+        "lineNumber": 64,
         "author": {
           "gitId": "AmosChan97"
         },
         "content": "                ui.showError(e.getMessage());"
       },
       {
-        "lineNumber": 64,
+        "lineNumber": 65,
         "author": {
           "gitId": "AmosChan97"
         },
         "content": "            }"
       },
       {
-        "lineNumber": 65,
-        "author": {
-          "gitId": "AmosChan97"
-        },
-        "content": "        }"
-      },
-      {
         "lineNumber": 66,
         "author": {
           "gitId": "AmosChan97"
         },
-        "content": "    }"
+        "content": "        }"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "AmosChan97"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "AmosChan97"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "AmosChan97"
         },
-        "content": "     * Main function of control.Duke"
+        "content": "    /**"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "AmosChan97"
         },
-        "content": "     * @param args input from command line"
+        "content": "     * Main function of control.Duke"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "AmosChan97"
         },
-        "content": "     */"
+        "content": "     * @param args input from command line"
       },
       {
         "lineNumber": 72,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 73,
         "author": {
           "gitId": "-"
         },
         "content": "    public static void main(String[] args) {"
       },
       {
-        "lineNumber": 73,
+        "lineNumber": 74,
         "author": {
           "gitId": "AmosChan97"
         },
         "content": "        new Duke(BookingConstants.FILENAME, Constants.ROOMFILENAME).run();"
       },
       {
-        "lineNumber": 74,
+        "lineNumber": 75,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 75,
+        "lineNumber": 76,
         "author": {
           "gitId": "AmosChan97"
         },
         "content": ""
       },
       {
-        "lineNumber": 76,
+        "lineNumber": 77,
         "author": {
           "gitId": "AmosChan97"
         },
         "content": "    public String getResponse(String input) {"
       },
       {
-        "lineNumber": 77,
+        "lineNumber": 78,
         "author": {
           "gitId": "AmosChan97"
         },
         "content": "        try {"
       },
       {
-        "lineNumber": 78,
+        "lineNumber": 79,
         "author": {
           "gitId": "AmosChan97"
         },
         "content": "            ui.setOutput(\"\");"
       },
       {
-        "lineNumber": 79,
+        "lineNumber": 80,
         "author": {
           "gitId": "AmosChan97"
         },
         "content": "            Command c \u003d Parser.parse(input, user.getLoginStatus());"
       },
       {
-        "lineNumber": 80,
+        "lineNumber": 81,
         "author": {
           "gitId": "AmosChan97"
         },
         "content": "            c.execute(bookingList, ui, bookingStorage, user);"
       },
       {
-        "lineNumber": 81,
-        "author": {
-          "gitId": "AmosChan97"
-        },
-        "content": "            System.out.println(ui.getOutput());"
-      },
-      {
         "lineNumber": 82,
         "author": {
-          "gitId": "AmosChan97"
+          "gitId": "zkchang97"
         },
-        "content": "            return ui.getOutput();"
+        "content": "            c.execute(roomList, ui, roomStorage);"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "AmosChan97"
         },
-        "content": "        } catch (DukeException | IOException | ParseException e) {"
+        "content": "            System.out.println(ui.getOutput());"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "AmosChan97"
         },
-        "content": "            System.out.println(e.getMessage());"
+        "content": "            return ui.getOutput();"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "AmosChan97"
         },
-        "content": "            return e.getMessage();"
+        "content": "        } catch (DukeException | IOException | ParseException e) {"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "AmosChan97"
         },
-        "content": "        }"
+        "content": "            System.out.println(e.getMessage());"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "AmosChan97"
         },
-        "content": "    }"
+        "content": "            return e.getMessage();"
       },
       {
         "lineNumber": 88,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 90,
         "author": {
           "gitId": "-"
         },
@@ -4870,7 +4991,7 @@
     ],
     "authorContributionMap": {
       "Alex-Teo": 5,
-      "zkchang97": 5,
+      "zkchang97": 7,
       "AmosChan97": 72,
       "-": 4,
       "AmirAzhar": 2
@@ -5828,7 +5949,7 @@
         "author": {
           "gitId": "zkchang97"
         },
-        "content": "    public RoomList(ArrayList\u003cString\u003e loader) throws DukeException {"
+        "content": "    public RoomList(ArrayList\u003cString\u003e loader) {"
       },
       {
         "lineNumber": 10,
@@ -5842,80 +5963,38 @@
         "author": {
           "gitId": "zkchang97"
         },
-        "content": "            String[] splitStr \u003d line.split(\"\\\\|\");"
+        "content": "            String[] splitStr \u003d line.split(\"\\\\|\", 4);"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "zkchang97"
         },
-        "content": "            switch(splitStr[Constants.TYPE]) {"
+        "content": "            this.add(new AddRoom(splitStr[Constants.ISBOOKED], splitStr[Constants.ROOMCODE],"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "zkchang97"
         },
-        "content": "                case \"RM\":"
+        "content": "                    splitStr[Constants.ROOMDATE], splitStr[Constants.ROOMTIMESLOT]));"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "zkchang97"
         },
-        "content": "                    this.add(new AddRoom(splitStr[Constants.ISBOOKED], splitStr[Constants.ROOMCODE],"
+        "content": "        }"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "zkchang97"
         },
-        "content": "                            splitStr[Constants.ROOMDATE], splitStr[Constants.ROOMTIMESLOT]));"
-      },
-      {
-        "lineNumber": 16,
-        "author": {
-          "gitId": "zkchang97"
-        },
-        "content": "                    break;"
-      },
-      {
-        "lineNumber": 17,
-        "author": {
-          "gitId": "zkchang97"
-        },
-        "content": "                default:"
-      },
-      {
-        "lineNumber": 18,
-        "author": {
-          "gitId": "zkchang97"
-        },
-        "content": "                    throw new DukeException(\"File format incorrect.\");"
-      },
-      {
-        "lineNumber": 19,
-        "author": {
-          "gitId": "zkchang97"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 20,
-        "author": {
-          "gitId": "zkchang97"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 21,
-        "author": {
-          "gitId": "zkchang97"
-        },
         "content": "    }"
       },
       {
-        "lineNumber": 22,
+        "lineNumber": 16,
         "author": {
           "gitId": "zkchang97"
         },
@@ -5923,7 +6002,7 @@
       }
     ],
     "authorContributionMap": {
-      "zkchang97": 22
+      "zkchang97": 16
     }
   },
   {
@@ -6084,7 +6163,7 @@
         "author": {
           "gitId": "zkchang97"
         },
-        "content": "    public static final int ISBOOKED \u003d 1;"
+        "content": "    public static final int ISBOOKED \u003d 0;"
       },
       {
         "lineNumber": 12,
@@ -6098,7 +6177,7 @@
         "author": {
           "gitId": "zkchang97"
         },
-        "content": "    public static final int ROOMCODE \u003d 2;"
+        "content": "    public static final int ROOMCODE \u003d 1;"
       },
       {
         "lineNumber": 14,
@@ -6133,14 +6212,14 @@
         "author": {
           "gitId": "zkchang97"
         },
-        "content": "    public static final int ROOMDATE \u003d 3;"
+        "content": "    public static final int ROOMDATE \u003d 2;"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "zkchang97"
         },
-        "content": "    public static final int ROOMTIMESLOT \u003d 4;"
+        "content": "    public static final int ROOMTIMESLOT \u003d 3;"
       },
       {
         "lineNumber": 20,

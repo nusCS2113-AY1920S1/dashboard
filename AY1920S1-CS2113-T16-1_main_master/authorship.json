@@ -2253,7 +2253,7 @@
         "author": {
           "gitId": "huangje"
         },
-        "content": "        else if (user.matches(RemindCommand.getRemindShortcut())) {"
+        "content": "        else if (user.matches(RemindCommand.getRemindShortcut()) || user.matches(\"remind\")) {"
       },
       {
         "lineNumber": 120,
@@ -2274,7 +2274,7 @@
         "author": {
           "gitId": "huangje"
         },
-        "content": "        else if(user.matches(HelpCommand.getHelpShortcut())){"
+        "content": "        else if(user.matches(HelpCommand.getHelpShortcut()) || user.matches(\"help\")){"
       },
       {
         "lineNumber": 123,
@@ -2295,7 +2295,7 @@
         "author": {
           "gitId": "huangje"
         },
-        "content": "        else if (user.matches(ByeCommand.getByeShortcut())){"
+        "content": "        else if (user.matches(ByeCommand.getByeShortcut()) || user.matches(\"bye\")){"
       },
       {
         "lineNumber": 126,
@@ -2321,9 +2321,9 @@
       {
         "lineNumber": 129,
         "author": {
-          "gitId": "rshah918"
+          "gitId": "huangje"
         },
-        "content": "        else if (user.matches(StatsCommand.getStatsShortcut())){"
+        "content": "        else if (user.matches(StatsCommand.getStatsShortcut()) || user.matches(\"stats\")){"
       },
       {
         "lineNumber": 130,
@@ -2425,8 +2425,8 @@
       }
     ],
     "authorContributionMap": {
-      "huangje": 59,
-      "rshah918": 9,
+      "huangje": 60,
+      "rshah918": 8,
       "-": 55,
       "laurenthg": 20
     }
@@ -3301,7 +3301,7 @@
         "author": {
           "gitId": "huangje"
         },
-        "content": "    public void showNotCompeteList(ArrayList\u003cTask\u003e notCompleteTasks, TaskList tasks){//print the task so they have the same index"
+        "content": "    public void showNotCompleteList(ArrayList\u003cTask\u003e notCompleteTasks, TaskList tasks){//print the task so they have the same index"
       },
       {
         "lineNumber": 125,
@@ -12990,399 +12990,399 @@
         "author": {
           "gitId": "huangje"
         },
-        "content": "    @Override"
+        "content": "    private static HashSet\u003cString\u003e setDefaultShortcut \u003d new HashSet\u003c\u003e();"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "huangje"
         },
-        "content": "    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {"
+        "content": "    @Override"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        String[] userCommand \u003d user.split(\" \");"
+        "content": "    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        String newShortcut\u003d\"\";"
+        "content": "        String[] userCommand \u003d user.split(\" \");"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        if (userCommand.length \u003e\u003d 2){"
+        "content": "        String newShortcut\u003d\"\";"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            if(userCommand.length \u003e\u003d 3){"
+        "content": "        if (userCommand.length \u003e\u003d 2){"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                newShortcut \u003d userCommand[2].trim();"
+        "content": "            if(userCommand.length \u003e\u003d 3){"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            }"
+        "content": "                newShortcut \u003d userCommand[2].trim();"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            else {"
+        "content": "            }"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                ui.display(\"Please enter a shortcut for \" + userCommand[1]);"
+        "content": "            else {"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                newShortcut \u003d ui.readCommand();"
+        "content": "                ui.display(\"Please enter a shortcut for \" + userCommand[1]);"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            }"
+        "content": "                newShortcut \u003d ui.readCommand();"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            if(setShortcut.contains(newShortcut)){"
+        "content": "            }"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                throw new DuplicationShortcutException();"
+        "content": "            if(setShortcut.contains(newShortcut) || setDefaultShortcut.contains(newShortcut)){"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            }"
+        "content": "                throw new DuplicationShortcutException();"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            else {"
+        "content": "            }"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                setOneShortcut(userCommand[1], newShortcut);"
+        "content": "            else {"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                ui.display(\"The shortcut for \" + userCommand[1] +\" has been set\");"
+        "content": "                setOneShortcut(userCommand[1], newShortcut);"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            }"
+        "content": "                ui.display(\"The shortcut for \" + userCommand[1] +\" has been set\");"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        }"
+        "content": "            }"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        else {"
+        "content": "        }"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            do{"
+        "content": "        else {"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                ui.display(\"The precedent shortcut for bye is \" + ByeCommand.getByeShortcut() +\" please enter new shortcut\");"
+        "content": "            do{"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                newShortcut \u003d ui.readCommand();"
+        "content": "                ui.display(\"The precedent shortcut for bye is \" + ByeCommand.getByeShortcut() +\" please enter new shortcut\");"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            } while(setShortcut.contains(newShortcut));"
+        "content": "                newShortcut \u003d ui.readCommand();"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            setOneShortcut(\"bye\", newShortcut);"
+        "content": "            } while(setShortcut.contains(newShortcut) || setDefaultShortcut.contains(newShortcut));"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "huangje"
         },
-        "content": ""
+        "content": "            setOneShortcut(\"bye\", newShortcut);"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            do{"
+        "content": ""
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                ui.display(\"The precedent shortcut for list is \" + ListCommand.getListShortcut() +\" please enter new shortcut\");"
+        "content": "            do{"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                newShortcut \u003d ui.readCommand();"
+        "content": "                ui.display(\"The precedent shortcut for list is \" + ListCommand.getListShortcut() +\" please enter new shortcut\");"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            } while(setShortcut.contains(newShortcut));"
+        "content": "                newShortcut \u003d ui.readCommand();"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            setOneShortcut(\"list\", newShortcut);"
+        "content": "            } while(setShortcut.contains(newShortcut) || setDefaultShortcut.contains(newShortcut));"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "huangje"
         },
-        "content": ""
+        "content": "            setOneShortcut(\"list\", newShortcut);"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            do{"
+        "content": ""
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                ui.display(\"The precedent shortcut for help is \" + HelpCommand.getHelpShortcut() +\" please enter new shortcut\");"
+        "content": "            do{"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                newShortcut \u003d ui.readCommand();"
+        "content": "                ui.display(\"The precedent shortcut for help is \" + HelpCommand.getHelpShortcut() +\" please enter new shortcut\");"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            } while(setShortcut.contains(newShortcut));"
+        "content": "                newShortcut \u003d ui.readCommand();"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            setOneShortcut(\"help\", newShortcut);"
+        "content": "            } while(setShortcut.contains(newShortcut) || setDefaultShortcut.contains(newShortcut));"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "huangje"
         },
-        "content": ""
+        "content": "            setOneShortcut(\"help\", newShortcut);"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            do{"
+        "content": ""
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                ui.display(\"The precedent shortcut for done is \" + DoneCommand.getDoneShortcut() +\" please enter new shortcut\");"
+        "content": "            do{"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                newShortcut \u003d ui.readCommand();"
+        "content": "                ui.display(\"The precedent shortcut for done is \" + DoneCommand.getDoneShortcut() +\" please enter new shortcut\");"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            } while(setShortcut.contains(newShortcut));"
+        "content": "                newShortcut \u003d ui.readCommand();"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            setOneShortcut(\"done\", newShortcut);"
+        "content": "            } while(setShortcut.contains(newShortcut) || setDefaultShortcut.contains(newShortcut));"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "huangje"
         },
-        "content": ""
+        "content": "            setOneShortcut(\"done\", newShortcut);"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            do{"
+        "content": ""
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                ui.display(\"The precedent shortcut for find is \" + FindCommand.getFindShortcut() +\" please enter new shortcut\");"
+        "content": "            do{"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                newShortcut \u003d ui.readCommand();"
+        "content": "                ui.display(\"The precedent shortcut for find is \" + FindCommand.getFindShortcut() +\" please enter new shortcut\");"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            } while(setShortcut.contains(newShortcut));"
+        "content": "                newShortcut \u003d ui.readCommand();"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            setOneShortcut(\"find\", newShortcut);"
+        "content": "            } while(setShortcut.contains(newShortcut) || setDefaultShortcut.contains(newShortcut));"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "huangje"
         },
-        "content": ""
+        "content": "            setOneShortcut(\"find\", newShortcut);"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            do{"
+        "content": ""
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                ui.display(\"The precedent shortcut for delete is \" + DeleteCommand.getDeleteShortcut() +\" please enter new shortcut\");"
+        "content": "            do{"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                newShortcut \u003d ui.readCommand();"
+        "content": "                ui.display(\"The precedent shortcut for delete is \" + DeleteCommand.getDeleteShortcut() +\" please enter new shortcut\");"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            } while(setShortcut.contains(newShortcut));"
+        "content": "                newShortcut \u003d ui.readCommand();"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            setOneShortcut(\"delete\", newShortcut);"
+        "content": "            } while(setShortcut.contains(newShortcut) || setDefaultShortcut.contains(newShortcut));"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "huangje"
         },
-        "content": ""
+        "content": "            setOneShortcut(\"delete\", newShortcut);"
       },
       {
         "lineNumber": 75,
@@ -13396,1361 +13396,1368 @@
         "author": {
           "gitId": "huangje"
         },
-        "content": "            do{"
+        "content": ""
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                ui.display(\"The precedent shortcut for deadline is \" + DeadlineCommand.getDeadlineShortcut() +\" please enter new shortcut\");"
+        "content": "            do{"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                newShortcut \u003d ui.readCommand();"
+        "content": "                ui.display(\"The precedent shortcut for deadline is \" + DeadlineCommand.getDeadlineShortcut() +\" please enter new shortcut\");"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            } while(setShortcut.contains(newShortcut));"
+        "content": "                newShortcut \u003d ui.readCommand();"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            setOneShortcut(\"deadline\", newShortcut);"
+        "content": "            } while(setShortcut.contains(newShortcut) || setDefaultShortcut.contains(newShortcut));"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "huangje"
         },
-        "content": ""
+        "content": "            setOneShortcut(\"deadline\", newShortcut);"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            do{"
+        "content": ""
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                ui.display(\"The precedent shortcut for event is \" + EventCommand.getEventShortcut() +\" please enter new shortcut\");"
+        "content": "            do{"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                newShortcut \u003d ui.readCommand();"
+        "content": "                ui.display(\"The precedent shortcut for event is \" + EventCommand.getEventShortcut() +\" please enter new shortcut\");"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            } while(setShortcut.contains(newShortcut));"
+        "content": "                newShortcut \u003d ui.readCommand();"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            setOneShortcut(\"event\", newShortcut);"
+        "content": "            } while(setShortcut.contains(newShortcut) || setDefaultShortcut.contains(newShortcut));"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "huangje"
         },
-        "content": ""
+        "content": "            setOneShortcut(\"event\", newShortcut);"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            do{"
+        "content": ""
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                ui.display(\"The precedent shortcut for todo is \" + TodoCommand.getTodoShortcut() +\" please enter new shortcut\");"
+        "content": "            do{"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                newShortcut \u003d ui.readCommand();"
+        "content": "                ui.display(\"The precedent shortcut for todo is \" + TodoCommand.getTodoShortcut() +\" please enter new shortcut\");"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            } while(setShortcut.contains(newShortcut));"
+        "content": "                newShortcut \u003d ui.readCommand();"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            setOneShortcut(\"todo\", newShortcut);"
+        "content": "            } while(setShortcut.contains(newShortcut) || setDefaultShortcut.contains(newShortcut));"
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "huangje"
         },
-        "content": ""
+        "content": "            setOneShortcut(\"todo\", newShortcut);"
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            do{"
+        "content": ""
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                ui.display(\"The precedent shortcut for edit is \" + EditCommand.getEditShortcut() +\" please enter new shortcut\");"
+        "content": "            do{"
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                newShortcut \u003d ui.readCommand();"
+        "content": "                ui.display(\"The precedent shortcut for edit is \" + EditCommand.getEditShortcut() +\" please enter new shortcut\");"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            } while(setShortcut.contains(newShortcut));"
+        "content": "                newShortcut \u003d ui.readCommand();"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            setOneShortcut(\"edit\", newShortcut);"
+        "content": "            } while(setShortcut.contains(newShortcut) || setDefaultShortcut.contains(newShortcut));"
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "huangje"
         },
-        "content": ""
+        "content": "            setOneShortcut(\"edit\", newShortcut);"
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            do{"
+        "content": ""
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                ui.display(\"The precedent shortcut for postpone is \" + PostponeCommand.getPostponeShortcut() +\" please enter new shortcut\");"
+        "content": "            do{"
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                newShortcut \u003d ui.readCommand();"
+        "content": "                ui.display(\"The precedent shortcut for postpone is \" + PostponeCommand.getPostponeShortcut() +\" please enter new shortcut\");"
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            } while(setShortcut.contains(newShortcut));"
+        "content": "                newShortcut \u003d ui.readCommand();"
       },
       {
         "lineNumber": 104,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            setOneShortcut(\"postpone\", newShortcut);"
+        "content": "            } while(setShortcut.contains(newShortcut) || setDefaultShortcut.contains(newShortcut));"
       },
       {
         "lineNumber": 105,
         "author": {
           "gitId": "huangje"
         },
-        "content": ""
+        "content": "            setOneShortcut(\"postpone\", newShortcut);"
       },
       {
         "lineNumber": 106,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            do{"
+        "content": ""
       },
       {
         "lineNumber": 107,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                ui.display(\"The precedent shortcut for snooze is \" + SnoozeCommand.getSnoozeShortcut() +\" please enter new shortcut\");"
+        "content": "            do{"
       },
       {
         "lineNumber": 108,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                newShortcut \u003d ui.readCommand();"
+        "content": "                ui.display(\"The precedent shortcut for snooze is \" + SnoozeCommand.getSnoozeShortcut() +\" please enter new shortcut\");"
       },
       {
         "lineNumber": 109,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            } while(setShortcut.contains(newShortcut));"
+        "content": "                newShortcut \u003d ui.readCommand();"
       },
       {
         "lineNumber": 110,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            setOneShortcut(\"snooze\", newShortcut);"
+        "content": "            } while(setShortcut.contains(newShortcut) || setDefaultShortcut.contains(newShortcut));"
       },
       {
         "lineNumber": 111,
         "author": {
           "gitId": "huangje"
         },
-        "content": ""
+        "content": "            setOneShortcut(\"snooze\", newShortcut);"
       },
       {
         "lineNumber": 112,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            do{"
+        "content": ""
       },
       {
         "lineNumber": 113,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                ui.display(\"The precedent shortcut for reschedule is \" + RescheduleCommand.getRescheduleShortcut() +\" please enter new shortcut\");"
+        "content": "            do{"
       },
       {
         "lineNumber": 114,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                newShortcut \u003d ui.readCommand();"
+        "content": "                ui.display(\"The precedent shortcut for reschedule is \" + RescheduleCommand.getRescheduleShortcut() +\" please enter new shortcut\");"
       },
       {
         "lineNumber": 115,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            } while(setShortcut.contains(newShortcut));"
+        "content": "                newShortcut \u003d ui.readCommand();"
       },
       {
         "lineNumber": 116,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            setOneShortcut(\"reschedule\", newShortcut);"
+        "content": "            } while(setShortcut.contains(newShortcut) || setDefaultShortcut.contains(newShortcut));"
       },
       {
         "lineNumber": 117,
         "author": {
           "gitId": "huangje"
         },
-        "content": ""
+        "content": "            setOneShortcut(\"reschedule\", newShortcut);"
       },
       {
         "lineNumber": 118,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            do{"
+        "content": ""
       },
       {
         "lineNumber": 119,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                ui.display(\"The precedent shortcut for remind is \" + RemindCommand.getRemindShortcut() +\" please enter new shortcut\");"
+        "content": "            do{"
       },
       {
         "lineNumber": 120,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                newShortcut \u003d ui.readCommand();"
+        "content": "                ui.display(\"The precedent shortcut for remind is \" + RemindCommand.getRemindShortcut() +\" please enter new shortcut\");"
       },
       {
         "lineNumber": 121,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            } while(setShortcut.contains(newShortcut));"
+        "content": "                newShortcut \u003d ui.readCommand();"
       },
       {
         "lineNumber": 122,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            setOneShortcut(\"remind\", newShortcut);"
+        "content": "            } while(setShortcut.contains(newShortcut) || setDefaultShortcut.contains(newShortcut));"
       },
       {
         "lineNumber": 123,
         "author": {
           "gitId": "huangje"
         },
-        "content": ""
+        "content": "            setOneShortcut(\"remind\", newShortcut);"
       },
       {
         "lineNumber": 124,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            do{"
+        "content": ""
       },
       {
         "lineNumber": 125,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                ui.display(\"The precedent shortcut for sort is \" + SortCommand.getSortShortcut() +\" please enter new shortcut\");"
+        "content": "            do{"
       },
       {
         "lineNumber": 126,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                newShortcut \u003d ui.readCommand();"
+        "content": "                ui.display(\"The precedent shortcut for sort is \" + SortCommand.getSortShortcut() +\" please enter new shortcut\");"
       },
       {
         "lineNumber": 127,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            } while(setShortcut.contains(newShortcut));"
+        "content": "                newShortcut \u003d ui.readCommand();"
       },
       {
         "lineNumber": 128,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            setOneShortcut(\"sort\", newShortcut);"
+        "content": "            } while(setShortcut.contains(newShortcut) || setDefaultShortcut.contains(newShortcut));"
       },
       {
         "lineNumber": 129,
         "author": {
           "gitId": "huangje"
         },
-        "content": ""
+        "content": "            setOneShortcut(\"sort\", newShortcut);"
       },
       {
         "lineNumber": 130,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            do{"
+        "content": ""
       },
       {
         "lineNumber": 131,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                ui.display(\"The precedent shortcut for setWelcome is \" + SetWelcomeCommand.getSetWelcomeShortcut() +\" please enter new shortcut\");"
+        "content": "            do{"
       },
       {
         "lineNumber": 132,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                newShortcut \u003d ui.readCommand();"
+        "content": "                ui.display(\"The precedent shortcut for setWelcome is \" + SetWelcomeCommand.getSetWelcomeShortcut() +\" please enter new shortcut\");"
       },
       {
         "lineNumber": 133,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            } while(setShortcut.contains(newShortcut));"
+        "content": "                newShortcut \u003d ui.readCommand();"
       },
       {
         "lineNumber": 134,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            setOneShortcut(\"setwelcome\", newShortcut);"
+        "content": "            } while(setShortcut.contains(newShortcut) || setDefaultShortcut.contains(newShortcut));"
       },
       {
         "lineNumber": 135,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            do{"
+        "content": "            setOneShortcut(\"setwelcome\", newShortcut);"
       },
       {
         "lineNumber": 136,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                ui.display(\"The precedent shortcut for setWelcome is \" + ShowCommand.getShowShortcut() +\" please enter new shortcut\");"
+        "content": "            do{"
       },
       {
         "lineNumber": 137,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                newShortcut \u003d ui.readCommand();"
+        "content": "                ui.display(\"The precedent shortcut for setWelcome is \" + ShowCommand.getShowShortcut() +\" please enter new shortcut\");"
       },
       {
         "lineNumber": 138,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            } while(setShortcut.contains(newShortcut));"
+        "content": "                newShortcut \u003d ui.readCommand();"
       },
       {
         "lineNumber": 139,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            setOneShortcut(\"show\", newShortcut);"
+        "content": "            } while(setShortcut.contains(newShortcut) || setDefaultShortcut.contains(newShortcut));"
       },
       {
         "lineNumber": 140,
         "author": {
           "gitId": "huangje"
         },
-        "content": ""
+        "content": "            setOneShortcut(\"show\", newShortcut);"
       },
       {
         "lineNumber": 141,
         "author": {
-          "gitId": "laurenthg"
+          "gitId": "huangje"
         },
-        "content": "            do{"
+        "content": ""
       },
       {
         "lineNumber": 142,
         "author": {
           "gitId": "laurenthg"
         },
-        "content": "                ui.display(\"The precedent shortcut for prioritize is \" + PrioritizeCommand.getPrioritizeShortcut() +\" please enter new shortcut\");"
+        "content": "            do{"
       },
       {
         "lineNumber": 143,
         "author": {
           "gitId": "laurenthg"
         },
-        "content": "                newShortcut \u003d ui.readCommand();"
+        "content": "                ui.display(\"The precedent shortcut for prioritize is \" + PrioritizeCommand.getPrioritizeShortcut() +\" please enter new shortcut\");"
       },
       {
         "lineNumber": 144,
         "author": {
           "gitId": "laurenthg"
         },
-        "content": "            } while(setShortcut.contains(newShortcut));"
+        "content": "                newShortcut \u003d ui.readCommand();"
       },
       {
         "lineNumber": 145,
         "author": {
-          "gitId": "laurenthg"
+          "gitId": "huangje"
         },
-        "content": "            setOneShortcut(\"prioritize\", newShortcut);"
+        "content": "            } while(setShortcut.contains(newShortcut) || setDefaultShortcut.contains(newShortcut));"
       },
       {
         "lineNumber": 146,
         "author": {
           "gitId": "laurenthg"
         },
-        "content": ""
+        "content": "            setOneShortcut(\"prioritize\", newShortcut);"
       },
       {
         "lineNumber": 147,
         "author": {
-          "gitId": "huangje"
+          "gitId": "laurenthg"
         },
-        "content": "            ui.display(\"All shortcut has been set\");"
+        "content": ""
       },
       {
         "lineNumber": 148,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        }"
+        "content": "            ui.display(\"All shortcut has been set\");"
       },
       {
         "lineNumber": 149,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        storage.saveConfig();"
+        "content": "        }"
       },
       {
         "lineNumber": 150,
         "author": {
           "gitId": "huangje"
         },
-        "content": "    }"
+        "content": "        storage.saveConfig();"
       },
       {
         "lineNumber": 151,
         "author": {
           "gitId": "huangje"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 152,
         "author": {
           "gitId": "huangje"
         },
-        "content": "    public static void setOneShortcut(String commandName, String shortcutName) throws MeaninglessException {"
+        "content": ""
       },
       {
         "lineNumber": 153,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        switch (commandName){"
+        "content": "    public static void setOneShortcut(String commandName, String shortcutName) throws MeaninglessException {"
       },
       {
         "lineNumber": 154,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            case \"bye\" :"
+        "content": "        switch (commandName){"
       },
       {
         "lineNumber": 155,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                setShortcut.remove(ByeCommand.getByeShortcut());"
+        "content": "            case \"bye\" :"
       },
       {
         "lineNumber": 156,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                ByeCommand.setByeShortcut(shortcutName);"
+        "content": "                setShortcut.remove(ByeCommand.getByeShortcut());"
       },
       {
         "lineNumber": 157,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                setShortcut.add(shortcutName);"
+        "content": "                ByeCommand.setByeShortcut(shortcutName);"
       },
       {
         "lineNumber": 158,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                break;"
+        "content": "                setShortcut.add(shortcutName);"
       },
       {
         "lineNumber": 159,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            case \"list\" :"
+        "content": "                break;"
       },
       {
         "lineNumber": 160,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                setShortcut.remove(ListCommand.getListShortcut());"
+        "content": "            case \"list\" :"
       },
       {
         "lineNumber": 161,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                ListCommand.setListShortcut(shortcutName);"
+        "content": "                setShortcut.remove(ListCommand.getListShortcut());"
       },
       {
         "lineNumber": 162,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                setShortcut.add(shortcutName);"
+        "content": "                ListCommand.setListShortcut(shortcutName);"
       },
       {
         "lineNumber": 163,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                break;"
+        "content": "                setShortcut.add(shortcutName);"
       },
       {
         "lineNumber": 164,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            case \"help\" :"
+        "content": "                break;"
       },
       {
         "lineNumber": 165,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                setShortcut.remove(HelpCommand.getHelpShortcut());"
+        "content": "            case \"help\" :"
       },
       {
         "lineNumber": 166,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                HelpCommand.setHelpShortcut(shortcutName);"
+        "content": "                setShortcut.remove(HelpCommand.getHelpShortcut());"
       },
       {
         "lineNumber": 167,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                setShortcut.add(shortcutName);"
+        "content": "                HelpCommand.setHelpShortcut(shortcutName);"
       },
       {
         "lineNumber": 168,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                break;"
+        "content": "                setShortcut.add(shortcutName);"
       },
       {
         "lineNumber": 169,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            case \"done\" :"
+        "content": "                break;"
       },
       {
         "lineNumber": 170,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                setShortcut.remove(DoneCommand.getDoneShortcut());"
+        "content": "            case \"done\" :"
       },
       {
         "lineNumber": 171,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                DoneCommand.setDoneShortcut(shortcutName);"
+        "content": "                setShortcut.remove(DoneCommand.getDoneShortcut());"
       },
       {
         "lineNumber": 172,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                setShortcut.add(shortcutName);"
+        "content": "                DoneCommand.setDoneShortcut(shortcutName);"
       },
       {
         "lineNumber": 173,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                break;"
+        "content": "                setShortcut.add(shortcutName);"
       },
       {
         "lineNumber": 174,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            case \"find\" :"
+        "content": "                break;"
       },
       {
         "lineNumber": 175,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                setShortcut.remove(FindCommand.getFindShortcut());"
+        "content": "            case \"find\" :"
       },
       {
         "lineNumber": 176,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                FindCommand.setFindShortcut(shortcutName);"
+        "content": "                setShortcut.remove(FindCommand.getFindShortcut());"
       },
       {
         "lineNumber": 177,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                setShortcut.add(shortcutName);"
+        "content": "                FindCommand.setFindShortcut(shortcutName);"
       },
       {
         "lineNumber": 178,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                break;"
+        "content": "                setShortcut.add(shortcutName);"
       },
       {
         "lineNumber": 179,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            case \"delete\" :"
+        "content": "                break;"
       },
       {
         "lineNumber": 180,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                setShortcut.remove(DeleteCommand.getDeleteShortcut());"
+        "content": "            case \"delete\" :"
       },
       {
         "lineNumber": 181,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                DeleteCommand.setDeleteShortcut(shortcutName);"
+        "content": "                setShortcut.remove(DeleteCommand.getDeleteShortcut());"
       },
       {
         "lineNumber": 182,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                setShortcut.add(shortcutName);"
+        "content": "                DeleteCommand.setDeleteShortcut(shortcutName);"
       },
       {
         "lineNumber": 183,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                break;"
+        "content": "                setShortcut.add(shortcutName);"
       },
       {
         "lineNumber": 184,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            case \"deadline\" :"
+        "content": "                break;"
       },
       {
         "lineNumber": 185,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                setShortcut.remove(DeadlineCommand.getDeadlineShortcut());"
+        "content": "            case \"deadline\" :"
       },
       {
         "lineNumber": 186,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                DeadlineCommand.setDeadlineShortcut(shortcutName);"
+        "content": "                setShortcut.remove(DeadlineCommand.getDeadlineShortcut());"
       },
       {
         "lineNumber": 187,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                setShortcut.add(shortcutName);"
+        "content": "                DeadlineCommand.setDeadlineShortcut(shortcutName);"
       },
       {
         "lineNumber": 188,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                break;"
+        "content": "                setShortcut.add(shortcutName);"
       },
       {
         "lineNumber": 189,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            case \"event\" :"
+        "content": "                break;"
       },
       {
         "lineNumber": 190,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                setShortcut.remove(EventCommand.getEventShortcut());"
+        "content": "            case \"event\" :"
       },
       {
         "lineNumber": 191,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                EventCommand.setEventShortcut(shortcutName);"
+        "content": "                setShortcut.remove(EventCommand.getEventShortcut());"
       },
       {
         "lineNumber": 192,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                setShortcut.add(shortcutName);"
+        "content": "                EventCommand.setEventShortcut(shortcutName);"
       },
       {
         "lineNumber": 193,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                break;"
+        "content": "                setShortcut.add(shortcutName);"
       },
       {
         "lineNumber": 194,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            case \"todo\" :"
+        "content": "                break;"
       },
       {
         "lineNumber": 195,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                setShortcut.remove(TodoCommand.getTodoShortcut());"
+        "content": "            case \"todo\" :"
       },
       {
         "lineNumber": 196,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                TodoCommand.setTodoShortcut(shortcutName);"
+        "content": "                setShortcut.remove(TodoCommand.getTodoShortcut());"
       },
       {
         "lineNumber": 197,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                setShortcut.add(shortcutName);"
+        "content": "                TodoCommand.setTodoShortcut(shortcutName);"
       },
       {
         "lineNumber": 198,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                break;"
+        "content": "                setShortcut.add(shortcutName);"
       },
       {
         "lineNumber": 199,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            case \"edit\" :"
+        "content": "                break;"
       },
       {
         "lineNumber": 200,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                setShortcut.remove(EditCommand.getEditShortcut());"
+        "content": "            case \"edit\" :"
       },
       {
         "lineNumber": 201,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                EditCommand.setEditShortcut(shortcutName);"
+        "content": "                setShortcut.remove(EditCommand.getEditShortcut());"
       },
       {
         "lineNumber": 202,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                setShortcut.add(shortcutName);"
+        "content": "                EditCommand.setEditShortcut(shortcutName);"
       },
       {
         "lineNumber": 203,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                break;"
+        "content": "                setShortcut.add(shortcutName);"
       },
       {
         "lineNumber": 204,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            case \"postpone\" :"
+        "content": "                break;"
       },
       {
         "lineNumber": 205,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                setShortcut.remove(PostponeCommand.getPostponeShortcut());"
+        "content": "            case \"postpone\" :"
       },
       {
         "lineNumber": 206,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                PostponeCommand.setPostponeShortcut(shortcutName);"
+        "content": "                setShortcut.remove(PostponeCommand.getPostponeShortcut());"
       },
       {
         "lineNumber": 207,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                setShortcut.add(shortcutName);"
+        "content": "                PostponeCommand.setPostponeShortcut(shortcutName);"
       },
       {
         "lineNumber": 208,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                break;"
+        "content": "                setShortcut.add(shortcutName);"
       },
       {
         "lineNumber": 209,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            case \"snooze\" :"
+        "content": "                break;"
       },
       {
         "lineNumber": 210,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                setShortcut.remove(SnoozeCommand.getSnoozeShortcut());"
+        "content": "            case \"snooze\" :"
       },
       {
         "lineNumber": 211,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                SnoozeCommand.setSnoozeShortcut(shortcutName);"
+        "content": "                setShortcut.remove(SnoozeCommand.getSnoozeShortcut());"
       },
       {
         "lineNumber": 212,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                setShortcut.add(shortcutName);"
+        "content": "                SnoozeCommand.setSnoozeShortcut(shortcutName);"
       },
       {
         "lineNumber": 213,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                break;"
+        "content": "                setShortcut.add(shortcutName);"
       },
       {
         "lineNumber": 214,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            case \"reschedule\" :"
+        "content": "                break;"
       },
       {
         "lineNumber": 215,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                setShortcut.remove(RescheduleCommand.getRescheduleShortcut());"
+        "content": "            case \"reschedule\" :"
       },
       {
         "lineNumber": 216,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                RescheduleCommand.setRescheduleShortcut(shortcutName);"
+        "content": "                setShortcut.remove(RescheduleCommand.getRescheduleShortcut());"
       },
       {
         "lineNumber": 217,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                setShortcut.add(shortcutName);"
+        "content": "                RescheduleCommand.setRescheduleShortcut(shortcutName);"
       },
       {
         "lineNumber": 218,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                break;"
+        "content": "                setShortcut.add(shortcutName);"
       },
       {
         "lineNumber": 219,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            case \"remind\" :"
+        "content": "                break;"
       },
       {
         "lineNumber": 220,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                setShortcut.remove(RemindCommand.getRemindShortcut());"
+        "content": "            case \"remind\" :"
       },
       {
         "lineNumber": 221,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                RemindCommand.setRemindShortcut(shortcutName);"
+        "content": "                setShortcut.remove(RemindCommand.getRemindShortcut());"
       },
       {
         "lineNumber": 222,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                setShortcut.add(shortcutName);"
+        "content": "                RemindCommand.setRemindShortcut(shortcutName);"
       },
       {
         "lineNumber": 223,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                break;"
+        "content": "                setShortcut.add(shortcutName);"
       },
       {
         "lineNumber": 224,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            case \"sort\" :"
+        "content": "                break;"
       },
       {
         "lineNumber": 225,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                setShortcut.remove(SortCommand.getSortShortcut());"
+        "content": "            case \"sort\" :"
       },
       {
         "lineNumber": 226,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                SortCommand.setSortShortcut(shortcutName);"
+        "content": "                setShortcut.remove(SortCommand.getSortShortcut());"
       },
       {
         "lineNumber": 227,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                setShortcut.add(shortcutName);"
+        "content": "                SortCommand.setSortShortcut(shortcutName);"
       },
       {
         "lineNumber": 228,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                break;"
+        "content": "                setShortcut.add(shortcutName);"
       },
       {
         "lineNumber": 229,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            case \"setwelcome\" :"
+        "content": "                break;"
       },
       {
         "lineNumber": 230,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                setShortcut.remove(SetWelcomeCommand.getSetWelcomeShortcut());"
+        "content": "            case \"setwelcome\" :"
       },
       {
         "lineNumber": 231,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                SetWelcomeCommand.setSetWelcomeShortcut(shortcutName);"
+        "content": "                setShortcut.remove(SetWelcomeCommand.getSetWelcomeShortcut());"
       },
       {
         "lineNumber": 232,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                setShortcut.add(shortcutName);"
+        "content": "                SetWelcomeCommand.setSetWelcomeShortcut(shortcutName);"
       },
       {
         "lineNumber": 233,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                break;"
+        "content": "                setShortcut.add(shortcutName);"
       },
       {
         "lineNumber": 234,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            case \"show\":"
+        "content": "                break;"
       },
       {
         "lineNumber": 235,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                setShortcut.remove(ShowCommand.getShowShortcut());"
+        "content": "            case \"show\":"
       },
       {
         "lineNumber": 236,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                ShowCommand.setShowShortcut(shortcutName);"
+        "content": "                setShortcut.remove(ShowCommand.getShowShortcut());"
       },
       {
         "lineNumber": 237,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                setShortcut.add(shortcutName);"
+        "content": "                ShowCommand.setShowShortcut(shortcutName);"
       },
       {
         "lineNumber": 238,
         "author": {
-          "gitId": "laurenthg"
+          "gitId": "huangje"
         },
-        "content": "            case \"prioritize\" :"
+        "content": "                setShortcut.add(shortcutName);"
       },
       {
         "lineNumber": 239,
         "author": {
           "gitId": "laurenthg"
         },
-        "content": "                setShortcut.remove(PrioritizeCommand.getPrioritizeShortcut());"
+        "content": "            case \"prioritize\" :"
       },
       {
         "lineNumber": 240,
         "author": {
           "gitId": "laurenthg"
         },
-        "content": "                PrioritizeCommand.setPrioritizeShortcut(shortcutName);"
+        "content": "                setShortcut.remove(PrioritizeCommand.getPrioritizeShortcut());"
       },
       {
         "lineNumber": 241,
         "author": {
           "gitId": "laurenthg"
         },
-        "content": "                setShortcut.add(shortcutName);"
+        "content": "                PrioritizeCommand.setPrioritizeShortcut(shortcutName);"
       },
       {
         "lineNumber": 242,
         "author": {
           "gitId": "laurenthg"
         },
-        "content": "                break;"
+        "content": "                setShortcut.add(shortcutName);"
       },
       {
         "lineNumber": 243,
         "author": {
-          "gitId": "huangje"
+          "gitId": "laurenthg"
         },
-        "content": "            default:"
+        "content": "                break;"
       },
       {
         "lineNumber": 244,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                throw new MeaninglessException();"
+        "content": "            default:"
       },
       {
         "lineNumber": 245,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        }"
+        "content": "                throw new MeaninglessException();"
       },
       {
         "lineNumber": 246,
         "author": {
           "gitId": "huangje"
         },
-        "content": "    }"
+        "content": "        }"
       },
       {
         "lineNumber": 247,
         "author": {
           "gitId": "huangje"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 248,
         "author": {
           "gitId": "huangje"
         },
-        "content": "    public static HashSet\u003cString\u003e getSetShortcut(){"
+        "content": ""
       },
       {
         "lineNumber": 249,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        return setShortcut;"
+        "content": "    public static HashSet\u003cString\u003e getSetShortcut(){"
       },
       {
         "lineNumber": 250,
         "author": {
           "gitId": "huangje"
         },
-        "content": "    }"
+        "content": "        return setShortcut;"
       },
       {
         "lineNumber": 251,
         "author": {
           "gitId": "huangje"
         },
-        "content": "    public static void initializedSetShortcut(){"
+        "content": "    }"
       },
       {
         "lineNumber": 252,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        setShortcut.add(\"bye\");"
+        "content": "    public static void initializedSetShortcut(){"
       },
       {
         "lineNumber": 253,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        setShortcut.add(\"list\");"
+        "content": "        setDefaultShortcut.add(\"bye\");"
       },
       {
         "lineNumber": 254,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        setShortcut.add(\"done\");"
+        "content": "        setDefaultShortcut.add(\"list\");"
       },
       {
         "lineNumber": 255,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        setShortcut.add(\"edit\");"
+        "content": "        setDefaultShortcut.add(\"done\");"
       },
       {
         "lineNumber": 256,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        setShortcut.add(\"deadline\");"
+        "content": "        setDefaultShortcut.add(\"edit\");"
       },
       {
         "lineNumber": 257,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        setShortcut.add(\"event\");"
+        "content": "        setDefaultShortcut.add(\"deadline\");"
       },
       {
         "lineNumber": 258,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        setShortcut.add(\"find\");"
+        "content": "        setDefaultShortcut.add(\"event\");"
       },
       {
         "lineNumber": 259,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        setShortcut.add(\"help\");"
+        "content": "        setDefaultShortcut.add(\"find\");"
       },
       {
         "lineNumber": 260,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        setShortcut.add(\"postpone\");"
+        "content": "        setDefaultShortcut.add(\"help\");"
       },
       {
         "lineNumber": 261,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        setShortcut.add(\"remind\");"
+        "content": "        setDefaultShortcut.add(\"postpone\");"
       },
       {
         "lineNumber": 262,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        setShortcut.add(\"reschedule\");"
+        "content": "        setDefaultShortcut.add(\"remind\");"
       },
       {
         "lineNumber": 263,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        setShortcut.add(\"setwelcome\");"
+        "content": "        setDefaultShortcut.add(\"reschedule\");"
       },
       {
         "lineNumber": 264,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        setShortcut.add(\"snooze\");"
+        "content": "        setDefaultShortcut.add(\"setwelcome\");"
       },
       {
         "lineNumber": 265,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        setShortcut.add(\"sort\");"
+        "content": "        setDefaultShortcut.add(\"snooze\");"
       },
       {
         "lineNumber": 266,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        setShortcut.add(\"todo\");"
+        "content": "        setDefaultShortcut.add(\"sort\");"
       },
       {
         "lineNumber": 267,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        setShortcut.add(\"delete\");"
+        "content": "        setDefaultShortcut.add(\"todo\");"
       },
       {
         "lineNumber": 268,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        setShortcut.add(\"show\");"
+        "content": "        setDefaultShortcut.add(\"delete\");"
       },
       {
         "lineNumber": 269,
         "author": {
           "gitId": "huangje"
         },
-        "content": "    }"
+        "content": "        setDefaultShortcut.add(\"show\");"
       },
       {
         "lineNumber": 270,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 271,
         "author": {
           "gitId": "huangje"
         },
@@ -14758,8 +14765,8 @@
       }
     ],
     "authorContributionMap": {
-      "huangje": 259,
-      "laurenthg": 11
+      "huangje": 261,
+      "laurenthg": 10
     }
   },
   {
@@ -14869,511 +14876,511 @@
         "author": {
           "gitId": "huangje"
         },
-        "content": "import java.time.LocalDateTime;"
+        "content": "import java.time.format.DateTimeFormatter;"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "huangje"
         },
-        "content": "import java.time.format.DateTimeFormatter;"
+        "content": "import java.util.ArrayList;"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "huangje"
         },
-        "content": "import java.util.ArrayList;"
+        "content": "import java.util.Locale;"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "huangje"
         },
-        "content": "import java.util.Locale;"
+        "content": ""
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "huangje"
         },
-        "content": ""
+        "content": "public class ShowCommand extends Command {"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "huangje"
         },
-        "content": "public class ShowCommand extends Command {"
+        "content": "    private static String showShortcut \u003d \"show\";"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "huangje"
         },
-        "content": "    private static String showShortcut \u003d \"show\";"
+        "content": ""
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "huangje"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "huangje"
         },
-        "content": "    /**"
+        "content": "     * Constructor of Command."
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "huangje"
         },
-        "content": "     * Constructor of Command."
+        "content": "     *"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "huangje"
         },
-        "content": "     *"
+        "content": "     * @param user String which represent the input string of the user."
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "huangje"
         },
-        "content": "     * @param user String which represent the input string of the user."
+        "content": "     */"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "huangje"
         },
-        "content": "     */"
+        "content": "    public ShowCommand(String user) {"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "huangje"
         },
-        "content": "    public ShowCommand(String user) {"
+        "content": "        super(user);"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        super(user);"
+        "content": "    }"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "huangje"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "huangje"
         },
-        "content": ""
+        "content": "    public int getDayOfWeekInInt(String dayOfWeek) throws MeaninglessException {"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "huangje"
         },
-        "content": "    @Override"
+        "content": "        int dayOfWeekInt \u003d 0;"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "huangje"
         },
-        "content": "    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {"
+        "content": "        switch(dayOfWeek){"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        ArrayList\u003cTask\u003e allTaskHavingDate \u003d tasks.filterTasks(tasks);"
+        "content": "            case \"monday\":"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        ArrayList\u003cTask\u003e showTaskList \u003d new ArrayList\u003c\u003e();"
+        "content": "                dayOfWeekInt \u003d 1;"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        String userSubstring;"
+        "content": "                break;"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        Boolean multiStep \u003d false;"
+        "content": "            case \"tuesday\":"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        if(callByShortcut){"
+        "content": "                dayOfWeekInt \u003d 2;"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            userSubstring \u003d user.substring(ShowCommand.showShortcut.length()).trim();"
+        "content": "                break;"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        }"
+        "content": "            case \"wednesday\":"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        else {"
+        "content": "                dayOfWeekInt \u003d 3;"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            userSubstring \u003d user.substring(4).trim();"
+        "content": "                break;"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        }"
+        "content": "            case \"thursday\":"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        String[] userSubSubString \u003d userSubstring.split(\" \");"
+        "content": "                dayOfWeekInt \u003d 4;"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        if(userSubSubString.length \u003d\u003d 1) {"
+        "content": "                break;"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            multiStep \u003d true;"
+        "content": "            case \"friday\":"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        }"
+        "content": "                dayOfWeekInt \u003d 5;"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "huangje"
         },
-        "content": ""
+        "content": "                break;"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        if(userSubSubString[0].matches(\"day\")){"
+        "content": "            case \"saturday\":"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            String date;"
+        "content": "                dayOfWeekInt \u003d 6;"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            if(multiStep){"
+        "content": "                break;"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                ui.display(\"please enter the day as DD/MM/YYYY\");"
+        "content": "            case \"sunday\":"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                date \u003d ui.readCommand();"
+        "content": "                dayOfWeekInt \u003d 7;"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            }"
+        "content": "                break;"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            else {"
+        "content": "            default:"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                date \u003d userSubSubString[1];"
+        "content": "                throw new MeaninglessException();"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            }"
+        "content": "        }"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "huangje"
         },
-        "content": ""
+        "content": "        return dayOfWeekInt;"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            LocalDate d1 \u003d null;"
+        "content": ""
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            try{"
+        "content": "    }"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                DateTimeFormatter formatter \u003d DateTimeFormatter.ofPattern(\"dd/MM/yyyy\", Locale.ENGLISH);"
+        "content": ""
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                d1 \u003d LocalDate.parse(date.trim(), formatter);"
+        "content": "    public void getListTaskExactDay(LocalDate date, ArrayList\u003cTask\u003e allTaskHavingDate, ArrayList\u003cTask\u003e showTaskList){"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            }catch(Exception e){"
+        "content": "        for(Task t : allTaskHavingDate){"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                throw new NonExistentDateException();"
+        "content": "            if(t.isDeadline()){"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            }"
+        "content": "                if(((DeadlinesTask)t).getDeadlines().getD().toLocalDate().isEqual(date)){"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            for(Task t : allTaskHavingDate){"
+        "content": "                    showTaskList.add(t);"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                if(t.isDeadline()){"
+        "content": "                }"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    if(((DeadlinesTask)t).getDeadlines().getD().toLocalDate().isEqual(d1)){"
+        "content": "            }"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                        showTaskList.add(t);"
+        "content": "            if(t.isEvent()){"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    }"
+        "content": "                if(((EventsTask)t).getDateFirst().getD().toLocalDate().isEqual(date)){"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                }"
+        "content": "                    showTaskList.add(t);"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                if(t.isEvent()){"
+        "content": "                }"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    if(((EventsTask)t).getDateFirst().getD().toLocalDate().isEqual(d1)){"
+        "content": "            }"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                        showTaskList.add(t);"
+        "content": "        }"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    }"
+        "content": "    }"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                }"
+        "content": ""
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            }"
+        "content": "    public void getListTaskMonth(int dateMonth, int dateYear, ArrayList\u003cTask\u003e allTaskHavingDate, ArrayList\u003cTask\u003e showTaskList){"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        }"
+        "content": "        for(Task t : allTaskHavingDate){"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        else if(userSubSubString[0].matches(\"dayofweek\")){"
+        "content": "            if(t.isDeadline()){"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            int dayOfWeekInt \u003d 0;"
+        "content": "                if(((DeadlinesTask)t).getDeadlines().getD().getMonthValue() \u003d\u003d dateMonth \u0026\u0026 ((DeadlinesTask)t).getDeadlines().getD().getYear() \u003d\u003d dateYear){"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            String dayOfWeek;"
+        "content": "                    showTaskList.add(t);"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            if(multiStep){"
+        "content": "                }"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                ui.display(\"please enter the day of the ween as monday, tuesday, wednesday, thursday, friday, saturday, sunday\");"
+        "content": "            }"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                dayOfWeek \u003d ui.readCommand();"
+        "content": "            if(t.isEvent()){"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            }"
+        "content": "                if(((EventsTask)t).getDateFirst().getD().getMonthValue() \u003d\u003d dateMonth \u0026\u0026 ((EventsTask)t).getDateFirst().getD().getYear() \u003d\u003d dateYear){"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            else {"
+        "content": "                    showTaskList.add(t);"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                dayOfWeek \u003d userSubSubString[1];"
+        "content": "                }"
       },
       {
         "lineNumber": 88,
@@ -15387,301 +15394,301 @@
         "author": {
           "gitId": "huangje"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            switch(dayOfWeek){"
+        "content": "    }"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                case \"monday\":"
+        "content": ""
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    dayOfWeekInt \u003d 1;"
+        "content": "    public void getListTaskYear(int dateYear, ArrayList\u003cTask\u003e allTaskHavingDate, ArrayList\u003cTask\u003e showTaskList){"
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    break;"
+        "content": "        for(Task t : allTaskHavingDate){"
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                case \"tuesday\":"
+        "content": "            if(t.isDeadline()){"
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    dayOfWeekInt \u003d 2;"
+        "content": "                if(((DeadlinesTask)t).getDeadlines().getD().getYear() \u003d\u003d dateYear){"
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    break;"
+        "content": "                    showTaskList.add(t);"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                case \"wednesday\":"
+        "content": "                }"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    dayOfWeekInt \u003d 3;"
+        "content": "            }"
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    break;"
+        "content": "            if(t.isEvent()){"
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                case \"thursday\":"
+        "content": "                if(((EventsTask)t).getDateFirst().getD().getYear() \u003d\u003d dateYear){"
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    dayOfWeekInt \u003d 4;"
+        "content": "                    showTaskList.add(t);"
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    break;"
+        "content": "                }"
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                case \"friday\":"
+        "content": "            }"
       },
       {
         "lineNumber": 104,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    dayOfWeekInt \u003d 5;"
+        "content": "        }"
       },
       {
         "lineNumber": 105,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    break;"
+        "content": "    }"
       },
       {
         "lineNumber": 106,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                case \"saturday\":"
+        "content": ""
       },
       {
         "lineNumber": 107,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    dayOfWeekInt \u003d 6;"
+        "content": "    @Override"
       },
       {
         "lineNumber": 108,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    break;"
+        "content": "    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {"
       },
       {
         "lineNumber": 109,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                case \"sunday\":"
+        "content": "        ArrayList\u003cTask\u003e allTaskHavingDate \u003d tasks.filterTasks(tasks);"
       },
       {
         "lineNumber": 110,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    dayOfWeekInt \u003d 7;"
+        "content": "        ArrayList\u003cTask\u003e showTaskList \u003d new ArrayList\u003c\u003e();"
       },
       {
         "lineNumber": 111,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    break;"
+        "content": "        String userSubstring;"
       },
       {
         "lineNumber": 112,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                default:"
+        "content": "        Boolean multiStep \u003d false;"
       },
       {
         "lineNumber": 113,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    throw new MeaninglessException();"
+        "content": "        if(callByShortcut){"
       },
       {
         "lineNumber": 114,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            }"
+        "content": "            userSubstring \u003d user.substring(ShowCommand.showShortcut.length()).trim();"
       },
       {
         "lineNumber": 115,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            LocalDate dateNow \u003d LocalDate.now();"
+        "content": "        }"
       },
       {
         "lineNumber": 116,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            LocalDate dateFindDayOfWeek \u003d dateNow.plusDays(1);"
+        "content": "        else {"
       },
       {
         "lineNumber": 117,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            while(dateFindDayOfWeek.getDayOfWeek().getValue()!\u003d dayOfWeekInt){"
+        "content": "            userSubstring \u003d user.substring(4).trim();"
       },
       {
         "lineNumber": 118,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                dateFindDayOfWeek \u003d dateFindDayOfWeek.plusDays(1);"
+        "content": "        }"
       },
       {
         "lineNumber": 119,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            }"
+        "content": "        String[] userSubSubString \u003d userSubstring.split(\" \");"
       },
       {
         "lineNumber": 120,
         "author": {
           "gitId": "huangje"
         },
-        "content": ""
+        "content": "        if(userSubSubString.length \u003d\u003d 1) {"
       },
       {
         "lineNumber": 121,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            for(Task t : allTaskHavingDate){"
+        "content": "            multiStep \u003d true;"
       },
       {
         "lineNumber": 122,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                if(t.isDeadline()){"
+        "content": "        }"
       },
       {
         "lineNumber": 123,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    if(((DeadlinesTask)t).getDeadlines().getD().toLocalDate().isEqual(dateFindDayOfWeek)){"
+        "content": ""
       },
       {
         "lineNumber": 124,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                        showTaskList.add(t);"
+        "content": "        if(userSubSubString[0].matches(\"day\")){"
       },
       {
         "lineNumber": 125,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    }"
+        "content": "            String date;"
       },
       {
         "lineNumber": 126,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                }"
+        "content": "            if(multiStep){"
       },
       {
         "lineNumber": 127,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                if(t.isEvent()){"
+        "content": "                ui.display(\"please enter the day as DD/MM/YYYY\");"
       },
       {
         "lineNumber": 128,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    if(((EventsTask)t).getDateFirst().getD().toLocalDate().isEqual(dateFindDayOfWeek)){"
+        "content": "                date \u003d ui.readCommand();"
       },
       {
         "lineNumber": 129,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                        showTaskList.add(t);"
+        "content": "            }"
       },
       {
         "lineNumber": 130,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    }"
+        "content": "            else {"
       },
       {
         "lineNumber": 131,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                }"
+        "content": "                date \u003d userSubSubString[1];"
       },
       {
         "lineNumber": 132,
@@ -15695,728 +15702,728 @@
         "author": {
           "gitId": "huangje"
         },
-        "content": "        }"
+        "content": ""
       },
       {
         "lineNumber": 134,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        else if(userSubSubString[0].matches(\"today\")){"
+        "content": "            LocalDate exactDate \u003d null;"
       },
       {
         "lineNumber": 135,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            LocalDate dateNow \u003d LocalDate.now();"
+        "content": "            try{"
       },
       {
         "lineNumber": 136,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            for(Task t : allTaskHavingDate){"
+        "content": "                DateTimeFormatter formatter \u003d DateTimeFormatter.ofPattern(\"dd/MM/yyyy\", Locale.ENGLISH);"
       },
       {
         "lineNumber": 137,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                if(t.isDeadline()){"
+        "content": "                exactDate \u003d LocalDate.parse(date.trim(), formatter);"
       },
       {
         "lineNumber": 138,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    if(((DeadlinesTask)t).getDeadlines().getD().toLocalDate().isEqual(dateNow)){"
+        "content": "            }catch(Exception e){"
       },
       {
         "lineNumber": 139,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                        showTaskList.add(t);"
+        "content": "                throw new NonExistentDateException();"
       },
       {
         "lineNumber": 140,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    }"
+        "content": "            }"
       },
       {
         "lineNumber": 141,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                }"
+        "content": "            getListTaskExactDay(exactDate, allTaskHavingDate, showTaskList);"
       },
       {
         "lineNumber": 142,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                if(t.isEvent()){"
+        "content": "        }"
       },
       {
         "lineNumber": 143,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    if(((EventsTask)t).getDateFirst().getD().toLocalDate().isEqual(dateNow)){"
+        "content": "        else if(userSubSubString[0].matches(\"dayofweek\")){"
       },
       {
         "lineNumber": 144,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                        showTaskList.add(t);"
+        "content": "            int dayOfWeekInt \u003d 0;"
       },
       {
         "lineNumber": 145,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    }"
+        "content": "            String dayOfWeek;"
       },
       {
         "lineNumber": 146,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                }"
+        "content": "            if(multiStep){"
       },
       {
         "lineNumber": 147,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            }"
+        "content": "                ui.display(\"please enter the day of the ween as monday, tuesday, wednesday, thursday, friday, saturday, sunday\");"
       },
       {
         "lineNumber": 148,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        }"
+        "content": "                dayOfWeek \u003d ui.readCommand();"
       },
       {
         "lineNumber": 149,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        else if(userSubSubString[0].matches(\"week\")){"
+        "content": "            }"
       },
       {
         "lineNumber": 150,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            LocalDate dateNow \u003d LocalDate.now();"
+        "content": "            else {"
       },
       {
         "lineNumber": 151,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            for (int i \u003d 0; i \u003c 7; i++){"
+        "content": "                dayOfWeek \u003d userSubSubString[1];"
       },
       {
         "lineNumber": 152,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                LocalDate dateWeek \u003d dateNow.plusDays(i);"
+        "content": "            }"
       },
       {
         "lineNumber": 153,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                for(Task t : allTaskHavingDate){"
+        "content": ""
       },
       {
         "lineNumber": 154,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    if(t.isDeadline()){"
+        "content": "            dayOfWeekInt \u003d getDayOfWeekInInt(dayOfWeek);"
       },
       {
         "lineNumber": 155,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                        if(((DeadlinesTask)t).getDeadlines().getD().toLocalDate().isEqual(dateNow)){"
+        "content": "            LocalDate dateNow \u003d LocalDate.now();"
       },
       {
         "lineNumber": 156,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                            showTaskList.add(t);"
+        "content": "            LocalDate dateFindDayOfWeek \u003d dateNow.plusDays(1);"
       },
       {
         "lineNumber": 157,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                        }"
+        "content": "            while(dateFindDayOfWeek.getDayOfWeek().getValue()!\u003d dayOfWeekInt){"
       },
       {
         "lineNumber": 158,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    }"
+        "content": "                dateFindDayOfWeek \u003d dateFindDayOfWeek.plusDays(1);"
       },
       {
         "lineNumber": 159,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    if(t.isEvent()){"
+        "content": "            }"
       },
       {
         "lineNumber": 160,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                        if(((EventsTask)t).getDateFirst().getD().toLocalDate().isEqual(dateNow)){"
+        "content": "            getListTaskExactDay(dateFindDayOfWeek, allTaskHavingDate, showTaskList);"
       },
       {
         "lineNumber": 161,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                            showTaskList.add(t);"
+        "content": "        }"
       },
       {
         "lineNumber": 162,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                        }"
+        "content": "        else if(userSubSubString[0].matches(\"today\")){"
       },
       {
         "lineNumber": 163,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    }"
+        "content": "            LocalDate dateNow \u003d LocalDate.now();"
       },
       {
         "lineNumber": 164,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                }"
+        "content": "            getListTaskExactDay(dateNow, allTaskHavingDate, showTaskList);"
       },
       {
         "lineNumber": 165,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            }"
+        "content": "        }"
       },
       {
         "lineNumber": 166,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        }"
+        "content": "        else if(userSubSubString[0].matches(\"week\")){"
       },
       {
         "lineNumber": 167,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        else if (userSubSubString[0].matches(\"month\")){"
+        "content": "            LocalDate dateNow \u003d LocalDate.now();"
       },
       {
         "lineNumber": 168,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            String date;"
+        "content": "            for (int i \u003d 0; i \u003c 7; i++){"
       },
       {
         "lineNumber": 169,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            if(multiStep){"
+        "content": "                LocalDate dateWeek \u003d dateNow.plusDays(i);"
       },
       {
         "lineNumber": 170,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                ui.display(\"please enter the month as MM/YYYY\");"
+        "content": "                getListTaskExactDay(dateWeek, allTaskHavingDate, showTaskList);"
       },
       {
         "lineNumber": 171,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                date \u003d ui.readCommand();"
+        "content": "            }"
       },
       {
         "lineNumber": 172,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            }"
+        "content": "        }"
       },
       {
         "lineNumber": 173,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            else {"
+        "content": "        else if (userSubSubString[0].matches(\"month\")){"
       },
       {
         "lineNumber": 174,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                date \u003d userSubSubString[1];"
+        "content": "            String date;"
       },
       {
         "lineNumber": 175,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            }"
+        "content": "            if(multiStep){"
       },
       {
         "lineNumber": 176,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            String[] dateSplit \u003d date.trim().split(\"/\");"
+        "content": "                ui.display(\"please enter the month as MM/YYYY\");"
       },
       {
         "lineNumber": 177,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            if(dateSplit.length \u003d\u003d 1 || dateSplit[0].isBlank()){"
+        "content": "                date \u003d ui.readCommand();"
       },
       {
         "lineNumber": 178,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                throw new NonExistentDateException();"
+        "content": "            }"
       },
       {
         "lineNumber": 179,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            }"
+        "content": "            else {"
       },
       {
         "lineNumber": 180,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            int dateMonth \u003d 0;"
+        "content": "                date \u003d userSubSubString[1];"
       },
       {
         "lineNumber": 181,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            int dateYear \u003d 0;"
+        "content": "            }"
       },
       {
         "lineNumber": 182,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            try{"
+        "content": "            String[] dateSplit \u003d date.trim().split(\"/\");"
       },
       {
         "lineNumber": 183,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                dateMonth \u003d Integer.parseInt(dateSplit[0]);"
+        "content": "            if(dateSplit.length \u003d\u003d 1 || dateSplit[0].isBlank()){"
       },
       {
         "lineNumber": 184,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                dateYear \u003d Integer.parseInt(dateSplit[1]);"
+        "content": "                throw new NonExistentDateException();"
       },
       {
         "lineNumber": 185,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            }catch(Exception e){"
+        "content": "            }"
       },
       {
         "lineNumber": 186,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                throw new NonExistentDateException();"
+        "content": "            int dateMonth \u003d 0;"
       },
       {
         "lineNumber": 187,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            }"
+        "content": "            int dateYear \u003d 0;"
       },
       {
         "lineNumber": 188,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            if(dateMonth \u003c1 || dateMonth \u003e 12){"
+        "content": "            try{"
       },
       {
         "lineNumber": 189,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                throw new NonExistentDateException();"
+        "content": "                dateMonth \u003d Integer.parseInt(dateSplit[0]);"
       },
       {
         "lineNumber": 190,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            }"
+        "content": "                dateYear \u003d Integer.parseInt(dateSplit[1]);"
       },
       {
         "lineNumber": 191,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            for(Task t : allTaskHavingDate){"
+        "content": "            }catch(Exception e){"
       },
       {
         "lineNumber": 192,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                if(t.isDeadline()){"
+        "content": "                throw new NonExistentDateException();"
       },
       {
         "lineNumber": 193,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    if(((DeadlinesTask)t).getDeadlines().getD().getMonthValue() \u003d\u003d dateMonth \u0026\u0026 ((DeadlinesTask)t).getDeadlines().getD().getYear() \u003d\u003d dateYear){"
+        "content": "            }"
       },
       {
         "lineNumber": 194,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                        showTaskList.add(t);"
+        "content": "            if(dateMonth \u003c1 || dateMonth \u003e 12){"
       },
       {
         "lineNumber": 195,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    }"
+        "content": "                throw new NonExistentDateException();"
       },
       {
         "lineNumber": 196,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                }"
+        "content": "            }"
       },
       {
         "lineNumber": 197,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                if(t.isEvent()){"
+        "content": "            getListTaskMonth(dateMonth, dateYear, allTaskHavingDate, showTaskList);"
       },
       {
         "lineNumber": 198,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    if(((EventsTask)t).getDateFirst().getD().getMonthValue() \u003d\u003d dateMonth \u0026\u0026 ((EventsTask)t).getDateFirst().getD().getYear() \u003d\u003d dateYear){"
+        "content": "        }"
       },
       {
         "lineNumber": 199,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                        showTaskList.add(t);"
+        "content": "        else if (userSubSubString[0].matches(\"year\")){"
       },
       {
         "lineNumber": 200,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    }"
+        "content": "            String date;"
       },
       {
         "lineNumber": 201,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                }"
+        "content": "            if(multiStep){"
       },
       {
         "lineNumber": 202,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            }"
+        "content": "                ui.display(\"please enter the year as YYYY\");"
       },
       {
         "lineNumber": 203,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        }"
+        "content": "                date \u003d ui.readCommand();"
       },
       {
         "lineNumber": 204,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        else if (userSubSubString[0].matches(\"year\")){"
+        "content": "            }"
       },
       {
         "lineNumber": 205,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            String date;"
+        "content": "            else {"
       },
       {
         "lineNumber": 206,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            if(multiStep){"
+        "content": "                date \u003d userSubSubString[1];"
       },
       {
         "lineNumber": 207,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                ui.display(\"please enter the year as YYYY\");"
+        "content": "            }"
       },
       {
         "lineNumber": 208,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                date \u003d ui.readCommand();"
+        "content": ""
       },
       {
         "lineNumber": 209,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            }"
+        "content": "            int dateYear \u003d 0;"
       },
       {
         "lineNumber": 210,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            else {"
+        "content": "            try{"
       },
       {
         "lineNumber": 211,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                date \u003d userSubSubString[1];"
+        "content": "                dateYear \u003d Integer.parseInt(date);"
       },
       {
         "lineNumber": 212,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            }"
+        "content": "            }catch(Exception e){"
       },
       {
         "lineNumber": 213,
         "author": {
           "gitId": "huangje"
         },
-        "content": ""
+        "content": "                throw new NonExistentDateException();"
       },
       {
         "lineNumber": 214,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            int dateYear \u003d 0;"
+        "content": "            }"
       },
       {
         "lineNumber": 215,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            try{"
+        "content": "            getListTaskYear(dateYear, allTaskHavingDate, showTaskList);"
       },
       {
         "lineNumber": 216,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                dateYear \u003d Integer.parseInt(date);"
+        "content": "        }"
       },
       {
         "lineNumber": 217,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            }catch(Exception e){"
+        "content": "        else {"
       },
       {
         "lineNumber": 218,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                throw new NonExistentDateException();"
+        "content": "            throw new WrongParameterException();"
       },
       {
         "lineNumber": 219,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            }"
+        "content": "        }"
       },
       {
         "lineNumber": 220,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            for(Task t : allTaskHavingDate){"
+        "content": "        ui.showNotCompleteList(showTaskList, tasks);"
       },
       {
         "lineNumber": 221,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                if(t.isDeadline()){"
+        "content": "    }"
       },
       {
         "lineNumber": 222,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    if(((DeadlinesTask)t).getDeadlines().getD().getYear() \u003d\u003d dateYear){"
+        "content": ""
       },
       {
         "lineNumber": 223,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                        showTaskList.add(t);"
+        "content": "    /**"
       },
       {
         "lineNumber": 224,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    }"
+        "content": "     * getter because the shortcut is private"
       },
       {
         "lineNumber": 225,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                }"
+        "content": "     * @return the shortcut name"
       },
       {
         "lineNumber": 226,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                if(t.isEvent()){"
+        "content": "     */"
       },
       {
         "lineNumber": 227,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    if(((EventsTask)t).getDateFirst().getD().getYear() \u003d\u003d dateYear){"
+        "content": "    public static String getShowShortcut() {"
       },
       {
         "lineNumber": 228,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                        showTaskList.add(t);"
+        "content": "        return showShortcut;"
       },
       {
         "lineNumber": 229,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    }"
+        "content": "    }"
       },
       {
         "lineNumber": 230,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                }"
+        "content": ""
       },
       {
         "lineNumber": 231,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            }"
+        "content": "    /**"
       },
       {
         "lineNumber": 232,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        }"
+        "content": "     * used when the user want to change the shortcut"
       },
       {
         "lineNumber": 233,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        else {"
+        "content": "     * @param showShortcut the new shortcut"
       },
       {
         "lineNumber": 234,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            throw new WrongParameterException();"
+        "content": "     */"
       },
       {
         "lineNumber": 235,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        }"
+        "content": "    public static void setShowShortcut(String showShortcut) {"
       },
       {
         "lineNumber": 236,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        ui.showNotCompeteList(showTaskList, tasks);"
+        "content": "        ShowCommand.showShortcut \u003d showShortcut;"
       },
       {
         "lineNumber": 237,
@@ -16430,123 +16437,11 @@
         "author": {
           "gitId": "huangje"
         },
-        "content": ""
-      },
-      {
-        "lineNumber": 239,
-        "author": {
-          "gitId": "huangje"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 240,
-        "author": {
-          "gitId": "huangje"
-        },
-        "content": "     * getter because the shortcut is private"
-      },
-      {
-        "lineNumber": 241,
-        "author": {
-          "gitId": "huangje"
-        },
-        "content": "     * @return the shortcut name"
-      },
-      {
-        "lineNumber": 242,
-        "author": {
-          "gitId": "huangje"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 243,
-        "author": {
-          "gitId": "huangje"
-        },
-        "content": "    public static String getShowShortcut() {"
-      },
-      {
-        "lineNumber": 244,
-        "author": {
-          "gitId": "huangje"
-        },
-        "content": "        return showShortcut;"
-      },
-      {
-        "lineNumber": 245,
-        "author": {
-          "gitId": "huangje"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 246,
-        "author": {
-          "gitId": "huangje"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 247,
-        "author": {
-          "gitId": "huangje"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 248,
-        "author": {
-          "gitId": "huangje"
-        },
-        "content": "     * used when the user want to change the shortcut"
-      },
-      {
-        "lineNumber": 249,
-        "author": {
-          "gitId": "huangje"
-        },
-        "content": "     * @param showShortcut the new shortcut"
-      },
-      {
-        "lineNumber": 250,
-        "author": {
-          "gitId": "huangje"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 251,
-        "author": {
-          "gitId": "huangje"
-        },
-        "content": "    public static void setShowShortcut(String showShortcut) {"
-      },
-      {
-        "lineNumber": 252,
-        "author": {
-          "gitId": "huangje"
-        },
-        "content": "        ShowCommand.showShortcut \u003d showShortcut;"
-      },
-      {
-        "lineNumber": 253,
-        "author": {
-          "gitId": "huangje"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 254,
-        "author": {
-          "gitId": "huangje"
-        },
         "content": "}"
       }
     ],
     "authorContributionMap": {
-      "huangje": 254
+      "huangje": 238
     }
   },
   {
@@ -19230,6 +19125,163 @@
     ],
     "authorContributionMap": {
       "huangje": 23
+    }
+  },
+  {
+    "path": "src/main/java/leduc/exception/MeaninglessException.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "package leduc.exception;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " * Represent a exception when input string of the user is not understood."
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "public class MeaninglessException extends DukeException {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Constructor of leduc.exception.MeaningLessException."
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public MeaninglessException(){"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        super();"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Tell the user that the input String is not known."
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @return the error message"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public String print(){"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        return \"\\t MeaninglessException:\\n\\t\\t OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\\\"\";"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "huangje": 1,
+      "-": 20
     }
   },
   {
@@ -31101,6 +31153,988 @@
     "authorContributionMap": {
       "huangje": 8,
       "-": 99
+    }
+  },
+  {
+    "path": "src/test/java/leduc/ShowCommandTest.java",
+    "fileType": "tests",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "package leduc;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "import leduc.command.ShowCommand;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "import leduc.exception.DukeException;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "import leduc.exception.FileException;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "import leduc.exception.MeaninglessException;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "import leduc.storage.Storage;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "import leduc.task.Task;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "import leduc.task.TaskList;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "import org.junit.jupiter.api.Test;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.*;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "public class ShowCommandTest {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "    public void ShowCommandTest(){"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        Ui ui \u003d new Ui();"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        Storage storage \u003d null;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            storage \u003d new Storage(System.getProperty(\"user.dir\")+ \"/src/test/testFile/ShowCommandTest.txt\", System.getProperty(\"user.dir\")+ \"/src/test/testFile/configTest.txt\");"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        } catch (FileException e) {"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            e.printStackTrace();"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        } catch (MeaninglessException e) {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            e.printStackTrace();"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        TaskList tasks \u003d new TaskList(new ArrayList\u003cTask\u003e());"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        ShowCommand showCommand \u003d new ShowCommand(\"test\");"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        int dayOfWeek \u003d 0;"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            dayOfWeek \u003d showCommand.getDayOfWeekInInt(\"monday\");"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        } catch (MeaninglessException e) {"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            e.printStackTrace();"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        assertEquals(1, dayOfWeek);"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            dayOfWeek \u003d showCommand.getDayOfWeekInInt(\"tuesday\");"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        } catch (MeaninglessException e) {"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            e.printStackTrace();"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        assertEquals(2, dayOfWeek);"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            dayOfWeek \u003d showCommand.getDayOfWeekInInt(\"wednesday\");"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        } catch (MeaninglessException e) {"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            e.printStackTrace();"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        assertEquals(3, dayOfWeek);"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            dayOfWeek \u003d showCommand.getDayOfWeekInInt(\"thursday\");"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        } catch (MeaninglessException e) {"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            e.printStackTrace();"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        assertEquals(4, dayOfWeek);"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            dayOfWeek \u003d showCommand.getDayOfWeekInInt(\"friday\");"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        } catch (MeaninglessException e) {"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            e.printStackTrace();"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        assertEquals(5, dayOfWeek);"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            dayOfWeek \u003d showCommand.getDayOfWeekInInt(\"saturday\");"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        } catch (MeaninglessException e) {"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            e.printStackTrace();"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        assertEquals(6, dayOfWeek);"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            dayOfWeek \u003d showCommand.getDayOfWeekInInt(\"sunday\");"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        } catch (MeaninglessException e) {"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            e.printStackTrace();"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        assertEquals(7, dayOfWeek);"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            dayOfWeek \u003d showCommand.getDayOfWeekInInt(\"aazeadzda\");"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            fail(\"The exception should be a MeaninglessException\");"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        } catch (MeaninglessException e) {"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            assertTrue(e.print().contains(\"MeaninglessException\"));"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            ShowCommand showCommand1 \u003d new ShowCommand(\"show dsqdsqdq\");"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            showCommand1.execute(tasks, ui, storage);"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            fail(\"The exception should be a WrongParameterException\");"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        } catch (DukeException e) {"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            assertTrue(e.print().contains(\"WrongParameterException\"));"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            ShowCommand showCommand2 \u003d new ShowCommand(\"show day dqdqd\");"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            showCommand2.execute(tasks, ui, storage);"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            fail(\"The exception should be a NonExistentDateException\");"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        } catch (DukeException e) {"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            assertTrue(e.print().contains(\"NonExistentDateException\"));"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            ShowCommand showCommand3 \u003d new ShowCommand(\"show dayofweek dqdqd\");"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            showCommand3.execute(tasks, ui, storage);"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            fail(\"The exception should be a MeaninglessException\");"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        } catch (DukeException e) {"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            assertTrue(e.print().contains(\"MeaninglessException\"));"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            ShowCommand showCommand3 \u003d new ShowCommand(\"show month /2019\");"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            showCommand3.execute(tasks, ui, storage);"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            fail(\"The exception should be a NonExistentDateException\");"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        } catch (DukeException e) {"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            assertTrue(e.print().contains(\"NonExistentDateException\"));"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            ShowCommand showCommand3 \u003d new ShowCommand(\"show month 01/\");"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            showCommand3.execute(tasks, ui, storage);"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            fail(\"The exception should be a NonExistentDateException\");"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        } catch (DukeException e) {"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            assertTrue(e.print().contains(\"NonExistentDateException\"));"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            ShowCommand showCommand3 \u003d new ShowCommand(\"show month 20/2010\");"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            showCommand3.execute(tasks, ui, storage);"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            fail(\"The exception should be a NonExistentDateException\");"
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        } catch (DukeException e) {"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            assertTrue(e.print().contains(\"NonExistentDateException\"));"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            ShowCommand showCommand3 \u003d new ShowCommand(\"show month sqd/dqd\");"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            showCommand3.execute(tasks, ui, storage);"
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            fail(\"The exception should be a NonExistentDateException\");"
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        } catch (DukeException e) {"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            assertTrue(e.print().contains(\"NonExistentDateException\"));"
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            ShowCommand showCommand3 \u003d new ShowCommand(\"show year dsqdqs\");"
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            showCommand3.execute(tasks, ui, storage);"
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            fail(\"The exception should be a NonExistentDateException\");"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        } catch (DukeException e) {"
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            assertTrue(e.print().contains(\"NonExistentDateException\"));"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "huangje": 139
     }
   },
   {
