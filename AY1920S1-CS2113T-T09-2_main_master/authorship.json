@@ -5989,84 +5989,84 @@
         "author": {
           "gitId": "muserr"
         },
-        "content": "        if (undoCounter \u003e 1) {"
+        "content": "        if (storage.getUndoStack().size() \u003e\u003d 1) {"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            while (undoCounter \u003e 0 \u0026\u0026 storage.getUndoStack().size() \u003e 1) {"
+        "content": "            if (undoCounter \u003e 1) {"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "muserr"
         },
-        "content": "                setToPreviousStore(store, storage);"
+        "content": "                // addToRedoStack to be done before setToPreviousStore."
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "muserr"
         },
-        "content": "                undoCounter--;"
+        "content": "                storage.addToRedoStack();"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            }"
+        "content": ""
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        } else if (undoCounter \u003d\u003d 1) {"
+        "content": "                while (undoCounter \u003e 0 \u0026\u0026 storage.getUndoStack().size() \u003e 1) {"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "muserr"
         },
-        "content": ""
+        "content": "                    setToPreviousStore(undoCounter, store, storage);"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            if (storage.getUndoStack().size() \u003d\u003d 2) {"
+        "content": "                    undoCounter--;"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "muserr"
         },
-        "content": "                setToPreviousStore(store, storage);"
+        "content": "                }"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "muserr"
         },
-        "content": ""
+        "content": "            } else if (undoCounter \u003d\u003d 1) {"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            } else if (storage.getUndoStack().size() \u003e 1) {"
+        "content": "                storage.addToRedoStack();"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "muserr"
         },
-        "content": "                setToPreviousStore(store, storage);"
+        "content": "                setToPreviousStore(undoCounter, store, storage);"
       },
       {
         "lineNumber": 43,
@@ -6087,115 +6087,108 @@
         "author": {
           "gitId": "muserr"
         },
-        "content": ""
+        "content": "        // showUndo should only be placed after execution of undo."
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        // showUndo should only be placed after execution of undo."
+        "content": "        ui.showUndo(undoCounter);"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        ui.showUndo(undoCounter);"
+        "content": "    }"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "muserr"
         },
-        "content": ""
+        "content": "    private void setToPreviousStore(int undoCounter, Store store, Storage storage) throws DuchessException {"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    private void setToPreviousStore(Store store, Storage storage) throws DuchessException {"
+        "content": "        storage.getLastSnapshot(undoCounter);"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        storage.getLastSnapshot();"
+        "content": "        storage.save(storage.peekUndoStackAsStore());"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        storage.save(storage.peekUndoStackAsStore());"
+        "content": ""
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "muserr"
         },
-        "content": ""
+        "content": "        // Obtaining store from stack"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        // Obtaining store from stack"
+        "content": "        Store newStore \u003d storage.load();"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        Store newStore \u003d storage.load();"
+        "content": "        assert (store.equals(newStore));"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        assert (store.equals(newStore));"
+        "content": "        store.setTaskList(newStore.getTaskList());"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        store.setTaskList(newStore.getTaskList());"
-      },
-      {
-        "lineNumber": 58,
-        "author": {
-          "gitId": "muserr"
-        },
         "content": "        store.setModuleList(newStore.getModuleList());"
       },
       {
-        "lineNumber": 59,
+        "lineNumber": 58,
         "author": {
           "gitId": "limsiying"
         },
         "content": "        store.setDuchessCalendar(newStore.getDuchessCalendar());"
       },
       {
-        "lineNumber": 60,
+        "lineNumber": 59,
         "author": {
           "gitId": "muserr"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 61,
+        "lineNumber": 60,
         "author": {
           "gitId": "muserr"
         },
@@ -6204,7 +6197,7 @@
     ],
     "authorContributionMap": {
       "limsiying": 1,
-      "muserr": 60
+      "muserr": 59
     }
   },
   {
@@ -15878,707 +15871,707 @@
         "author": {
           "gitId": "muserr"
         },
-        "content": "    /**"
+        "content": "    //private static final String RUN_TIME_ERROR_MESSAGE \u003d \"JSON run time error.\";"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "muserr"
         },
-        "content": "     * Constructs Storage object."
+        "content": "    private static final String UNREADABLE_FILE_MESSAGE"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "muserr"
         },
-        "content": "     *"
+        "content": "            \u003d \"Unable to read file, continuing with empty list.\";"
       },
       {
         "lineNumber": 26,
         "author": {
-          "gitId": "mohideenik"
+          "gitId": "muserr"
         },
-        "content": "     * @param fileName filename for duchess.storage"
+        "content": "    private static final String FILE_WRITE_ERROR_MESSAGE"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "muserr"
         },
-        "content": "     */"
+        "content": "            \u003d \"An unexpected error occurred when writing to the file. \";"
       },
       {
         "lineNumber": 28,
         "author": {
-          "gitId": "mohideenik"
+          "gitId": "muserr"
         },
-        "content": "    public Storage(String fileName) {"
+        "content": ""
       },
       {
         "lineNumber": 29,
         "author": {
-          "gitId": "mohideenik"
+          "gitId": "muserr"
         },
-        "content": "        this.fileName \u003d fileName;"
+        "content": "    private static final String JSON_PARSE_ERROR_MESSAGE \u003d \"JSON parse was unsuccessful.\";"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        undoStack \u003d new LinkedList\u003c\u003e();"
+        "content": ""
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        redoStack \u003d new LinkedList\u003c\u003e();"
+        "content": "    /**"
       },
       {
         "lineNumber": 32,
         "author": {
-          "gitId": "mohideenik"
+          "gitId": "muserr"
         },
-        "content": "    }"
+        "content": "     * Constructs Storage object."
       },
       {
         "lineNumber": 33,
         "author": {
-          "gitId": "mohideenik"
+          "gitId": "muserr"
         },
-        "content": ""
+        "content": "     *"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    // Unchecked type coercion is necessary here."
+        "content": "     * @param fileName filename for duchess.storage"
       },
       {
         "lineNumber": 35,
         "author": {
-          "gitId": "mohideenik"
+          "gitId": "muserr"
         },
-        "content": "    // And possible cast exceptions are handled"
+        "content": "     */"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "    public Storage(String fileName) {"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    /**"
+        "content": "        this.fileName \u003d fileName;"
       },
       {
         "lineNumber": 38,
         "author": {
-          "gitId": "mohideenik"
+          "gitId": "muserr"
         },
-        "content": "     * Returns the tasklist loaded from file."
+        "content": "        undoStack \u003d new LinkedList\u003c\u003e();"
       },
       {
         "lineNumber": 39,
         "author": {
-          "gitId": "mohideenik"
+          "gitId": "muserr"
         },
-        "content": "     */"
+        "content": "        redoStack \u003d new LinkedList\u003c\u003e();"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    @SuppressWarnings(\"unchecked\")"
+        "content": "    }"
       },
       {
         "lineNumber": 41,
         "author": {
-          "gitId": "nishanthelango"
+          "gitId": "mohideenik"
         },
-        "content": "    public Store load() throws DuchessException {"
+        "content": ""
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        try {"
+        "content": "    // Unchecked type coercion is necessary here."
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            FileInputStream fileStream \u003d new FileInputStream(this.fileName);"
+        "content": "    // And possible cast exceptions are handled"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            Store store \u003d getObjectMapper().readValue(fileStream, Store.class);"
+        "content": ""
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            fileStream.close();"
+        "content": "    /**"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            return store;"
+        "content": "     * Returns the tasklist loaded from file."
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        } catch (IOException | ClassCastException e) {"
+        "content": "     */"
       },
       {
         "lineNumber": 48,
         "author": {
-          "gitId": "limsiying"
+          "gitId": "mohideenik"
         },
-        "content": "            e.printStackTrace();"
+        "content": "    @SuppressWarnings(\"unchecked\")"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "nishanthelango"
         },
-        "content": "            throw new DuchessException(\"Unable to read file, continuing with empty list.\");"
+        "content": "    public Store load() throws DuchessException {"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        }"
+        "content": "        try {"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "            FileInputStream fileStream \u003d new FileInputStream(this.fileName);"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "            Store store \u003d getObjectMapper().readValue(fileStream, Store.class);"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    /**"
+        "content": "            fileStream.close();"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "     * Saves the given tasklist to file."
+        "content": "            return store;"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "     *"
+        "content": "        } catch (IOException | ClassCastException e) {"
       },
       {
         "lineNumber": 56,
         "author": {
-          "gitId": "mohideenik"
+          "gitId": "limsiying"
         },
-        "content": "     * @param store the store to save"
+        "content": "            e.printStackTrace();"
       },
       {
         "lineNumber": 57,
         "author": {
-          "gitId": "nishanthelango"
+          "gitId": "muserr"
         },
-        "content": "     * @throws DuchessException an error if unable to write to file"
+        "content": "            throw new DuchessException(UNREADABLE_FILE_MESSAGE);"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "     */"
+        "content": "        }"
       },
       {
         "lineNumber": 59,
         "author": {
-          "gitId": "nishanthelango"
+          "gitId": "mohideenik"
         },
-        "content": "    public void save(Store store) throws DuchessException {"
+        "content": "    }"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        try {"
+        "content": ""
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            FileOutputStream fileStream \u003d new FileOutputStream(this.fileName);"
+        "content": "    /**"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            getObjectMapper().writeValue(fileStream, store);"
+        "content": "     * Saves the given tasklist to file."
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            fileStream.close();"
+        "content": "     *"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        } catch (IOException e) {"
+        "content": "     * @param store the store to save"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "nishanthelango"
         },
-        "content": "            throw new DuchessException(\"An unexpected error occurred when writing to the file. \" + e);"
+        "content": "     * @throws DuchessException an error if unable to write to file"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        }"
+        "content": "     */"
       },
       {
         "lineNumber": 67,
         "author": {
-          "gitId": "mohideenik"
+          "gitId": "nishanthelango"
         },
-        "content": "    }"
+        "content": "    public void save(Store store) throws DuchessException {"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "        try {"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    private ObjectMapper getObjectMapper() {"
+        "content": "            FileOutputStream fileStream \u003d new FileOutputStream(this.fileName);"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        return new ObjectMapper()"
+        "content": "            getObjectMapper().writeValue(fileStream, store);"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                .enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL)"
+        "content": "            fileStream.close();"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                .disable(MapperFeature.AUTO_DETECT_CREATORS,"
+        "content": "        } catch (IOException e) {"
       },
       {
         "lineNumber": 73,
         "author": {
-          "gitId": "mohideenik"
+          "gitId": "muserr"
         },
-        "content": "                        MapperFeature.AUTO_DETECT_FIELDS,"
+        "content": "            throw new DuchessException(FILE_WRITE_ERROR_MESSAGE + e);"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                        MapperFeature.AUTO_DETECT_GETTERS,"
+        "content": "        }"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                        MapperFeature.AUTO_DETECT_IS_GETTERS)"
+        "content": "    }"
       },
       {
         "lineNumber": 76,
         "author": {
-          "gitId": "muserr"
-        },
-        "content": "                .enable(SerializationFeature.INDENT_OUTPUT)"
-      },
-      {
-        "lineNumber": 77,
-        "author": {
-          "gitId": "muserr"
-        },
-        "content": "                .setSerializationInclusion(JsonInclude.Include.NON_NULL);"
-      },
-      {
-        "lineNumber": 78,
-        "author": {
-          "gitId": "muserr"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 79,
-        "author": {
-          "gitId": "muserr"
+          "gitId": "mohideenik"
         },
         "content": ""
       },
       {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    private ObjectMapper getObjectMapper() {"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        return new ObjectMapper()"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "                .enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL)"
+      },
+      {
         "lineNumber": 80,
         "author": {
-          "gitId": "muserr"
+          "gitId": "mohideenik"
         },
-        "content": "    /**"
+        "content": "                .disable(MapperFeature.AUTO_DETECT_CREATORS,"
       },
       {
         "lineNumber": 81,
         "author": {
-          "gitId": "muserr"
+          "gitId": "mohideenik"
         },
-        "content": "     * Obtains last Store object."
+        "content": "                        MapperFeature.AUTO_DETECT_FIELDS,"
       },
       {
         "lineNumber": 82,
         "author": {
-          "gitId": "muserr"
+          "gitId": "mohideenik"
         },
-        "content": "     *"
+        "content": "                        MapperFeature.AUTO_DETECT_GETTERS,"
       },
       {
         "lineNumber": 83,
         "author": {
-          "gitId": "muserr"
+          "gitId": "mohideenik"
         },
-        "content": "     * @return last Store object"
+        "content": "                        MapperFeature.AUTO_DETECT_IS_GETTERS)"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "muserr"
         },
-        "content": "     * @throws DuchessException throws exception when unable to obtain Store object"
+        "content": "                .enable(SerializationFeature.INDENT_OUTPUT)"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "muserr"
         },
-        "content": "     */"
+        "content": "                .setSerializationInclusion(JsonInclude.Include.NON_NULL);"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    public Store getLastSnapshot() throws DuchessException {"
+        "content": "    }"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        if (undoStack.size() \u003d\u003d 0) {"
+        "content": ""
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            throw new DuchessException(\"There\u0027s nothing to undo.\");"
+        "content": "    /**"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        }"
+        "content": "     * Obtains last Store object."
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "muserr"
         },
-        "content": ""
+        "content": "     *"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        String jsonVal \u003d undoStack.pollLast();"
+        "content": "     * @return last Store object"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        // Add this string to redoStack"
+        "content": "     * @throws DuchessException throws exception when unable to obtain Store object"
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        redoStack.addFirst(jsonVal);"
+        "content": "     */"
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "muserr"
         },
-        "content": ""
+        "content": "    public Store getLastSnapshot(int undoCounter) throws DuchessException {"
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        try {"
+        "content": "        if (undoStack.size() \u003d\u003d 0) {"
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            Store store \u003d getObjectMapper().readValue(jsonVal, Store.class);"
+        "content": "            throw new DuchessException(\"There\u0027s nothing to undo.\");"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            return store;"
+        "content": "        }"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        } catch (JsonParseException e) {"
+        "content": ""
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            throw new DuchessException(\"JSON parse was unsuccessful.\");"
+        "content": "        String jsonVal \u003d undoStack.pollLast();"
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        } catch (JsonMappingException e) {"
+        "content": ""
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            e.printStackTrace();"
+        "content": "        try {"
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            throw new DuchessException(\"Mapping was unsuccessful.\");"
+        "content": "            Store store \u003d getObjectMapper().readValue(jsonVal, Store.class);"
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        } catch (IOException e) {"
+        "content": "            return store;"
       },
       {
         "lineNumber": 104,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            e.printStackTrace();"
+        "content": "        } catch (JsonParseException e) {"
       },
       {
         "lineNumber": 105,
         "author": {
-          "gitId": "mohideenik"
+          "gitId": "muserr"
         },
-        "content": "            throw new DuchessException(\"Check duchess.storage input.\");"
+        "content": "            throw new DuchessException(JSON_PARSE_ERROR_MESSAGE);"
       },
       {
         "lineNumber": 106,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        }"
+        "content": "        } catch (JsonMappingException e) {"
       },
       {
         "lineNumber": 107,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    }"
+        "content": "            e.printStackTrace();"
       },
       {
         "lineNumber": 108,
         "author": {
           "gitId": "muserr"
         },
-        "content": ""
+        "content": "            throw new DuchessException(\"Mapping was unsuccessful.\");"
       },
       {
         "lineNumber": 109,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    /**"
+        "content": "        } catch (IOException e) {"
       },
       {
         "lineNumber": 110,
         "author": {
           "gitId": "muserr"
         },
-        "content": "     * Adds Store object to stack."
+        "content": "            e.printStackTrace();"
       },
       {
         "lineNumber": 111,
         "author": {
-          "gitId": "muserr"
+          "gitId": "mohideenik"
         },
-        "content": "     *"
+        "content": "            throw new DuchessException(\"Check duchess.storage input.\");"
       },
       {
         "lineNumber": 112,
         "author": {
           "gitId": "muserr"
         },
-        "content": "     * @param store current store object"
+        "content": "        }"
       },
       {
         "lineNumber": 113,
         "author": {
           "gitId": "muserr"
         },
-        "content": "     * @throws DuchessException throws exception when unable to push object to stack"
+        "content": "    }"
       },
       {
         "lineNumber": 114,
         "author": {
           "gitId": "muserr"
         },
-        "content": "     */"
+        "content": ""
       },
       {
         "lineNumber": 115,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    public void addToUndoStackPush(Store store) {"
+        "content": "    /**"
       },
       {
         "lineNumber": 116,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        String jsonVal \u003d getStoreToString(store);"
+        "content": "     * Adds Store object to stack."
       },
       {
         "lineNumber": 117,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        String undoStackTop;"
+        "content": "     *"
       },
       {
         "lineNumber": 118,
         "author": {
           "gitId": "muserr"
         },
-        "content": ""
+        "content": "     * @param store current store object"
       },
       {
         "lineNumber": 119,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        if (undoStack.size() !\u003d 0) {"
+        "content": "     * @throws DuchessException throws exception when unable to push object to stack"
       },
       {
         "lineNumber": 120,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            undoStackTop \u003d undoStack.peekLast();"
+        "content": "     */"
       },
       {
         "lineNumber": 121,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            // Only push to undoStack if the topmost stack object is different."
+        "content": "    public void addToUndoStackPush(Store store) {"
       },
       {
         "lineNumber": 122,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            if (!undoStackTop.equals(jsonVal)) {"
+        "content": "        String jsonVal \u003d getStoreToString(store);"
       },
       {
         "lineNumber": 123,
         "author": {
           "gitId": "muserr"
         },
-        "content": "                undoStack.addLast(jsonVal);"
+        "content": "        String undoStackTop;"
       },
       {
         "lineNumber": 124,
@@ -16592,238 +16585,238 @@
         "author": {
           "gitId": "muserr"
         },
-        "content": "                // Clears redo whenever there store is modified."
+        "content": "        if (undoStack.size() !\u003d 0) {"
       },
       {
         "lineNumber": 126,
         "author": {
           "gitId": "muserr"
         },
-        "content": "                redoStack.clear();"
+        "content": "            undoStackTop \u003d undoStack.peekLast();"
       },
       {
         "lineNumber": 127,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            }"
+        "content": "            // Only push to undoStack if the topmost stack object is different."
       },
       {
         "lineNumber": 128,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        } else {"
+        "content": "            if (!undoStackTop.equals(jsonVal)) {"
       },
       {
         "lineNumber": 129,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            assert (undoStack.size() \u003d\u003d 0);"
+        "content": "                undoStack.addLast(jsonVal);"
       },
       {
         "lineNumber": 130,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            undoStack.addLast(jsonVal);"
+        "content": ""
       },
       {
         "lineNumber": 131,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        }"
+        "content": "                // Clears redo whenever there store is modified."
       },
       {
         "lineNumber": 132,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    }"
+        "content": "                redoStack.clear();"
       },
       {
         "lineNumber": 133,
         "author": {
           "gitId": "muserr"
         },
-        "content": ""
+        "content": "            }"
       },
       {
         "lineNumber": 134,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    /**"
+        "content": "        } else {"
       },
       {
         "lineNumber": 135,
         "author": {
           "gitId": "muserr"
         },
-        "content": "     * Obtains first Store object."
+        "content": "            assert (undoStack.size() \u003d\u003d 0);"
       },
       {
         "lineNumber": 136,
         "author": {
           "gitId": "muserr"
         },
-        "content": "     *"
+        "content": "            undoStack.addLast(jsonVal);"
       },
       {
         "lineNumber": 137,
         "author": {
           "gitId": "muserr"
         },
-        "content": "     * @return first Store object"
+        "content": "        }"
       },
       {
         "lineNumber": 138,
         "author": {
           "gitId": "muserr"
         },
-        "content": "     * @throws DuchessException throws exception when unable to obtain Store object"
+        "content": "    }"
       },
       {
         "lineNumber": 139,
         "author": {
           "gitId": "muserr"
         },
-        "content": "     */"
+        "content": ""
       },
       {
         "lineNumber": 140,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    public Store getFirstSnapshot() throws DuchessException {"
+        "content": "    /**"
       },
       {
         "lineNumber": 141,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        if (redoStack.size() \u003d\u003d 0) {"
+        "content": "     * Obtains first Store object."
       },
       {
         "lineNumber": 142,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            throw new DuchessException(\"There\u0027s nothing to redo.\");"
+        "content": "     *"
       },
       {
         "lineNumber": 143,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        }"
+        "content": "     * @return first Store object"
       },
       {
         "lineNumber": 144,
         "author": {
           "gitId": "muserr"
         },
-        "content": ""
+        "content": "     * @throws DuchessException throws exception when unable to obtain Store object"
       },
       {
         "lineNumber": 145,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        String jsonVal \u003d redoStack.pollFirst();"
+        "content": "     */"
       },
       {
         "lineNumber": 146,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        // Add this string to undoStack"
+        "content": "    public Store getFirstSnapshot() throws DuchessException {"
       },
       {
         "lineNumber": 147,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        undoStack.addLast(jsonVal);"
+        "content": "        if (redoStack.size() \u003d\u003d 0) {"
       },
       {
         "lineNumber": 148,
         "author": {
           "gitId": "muserr"
         },
-        "content": ""
+        "content": "            throw new DuchessException(\"There\u0027s nothing to redo.\");"
       },
       {
         "lineNumber": 149,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        try {"
+        "content": "        }"
       },
       {
         "lineNumber": 150,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            Store store \u003d getObjectMapper().readValue(jsonVal, Store.class);"
+        "content": ""
       },
       {
         "lineNumber": 151,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            return store;"
+        "content": "        String jsonVal \u003d redoStack.pollFirst();"
       },
       {
         "lineNumber": 152,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        } catch (JsonParseException e) {"
+        "content": "        // Add this string to undoStack"
       },
       {
         "lineNumber": 153,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            e.printStackTrace();"
+        "content": "        undoStack.addLast(jsonVal);"
       },
       {
         "lineNumber": 154,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            throw new DuchessException(\"JSON parse was unsuccessful.\");"
+        "content": ""
       },
       {
         "lineNumber": 155,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        } catch (JsonMappingException e) {"
+        "content": "        try {"
       },
       {
         "lineNumber": 156,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            e.printStackTrace();"
+        "content": "            Store store \u003d getObjectMapper().readValue(jsonVal, Store.class);"
       },
       {
         "lineNumber": 157,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            throw new DuchessException(\"Mapping was unsuccessful.\");"
+        "content": "            return store;"
       },
       {
         "lineNumber": 158,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        } catch (IOException e) {"
+        "content": "        } catch (JsonParseException e) {"
       },
       {
         "lineNumber": 159,
@@ -16835,341 +16828,453 @@
       {
         "lineNumber": 160,
         "author": {
-          "gitId": "mohideenik"
+          "gitId": "muserr"
         },
-        "content": "            throw new DuchessException(\"Check duchess.storage input.\");"
+        "content": "            throw new DuchessException(\"JSON parse was unsuccessful.\");"
       },
       {
         "lineNumber": 161,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        }"
+        "content": "        } catch (JsonMappingException e) {"
       },
       {
         "lineNumber": 162,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    }"
+        "content": "            e.printStackTrace();"
       },
       {
         "lineNumber": 163,
         "author": {
           "gitId": "muserr"
         },
-        "content": ""
+        "content": "            throw new DuchessException(\"Mapping was unsuccessful.\");"
       },
       {
         "lineNumber": 164,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    public Deque\u003cString\u003e getUndoStack() {"
+        "content": "        } catch (IOException e) {"
       },
       {
         "lineNumber": 165,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        return this.undoStack;"
+        "content": "            e.printStackTrace();"
       },
       {
         "lineNumber": 166,
         "author": {
-          "gitId": "muserr"
+          "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "            throw new DuchessException(\"Check duchess.storage input.\");"
       },
       {
         "lineNumber": 167,
         "author": {
           "gitId": "muserr"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 168,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    public Deque\u003cString\u003e getRedoStack() {"
+        "content": "    }"
       },
       {
         "lineNumber": 169,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        return this.undoStack;"
+        "content": ""
       },
       {
         "lineNumber": 170,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    }"
+        "content": "    public Deque\u003cString\u003e getUndoStack() {"
       },
       {
         "lineNumber": 171,
         "author": {
           "gitId": "muserr"
         },
-        "content": ""
+        "content": "        return this.undoStack;"
       },
       {
         "lineNumber": 172,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    /**"
+        "content": "    }"
       },
       {
         "lineNumber": 173,
         "author": {
           "gitId": "muserr"
         },
-        "content": "     * Returns the top object of UndoStack as a Store object."
+        "content": ""
       },
       {
         "lineNumber": 174,
         "author": {
           "gitId": "muserr"
         },
-        "content": "     *"
+        "content": "    public Deque\u003cString\u003e getRedoStack() {"
       },
       {
         "lineNumber": 175,
         "author": {
           "gitId": "muserr"
         },
-        "content": "     * @return top object as a store object"
+        "content": "        return this.undoStack;"
       },
       {
         "lineNumber": 176,
         "author": {
           "gitId": "muserr"
         },
-        "content": "     */"
+        "content": "    }"
       },
       {
         "lineNumber": 177,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    public Store peekUndoStackAsStore() {"
+        "content": ""
       },
       {
         "lineNumber": 178,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        if (undoStack.size() !\u003d 0) {"
+        "content": "    /**"
       },
       {
         "lineNumber": 179,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            try {"
+        "content": "     * Returns the top object of UndoStack as a Store object."
       },
       {
         "lineNumber": 180,
         "author": {
           "gitId": "muserr"
         },
-        "content": "                String undoStackString \u003d undoStack.peekLast();"
+        "content": "     *"
       },
       {
         "lineNumber": 181,
         "author": {
           "gitId": "muserr"
         },
-        "content": "                Store store \u003d getObjectMapper().readValue(undoStackString, Store.class);"
+        "content": "     * @return top object as a store object"
       },
       {
         "lineNumber": 182,
         "author": {
           "gitId": "muserr"
         },
-        "content": "                return store;"
+        "content": "     */"
       },
       {
         "lineNumber": 183,
         "author": {
           "gitId": "muserr"
         },
-        "content": ""
+        "content": "    public Store peekUndoStackAsStore() {"
       },
       {
         "lineNumber": 184,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            } catch (Exception e) {"
+        "content": "        if (undoStack.size() !\u003d 0) {"
       },
       {
         "lineNumber": 185,
         "author": {
           "gitId": "muserr"
         },
-        "content": "                System.out.println(\"Unable to convert String to Store.\");"
+        "content": "            try {"
       },
       {
         "lineNumber": 186,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            }"
+        "content": "                String undoStackString \u003d undoStack.peekLast();"
       },
       {
         "lineNumber": 187,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        }"
+        "content": "                Store store \u003d getObjectMapper().readValue(undoStackString, Store.class);"
       },
       {
         "lineNumber": 188,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        return new Store();"
+        "content": "                return store;"
       },
       {
         "lineNumber": 189,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 190,
         "author": {
           "gitId": "muserr"
         },
-        "content": ""
+        "content": "            } catch (Exception e) {"
       },
       {
         "lineNumber": 191,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    /**"
+        "content": "                System.out.println(\"Unable to convert String to Store.\");"
       },
       {
         "lineNumber": 192,
         "author": {
           "gitId": "muserr"
         },
-        "content": "     * Returns a string representation of a Store object."
+        "content": "            }"
       },
       {
         "lineNumber": 193,
         "author": {
           "gitId": "muserr"
         },
-        "content": "     * Returns an empty string if exception thrown."
+        "content": "        }"
       },
       {
         "lineNumber": 194,
         "author": {
           "gitId": "muserr"
         },
-        "content": "     *"
+        "content": "        return new Store();"
       },
       {
         "lineNumber": 195,
         "author": {
           "gitId": "muserr"
         },
-        "content": "     * @param store store object"
+        "content": "    }"
       },
       {
         "lineNumber": 196,
         "author": {
           "gitId": "muserr"
         },
-        "content": "     * @return string representative of Store object"
+        "content": ""
       },
       {
         "lineNumber": 197,
         "author": {
           "gitId": "muserr"
         },
-        "content": "     */"
+        "content": "    /**"
       },
       {
         "lineNumber": 198,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    private String getStoreToString(Store store) {"
+        "content": "     * Returns a string representation of a Store object."
       },
       {
         "lineNumber": 199,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        String jsonVal;"
+        "content": "     * Returns an empty string if exception thrown."
       },
       {
         "lineNumber": 200,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        try {"
+        "content": "     *"
       },
       {
         "lineNumber": 201,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            jsonVal \u003d getObjectMapper().writeValueAsString(store);"
+        "content": "     * @param store store object"
       },
       {
         "lineNumber": 202,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        } catch (JsonProcessingException e) {"
+        "content": "     * @return string representative of Store object"
       },
       {
         "lineNumber": 203,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            jsonVal \u003d new String();"
+        "content": "     */"
       },
       {
         "lineNumber": 204,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            e.printStackTrace();"
+        "content": "    private String getStoreToString(Store store) {"
       },
       {
         "lineNumber": 205,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        }"
+        "content": "        String jsonVal;"
       },
       {
         "lineNumber": 206,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        return jsonVal;"
+        "content": "        try {"
       },
       {
         "lineNumber": 207,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    }"
+        "content": "            jsonVal \u003d getObjectMapper().writeValueAsString(store);"
       },
       {
         "lineNumber": 208,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        } catch (JsonProcessingException e) {"
+      },
+      {
+        "lineNumber": 209,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            jsonVal \u003d new String();"
+      },
+      {
+        "lineNumber": 210,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            assert (jsonVal.equals(\"\"));"
+      },
+      {
+        "lineNumber": 211,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 212,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        return jsonVal;"
+      },
+      {
+        "lineNumber": 213,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 214,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 215,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 216,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     * Adds deserialized string from undoStack to redoStack."
+      },
+      {
+        "lineNumber": 217,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 218,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    public void addToRedoStack() {"
+      },
+      {
+        "lineNumber": 219,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        if (undoStack.size() !\u003d 0) {"
+      },
+      {
+        "lineNumber": 220,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            String jsonVal \u003d undoStack.peekLast();"
+      },
+      {
+        "lineNumber": 221,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            redoStack.addFirst(jsonVal);"
+      },
+      {
+        "lineNumber": 222,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 223,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 224,
         "author": {
           "gitId": "mohideenik"
         },
@@ -17179,8 +17284,8 @@
     "authorContributionMap": {
       "limsiying": 4,
       "mohideenik": 54,
-      "nishanthelango": 6,
-      "muserr": 144
+      "nishanthelango": 4,
+      "muserr": 162
     }
   },
   {
