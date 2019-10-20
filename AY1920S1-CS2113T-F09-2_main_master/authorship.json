@@ -2805,213 +2805,269 @@
         "author": {
           "gitId": "tygq13"
         },
-        "content": "import cube.ui.Ui;"
+        "content": "import cube.storage.StorageManager;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "import cube.storage.StorageManager;"
+        "content": "import cube.logic.command.exception.CommandException;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "import cube.logic.command.exception.CommandException;"
+        "content": "import cube.logic.command.exception.CommandErrorMessage;"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "import cube.logic.command.exception.CommandErrorMessage;"
+        "content": ""
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "tygq13"
         },
-        "content": ""
+        "content": "public class AddCommand extends Command{"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "public class AddCommand extends Command{"
+        "content": "\tprivate final Food toAdd;"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\tprivate final Food toAdd;"
+        "content": ""
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "tygq13"
         },
-        "content": ""
+        "content": "\tprivate final String MESSAGE_SUCCESS \u003d \"New Food added: \\n\" "
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\tprivate final String MESSAGE_SUCCESS \u003d \"New Food added: \\n\" "
+        "content": "\t\t+ \"%1$s\\n\""
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\t+ \"%1$s\\n\""
+        "content": "\t\t+ \"Now you have %2$s food in the list.\\n\";"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\t+ \"Now you have %2$s food in the list.\\n\";"
+        "content": ""
       },
       {
         "lineNumber": 16,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": ""
+        "content": "\t/**"
       },
       {
         "lineNumber": 17,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "\tpublic AddCommand (Food food) {"
+        "content": "\t * Default constructor."
       },
       {
         "lineNumber": 18,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "\t\tthis.toAdd \u003d food;"
+        "content": "\t * @param food the food to be added."
       },
       {
         "lineNumber": 19,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "\t}"
+        "content": "\t */"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "tygq13"
         },
-        "content": ""
+        "content": "\tpublic AddCommand (Food food) {"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\tprivate void checkValid(FoodList list) throws CommandException {"
+        "content": "\t\tthis.toAdd \u003d food;"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\tif (list.exists(toAdd.getName())) {"
+        "content": "\t}"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\t\tthrow new CommandException(CommandErrorMessage.FOOD_ALREADY_EXISTS);"
+        "content": ""
       },
       {
         "lineNumber": 24,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "\t\t}"
+        "content": "\t/**"
       },
       {
         "lineNumber": 25,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "\t}"
+        "content": "\t * Check whether the food to be added is already in the list."
       },
       {
         "lineNumber": 26,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": ""
+        "content": "\t * @param list the food list to be checked through."
       },
       {
         "lineNumber": 27,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "\t@Override"
+        "content": "\t * @throws CommandException"
       },
       {
         "lineNumber": 28,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "\tpublic CommandResult execute(FoodList list, StorageManager storage) throws CommandException {"
+        "content": "\t */"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\tcheckValid(list);"
+        "content": "\tprivate void checkValid(FoodList list) throws CommandException {"
       },
       {
         "lineNumber": 30,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": ""
+        "content": "\t\tif (list.existsName(toAdd.getName())) {"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\tlist.add(toAdd);"
+        "content": "\t\t\tthrow new CommandException(CommandErrorMessage.FOOD_ALREADY_EXISTS);"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\tstorage.storeFoodList(list);"
+        "content": "\t\t}"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\treturn new CommandResult(String.format(MESSAGE_SUCCESS, toAdd, list.size()));"
+        "content": "\t}"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t}"
+        "content": ""
       },
       {
         "lineNumber": 35,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t@Override"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\tpublic CommandResult execute(FoodList list, StorageManager storage) throws CommandException {"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\tcheckValid(list);"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\tlist.add(toAdd);"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\tstorage.storeFoodList(list);"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\treturn new CommandResult(String.format(MESSAGE_SUCCESS, toAdd, list.size()));"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t}"
+      },
+      {
+        "lineNumber": 43,
         "author": {
           "gitId": "tygq13"
         },
@@ -3019,7 +3075,8 @@
       }
     ],
     "authorContributionMap": {
-      "tygq13": 35
+      "tygq13": 33,
+      "ZKathrynx": 10
     }
   },
   {
@@ -3705,187 +3762,719 @@
       {
         "lineNumber": 11,
         "author": {
-          "gitId": "tygq13"
-        },
-        "content": "\tprivate int deleteIndex;"
-      },
-      {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "tygq13"
-        },
-        "content": "\tprivate final String MESSAGE_SUCCESS \u003d \"Nice! I\u0027ve removed this food:\\n\""
-      },
-      {
-        "lineNumber": 13,
-        "author": {
-          "gitId": "tygq13"
-        },
-        "content": "\t\t+ \"%1$s\\n\""
-      },
-      {
-        "lineNumber": 14,
-        "author": {
-          "gitId": "tygq13"
-        },
-        "content": "\t\t+ \"Now you have %2$s food in the list.\\n\";"
-      },
-      {
-        "lineNumber": 15,
-        "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
         "content": ""
       },
       {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t/**"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t * Enum to indicate the type of delete."
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t */"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\tpublic enum DeleteBy {"
+      },
+      {
         "lineNumber": 16,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "\tpublic DeleteCommand(int index) {"
+        "content": "\t\tINDEX, NAME, TYPE"
       },
       {
         "lineNumber": 17,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "\t\tthis.deleteIndex \u003d index - 1;"
+        "content": "\t}"
       },
       {
         "lineNumber": 18,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "\t}"
+        "content": ""
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "tygq13"
         },
-        "content": ""
+        "content": "\tprivate int deleteIndex;"
       },
       {
         "lineNumber": 20,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "\t//todo: delete by foodname"
+        "content": "\tprivate String deleteDescription;"
       },
       {
         "lineNumber": 21,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": ""
+        "content": "\tprivate DeleteBy param;"
       },
       {
         "lineNumber": 22,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "\tprivate void checkValid(FoodList list) throws CommandException {"
+        "content": "\tprivate final String MESSAGE_SUCCESS_SINGLE \u003d \"Nice! I\u0027ve removed this food:\\n\""
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\tif (deleteIndex \u003c 0 || deleteIndex \u003e\u003d list.size()) {"
+        "content": "\t\t+ \"%1$s\\n\""
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\t\tthrow new CommandException(CommandErrorMessage.FOOD_NOT_EXISTS);"
+        "content": "\t\t+ \"Now you have %2$s food in the list.\\n\";"
       },
       {
         "lineNumber": 25,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "\t\t}"
+        "content": "\tprivate final String MESSAGE_SUCCESS_MULTIPLE \u003d \"Nice! I\u0027ve removed this type:\\n\""
       },
       {
         "lineNumber": 26,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "\t}"
+        "content": "\t\t\t+ \"%1$s\\n\""
       },
       {
         "lineNumber": 27,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": ""
+        "content": "\t\t\t+ \"This type contains \""
       },
       {
         "lineNumber": 28,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "\t@Override"
+        "content": "\t\t\t+ \"%2$s food items\\n\""
       },
       {
         "lineNumber": 29,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "\tpublic CommandResult execute(FoodList list, StorageManager storage) throws CommandException {"
+        "content": "\t\t\t+ \"Now you have %3$s food in the list.\\n\";"
       },
       {
         "lineNumber": 30,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "\t\tcheckValid(list);"
+        "content": ""
       },
       {
         "lineNumber": 31,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "\t\t"
+        "content": "\t/**"
       },
       {
         "lineNumber": 32,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "\t\tFood toDelete \u003d list.get(deleteIndex);"
+        "content": "\t * Default constructor."
       },
       {
         "lineNumber": 33,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "\t\tlist.remove(deleteIndex);"
+        "content": "\t */"
       },
       {
         "lineNumber": 34,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "\t\tstorage.storeFoodList(list);"
+        "content": "\tpublic DeleteCommand() {}"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\treturn new CommandResult(String.format(MESSAGE_SUCCESS, toDelete, list.size()));"
+        "content": ""
       },
       {
         "lineNumber": 36,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t/**"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t * Constructor for delete using index."
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t * @param index the index to be deleted."
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t * @param param the parameter to indicate type of deletion."
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t */"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\tpublic DeleteCommand(int index, String param) {"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\tthis.deleteIndex \u003d index - 1;"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\tthis.param \u003d DeleteBy.valueOf(param);"
+      },
+      {
+        "lineNumber": 44,
         "author": {
           "gitId": "tygq13"
         },
         "content": "\t}"
       },
       {
-        "lineNumber": 37,
+        "lineNumber": 45,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t/**"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t * Constructor for delete using food name or food type."
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t * @param deleteDescription the food name or food type to be deleted."
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t * @param param the parameter to indicate type of deletion."
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t */"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\tpublic DeleteCommand(String deleteDescription, String param){"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\tthis.deleteDescription \u003d deleteDescription;"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\tthis.param \u003d DeleteBy.valueOf(param);"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t}"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t/**"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t * Check whether a given index is a valid index or not."
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t * @param list the food list."
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t * @throws CommandException"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t */"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\tprivate void checkValidIndex(FoodList list) throws CommandException {"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\tif (deleteIndex \u003c 0 || deleteIndex \u003e\u003d list.size()) {"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\t\tthrow new CommandException(CommandErrorMessage.FOOD_NOT_EXISTS);"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\t}"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t}"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t/**"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t * Check whether a given food name is inside the food list or not."
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t * @param list the food list."
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t * @throws CommandException"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t */"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\tprivate void checkValidName(FoodList list) throws CommandException {"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\tif (!list.existsName(deleteDescription)) {"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\tthrow new CommandException(CommandErrorMessage.FOOD_NOT_EXISTS);"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t}"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t}"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t/**"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t * Check whether a given food type is inside the food list or not."
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t * @param list the food list."
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t * @throws CommandException"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t */"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\tprivate void checkValidType(FoodList list) throws CommandException {"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\tif (!list.existsType(deleteDescription)) {"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\tthrow new CommandException(CommandErrorMessage.FOOD_NOT_EXISTS);"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t}"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t}"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t@Override"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\tpublic CommandResult execute(FoodList list, StorageManager storage) throws CommandException {"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\tFood toDelete;"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\tswitch (param) {"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\tcase INDEX:"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\t\tcheckValidIndex(list);"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\t\ttoDelete \u003d list.get(deleteIndex);"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\t\tlist.removeIndex(deleteIndex);"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\t\tstorage.storeFoodList(list);"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\t\treturn new CommandResult(String.format(MESSAGE_SUCCESS_SINGLE, toDelete, list.size()));"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\tcase NAME:"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\t\tcheckValidName(list);"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\t\ttoDelete \u003d list.get(deleteDescription);"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\t\tlist.removeName(deleteDescription);"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\t\t\tstorage.storeFoodList(list);"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\t\treturn new CommandResult(String.format(MESSAGE_SUCCESS_SINGLE, toDelete, list.size()));"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\tcase TYPE:"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\t\tcheckValidType(list);"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\t\tint count \u003d list.removeType(deleteDescription);"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\t\tstorage.storeFoodList(list);"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\t\treturn new CommandResult(String.format(MESSAGE_SUCCESS_MULTIPLE, deleteDescription, count, list.size()));"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t}"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\treturn null;"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t}"
+      },
+      {
+        "lineNumber": 113,
         "author": {
           "gitId": "tygq13"
         },
@@ -3893,7 +4482,8 @@
       }
     ],
     "authorContributionMap": {
-      "tygq13": 37
+      "tygq13": 28,
+      "ZKathrynx": 85
     }
   },
   {
@@ -4421,171 +5011,164 @@
         "author": {
           "gitId": "tygq13"
         },
-        "content": "import cube.ui.Ui;"
+        "content": "import cube.storage.StorageManager;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "import cube.storage.StorageManager;"
+        "content": ""
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "tygq13"
         },
-        "content": ""
+        "content": "public class ListCommand extends Command{"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "public class ListCommand extends Command{"
+        "content": "\tSortType sortType;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\tSortType sortType;"
+        "content": ""
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "tygq13"
         },
-        "content": ""
+        "content": "\tprivate final String MESSAGE_SUCCESS \u003d \"Here are the food in your list: \\n\""
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\tprivate final String MESSAGE_SUCCESS \u003d \"Here are the food in your list: \\n\""
+        "content": "\t\t+ \"%1$s\\n\" // todo: toString for list"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\t+ \"%1$s\\n\" // todo: toString for list"
+        "content": "\t\t+ \"The total revenue so far is $ %2$f\\n\";"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\t+ \"The total revenue so far is $ %2$f\\n\";"
+        "content": ""
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "tygq13"
         },
-        "content": ""
+        "content": "\tpublic ListCommand() {"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\tpublic ListCommand() {"
+        "content": ""
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "tygq13"
         },
-        "content": ""
+        "content": "\t}"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t}"
+        "content": "\tpublic ListCommand (SortType sortType) {"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\tpublic ListCommand (SortType sortType) {"
+        "content": "\t\tthis.sortType \u003d sortType;"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\tthis.sortType \u003d sortType;"
+        "content": "\t}"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t}"
+        "content": ""
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "tygq13"
         },
-        "content": ""
+        "content": "\t@Override"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t@Override"
+        "content": "\tpublic CommandResult execute(FoodList list, StorageManager storage) {"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\tpublic CommandResult execute(FoodList list, StorageManager storage) {"
+        "content": "\t\tif (sortType !\u003d null) {"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\tif (sortType !\u003d null) {"
+        "content": "\t\t\tlist.sort(sortType);"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\t\tlist.sort(sortType);"
+        "content": "\t\t}"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\t}"
+        "content": "\t\treturn new CommandResult(String.format(MESSAGE_SUCCESS, list, Food.getRevenue()));"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\treturn new CommandResult(String.format(MESSAGE_SUCCESS, list, Food.getRevenue()));"
-      },
-      {
-        "lineNumber": 29,
-        "author": {
-          "gitId": "tygq13"
-        },
         "content": "\t}"
       },
       {
-        "lineNumber": 30,
+        "lineNumber": 29,
         "author": {
           "gitId": "tygq13"
         },
@@ -4593,7 +5176,7 @@
       }
     ],
     "authorContributionMap": {
-      "tygq13": 30
+      "tygq13": 29
     }
   },
   {
@@ -5250,9 +5833,9 @@
       {
         "lineNumber": 22,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "\t\tif (!list.exists(foodName)) {"
+        "content": "\t\tif (!list.existsName(foodName)) {"
       },
       {
         "lineNumber": 23,
@@ -5396,7 +5979,8 @@
       }
     ],
     "authorContributionMap": {
-      "tygq13": 42
+      "tygq13": 41,
+      "ZKathrynx": 1
     }
   },
   {
@@ -5669,35 +6253,35 @@
       {
         "lineNumber": 3,
         "author": {
-          "gitId": "ZKathrynx"
+          "gitId": "tygq13"
         },
-        "content": "import cube.exception.CubeException;"
+        "content": "import cube.logic.command.AddCommand;"
       },
       {
         "lineNumber": 4,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "import cube.logic.command.AddCommand;"
+        "content": "import cube.logic.parser.exception.ParserErrorMessage;"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "ZKathrynx"
         },
-        "content": "import cube.model.food.Food;"
+        "content": "import cube.logic.parser.exception.ParserException;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "ZKathrynx"
         },
-        "content": "import cube.ui.Message;"
+        "content": "import cube.model.food.Food;"
       },
       {
         "lineNumber": 7,
         "author": {
-          "gitId": "ZKathrynx"
+          "gitId": "tygq13"
         },
         "content": ""
       },
@@ -5706,140 +6290,140 @@
         "author": {
           "gitId": "ZKathrynx"
         },
-        "content": "import java.text.ParseException;"
+        "content": "/**"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "ZKathrynx"
         },
-        "content": "import java.text.SimpleDateFormat;"
+        "content": " * Parse add food command."
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "ZKathrynx"
         },
-        "content": "import java.util.Date;"
-      },
-      {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "import java.util.Locale;"
-      },
-      {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "import java.util.TimeZone;"
-      },
-      {
-        "lineNumber": 13,
-        "author": {
-          "gitId": "tygq13"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 14,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "/**"
-      },
-      {
-        "lineNumber": 15,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": " * Parse add food command."
-      },
-      {
-        "lineNumber": 16,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
         "content": " */"
       },
       {
-        "lineNumber": 17,
+        "lineNumber": 11,
         "author": {
           "gitId": "tygq13"
         },
         "content": "public class AddCommandParser implements ParserPrototype\u003cAddCommand\u003e {"
       },
       {
-        "lineNumber": 18,
+        "lineNumber": 12,
         "author": {
           "gitId": "tygq13"
         },
         "content": ""
       },
       {
-        "lineNumber": 19,
+        "lineNumber": 13,
         "author": {
           "gitId": "ZKathrynx"
         },
-        "content": "\tpublic AddCommand parse(String[] args) throws CubeException {"
+        "content": "\tpublic AddCommand parse(String[] args) throws ParserException {"
       },
       {
-        "lineNumber": 20,
+        "lineNumber": 14,
         "author": {
           "gitId": "ZKathrynx"
         },
-        "content": "\t\tint foodNameIndex \u003d -1;"
+        "content": "\t\tint foodNameIndex \u003d 1;"
       },
       {
-        "lineNumber": 21,
+        "lineNumber": 15,
         "author": {
           "gitId": "ZKathrynx"
         },
         "content": "\t\tint foodTypeIndex \u003d -1;"
       },
       {
-        "lineNumber": 22,
+        "lineNumber": 16,
         "author": {
           "gitId": "ZKathrynx"
         },
         "content": "\t\tint priceIndex \u003d -1;"
       },
       {
-        "lineNumber": 23,
+        "lineNumber": 17,
         "author": {
           "gitId": "ZKathrynx"
         },
         "content": "\t\tint stockIndex \u003d -1;"
       },
       {
-        "lineNumber": 24,
+        "lineNumber": 18,
         "author": {
           "gitId": "ZKathrynx"
         },
         "content": "\t\tint expiryDateIndex \u003d -1;"
       },
       {
-        "lineNumber": 25,
+        "lineNumber": 19,
         "author": {
           "gitId": "ZKathrynx"
         },
         "content": "\t\tfor (int i \u003d 1; i \u003c args.length; i ++) {"
       },
       {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\tif (args[i].equals(\"-t\")) {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\t\tfoodTypeIndex \u003d i;"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\t}"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\tif (args[i].equals(\"-p\")) {"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\t\tpriceIndex \u003d i;"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\t}"
+      },
+      {
         "lineNumber": 26,
         "author": {
           "gitId": "ZKathrynx"
         },
-        "content": "\t\t\tif (args[i].equals(\"-n\")) {"
+        "content": "\t\t\tif (args[i].equals(\"-s\")) {"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "ZKathrynx"
         },
-        "content": "\t\t\t\tfoodNameIndex \u003d i;"
+        "content": "\t\t\t\tstockIndex \u003d i;"
       },
       {
         "lineNumber": 28,
@@ -5853,14 +6437,14 @@
         "author": {
           "gitId": "ZKathrynx"
         },
-        "content": "\t\t\tif (args[i].equals(\"-t\")) {"
+        "content": "\t\t\tif (args[i].equals(\"-e\")) {"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "ZKathrynx"
         },
-        "content": "\t\t\t\tfoodTypeIndex \u003d i;"
+        "content": "\t\t\t\texpiryDateIndex \u003d i;"
       },
       {
         "lineNumber": 31,
@@ -5874,486 +6458,150 @@
         "author": {
           "gitId": "ZKathrynx"
         },
-        "content": "\t\t\tif (args[i].equals(\"-p\")) {"
+        "content": "\t\t}"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "ZKathrynx"
         },
-        "content": "\t\t\t\tpriceIndex \u003d i;"
+        "content": "\t\tString foodName \u003d ParserUtil.findFullString(args,foodNameIndex);"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "ZKathrynx"
         },
-        "content": "\t\t\t}"
+        "content": "\t\tif (foodName.equals(\"\")) {"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "ZKathrynx"
         },
-        "content": "\t\t\tif (args[i].equals(\"-s\")) {"
+        "content": "\t\t\tthrow new ParserException(ParserErrorMessage.NOT_ENOUGH_PARAMETER);"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "ZKathrynx"
         },
-        "content": "\t\t\t\tstockIndex \u003d i;"
+        "content": "\t\t}"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "ZKathrynx"
         },
-        "content": "\t\t\t}"
+        "content": "\t\tFood tempFood \u003d new Food(foodName);"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "ZKathrynx"
         },
-        "content": "\t\t\tif (args[i].equals(\"-e\")) {"
+        "content": "\t\tif (foodTypeIndex !\u003d -1) {"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "ZKathrynx"
         },
-        "content": "\t\t\t\texpiryDateIndex \u003d i;"
+        "content": "\t\t\ttempFood.setType(ParserUtil.findFullString(args,foodTypeIndex+1));"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "ZKathrynx"
         },
-        "content": "\t\t\t}"
+        "content": "\t\t}"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "ZKathrynx"
         },
-        "content": "\t\t}"
+        "content": "\t\tif (priceIndex !\u003d -1) {"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "ZKathrynx"
         },
-        "content": "\t\tif (foodNameIndex \u003d\u003d -1) {"
+        "content": "\t\t\ttempFood.setPrice(Integer.parseInt(args[priceIndex+1]));"
       },
       {
         "lineNumber": 43,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "\t\t\tthrow new CubeException(\"Not enough parameters. Please enter food name.\");"
+        "content": "\t\t}"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "ZKathrynx"
         },
-        "content": "\t\t}"
-      },
-      {
-        "lineNumber": 45,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\tFood tempFood \u003d new Food(findFullString(args,foodNameIndex));"
-      },
-      {
-        "lineNumber": 46,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\tif (foodTypeIndex !\u003d -1) {"
-      },
-      {
-        "lineNumber": 47,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\ttempFood.setType(findFullString(args,foodTypeIndex));"
-      },
-      {
-        "lineNumber": 48,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t}"
-      },
-      {
-        "lineNumber": 49,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\tif (priceIndex !\u003d -1) {"
-      },
-      {
-        "lineNumber": 50,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\ttempFood.setPrice(Integer.parseInt(args[priceIndex+1]));"
-      },
-      {
-        "lineNumber": 51,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t}"
-      },
-      {
-        "lineNumber": 52,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
         "content": "\t\tif (stockIndex !\u003d -1) {"
       },
       {
-        "lineNumber": 53,
+        "lineNumber": 45,
         "author": {
           "gitId": "tygq13"
         },
         "content": "\t\t\ttempFood.setStock(Integer.parseInt(args[stockIndex+1]));"
       },
       {
-        "lineNumber": 54,
+        "lineNumber": 46,
         "author": {
           "gitId": "ZKathrynx"
         },
         "content": "\t\t}"
       },
       {
-        "lineNumber": 55,
+        "lineNumber": 47,
         "author": {
           "gitId": "ZKathrynx"
         },
         "content": "\t\tif (expiryDateIndex !\u003d -1) {"
       },
       {
-        "lineNumber": 56,
+        "lineNumber": 48,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "\t\t\ttempFood.setExpiryDate(parseStringToDate(args[expiryDateIndex+1]));"
+        "content": "\t\t\ttempFood.setExpiryDate(ParserUtil.parseStringToDate(args[expiryDateIndex+1]));"
       },
       {
-        "lineNumber": 57,
+        "lineNumber": 49,
         "author": {
           "gitId": "ZKathrynx"
         },
         "content": "\t\t}"
       },
       {
-        "lineNumber": 58,
+        "lineNumber": 50,
         "author": {
           "gitId": "ZKathrynx"
         },
         "content": "\t\treturn new AddCommand(tempFood);"
       },
       {
-        "lineNumber": 59,
+        "lineNumber": 51,
         "author": {
           "gitId": "ZKathrynx"
         },
         "content": "\t}"
       },
       {
-        "lineNumber": 60,
+        "lineNumber": 52,
         "author": {
           "gitId": "ZKathrynx"
         },
         "content": ""
       },
       {
-        "lineNumber": 61,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t/**"
-      },
-      {
-        "lineNumber": 62,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t * Returns a Date object by parsing the date String."
-      },
-      {
-        "lineNumber": 63,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t * Time zone is set as Singapore time by default."
-      },
-      {
-        "lineNumber": 64,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t *"
-      },
-      {
-        "lineNumber": 65,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t * @param dateString the String describing the date."
-      },
-      {
-        "lineNumber": 66,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t * @return the date"
-      },
-      {
-        "lineNumber": 67,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t * @throws CubeException exception occurs when unable to parse."
-      },
-      {
-        "lineNumber": 68,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t */"
-      },
-      {
-        "lineNumber": 69,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\tpublic static Date parseStringToDate(String dateString) throws CubeException {"
-      },
-      {
-        "lineNumber": 70,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\tif (dateString \u003d\u003d null) {"
-      },
-      {
-        "lineNumber": 71,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\treturn null;"
-      },
-      {
-        "lineNumber": 72,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t}"
-      },
-      {
-        "lineNumber": 73,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\tSimpleDateFormat formatter \u003d new SimpleDateFormat(\"dd/MM/yyyy\", Locale.ENGLISH);"
-      },
-      {
-        "lineNumber": 74,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\tformatter.setTimeZone(TimeZone.getTimeZone(\"GMT-8:00\"));"
-      },
-      {
-        "lineNumber": 75,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\ttry {"
-      },
-      {
-        "lineNumber": 76,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\tDate date \u003d formatter.parse(dateString);"
-      },
-      {
-        "lineNumber": 77,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\treturn date;"
-      },
-      {
-        "lineNumber": 78,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t} catch (ParseException e) {"
-      },
-      {
-        "lineNumber": 79,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\tthrow new CubeException(Message.INVALID_DATE_FORMAT);"
-      },
-      {
-        "lineNumber": 80,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t}"
-      },
-      {
-        "lineNumber": 81,
-        "author": {
-          "gitId": "tygq13"
-        },
-        "content": "\t}"
-      },
-      {
-        "lineNumber": 82,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 83,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\tpublic String findFullString (String[] inputs, int index) {"
-      },
-      {
-        "lineNumber": 84,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\tString fullSring \u003d \"\";"
-      },
-      {
-        "lineNumber": 85,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 86,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\tfor (int i \u003d index + 1; i \u003c inputs.length; i ++) {"
-      },
-      {
-        "lineNumber": 87,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\tif(inputs[i].equals(\"-n\")||inputs[i].equals(\"-t\")||inputs[i].equals(\"-p\")"
-      },
-      {
-        "lineNumber": 88,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t||inputs[i].equals(\"-s\")||inputs[i].equals(\"-e\")) {"
-      },
-      {
-        "lineNumber": 89,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\tbreak;"
-      },
-      {
-        "lineNumber": 90,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t}"
-      },
-      {
-        "lineNumber": 91,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 92,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\tif(i !\u003d index+1) {"
-      },
-      {
-        "lineNumber": 93,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t\tfullSring +\u003d \" \";"
-      },
-      {
-        "lineNumber": 94,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\t}"
-      },
-      {
-        "lineNumber": 95,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t\tfullSring +\u003d inputs[i];"
-      },
-      {
-        "lineNumber": 96,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\t}"
-      },
-      {
-        "lineNumber": 97,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 98,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t\treturn fullSring;"
-      },
-      {
-        "lineNumber": 99,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "\t}"
-      },
-      {
-        "lineNumber": 100,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 101,
+        "lineNumber": 53,
         "author": {
           "gitId": "tygq13"
         },
@@ -6361,8 +6609,8 @@
       }
     ],
     "authorContributionMap": {
-      "tygq13": 11,
-      "ZKathrynx": 90
+      "tygq13": 8,
+      "ZKathrynx": 45
     }
   },
   {
@@ -6400,16 +6648,16 @@
       {
         "lineNumber": 5,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": ""
+        "content": "import cube.logic.parser.exception.ParserErrorMessage;"
       },
       {
         "lineNumber": 6,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "public class DeleteCommandParser implements ParserPrototype\u003cDeleteCommand\u003e {"
+        "content": "import cube.logic.parser.exception.ParserException;"
       },
       {
         "lineNumber": 7,
@@ -6423,45 +6671,136 @@
         "author": {
           "gitId": "ZKathrynx"
         },
-        "content": "\tpublic DeleteCommand parse(String[] args) throws CubeException {"
+        "content": "import java.util.Arrays;"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "ZKathrynx"
         },
-        "content": "\t\tif (args.length \u003c 3) {"
+        "content": ""
       },
       {
         "lineNumber": 10,
         "author": {
-          "gitId": "ZKathrynx"
+          "gitId": "tygq13"
         },
-        "content": "\t\t\tthrow new CubeException(\"Not enough parameters. Please enter index you want to delete.\");"
+        "content": "public class DeleteCommandParser implements ParserPrototype\u003cDeleteCommand\u003e {"
       },
       {
         "lineNumber": 11,
         "author": {
-          "gitId": "ZKathrynx"
+          "gitId": "tygq13"
         },
-        "content": "\t\t}"
+        "content": ""
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "ZKathrynx"
         },
-        "content": "\t\treturn new DeleteCommand(Integer.parseInt(args[2]));"
+        "content": "\tpublic DeleteCommand parse(String[] args) throws ParserException {"
       },
       {
         "lineNumber": 13,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\tif (args.length \u003c 3) {"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\tthrow new ParserException(ParserErrorMessage.NOT_ENOUGH_PARAMETER);"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t}"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\tswitch (args[1]) {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\tcase \"-i\":"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\t\treturn new DeleteCommand(Integer.parseInt(args[2]),\"INDEX\");"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\tcase \"-n\":"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\t\treturn new DeleteCommand(String.join(\" \", Arrays.copyOfRange(args,2,args.length)),\"NAME\");"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\tcase \"-t\":"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\t\treturn new DeleteCommand(String.join(\" \", Arrays.copyOfRange(args,2,args.length)),\"TYPE\");"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t}"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\treturn null;"
+      },
+      {
+        "lineNumber": 26,
         "author": {
           "gitId": "tygq13"
         },
         "content": "\t}"
       },
       {
-        "lineNumber": 14,
+        "lineNumber": 27,
         "author": {
           "gitId": "tygq13"
         },
@@ -6470,7 +6809,7 @@
     ],
     "authorContributionMap": {
       "tygq13": 8,
-      "ZKathrynx": 6
+      "ZKathrynx": 19
     }
   },
   {
@@ -6501,47 +6840,110 @@
       {
         "lineNumber": 4,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": ""
+        "content": "import cube.logic.parser.exception.ParserErrorMessage;"
       },
       {
         "lineNumber": 5,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "public class ListCommandParser implements ParserPrototype\u003cListCommand\u003e {"
+        "content": "import cube.logic.parser.exception.ParserException;"
       },
       {
         "lineNumber": 6,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": ""
+        "content": "import cube.model.food.FoodList.SortType;"
       },
       {
         "lineNumber": 7,
         "author": {
-          "gitId": "ZKathrynx"
+          "gitId": "tygq13"
         },
-        "content": "\tpublic ListCommand parse(String[] args) {"
+        "content": ""
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\treturn new ListCommand();"
+        "content": "public class ListCommandParser implements ParserPrototype\u003cListCommand\u003e {"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t}"
+        "content": ""
       },
       {
         "lineNumber": 10,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\tpublic ListCommand parse(String[] args) throws ParserException {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\tif (args.length \u003d\u003d 1) {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\t\treturn new ListCommand();"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\t}"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\tif (args.length \u003d\u003d 2) {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\tthrow new ParserException(ParserErrorMessage.NOT_ENOUGH_PARAMETER);"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t}"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\treturn new ListCommand(SortType.valueOf(args[2]));"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t}"
+      },
+      {
+        "lineNumber": 19,
         "author": {
           "gitId": "tygq13"
         },
@@ -6550,7 +6952,7 @@
     ],
     "authorContributionMap": {
       "tygq13": 9,
-      "ZKathrynx": 1
+      "ZKathrynx": 10
     }
   },
   {
@@ -6583,430 +6985,381 @@
         "author": {
           "gitId": "ZKathrynx"
         },
-        "content": "import cube.exception.CubeException;"
+        "content": "import cube.logic.parser.exception.ParserErrorMessage;"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "ZKathrynx"
         },
-        "content": "import cube.model.food.Food;"
+        "content": "import cube.logic.parser.exception.ParserException;"
       },
       {
         "lineNumber": 6,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "import cube.ui.Message;"
-      },
-      {
-        "lineNumber": 7,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "import java.text.ParseException;"
-      },
-      {
-        "lineNumber": 9,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "import java.text.SimpleDateFormat;"
-      },
-      {
-        "lineNumber": 10,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "import java.util.Date;"
-      },
-      {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "import java.util.Locale;"
-      },
-      {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "ZKathrynx"
-        },
-        "content": "import java.util.TimeZone;"
-      },
-      {
-        "lineNumber": 13,
         "author": {
           "gitId": "tygq13"
         },
         "content": ""
       },
       {
-        "lineNumber": 14,
+        "lineNumber": 7,
         "author": {
           "gitId": "tygq13"
         },
         "content": "// design pattern copied from address book"
       },
       {
-        "lineNumber": 15,
+        "lineNumber": 8,
         "author": {
           "gitId": "tygq13"
         },
         "content": "// reference: https://github.com/nusCS2113-AY1920S1/addressbook-level3/tree/master/src/main/java/seedu/address/logic/parser"
       },
       {
-        "lineNumber": 16,
+        "lineNumber": 9,
         "author": {
           "gitId": "tygq13"
         },
         "content": ""
       },
       {
-        "lineNumber": 17,
+        "lineNumber": 10,
         "author": {
           "gitId": "ZKathrynx"
         },
         "content": "/**"
       },
       {
-        "lineNumber": 18,
+        "lineNumber": 11,
         "author": {
           "gitId": "ZKathrynx"
         },
         "content": " * Parse user command."
       },
       {
-        "lineNumber": 19,
+        "lineNumber": 12,
         "author": {
           "gitId": "ZKathrynx"
         },
         "content": " */"
       },
       {
-        "lineNumber": 20,
+        "lineNumber": 13,
         "author": {
           "gitId": "tygq13"
         },
         "content": "public class Parser {"
       },
       {
-        "lineNumber": 21,
+        "lineNumber": 14,
         "author": {
           "gitId": "tygq13"
         },
         "content": ""
       },
       {
-        "lineNumber": 22,
+        "lineNumber": 15,
         "author": {
           "gitId": "ZKathrynx"
         },
         "content": "\t/**"
       },
       {
-        "lineNumber": 23,
+        "lineNumber": 16,
         "author": {
           "gitId": "ZKathrynx"
         },
         "content": "\t * Parse user command."
       },
       {
-        "lineNumber": 24,
+        "lineNumber": 17,
         "author": {
           "gitId": "ZKathrynx"
         },
         "content": "\t *"
       },
       {
-        "lineNumber": 25,
+        "lineNumber": 18,
         "author": {
           "gitId": "ZKathrynx"
         },
         "content": "\t * Format:"
       },
       {
-        "lineNumber": 26,
+        "lineNumber": 19,
         "author": {
           "gitId": "ZKathrynx"
         },
-        "content": "\t * add -n foodName -t foodType -p price -s stock -e expiryDate"
+        "content": "\t * add foodName -t foodType -p price -s stock -e expiryDate"
       },
       {
-        "lineNumber": 27,
+        "lineNumber": 20,
         "author": {
           "gitId": "ZKathrynx"
         },
         "content": "\t * list --sort expiry/name/stock"
       },
       {
-        "lineNumber": 28,
+        "lineNumber": 21,
         "author": {
           "gitId": "ZKathrynx"
         },
-        "content": "\t * delete -i index"
+        "content": "\t * delete -i index / -n foodName / -t foodType"
       },
       {
-        "lineNumber": 29,
+        "lineNumber": 22,
         "author": {
           "gitId": "ZKathrynx"
         },
         "content": "\t * sold -n foodName -q quantity"
       },
       {
-        "lineNumber": 30,
+        "lineNumber": 23,
         "author": {
           "gitId": "ZKathrynx"
         },
         "content": "\t * reminder"
       },
       {
-        "lineNumber": 31,
+        "lineNumber": 24,
         "author": {
           "gitId": "ZKathrynx"
         },
         "content": "\t * help"
       },
       {
-        "lineNumber": 32,
+        "lineNumber": 25,
         "author": {
           "gitId": "ZKathrynx"
         },
         "content": "\t * bye / exit / quit"
       },
       {
-        "lineNumber": 33,
+        "lineNumber": 26,
         "author": {
           "gitId": "ZKathrynx"
         },
         "content": "\t *"
       },
       {
-        "lineNumber": 34,
+        "lineNumber": 27,
         "author": {
           "gitId": "ZKathrynx"
         },
         "content": "\t * Assumption: no repetitive parameters given."
       },
       {
-        "lineNumber": 35,
+        "lineNumber": 28,
         "author": {
           "gitId": "ZKathrynx"
         },
         "content": "\t *"
       },
       {
-        "lineNumber": 36,
+        "lineNumber": 29,
         "author": {
           "gitId": "ZKathrynx"
         },
         "content": "\t * @param fullCommand the command that user inputs."
       },
       {
-        "lineNumber": 37,
+        "lineNumber": 30,
         "author": {
           "gitId": "ZKathrynx"
         },
         "content": "\t * @return corresponding command."
       },
       {
-        "lineNumber": 38,
+        "lineNumber": 31,
         "author": {
           "gitId": "ZKathrynx"
         },
         "content": "\t */"
       },
       {
-        "lineNumber": 39,
+        "lineNumber": 32,
         "author": {
           "gitId": "ZKathrynx"
         },
-        "content": "\tpublic static Command parse (String fullCommand) throws CubeException{"
+        "content": "\tpublic static Command parse (String fullCommand) throws ParserException {"
       },
       {
-        "lineNumber": 40,
+        "lineNumber": 33,
         "author": {
           "gitId": "ZKathrynx"
         },
         "content": "\t\tString[] inputs \u003d fullCommand.split(\" \");"
       },
       {
-        "lineNumber": 41,
+        "lineNumber": 34,
         "author": {
           "gitId": "ZKathrynx"
         },
         "content": "\t\tString command \u003d inputs[0];"
       },
       {
-        "lineNumber": 42,
+        "lineNumber": 35,
         "author": {
           "gitId": "ZKathrynx"
         },
         "content": "\t\tcommand \u003d command.trim().toLowerCase();"
       },
       {
-        "lineNumber": 43,
+        "lineNumber": 36,
         "author": {
           "gitId": "ZKathrynx"
         },
         "content": "\t\tswitch (command) {"
       },
       {
-        "lineNumber": 44,
+        "lineNumber": 37,
         "author": {
           "gitId": "tygq13"
         },
         "content": "\t\t\tcase \"add\":"
       },
       {
-        "lineNumber": 45,
+        "lineNumber": 38,
         "author": {
           "gitId": "ZKathrynx"
         },
         "content": "\t\t\t\treturn new AddCommandParser().parse(inputs);"
       },
       {
-        "lineNumber": 46,
+        "lineNumber": 39,
         "author": {
           "gitId": "tygq13"
         },
         "content": "\t\t\tcase \"list\":"
       },
       {
-        "lineNumber": 47,
+        "lineNumber": 40,
         "author": {
           "gitId": "ZKathrynx"
         },
         "content": "\t\t\t\treturn new ListCommandParser().parse(inputs);"
       },
       {
-        "lineNumber": 48,
+        "lineNumber": 41,
         "author": {
           "gitId": "tygq13"
         },
         "content": "\t\t\tcase \"delete\":"
       },
       {
-        "lineNumber": 49,
+        "lineNumber": 42,
         "author": {
           "gitId": "ZKathrynx"
         },
         "content": "\t\t\t\treturn new DeleteCommandParser().parse(inputs);"
       },
       {
-        "lineNumber": 50,
+        "lineNumber": 43,
         "author": {
           "gitId": "tygq13"
         },
         "content": "\t\t\tcase \"sold\":"
       },
       {
-        "lineNumber": 51,
+        "lineNumber": 44,
         "author": {
           "gitId": "tygq13"
         },
         "content": "\t\t\t\treturn new SoldCommandParser().parse(inputs);"
       },
       {
-        "lineNumber": 52,
+        "lineNumber": 45,
         "author": {
           "gitId": "ZKathrynx"
         },
         "content": "\t\t\tcase \"reminder\":"
       },
       {
-        "lineNumber": 53,
+        "lineNumber": 46,
         "author": {
           "gitId": "ZKathrynx"
         },
         "content": "\t\t\t\treturn new ReminderCommand();"
       },
       {
-        "lineNumber": 54,
+        "lineNumber": 47,
         "author": {
           "gitId": "tygq13"
         },
         "content": "\t\t\tcase \"help\":"
       },
       {
-        "lineNumber": 55,
+        "lineNumber": 48,
         "author": {
           "gitId": "tygq13"
         },
         "content": "\t\t\t\treturn new HelpCommand();"
       },
       {
-        "lineNumber": 56,
+        "lineNumber": 49,
         "author": {
           "gitId": "tygq13"
         },
         "content": "\t\t\tcase \"bye\":"
       },
       {
-        "lineNumber": 57,
+        "lineNumber": 50,
         "author": {
           "gitId": "tygq13"
         },
         "content": "\t\t\tcase \"exit\":"
       },
       {
-        "lineNumber": 58,
+        "lineNumber": 51,
         "author": {
           "gitId": "tygq13"
         },
         "content": "\t\t\tcase \"quit\":"
       },
       {
-        "lineNumber": 59,
+        "lineNumber": 52,
         "author": {
           "gitId": "tygq13"
         },
         "content": "\t\t\t\treturn new ExitCommand();"
       },
       {
-        "lineNumber": 60,
+        "lineNumber": 53,
         "author": {
           "gitId": "tygq13"
         },
         "content": "\t\t\tdefault:"
       },
       {
-        "lineNumber": 61,
+        "lineNumber": 54,
         "author": {
           "gitId": "ZKathrynx"
         },
-        "content": "\t\t\t\tthrow new CubeException(Message.INVALID_COMMAND);"
+        "content": "\t\t\t\tthrow new ParserException(ParserErrorMessage.INVALID_COMMAND);"
       },
       {
-        "lineNumber": 62,
+        "lineNumber": 55,
         "author": {
           "gitId": "ZKathrynx"
         },
         "content": "\t\t}"
       },
       {
-        "lineNumber": 63,
+        "lineNumber": 56,
         "author": {
           "gitId": "ZKathrynx"
         },
         "content": "\t}"
       },
       {
-        "lineNumber": 64,
+        "lineNumber": 57,
         "author": {
           "gitId": "tygq13"
         },
         "content": "}"
       },
       {
-        "lineNumber": 65,
+        "lineNumber": 58,
         "author": {
           "gitId": "tygq13"
         },
@@ -7015,7 +7368,7 @@
     ],
     "authorContributionMap": {
       "tygq13": 22,
-      "ZKathrynx": 43
+      "ZKathrynx": 36
     }
   },
   {
@@ -7053,82 +7406,89 @@
       {
         "lineNumber": 5,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": ""
+        "content": "import cube.logic.parser.exception.ParserException;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "/**"
+        "content": ""
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "tygq13"
         },
-        "content": " * Represents a Parser that is able to parse user input into a {@code Command} of type {@code T}."
+        "content": "/**"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "tygq13"
         },
-        "content": " */"
+        "content": " * Represents a Parser that is able to parse user input into a {@code Command} of type {@code T}."
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "public interface ParserPrototype\u003cT extends Command\u003e {"
+        "content": " */"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "tygq13"
         },
-        "content": ""
+        "content": "public interface ParserPrototype\u003cT extends Command\u003e {"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "     * Parses {@code userInput} into a command and returns it."
+        "content": "    /**"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "     * @throws ParseException if {@code userInput} does not conform the expected format"
+        "content": "     * Parses {@code userInput} into a command and returns it."
       },
       {
         "lineNumber": 14,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "     * @throws ParserException if {@code userInput} does not conform the expected format"
+      },
+      {
+        "lineNumber": 15,
         "author": {
           "gitId": "tygq13"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 15,
+        "lineNumber": 16,
         "author": {
           "gitId": "ZKathrynx"
         },
-        "content": "    T parse(String[] userInput) throws CubeException;"
+        "content": "    T parse(String[] userInput) throws ParserException;"
       },
       {
-        "lineNumber": 16,
+        "lineNumber": 17,
         "author": {
           "gitId": "tygq13"
         },
@@ -7136,8 +7496,8 @@
       }
     ],
     "authorContributionMap": {
-      "tygq13": 14,
-      "ZKathrynx": 2
+      "tygq13": 13,
+      "ZKathrynx": 4
     }
   },
   {
@@ -7161,145 +7521,495 @@
       {
         "lineNumber": 3,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "import java.util.Locale;"
+        "content": "import cube.exception.CubeException;"
       },
       {
         "lineNumber": 4,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "import java.util.Date;"
+        "content": "import cube.logic.parser.exception.ParserErrorMessage;"
       },
       {
         "lineNumber": 5,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "import java.util.TimeZone;"
+        "content": "import cube.logic.parser.exception.ParserException;"
       },
       {
         "lineNumber": 6,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "import java.text.SimpleDateFormat;"
+        "content": ""
       },
       {
         "lineNumber": 7,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": ""
+        "content": "import java.text.ParseException;"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "public class ParserUtil {"
+        "content": "import java.util.Locale;"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "tygq13"
         },
-        "content": ""
+        "content": "import java.util.Date;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t/**"
+        "content": "import java.util.TimeZone;"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t * Returns the string of date by parsing a date."
+        "content": "import java.text.SimpleDateFormat;"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t * @param date the date to be parsed."
+        "content": ""
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t * @return the string of date."
+        "content": "public class ParserUtil {"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t */"
+        "content": ""
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\tpublic static String parseDateToString(Date date) {"
+        "content": "\t/**"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\tif (date \u003d\u003d null) {"
+        "content": "\t * Returns the string of date by parsing a date."
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\t\treturn \"\";"
+        "content": "\t * @param date the date to be parsed."
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\t}"
+        "content": "\t * @return the string of date."
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\tSimpleDateFormat formatter \u003d new SimpleDateFormat(\"dd/MM/yyyy\", Locale.ENGLISH);"
+        "content": "\t */"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\tformatter.setTimeZone(TimeZone.getTimeZone(\"GMT-8:00\"));"
+        "content": "\tpublic static String parseDateToString(Date date) {"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\treturn formatter.format(date);"
+        "content": "\t\tif (date \u003d\u003d null) {"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t}"
+        "content": "\t\t\treturn \"\";"
       },
       {
         "lineNumber": 23,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\t}"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\tSimpleDateFormat formatter \u003d new SimpleDateFormat(\"dd/MM/yyyy\", Locale.ENGLISH);"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\tformatter.setTimeZone(TimeZone.getTimeZone(\"GMT-8:00\"));"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\treturn formatter.format(date);"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t}"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t/**"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t * Returns a Date object by parsing the date String."
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t * Time zone is set as Singapore time by default."
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t *"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t * @param dateString the String describing the date."
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t * @return the date"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t * @throws CubeException exception occurs when unable to parse."
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t */"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\tpublic static Date parseStringToDate(String dateString) throws ParserException {"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\tif (dateString \u003d\u003d null) {"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\treturn null;"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t}"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\tSimpleDateFormat formatter \u003d new SimpleDateFormat(\"dd/MM/yyyy\", Locale.ENGLISH);"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\tformatter.setTimeZone(TimeZone.getTimeZone(\"GMT-8:00\"));"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\ttry {"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\tDate date \u003d formatter.parse(dateString);"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\treturn date;"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t} catch (ParseException e) {"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\tthrow new ParserException(ParserErrorMessage.INVALID_DATE_FORMAT);"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t}"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t}"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t/**"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t * Find the full name/type until next parameter/end of input."
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t * @param inputs tokens containing the full string to be found."
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t * @param index starting index."
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t * @return the full name/type until next parameter/end of input."
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t */"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\tpublic static String findFullString (String[] inputs, int index) {"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\tString fullString \u003d \"\";"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\tfor (int i \u003d index; i \u003c inputs.length; i ++) {"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\tif(inputs[i].matches(\"-(.*)\")) {"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\t\tbreak;"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\t}"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\tif(i !\u003d index) {"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\t\tfullString +\u003d \" \";"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\t}"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\tfullString +\u003d inputs[i];"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t}"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\treturn fullString;"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t}"
+      },
+      {
+        "lineNumber": 73,
         "author": {
           "gitId": "tygq13"
         },
@@ -7307,7 +8017,8 @@
       }
     ],
     "authorContributionMap": {
-      "tygq13": 23
+      "tygq13": 23,
+      "ZKathrynx": 50
     }
   },
   {
@@ -7345,16 +8056,16 @@
       {
         "lineNumber": 5,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": ""
+        "content": "import cube.logic.parser.exception.ParserErrorMessage;"
       },
       {
         "lineNumber": 6,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "public class SoldCommandParser implements ParserPrototype\u003cSoldCommand\u003e {"
+        "content": "import cube.logic.parser.exception.ParserException;"
       },
       {
         "lineNumber": 7,
@@ -7366,117 +8077,131 @@
       {
         "lineNumber": 8,
         "author": {
-          "gitId": "ZKathrynx"
+          "gitId": "tygq13"
         },
-        "content": "\tpublic SoldCommand parse(String[] args) throws CubeException {"
+        "content": "public class SoldCommandParser implements ParserPrototype\u003cSoldCommand\u003e {"
       },
       {
         "lineNumber": 9,
         "author": {
-          "gitId": "ZKathrynx"
+          "gitId": "tygq13"
         },
-        "content": "\t\tint foodNameIndex \u003d -1;"
+        "content": ""
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "ZKathrynx"
         },
-        "content": "\t\tint quantityIndex \u003d -1;"
+        "content": "\tpublic SoldCommand parse(String[] args) throws ParserException {"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "ZKathrynx"
         },
-        "content": "\t\tfor (int i \u003d 1; i \u003c args.length; i ++) {"
+        "content": "\t\tint foodNameIndex \u003d -1;"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "ZKathrynx"
         },
-        "content": "\t\t\tif (args[i].equals(\"-n\")) {"
+        "content": "\t\tint quantityIndex \u003d -1;"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "ZKathrynx"
         },
-        "content": "\t\t\t\tfoodNameIndex \u003d i;"
+        "content": "\t\tfor (int i \u003d 1; i \u003c args.length; i ++) {"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "ZKathrynx"
         },
-        "content": "\t\t\t}"
+        "content": "\t\t\tif (args[i].equals(\"-n\")) {"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "ZKathrynx"
         },
-        "content": "\t\t\tif (args[i].equals(\"-q\")) {"
+        "content": "\t\t\t\tfoodNameIndex \u003d i;"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "ZKathrynx"
         },
-        "content": "\t\t\t\tquantityIndex \u003d i;"
+        "content": "\t\t\t}"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "ZKathrynx"
         },
-        "content": "\t\t\t}"
+        "content": "\t\t\tif (args[i].equals(\"-q\")) {"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "ZKathrynx"
         },
-        "content": "\t\t}"
+        "content": "\t\t\t\tquantityIndex \u003d i;"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "ZKathrynx"
         },
-        "content": "\t\tif(foodNameIndex \u003d\u003d -1 || quantityIndex \u003d\u003d -1) {"
+        "content": "\t\t\t}"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "ZKathrynx"
         },
-        "content": "\t\t\tthrow new CubeException(\"Not enough parameters. Please enter both food name and quantity sold.\");"
+        "content": "\t\t}"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "ZKathrynx"
         },
-        "content": "\t\t}"
+        "content": "\t\tif(foodNameIndex \u003d\u003d -1 || quantityIndex \u003d\u003d -1) {"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "ZKathrynx"
         },
-        "content": "\t\treturn new SoldCommand(args[foodNameIndex+1],Integer.parseInt(args[quantityIndex+1]));"
+        "content": "\t\t\tthrow new ParserException(ParserErrorMessage.NOT_ENOUGH_PARAMETER);"
       },
       {
         "lineNumber": 23,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t}"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\treturn new SoldCommand(args[foodNameIndex+1],Integer.parseInt(args[quantityIndex+1]));"
+      },
+      {
+        "lineNumber": 25,
         "author": {
           "gitId": "tygq13"
         },
         "content": "\t}"
       },
       {
-        "lineNumber": 24,
+        "lineNumber": 26,
         "author": {
           "gitId": "tygq13"
         },
@@ -7485,7 +8210,249 @@
     ],
     "authorContributionMap": {
       "tygq13": 8,
-      "ZKathrynx": 16
+      "ZKathrynx": 18
+    }
+  },
+  {
+    "path": "src/main/java/cube/logic/parser/exception/ParserErrorMessage.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "package cube.logic.parser.exception;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "public class ParserErrorMessage {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "    public static final String NOT_ENOUGH_PARAMETER"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "            \u003d \"OOPS!!! The parameter you input is not enough\";"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "    public static final String INVALID_DATE_FORMAT"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "            \u003d \"OOPS!!! The date format is invalid. Please specify date in \u0027dd/mm/yy\u0027\";"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "    public static final String INVALID_COMMAND"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "            \u003d \"OOPS!!! The command is invalid. Enter \u0027help\u0027 to view the list of command\";"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "ZKathrynx": 10
+    }
+  },
+  {
+    "path": "src/main/java/cube/logic/parser/exception/ParserException.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "package cube.logic.parser.exception;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "import cube.exception.CubeException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "public class ParserException extends CubeException {"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "     * Default constructor."
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "    public ParserException() {"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "        super();"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "     * Constructor with one argument."
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "     * Constructs the exception with message."
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "     * @param message the message to be printed when exception happens."
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "    public ParserException(String message) {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "        super(message);"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "ZKathrynx": 22
     }
   },
   {
@@ -9025,9 +9992,9 @@
       {
         "lineNumber": 45,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "\tpublic void remove(int index) {"
+        "content": "\tpublic void removeIndex(int index) {"
       },
       {
         "lineNumber": 46,
@@ -9053,250 +10020,453 @@
       {
         "lineNumber": 49,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "\tpublic boolean exists(String foodName) {"
+        "content": "\tpublic void removeName(String foodName) {"
       },
       {
         "lineNumber": 50,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "\t\tfor(Food food : foodArrayList) {"
+        "content": "\t\tfor(int i \u003d 0; i \u003c foodArrayList.size(); i ++) {"
       },
       {
         "lineNumber": 51,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "\t\t\tif (food.getName().equals(foodName)) {"
+        "content": "\t\t\tif (foodArrayList.get(i).getName().equals(foodName)) {"
       },
       {
         "lineNumber": 52,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "\t\t\t\treturn true;"
+        "content": "\t\t\t\tfoodArrayList.remove(i);"
       },
       {
         "lineNumber": 53,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "\t\t\t}"
+        "content": "\t\t\t\tbreak;"
       },
       {
         "lineNumber": 54,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "\t\t}"
+        "content": "\t\t\t}"
       },
       {
         "lineNumber": 55,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "\t\treturn false;"
+        "content": "\t\t}"
       },
       {
         "lineNumber": 56,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
         "content": "\t}"
       },
       {
         "lineNumber": 57,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
         "content": ""
       },
       {
         "lineNumber": 58,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "\tpublic int size() {"
+        "content": "\tpublic int removeType(String foodType) {"
       },
       {
         "lineNumber": 59,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "\t\treturn foodArrayList.size();"
+        "content": "\t\tint count \u003d 0;"
       },
       {
         "lineNumber": 60,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "\t}"
+        "content": "\t\tfor(int i \u003d 0; i \u003c foodArrayList.size(); i ++) {"
       },
       {
         "lineNumber": 61,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": ""
+        "content": "\t\t\tif (foodArrayList.get(i).getType().equals(foodType)) {"
       },
       {
         "lineNumber": 62,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "\tpublic void sort(SortType sortType) {"
+        "content": "\t\t\t\tfoodArrayList.remove(i);"
       },
       {
         "lineNumber": 63,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "\t\tswitch(sortType) {"
+        "content": "\t\t\t\tcount ++;"
       },
       {
         "lineNumber": 64,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "\t\t\tcase EXPIRY:"
+        "content": "\t\t\t}"
       },
       {
         "lineNumber": 65,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "\t\t\t\tCollections.sort(foodArrayList, new SortByExpiry());"
+        "content": "\t\t}"
       },
       {
         "lineNumber": 66,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "\t\t\t\tbreak;"
+        "content": "\t\treturn count;"
       },
       {
         "lineNumber": 67,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "\t\t\tcase NAME:"
+        "content": "\t}"
       },
       {
         "lineNumber": 68,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "\t\t\t\tCollections.sort(foodArrayList, new SortByName());"
+        "content": ""
       },
       {
         "lineNumber": 69,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "\t\t\t\tbreak;"
+        "content": "\tpublic boolean existsName(String foodName) {"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\t\tcase STOCK:"
+        "content": "\t\tfor(Food food : foodArrayList) {"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\t\t\tCollections.sort(foodArrayList, new SortByStock());"
+        "content": "\t\t\tif (food.getName().equals(foodName)) {"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\t}"
+        "content": "\t\t\t\treturn true;"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t}"
+        "content": "\t\t\t}"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "tygq13"
         },
-        "content": ""
+        "content": "\t\t}"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t@Override"
+        "content": "\t\treturn false;"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\tpublic String toString() {"
+        "content": "\t}"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\tString result \u003d \"\";"
+        "content": ""
       },
       {
         "lineNumber": 78,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "\t\tfor(int i \u003d 0; i \u003c foodArrayList.size(); i++) {"
+        "content": "\tpublic boolean existsType(String foodType) {"
       },
       {
         "lineNumber": 79,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "\t\t\tresult +\u003d String.format(\"%1$d. %2$s.\\n\", i + 1, foodArrayList.get(i));"
+        "content": "\t\tfor(Food food : foodArrayList) {"
       },
       {
         "lineNumber": 80,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "\t\t}"
+        "content": "\t\t\tif (food.getType().equals(foodType)) {"
       },
       {
         "lineNumber": 81,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "ZKathrynx"
         },
-        "content": "\t\treturn result;"
+        "content": "\t\t\t\treturn true;"
       },
       {
         "lineNumber": 82,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\t}"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t}"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\treturn false;"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t}"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\tpublic int size() {"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\treturn foodArrayList.size();"
+      },
+      {
+        "lineNumber": 89,
         "author": {
           "gitId": "tygq13"
         },
         "content": "\t}"
       },
       {
-        "lineNumber": 83,
+        "lineNumber": 90,
         "author": {
           "gitId": "tygq13"
         },
         "content": ""
       },
       {
-        "lineNumber": 84,
+        "lineNumber": 91,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\tpublic void sort(SortType sortType) {"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\tswitch(sortType) {"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\t\tcase EXPIRY:"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\t\t\tCollections.sort(foodArrayList, new SortByExpiry());"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\t\t\tbreak;"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\t\tcase NAME:"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\t\t\tCollections.sort(foodArrayList, new SortByName());"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\t\t\tbreak;"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\t\tcase STOCK:"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\t\t\tCollections.sort(foodArrayList, new SortByStock());"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\t}"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t}"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t@Override"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\tpublic String toString() {"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\tString result \u003d \"\";"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\tfor(int i \u003d 0; i \u003c foodArrayList.size(); i++) {"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\t\tresult +\u003d String.format(\"%1$d. %2$s.\\n\", i + 1, foodArrayList.get(i));"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\t}"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\treturn result;"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t}"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 113,
         "author": {
           "gitId": "tygq13"
         },
@@ -9305,7 +10475,8 @@
     ],
     "authorContributionMap": {
       "kuromono": 10,
-      "tygq13": 74
+      "tygq13": 72,
+      "ZKathrynx": 31
     }
   },
   {

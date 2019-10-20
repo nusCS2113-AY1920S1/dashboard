@@ -808,16 +808,16 @@
       {
         "lineNumber": 60,
         "author": {
-          "gitId": "limryan"
+          "gitId": "lee761"
         },
-        "content": "     * @param commandString input command"
+        "content": "     * @param commandString input command."
       },
       {
         "lineNumber": 61,
         "author": {
-          "gitId": "limryan"
+          "gitId": "lee761"
         },
-        "content": "     * @return true if matches pattern, false otherwise"
+        "content": "     * @return true if matches pattern, false otherwise."
       },
       {
         "lineNumber": 62,
@@ -1032,9 +1032,9 @@
       {
         "lineNumber": 92,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "lee761"
         },
-        "content": "     * @param newInputType the input type that is going to be changed to"
+        "content": "     * @param newInputType the input type that is going to be changed to."
       },
       {
         "lineNumber": 93,
@@ -1095,16 +1095,16 @@
       {
         "lineNumber": 101,
         "author": {
-          "gitId": "limryan"
+          "gitId": "lee761"
         },
-        "content": "     * @param input command string"
+        "content": "     * @param input command string."
       },
       {
         "lineNumber": 102,
         "author": {
-          "gitId": "limryan"
+          "gitId": "lee761"
         },
-        "content": "     * @return list of all options specified in the command"
+        "content": "     * @return list of all options specified in the command."
       },
       {
         "lineNumber": 103,
@@ -1774,9 +1774,9 @@
       {
         "lineNumber": 198,
         "author": {
-          "gitId": "ziyun99"
+          "gitId": "lee761"
         },
-        "content": "     *                            input"
+        "content": "     *                            input."
       },
       {
         "lineNumber": 199,
@@ -3783,79 +3783,79 @@
       {
         "lineNumber": 485,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "lee761"
         },
-        "content": "            time \u003d Task.parseDate(timeString);"
+        "content": "            String day \u003d null;"
       },
       {
         "lineNumber": 486,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "lee761"
         },
-        "content": "        } catch (UserInputException e) {"
+        "content": "            String timing \u003d null;"
       },
       {
         "lineNumber": 487,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "lee761"
         },
-        "content": "            time \u003d null; //todo can tolerate a null time, but not event and deadline"
+        "content": "            if (!timeString.contains(\"/\")) {"
       },
       {
         "lineNumber": 488,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "lee761"
         },
-        "content": "        }"
+        "content": "                timeString \u003d timeString.substring(0, 1).toUpperCase() + timeString.substring(1).toLowerCase();"
       },
       {
         "lineNumber": 489,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "lee761"
         },
-        "content": "        ArrayList\u003cString\u003e tags \u003d extractTags(optionList);"
+        "content": "                if (timeString.contains(\" \")) {"
       },
       {
         "lineNumber": 490,
         "author": {
           "gitId": "lee761"
         },
-        "content": "        String priority;"
+        "content": "                    String[] tokens \u003d timeString.split(\"\\\\s+\", 3);"
       },
       {
         "lineNumber": 491,
         "author": {
           "gitId": "lee761"
         },
-        "content": "        try {"
+        "content": "                    day \u003d tokens[0];"
       },
       {
         "lineNumber": 492,
         "author": {
           "gitId": "lee761"
         },
-        "content": "            priority \u003d extractPriority(optionList);"
+        "content": "                    timing \u003d tokens[1];"
       },
       {
         "lineNumber": 493,
         "author": {
           "gitId": "lee761"
         },
-        "content": "        } catch (UserInputException e) {"
+        "content": "                } else {"
       },
       {
         "lineNumber": 494,
         "author": {
-          "gitId": "limryan"
+          "gitId": "lee761"
         },
-        "content": "            if (ui !\u003d null) {"
+        "content": "                    day \u003d timeString;"
       },
       {
         "lineNumber": 495,
         "author": {
           "gitId": "lee761"
         },
-        "content": "                ui.showError(e.getMessage());"
+        "content": "                }"
       },
       {
         "lineNumber": 496,
@@ -3869,245 +3869,245 @@
         "author": {
           "gitId": "lee761"
         },
-        "content": "            return new InvalidCommand();"
+        "content": "            if (Task.isCorrectNaturalDate(day)) {"
       },
       {
         "lineNumber": 498,
         "author": {
           "gitId": "lee761"
         },
-        "content": "        }"
+        "content": "                time \u003d Task.convertNaturalDate(day, timing);"
       },
       {
         "lineNumber": 499,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "lee761"
         },
-        "content": "        if (input.startsWith(\"todo\")) {"
+        "content": "            } else {"
       },
       {
         "lineNumber": 500,
         "author": {
-          "gitId": "lee761"
+          "gitId": "JokerYan"
         },
-        "content": "            return parseAddToDoCommand(taskList, input, doAfter, tags, priority);"
+        "content": "                time \u003d Task.parseDate(timeString);"
       },
       {
         "lineNumber": 501,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "lee761"
         },
-        "content": "        } else if (input.startsWith(\"deadline\")) {"
+        "content": "            }"
       },
       {
         "lineNumber": 502,
         "author": {
-          "gitId": "lee761"
+          "gitId": "JokerYan"
         },
-        "content": "            return parseAddDeadlineCommand(taskList, input, time, doAfter, tags, priority);"
+        "content": "        } catch (UserInputException e) {"
       },
       {
         "lineNumber": 503,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "        } else if (input.startsWith(\"event\")) {"
+        "content": "            time \u003d null; //todo can tolerate a null time, but not event and deadline"
       },
       {
         "lineNumber": 504,
         "author": {
-          "gitId": "lee761"
+          "gitId": "JokerYan"
         },
-        "content": "            return parseEventCommand(taskList, input, time, doAfter, tags, priority);"
+        "content": "        }"
       },
       {
         "lineNumber": 505,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "        } else {"
+        "content": "        ArrayList\u003cString\u003e tags \u003d extractTags(optionList);"
       },
       {
         "lineNumber": 506,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "lee761"
         },
-        "content": "            return new InvalidCommand();"
+        "content": "        String priority;"
       },
       {
         "lineNumber": 507,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "lee761"
         },
-        "content": "        }"
+        "content": "        try {"
       },
       {
         "lineNumber": 508,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "lee761"
         },
-        "content": "    }"
+        "content": "            priority \u003d extractPriority(optionList);"
       },
       {
         "lineNumber": 509,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "lee761"
         },
-        "content": ""
+        "content": "        } catch (UserInputException e) {"
       },
       {
         "lineNumber": 510,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "limryan"
         },
-        "content": "    private static Command parseAddToDoCommand(TaskList taskList, String input, String doAfter,"
+        "content": "            if (ui !\u003d null) {"
       },
       {
         "lineNumber": 511,
         "author": {
           "gitId": "lee761"
         },
-        "content": "                                               ArrayList\u003cString\u003e tags, String priority) {"
+        "content": "                ui.showError(e.getMessage());"
       },
       {
         "lineNumber": 512,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "lee761"
         },
-        "content": "        Task.TaskType taskType \u003d Task.TaskType.ToDo;"
+        "content": "            }"
       },
       {
         "lineNumber": 513,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "lee761"
         },
-        "content": "        Pattern toDoPattern \u003d Pattern.compile(\"todo\\\\s+(?\u003cname\u003e\\\\w+[\\\\s+\\\\w+]*)\\\\s*\");"
+        "content": "            return new InvalidCommand();"
       },
       {
         "lineNumber": 514,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "lee761"
         },
-        "content": "        Matcher toDoMatcher \u003d toDoPattern.matcher(input);"
+        "content": "        }"
       },
       {
         "lineNumber": 515,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "        if (!toDoMatcher.matches()) {"
+        "content": "        if (input.startsWith(\"todo\")) {"
       },
       {
         "lineNumber": 516,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "lee761"
         },
-        "content": "            if (ui !\u003d null) {"
+        "content": "            return parseAddToDoCommand(taskList, input, doAfter, tags, priority);"
       },
       {
         "lineNumber": 517,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "                ui.showError(\"Please enter a name after todo\");"
+        "content": "        } else if (input.startsWith(\"deadline\")) {"
       },
       {
         "lineNumber": 518,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "lee761"
         },
-        "content": "            }"
+        "content": "            return parseAddDeadlineCommand(taskList, input, time, doAfter, tags, priority);"
       },
       {
         "lineNumber": 519,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "            return new InvalidCommand();"
+        "content": "        } else if (input.startsWith(\"event\")) {"
       },
       {
         "lineNumber": 520,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "lee761"
         },
-        "content": "        }"
+        "content": "            return parseEventCommand(taskList, input, time, doAfter, tags, priority);"
       },
       {
         "lineNumber": 521,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "        String name \u003d toDoMatcher.group(\"name\");"
+        "content": "        } else {"
       },
       {
         "lineNumber": 522,
         "author": {
-          "gitId": "lee761"
+          "gitId": "JokerYan"
         },
-        "content": "        return new TaskAddCommand(taskList, taskType, name, null, doAfter, tags, priority);"
+        "content": "            return new InvalidCommand();"
       },
       {
         "lineNumber": 523,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "    }"
+        "content": "        }"
       },
       {
         "lineNumber": 524,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 525,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "    private static Command parseAddDeadlineCommand(TaskList taskList, String input,"
+        "content": ""
       },
       {
         "lineNumber": 526,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "                                                   LocalDateTime time, String doAfter,"
+        "content": "    private static Command parseAddToDoCommand(TaskList taskList, String input, String doAfter,"
       },
       {
         "lineNumber": 527,
         "author": {
           "gitId": "lee761"
         },
-        "content": "                                                   ArrayList\u003cString\u003e tags, String priority) {"
+        "content": "                                               ArrayList\u003cString\u003e tags, String priority) {"
       },
       {
         "lineNumber": 528,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "        Task.TaskType taskType \u003d Task.TaskType.Deadline;"
+        "content": "        Task.TaskType taskType \u003d Task.TaskType.ToDo;"
       },
       {
         "lineNumber": 529,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "        Pattern deadlinePattern \u003d Pattern.compile(\"deadline\\\\s+(?\u003cname\u003e\\\\w+[\\\\s+\\\\w+]*)\\\\s*\");"
+        "content": "        Pattern toDoPattern \u003d Pattern.compile(\"todo\\\\s+(?\u003cname\u003e\\\\w+[\\\\s+\\\\w+]*)\\\\s*\");"
       },
       {
         "lineNumber": 530,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "        Matcher deadlineMatcher \u003d deadlinePattern.matcher(input);"
+        "content": "        Matcher toDoMatcher \u003d toDoPattern.matcher(input);"
       },
       {
         "lineNumber": 531,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "        if (!deadlineMatcher.matches()) {"
+        "content": "        if (!toDoMatcher.matches()) {"
       },
       {
         "lineNumber": 532,
@@ -4121,1102 +4121,1214 @@
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "                ui.showDebug(input);"
+        "content": "                ui.showError(\"Please enter a name after todo\");"
       },
       {
         "lineNumber": 534,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "                ui.showError(\"Please enter a name after \\\u0027deadline\\\u0027\");"
+        "content": "            }"
       },
       {
         "lineNumber": 535,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "            }"
+        "content": "            return new InvalidCommand();"
       },
       {
         "lineNumber": 536,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "            return new InvalidCommand();"
+        "content": "        }"
       },
       {
         "lineNumber": 537,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "        }"
+        "content": "        String name \u003d toDoMatcher.group(\"name\");"
       },
       {
         "lineNumber": 538,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "lee761"
         },
-        "content": "        if (time \u003d\u003d null) {"
+        "content": "        return new TaskAddCommand(taskList, taskType, name, null, doAfter, tags, priority);"
       },
       {
         "lineNumber": 539,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "            if (ui !\u003d null) {"
+        "content": "    }"
       },
       {
         "lineNumber": 540,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "                ui.showError(\"Please enter a time of correct format after \\\u0027-time\\\u0027\");"
+        "content": ""
       },
       {
         "lineNumber": 541,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "            }"
+        "content": "    private static Command parseAddDeadlineCommand(TaskList taskList, String input,"
       },
       {
         "lineNumber": 542,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "            return new InvalidCommand();"
+        "content": "                                                   LocalDateTime time, String doAfter,"
       },
       {
         "lineNumber": 543,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "lee761"
         },
-        "content": "        }"
+        "content": "                                                   ArrayList\u003cString\u003e tags, String priority) {"
       },
       {
         "lineNumber": 544,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "        String name \u003d deadlineMatcher.group(\"name\");"
+        "content": "        Task.TaskType taskType \u003d Task.TaskType.Deadline;"
       },
       {
         "lineNumber": 545,
         "author": {
-          "gitId": "lee761"
+          "gitId": "JokerYan"
         },
-        "content": "        return new TaskAddCommand(taskList, taskType, name, time, doAfter, tags, priority);"
+        "content": "        Pattern deadlinePattern \u003d Pattern.compile(\"deadline\\\\s+(?\u003cname\u003e\\\\w+[\\\\s+\\\\w+]*)\\\\s*\");"
       },
       {
         "lineNumber": 546,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "    }"
+        "content": "        Matcher deadlineMatcher \u003d deadlinePattern.matcher(input);"
       },
       {
         "lineNumber": 547,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": ""
+        "content": "        if (!deadlineMatcher.matches()) {"
       },
       {
         "lineNumber": 548,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "    private static Command parseEventCommand(TaskList taskList, String input, LocalDateTime time,"
+        "content": "            if (ui !\u003d null) {"
       },
       {
         "lineNumber": 549,
         "author": {
-          "gitId": "lee761"
+          "gitId": "JokerYan"
         },
-        "content": "                                             String doAfter, ArrayList\u003cString\u003e tags, String priority) {"
+        "content": "                ui.showDebug(input);"
       },
       {
         "lineNumber": 550,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "        Task.TaskType taskType \u003d Task.TaskType.Event;"
+        "content": "                ui.showError(\"Please enter a name after \\\u0027deadline\\\u0027\");"
       },
       {
         "lineNumber": 551,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "        Pattern eventPattern \u003d Pattern.compile(\"event\\\\s+(?\u003cname\u003e\\\\w+[\\\\s+\\\\w+]*)\\\\s*\");"
+        "content": "            }"
       },
       {
         "lineNumber": 552,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "        Matcher eventMatcher \u003d eventPattern.matcher(input);"
+        "content": "            return new InvalidCommand();"
       },
       {
         "lineNumber": 553,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "        if (!eventMatcher.matches()) {"
+        "content": "        }"
       },
       {
         "lineNumber": 554,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "            if (ui !\u003d null) {"
+        "content": "        if (time \u003d\u003d null) {"
       },
       {
         "lineNumber": 555,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "                ui.showError(\"Please enter a name after \\\u0027event\\\u0027\");"
+        "content": "            if (ui !\u003d null) {"
       },
       {
         "lineNumber": 556,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "            }"
+        "content": "                ui.showError(\"Please enter a time of correct format after \\\u0027-time\\\u0027\");"
       },
       {
         "lineNumber": 557,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "            return new InvalidCommand();"
+        "content": "            }"
       },
       {
         "lineNumber": 558,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "        }"
+        "content": "            return new InvalidCommand();"
       },
       {
         "lineNumber": 559,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "        if (time \u003d\u003d null) {"
+        "content": "        }"
       },
       {
         "lineNumber": 560,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "            if (ui !\u003d null) {"
+        "content": "        String name \u003d deadlineMatcher.group(\"name\");"
       },
       {
         "lineNumber": 561,
-        "author": {
-          "gitId": "JokerYan"
-        },
-        "content": "                ui.showError(\"Please enter a time of correct format after \\\u0027-time\\\u0027\");"
-      },
-      {
-        "lineNumber": 562,
-        "author": {
-          "gitId": "JokerYan"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 563,
-        "author": {
-          "gitId": "JokerYan"
-        },
-        "content": "            return new InvalidCommand();"
-      },
-      {
-        "lineNumber": 564,
-        "author": {
-          "gitId": "JokerYan"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 565,
-        "author": {
-          "gitId": "JokerYan"
-        },
-        "content": "        String name \u003d eventMatcher.group(\"name\");"
-      },
-      {
-        "lineNumber": 566,
         "author": {
           "gitId": "lee761"
         },
         "content": "        return new TaskAddCommand(taskList, taskType, name, time, doAfter, tags, priority);"
       },
       {
-        "lineNumber": 567,
+        "lineNumber": 562,
         "author": {
           "gitId": "JokerYan"
         },
         "content": "    }"
+      },
+      {
+        "lineNumber": 563,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 564,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "    private static Command parseEventCommand(TaskList taskList, String input, LocalDateTime time,"
+      },
+      {
+        "lineNumber": 565,
+        "author": {
+          "gitId": "lee761"
+        },
+        "content": "                                             String doAfter, ArrayList\u003cString\u003e tags, String priority) {"
+      },
+      {
+        "lineNumber": 566,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "        Task.TaskType taskType \u003d Task.TaskType.Event;"
+      },
+      {
+        "lineNumber": 567,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "        Pattern eventPattern \u003d Pattern.compile(\"event\\\\s+(?\u003cname\u003e\\\\w+[\\\\s+\\\\w+]*)\\\\s*\");"
       },
       {
         "lineNumber": 568,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": ""
+        "content": "        Matcher eventMatcher \u003d eventPattern.matcher(input);"
       },
       {
         "lineNumber": 569,
         "author": {
-          "gitId": "limryan"
+          "gitId": "JokerYan"
         },
-        "content": "    private static Command parseUpdateCommand(TaskList taskList, String input, ArrayList\u003cOption\u003e optionList) {"
+        "content": "        if (!eventMatcher.matches()) {"
       },
       {
         "lineNumber": 570,
         "author": {
-          "gitId": "limryan"
+          "gitId": "JokerYan"
         },
-        "content": "        ArrayList\u003cTaskUpdateCommand.Attributes\u003e attributes \u003d new ArrayList\u003c\u003e();"
+        "content": "            if (ui !\u003d null) {"
       },
       {
         "lineNumber": 571,
         "author": {
-          "gitId": "limryan"
+          "gitId": "JokerYan"
         },
-        "content": "        ArrayList\u003cString\u003e descriptions \u003d new ArrayList\u003c\u003e();"
+        "content": "                ui.showError(\"Please enter a name after \\\u0027event\\\u0027\");"
       },
       {
         "lineNumber": 572,
         "author": {
-          "gitId": "limryan"
+          "gitId": "JokerYan"
         },
-        "content": "        int index;"
+        "content": "            }"
       },
       {
         "lineNumber": 573,
         "author": {
-          "gitId": "limryan"
+          "gitId": "JokerYan"
         },
-        "content": "        Pattern editPattern \u003d Pattern.compile(\"^update\\\\s+(?\u003cindex\u003e\\\\d+)\\\\s*$\");"
+        "content": "            return new InvalidCommand();"
       },
       {
         "lineNumber": 574,
         "author": {
-          "gitId": "limryan"
+          "gitId": "JokerYan"
         },
-        "content": "        Matcher editMatcher \u003d editPattern.matcher(input);"
+        "content": "        }"
       },
       {
         "lineNumber": 575,
         "author": {
-          "gitId": "limryan"
+          "gitId": "JokerYan"
         },
-        "content": "        if (!editMatcher.matches()) {"
+        "content": "        if (time \u003d\u003d null) {"
       },
       {
         "lineNumber": 576,
         "author": {
-          "gitId": "limryan"
+          "gitId": "JokerYan"
         },
         "content": "            if (ui !\u003d null) {"
       },
       {
         "lineNumber": 577,
         "author": {
-          "gitId": "limryan"
+          "gitId": "JokerYan"
         },
-        "content": "                ui.showError(\"Please enter an index after \\\u0027update\\\u0027\");"
+        "content": "                ui.showError(\"Please enter a time of correct format after \\\u0027-time\\\u0027\");"
       },
       {
         "lineNumber": 578,
         "author": {
-          "gitId": "limryan"
+          "gitId": "JokerYan"
         },
         "content": "            }"
       },
       {
         "lineNumber": 579,
         "author": {
-          "gitId": "limryan"
+          "gitId": "JokerYan"
         },
         "content": "            return new InvalidCommand();"
       },
       {
         "lineNumber": 580,
         "author": {
-          "gitId": "limryan"
+          "gitId": "JokerYan"
         },
-        "content": "        } else {"
+        "content": "        }"
       },
       {
         "lineNumber": 581,
         "author": {
-          "gitId": "limryan"
+          "gitId": "JokerYan"
         },
-        "content": "            try {"
+        "content": "        String name \u003d eventMatcher.group(\"name\");"
       },
       {
         "lineNumber": 582,
         "author": {
-          "gitId": "limryan"
+          "gitId": "lee761"
         },
-        "content": "                index \u003d parseIndex(editMatcher.group(\"index\"));"
+        "content": "        return new TaskAddCommand(taskList, taskType, name, time, doAfter, tags, priority);"
       },
       {
         "lineNumber": 583,
         "author": {
-          "gitId": "limryan"
+          "gitId": "JokerYan"
         },
-        "content": "            } catch (NumberFormatException e) {"
+        "content": "    }"
       },
       {
         "lineNumber": 584,
         "author": {
-          "gitId": "limryan"
+          "gitId": "JokerYan"
         },
-        "content": "                if (ui !\u003d null) {"
+        "content": ""
       },
       {
         "lineNumber": 585,
         "author": {
           "gitId": "limryan"
         },
-        "content": "                    ui.showError(\"Please enter correct task index: \" + editMatcher.group("
+        "content": "    private static Command parseUpdateCommand(TaskList taskList, String input, ArrayList\u003cOption\u003e optionList) {"
       },
       {
         "lineNumber": 586,
         "author": {
           "gitId": "limryan"
         },
-        "content": "                            \"index\"));"
+        "content": "        ArrayList\u003cTaskUpdateCommand.Attributes\u003e attributes \u003d new ArrayList\u003c\u003e();"
       },
       {
         "lineNumber": 587,
         "author": {
           "gitId": "limryan"
         },
-        "content": "                }"
+        "content": "        ArrayList\u003cString\u003e descriptions \u003d new ArrayList\u003c\u003e();"
       },
       {
         "lineNumber": 588,
         "author": {
           "gitId": "limryan"
         },
-        "content": "                return new InvalidCommand();"
+        "content": "        int index;"
       },
       {
         "lineNumber": 589,
         "author": {
           "gitId": "limryan"
         },
-        "content": "            }"
+        "content": "        Pattern editPattern \u003d Pattern.compile(\"^update\\\\s+(?\u003cindex\u003e\\\\d+)\\\\s*$\");"
       },
       {
         "lineNumber": 590,
         "author": {
           "gitId": "limryan"
         },
-        "content": "        }"
+        "content": "        Matcher editMatcher \u003d editPattern.matcher(input);"
       },
       {
         "lineNumber": 591,
         "author": {
           "gitId": "limryan"
         },
-        "content": ""
+        "content": "        if (!editMatcher.matches()) {"
       },
       {
         "lineNumber": 592,
         "author": {
           "gitId": "limryan"
         },
-        "content": "        try {"
+        "content": "            if (ui !\u003d null) {"
       },
       {
         "lineNumber": 593,
         "author": {
           "gitId": "limryan"
         },
-        "content": "            if (!extractTime(optionList).equals(\"\")) {"
+        "content": "                ui.showError(\"Please enter an index after \\\u0027update\\\u0027\");"
       },
       {
         "lineNumber": 594,
         "author": {
           "gitId": "limryan"
         },
-        "content": "                descriptions.add(extractTime(optionList));"
+        "content": "            }"
       },
       {
         "lineNumber": 595,
         "author": {
           "gitId": "limryan"
         },
-        "content": "                attributes.add(TaskUpdateCommand.Attributes.time);"
+        "content": "            return new InvalidCommand();"
       },
       {
         "lineNumber": 596,
         "author": {
           "gitId": "limryan"
         },
-        "content": "            }"
+        "content": "        } else {"
       },
       {
         "lineNumber": 597,
         "author": {
           "gitId": "limryan"
         },
-        "content": "            if (!extractDoAfter(optionList).equals(\"\")) {"
+        "content": "            try {"
       },
       {
         "lineNumber": 598,
         "author": {
           "gitId": "limryan"
         },
-        "content": "                descriptions.add(extractDoAfter(optionList));"
+        "content": "                index \u003d parseIndex(editMatcher.group(\"index\"));"
       },
       {
         "lineNumber": 599,
         "author": {
           "gitId": "limryan"
         },
-        "content": "                attributes.add(TaskUpdateCommand.Attributes.doAfter);"
+        "content": "            } catch (NumberFormatException e) {"
       },
       {
         "lineNumber": 600,
         "author": {
           "gitId": "limryan"
         },
-        "content": "            }"
+        "content": "                if (ui !\u003d null) {"
       },
       {
         "lineNumber": 601,
         "author": {
           "gitId": "limryan"
         },
-        "content": "            if (!extractPriority(optionList).equals(\"\")) {"
+        "content": "                    ui.showError(\"Please enter correct task index: \" + editMatcher.group("
       },
       {
         "lineNumber": 602,
         "author": {
           "gitId": "limryan"
         },
-        "content": "                descriptions.add(extractPriority(optionList));"
+        "content": "                            \"index\"));"
       },
       {
         "lineNumber": 603,
         "author": {
           "gitId": "limryan"
         },
-        "content": "                attributes.add(TaskUpdateCommand.Attributes.priority);"
+        "content": "                }"
       },
       {
         "lineNumber": 604,
         "author": {
           "gitId": "limryan"
         },
-        "content": "            }"
+        "content": "                return new InvalidCommand();"
       },
       {
         "lineNumber": 605,
         "author": {
           "gitId": "limryan"
         },
-        "content": "            return new TaskUpdateCommand(taskList, index, descriptions, attributes);"
+        "content": "            }"
       },
       {
         "lineNumber": 606,
         "author": {
           "gitId": "limryan"
         },
-        "content": "        } catch (UserInputException e) {"
+        "content": "        }"
       },
       {
         "lineNumber": 607,
         "author": {
           "gitId": "limryan"
         },
-        "content": "            return new InvalidCommand();"
+        "content": ""
       },
       {
         "lineNumber": 608,
         "author": {
           "gitId": "limryan"
         },
-        "content": "        }"
+        "content": "        try {"
       },
       {
         "lineNumber": 609,
         "author": {
           "gitId": "limryan"
         },
-        "content": "    }"
+        "content": "            if (!extractTime(optionList).equals(\"\")) {"
       },
       {
         "lineNumber": 610,
         "author": {
           "gitId": "limryan"
         },
-        "content": ""
+        "content": "                descriptions.add(extractTime(optionList));"
       },
       {
         "lineNumber": 611,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "limryan"
         },
-        "content": "    private static ArrayList\u003cString\u003e extractTags(ArrayList\u003cOption\u003e optionList) {"
+        "content": "                attributes.add(TaskUpdateCommand.Attributes.time);"
       },
       {
         "lineNumber": 612,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "limryan"
         },
-        "content": "        ArrayList\u003cString\u003e tagList \u003d new ArrayList\u003c\u003e();"
+        "content": "            }"
       },
       {
         "lineNumber": 613,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "limryan"
         },
-        "content": "        for (Option option : optionList) {"
+        "content": "            if (!extractDoAfter(optionList).equals(\"\")) {"
       },
       {
         "lineNumber": 614,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "limryan"
         },
-        "content": "            if (option.getKey().equals(\"tag\")) {"
+        "content": "                descriptions.add(extractDoAfter(optionList));"
       },
       {
         "lineNumber": 615,
         "author": {
-          "gitId": "ziyun99"
+          "gitId": "limryan"
         },
-        "content": "                tagList.add(option.getValue().strip());"
+        "content": "                attributes.add(TaskUpdateCommand.Attributes.doAfter);"
       },
       {
         "lineNumber": 616,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "limryan"
         },
         "content": "            }"
       },
       {
         "lineNumber": 617,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "limryan"
         },
-        "content": "        }"
+        "content": "            if (!extractPriority(optionList).equals(\"\")) {"
       },
       {
         "lineNumber": 618,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "limryan"
         },
-        "content": "        return tagList;"
+        "content": "                descriptions.add(extractPriority(optionList));"
       },
       {
         "lineNumber": 619,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "limryan"
         },
-        "content": "    }"
+        "content": "                attributes.add(TaskUpdateCommand.Attributes.priority);"
       },
       {
         "lineNumber": 620,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "limryan"
         },
-        "content": ""
+        "content": "            }"
       },
       {
         "lineNumber": 621,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "limryan"
         },
-        "content": "    private static String extractDoAfter(ArrayList\u003cOption\u003e optionList) throws UserInputException {"
+        "content": "            return new TaskUpdateCommand(taskList, index, descriptions, attributes);"
       },
       {
         "lineNumber": 622,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "limryan"
         },
-        "content": "        String doafter \u003d \"\";"
+        "content": "        } catch (UserInputException e) {"
       },
       {
         "lineNumber": 623,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "limryan"
         },
-        "content": "        for (Option option : optionList) {"
+        "content": "            return new InvalidCommand();"
       },
       {
         "lineNumber": 624,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "limryan"
         },
-        "content": "            if (option.getKey().equals(\"doafter\")) {"
+        "content": "        }"
       },
       {
         "lineNumber": 625,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "limryan"
         },
-        "content": "                if (doafter \u003d\u003d \"\") {"
+        "content": "    }"
       },
       {
         "lineNumber": 626,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "limryan"
         },
-        "content": "                    doafter \u003d option.getValue();"
+        "content": ""
       },
       {
         "lineNumber": 627,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "                } else {"
+        "content": "    private static ArrayList\u003cString\u003e extractTags(ArrayList\u003cOption\u003e optionList) {"
       },
       {
         "lineNumber": 628,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "                    throw new UserInputException(\"Each task can have only one doafter option\");"
+        "content": "        ArrayList\u003cString\u003e tagList \u003d new ArrayList\u003c\u003e();"
       },
       {
         "lineNumber": 629,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "                }"
+        "content": "        for (Option option : optionList) {"
       },
       {
         "lineNumber": 630,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "            }"
+        "content": "            if (option.getKey().equals(\"tag\")) {"
       },
       {
         "lineNumber": 631,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "ziyun99"
         },
-        "content": "        }"
+        "content": "                tagList.add(option.getValue().strip());"
       },
       {
         "lineNumber": 632,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "        return doafter;"
+        "content": "            }"
       },
       {
         "lineNumber": 633,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "    }"
+        "content": "        }"
       },
       {
         "lineNumber": 634,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": ""
+        "content": "        return tagList;"
       },
       {
         "lineNumber": 635,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "    private static String extractTime(ArrayList\u003cOption\u003e optionList) throws UserInputException {"
+        "content": "    }"
       },
       {
         "lineNumber": 636,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "        String time \u003d \"\";"
+        "content": ""
       },
       {
         "lineNumber": 637,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "        for (Option option : optionList) {"
+        "content": "    private static String extractDoAfter(ArrayList\u003cOption\u003e optionList) throws UserInputException {"
       },
       {
         "lineNumber": 638,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "            if (option.getKey().equals(\"time\")) {"
+        "content": "        String doafter \u003d \"\";"
       },
       {
         "lineNumber": 639,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "                if (time \u003d\u003d \"\") {"
+        "content": "        for (Option option : optionList) {"
       },
       {
         "lineNumber": 640,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "                    time \u003d option.getValue();"
+        "content": "            if (option.getKey().equals(\"doafter\")) {"
       },
       {
         "lineNumber": 641,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "                } else {"
+        "content": "                if (doafter \u003d\u003d \"\") {"
       },
       {
         "lineNumber": 642,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "                    throw new UserInputException(\"Each task can have only one time option\");"
+        "content": "                    doafter \u003d option.getValue();"
       },
       {
         "lineNumber": 643,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "                }"
+        "content": "                } else {"
       },
       {
         "lineNumber": 644,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "            }"
+        "content": "                    throw new UserInputException(\"Each task can have only one doafter option\");"
       },
       {
         "lineNumber": 645,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "        }"
+        "content": "                }"
       },
       {
         "lineNumber": 646,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "        return time;"
+        "content": "            }"
       },
       {
         "lineNumber": 647,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "    }"
+        "content": "        }"
       },
       {
         "lineNumber": 648,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": ""
+        "content": "        return doafter;"
       },
       {
         "lineNumber": 649,
         "author": {
-          "gitId": "lee761"
-        },
-        "content": "    private static String extractPriority(ArrayList\u003cOption\u003e optionList) throws UserInputException {"
-      },
-      {
-        "lineNumber": 650,
-        "author": {
-          "gitId": "lee761"
-        },
-        "content": "        String priority \u003d \"\";"
-      },
-      {
-        "lineNumber": 651,
-        "author": {
-          "gitId": "lee761"
-        },
-        "content": "        for (Option option : optionList) {"
-      },
-      {
-        "lineNumber": 652,
-        "author": {
-          "gitId": "lee761"
-        },
-        "content": "            if (option.getKey().equals(\"priority\")) {"
-      },
-      {
-        "lineNumber": 653,
-        "author": {
-          "gitId": "lee761"
-        },
-        "content": "                if (priority \u003d\u003d \"\") {"
-      },
-      {
-        "lineNumber": 654,
-        "author": {
-          "gitId": "lee761"
-        },
-        "content": "                    priority \u003d option.getValue();"
-      },
-      {
-        "lineNumber": 655,
-        "author": {
-          "gitId": "lee761"
-        },
-        "content": "                } else {"
-      },
-      {
-        "lineNumber": 656,
-        "author": {
-          "gitId": "lee761"
-        },
-        "content": "                    throw new UserInputException(\"Each task can have only one priority\");"
-      },
-      {
-        "lineNumber": 657,
-        "author": {
-          "gitId": "lee761"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 658,
-        "author": {
-          "gitId": "lee761"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 659,
-        "author": {
-          "gitId": "lee761"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 660,
-        "author": {
-          "gitId": "lee761"
-        },
-        "content": "        return priority;"
-      },
-      {
-        "lineNumber": 661,
-        "author": {
-          "gitId": "lee761"
+          "gitId": "JokerYan"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 662,
+        "lineNumber": 650,
         "author": {
-          "gitId": "lee761"
+          "gitId": "JokerYan"
         },
         "content": ""
+      },
+      {
+        "lineNumber": 651,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "    private static String extractTime(ArrayList\u003cOption\u003e optionList) throws UserInputException {"
+      },
+      {
+        "lineNumber": 652,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "        String time \u003d \"\";"
+      },
+      {
+        "lineNumber": 653,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "        for (Option option : optionList) {"
+      },
+      {
+        "lineNumber": 654,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "            if (option.getKey().equals(\"time\")) {"
+      },
+      {
+        "lineNumber": 655,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "                if (time \u003d\u003d \"\") {"
+      },
+      {
+        "lineNumber": 656,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "                    time \u003d option.getValue();"
+      },
+      {
+        "lineNumber": 657,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "                } else {"
+      },
+      {
+        "lineNumber": 658,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "                    throw new UserInputException(\"Each task can have only one time option\");"
+      },
+      {
+        "lineNumber": 659,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 660,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 661,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 662,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "        return time;"
       },
       {
         "lineNumber": 663,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "    /**"
+        "content": "    }"
       },
       {
         "lineNumber": 664,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "     * An type of exception dedicated to handling the unexpected user/file input. The message contains more"
+        "content": ""
       },
       {
         "lineNumber": 665,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "lee761"
         },
-        "content": "     * specific information."
+        "content": "    private static String extractPriority(ArrayList\u003cOption\u003e optionList) throws UserInputException {"
       },
       {
         "lineNumber": 666,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "lee761"
         },
-        "content": "     */"
+        "content": "        String priority \u003d \"\";"
       },
       {
         "lineNumber": 667,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "lee761"
         },
-        "content": "    public static class UserInputException extends Exception {"
+        "content": "        for (Option option : optionList) {"
       },
       {
         "lineNumber": 668,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "lee761"
         },
-        "content": "        private String msg;"
+        "content": "            if (option.getKey().equals(\"priority\")) {"
       },
       {
         "lineNumber": 669,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "lee761"
         },
-        "content": ""
+        "content": "                if (priority \u003d\u003d \"\") {"
       },
       {
         "lineNumber": 670,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "lee761"
         },
-        "content": "        /**"
+        "content": "                    priority \u003d option.getValue();"
       },
       {
         "lineNumber": 671,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "lee761"
         },
-        "content": "         * Instantiates the exception with a message, which is ready to be displayed by the UI."
+        "content": "                } else {"
       },
       {
         "lineNumber": 672,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "lee761"
         },
-        "content": "         *"
+        "content": "                    throw new UserInputException(\"Each task can have only one priority\");"
       },
       {
         "lineNumber": 673,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "lee761"
         },
-        "content": "         * @param msg the message that is ready to be displayed by UI."
+        "content": "                }"
       },
       {
         "lineNumber": 674,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "lee761"
         },
-        "content": "         */"
+        "content": "            }"
       },
       {
         "lineNumber": 675,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "lee761"
         },
-        "content": "        public UserInputException(String msg) {"
+        "content": "        }"
       },
       {
         "lineNumber": 676,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "lee761"
         },
-        "content": "            super();"
+        "content": "        return priority;"
       },
       {
         "lineNumber": 677,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "lee761"
         },
-        "content": "            this.msg \u003d msg;"
+        "content": "    }"
       },
       {
         "lineNumber": 678,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "lee761"
         },
-        "content": "        }"
+        "content": ""
       },
       {
         "lineNumber": 679,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 680,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "        /**"
+        "content": "     * An type of exception dedicated to handling the unexpected user/file input. The message contains more"
       },
       {
         "lineNumber": 681,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "         * Converts the exception ot string by returning its message, so that it can be displayed by the UI."
+        "content": "     * specific information."
       },
       {
         "lineNumber": 682,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "         *"
+        "content": "     */"
       },
       {
         "lineNumber": 683,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "         * @return the message of the exception"
+        "content": "    public static class UserInputException extends Exception {"
       },
       {
         "lineNumber": 684,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "         */"
+        "content": "        private String msg;"
       },
       {
         "lineNumber": 685,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "        @Override"
+        "content": ""
       },
       {
         "lineNumber": 686,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "        public String getMessage() {"
+        "content": "        /**"
       },
       {
         "lineNumber": 687,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "            return msg;"
+        "content": "         * Instantiates the exception with a message, which is ready to be displayed by the UI."
       },
       {
         "lineNumber": 688,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "        }"
+        "content": "         *"
       },
       {
         "lineNumber": 689,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "    }"
+        "content": "         * @param msg the message that is ready to be displayed by UI."
       },
       {
         "lineNumber": 690,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "         */"
+      },
+      {
+        "lineNumber": 691,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "        public UserInputException(String msg) {"
+      },
+      {
+        "lineNumber": 692,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "            super();"
+      },
+      {
+        "lineNumber": 693,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "            this.msg \u003d msg;"
+      },
+      {
+        "lineNumber": 694,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 695,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 696,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "        /**"
+      },
+      {
+        "lineNumber": 697,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "         * Converts the exception ot string by returning its message, so that it can be displayed by the UI."
+      },
+      {
+        "lineNumber": 698,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "         *"
+      },
+      {
+        "lineNumber": 699,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "         * @return the message of the exception"
+      },
+      {
+        "lineNumber": 700,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "         */"
+      },
+      {
+        "lineNumber": 701,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "        @Override"
+      },
+      {
+        "lineNumber": 702,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "        public String getMessage() {"
+      },
+      {
+        "lineNumber": 703,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "            return msg;"
+      },
+      {
+        "lineNumber": 704,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 705,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 706,
         "author": {
           "gitId": "JokerYan"
         },
@@ -5224,10 +5336,10 @@
       }
     ],
     "authorContributionMap": {
-      "ziyun99": 146,
-      "limryan": 67,
-      "JokerYan": 404,
-      "lee761": 73
+      "ziyun99": 145,
+      "limryan": 63,
+      "JokerYan": 403,
+      "lee761": 95
     }
   },
   {
@@ -33891,245 +34003,245 @@
       {
         "lineNumber": 2,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
         "content": ""
       },
       {
         "lineNumber": 3,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "lee761"
         },
-        "content": "import seedu.duke.CommandParser;"
+        "content": "import org.w3c.dom.Text;"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "import seedu.duke.Duke;"
+        "content": "import seedu.duke.CommandParser;"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": ""
+        "content": "import seedu.duke.Duke;"
       },
       {
         "lineNumber": 6,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "lee761"
         },
-        "content": "import java.time.LocalDateTime;"
+        "content": "import seedu.duke.common.command.InvalidCommand;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "import java.time.format.DateTimeFormatter;"
+        "content": ""
       },
       {
         "lineNumber": 8,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "lee761"
         },
-        "content": "import java.time.format.DateTimeParseException;"
+        "content": "import java.text.SimpleDateFormat;"
       },
       {
         "lineNumber": 9,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "lee761"
         },
-        "content": "import java.time.format.ResolverStyle;"
+        "content": "import java.time.DayOfWeek;"
       },
       {
         "lineNumber": 10,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "lee761"
         },
-        "content": "import java.util.ArrayList;"
+        "content": "import java.time.LocalDate;"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "import java.util.Locale;"
+        "content": "import java.time.LocalDateTime;"
       },
       {
         "lineNumber": 12,
         "author": {
-          "gitId": "-"
+          "gitId": "lee761"
         },
-        "content": ""
+        "content": "import java.time.LocalTime;"
       },
       {
         "lineNumber": 13,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
-        "content": "/**"
+        "content": "import java.time.format.DateTimeFormatter;"
       },
       {
         "lineNumber": 14,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
-        "content": " * Super class of all kinds of tasks, with the basic functionality that all tasks share."
+        "content": "import java.time.format.DateTimeParseException;"
       },
       {
         "lineNumber": 15,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
-        "content": " */"
+        "content": "import java.time.format.ResolverStyle;"
       },
       {
         "lineNumber": 16,
         "author": {
-          "gitId": "-"
+          "gitId": "lee761"
         },
-        "content": "public class Task {"
+        "content": "import java.time.format.TextStyle;"
       },
       {
         "lineNumber": 17,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
-        "content": "    /**"
+        "content": "import java.util.ArrayList;"
       },
       {
         "lineNumber": 18,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
-        "content": "     * The name of the task."
+        "content": "import java.util.Locale;"
       },
       {
         "lineNumber": 19,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
-        "content": "     */"
+        "content": ""
       },
       {
         "lineNumber": 20,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
-        "content": "    protected String name;"
+        "content": "/**"
       },
       {
         "lineNumber": 21,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
-        "content": ""
+        "content": " * Super class of all kinds of tasks, with the basic functionality that all tasks share."
       },
       {
         "lineNumber": 22,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
-        "content": "    /**"
+        "content": " */"
       },
       {
         "lineNumber": 23,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
-        "content": "     * The flag whether is task is already done. Can only be set from false to true."
+        "content": "public class Task {"
       },
       {
         "lineNumber": 24,
         "author": {
-          "gitId": "-"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 25,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    protected boolean isDone;"
-      },
-      {
-        "lineNumber": 26,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 27,
-        "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
         "content": "    /**"
       },
       {
-        "lineNumber": 28,
+        "lineNumber": 25,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
-        "content": "     * The type of the task, following the enumeration declared."
+        "content": "     * The name of the task."
       },
       {
-        "lineNumber": 29,
+        "lineNumber": 26,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 30,
+        "lineNumber": 27,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
-        "content": "    protected TaskType taskType;"
+        "content": "    protected String name;"
       },
       {
-        "lineNumber": 31,
+        "lineNumber": 28,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
         "content": ""
       },
       {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "     * The flag whether is task is already done. Can only be set from false to true."
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "     */"
+      },
+      {
         "lineNumber": 32,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
-        "content": "    protected String doAfterDescription;"
+        "content": "    protected boolean isDone;"
       },
       {
         "lineNumber": 33,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
         "content": ""
       },
       {
         "lineNumber": 34,
         "author": {
-          "gitId": "lee761"
+          "gitId": "JokerYan"
         },
         "content": "    /**"
       },
       {
         "lineNumber": 35,
         "author": {
-          "gitId": "limryan"
+          "gitId": "JokerYan"
         },
-        "content": "     * The tag list that the task has."
+        "content": "     * The type of the task, following the enumeration declared."
       },
       {
         "lineNumber": 36,
         "author": {
-          "gitId": "lee761"
+          "gitId": "JokerYan"
         },
         "content": "     */"
       },
@@ -34138,1020 +34250,1020 @@
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "    protected ArrayList\u003cString\u003e tags;"
+        "content": "    protected TaskType taskType;"
       },
       {
         "lineNumber": 38,
         "author": {
-          "gitId": "lee761"
+          "gitId": "JokerYan"
         },
         "content": ""
       },
       {
         "lineNumber": 39,
         "author": {
-          "gitId": "lee761"
+          "gitId": "limryan"
         },
-        "content": "    /**"
+        "content": "    protected String doAfterDescription;"
       },
       {
         "lineNumber": 40,
         "author": {
-          "gitId": "lee761"
+          "gitId": "limryan"
         },
-        "content": "     * The priority assigned to the task."
+        "content": ""
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "lee761"
         },
-        "content": "     */"
+        "content": "    /**"
       },
       {
         "lineNumber": 42,
         "author": {
-          "gitId": "lee761"
+          "gitId": "limryan"
         },
-        "content": "    protected String priority;"
+        "content": "     * The tag list that the task has."
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "lee761"
         },
-        "content": ""
+        "content": "     */"
       },
       {
         "lineNumber": 44,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
-        "content": "    /**"
+        "content": "    protected ArrayList\u003cString\u003e tags;"
       },
       {
         "lineNumber": 45,
         "author": {
-          "gitId": "-"
+          "gitId": "lee761"
         },
-        "content": "     * A date format that is shared by all tasks to parse and out the date involved in the task."
+        "content": ""
       },
       {
         "lineNumber": 46,
         "author": {
-          "gitId": "-"
+          "gitId": "lee761"
         },
-        "content": "     */"
+        "content": "    /**"
       },
       {
         "lineNumber": 47,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "lee761"
         },
-        "content": "    protected static DateTimeFormatter format \u003d DateTimeFormatter"
+        "content": "     * The priority assigned to the task."
       },
       {
         "lineNumber": 48,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "lee761"
         },
-        "content": "            .ofPattern(\"dd/MM/uuuu HHmm\", Locale.ENGLISH)"
+        "content": "     */"
       },
       {
         "lineNumber": 49,
         "author": {
-          "gitId": "JokerYan"
+          "gitId": "lee761"
         },
-        "content": "            .withResolverStyle(ResolverStyle.STRICT);"
+        "content": "    protected String priority;"
       },
       {
         "lineNumber": 50,
         "author": {
-          "gitId": "-"
+          "gitId": "lee761"
         },
         "content": ""
       },
       {
         "lineNumber": 51,
         "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 52,
-        "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
         "content": "    /**"
       },
       {
-        "lineNumber": 53,
+        "lineNumber": 52,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
-        "content": "     * The enumeration of all task type."
+        "content": "     * A date format that is shared by all tasks to parse and out the date involved in the task."
       },
       {
-        "lineNumber": 54,
+        "lineNumber": 53,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
         "content": "     */"
       },
       {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "    protected static DateTimeFormatter format \u003d DateTimeFormatter"
+      },
+      {
         "lineNumber": 55,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
-        "content": "    public enum TaskType {"
+        "content": "            .ofPattern(\"dd/MM/uuuu HHmm\", Locale.ENGLISH)"
       },
       {
         "lineNumber": 56,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
-        "content": "        ToDo, Deadline, Event"
+        "content": "            .withResolverStyle(ResolverStyle.STRICT);"
       },
       {
         "lineNumber": 57,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 58,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
         "content": ""
       },
       {
         "lineNumber": 59,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
         "content": "    /**"
       },
       {
         "lineNumber": 60,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
-        "content": "     * Instantiation of a task with the name and the default false value if isDone attribute."
+        "content": "     * The enumeration of all task type."
       },
       {
         "lineNumber": 61,
         "author": {
-          "gitId": "-"
-        },
-        "content": "     *"
-      },
-      {
-        "lineNumber": 62,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * @param name the name of the task"
-      },
-      {
-        "lineNumber": 63,
-        "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
         "content": "     */"
       },
       {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "    public enum TaskType {"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "        ToDo, Deadline, Event"
+      },
+      {
         "lineNumber": 64,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
-        "content": "    public Task(String name) {"
+        "content": "    }"
       },
       {
         "lineNumber": 65,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
-        "content": "        this.name \u003d name;"
+        "content": ""
       },
       {
         "lineNumber": 66,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
-        "content": "        this.isDone \u003d false;"
+        "content": "    /**"
       },
       {
         "lineNumber": 67,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
-        "content": "        this.doAfterDescription \u003d null;"
+        "content": "     * Instantiation of a task with the name and the default false value if isDone attribute."
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "        this.tags \u003d new ArrayList\u003c\u003e();"
+        "content": "     *"
       },
       {
         "lineNumber": 69,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "     * @param name the name of the task"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "    public Task(String name) {"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "        this.name \u003d name;"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "        this.isDone \u003d false;"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "        this.doAfterDescription \u003d null;"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "        this.tags \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 76,
         "author": {
           "gitId": "lee761"
         },
         "content": "        this.priority \u003d null;"
       },
       {
-        "lineNumber": 70,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 71,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 72,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 73,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * Marks the isDone as true."
-      },
-      {
-        "lineNumber": 74,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 75,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public void markDone() {"
-      },
-      {
-        "lineNumber": 76,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        this.isDone \u003d true;"
-      },
-      {
         "lineNumber": 77,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
         "content": "    }"
       },
       {
         "lineNumber": 78,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
         "content": ""
       },
       {
         "lineNumber": 79,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
         "content": "    /**"
       },
       {
         "lineNumber": 80,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
-        "content": "     * Gets the status whether the task is done."
+        "content": "     * Marks the isDone as true."
       },
       {
         "lineNumber": 81,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
-        "content": "     *"
+        "content": "     */"
       },
       {
         "lineNumber": 82,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
-        "content": "     * @return the isDone attribute"
+        "content": "    public void markDone() {"
       },
       {
         "lineNumber": 83,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
-        "content": "     */"
+        "content": "        this.isDone \u003d true;"
       },
       {
         "lineNumber": 84,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
-        "content": "    public boolean getDone() {"
+        "content": "    }"
       },
       {
         "lineNumber": 85,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
-        "content": "        return this.isDone;"
+        "content": ""
       },
       {
         "lineNumber": 86,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
-        "content": "    }"
+        "content": "    /**"
       },
       {
         "lineNumber": 87,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
-        "content": ""
+        "content": "     * Gets the status whether the task is done."
       },
       {
         "lineNumber": 88,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
-        "content": "    /**"
+        "content": "     *"
       },
       {
         "lineNumber": 89,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
-        "content": "     * The function that returns a human readable string of the basic information of the task."
+        "content": "     * @return the isDone attribute"
       },
       {
         "lineNumber": 90,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
-        "content": "     *"
+        "content": "     */"
       },
       {
         "lineNumber": 91,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
-        "content": "     * @return the human readable string of the basic information the task."
+        "content": "    public boolean getDone() {"
       },
       {
         "lineNumber": 92,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
-        "content": "     */"
+        "content": "        return this.isDone;"
       },
       {
         "lineNumber": 93,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
-        "content": "    protected String getStatus() {"
+        "content": "    }"
       },
       {
         "lineNumber": 94,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
-        "content": "        if (this.isDone) {"
+        "content": ""
       },
       {
         "lineNumber": 95,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
-        "content": "            return \"[✓] \" + this.name;"
+        "content": "    /**"
       },
       {
         "lineNumber": 96,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
-        "content": "        } else {"
+        "content": "     * The function that returns a human readable string of the basic information of the task."
       },
       {
         "lineNumber": 97,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
-        "content": "            return \"[✗] \" + this.name;"
+        "content": "     *"
       },
       {
         "lineNumber": 98,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
-        "content": "        }"
+        "content": "     * @return the human readable string of the basic information the task."
       },
       {
         "lineNumber": 99,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
-        "content": "    }"
+        "content": "     */"
       },
       {
         "lineNumber": 100,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
-        "content": ""
+        "content": "    protected String getStatus() {"
       },
       {
         "lineNumber": 101,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
-        "content": "    public TaskType getTaskType() {"
+        "content": "        if (this.isDone) {"
       },
       {
         "lineNumber": 102,
         "author": {
-          "gitId": "-"
+          "gitId": "limryan"
         },
-        "content": "        return this.taskType;"
+        "content": "            return \"[✓] \" + this.name;"
       },
       {
         "lineNumber": 103,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
-        "content": "    }"
+        "content": "        } else {"
       },
       {
         "lineNumber": 104,
         "author": {
-          "gitId": "-"
+          "gitId": "limryan"
         },
-        "content": ""
+        "content": "            return \"[✗] \" + this.name;"
       },
       {
         "lineNumber": 105,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 106,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * Converts the task to a human readable string. This will return the same string as the get status"
-      },
-      {
-        "lineNumber": 107,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * function for a basic task, but is overridden by more advanced task class to add more information."
-      },
-      {
-        "lineNumber": 108,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     *"
-      },
-      {
-        "lineNumber": 109,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * @return a human readable string that contains all important information of a task."
-      },
-      {
-        "lineNumber": 110,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 111,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public String toString() {"
-      },
-      {
-        "lineNumber": 112,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        return this.getStatus();"
-      },
-      {
-        "lineNumber": 113,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 114,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 115,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 116,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * The function returns a string that contains full information of the task which is used to be stored in"
-      },
-      {
-        "lineNumber": 117,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * a file for future usage."
-      },
-      {
-        "lineNumber": 118,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     *"
-      },
-      {
-        "lineNumber": 119,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * @return a string containing full information of the task."
-      },
-      {
-        "lineNumber": 120,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 121,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public String toFileString() {"
-      },
-      {
-        "lineNumber": 122,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        return this.toString();"
-      },
-      {
-        "lineNumber": 123,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 124,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 125,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 126,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * The function is used to parse the input string to a Date that is used by the tasks with time involved."
-      },
-      {
-        "lineNumber": 127,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * The function can be called before the initialization of a Task so that the Data can be directly passed"
-      },
-      {
-        "lineNumber": 128,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * to the constructor."
-      },
-      {
-        "lineNumber": 129,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     *"
-      },
-      {
-        "lineNumber": 130,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * @param dateString an input string to be parsed"
-      },
-      {
-        "lineNumber": 131,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * @return parsed result from the input string"
-      },
-      {
-        "lineNumber": 132,
-        "author": {
-          "gitId": "JokerYan"
-        },
-        "content": "     * @throws CommandParser.UserInputException an exception when the parsing is failed, most likely due to a"
-      },
-      {
-        "lineNumber": 133,
-        "author": {
-          "gitId": "JokerYan"
-        },
-        "content": "     *                                          wrong format"
-      },
-      {
-        "lineNumber": 134,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 135,
-        "author": {
-          "gitId": "JokerYan"
-        },
-        "content": "    public static LocalDateTime parseDate(String dateString) throws CommandParser.UserInputException {"
-      },
-      {
-        "lineNumber": 136,
-        "author": {
-          "gitId": "JokerYan"
-        },
-        "content": "        try {"
-      },
-      {
-        "lineNumber": 137,
-        "author": {
-          "gitId": "JokerYan"
-        },
-        "content": "            return LocalDateTime.parse(dateString, format);"
-      },
-      {
-        "lineNumber": 138,
-        "author": {
-          "gitId": "JokerYan"
-        },
-        "content": "        } catch (DateTimeParseException e) {"
-      },
-      {
-        "lineNumber": 139,
-        "author": {
-          "gitId": "JokerYan"
-        },
-        "content": "            throw new CommandParser.UserInputException(\"Wrong Date Time format\");"
-      },
-      {
-        "lineNumber": 140,
         "author": {
           "gitId": "JokerYan"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 141,
+        "lineNumber": 106,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 142,
+        "lineNumber": 107,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
         "content": ""
       },
       {
-        "lineNumber": 143,
+        "lineNumber": 108,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
+        },
+        "content": "    public TaskType getTaskType() {"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "        return this.taskType;"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "JokerYan"
         },
         "content": "    /**"
       },
       {
-        "lineNumber": 144,
+        "lineNumber": 113,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
-        "content": "     * The function checks whether this task, when converted to string, contains the keyword specified."
+        "content": "     * Converts the task to a human readable string. This will return the same string as the get status"
       },
       {
-        "lineNumber": 145,
+        "lineNumber": 114,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
+        },
+        "content": "     * function for a basic task, but is overridden by more advanced task class to add more information."
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "JokerYan"
         },
         "content": "     *"
       },
       {
-        "lineNumber": 146,
+        "lineNumber": 116,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
-        "content": "     * @param keyword search target string"
+        "content": "     * @return a human readable string that contains all important information of a task."
       },
       {
-        "lineNumber": 147,
+        "lineNumber": 117,
         "author": {
-          "gitId": "-"
-        },
-        "content": "     * @return a flag whether the keyword is found in the task string"
-      },
-      {
-        "lineNumber": 148,
-        "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 149,
+        "lineNumber": 118,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
-        "content": "    public boolean matchKeyword(String keyword) {"
+        "content": "    public String toString() {"
       },
       {
-        "lineNumber": 150,
+        "lineNumber": 119,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
-        "content": "        return this.toString().contains(keyword);"
+        "content": "        return this.getStatus();"
       },
       {
-        "lineNumber": 151,
+        "lineNumber": 120,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 152,
+        "lineNumber": 121,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
         "content": ""
       },
       {
-        "lineNumber": 153,
+        "lineNumber": 122,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
         "content": "    /**"
       },
       {
-        "lineNumber": 154,
+        "lineNumber": 123,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "     * The default function determining whether the deadline or event is near enough. It will be overridden in"
+        "content": "     * The function returns a string that contains full information of the task which is used to be stored in"
       },
       {
-        "lineNumber": 155,
+        "lineNumber": 124,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "     * deadline or event, but not todo."
+        "content": "     * a file for future usage."
       },
       {
-        "lineNumber": 156,
+        "lineNumber": 125,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
         "content": "     *"
       },
       {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "     * @return a string containing full information of the task."
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "    public String toFileString() {"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "        return this.toString();"
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "lee761"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "lee761"
+        },
+        "content": "     * Checks if the input is a short form for a day of the week"
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "lee761"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "lee761"
+        },
+        "content": "     * @param input an input to be checked"
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "lee761"
+        },
+        "content": "     * @return false if the input is not short form or not a day of the week"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "lee761"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "lee761"
+        },
+        "content": "    public static boolean isCorrectNaturalDate(String input) {"
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "lee761"
+        },
+        "content": "        DayOfWeek[] dayOfWeeks \u003d DayOfWeek.values();"
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "lee761"
+        },
+        "content": "        for (int i \u003d 0; i \u003c dayOfWeeks.length; i++) {"
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "lee761"
+        },
+        "content": "            String day \u003d dayOfWeeks[i].getDisplayName(TextStyle.SHORT, Locale.US);"
+      },
+      {
+        "lineNumber": 142,
+        "author": {
+          "gitId": "lee761"
+        },
+        "content": "            if (day.equals(input)) {"
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "lee761"
+        },
+        "content": "                return true;"
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "lee761"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 145,
+        "author": {
+          "gitId": "lee761"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 146,
+        "author": {
+          "gitId": "lee761"
+        },
+        "content": "        return false;"
+      },
+      {
+        "lineNumber": 147,
+        "author": {
+          "gitId": "lee761"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 148,
+        "author": {
+          "gitId": "lee761"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 149,
+        "author": {
+          "gitId": "lee761"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 150,
+        "author": {
+          "gitId": "lee761"
+        },
+        "content": "     * Converts the input from a string that contains a day of the week to the next nearest date corresponding"
+      },
+      {
+        "lineNumber": 151,
+        "author": {
+          "gitId": "lee761"
+        },
+        "content": "     * to the day of the week. If they day has already passed in that week, the next date corresponding to the"
+      },
+      {
+        "lineNumber": 152,
+        "author": {
+          "gitId": "lee761"
+        },
+        "content": "     * day will be returned."
+      },
+      {
+        "lineNumber": 153,
+        "author": {
+          "gitId": "lee761"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 154,
+        "author": {
+          "gitId": "lee761"
+        },
+        "content": "     * @param parsedDay    an input that contains the day of the task to be done."
+      },
+      {
+        "lineNumber": 155,
+        "author": {
+          "gitId": "lee761"
+        },
+        "content": "     * @param parsedTiming an input that contains the time of the task to be done."
+      },
+      {
+        "lineNumber": 156,
+        "author": {
+          "gitId": "lee761"
+        },
+        "content": "     * @return dateTime that gives the date and time of the input."
+      },
+      {
         "lineNumber": 157,
         "author": {
-          "gitId": "-"
+          "gitId": "lee761"
         },
-        "content": "     * @param dayLimit the maximum number of days from now for a task to be considered as near"
+        "content": "     * @throws CommandParser.UserInputException an exception when the parsing is failed, most likely due to a"
       },
       {
         "lineNumber": 158,
         "author": {
-          "gitId": "-"
+          "gitId": "lee761"
         },
-        "content": "     * @return whether the task is near enough"
+        "content": "     *                                          wrong format"
       },
       {
         "lineNumber": 159,
         "author": {
-          "gitId": "-"
+          "gitId": "lee761"
         },
         "content": "     */"
       },
       {
         "lineNumber": 160,
         "author": {
-          "gitId": "-"
+          "gitId": "lee761"
         },
-        "content": "    public boolean isNear(int dayLimit) {"
+        "content": "    public static LocalDateTime convertNaturalDate(String parsedDay, String parsedTiming) throws CommandParser.UserInputException {"
       },
       {
         "lineNumber": 161,
         "author": {
-          "gitId": "-"
+          "gitId": "lee761"
         },
-        "content": "        return false;"
+        "content": "        LocalDate date \u003d LocalDate.now();"
       },
       {
         "lineNumber": 162,
         "author": {
-          "gitId": "-"
+          "gitId": "lee761"
         },
-        "content": "    }"
+        "content": "        LocalDateTime dateTime \u003d null;"
       },
       {
         "lineNumber": 163,
         "author": {
-          "gitId": "-"
+          "gitId": "lee761"
         },
-        "content": ""
+        "content": "        try {"
       },
       {
         "lineNumber": 164,
         "author": {
-          "gitId": "-"
+          "gitId": "lee761"
         },
-        "content": "    public void setDoAfterDescription(String description) {"
+        "content": "            if (parsedTiming \u003d\u003d null || parsedTiming.isEmpty()) { //if no timing is inputted, set time as 0000"
       },
       {
         "lineNumber": 165,
         "author": {
-          "gitId": "-"
+          "gitId": "lee761"
         },
-        "content": "        this.doAfterDescription \u003d description;"
+        "content": "                dateTime \u003d date.atStartOfDay();"
       },
       {
         "lineNumber": 166,
         "author": {
-          "gitId": "-"
+          "gitId": "lee761"
         },
-        "content": "    }"
+        "content": "            } else {"
       },
       {
         "lineNumber": 167,
         "author": {
-          "gitId": "-"
+          "gitId": "lee761"
         },
-        "content": ""
+        "content": "                LocalTime timing \u003d LocalTime.parse(parsedTiming, DateTimeFormatter.ofPattern(\"HHmm\"));"
       },
       {
         "lineNumber": 168,
         "author": {
-          "gitId": "-"
+          "gitId": "lee761"
         },
-        "content": "    public void snooze() {"
+        "content": "                dateTime \u003d date.atTime(timing);"
       },
       {
         "lineNumber": 169,
         "author": {
-          "gitId": "-"
+          "gitId": "lee761"
         },
-        "content": "    }"
+        "content": "            }"
       },
       {
         "lineNumber": 170,
         "author": {
-          "gitId": "-"
+          "gitId": "lee761"
         },
-        "content": ""
+        "content": "            DayOfWeek dow \u003d dateTime.getDayOfWeek();"
       },
       {
         "lineNumber": 171,
         "author": {
-          "gitId": "-"
+          "gitId": "lee761"
         },
-        "content": "    public boolean isClash(Task task) {"
+        "content": "            String day \u003d dow.getDisplayName(TextStyle.SHORT, Locale.US);"
       },
       {
         "lineNumber": 172,
         "author": {
-          "gitId": "-"
+          "gitId": "lee761"
         },
-        "content": "        return false;"
+        "content": "            while (!day.contains(parsedDay)) {"
       },
       {
         "lineNumber": 173,
         "author": {
-          "gitId": "-"
+          "gitId": "lee761"
         },
-        "content": "    }"
+        "content": "                dateTime \u003d dateTime.plusDays(1);"
       },
       {
         "lineNumber": 174,
         "author": {
-          "gitId": "limryan"
+          "gitId": "lee761"
         },
-        "content": ""
+        "content": "                dow \u003d dateTime.getDayOfWeek();"
       },
       {
         "lineNumber": 175,
         "author": {
-          "gitId": "limryan"
+          "gitId": "lee761"
         },
-        "content": "    public void setName(String name) {"
+        "content": "                day \u003d dow.getDisplayName(TextStyle.SHORT, Locale.US);"
       },
       {
         "lineNumber": 176,
         "author": {
-          "gitId": "limryan"
+          "gitId": "lee761"
         },
-        "content": "        this.name \u003d name;"
+        "content": "            }"
       },
       {
         "lineNumber": 177,
         "author": {
-          "gitId": "limryan"
+          "gitId": "lee761"
         },
-        "content": "    }"
+        "content": "        } catch (DateTimeParseException e) {"
       },
       {
         "lineNumber": 178,
         "author": {
-          "gitId": "limryan"
+          "gitId": "lee761"
         },
-        "content": ""
+        "content": "            throw new CommandParser.UserInputException(\"Wrong Date Time format\");"
       },
       {
         "lineNumber": 179,
         "author": {
-          "gitId": "limryan"
+          "gitId": "lee761"
         },
-        "content": "    public String getName() {"
+        "content": "        }"
       },
       {
         "lineNumber": 180,
         "author": {
-          "gitId": "limryan"
+          "gitId": "lee761"
         },
-        "content": "        return name;"
+        "content": "        return dateTime;"
       },
       {
         "lineNumber": 181,
         "author": {
-          "gitId": "limryan"
+          "gitId": "lee761"
         },
         "content": "    }"
       },
       {
         "lineNumber": 182,
         "author": {
-          "gitId": "limryan"
+          "gitId": "lee761"
         },
         "content": ""
       },
@@ -35160,91 +35272,497 @@
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "    public void setTags(ArrayList\u003cString\u003e tags) {"
+        "content": "    /**"
       },
       {
         "lineNumber": 184,
         "author": {
           "gitId": "JokerYan"
         },
-        "content": "        this.tags \u003d tags;"
+        "content": "     * The function is used to parse the input string to a Date that is used by the tasks with time involved."
       },
       {
         "lineNumber": 185,
         "author": {
-          "gitId": "lee761"
+          "gitId": "JokerYan"
+        },
+        "content": "     * The function can be called before the initialization of a Task so that the Data can be directly passed"
+      },
+      {
+        "lineNumber": 186,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "     * to the constructor."
+      },
+      {
+        "lineNumber": 187,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 188,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "     * @param dateString an input string to be parsed"
+      },
+      {
+        "lineNumber": 189,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "     * @return parsed result from the input string"
+      },
+      {
+        "lineNumber": 190,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "     * @throws CommandParser.UserInputException an exception when the parsing is failed, most likely due to a"
+      },
+      {
+        "lineNumber": 191,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "     *                                          wrong format"
+      },
+      {
+        "lineNumber": 192,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 193,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "    public static LocalDateTime parseDate(String dateString) throws CommandParser.UserInputException {"
+      },
+      {
+        "lineNumber": 194,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 195,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "            return LocalDateTime.parse(dateString, format);"
+      },
+      {
+        "lineNumber": 196,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "        } catch (DateTimeParseException e) {"
+      },
+      {
+        "lineNumber": 197,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "            throw new CommandParser.UserInputException(\"Wrong Date Time format\");"
+      },
+      {
+        "lineNumber": 198,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 199,
+        "author": {
+          "gitId": "JokerYan"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 186,
+        "lineNumber": 200,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 201,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 202,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "     * The function checks whether this task, when converted to string, contains the keyword specified."
+      },
+      {
+        "lineNumber": 203,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 204,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "     * @param keyword search target string"
+      },
+      {
+        "lineNumber": 205,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "     * @return a flag whether the keyword is found in the task string"
+      },
+      {
+        "lineNumber": 206,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 207,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "    public boolean matchKeyword(String keyword) {"
+      },
+      {
+        "lineNumber": 208,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "        return this.toString().contains(keyword);"
+      },
+      {
+        "lineNumber": 209,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 210,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 211,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 212,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "     * The default function determining whether the deadline or event is near enough. It will be overridden in"
+      },
+      {
+        "lineNumber": 213,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "     * deadline or event, but not todo."
+      },
+      {
+        "lineNumber": 214,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 215,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "     * @param dayLimit the maximum number of days from now for a task to be considered as near"
+      },
+      {
+        "lineNumber": 216,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "     * @return whether the task is near enough"
+      },
+      {
+        "lineNumber": 217,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 218,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "    public boolean isNear(int dayLimit) {"
+      },
+      {
+        "lineNumber": 219,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "        return false;"
+      },
+      {
+        "lineNumber": 220,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 221,
         "author": {
           "gitId": "limryan"
         },
         "content": ""
       },
       {
-        "lineNumber": 187,
+        "lineNumber": 222,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "    public void setDoAfterDescription(String description) {"
+      },
+      {
+        "lineNumber": 223,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "        this.doAfterDescription \u003d description;"
+      },
+      {
+        "lineNumber": 224,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 225,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 226,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "    public void snooze() {"
+      },
+      {
+        "lineNumber": 227,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 228,
+        "author": {
+          "gitId": "ziyun99"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 229,
+        "author": {
+          "gitId": "ziyun99"
+        },
+        "content": "    public boolean isClash(Task task) {"
+      },
+      {
+        "lineNumber": 230,
+        "author": {
+          "gitId": "ziyun99"
+        },
+        "content": "        return false;"
+      },
+      {
+        "lineNumber": 231,
+        "author": {
+          "gitId": "ziyun99"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 232,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 233,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "    public void setName(String name) {"
+      },
+      {
+        "lineNumber": 234,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "        this.name \u003d name;"
+      },
+      {
+        "lineNumber": 235,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 236,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 237,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "    public String getName() {"
+      },
+      {
+        "lineNumber": 238,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "        return name;"
+      },
+      {
+        "lineNumber": 239,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 240,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 241,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "    public void setTags(ArrayList\u003cString\u003e tags) {"
+      },
+      {
+        "lineNumber": 242,
+        "author": {
+          "gitId": "JokerYan"
+        },
+        "content": "        this.tags \u003d tags;"
+      },
+      {
+        "lineNumber": 243,
+        "author": {
+          "gitId": "lee761"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 244,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 245,
         "author": {
           "gitId": "limryan"
         },
         "content": "    public String getDoAfterDescription() {"
       },
       {
-        "lineNumber": 188,
+        "lineNumber": 246,
         "author": {
           "gitId": "limryan"
         },
         "content": "        return doAfterDescription;"
       },
       {
-        "lineNumber": 189,
+        "lineNumber": 247,
         "author": {
           "gitId": "limryan"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 190,
+        "lineNumber": 248,
         "author": {
           "gitId": "lee761"
         },
         "content": ""
       },
       {
-        "lineNumber": 191,
+        "lineNumber": 249,
         "author": {
           "gitId": "lee761"
         },
         "content": "    public void setPriorityTo(String priority) {"
       },
       {
-        "lineNumber": 192,
+        "lineNumber": 250,
         "author": {
           "gitId": "lee761"
         },
         "content": "        this.priority \u003d priority;"
       },
       {
-        "lineNumber": 193,
+        "lineNumber": 251,
         "author": {
           "gitId": "lee761"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 194,
+        "lineNumber": 252,
         "author": {
-          "gitId": "-"
+          "gitId": "JokerYan"
         },
         "content": "}"
       }
     ],
     "authorContributionMap": {
-      "limryan": 14,
-      "JokerYan": 27,
-      "-": 139,
-      "lee761": 14
+      "ziyun99": 4,
+      "limryan": 24,
+      "JokerYan": 152,
+      "lee761": 72
     }
   },
   {

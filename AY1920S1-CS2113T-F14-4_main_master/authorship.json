@@ -2374,7 +2374,7 @@
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "                if (input.equals(\"bye\")) {"
+        "content": "                if (input.toLowerCase().equals(\"bye\")) {"
       },
       {
         "lineNumber": 87,
@@ -2449,9 +2449,9 @@
       {
         "lineNumber": 97,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "                pageData \u003d commandBuilder(pageData);"
+        "content": "                pageData \u003d commandBuilder(pageData.toLowerCase());"
       },
       {
         "lineNumber": 98,
@@ -2507,7 +2507,7 @@
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "        switch (action) {"
+        "content": "        switch (action.toLowerCase()) {"
       },
       {
         "lineNumber": 106,
@@ -2542,7 +2542,7 @@
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "            command \u003d new ViewCommand(pageData, content);"
+        "content": "            command \u003d new ViewCommand(pageDataComponents, content);"
       },
       {
         "lineNumber": 111,
@@ -2561,9 +2561,9 @@
       {
         "lineNumber": 113,
         "author": {
-          "gitId": "rssujay"
+          "gitId": "ttippinyu"
         },
-        "content": "            command \u003d new AddCommand(pageDataComponents[1], content);"
+        "content": "            command \u003d new AddCommand(pageDataComponents, content);"
       },
       {
         "lineNumber": 114,
@@ -2584,7 +2584,7 @@
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "            command \u003d new RemoveCommand(pageDataComponents[1], content);"
+        "content": "            command \u003d new RemoveCommand(pageDataComponents, content);"
       },
       {
         "lineNumber": 117,
@@ -2605,7 +2605,7 @@
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "            command \u003d new MarkCommand(pageDataComponents[1], content);"
+        "content": "            command \u003d new MarkCommand(pageDataComponents, content);"
       },
       {
         "lineNumber": 120,
@@ -2624,9 +2624,9 @@
       {
         "lineNumber": 122,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "            command \u003d new MultipleCommand(pageDataComponents[1], content);"
+        "content": "            command \u003d new MultipleCommand(pageDataComponents, content);"
       },
       {
         "lineNumber": 123,
@@ -2756,9 +2756,9 @@
       }
     ],
     "authorContributionMap": {
-      "rssujay": 16,
-      "ttippinyu": 66,
-      "lackmoo": 58
+      "rssujay": 15,
+      "ttippinyu": 69,
+      "lackmoo": 56
     }
   },
   {
@@ -4626,1118 +4626,1426 @@
       {
         "lineNumber": 24,
         "author": {
-          "gitId": "rssujay"
+          "gitId": "ttippinyu"
         },
-        "content": ""
+        "content": "import java.util.function.ToDoubleBiFunction;"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "rssujay"
         },
-        "content": "public class AddCommand extends Command {"
+        "content": ""
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "rssujay"
         },
-        "content": "    private static final String MODULE_ADDED \u003d \"The following module has been added to SpinBox: \";"
+        "content": "public class AddCommand extends Command {"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "rssujay"
         },
-        "content": "    private static final String MODULE_NOT_ADDED \u003d \"A module with this code already exists in SpinBox.\";"
+        "content": "    private static final String MODULE_ADDED \u003d \"The following module has been added to SpinBox: \";"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "rssujay"
         },
-        "content": "    private static final String NON_EXISTENT_MODULE \u003d \"This module does not exist.\";"
+        "content": "    private static final String MODULE_NOT_ADDED \u003d \"A module with this code already exists in SpinBox.\";"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "rssujay"
         },
-        "content": "    private static final String NOTE_ADDED \u003d \"A new note has been successfully added to \";"
+        "content": "    private static final String NON_EXISTENT_MODULE \u003d \"This module does not exist.\";"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "rssujay"
         },
-        "content": "    private String type;"
+        "content": "    private static final String NOTE_ADDED \u003d \"A new note has been successfully added to \";"
       },
       {
         "lineNumber": 31,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "    private static final String UNKNOWN_ITEM_TYPE \u003d \"Sorry, unknown item type to add.\";"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "    private static final String FILE_ERROR_MESSAGE \u003d \"Please ensure that you enter \""
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "            + \"the full command for adding files:\\n\";"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "    private static final String NOTE_ERROR_MESSAGE \u003d \"Please ensure that you enter \""
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "            + \"the full command for adding notes:\\n\";"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "    private static final String TODO_ERROR_MESSAGE \u003d \"Please ensure that you enter \""
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "            + \"the full command for adding todo:\\n\";"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "    private static final String DEADLINE_ERROR_MESSAGE \u003d \"Please ensure that you enter \""
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "            + \"the full command for adding deadlines:\\n\";"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "    private static final String EVENT_ERROR_MESSAGE \u003d \"Please ensure that you enter \""
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "            + \"the full command for adding events:\\n\";"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "    private static final String MODULE_ERROR_MESSAGE \u003d \"Please ensure that you enter \""
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "            + \"the full command for adding modules:\\n\";"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "    private static final String FILE_FORMAT \u003d \"add \u003cmoduleCode\u003e / file \u003cfileName\u003e\";"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "    private static final String NOTE_FORMAT \u003d \"add \u003cmoduleCode\u003e / note \u003cfileName\u003e\";"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "    private static final String TODO_FORMAT \u003d \"add \u003cmoduleCode\u003e / todo \u003cfileName\u003e\";"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "    private static final String DEADLINE_FORMAT \u003d \"add \u003cmoduleCode\u003e / deadline \u003ctaskName\u003e by: \u003cMM/DD/YYYY HH:MM\";"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "    private static final String EVENT_FORMAT \u003d \"add \u003cmoduleCode\u003e / \u003ceventType\u003e \u003ctaskName\u003e at: \""
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "        + \"\u003cstart as MM/DD/YYYY HH:MM\u003e to \u003cend as MM/DD/YYYY HH:MM\u003e\";"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "    private static final String MODULE_FORMAT \u003d \"add / module \u003cmoduleCode\u003e \u003cmoduleName\u003e\";"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "rssujay"
+        },
+        "content": "    private String type;"
+      },
+      {
+        "lineNumber": 53,
         "author": {
           "gitId": "rssujay"
         },
         "content": ""
       },
       {
-        "lineNumber": 32,
+        "lineNumber": 54,
         "author": {
           "gitId": "rssujay"
         },
         "content": "    private String moduleCode;"
       },
       {
-        "lineNumber": 33,
+        "lineNumber": 55,
         "author": {
           "gitId": "rssujay"
         },
         "content": "    private String content;"
       },
       {
-        "lineNumber": 34,
+        "lineNumber": 56,
         "author": {
           "gitId": "rssujay"
         },
         "content": ""
       },
       {
-        "lineNumber": 35,
+        "lineNumber": 57,
         "author": {
           "gitId": "rssujay"
         },
         "content": "    /**"
       },
       {
-        "lineNumber": 36,
+        "lineNumber": 58,
         "author": {
           "gitId": "rssujay"
         },
         "content": "     * Constructor for initialization of variables to support addition of entities."
       },
       {
-        "lineNumber": 37,
+        "lineNumber": 59,
         "author": {
-          "gitId": "rssujay"
+          "gitId": "ttippinyu"
         },
-        "content": "     * @param moduleCode A String denoting the module code."
+        "content": "     * @param pageDataComponents page data components."
       },
       {
-        "lineNumber": 38,
+        "lineNumber": 60,
         "author": {
           "gitId": "rssujay"
         },
         "content": "     * @param content A string containing the content of the processed user input."
       },
       {
-        "lineNumber": 39,
+        "lineNumber": 61,
         "author": {
           "gitId": "rssujay"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 40,
-        "author": {
-          "gitId": "rssujay"
-        },
-        "content": "    public AddCommand(String moduleCode, String content) {"
-      },
-      {
-        "lineNumber": 41,
-        "author": {
-          "gitId": "rssujay"
-        },
-        "content": "        this.moduleCode \u003d moduleCode;"
-      },
-      {
-        "lineNumber": 42,
-        "author": {
-          "gitId": "rssujay"
-        },
-        "content": "        this.content \u003d content;"
-      },
-      {
-        "lineNumber": 43,
-        "author": {
-          "gitId": "rssujay"
-        },
-        "content": "        this.type \u003d content.split(\" \")[0];"
-      },
-      {
-        "lineNumber": 44,
-        "author": {
-          "gitId": "rssujay"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 45,
-        "author": {
-          "gitId": "rssujay"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 46,
-        "author": {
-          "gitId": "rssujay"
-        },
-        "content": "    @Override"
-      },
-      {
-        "lineNumber": 47,
-        "author": {
-          "gitId": "rssujay"
-        },
-        "content": "    public String execute(ModuleContainer moduleContainer, ArrayDeque\u003cString\u003e pageTrace, Ui ui) throws"
-      },
-      {
-        "lineNumber": 48,
-        "author": {
-          "gitId": "rssujay"
-        },
-        "content": "            SpinBoxException {"
-      },
-      {
-        "lineNumber": 49,
-        "author": {
-          "gitId": "lackmoo"
-        },
-        "content": "        File fileAdded;"
-      },
-      {
-        "lineNumber": 50,
-        "author": {
-          "gitId": "lackmoo"
-        },
-        "content": "        Task taskAdded;"
-      },
-      {
-        "lineNumber": 51,
-        "author": {
-          "gitId": "lackmoo"
-        },
-        "content": "        DateTime start;"
-      },
-      {
-        "lineNumber": 52,
-        "author": {
-          "gitId": "lackmoo"
-        },
-        "content": "        DateTime end;"
-      },
-      {
-        "lineNumber": 53,
-        "author": {
-          "gitId": "lackmoo"
-        },
-        "content": "        try {"
-      },
-      {
-        "lineNumber": 54,
-        "author": {
-          "gitId": "ttippinyu"
-        },
-        "content": "            switch (type) {"
-      },
-      {
-        "lineNumber": 55,
-        "author": {
-          "gitId": "ttippinyu"
-        },
-        "content": "            case \"file\":"
-      },
-      {
-        "lineNumber": 56,
-        "author": {
-          "gitId": "ttippinyu"
-        },
-        "content": "                if (moduleContainer.checkModuleExists(moduleCode)) {"
-      },
-      {
-        "lineNumber": 57,
-        "author": {
-          "gitId": "ttippinyu"
-        },
-        "content": "                    HashMap\u003cString, Module\u003e modules \u003d moduleContainer.getModules();"
-      },
-      {
-        "lineNumber": 58,
-        "author": {
-          "gitId": "ttippinyu"
-        },
-        "content": "                    Module module \u003d modules.get(moduleCode);"
-      },
-      {
-        "lineNumber": 59,
-        "author": {
-          "gitId": "ttippinyu"
-        },
-        "content": "                    FileList files \u003d module.getFiles();"
-      },
-      {
-        "lineNumber": 60,
-        "author": {
-          "gitId": "ttippinyu"
-        },
-        "content": "                    String fileName \u003d content.replace(type.concat(\" \"), \"\");"
-      },
-      {
-        "lineNumber": 61,
-        "author": {
-          "gitId": "lackmoo"
-        },
-        "content": "                    fileAdded \u003d files.add(new File(0, fileName));"
-      },
-      {
         "lineNumber": 62,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "                    return \"Added into \" + module.toString() + \" file: \" + fileAdded.toString() + \"\\n\""
+        "content": "    public AddCommand(String[] pageDataComponents, String content) throws InputException {"
       },
       {
         "lineNumber": 63,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "                            + \"You currently have \" + files.getList().size()"
+        "content": "        if (pageDataComponents.length \u003e 1) {"
       },
       {
         "lineNumber": 64,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "                            + ((files.getList().size() \u003d\u003d 1) ? \" file in the list.\" : \" files in the list.\");"
+        "content": "            this.moduleCode \u003d pageDataComponents[1];"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "                } else {"
+        "content": "        }"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "rssujay"
         },
-        "content": "                    return NON_EXISTENT_MODULE;"
+        "content": "        this.content \u003d content;"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "                }"
+        "content": "        this.type \u003d content.split(\" \")[0].toLowerCase();"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "rssujay"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "rssujay"
         },
-        "content": "            case \"note\":"
+        "content": ""
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "rssujay"
         },
-        "content": "                if (moduleContainer.checkModuleExists(moduleCode)) {"
+        "content": "    @Override"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "rssujay"
         },
-        "content": "                    HashMap\u003cString, Module\u003e modules \u003d moduleContainer.getModules();"
+        "content": "    public String execute(ModuleContainer moduleContainer, ArrayDeque\u003cString\u003e pageTrace, Ui ui) throws"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "rssujay"
         },
-        "content": "                    Module module \u003d modules.get(moduleCode);"
+        "content": "            SpinBoxException {"
       },
       {
         "lineNumber": 73,
         "author": {
-          "gitId": "rssujay"
+          "gitId": "lackmoo"
         },
-        "content": "                    Notepad notepad \u003d module.getNotepad();"
+        "content": "        File fileAdded;"
       },
       {
         "lineNumber": 74,
         "author": {
-          "gitId": "rssujay"
+          "gitId": "lackmoo"
         },
-        "content": "                    String noteContent \u003d content.replace(type.concat(\" \"), \"\");"
+        "content": "        Task taskAdded;"
       },
       {
         "lineNumber": 75,
         "author": {
-          "gitId": "rssujay"
+          "gitId": "lackmoo"
         },
-        "content": "                    notepad.addLine(noteContent);"
+        "content": "        DateTime start;"
       },
       {
         "lineNumber": 76,
         "author": {
-          "gitId": "rssujay"
+          "gitId": "lackmoo"
         },
-        "content": "                    return NOTE_ADDED + moduleCode;"
+        "content": "        DateTime end;"
       },
       {
         "lineNumber": 77,
         "author": {
-          "gitId": "rssujay"
+          "gitId": "ttippinyu"
         },
-        "content": "                } else {"
+        "content": "        switch (type) {"
       },
       {
         "lineNumber": 78,
         "author": {
-          "gitId": "rssujay"
+          "gitId": "ttippinyu"
         },
-        "content": "                    return NON_EXISTENT_MODULE;"
+        "content": "        case \"file\":"
       },
       {
         "lineNumber": 79,
         "author": {
-          "gitId": "rssujay"
+          "gitId": "ttippinyu"
         },
-        "content": "                }"
+        "content": "            try {"
       },
       {
         "lineNumber": 80,
         "author": {
-          "gitId": "rssujay"
+          "gitId": "ttippinyu"
         },
-        "content": ""
+        "content": "                checkIfOnModulePage(moduleCode);"
       },
       {
         "lineNumber": 81,
         "author": {
-          "gitId": "lackmoo"
-        },
-        "content": "            case \"todo\":"
-      },
-      {
-        "lineNumber": 82,
-        "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
         "content": "                if (moduleContainer.checkModuleExists(moduleCode)) {"
       },
       {
-        "lineNumber": 83,
+        "lineNumber": 82,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
         "content": "                    HashMap\u003cString, Module\u003e modules \u003d moduleContainer.getModules();"
       },
       {
-        "lineNumber": 84,
+        "lineNumber": 83,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
         "content": "                    Module module \u003d modules.get(moduleCode);"
       },
       {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "                    FileList files \u003d module.getFiles();"
+      },
+      {
         "lineNumber": 85,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "                    TaskList tasks \u003d module.getTasks();"
+        "content": "                    String fileName \u003d content.replace(type, \"\").trim();"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                    String taskDescription \u003d content.replace(type.concat(\" \"), \"\");"
+        "content": "                    fileAdded \u003d files.add(new File(0, fileName));"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                    if (taskDescription.equals(\"todo\")) {"
+        "content": "                    return \"Added into \" + module.toString() + \" file: \" + fileAdded.toString() + \"\\n\""
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                        throw new InputException(\"☹ OOPS!!! The description of a task cannot be empty.\");"
+        "content": "                            + \"You currently have \" + files.getList().size()"
       },
       {
         "lineNumber": 89,
         "author": {
-          "gitId": "rssujay"
+          "gitId": "lackmoo"
         },
-        "content": "                    }"
+        "content": "                            + ((files.getList().size() \u003d\u003d 1) ? \" file in the list.\" : \" files in the list.\");"
       },
       {
         "lineNumber": 90,
         "author": {
-          "gitId": "lackmoo"
-        },
-        "content": "                    taskAdded \u003d tasks.add(new Todo(taskDescription));"
-      },
-      {
-        "lineNumber": 91,
-        "author": {
-          "gitId": "lackmoo"
-        },
-        "content": "                    return \"Added into \" + module.toString() + \" task: \" + taskAdded.toString() + \"\\n\""
-      },
-      {
-        "lineNumber": 92,
-        "author": {
-          "gitId": "lackmoo"
-        },
-        "content": "                            + \"You currently have \" + tasks.getList().size()"
-      },
-      {
-        "lineNumber": 93,
-        "author": {
-          "gitId": "lackmoo"
-        },
-        "content": "                            + ((tasks.getList().size() \u003d\u003d 1) ? \" task in the list.\" : \" tasks in the list.\");"
-      },
-      {
-        "lineNumber": 94,
-        "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
         "content": "                } else {"
       },
       {
-        "lineNumber": 95,
+        "lineNumber": 91,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "rssujay"
         },
         "content": "                    return NON_EXISTENT_MODULE;"
       },
       {
-        "lineNumber": 96,
+        "lineNumber": 92,
         "author": {
           "gitId": "ttippinyu"
         },
         "content": "                }"
       },
       {
-        "lineNumber": 97,
+        "lineNumber": 93,
         "author": {
           "gitId": "ttippinyu"
+        },
+        "content": "            } catch (IndexOutOfBoundsException e) {"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "                throw new InputException(FILE_ERROR_MESSAGE + FILE_FORMAT);"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "rssujay"
         },
         "content": ""
       },
       {
-        "lineNumber": 98,
+        "lineNumber": 97,
         "author": {
           "gitId": "rssujay"
         },
-        "content": "            case \"deadline\":"
+        "content": "        case \"note\":"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "            try {"
       },
       {
         "lineNumber": 99,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "                if (moduleContainer.checkModuleExists(moduleCode)) {"
+        "content": "                checkIfOnModulePage(moduleCode);"
       },
       {
         "lineNumber": 100,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "rssujay"
         },
-        "content": "                    HashMap\u003cString, Module\u003e modules \u003d moduleContainer.getModules();"
+        "content": "                if (moduleContainer.checkModuleExists(moduleCode)) {"
       },
       {
         "lineNumber": 101,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "rssujay"
         },
-        "content": "                    Module module \u003d modules.get(moduleCode);"
+        "content": "                    HashMap\u003cString, Module\u003e modules \u003d moduleContainer.getModules();"
       },
       {
         "lineNumber": 102,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "rssujay"
         },
-        "content": "                    TaskList tasks \u003d module.getTasks();"
+        "content": "                    Module module \u003d modules.get(moduleCode);"
       },
       {
         "lineNumber": 103,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "rssujay"
         },
-        "content": "                    String taskDescription \u003d content.replace(type.concat(\" \"), \"\");"
+        "content": "                    Notepad notepad \u003d module.getNotepad();"
       },
       {
         "lineNumber": 104,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "                    if (taskDescription.split(\" \")[0].equals(\"/by\")) {"
+        "content": "                    String noteContent \u003d content.replace(type, \"\").trim();"
       },
       {
         "lineNumber": 105,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "rssujay"
         },
-        "content": "                        throw new InputException(\"☹ OOPS!!! The description of a deadline cannot be empty.\");"
+        "content": "                    notepad.addLine(noteContent);"
       },
       {
         "lineNumber": 106,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "rssujay"
         },
-        "content": "                    }"
+        "content": "                    return NOTE_ADDED + moduleCode;"
       },
       {
         "lineNumber": 107,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "rssujay"
         },
-        "content": "                    start \u003d new DateTime(taskDescription.split(\"/by \")[1]);"
+        "content": "                } else {"
       },
       {
         "lineNumber": 108,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "rssujay"
         },
-        "content": "                    taskAdded \u003d tasks.add(new Deadline(taskDescription.substring(0,"
+        "content": "                    return NON_EXISTENT_MODULE;"
       },
       {
         "lineNumber": 109,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "rssujay"
         },
-        "content": "                            taskDescription.lastIndexOf(\" /by\")), start));"
+        "content": "                }"
       },
       {
         "lineNumber": 110,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "                    return \"Added into \" + module.toString() + \" task: \" + taskAdded.toString() + \"\\n\""
+        "content": "            } catch (IndexOutOfBoundsException e) {"
       },
       {
         "lineNumber": 111,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "                            + \"You currently have \" + tasks.getList().size()"
+        "content": "                throw new InputException(NOTE_ERROR_MESSAGE + NOTE_FORMAT);"
       },
       {
         "lineNumber": 112,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "                            + ((tasks.getList().size() \u003d\u003d 1) ? \" task in the list.\" : \" tasks in the list.\");"
+        "content": "            }"
       },
       {
         "lineNumber": 113,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "rssujay"
         },
-        "content": "                } else {"
+        "content": ""
       },
       {
         "lineNumber": 114,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                    return NON_EXISTENT_MODULE;"
+        "content": "        case \"todo\":"
       },
       {
         "lineNumber": 115,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "                }"
+        "content": "            try {"
       },
       {
         "lineNumber": 116,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": ""
+        "content": "                checkIfOnModulePage(moduleCode);"
       },
       {
         "lineNumber": 117,
-        "author": {
-          "gitId": "TCK1997"
-        },
-        "content": "            case \"exam\":"
-      },
-      {
-        "lineNumber": 118,
-        "author": {
-          "gitId": "TCK1997"
-        },
-        "content": "            case \"tutorial\":"
-      },
-      {
-        "lineNumber": 119,
-        "author": {
-          "gitId": "TCK1997"
-        },
-        "content": "            case \"lecture\":"
-      },
-      {
-        "lineNumber": 120,
-        "author": {
-          "gitId": "TCK1997"
-        },
-        "content": "            case \"lab\":"
-      },
-      {
-        "lineNumber": 121,
         "author": {
           "gitId": "lackmoo"
         },
         "content": "                if (moduleContainer.checkModuleExists(moduleCode)) {"
       },
       {
-        "lineNumber": 122,
+        "lineNumber": 118,
         "author": {
           "gitId": "lackmoo"
         },
         "content": "                    HashMap\u003cString, Module\u003e modules \u003d moduleContainer.getModules();"
       },
       {
-        "lineNumber": 123,
+        "lineNumber": 119,
         "author": {
           "gitId": "lackmoo"
         },
         "content": "                    Module module \u003d modules.get(moduleCode);"
       },
       {
-        "lineNumber": 124,
-        "author": {
-          "gitId": "lackmoo"
-        },
-        "content": "                    String taskDescription \u003d content.replace(type.concat(\" \"), \"\");"
-      },
-      {
-        "lineNumber": 125,
-        "author": {
-          "gitId": "lackmoo"
-        },
-        "content": "                    if (taskDescription.split(\" \")[0].equals(\"/at\")) {"
-      },
-      {
-        "lineNumber": 126,
-        "author": {
-          "gitId": "lackmoo"
-        },
-        "content": "                        if (this.type.equals(\"exam\")) {"
-      },
-      {
-        "lineNumber": 127,
-        "author": {
-          "gitId": "lackmoo"
-        },
-        "content": "                            throw new InputException(\"☹ OOPS!!! The description of an exam cannot be empty.\");"
-      },
-      {
-        "lineNumber": 128,
-        "author": {
-          "gitId": "lackmoo"
-        },
-        "content": "                        } else if (this.type.equals(\"tutorial\")) {"
-      },
-      {
-        "lineNumber": 129,
-        "author": {
-          "gitId": "lackmoo"
-        },
-        "content": "                            throw new InputException(\"☹ OOPS!!! The description of a tutorial cannot be empty.\");"
-      },
-      {
-        "lineNumber": 130,
-        "author": {
-          "gitId": "lackmoo"
-        },
-        "content": "                        } else if (this.type.equals(\"lab\")) {"
-      },
-      {
-        "lineNumber": 131,
-        "author": {
-          "gitId": "lackmoo"
-        },
-        "content": "                            throw new InputException(\"☹ OOPS!!! The description of a lab cannot be empty.\");"
-      },
-      {
-        "lineNumber": 132,
-        "author": {
-          "gitId": "lackmoo"
-        },
-        "content": "                        } else if (this.type.equals(\"lecture\")) {"
-      },
-      {
-        "lineNumber": 133,
-        "author": {
-          "gitId": "lackmoo"
-        },
-        "content": "                            throw new InputException(\"☹ OOPS!!! The description of a lecture cannot be empty.\");"
-      },
-      {
-        "lineNumber": 134,
-        "author": {
-          "gitId": "lackmoo"
-        },
-        "content": "                        }"
-      },
-      {
-        "lineNumber": 135,
-        "author": {
-          "gitId": "lackmoo"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 136,
+        "lineNumber": 120,
         "author": {
           "gitId": "lackmoo"
         },
         "content": "                    TaskList tasks \u003d module.getTasks();"
       },
       {
-        "lineNumber": 137,
+        "lineNumber": 121,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "                    String taskDescription \u003d content.replace(type, \"\").trim();"
+      },
+      {
+        "lineNumber": 122,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                    start \u003d new DateTime(taskDescription.split(\"/at \")[1], 0);"
+        "content": "                    if (taskDescription.equals(\"todo\")) {"
       },
       {
-        "lineNumber": 138,
+        "lineNumber": 123,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                    end \u003d new DateTime(taskDescription.split(\"/at \")[1], 1);"
+        "content": "                        throw new InputException(\"☹ OOPS!!! The description of a task cannot be empty.\");"
       },
       {
-        "lineNumber": 139,
+        "lineNumber": 124,
         "author": {
-          "gitId": "lackmoo"
-        },
-        "content": "                    List\u003cTask\u003e tasksList \u003d tasks.getList();"
-      },
-      {
-        "lineNumber": 140,
-        "author": {
-          "gitId": "lackmoo"
-        },
-        "content": "                    for (int i \u003d 0; i \u003c tasksList.size(); i++) {"
-      },
-      {
-        "lineNumber": 141,
-        "author": {
-          "gitId": "lackmoo"
-        },
-        "content": "                        Task currentTask \u003d tasksList.get(i);"
-      },
-      {
-        "lineNumber": 142,
-        "author": {
-          "gitId": "TCK1997"
-        },
-        "content": "                        if (currentTask.isSchedulable()) {"
-      },
-      {
-        "lineNumber": 143,
-        "author": {
-          "gitId": "TCK1997"
-        },
-        "content": "                            if (((Schedulable) currentTask).isOverlapping(start, end)) {"
-      },
-      {
-        "lineNumber": 144,
-        "author": {
-          "gitId": "TCK1997"
-        },
-        "content": "                                throw new InputException(\"Time conflicting with:\\n\""
-      },
-      {
-        "lineNumber": 145,
-        "author": {
-          "gitId": "TCK1997"
-        },
-        "content": "                                        + \"    \" + (i + 1) + \".\" + currentTask.toString() + \"\\n\""
-      },
-      {
-        "lineNumber": 146,
-        "author": {
-          "gitId": "TCK1997"
-        },
-        "content": "                                        + \"Please choose another time interval.\");"
-      },
-      {
-        "lineNumber": 147,
-        "author": {
-          "gitId": "TCK1997"
-        },
-        "content": "                            }"
-      },
-      {
-        "lineNumber": 148,
-        "author": {
-          "gitId": "TCK1997"
-        },
-        "content": "                        }"
-      },
-      {
-        "lineNumber": 149,
-        "author": {
-          "gitId": "TCK1997"
+          "gitId": "rssujay"
         },
         "content": "                    }"
       },
       {
-        "lineNumber": 150,
+        "lineNumber": 125,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                    taskAdded \u003d tasks.add(new Event(taskDescription.substring(0, taskDescription.lastIndexOf(\" /at\")),"
+        "content": "                    taskAdded \u003d tasks.add(new Todo(taskDescription));"
       },
       {
-        "lineNumber": 151,
-        "author": {
-          "gitId": "TCK1997"
-        },
-        "content": "                            start, end));"
-      },
-      {
-        "lineNumber": 152,
+        "lineNumber": 126,
         "author": {
           "gitId": "lackmoo"
         },
         "content": "                    return \"Added into \" + module.toString() + \" task: \" + taskAdded.toString() + \"\\n\""
       },
       {
-        "lineNumber": 153,
+        "lineNumber": 127,
         "author": {
           "gitId": "lackmoo"
         },
         "content": "                            + \"You currently have \" + tasks.getList().size()"
       },
       {
-        "lineNumber": 154,
+        "lineNumber": 128,
         "author": {
           "gitId": "lackmoo"
         },
         "content": "                            + ((tasks.getList().size() \u003d\u003d 1) ? \" task in the list.\" : \" tasks in the list.\");"
       },
       {
-        "lineNumber": 155,
+        "lineNumber": 129,
         "author": {
           "gitId": "lackmoo"
         },
         "content": "                } else {"
       },
       {
-        "lineNumber": 156,
+        "lineNumber": 130,
         "author": {
           "gitId": "lackmoo"
         },
         "content": "                    return NON_EXISTENT_MODULE;"
       },
       {
-        "lineNumber": 157,
+        "lineNumber": 131,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
         "content": "                }"
       },
       {
-        "lineNumber": 158,
+        "lineNumber": 132,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
+        },
+        "content": "            } catch (IndexOutOfBoundsException e) {"
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "                throw new InputException(TODO_ERROR_MESSAGE + TODO_FORMAT);"
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "ttippinyu"
         },
         "content": ""
       },
       {
-        "lineNumber": 159,
+        "lineNumber": 136,
+        "author": {
+          "gitId": "rssujay"
+        },
+        "content": "        case \"deadline\":"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "            try {"
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "                checkIfOnModulePage(moduleCode);"
+      },
+      {
+        "lineNumber": 139,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "            default:"
+        "content": "                if (moduleContainer.checkModuleExists(moduleCode)) {"
       },
       {
-        "lineNumber": 160,
+        "lineNumber": 140,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                if (!moduleContainer.checkModuleExists(moduleCode)) {"
+        "content": "                    HashMap\u003cString, Module\u003e modules \u003d moduleContainer.getModules();"
       },
       {
-        "lineNumber": 161,
+        "lineNumber": 141,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                    String moduleName \u003d this.content;"
+        "content": "                    Module module \u003d modules.get(moduleCode);"
       },
       {
-        "lineNumber": 162,
+        "lineNumber": 142,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                    Module module \u003d new Module(this.moduleCode, moduleName);"
+        "content": "                    TaskList tasks \u003d module.getTasks();"
       },
       {
-        "lineNumber": 163,
+        "lineNumber": 143,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "                    String taskDescription \u003d content.replace(type, \"\").trim();"
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "                    if (taskDescription.split(\" \")[0].equals(\"by:\")) {"
+      },
+      {
+        "lineNumber": 145,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                    moduleContainer.addModule(module);"
+        "content": "                        throw new InputException(\"☹ OOPS!!! The description of a deadline cannot be empty.\");"
       },
       {
-        "lineNumber": 164,
+        "lineNumber": 146,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                    return MODULE_ADDED + module.toString();"
+        "content": "                    }"
       },
       {
-        "lineNumber": 165,
+        "lineNumber": 147,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "                    start \u003d new DateTime(taskDescription.split(\"by: \")[1]);"
+      },
+      {
+        "lineNumber": 148,
+        "author": {
+          "gitId": "lackmoo"
+        },
+        "content": "                    taskAdded \u003d tasks.add(new Deadline(taskDescription.substring(0,"
+      },
+      {
+        "lineNumber": 149,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "                            taskDescription.lastIndexOf(\" by:\")), start));"
+      },
+      {
+        "lineNumber": 150,
+        "author": {
+          "gitId": "lackmoo"
+        },
+        "content": "                    return \"Added into \" + module.toString() + \" task: \" + taskAdded.toString() + \"\\n\""
+      },
+      {
+        "lineNumber": 151,
+        "author": {
+          "gitId": "lackmoo"
+        },
+        "content": "                            + \"You currently have \" + tasks.getList().size()"
+      },
+      {
+        "lineNumber": 152,
+        "author": {
+          "gitId": "lackmoo"
+        },
+        "content": "                            + ((tasks.getList().size() \u003d\u003d 1) ? \" task in the list.\" : \" tasks in the list.\");"
+      },
+      {
+        "lineNumber": 153,
         "author": {
           "gitId": "lackmoo"
         },
         "content": "                } else {"
       },
       {
-        "lineNumber": 166,
+        "lineNumber": 154,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                    return MODULE_NOT_ADDED;"
+        "content": "                    return NON_EXISTENT_MODULE;"
       },
       {
-        "lineNumber": 167,
+        "lineNumber": 155,
         "author": {
           "gitId": "lackmoo"
         },
         "content": "                }"
       },
       {
-        "lineNumber": 168,
+        "lineNumber": 156,
         "author": {
-          "gitId": "rssujay"
+          "gitId": "ttippinyu"
+        },
+        "content": "            } catch (IndexOutOfBoundsException e) {"
+      },
+      {
+        "lineNumber": 157,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "                throw new InputException(DEADLINE_ERROR_MESSAGE + DEADLINE_FORMAT);"
+      },
+      {
+        "lineNumber": 158,
+        "author": {
+          "gitId": "ttippinyu"
         },
         "content": "            }"
       },
       {
+        "lineNumber": 159,
+        "author": {
+          "gitId": "lackmoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 160,
+        "author": {
+          "gitId": "TCK1997"
+        },
+        "content": "        case \"exam\":"
+      },
+      {
+        "lineNumber": 161,
+        "author": {
+          "gitId": "TCK1997"
+        },
+        "content": "        case \"tutorial\":"
+      },
+      {
+        "lineNumber": 162,
+        "author": {
+          "gitId": "TCK1997"
+        },
+        "content": "        case \"lecture\":"
+      },
+      {
+        "lineNumber": 163,
+        "author": {
+          "gitId": "TCK1997"
+        },
+        "content": "        case \"lab\":"
+      },
+      {
+        "lineNumber": 164,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "            try {"
+      },
+      {
+        "lineNumber": 165,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "                checkIfOnModulePage(moduleCode);"
+      },
+      {
+        "lineNumber": 166,
+        "author": {
+          "gitId": "lackmoo"
+        },
+        "content": "                if (moduleContainer.checkModuleExists(moduleCode)) {"
+      },
+      {
+        "lineNumber": 167,
+        "author": {
+          "gitId": "lackmoo"
+        },
+        "content": "                    HashMap\u003cString, Module\u003e modules \u003d moduleContainer.getModules();"
+      },
+      {
+        "lineNumber": 168,
+        "author": {
+          "gitId": "lackmoo"
+        },
+        "content": "                    Module module \u003d modules.get(moduleCode);"
+      },
+      {
         "lineNumber": 169,
         "author": {
-          "gitId": "rssujay"
+          "gitId": "ttippinyu"
         },
-        "content": "        } catch (IndexOutOfBoundsException e) {"
+        "content": "                    String taskDescription \u003d content.replace(type, \"\").trim();"
       },
       {
         "lineNumber": 170,
         "author": {
-          "gitId": "rssujay"
+          "gitId": "ttippinyu"
         },
-        "content": "            throw new InputException(\"Please ensure that you enter the full command.\\n\""
+        "content": "                    if (taskDescription.split(\" \")[0].equals(\"at:\")) {"
       },
       {
         "lineNumber": 171,
         "author": {
-          "gitId": "ttippinyu"
+          "gitId": "lackmoo"
         },
-        "content": "                    + \"SpinBox.Tasks.Deadline: deadline \u003ctask name\u003e /by \u003cMM/DD/YYYY HH:MM\u003e\\n\""
+        "content": "                        if (this.type.equals(\"exam\")) {"
       },
       {
         "lineNumber": 172,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                    + \"SpinBox.Tasks.Exam: exam \u003ctask name\u003e /at \u003cstart as MM/DD/YYYY HH:MM\u003e \""
+        "content": "                            throw new InputException(\"☹ OOPS!!! The description of an exam cannot be empty.\");"
       },
       {
         "lineNumber": 173,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                    + \"to \u003cend as MM/DD/YYYY HH:MM\u003e\\n\""
+        "content": "                        } else if (this.type.equals(\"tutorial\")) {"
       },
       {
         "lineNumber": 174,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                    + \"SpinBox.Tasks.Tutorial: tutorial \u003ctask name\u003e /at \u003cstart as MM/DD/YYYY HH:MM\u003e \""
+        "content": "                            throw new InputException(\"☹ OOPS!!! The description of a tutorial cannot be empty.\");"
       },
       {
         "lineNumber": 175,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                    + \"to \u003cend as MM/DD/YYYY HH:MM\u003e\\n\""
+        "content": "                        } else if (this.type.equals(\"lab\")) {"
       },
       {
         "lineNumber": 176,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                    + \"SpinBox.Tasks.Lab: lab \u003ctask name\u003e /at \u003cstart as MM/DD/YYYY HH:MM\u003e \""
+        "content": "                            throw new InputException(\"☹ OOPS!!! The description of a lab cannot be empty.\");"
       },
       {
         "lineNumber": 177,
         "author": {
-          "gitId": "ttippinyu"
+          "gitId": "lackmoo"
         },
-        "content": "                    + \"to \u003cend as MM/DD/YYYY HH:MM\u003e\\n\""
+        "content": "                        } else if (this.type.equals(\"lecture\")) {"
       },
       {
         "lineNumber": 178,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                    + \"SpinBox.Tasks.Lecture: lecture \u003ctask name\u003e /at \u003cstart as MM/DD/YYYY HH:MM\u003e \""
+        "content": "                            throw new InputException(\"☹ OOPS!!! The description of a lecture cannot be empty.\");"
       },
       {
         "lineNumber": 179,
         "author": {
-          "gitId": "ttippinyu"
+          "gitId": "lackmoo"
         },
-        "content": "                    + \"to \u003cend as MM/DD/YYYY HH:MM\u003e\\n\""
+        "content": "                        }"
       },
       {
         "lineNumber": 180,
         "author": {
-          "gitId": "rssujay"
+          "gitId": "lackmoo"
         },
-        "content": "            );"
+        "content": "                    }"
       },
       {
         "lineNumber": 181,
+        "author": {
+          "gitId": "lackmoo"
+        },
+        "content": "                    TaskList tasks \u003d module.getTasks();"
+      },
+      {
+        "lineNumber": 182,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "                    start \u003d new DateTime(taskDescription.split(\"at: \")[1], 0);"
+      },
+      {
+        "lineNumber": 183,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "                    end \u003d new DateTime(taskDescription.split(\"at: \")[1], 1);"
+      },
+      {
+        "lineNumber": 184,
+        "author": {
+          "gitId": "lackmoo"
+        },
+        "content": "                    List\u003cTask\u003e tasksList \u003d tasks.getList();"
+      },
+      {
+        "lineNumber": 185,
+        "author": {
+          "gitId": "lackmoo"
+        },
+        "content": "                    for (int i \u003d 0; i \u003c tasksList.size(); i++) {"
+      },
+      {
+        "lineNumber": 186,
+        "author": {
+          "gitId": "lackmoo"
+        },
+        "content": "                        Task currentTask \u003d tasksList.get(i);"
+      },
+      {
+        "lineNumber": 187,
+        "author": {
+          "gitId": "TCK1997"
+        },
+        "content": "                        if (currentTask.isSchedulable()) {"
+      },
+      {
+        "lineNumber": 188,
+        "author": {
+          "gitId": "TCK1997"
+        },
+        "content": "                            if (((Schedulable) currentTask).isOverlapping(start, end)) {"
+      },
+      {
+        "lineNumber": 189,
+        "author": {
+          "gitId": "TCK1997"
+        },
+        "content": "                                throw new InputException(\"Time conflicting with:\\n\""
+      },
+      {
+        "lineNumber": 190,
+        "author": {
+          "gitId": "TCK1997"
+        },
+        "content": "                                        + \"    \" + (i + 1) + \".\" + currentTask.toString() + \"\\n\""
+      },
+      {
+        "lineNumber": 191,
+        "author": {
+          "gitId": "TCK1997"
+        },
+        "content": "                                        + \"Please choose another time interval.\");"
+      },
+      {
+        "lineNumber": 192,
+        "author": {
+          "gitId": "TCK1997"
+        },
+        "content": "                            }"
+      },
+      {
+        "lineNumber": 193,
+        "author": {
+          "gitId": "TCK1997"
+        },
+        "content": "                        }"
+      },
+      {
+        "lineNumber": 194,
+        "author": {
+          "gitId": "TCK1997"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 195,
+        "author": {
+          "gitId": "lackmoo"
+        },
+        "content": "                    taskAdded \u003d tasks.add(new Event(taskDescription.substring(0, taskDescription.lastIndexOf(\" /at\")),"
+      },
+      {
+        "lineNumber": 196,
+        "author": {
+          "gitId": "TCK1997"
+        },
+        "content": "                            start, end));"
+      },
+      {
+        "lineNumber": 197,
+        "author": {
+          "gitId": "lackmoo"
+        },
+        "content": "                    return \"Added into \" + module.toString() + \" task: \" + taskAdded.toString() + \"\\n\""
+      },
+      {
+        "lineNumber": 198,
+        "author": {
+          "gitId": "lackmoo"
+        },
+        "content": "                            + \"You currently have \" + tasks.getList().size()"
+      },
+      {
+        "lineNumber": 199,
+        "author": {
+          "gitId": "lackmoo"
+        },
+        "content": "                            + ((tasks.getList().size() \u003d\u003d 1) ? \" task in the list.\" : \" tasks in the list.\");"
+      },
+      {
+        "lineNumber": 200,
+        "author": {
+          "gitId": "lackmoo"
+        },
+        "content": "                } else {"
+      },
+      {
+        "lineNumber": 201,
+        "author": {
+          "gitId": "lackmoo"
+        },
+        "content": "                    return NON_EXISTENT_MODULE;"
+      },
+      {
+        "lineNumber": 202,
+        "author": {
+          "gitId": "lackmoo"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 203,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "            } catch (IndexOutOfBoundsException e) {"
+      },
+      {
+        "lineNumber": 204,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "                throw new InputException(EVENT_ERROR_MESSAGE + EVENT_FORMAT);"
+      },
+      {
+        "lineNumber": 205,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 206,
+        "author": {
+          "gitId": "lackmoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 207,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "        case \"module\":"
+      },
+      {
+        "lineNumber": 208,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "            try {"
+      },
+      {
+        "lineNumber": 209,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "                String[] contentComponents \u003d content.split(\" \", 3);"
+      },
+      {
+        "lineNumber": 210,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "                moduleCode \u003d contentComponents[1];"
+      },
+      {
+        "lineNumber": 211,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "                String moduleName \u003d contentComponents[2];"
+      },
+      {
+        "lineNumber": 212,
+        "author": {
+          "gitId": "lackmoo"
+        },
+        "content": "                if (!moduleContainer.checkModuleExists(moduleCode)) {"
+      },
+      {
+        "lineNumber": 213,
+        "author": {
+          "gitId": "lackmoo"
+        },
+        "content": "                    Module module \u003d new Module(this.moduleCode, moduleName);"
+      },
+      {
+        "lineNumber": 214,
+        "author": {
+          "gitId": "lackmoo"
+        },
+        "content": "                    moduleContainer.addModule(module);"
+      },
+      {
+        "lineNumber": 215,
+        "author": {
+          "gitId": "lackmoo"
+        },
+        "content": "                    return MODULE_ADDED + module.toString();"
+      },
+      {
+        "lineNumber": 216,
+        "author": {
+          "gitId": "lackmoo"
+        },
+        "content": "                } else {"
+      },
+      {
+        "lineNumber": 217,
+        "author": {
+          "gitId": "lackmoo"
+        },
+        "content": "                    return MODULE_NOT_ADDED;"
+      },
+      {
+        "lineNumber": 218,
+        "author": {
+          "gitId": "lackmoo"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 219,
+        "author": {
+          "gitId": "rssujay"
+        },
+        "content": "            } catch (IndexOutOfBoundsException e) {"
+      },
+      {
+        "lineNumber": 220,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "                throw new InputException(MODULE_ERROR_MESSAGE + MODULE_FORMAT);"
+      },
+      {
+        "lineNumber": 221,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 222,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 223,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "        default:"
+      },
+      {
+        "lineNumber": 224,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "            throw new InputException(UNKNOWN_ITEM_TYPE);"
+      },
+      {
+        "lineNumber": 225,
         "author": {
           "gitId": "rssujay"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 182,
+        "lineNumber": 226,
         "author": {
           "gitId": "rssujay"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 183,
+        "lineNumber": 227,
         "author": {
           "gitId": "rssujay"
         },
@@ -5745,9 +6053,9 @@
       }
     ],
     "authorContributionMap": {
-      "rssujay": 62,
-      "ttippinyu": 23,
-      "lackmoo": 85,
+      "rssujay": 54,
+      "ttippinyu": 93,
+      "lackmoo": 67,
       "TCK1997": 13
     }
   },
@@ -5788,325 +6096,430 @@
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "import spinbox.exceptions.SpinBoxException;"
+        "content": "import spinbox.exceptions.InputException;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "import spinbox.Storage;"
+        "content": "import spinbox.exceptions.SpinBoxException;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "import spinbox.Ui;"
+        "content": "import spinbox.Storage;"
       },
       {
         "lineNumber": 8,
         "author": {
-          "gitId": "rssujay"
+          "gitId": "ttippinyu"
         },
-        "content": "import spinbox.containers.lists.TaskList;"
+        "content": "import spinbox.Ui;"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "rssujay"
         },
-        "content": ""
+        "content": "import spinbox.containers.lists.TaskList;"
       },
       {
         "lineNumber": 10,
         "author": {
-          "gitId": "ttippinyu"
+          "gitId": "rssujay"
         },
-        "content": "import java.util.HashMap;"
+        "content": ""
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "import java.util.ArrayDeque;"
+        "content": "import java.util.HashMap;"
       },
       {
         "lineNumber": 12,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "import java.util.ArrayDeque;"
+      },
+      {
+        "lineNumber": 13,
         "author": {
           "gitId": "lackmoo"
         },
         "content": ""
       },
       {
-        "lineNumber": 13,
+        "lineNumber": 14,
         "author": {
           "gitId": "rssujay"
         },
         "content": "public abstract class Command {"
       },
       {
-        "lineNumber": 14,
+        "lineNumber": 15,
         "author": {
           "gitId": "rssujay"
         },
         "content": "    private boolean isExit;"
       },
       {
-        "lineNumber": 15,
+        "lineNumber": 16,
         "author": {
           "gitId": "ttippinyu"
         },
         "content": "    private boolean isFileCommand;"
       },
       {
-        "lineNumber": 16,
+        "lineNumber": 17,
         "author": {
           "gitId": "rssujay"
         },
         "content": ""
       },
       {
-        "lineNumber": 17,
+        "lineNumber": 18,
         "author": {
           "gitId": "ttippinyu"
         },
         "content": "    // New execute needs to be made abstract"
       },
       {
-        "lineNumber": 18,
+        "lineNumber": 19,
         "author": {
           "gitId": "rssujay"
         },
         "content": "    public String execute(ModuleContainer moduleContainer, ArrayDeque\u003cString\u003e pageTrace, Ui ui)"
       },
       {
-        "lineNumber": 19,
+        "lineNumber": 20,
         "author": {
           "gitId": "ttippinyu"
         },
         "content": "            throws SpinBoxException {"
       },
       {
-        "lineNumber": 20,
+        "lineNumber": 21,
         "author": {
           "gitId": "ttippinyu"
         },
         "content": "        return \"Blank\";"
       },
       {
-        "lineNumber": 21,
-        "author": {
-          "gitId": "ttippinyu"
-        },
-        "content": "    }"
-      },
-      {
         "lineNumber": 22,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "    // Old execute"
+        "content": ""
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "    public String execute(TaskList taskList, Storage storage, Ui ui) throws SpinBoxException {"
+        "content": "    // Old execute"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "        return null;"
+        "content": "    public String execute(TaskList taskList, Storage storage, Ui ui) throws SpinBoxException {"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "    }"
+        "content": "        return null;"
       },
       {
         "lineNumber": 27,
         "author": {
-          "gitId": "rssujay"
+          "gitId": "ttippinyu"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "rssujay"
         },
-        "content": "    public boolean isExit() {"
+        "content": ""
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "rssujay"
         },
-        "content": "        return isExit;"
+        "content": "    public boolean isExit() {"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "rssujay"
         },
-        "content": "    }"
+        "content": "        return isExit;"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "rssujay"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 32,
         "author": {
-          "gitId": "ttippinyu"
+          "gitId": "rssujay"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "     * Check whether it is file command."
+        "content": "    /**"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "     * @return whether it is file command."
+        "content": "     * Check whether it is file command."
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "     */"
+        "content": "     * @return whether it is file command."
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "    public boolean isFileCommand() {"
+        "content": "     */"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "        return isFileCommand;"
+        "content": "    public boolean isFileCommand() {"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "    }"
+        "content": "        return isFileCommand;"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 40,
         "author": {
-          "gitId": "rssujay"
+          "gitId": "ttippinyu"
         },
-        "content": "    public void setExit(boolean exit) {"
+        "content": ""
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "rssujay"
         },
-        "content": "        isExit \u003d exit;"
+        "content": "    public void setExit(boolean exit) {"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "rssujay"
         },
-        "content": "    }"
+        "content": "        isExit \u003d exit;"
       },
       {
         "lineNumber": 43,
         "author": {
-          "gitId": "ttippinyu"
+          "gitId": "rssujay"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "     * Set the isFileCommand value."
+        "content": "    /**"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "     * @param fileCommand the value of isFileCommand."
+        "content": "     * Set the isFileCommand value."
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "     */"
+        "content": "     * @param fileCommand the value of isFileCommand."
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "    public void setFileCommand(boolean fileCommand) {"
+        "content": "     */"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "        isFileCommand \u003d fileCommand;"
+        "content": "    public void setFileCommand(boolean fileCommand) {"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "    }"
+        "content": "        isFileCommand \u003d fileCommand;"
       },
       {
         "lineNumber": 51,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "     * Check when there is a moduleCode indicated from the constructor."
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "     * @param moduleCode the moduleCode variable."
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "     * @return true if there is a moduleCode indicated, false otherwise."
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "     * @throws InputException if there is no moduleCode indicated, tell User."
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "    public boolean checkIfOnModulePage(String moduleCode) throws InputException {"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "        if (moduleCode \u003d\u003d null) {"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "            throw new InputException(\"Please be on a module page or indicate \""
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "                    + \"the specific module this action is for.\");"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "        return true;"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 66,
         "author": {
           "gitId": "rssujay"
         },
@@ -6115,7 +6528,7 @@
     ],
     "authorContributionMap": {
       "rssujay": 18,
-      "ttippinyu": 32,
+      "ttippinyu": 47,
       "lackmoo": 1
     }
   },
@@ -9146,7 +9559,7 @@
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "     * @param moduleCode A String denoting the module code."
+        "content": "     * @param pageDataComponents page data components."
       },
       {
         "lineNumber": 32,
@@ -9167,140 +9580,140 @@
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "    public MarkCommand(String moduleCode, String content) {"
+        "content": "    public MarkCommand(String[] pageDataComponents, String content) {"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "        this.moduleCode \u003d moduleCode;"
+        "content": "        if (pageDataComponents.length \u003e 1) {"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "        this.content \u003d content;"
+        "content": "            this.moduleCode \u003d pageDataComponents[1];"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "        this.type \u003d content.split(\" \")[0];"
+        "content": "        }"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "    }"
+        "content": "        this.content \u003d content;"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": ""
+        "content": "        this.type \u003d content.split(\" \")[0].toLowerCase();"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "    @Override"
+        "content": "    }"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "    public String execute(ModuleContainer moduleContainer, ArrayDeque\u003cString\u003e pageTrace, Ui ui) throws"
+        "content": ""
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "            SpinBoxException {"
+        "content": "    @Override"
       },
       {
         "lineNumber": 43,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "        StringBuilder outputMessage \u003d new StringBuilder();"
+        "content": "    public String execute(ModuleContainer moduleContainer, ArrayDeque\u003cString\u003e pageTrace, Ui ui) throws"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "        switch (type) {"
+        "content": "            SpinBoxException {"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "        case \"file\":"
+        "content": "        String outputMessage \u003d \"\";"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "            if (moduleContainer.checkModuleExists(moduleCode)) {"
+        "content": "        switch (type) {"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "                try {"
+        "content": "        case \"file\":"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "                    HashMap\u003cString, Module\u003e modules \u003d moduleContainer.getModules();"
+        "content": "            checkIfOnModulePage(moduleCode);"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "                    Module module \u003d modules.get(moduleCode);"
+        "content": "            if (moduleContainer.checkModuleExists(moduleCode)) {"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "                    FileList files \u003d module.getFiles();"
+        "content": "                try {"
       },
       {
         "lineNumber": 51,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "                    if (content.split(\" \").length \u003d\u003d 1) {"
+        "content": "                    HashMap\u003cString, Module\u003e modules \u003d moduleContainer.getModules();"
       },
       {
         "lineNumber": 52,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "                        throw new InputException(PROVIDE_INDEX);"
+        "content": "                    Module module \u003d modules.get(moduleCode);"
       },
       {
         "lineNumber": 53,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "                    }"
+        "content": "                    FileList files \u003d module.getFiles();"
       },
       {
         "lineNumber": 54,
@@ -9347,100 +9760,100 @@
       {
         "lineNumber": 60,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "                }"
+        "content": "                } catch (IndexOutOfBoundsException e) {"
       },
       {
         "lineNumber": 61,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "            } else {"
+        "content": "                    throw new InputException(PROVIDE_INDEX);"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                return NON_EXISTENT_MODULE;"
+        "content": "                }"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "            }"
+        "content": "            } else {"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": ""
+        "content": "                return NON_EXISTENT_MODULE;"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "        case \"task\":"
+        "content": "            }"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "            if (moduleContainer.checkModuleExists(moduleCode)) {"
+        "content": ""
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                try {"
+        "content": "        case \"task\":"
       },
       {
         "lineNumber": 68,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "                    HashMap\u003cString, Module\u003e modules \u003d moduleContainer.getModules();"
+        "content": "            checkIfOnModulePage(moduleCode);"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                    Module module \u003d modules.get(moduleCode);"
+        "content": "            if (moduleContainer.checkModuleExists(moduleCode)) {"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                    TaskList tasks \u003d module.getTasks();"
+        "content": "                try {"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                    if (content.split(\" \").length \u003d\u003d 1) {"
+        "content": "                    HashMap\u003cString, Module\u003e modules \u003d moduleContainer.getModules();"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                        throw new InputException(PROVIDE_INDEX);"
+        "content": "                    Module module \u003d modules.get(moduleCode);"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                    }"
+        "content": "                    TaskList tasks \u003d module.getTasks();"
       },
       {
         "lineNumber": 74,
@@ -9466,9 +9879,9 @@
       {
         "lineNumber": 77,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "                    outputMessage.append(TASK_MARKED).append(taskMarked.toString()).append(\"\\n\");"
+        "content": "                    outputMessage \u003d outputMessage.concat(TASK_MARKED + taskMarked.toString() + \"\\n\");"
       },
       {
         "lineNumber": 78,
@@ -9480,30 +9893,30 @@
       {
         "lineNumber": 79,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "                    outputMessage.append(\"This task has been removed from the list.\\n\");"
+        "content": "                    outputMessage \u003d outputMessage.concat(\"This task has been removed from the list.\\n\");"
       },
       {
         "lineNumber": 80,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "                    outputMessage.append(\"You currently have \").append(tasks.getList().size()).append(("
+        "content": "                    outputMessage \u003d outputMessage.concat(\"You currently have \" + tasks.getList().size()"
       },
       {
         "lineNumber": 81,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "                            tasks.getList().size() \u003d\u003d 1) ? \" task in the list.\" : \" tasks in the list.\");"
+        "content": "                            + ((tasks.getList().size() \u003d\u003d 1) ? \" task in the list.\" : \" tasks in the list.\"));"
       },
       {
         "lineNumber": 82,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "                    return outputMessage.toString();"
+        "content": "                    return outputMessage;"
       },
       {
         "lineNumber": 83,
@@ -9524,59 +9937,73 @@
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "                }"
+        "content": "                } catch (IndexOutOfBoundsException e) {"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "            } else {"
+        "content": "                    throw new InputException(PROVIDE_INDEX);"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "                return NON_EXISTENT_MODULE;"
+        "content": "                }"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "            }"
+        "content": "            } else {"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "        default:"
+        "content": "                return NON_EXISTENT_MODULE;"
       },
       {
         "lineNumber": 90,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "            throw new InputException(INVALID_MARK_FORMAT);"
+        "content": "            }"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "        }"
+        "content": "        default:"
       },
       {
         "lineNumber": 92,
+        "author": {
+          "gitId": "lackmoo"
+        },
+        "content": "            throw new InputException(INVALID_MARK_FORMAT);"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 94,
         "author": {
           "gitId": "ttippinyu"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 93,
+        "lineNumber": 95,
         "author": {
           "gitId": "ttippinyu"
         },
@@ -9584,8 +10011,8 @@
       }
     ],
     "authorContributionMap": {
-      "ttippinyu": 56,
-      "lackmoo": 37
+      "ttippinyu": 70,
+      "lackmoo": 25
     }
   },
   {
@@ -9854,9 +10281,9 @@
       {
         "lineNumber": 38,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "    private StringBuilder outputMessage \u003d new StringBuilder();"
+        "content": "    private String outputMessage \u003d \"\";"
       },
       {
         "lineNumber": 39,
@@ -9882,9 +10309,9 @@
       {
         "lineNumber": 42,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "     * @param moduleCode A String denoting the module code."
+        "content": "     * @param pageDataComponents page data components."
       },
       {
         "lineNumber": 43,
@@ -9903,114 +10330,114 @@
       {
         "lineNumber": 45,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "    public MultipleCommand(String moduleCode, String content) {"
+        "content": "    public MultipleCommand(String[] pageDataComponents, String content) {"
       },
       {
         "lineNumber": 46,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "        this.moduleCode \u003d moduleCode;"
+        "content": "        if (pageDataComponents.length \u003e 1) {"
       },
       {
         "lineNumber": 47,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "        this.content \u003d content;"
+        "content": "            this.moduleCode \u003d pageDataComponents[1];"
       },
       {
         "lineNumber": 48,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "        this.type \u003d content.split(\" \")[0];"
+        "content": "        }"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "    }"
+        "content": "        this.content \u003d content;"
       },
       {
         "lineNumber": 50,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": ""
+        "content": "        this.type \u003d content.split(\" \")[0].toLowerCase();"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "    private StringBuilder removeMultipleFile(List\u003cInteger\u003e finalIndexes, FileList files, StringBuilder outputMessage)"
+        "content": "    }"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "            throws InvalidIndexException, DataReadWriteException {"
+        "content": ""
       },
       {
         "lineNumber": 53,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "        for (int i \u003d 0; i \u003c finalIndexes.size(); i++) {"
+        "content": "    private String removeMultipleFile(List\u003cInteger\u003e finalIndexes, FileList files, String outputMessage)"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "            File fileRemoved \u003d files.remove(finalIndexes.get(i));"
+        "content": "            throws InvalidIndexException, DataReadWriteException {"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "            if (i \u003d\u003d 0) {"
+        "content": "        for (int i \u003d 0; i \u003c finalIndexes.size(); i++) {"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                outputMessage.append(\"Noted. I\u0027ve removed these files:\\n\");"
+        "content": "            File fileRemoved \u003d files.remove(finalIndexes.get(i));"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                outputMessage.append(fileRemoved.toString()).append(\"\\n\");"
+        "content": "            if (i \u003d\u003d 0) {"
       },
       {
         "lineNumber": 58,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "            } else {"
+        "content": "                outputMessage \u003d outputMessage.concat(\"Noted. I\u0027ve removed these files:\\n\");"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                outputMessage.append(fileRemoved.toString()).append(\"\\n\");"
+        "content": "            }"
       },
       {
         "lineNumber": 60,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "            }"
+        "content": "            outputMessage \u003d outputMessage.concat(fileRemoved.toString() + \"\\n\");"
       },
       {
         "lineNumber": 61,
@@ -10043,9 +10470,9 @@
       {
         "lineNumber": 65,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "    private StringBuilder removeMultipleTask(List\u003cInteger\u003e finalIndexes, TaskList tasks, StringBuilder outputMessage)"
+        "content": "    private String removeMultipleTask(List\u003cInteger\u003e finalIndexes, TaskList tasks, String outputMessage)"
       },
       {
         "lineNumber": 66,
@@ -10078,352 +10505,352 @@
       {
         "lineNumber": 70,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "                outputMessage.append(\"Noted. I\u0027ve removed these tasks:\\n\");"
+        "content": "                outputMessage \u003d outputMessage.concat(\"Noted. I\u0027ve removed these tasks:\\n\");"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                outputMessage.append(taskRemoved.toString()).append(\"\\n\");"
+        "content": "            }"
       },
       {
         "lineNumber": 72,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "            } else {"
+        "content": "            outputMessage \u003d outputMessage.concat(taskRemoved.toString() + \"\\n\");"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                outputMessage.append(taskRemoved.toString()).append(\"\\n\");"
+        "content": "        }"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "            }"
+        "content": "        return outputMessage;"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "        }"
+        "content": "    }"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "        return outputMessage;"
+        "content": ""
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "    }"
+        "content": "    @Override"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": ""
+        "content": "    public String execute(ModuleContainer moduleContainer, ArrayDeque\u003cString\u003e pageTrace, Ui ui) throws"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "    @Override"
+        "content": "            SpinBoxException {"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "    public String execute(ModuleContainer moduleContainer, ArrayDeque\u003cString\u003e pageTrace, Ui ui) throws"
+        "content": "        int inputSize \u003d content.split(\" \").length;"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "            SpinBoxException {"
+        "content": "        if (inputSize \u003e 2) {"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "        int inputSize \u003d content.split(\" \").length;"
+        "content": "            throw new InputException(INDEX_SEPARATION);"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "        if (inputSize \u003e 2) {"
+        "content": "        }"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "            throw new InputException(INDEX_SEPARATION);"
+        "content": "        try {"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "        }"
+        "content": "            String[] splitIndexes \u003d content.replace(type.concat(\" \"), \"\").split(\",\");"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "        try {"
+        "content": "            if ((type.equals(\"file\") || type.equals(\"note\") || type.equals(\"task\")) \u0026\u0026 (splitIndexes.length \u003d\u003d 1)"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "            String[] splitIndexes \u003d content.replace(type.concat(\" \"), \"\").split(\",\");"
+        "content": "                \u0026\u0026 splitIndexes[0].matches(\"\\\\d+\")) {"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "            if ((type.equals(\"file\") || type.equals(\"note\") || type.equals(\"task\")) \u0026\u0026 (splitIndexes.length \u003d\u003d 1)"
+        "content": "                throw new InputException(REMOVE_SINGLE_TASK);"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                \u0026\u0026 splitIndexes[0].matches(\"\\\\d+\")) {"
+        "content": "            } else if ((type.equals(\"file\") || type.equals(\"note\") || type.equals(\"task\"))"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                throw new InputException(REMOVE_SINGLE_TASK);"
+        "content": "                    \u0026\u0026 (splitIndexes.length \u003d\u003d 1)) {"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "            } else if ((type.equals(\"file\") || type.equals(\"note\") || type.equals(\"task\"))"
+        "content": "                throw new InputException(PROVIDE_INDEX);"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                    \u0026\u0026 (splitIndexes.length \u003d\u003d 1)) {"
+        "content": "            } else if (!type.equals(\"file\") \u0026\u0026 !type.equals(\"note\") \u0026\u0026 !type.equals(\"task\")) {"
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                throw new InputException(PROVIDE_INDEX);"
+        "content": "                throw new InputException(INVALID_REMOVE_FORMAT);"
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "            } else if (!type.equals(\"file\") \u0026\u0026 !type.equals(\"note\") \u0026\u0026 !type.equals(\"task\")) {"
+        "content": "            }"
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                throw new InputException(INVALID_REMOVE_FORMAT);"
+        "content": "            List\u003cInteger\u003e finalIndexes \u003d new ArrayList\u003c\u003e();"
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "            }"
+        "content": "            for (String convert : splitIndexes) {"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "            List\u003cInteger\u003e finalIndexes \u003d new ArrayList\u003c\u003e();"
+        "content": "                finalIndexes.add(Integer.parseInt(convert) - 1);"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "            for (String convert : splitIndexes) {"
+        "content": "            }"
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                finalIndexes.add(Integer.parseInt(convert) - 1);"
+        "content": "            finalIndexes.sort(Collections.reverseOrder());"
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "            }"
+        "content": "            switch (type) {"
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "            finalIndexes.sort(Collections.reverseOrder());"
+        "content": "            case \"file\":"
       },
       {
         "lineNumber": 102,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "            switch (type) {"
+        "content": "                checkIfOnModulePage(moduleCode);"
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "            case \"file\":"
+        "content": "                if (moduleContainer.checkModuleExists(moduleCode)) {"
       },
       {
         "lineNumber": 104,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                if (moduleContainer.checkModuleExists(moduleCode)) {"
+        "content": "                    HashMap\u003cString, Module\u003e modules \u003d moduleContainer.getModules();"
       },
       {
         "lineNumber": 105,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                    HashMap\u003cString, Module\u003e modules \u003d moduleContainer.getModules();"
+        "content": "                    Module module \u003d modules.get(moduleCode);"
       },
       {
         "lineNumber": 106,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                    Module module \u003d modules.get(moduleCode);"
+        "content": "                    FileList files \u003d module.getFiles();"
       },
       {
         "lineNumber": 107,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                    FileList files \u003d module.getFiles();"
+        "content": "                    if (inputSize \u003d\u003d 1) {"
       },
       {
         "lineNumber": 108,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                    if (inputSize \u003d\u003d 1) {"
+        "content": "                        throw new InputException(PROVIDE_INDEX);"
       },
       {
         "lineNumber": 109,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                        throw new InputException(PROVIDE_INDEX);"
+        "content": "                    }"
       },
       {
         "lineNumber": 110,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "                    }"
+        "content": "                    outputMessage \u003d removeMultipleFile(finalIndexes, files, outputMessage).concat("
       },
       {
         "lineNumber": 111,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "                    removeMultipleFile(finalIndexes, files, outputMessage).append(\"You currently have \")"
+        "content": "                            \"You currently have \" + files.getList().size()"
       },
       {
         "lineNumber": 112,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "                            .append(files.getList().size()).append(("
+        "content": "                            + ((files.getList().size() \u003d\u003d 1) ? \" file in the list.\" : \" files in the list.\"));"
       },
       {
         "lineNumber": 113,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "                            files.getList().size() \u003d\u003d 1) ? \" file in the list.\" : \" files in the list.\");"
+        "content": "                    return outputMessage;"
       },
       {
         "lineNumber": 114,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                    return outputMessage.toString();"
+        "content": "                } else {"
       },
       {
         "lineNumber": 115,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                } else {"
+        "content": "                    return NON_EXISTENT_MODULE;"
       },
       {
         "lineNumber": 116,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                    return NON_EXISTENT_MODULE;"
+        "content": "                }"
       },
       {
         "lineNumber": 117,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                }"
+        "content": ""
       },
       {
         "lineNumber": 118,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": ""
+        "content": "            case \"note\":"
       },
       {
         "lineNumber": 119,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "            case \"note\":"
+        "content": "                checkIfOnModulePage(moduleCode);"
       },
       {
         "lineNumber": 120,
@@ -10540,159 +10967,166 @@
       {
         "lineNumber": 136,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "                if (moduleContainer.checkModuleExists(moduleCode)) {"
+        "content": "                checkIfOnModulePage(moduleCode);"
       },
       {
         "lineNumber": 137,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                    HashMap\u003cString, Module\u003e modules \u003d moduleContainer.getModules();"
+        "content": "                if (moduleContainer.checkModuleExists(moduleCode)) {"
       },
       {
         "lineNumber": 138,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                    Module module \u003d modules.get(moduleCode);"
+        "content": "                    HashMap\u003cString, Module\u003e modules \u003d moduleContainer.getModules();"
       },
       {
         "lineNumber": 139,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                    TaskList tasks \u003d module.getTasks();"
+        "content": "                    Module module \u003d modules.get(moduleCode);"
       },
       {
         "lineNumber": 140,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                    if (inputSize \u003d\u003d 1) {"
+        "content": "                    TaskList tasks \u003d module.getTasks();"
       },
       {
         "lineNumber": 141,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                        throw new InputException(PROVIDE_INDEX);"
+        "content": "                    if (inputSize \u003d\u003d 1) {"
       },
       {
         "lineNumber": 142,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                    }"
+        "content": "                        throw new InputException(PROVIDE_INDEX);"
       },
       {
         "lineNumber": 143,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                    removeMultipleTask(finalIndexes, tasks, outputMessage).append(\"You currently have \")"
+        "content": "                    }"
       },
       {
         "lineNumber": 144,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "                            .append(tasks.getList().size()).append(("
+        "content": "                    outputMessage \u003d removeMultipleTask(finalIndexes, tasks, outputMessage).concat("
       },
       {
         "lineNumber": 145,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "                            tasks.getList().size() \u003d\u003d 1) ? \" task in the list.\" : \" tasks in the list.\");"
+        "content": "                            \"You currently have \" + tasks.getList().size()"
       },
       {
         "lineNumber": 146,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "                    return outputMessage.toString();"
+        "content": "                            + ((tasks.getList().size() \u003d\u003d 1) ? \" task in the list.\" : \" tasks in the list.\"));"
       },
       {
         "lineNumber": 147,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "                } else {"
+        "content": "                    return outputMessage;"
       },
       {
         "lineNumber": 148,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                    return NON_EXISTENT_MODULE;"
+        "content": "                } else {"
       },
       {
         "lineNumber": 149,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                }"
+        "content": "                    return NON_EXISTENT_MODULE;"
       },
       {
         "lineNumber": 150,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": ""
+        "content": "                }"
       },
       {
         "lineNumber": 151,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "            default:"
+        "content": ""
       },
       {
         "lineNumber": 152,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                throw new InputException(INVALID_REMOVE_FORMAT);"
+        "content": "            default:"
       },
       {
         "lineNumber": 153,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "            }"
+        "content": "                throw new InputException(INVALID_REMOVE_FORMAT);"
       },
       {
         "lineNumber": 154,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "        } catch (IndexOutOfBoundsException | NumberFormatException e) {"
+        "content": "            }"
       },
       {
         "lineNumber": 155,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "            throw new InputException(INVALID_INDEX);"
+        "content": "        } catch (IndexOutOfBoundsException | NumberFormatException e) {"
       },
       {
         "lineNumber": 156,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "        }"
+        "content": "            throw new InputException(INVALID_INDEX);"
       },
       {
         "lineNumber": 157,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "    }"
+        "content": "        }"
       },
       {
         "lineNumber": 158,
+        "author": {
+          "gitId": "lackmoo"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 159,
         "author": {
           "gitId": "lackmoo"
         },
@@ -10701,8 +11135,8 @@
     ],
     "authorContributionMap": {
       "rssujay": 2,
-      "ttippinyu": 5,
-      "lackmoo": 151
+      "ttippinyu": 29,
+      "lackmoo": 128
     }
   },
   {
@@ -11328,654 +11762,703 @@
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "import java.util.ArrayDeque;"
+        "content": "import javax.print.DocFlavor;"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "import java.util.HashMap;"
+        "content": "import java.util.ArrayDeque;"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": ""
+        "content": "import java.util.HashMap;"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "public class RemoveCommand extends Command {"
+        "content": ""
       },
       {
         "lineNumber": 18,
         "author": {
-          "gitId": "rssujay"
+          "gitId": "ttippinyu"
         },
-        "content": "    private static final String NON_EXISTENT_MODULE \u003d \"This module does not exist.\";"
+        "content": "public class RemoveCommand extends Command {"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "rssujay"
         },
-        "content": "    private static final String NOTE_REMOVED \u003d \"A note has been successfully removed from \";"
+        "content": "    private static final String NON_EXISTENT_MODULE \u003d \"This module does not exist.\";"
       },
       {
         "lineNumber": 20,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "rssujay"
         },
-        "content": "    private static final String PROVIDE_INDEX \u003d \"Please provide an index to be removed.\";"
+        "content": "    private static final String NOTE_REMOVED \u003d \"A note has been successfully removed from \";"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "    private static final String INVALID_REMOVE_FORMAT \u003d \"Please use valid remove format:\\n\""
+        "content": "    private static final String PROVIDE_INDEX \u003d \"Please provide an index to be removed.\";"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "            + \"remove \u003cpageContent\u003e : \u003ctype\u003e \u003cindex\u003e\";"
+        "content": "    private static final String INVALID_REMOVE_FORMAT \u003d \"Please use valid remove format:\\n\""
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "    private static final String INVALID_INDEX \u003d \"Please enter a valid index.\";"
+        "content": "            + \"remove \u003cpageContent\u003e : \u003ctype\u003e \u003cindex\u003e\";"
       },
       {
         "lineNumber": 24,
         "author": {
-          "gitId": "ttippinyu"
+          "gitId": "lackmoo"
         },
-        "content": "    private String type;"
+        "content": "    private static final String INVALID_INDEX \u003d \"Please enter a valid index.\";"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": ""
+        "content": "    private String type;"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "    private String moduleCode;"
+        "content": ""
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "    private String content;"
+        "content": "    private String moduleCode;"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": ""
+        "content": "    private String content;"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "     * Constructor for initialization of variables to support removal of entities."
+        "content": "    /**"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "     * @param moduleCode A String denoting the module code."
+        "content": "     * Constructor for initialization of variables to support removal of entities."
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "     * @param content A string containing the content of the processed user input."
+        "content": "     * @param pageDataComponents page data components."
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "     */"
+        "content": "     * @param content A string containing the content of the processed user input."
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "    public RemoveCommand(String moduleCode, String content) {"
+        "content": "     */"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "        this.moduleCode \u003d moduleCode;"
+        "content": "    public RemoveCommand(String[] pageDataComponents, String content) {"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "        this.content \u003d content;"
+        "content": "        if (pageDataComponents.length \u003e 1) {"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "        this.type \u003d content.split(\" \")[0];"
+        "content": "            this.moduleCode \u003d pageDataComponents[1];"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "    }"
+        "content": "        }"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": ""
+        "content": "        this.content \u003d content;"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "    @Override"
+        "content": "        this.type \u003d content.split(\" \")[0].toLowerCase();"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "    public String execute(ModuleContainer moduleContainer, ArrayDeque\u003cString\u003e pageTrace, Ui ui) throws"
+        "content": "    }"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "            SpinBoxException {"
+        "content": ""
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "        switch (type) {"
+        "content": "    @Override"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "        case \"file\":"
+        "content": "    public String execute(ModuleContainer moduleContainer, ArrayDeque\u003cString\u003e pageTrace, Ui ui) throws"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "            if (moduleContainer.checkModuleExists(moduleCode)) {"
+        "content": "            SpinBoxException {"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "                try {"
+        "content": "        switch (type) {"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "                    HashMap\u003cString, Module\u003e modules \u003d moduleContainer.getModules();"
+        "content": "        case \"file\":"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "                    Module module \u003d modules.get(moduleCode);"
+        "content": "            checkIfOnModulePage(moduleCode);"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "                    FileList files \u003d module.getFiles();"
+        "content": "            if (moduleContainer.checkModuleExists(moduleCode)) {"
       },
       {
         "lineNumber": 50,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "                    if (content.split(\" \").length \u003d\u003d 1) {"
+        "content": "                try {"
       },
       {
         "lineNumber": 51,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "                        throw new InputException(PROVIDE_INDEX);"
+        "content": "                    HashMap\u003cString, Module\u003e modules \u003d moduleContainer.getModules();"
       },
       {
         "lineNumber": 52,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "                    }"
+        "content": "                    Module module \u003d modules.get(moduleCode);"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "                    int index \u003d Integer.parseInt(content.split(\" \")[1]) - 1;"
+        "content": "                    FileList files \u003d module.getFiles();"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "                    File fileRemoved \u003d files.get(index);"
+        "content": "                    int index \u003d Integer.parseInt(content.split(\" \")[1]) - 1;"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "                    files.remove(index);"
+        "content": "                    File fileRemoved \u003d files.get(index);"
       },
       {
         "lineNumber": 56,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "                    return \"Removed file: \" + fileRemoved.toString() + \"\\n\""
+        "content": "                    files.remove(index);"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                            + \"You currently have \" + files.getList().size()"
+        "content": "                    return \"Removed file: \" + fileRemoved.toString() + \"\\n\""
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                            + ((files.getList().size() \u003d\u003d 1) ? \" file in the list.\" : \" files in the list.\");"
+        "content": "                            + \"You currently have \" + files.getList().size()"
       },
       {
         "lineNumber": 59,
+        "author": {
+          "gitId": "lackmoo"
+        },
+        "content": "                            + ((files.getList().size() \u003d\u003d 1) ? \" file in the list.\" : \" files in the list.\");"
+      },
+      {
+        "lineNumber": 60,
         "author": {
           "gitId": "ttippinyu"
         },
         "content": "                } catch (NumberFormatException e) {"
       },
       {
-        "lineNumber": 60,
+        "lineNumber": 61,
         "author": {
           "gitId": "lackmoo"
         },
         "content": "                    throw new InputException(INVALID_INDEX);"
-      },
-      {
-        "lineNumber": 61,
-        "author": {
-          "gitId": "ttippinyu"
-        },
-        "content": "                }"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "            } else {"
+        "content": "                } catch (IndexOutOfBoundsException e) {"
       },
       {
         "lineNumber": 63,
         "author": {
-          "gitId": "rssujay"
+          "gitId": "ttippinyu"
         },
-        "content": "                return NON_EXISTENT_MODULE;"
+        "content": "                    throw new InputException(PROVIDE_INDEX);"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "            }"
+        "content": "                }"
       },
       {
         "lineNumber": 65,
         "author": {
-          "gitId": "rssujay"
+          "gitId": "ttippinyu"
         },
-        "content": ""
+        "content": "            } else {"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "rssujay"
         },
-        "content": "        case \"note\":"
+        "content": "                return NON_EXISTENT_MODULE;"
       },
       {
         "lineNumber": 67,
         "author": {
-          "gitId": "rssujay"
+          "gitId": "ttippinyu"
         },
-        "content": "            if (moduleContainer.checkModuleExists(moduleCode)) {"
+        "content": "            }"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "rssujay"
         },
-        "content": "                HashMap\u003cString, Module\u003e modules \u003d moduleContainer.getModules();"
+        "content": ""
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "rssujay"
         },
-        "content": "                Module module \u003d modules.get(moduleCode);"
+        "content": "        case \"note\":"
       },
       {
         "lineNumber": 70,
         "author": {
-          "gitId": "rssujay"
+          "gitId": "ttippinyu"
         },
-        "content": "                Notepad notepad \u003d module.getNotepad();"
+        "content": "            checkIfOnModulePage(moduleCode);"
       },
       {
         "lineNumber": 71,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "rssujay"
         },
-        "content": "                if (content.split(\" \").length \u003d\u003d 1) {"
+        "content": "            if (moduleContainer.checkModuleExists(moduleCode)) {"
       },
       {
         "lineNumber": 72,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "                    throw new InputException(PROVIDE_INDEX);"
+        "content": "                try {"
       },
       {
         "lineNumber": 73,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "rssujay"
         },
-        "content": "                }"
+        "content": "                    HashMap\u003cString, Module\u003e modules \u003d moduleContainer.getModules();"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "rssujay"
         },
-        "content": "                int index \u003d Integer.parseInt(content.split(\" \")[1]) - 1;"
+        "content": "                    Module module \u003d modules.get(moduleCode);"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "rssujay"
         },
-        "content": "                notepad.removeLine(index);"
+        "content": "                    Notepad notepad \u003d module.getNotepad();"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "rssujay"
         },
-        "content": "                return NOTE_REMOVED + moduleCode;"
+        "content": "                    int index \u003d Integer.parseInt(content.split(\" \")[1]) - 1;"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "rssujay"
         },
-        "content": "            } else {"
+        "content": "                    notepad.removeLine(index);"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "rssujay"
         },
-        "content": "                return NON_EXISTENT_MODULE;"
+        "content": "                    return NOTE_REMOVED + moduleCode;"
       },
       {
         "lineNumber": 79,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "                } catch (NumberFormatException e) {"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "                    throw new InputException(INVALID_INDEX);"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "                } catch (IndexOutOfBoundsException e) {"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "                    throw new InputException(PROVIDE_INDEX);"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "rssujay"
+        },
+        "content": "            } else {"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "rssujay"
+        },
+        "content": "                return NON_EXISTENT_MODULE;"
+      },
+      {
+        "lineNumber": 86,
         "author": {
           "gitId": "rssujay"
         },
         "content": "            }"
       },
       {
-        "lineNumber": 80,
+        "lineNumber": 87,
         "author": {
           "gitId": "rssujay"
         },
         "content": ""
-      },
-      {
-        "lineNumber": 81,
-        "author": {
-          "gitId": "lackmoo"
-        },
-        "content": "        case \"task\":"
-      },
-      {
-        "lineNumber": 82,
-        "author": {
-          "gitId": "lackmoo"
-        },
-        "content": "            if (moduleContainer.checkModuleExists(moduleCode)) {"
-      },
-      {
-        "lineNumber": 83,
-        "author": {
-          "gitId": "lackmoo"
-        },
-        "content": "                try {"
-      },
-      {
-        "lineNumber": 84,
-        "author": {
-          "gitId": "lackmoo"
-        },
-        "content": "                    HashMap\u003cString, Module\u003e modules \u003d moduleContainer.getModules();"
-      },
-      {
-        "lineNumber": 85,
-        "author": {
-          "gitId": "lackmoo"
-        },
-        "content": "                    Module module \u003d modules.get(moduleCode);"
-      },
-      {
-        "lineNumber": 86,
-        "author": {
-          "gitId": "lackmoo"
-        },
-        "content": "                    TaskList tasks \u003d module.getTasks();"
-      },
-      {
-        "lineNumber": 87,
-        "author": {
-          "gitId": "lackmoo"
-        },
-        "content": "                    if (content.split(\" \").length \u003d\u003d 1) {"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                        throw new InputException(PROVIDE_INDEX);"
+        "content": "        case \"task\":"
       },
       {
         "lineNumber": 89,
         "author": {
-          "gitId": "lackmoo"
+          "gitId": "ttippinyu"
         },
-        "content": "                    }"
+        "content": "            checkIfOnModulePage(moduleCode);"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                    int index \u003d Integer.parseInt(content.split(\" \")[1]) - 1;"
+        "content": "            if (moduleContainer.checkModuleExists(moduleCode)) {"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                    Task taskRemoved \u003d tasks.get(index);"
+        "content": "                try {"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                    tasks.remove(index);"
+        "content": "                    HashMap\u003cString, Module\u003e modules \u003d moduleContainer.getModules();"
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                    return \"Removed task: \" + taskRemoved.toString() + \"\\n\""
+        "content": "                    Module module \u003d modules.get(moduleCode);"
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                            + \"You currently have \" + tasks.getList().size()"
+        "content": "                    TaskList tasks \u003d module.getTasks();"
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                            + ((tasks.getList().size() \u003d\u003d 1) ? \" task in the list.\" : \" tasks in the list.\");"
+        "content": "                    int index \u003d Integer.parseInt(content.split(\" \")[1]) - 1;"
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                } catch (NumberFormatException e) {"
+        "content": "                    Task taskRemoved \u003d tasks.get(index);"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                    throw new InputException(INVALID_INDEX);"
+        "content": "                    tasks.remove(index);"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                }"
+        "content": "                    return \"Removed task: \" + taskRemoved.toString() + \"\\n\""
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "            } else {"
+        "content": "                            + \"You currently have \" + tasks.getList().size()"
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "                return NON_EXISTENT_MODULE;"
+        "content": "                            + ((tasks.getList().size() \u003d\u003d 1) ? \" task in the list.\" : \" tasks in the list.\");"
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": "            }"
+        "content": "                } catch (NumberFormatException e) {"
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "lackmoo"
         },
-        "content": ""
+        "content": "                    throw new InputException(INVALID_INDEX);"
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "        default:"
+        "content": "                } catch (IndexOutOfBoundsException e) {"
       },
       {
         "lineNumber": 104,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "                    throw new InputException(PROVIDE_INDEX);"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "lackmoo"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "lackmoo"
+        },
+        "content": "            } else {"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "lackmoo"
+        },
+        "content": "                return NON_EXISTENT_MODULE;"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "lackmoo"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "lackmoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "        default:"
+      },
+      {
+        "lineNumber": 111,
         "author": {
           "gitId": "lackmoo"
         },
         "content": "            throw new InputException(INVALID_REMOVE_FORMAT);"
       },
       {
-        "lineNumber": 105,
+        "lineNumber": 112,
         "author": {
           "gitId": "ttippinyu"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 106,
+        "lineNumber": 113,
         "author": {
           "gitId": "ttippinyu"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 107,
+        "lineNumber": 114,
         "author": {
           "gitId": "ttippinyu"
         },
@@ -11984,8 +12467,8 @@
     ],
     "authorContributionMap": {
       "rssujay": 17,
-      "ttippinyu": 51,
-      "lackmoo": 39
+      "ttippinyu": 67,
+      "lackmoo": 30
     }
   },
   {
@@ -13459,7 +13942,7 @@
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "     * @param pageData the page trace from parser."
+        "content": "     * @param pageDataComponents the page trace from parser."
       },
       {
         "lineNumber": 22,
@@ -13487,1060 +13970,1053 @@
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "    public ViewCommand(String pageData, String content) throws InputException {"
+        "content": "    public ViewCommand(String[] pageDataComponents, String content) throws InputException {"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "        String[] pageDataComponents \u003d pageData.split(\" \");"
+        "content": "        String[] contentComponents \u003d content.toLowerCase().split(\" \");"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "        String[] contentComponents \u003d content.split(\" \");"
+        "content": ""
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": ""
+        "content": "        if (contentComponents.length \u003d\u003d 0) {"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "        if (contentComponents.length \u003d\u003d 0) {"
+        "content": "            throw new InputException(\"Please input the page you want to change to.\");"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "            throw new InputException(\"Please input the page you want to change to.\");"
+        "content": "        // can be page, module, or tab"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "        // can be page, module, or tab"
+        "content": "        } else if (contentComponents.length \u003d\u003d 1) {"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "        } else if (contentComponents.length \u003d\u003d 1) {"
+        "content": "            switch (contentComponents[0]) {"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "            switch (contentComponents[0]) {"
+        "content": "            // content is page"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "            // content is page"
+        "content": "            case \"main\":"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "            case \"main\":"
+        "content": "                page \u003d \"main\";"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "                page \u003d \"main\";"
+        "content": "                break;"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "                break;"
+        "content": "            case \"calendar\":"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "            case \"calendar\":"
+        "content": "                page \u003d \"calendar\";"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "                page \u003d \"calendar\";"
+        "content": "                break;"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "                break;"
+        "content": "            case \"modules\":"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "            case \"modules\":"
+        "content": "                page \u003d \"modules\";"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "                page \u003d \"modules\";"
+        "content": "                break;"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "                break;"
+        "content": "            // content is tab"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "            // content is tab"
+        "content": "            case \"tasks\":"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "            case \"tasks\":"
+        "content": "            case \"files\":"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "            case \"files\":"
-      },
-      {
-        "lineNumber": 47,
-        "author": {
-          "gitId": "ttippinyu"
-        },
         "content": "            case \"grades\":"
       },
       {
-        "lineNumber": 48,
+        "lineNumber": 47,
         "author": {
           "gitId": "rssujay"
         },
         "content": "            case \"notes\":"
       },
       {
-        "lineNumber": 49,
+        "lineNumber": 48,
         "author": {
           "gitId": "ttippinyu"
         },
         "content": "                // check if on a module page first"
       },
       {
-        "lineNumber": 50,
+        "lineNumber": 49,
         "author": {
           "gitId": "ttippinyu"
         },
         "content": "                try {"
       },
       {
-        "lineNumber": 51,
+        "lineNumber": 50,
         "author": {
           "gitId": "ttippinyu"
         },
         "content": "                    moduleCode \u003d pageDataComponents[1];"
       },
       {
-        "lineNumber": 52,
+        "lineNumber": 51,
         "author": {
           "gitId": "ttippinyu"
         },
         "content": "                } catch (ArrayIndexOutOfBoundsException e) {"
       },
       {
-        "lineNumber": 53,
+        "lineNumber": 52,
         "author": {
           "gitId": "ttippinyu"
         },
         "content": "                    throw new InputException(\"Please specify module before tab.\\n\""
       },
       {
-        "lineNumber": 54,
+        "lineNumber": 53,
         "author": {
           "gitId": "ttippinyu"
         },
         "content": "                        + \"E.g. \u0027view / \u003cmoduleCode\u003e \u003ctab\u003e\u0027\");"
       },
       {
-        "lineNumber": 55,
+        "lineNumber": 54,
         "author": {
           "gitId": "ttippinyu"
         },
         "content": "                }"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "                page \u003d \"modules\";"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "                page \u003d \"modules\";"
+        "content": "                moduleCode \u003d pageDataComponents[1];"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "                moduleCode \u003d pageDataComponents[1];"
+        "content": "                tab \u003d contentComponents[0];"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "                tab \u003d contentComponents[0];"
+        "content": "                break;"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "                break;"
+        "content": "            // content is module code"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "            // content is module code"
+        "content": "            default:"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "            default:"
+        "content": "                page \u003d \"modules\";"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "                page \u003d \"modules\";"
+        "content": "                moduleCode \u003d contentComponents[0];"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "                moduleCode \u003d contentComponents[0];"
+        "content": "            }"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "            }"
+        "content": "        // can be \u0027modules \u003cmoduleCode\u003e\u0027 or \u0027\u003cmoduleCode\u003e tab\u0027"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "        // can be \u0027modules \u003cmoduleCode\u003e\u0027 or \u0027\u003cmoduleCode\u003e tab\u0027"
+        "content": "        } else if (contentComponents.length \u003d\u003d 2) {"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "        } else if (contentComponents.length \u003d\u003d 2) {"
+        "content": "            if (contentComponents[0].equals(\"modules\")) {"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "            if (contentComponents[0].equals(\"modules\")) {"
+        "content": "                page \u003d \"modules\";"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "                page \u003d \"modules\";"
+        "content": "                moduleCode \u003d contentComponents[1];"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "                moduleCode \u003d contentComponents[1];"
-      },
-      {
-        "lineNumber": 70,
-        "author": {
-          "gitId": "ttippinyu"
-        },
         "content": "            } else if (contentComponents[1].equals(\"tasks\") || contentComponents[1].equals(\"files\")"
       },
       {
-        "lineNumber": 71,
+        "lineNumber": 70,
         "author": {
           "gitId": "rssujay"
         },
         "content": "                    || contentComponents[1].equals(\"grades\") || contentComponents[1].equals(\"notes\")) {"
       },
       {
-        "lineNumber": 72,
+        "lineNumber": 71,
         "author": {
           "gitId": "ttippinyu"
         },
         "content": "                page \u003d \"modules\";"
       },
       {
-        "lineNumber": 73,
+        "lineNumber": 72,
         "author": {
           "gitId": "ttippinyu"
         },
         "content": "                moduleCode \u003d contentComponents[0];"
       },
       {
-        "lineNumber": 74,
+        "lineNumber": 73,
         "author": {
           "gitId": "ttippinyu"
         },
         "content": "                tab \u003d contentComponents[1];"
       },
       {
-        "lineNumber": 75,
+        "lineNumber": 74,
         "author": {
           "gitId": "ttippinyu"
         },
         "content": "            } else {"
       },
       {
-        "lineNumber": 76,
+        "lineNumber": 75,
         "author": {
           "gitId": "ttippinyu"
         },
         "content": "                throw new InputException(\"Please input correct format for view command.\");"
       },
       {
-        "lineNumber": 77,
+        "lineNumber": 76,
         "author": {
           "gitId": "ttippinyu"
         },
         "content": "            }"
       },
       {
-        "lineNumber": 78,
+        "lineNumber": 77,
         "author": {
           "gitId": "ttippinyu"
         },
         "content": "        // modules \u003cmoduleCode\u003e \u003ctab\u003e"
       },
       {
-        "lineNumber": 79,
+        "lineNumber": 78,
         "author": {
           "gitId": "ttippinyu"
         },
         "content": "        } else if (contentComponents.length \u003d\u003d 3) {"
       },
       {
-        "lineNumber": 80,
+        "lineNumber": 79,
         "author": {
           "gitId": "ttippinyu"
         },
         "content": "            if (contentComponents[0].equals(\"modules\")) {"
       },
       {
-        "lineNumber": 81,
+        "lineNumber": 80,
         "author": {
           "gitId": "ttippinyu"
         },
         "content": "                page \u003d \"modules\";"
       },
       {
-        "lineNumber": 82,
+        "lineNumber": 81,
         "author": {
           "gitId": "ttippinyu"
         },
         "content": "                moduleCode \u003d contentComponents[1];"
       },
       {
-        "lineNumber": 83,
+        "lineNumber": 82,
         "author": {
           "gitId": "ttippinyu"
         },
         "content": "                tab \u003d contentComponents[2];"
       },
       {
-        "lineNumber": 84,
+        "lineNumber": 83,
         "author": {
           "gitId": "ttippinyu"
         },
         "content": "            }"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "        } else {"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "        } else {"
+        "content": "            throw new InputException(\"Please input correct format for view command.\");"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "            throw new InputException(\"Please input correct format for view command.\");"
+        "content": "        }"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "        }"
+        "content": "    }"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 91,
-        "author": {
-          "gitId": "ttippinyu"
-        },
         "content": "     * Replace pageTrace with the new pageTrace."
       },
       {
-        "lineNumber": 92,
+        "lineNumber": 91,
         "author": {
           "gitId": "rssujay"
         },
         "content": "     * @param moduleContainer the modules stored."
       },
       {
-        "lineNumber": 93,
+        "lineNumber": 92,
         "author": {
           "gitId": "ttippinyu"
         },
         "content": "     * @param pageTrace the current pageTrace."
       },
       {
-        "lineNumber": 94,
+        "lineNumber": 93,
         "author": {
           "gitId": "ttippinyu"
         },
         "content": "     * @param ui the Ui instance."
       },
       {
-        "lineNumber": 95,
+        "lineNumber": 94,
         "author": {
           "gitId": "ttippinyu"
         },
         "content": "     * @return the display once been changed.."
       },
       {
-        "lineNumber": 96,
+        "lineNumber": 95,
         "author": {
           "gitId": "ttippinyu"
         },
         "content": "     * @throws SpinBoxException if page, module, or tab does not exist."
       },
       {
-        "lineNumber": 97,
+        "lineNumber": 96,
         "author": {
           "gitId": "ttippinyu"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 98,
+        "lineNumber": 97,
         "author": {
           "gitId": "rssujay"
         },
         "content": "    @Override"
       },
       {
-        "lineNumber": 99,
+        "lineNumber": 98,
         "author": {
           "gitId": "rssujay"
         },
         "content": "    public String execute(ModuleContainer moduleContainer, ArrayDeque\u003cString\u003e pageTrace, Ui ui)"
       },
       {
-        "lineNumber": 100,
+        "lineNumber": 99,
         "author": {
           "gitId": "ttippinyu"
         },
         "content": "            throws SpinBoxException {"
       },
       {
-        "lineNumber": 101,
+        "lineNumber": 100,
         "author": {
           "gitId": "ttippinyu"
         },
         "content": "        ArrayDeque\u003cString\u003e tempPageTrace \u003d pageTrace.clone();"
       },
       {
-        "lineNumber": 102,
+        "lineNumber": 101,
         "author": {
           "gitId": "ttippinyu"
         },
         "content": "        StringBuilder oldTrace \u003d new StringBuilder();"
       },
       {
-        "lineNumber": 103,
+        "lineNumber": 102,
         "author": {
           "gitId": "ttippinyu"
         },
         "content": "        while (tempPageTrace.size() \u003e 0) {"
       },
       {
-        "lineNumber": 104,
+        "lineNumber": 103,
         "author": {
           "gitId": "ttippinyu"
         },
         "content": "            oldTrace.append(\"/\").append(tempPageTrace.getLast());"
       },
       {
-        "lineNumber": 105,
+        "lineNumber": 104,
         "author": {
           "gitId": "ttippinyu"
         },
         "content": "            tempPageTrace.removeLast();"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "        }"
       },
       {
         "lineNumber": 106,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "        }"
+        "content": ""
       },
       {
         "lineNumber": 107,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": ""
+        "content": "        ArrayDeque\u003cString\u003e newPageTrace \u003d new ArrayDeque\u003c\u003e();"
       },
       {
         "lineNumber": 108,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "        ArrayDeque\u003cString\u003e newPageTrace \u003d new ArrayDeque\u003c\u003e();"
+        "content": "        // add page"
       },
       {
         "lineNumber": 109,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "        // add page"
+        "content": "        if (page.equals(\"main\") || page.equals(\"calendar\") || page.equals(\"modules\")) {"
       },
       {
         "lineNumber": 110,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "        if (page.equals(\"main\") || page.equals(\"calendar\") || page.equals(\"modules\")) {"
+        "content": "            newPageTrace.addFirst(page);"
       },
       {
         "lineNumber": 111,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "            newPageTrace.addFirst(page);"
+        "content": "        } else {"
       },
       {
         "lineNumber": 112,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "        } else {"
+        "content": "            throw new InputException(\"Sorry, that page does not exist.\""
       },
       {
         "lineNumber": 113,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "            throw new InputException(\"Sorry, that page does not exist.\""
+        "content": "                    + \" Please choose \u0027main\u0027, \u0027calendar\u0027, or \u0027modules\u0027.\");"
       },
       {
         "lineNumber": 114,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "                    + \" Please choose \u0027main\u0027, \u0027calendar\u0027, or \u0027modules\u0027.\");"
+        "content": "        }"
       },
       {
         "lineNumber": 115,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "        }"
+        "content": ""
       },
       {
         "lineNumber": 116,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": ""
+        "content": "        // add module if exists"
       },
       {
         "lineNumber": 117,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "        // add module if exists"
+        "content": "        if (page.equals(\"modules\") \u0026\u0026 moduleCode !\u003d null) {"
       },
       {
         "lineNumber": 118,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "        if (page.equals(\"modules\") \u0026\u0026 moduleCode !\u003d null) {"
-      },
-      {
-        "lineNumber": 119,
-        "author": {
-          "gitId": "ttippinyu"
-        },
         "content": "            // check if module exists"
       },
       {
-        "lineNumber": 120,
+        "lineNumber": 119,
         "author": {
           "gitId": "rssujay"
         },
         "content": "            if (moduleContainer.checkModuleExists(moduleCode)) {"
       },
       {
-        "lineNumber": 121,
+        "lineNumber": 120,
         "author": {
           "gitId": "ttippinyu"
         },
         "content": "                newPageTrace.addFirst(moduleCode);"
       },
       {
-        "lineNumber": 122,
+        "lineNumber": 121,
         "author": {
           "gitId": "ttippinyu"
         },
         "content": "            } else {"
       },
       {
-        "lineNumber": 123,
+        "lineNumber": 122,
         "author": {
           "gitId": "ttippinyu"
         },
         "content": "                String currentModules \u003d \"\";"
       },
       {
-        "lineNumber": 124,
+        "lineNumber": 123,
         "author": {
           "gitId": "rssujay"
         },
         "content": "                for (HashMap.Entry\u003cString, Module\u003e entry : moduleContainer.getModules().entrySet()) {"
       },
       {
-        "lineNumber": 125,
+        "lineNumber": 124,
         "author": {
           "gitId": "ttippinyu"
         },
         "content": "                    currentModules \u003d currentModules.concat(entry.getKey() + \"\\n\");"
       },
       {
-        "lineNumber": 126,
+        "lineNumber": 125,
         "author": {
           "gitId": "ttippinyu"
         },
         "content": "                }"
       },
       {
-        "lineNumber": 127,
+        "lineNumber": 126,
         "author": {
           "gitId": "lackmoo"
         },
         "content": "                throw new InputException(\"Sorry, that module does not exist. These are the current modules:\\n\""
       },
       {
-        "lineNumber": 128,
+        "lineNumber": 127,
         "author": {
           "gitId": "ttippinyu"
         },
         "content": "                    + currentModules);"
       },
       {
-        "lineNumber": 129,
+        "lineNumber": 128,
         "author": {
           "gitId": "ttippinyu"
         },
         "content": "            }"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": "        }"
       },
       {
         "lineNumber": 130,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "        }"
+        "content": ""
       },
       {
         "lineNumber": 131,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": ""
+        "content": "        List\u003cString\u003e outputList \u003d new ArrayList\u003c\u003e();"
       },
       {
         "lineNumber": 132,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "        List\u003cString\u003e outputList \u003d new ArrayList\u003c\u003e();"
+        "content": "        outputList.add(\"First line\");"
       },
       {
         "lineNumber": 133,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "        outputList.add(\"First line\");"
+        "content": "        // add tab"
       },
       {
         "lineNumber": 134,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "        // add tab"
+        "content": "        if (page.equals(\"modules\") \u0026\u0026 tab !\u003d null) {"
       },
       {
         "lineNumber": 135,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "        if (page.equals(\"modules\") \u0026\u0026 tab !\u003d null) {"
+        "content": "            HashMap\u003cString, Module\u003e modules \u003d moduleContainer.getModules();"
       },
       {
         "lineNumber": 136,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "            HashMap\u003cString, Module\u003e modules \u003d moduleContainer.getModules();"
+        "content": "            Module module \u003d modules.get(moduleCode);"
       },
       {
         "lineNumber": 137,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "            Module module \u003d modules.get(moduleCode);"
+        "content": "            switch (tab) {"
       },
       {
         "lineNumber": 138,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "            switch (tab) {"
+        "content": "            case \"tasks\":"
       },
       {
         "lineNumber": 139,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "            case \"tasks\":"
+        "content": "                newPageTrace.addFirst(tab);"
       },
       {
         "lineNumber": 140,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "                newPageTrace.addFirst(tab);"
+        "content": "                outputList \u003d module.getTasks().viewList();"
       },
       {
         "lineNumber": 141,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "                outputList \u003d module.getTasks().viewList();"
+        "content": "                break;"
       },
       {
         "lineNumber": 142,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "                break;"
+        "content": "            case \"files\":"
       },
       {
         "lineNumber": 143,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "            case \"files\":"
+        "content": "                newPageTrace.addFirst(tab);"
       },
       {
         "lineNumber": 144,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "                newPageTrace.addFirst(tab);"
+        "content": "                outputList \u003d module.getFiles().viewList();"
       },
       {
         "lineNumber": 145,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "                outputList \u003d module.getFiles().viewList();"
+        "content": "                break;"
       },
       {
         "lineNumber": 146,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "                break;"
+        "content": "            case \"grades\":"
       },
       {
         "lineNumber": 147,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "            case \"grades\":"
+        "content": "                newPageTrace.addFirst(tab);"
       },
       {
         "lineNumber": 148,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "                newPageTrace.addFirst(tab);"
+        "content": "                outputList \u003d module.getGrades().viewList();"
       },
       {
         "lineNumber": 149,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "                outputList \u003d module.getGrades().viewList();"
-      },
-      {
-        "lineNumber": 150,
-        "author": {
-          "gitId": "ttippinyu"
-        },
         "content": "                break;"
       },
       {
-        "lineNumber": 151,
+        "lineNumber": 150,
         "author": {
           "gitId": "rssujay"
         },
         "content": "            case \"notes\":"
       },
       {
-        "lineNumber": 152,
+        "lineNumber": 151,
         "author": {
           "gitId": "rssujay"
         },
         "content": "                newPageTrace.addFirst(tab);"
       },
       {
-        "lineNumber": 153,
+        "lineNumber": 152,
         "author": {
           "gitId": "rssujay"
         },
         "content": "                outputList \u003d module.getNotepad().viewList();"
       },
       {
-        "lineNumber": 154,
+        "lineNumber": 153,
         "author": {
           "gitId": "rssujay"
         },
         "content": "                break;"
       },
       {
-        "lineNumber": 155,
+        "lineNumber": 154,
         "author": {
           "gitId": "ttippinyu"
         },
         "content": "            default:"
       },
       {
-        "lineNumber": 156,
+        "lineNumber": 155,
         "author": {
           "gitId": "ttippinyu"
         },
         "content": "                throw new InputException(\"Sorry, that tab does not exist.\""
       },
       {
-        "lineNumber": 157,
+        "lineNumber": 156,
         "author": {
           "gitId": "rssujay"
         },
         "content": "                        + \" Please choose \u0027tasks\u0027, \u0027files\u0027, \u0027notes\u0027 or \u0027grades\u0027.\");"
       },
       {
-        "lineNumber": 158,
+        "lineNumber": 157,
         "author": {
           "gitId": "ttippinyu"
         },
         "content": "            }"
       },
       {
-        "lineNumber": 159,
+        "lineNumber": 158,
         "author": {
           "gitId": "ttippinyu"
         },
         "content": "        }"
+      },
+      {
+        "lineNumber": 159,
+        "author": {
+          "gitId": "ttippinyu"
+        },
+        "content": ""
       },
       {
         "lineNumber": 160,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": ""
+        "content": "        pageTrace.clear();"
       },
       {
         "lineNumber": 161,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "        pageTrace.clear();"
+        "content": ""
       },
       {
         "lineNumber": 162,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": ""
+        "content": "        StringBuilder newTrace \u003d new StringBuilder();"
       },
       {
         "lineNumber": 163,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "        StringBuilder newTrace \u003d new StringBuilder();"
+        "content": "        tempPageTrace \u003d newPageTrace.clone();"
       },
       {
         "lineNumber": 164,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "        tempPageTrace \u003d newPageTrace.clone();"
+        "content": "        while (tempPageTrace.size() \u003e 0) {"
       },
       {
         "lineNumber": 165,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "        while (tempPageTrace.size() \u003e 0) {"
+        "content": "            newTrace.append(\"/\").append(tempPageTrace.getLast());"
       },
       {
         "lineNumber": 166,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "            newTrace.append(\"/\").append(tempPageTrace.getLast());"
+        "content": "            pageTrace.addFirst(tempPageTrace.getLast());"
       },
       {
         "lineNumber": 167,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "            pageTrace.addFirst(tempPageTrace.getLast());"
+        "content": "            tempPageTrace.removeLast();"
       },
       {
         "lineNumber": 168,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "            tempPageTrace.removeLast();"
+        "content": "        }"
       },
       {
         "lineNumber": 169,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "        }"
+        "content": ""
       },
       {
         "lineNumber": 170,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": ""
+        "content": "        outputList.set(0, \"Changed from page \""
       },
       {
         "lineNumber": 171,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "        outputList.set(0, \"Changed from page \""
+        "content": "                + oldTrace.toString() + \" to \" + newTrace.toString());"
       },
       {
         "lineNumber": 172,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "                + oldTrace.toString() + \" to \" + newTrace.toString());"
+        "content": ""
       },
       {
         "lineNumber": 173,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": ""
+        "content": "        return ui.showFormatted(outputList);"
       },
       {
         "lineNumber": 174,
         "author": {
           "gitId": "ttippinyu"
         },
-        "content": "        return ui.showFormatted(outputList);"
-      },
-      {
-        "lineNumber": 175,
-        "author": {
-          "gitId": "ttippinyu"
-        },
         "content": "    }"
       },
       {
-        "lineNumber": 176,
+        "lineNumber": 175,
         "author": {
           "gitId": "ttippinyu"
         },
@@ -14549,7 +15025,7 @@
     ],
     "authorContributionMap": {
       "rssujay": 14,
-      "ttippinyu": 161,
+      "ttippinyu": 160,
       "lackmoo": 1
     }
   },

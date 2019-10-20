@@ -174,131 +174,138 @@
       {
         "lineNumber": 25,
         "author": {
-          "gitId": "WEIFENG-NUSCEG"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "    compile group: \u0027com.google.guava\u0027, name: \u0027guava\u0027, version: \u002723.5-jre\u0027"
+        "content": "    compile \u0027org.apache.commons:commons-text:1.8\u0027"
       },
       {
         "lineNumber": 26,
         "author": {
-          "gitId": "-"
+          "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "}"
+        "content": "    compile group: \u0027com.google.guava\u0027, name: \u0027guava\u0027, version: \u002723.5-jre\u0027"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "}"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "-"
         },
-        "content": "test {"
+        "content": ""
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "-"
         },
-        "content": "    useJUnitPlatform()"
+        "content": "test {"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "-"
         },
-        "content": "}"
+        "content": "    useJUnitPlatform()"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "}"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "-"
         },
-        "content": "repositories {"
+        "content": ""
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "-"
         },
-        "content": "    mavenCentral()"
+        "content": "repositories {"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "-"
         },
-        "content": "}"
+        "content": "    mavenCentral()"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "}"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "-"
         },
-        "content": "application {"
+        "content": ""
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "-"
         },
-        "content": "    // Change this to your main class."
+        "content": "application {"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "-"
         },
-        "content": "    mainClassName \u003d \"duke/Duke\""
+        "content": "    // Change this to your main class."
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "-"
         },
-        "content": "}"
+        "content": "    mainClassName \u003d \"duke/Duke\""
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "}"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "-"
         },
-        "content": "run {"
+        "content": ""
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "-"
         },
-        "content": "    standardInput \u003d System.in"
+        "content": "run {"
       },
       {
         "lineNumber": 43,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    standardInput \u003d System.in"
+      },
+      {
+        "lineNumber": 44,
         "author": {
           "gitId": "-"
         },
@@ -308,7 +315,7 @@
     "authorContributionMap": {
       "WEIFENG-NUSCEG": 1,
       "-": 41,
-      "HUANGXUANKUN": 1
+      "HUANGXUANKUN": 2
     }
   },
   {
@@ -7627,411 +7634,411 @@
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "        String[] command \u003d userInput.split(\"\\\\s+\", 3);"
+        "content": "        String possibleCommand \u003d TypoCorrector.commandCorrection(userInput);"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "        String firstKeyword \u003d command[0].toLowerCase();"
+        "content": "        if (!possibleCommand.equals(userInput)) {"
       },
       {
         "lineNumber": 33,
         "author": {
-          "gitId": "lmtaek"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "        Parser parser \u003d new Parser(userInput);"
+        "content": "            if (Ui.getUi().confirmTypoCorrection(possibleCommand, userInput)) {"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "        switch (firstKeyword) { //change this depending on how string is parsed"
+        "content": "                userInput \u003d possibleCommand;"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "        case \"add\":"
+        "content": "            }"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "            String secondKeyword \u003d command[1].toLowerCase();"
+        "content": "        }"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "            if (secondKeyword.equals(\"patient\")) {"
+        "content": "        String[] command \u003d userInput.split(\"\\\\s+\", 3);"
       },
       {
         "lineNumber": 38,
         "author": {
-          "gitId": "lmtaek"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "                String[] formattedInput \u003d parser.parseAdd();"
+        "content": "        String firstKeyword \u003d command[0].toLowerCase();"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "                return new AddPatientCommand(formattedInput);"
+        "content": "        Parser parser \u003d new Parser(userInput);"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "            } else if (secondKeyword.equals(\"task\")) {"
+        "content": "        switch (firstKeyword) { //change this depending on how string is parsed"
       },
       {
         "lineNumber": 41,
         "author": {
-          "gitId": "lmtaek"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "                String formattedInput \u003d parser.parseAdd()[0];"
+        "content": "        case \"add\":"
       },
       {
         "lineNumber": 42,
         "author": {
-          "gitId": "lmtaek"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "                return new AddStandardTaskCommand(formattedInput);"
+        "content": "            String secondKeyword \u003d command[1].toLowerCase();"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "            } else {"
+        "content": "            if (secondKeyword.equals(\"patient\")) {"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "                throw new DukeException(\"Add command fails. \");"
+        "content": "                String[] formattedInput \u003d parser.parseAdd();"
       },
       {
         "lineNumber": 45,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "            }"
+        "content": "                return new AddPatientCommand(formattedInput);"
       },
       {
         "lineNumber": 46,
         "author": {
-          "gitId": "WEIFENG-NUSCEG"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "        case \"assign\":"
+        "content": "            } else if (secondKeyword.equals(\"task\")) {"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "            return new AssignTaskToPatientCommand(parser.parseAssign());"
+        "content": "                String formattedInput \u003d parser.parseAdd()[0];"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "        case \"list\":"
+        "content": "                return new AddStandardTaskCommand(formattedInput);"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "            try {"
+        "content": "            } else {"
       },
       {
         "lineNumber": 50,
         "author": {
-          "gitId": "qjie7"
+          "gitId": "lmtaek"
         },
-        "content": "                String[] tempCommand \u003d command[1].split(\"\\\\s+\");"
+        "content": "                throw new DukeException(\"Add command fails. \");"
       },
       {
         "lineNumber": 51,
         "author": {
-          "gitId": "HUANGXUANKUN"
+          "gitId": "-"
         },
-        "content": "                if (tempCommand[0].toLowerCase().equals(\"patients\")) {"
+        "content": "            }"
       },
       {
         "lineNumber": 52,
         "author": {
-          "gitId": "HUANGXUANKUN"
+          "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "                    return new ListPatientsCommand();"
+        "content": "        case \"assign\":"
       },
       {
         "lineNumber": 53,
         "author": {
-          "gitId": "HUANGXUANKUN"
+          "gitId": "lmtaek"
         },
-        "content": "                } else if (tempCommand[0].toLowerCase().equals(\"tasks\")) {"
+        "content": "            return new AssignTaskToPatientCommand(parser.parseAssign());"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "                    return new ListTasksCommand();"
+        "content": "        case \"list\":"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "                } else {"
+        "content": "            try {"
       },
       {
         "lineNumber": 56,
         "author": {
-          "gitId": "HUANGXUANKUN"
+          "gitId": "qjie7"
         },
-        "content": "                    throw new Exception(\"Invalid \u0027list\u0027 command. \");"
+        "content": "                String[] tempCommand \u003d command[1].split(\"\\\\s+\");"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "                }"
+        "content": "                if (tempCommand[0].toLowerCase().equals(\"patients\")) {"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "            } catch (Exception e) {"
+        "content": "                    return new ListPatientsCommand();"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "                throw new DukeException(\"List command fails. \" + e.getMessage());"
+        "content": "                } else if (tempCommand[0].toLowerCase().equals(\"tasks\")) {"
       },
       {
         "lineNumber": 60,
         "author": {
-          "gitId": "HUANGXUANKUN"
+          "gitId": "lmtaek"
         },
-        "content": "            }"
+        "content": "                    return new ListTasksCommand();"
       },
       {
         "lineNumber": 61,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        case \"delete\":"
-      },
-      {
-        "lineNumber": 62,
-        "author": {
-          "gitId": "HUANGXUANKUN"
-        },
-        "content": "            try {"
-      },
-      {
-        "lineNumber": 63,
-        "author": {
-          "gitId": "HUANGXUANKUN"
-        },
-        "content": "                secondKeyword \u003d command[1].toLowerCase();"
-      },
-      {
-        "lineNumber": 64,
-        "author": {
-          "gitId": "HUANGXUANKUN"
-        },
-        "content": "                if (secondKeyword.equals(\"patient\")) {"
-      },
-      {
-        "lineNumber": 65,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "                    String formattedInput \u003d parser.parseDeletePatient();"
-      },
-      {
-        "lineNumber": 66,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "                    return new DeletePatientCommand(formattedInput);"
-      },
-      {
-        "lineNumber": 67,
-        "author": {
-          "gitId": "HUANGXUANKUN"
-        },
-        "content": "                } else if (secondKeyword.equals(\"task\")) {"
-      },
-      {
-        "lineNumber": 68,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "                    return new DeleteTaskCommand(parser.parseDeleteTask());"
-      },
-      {
-        "lineNumber": 69,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
         "content": "                } else {"
       },
       {
-        "lineNumber": 70,
+        "lineNumber": 62,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "                    throw new Exception(\"Invalid format. \");"
+        "content": "                    throw new Exception(\"Invalid \u0027list\u0027 command. \");"
       },
       {
-        "lineNumber": 71,
+        "lineNumber": 63,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
         "content": "                }"
       },
       {
-        "lineNumber": 72,
+        "lineNumber": 64,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
         "content": "            } catch (Exception e) {"
       },
       {
-        "lineNumber": 73,
+        "lineNumber": 65,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "                throw new DukeException(\"Delete command fails. \" + e.getMessage());"
+        "content": "                throw new DukeException(\"List command fails. \" + e.getMessage());"
       },
       {
-        "lineNumber": 74,
+        "lineNumber": 66,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
         "content": "            }"
       },
       {
-        "lineNumber": 75,
+        "lineNumber": 67,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "        case \"find\":"
+        "content": "        case \"delete\":"
       },
       {
-        "lineNumber": 76,
+        "lineNumber": 68,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
         "content": "            try {"
       },
       {
-        "lineNumber": 77,
+        "lineNumber": 69,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
         "content": "                secondKeyword \u003d command[1].toLowerCase();"
       },
       {
-        "lineNumber": 78,
+        "lineNumber": 70,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
         "content": "                if (secondKeyword.equals(\"patient\")) {"
       },
       {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "                    String formattedInput \u003d parser.parseDeletePatient();"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "                    return new DeletePatientCommand(formattedInput);"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "                } else if (secondKeyword.equals(\"task\")) {"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "                    return new DeleteTaskCommand(parser.parseDeleteTask());"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "                } else {"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "                    throw new Exception(\"Invalid format. \");"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "            } catch (Exception e) {"
+      },
+      {
         "lineNumber": 79,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "                    try {"
+        "content": "                throw new DukeException(\"Delete command fails. \" + e.getMessage());"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "                        return new FindPatientCommand(command[2]);"
+        "content": "            }"
       },
       {
         "lineNumber": 81,
         "author": {
-          "gitId": "HUANGXUANKUN"
+          "gitId": "lmtaek"
         },
-        "content": "                    } catch (Exception e) {"
+        "content": "        case \"find\":"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "                        throw new Exception(\"Please follow the format \u0027find patient #\u003cid\u003e\u0027 or \u0027find patient \u003cname\u003e\u0027.\");"
+        "content": "            try {"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "                    }"
+        "content": "                secondKeyword \u003d command[1].toLowerCase();"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "                } else if (secondKeyword.equals(\"patienttask\")) {"
+        "content": "                if (secondKeyword.equals(\"patient\")) {"
       },
       {
         "lineNumber": 85,
         "author": {
-          "gitId": "WEIFENG-NUSCEG"
+          "gitId": "HUANGXUANKUN"
         },
         "content": "                    try {"
       },
       {
         "lineNumber": 86,
         "author": {
-          "gitId": "WEIFENG-NUSCEG"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "                        return new FindPatientTaskCommand(command[2]);"
+        "content": "                        return new FindPatientCommand(command[2]);"
       },
       {
         "lineNumber": 87,
         "author": {
-          "gitId": "WEIFENG-NUSCEG"
+          "gitId": "HUANGXUANKUN"
         },
         "content": "                    } catch (Exception e) {"
       },
       {
         "lineNumber": 88,
         "author": {
-          "gitId": "WEIFENG-NUSCEG"
+          "gitId": "HUANGXUANKUN"
         },
         "content": "                        throw new Exception(\"Please follow the format \u0027find patient #\u003cid\u003e\u0027 or \u0027find patient \u003cname\u003e\u0027.\");"
       },
       {
         "lineNumber": 89,
         "author": {
-          "gitId": "WEIFENG-NUSCEG"
+          "gitId": "HUANGXUANKUN"
         },
         "content": "                    }"
       },
@@ -8040,192 +8047,234 @@
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "                } else {"
+        "content": "                } else if (secondKeyword.equals(\"patienttask\")) {"
       },
       {
         "lineNumber": 91,
+        "author": {
+          "gitId": "WEIFENG-NUSCEG"
+        },
+        "content": "                    try {"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "WEIFENG-NUSCEG"
+        },
+        "content": "                        return new FindPatientTaskCommand(command[2]);"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "WEIFENG-NUSCEG"
+        },
+        "content": "                    } catch (Exception e) {"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "WEIFENG-NUSCEG"
+        },
+        "content": "                        throw new Exception(\"Please follow the format \u0027find patient #\u003cid\u003e\u0027 or \u0027find patient \u003cname\u003e\u0027.\");"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "WEIFENG-NUSCEG"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "                } else {"
+      },
+      {
+        "lineNumber": 97,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
         "content": "                    throw new Exception(\"Invalid format. \");"
       },
       {
-        "lineNumber": 92,
+        "lineNumber": 98,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
         "content": "                }"
       },
       {
-        "lineNumber": 93,
+        "lineNumber": 99,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
         "content": "            } catch (Exception e) {"
       },
       {
-        "lineNumber": 94,
+        "lineNumber": 100,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
         "content": "                throw new DukeException(\"Find command fails. \" + e.getMessage());"
       },
       {
-        "lineNumber": 95,
+        "lineNumber": 101,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
         "content": "            }"
       },
       {
-        "lineNumber": 96,
+        "lineNumber": 102,
         "author": {
           "gitId": "qjie7"
         },
         "content": "        case \"update\":"
       },
       {
-        "lineNumber": 97,
+        "lineNumber": 103,
         "author": {
           "gitId": "qjie7"
         },
         "content": "            try {"
       },
       {
-        "lineNumber": 98,
+        "lineNumber": 104,
         "author": {
           "gitId": "-"
         },
         "content": "                secondKeyword \u003d command[1].toLowerCase();"
       },
       {
-        "lineNumber": 99,
+        "lineNumber": 105,
         "author": {
           "gitId": "-"
         },
         "content": "                if (secondKeyword.equals(\"patient\")) {"
       },
       {
-        "lineNumber": 100,
+        "lineNumber": 106,
         "author": {
           "gitId": "-"
         },
         "content": "                    String formattedInput \u003d parser.parseUpdatePatient();"
       },
       {
-        "lineNumber": 101,
+        "lineNumber": 107,
         "author": {
           "gitId": "-"
         },
         "content": "                    return new UpdatePatientCommand(formattedInput);"
       },
       {
-        "lineNumber": 102,
+        "lineNumber": 108,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
         "content": "                } else if (secondKeyword.equals(\"task\")) {"
       },
       {
-        "lineNumber": 103,
+        "lineNumber": 109,
         "author": {
           "gitId": "-"
         },
         "content": "                    String formattedInput \u003d parser.parseUpdateTask();"
       },
       {
-        "lineNumber": 104,
+        "lineNumber": 110,
         "author": {
           "gitId": "-"
         },
         "content": "                    return new UpdateTaskCommand(formattedInput);"
       },
       {
-        "lineNumber": 105,
+        "lineNumber": 111,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
         "content": "                } else {"
       },
       {
-        "lineNumber": 106,
+        "lineNumber": 112,
         "author": {
           "gitId": "-"
         },
         "content": "                    throw new Exception(\"Invalid format. \");"
       },
       {
-        "lineNumber": 107,
+        "lineNumber": 113,
         "author": {
           "gitId": "-"
         },
         "content": "                }"
       },
       {
-        "lineNumber": 108,
+        "lineNumber": 114,
         "author": {
           "gitId": "qjie7"
         },
         "content": "            } catch (Exception e) {"
       },
       {
-        "lineNumber": 109,
+        "lineNumber": 115,
         "author": {
           "gitId": "qjie7"
         },
         "content": "                throw new DukeException(\"update command fails. \" + e.getMessage());"
       },
       {
-        "lineNumber": 110,
+        "lineNumber": 116,
         "author": {
           "gitId": "qjie7"
         },
         "content": "            }"
       },
       {
-        "lineNumber": 111,
+        "lineNumber": 117,
         "author": {
           "gitId": "lmtaek"
         },
         "content": "        case \"bye\":"
       },
       {
-        "lineNumber": 112,
+        "lineNumber": 118,
         "author": {
           "gitId": "lmtaek"
         },
         "content": "            return new ExitCommand();"
       },
       {
-        "lineNumber": 113,
+        "lineNumber": 119,
         "author": {
           "gitId": "lmtaek"
         },
         "content": "        default:"
       },
       {
-        "lineNumber": 114,
+        "lineNumber": 120,
         "author": {
-          "gitId": "lmtaek"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "            throw new DukeException(\"Could not understand user input.\");"
+        "content": "            throw new DukeException(\"Could not understand user input\");"
       },
       {
-        "lineNumber": 115,
+        "lineNumber": 121,
         "author": {
           "gitId": "lmtaek"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 116,
+        "lineNumber": 122,
         "author": {
           "gitId": "lmtaek"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 117,
+        "lineNumber": 123,
         "author": {
           "gitId": "lmtaek"
         },
@@ -8233,11 +8282,11 @@
       }
     ],
     "authorContributionMap": {
-      "lmtaek": 37,
+      "lmtaek": 36,
       "WEIFENG-NUSCEG": 6,
       "qjie7": 6,
       "-": 9,
-      "HUANGXUANKUN": 59
+      "HUANGXUANKUN": 66
     }
   },
   {
@@ -9773,6 +9822,820 @@
     }
   },
   {
+    "path": "src/main/java/duke/core/TypoCorrector.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "package duke.core;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "import org.apache.commons.text.similarity.LevenshteinDistance;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "import java.util.Arrays;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": " * This is a command typo corrector for Duke user command."
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": " * It provides a method TypoCorrector.CommandCorrection which takes in an invalid input command"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": " * and return a possible matched command."
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": " *"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": " * @author HUANG XUAN KUN"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": " * @version 1.2"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "public class TypoCorrector {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "    //The maximum ratio changes of a text in % that is acceptable"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "    private static final double MAX_DISTANCE_DIFF_RATIO \u003d 0.5;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "    //Sets of \"Dictionaries\" for the command keyword, categorised by number of keywords contain in a supported commands."
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "    private static final ArrayList\u003cString\u003e oneKeywordCommand \u003d new ArrayList\u003cString\u003e("
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "            Arrays.asList(\"bye\"));"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "    private static final ArrayList\u003cString\u003e twoKeywordsCommands \u003d new ArrayList\u003cString\u003e("
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "            Arrays.asList(\"list patients\", \"list tasks\"));"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "    private static final ArrayList\u003cString\u003e otherCommands \u003d new ArrayList\u003cString\u003e("
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "            Arrays.asList(\"update patient\", \"update task\","
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "                    \"delete patient\", \"delete task\", \"add task\", \"add patient\","
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "                    \"assign by\", \"find patient\", \"find task\"));"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "     * This method take in an user input command with typo and return a possible matches"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "     * If the return string is equal to the input command, there is no match."
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "     * @param command the full userInput command without parsing"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "     * @return a string of correctedCommand"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "    public static String commandCorrection(String command) {"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "        String[] splitCommand \u003d command.split(\"\\\\s+\");"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "        int commandSize \u003d splitCommand.length;"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "        String closestMatch;"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "        String firstTwoKeywords;"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "        if (commandSize \u003d\u003d 1 || command.length() \u003c\u003d 6) {"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "            closestMatch \u003d matchStringFromDict(command, oneKeywordCommand);"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "            if (isSimilar(command, closestMatch)) {"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "                return closestMatch;"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "        } else if (commandSize \u003d\u003d 2) {"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "            firstTwoKeywords \u003d command.toLowerCase();"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "            closestMatch \u003d matchStringFromDict(firstTwoKeywords, twoKeywordsCommands);"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "            if (isSimilar(firstTwoKeywords, closestMatch)) {"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "                return closestMatch;"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "            firstTwoKeywords \u003d (splitCommand[0] + \" \" + splitCommand[1]).toLowerCase();"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "            closestMatch \u003d matchStringFromDict(firstTwoKeywords, otherCommands);"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "            if (isSimilar(firstTwoKeywords, closestMatch)) {"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "                splitCommand[0] \u003d \"\";"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "                splitCommand[1] \u003d \"\";"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "                return closestMatch + \" \" + String.join(\" \", splitCommand).trim();"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "        return command;"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "     * Get the closest match string from the array targetDict."
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "     * @param str the arbitrary string"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "     * @return"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "    private static String matchStringFromDict(String str, ArrayList\u003cString\u003e targetDict) {"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "        int minDist \u003d 256;"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "        String closestMatch \u003d null;"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "        for (String keyword : targetDict) {"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "            int currDist \u003d getDistance(keyword, str);"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "            if (currDist \u003c minDist) {"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "                if (currDist \u003d\u003d 0) {"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "                    return keyword;"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "                minDist \u003d currDist;"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "                closestMatch \u003d keyword;"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "        return closestMatch;"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "     * Get Levenshtein distance between target and an arbitrary string."
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "     * @param str the arbitrary string"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "     * @return"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "    private static Integer getDistance(String str, String target) {"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "        LevenshteinDistance distance \u003d new LevenshteinDistance();"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "        return distance.apply(str, target);"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "     * Method indicating if a message can be considered similar, based on Levenshtein distance"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "     * calculation with an allowed variation of 50%."
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "     * \u003cb\u003eNote:\u003c/b\u003e Max tolerated distance is derived from the current scenario\u0027s error message"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "     * The arbitrary MAX_DISTANCE_DIFF_RATIO (50%) means we consider 10% change to be acceptable"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "     * @param referenceText the reference text"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "     * @param targetText    the target text for the comparison"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "     * @return true if the can be considered similar else false"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "    public static boolean isSimilar(String referenceText, String targetText) {"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "        int threshold \u003d (int) Math.round(MAX_DISTANCE_DIFF_RATIO * referenceText.length());"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "        LevenshteinDistance levenshteinDistance \u003d new LevenshteinDistance(threshold);"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "        return levenshteinDistance.apply(referenceText, targetText) !\u003d -1;"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "HUANGXUANKUN": 115
+    }
+  },
+  {
     "path": "src/main/java/duke/core/Ui.java",
     "fileType": "functional",
     "lines": [
@@ -10794,14 +11657,14 @@
       {
         "lineNumber": 146,
         "author": {
-          "gitId": "-"
+          "gitId": "HUANGXUANKUN"
         },
         "content": "    }"
       },
       {
         "lineNumber": 147,
         "author": {
-          "gitId": "-"
+          "gitId": "HUANGXUANKUN"
         },
         "content": ""
       },
@@ -10864,7 +11727,7 @@
       {
         "lineNumber": 156,
         "author": {
-          "gitId": "HUANGXUANKUN"
+          "gitId": "-"
         },
         "content": "    }"
       },
@@ -10885,7 +11748,7 @@
       {
         "lineNumber": 159,
         "author": {
-          "gitId": "-"
+          "gitId": "HUANGXUANKUN"
         },
         "content": "    /**"
       },
@@ -10927,7 +11790,7 @@
       {
         "lineNumber": 165,
         "author": {
-          "gitId": "-"
+          "gitId": "HUANGXUANKUN"
         },
         "content": "     */"
       },
@@ -11004,14 +11867,14 @@
       {
         "lineNumber": 176,
         "author": {
-          "gitId": "WEIFENG-NUSCEG"
+          "gitId": "-"
         },
         "content": ""
       },
       {
         "lineNumber": 177,
         "author": {
-          "gitId": "HUANGXUANKUN"
+          "gitId": "-"
         },
         "content": "    /**"
       },
@@ -11046,7 +11909,7 @@
       {
         "lineNumber": 182,
         "author": {
-          "gitId": "HUANGXUANKUN"
+          "gitId": "-"
         },
         "content": "     */"
       },
@@ -11627,7 +12490,7 @@
       {
         "lineNumber": 265,
         "author": {
-          "gitId": "-"
+          "gitId": "HUANGXUANKUN"
         },
         "content": ""
       },
@@ -11683,7 +12546,7 @@
       {
         "lineNumber": 273,
         "author": {
-          "gitId": "-"
+          "gitId": "HUANGXUANKUN"
         },
         "content": "    /**"
       },
@@ -11711,7 +12574,7 @@
       {
         "lineNumber": 277,
         "author": {
-          "gitId": "-"
+          "gitId": "HUANGXUANKUN"
         },
         "content": "     */"
       },
@@ -11781,7 +12644,7 @@
       {
         "lineNumber": 287,
         "author": {
-          "gitId": "-"
+          "gitId": "HUANGXUANKUN"
         },
         "content": "     *"
       },
@@ -11886,21 +12749,21 @@
       {
         "lineNumber": 302,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
         "content": "        }"
       },
       {
         "lineNumber": 303,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
         "content": "    }"
       },
       {
         "lineNumber": 304,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
         "content": ""
       },
@@ -12068,495 +12931,649 @@
       {
         "lineNumber": 328,
         "author": {
-          "gitId": "WEIFENG-NUSCEG"
+          "gitId": "-"
         },
         "content": "    /**"
       },
       {
         "lineNumber": 329,
         "author": {
-          "gitId": "WEIFENG-NUSCEG"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "     * Shows a divider line."
+        "content": "     * It confirms with user on the deletion of a task."
       },
       {
         "lineNumber": 330,
         "author": {
-          "gitId": "WEIFENG-NUSCEG"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "     */"
+        "content": "     * If user confirms, key in \u0027Y\u0027. Otherwise key in \u0027N\u0027."
       },
       {
         "lineNumber": 331,
         "author": {
-          "gitId": "WEIFENG-NUSCEG"
+          "gitId": "-"
         },
-        "content": "    public void showLine() {"
+        "content": "     *"
       },
       {
         "lineNumber": 332,
         "author": {
-          "gitId": "WEIFENG-NUSCEG"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "        System.out.println(\"____________________________________________________________\");"
+        "content": "     * @param correctedCommand the correctedCommand"
       },
       {
         "lineNumber": 333,
         "author": {
-          "gitId": "WEIFENG-NUSCEG"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "    }"
+        "content": "     * @return true if user confirmed the deletion. False otherwise."
       },
       {
         "lineNumber": 334,
         "author": {
-          "gitId": "HUANGXUANKUN"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "     */"
       },
       {
         "lineNumber": 335,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": ""
+        "content": "    public boolean confirmTypoCorrection(String correctedCommand, String userInput) {"
       },
       {
         "lineNumber": 336,
         "author": {
-          "gitId": "-"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "    /**"
+        "content": "        System.out.println(\"Ambiguous format! Did you mean(Y/N): \\n\" + correctedCommand);"
       },
       {
         "lineNumber": 337,
         "author": {
-          "gitId": "-"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "     * Shows bye message to user."
+        "content": "        while (true) {"
       },
       {
         "lineNumber": 338,
         "author": {
-          "gitId": "-"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "     */"
+        "content": "            String command \u003d readCommand();"
       },
       {
         "lineNumber": 339,
         "author": {
-          "gitId": "-"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "    public void exitInformation() {"
+        "content": "            if (command.toLowerCase().equals(\"y\")) {"
       },
       {
         "lineNumber": 340,
         "author": {
-          "gitId": "-"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "        System.out.println(\"Bye. Hope to see you again soon!\");"
+        "content": "                return true;"
       },
       {
         "lineNumber": 341,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "            } else if (command.toLowerCase().equals(\"n\")) {"
+      },
+      {
+        "lineNumber": 342,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "                System.out.println(\"Proceed with original command: \" + userInput);"
+      },
+      {
+        "lineNumber": 343,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "                return false;"
+      },
+      {
+        "lineNumber": 344,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "            } else {"
+      },
+      {
+        "lineNumber": 345,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "                System.out.println(\"Please enter only Y/N to proceed with recommended command: \" + correctedCommand);"
+      },
+      {
+        "lineNumber": 346,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 347,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 348,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 342,
+        "lineNumber": 349,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 343,
+        "lineNumber": 350,
         "author": {
-          "gitId": "-"
+          "gitId": "WEIFENG-NUSCEG"
         },
         "content": "    /**"
       },
       {
-        "lineNumber": 344,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * Shows Duke logo and welcome message, and user input instructions."
-      },
-      {
-        "lineNumber": 345,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 346,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public void showWelcome() {"
-      },
-      {
-        "lineNumber": 347,
-        "author": {
-          "gitId": "HUANGXUANKUN"
-        },
-        "content": "        String logo \u003d \" _____        _              _ _        _ \\n\""
-      },
-      {
-        "lineNumber": 348,
-        "author": {
-          "gitId": "HUANGXUANKUN"
-        },
-        "content": "                +"
-      },
-      {
-        "lineNumber": 349,
-        "author": {
-          "gitId": "HUANGXUANKUN"
-        },
-        "content": "                \"|  __ \\\\      | |            (_) |      | |\\n\""
-      },
-      {
-        "lineNumber": 350,
-        "author": {
-          "gitId": "HUANGXUANKUN"
-        },
-        "content": "                +"
-      },
-      {
         "lineNumber": 351,
         "author": {
-          "gitId": "HUANGXUANKUN"
+          "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "                \"| |  | |_   _| | _____ _ __  _| |_ __ _| |\\n\""
+        "content": "     * Shows a divider line."
       },
       {
         "lineNumber": 352,
         "author": {
-          "gitId": "HUANGXUANKUN"
+          "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "                +"
+        "content": "     */"
       },
       {
         "lineNumber": 353,
         "author": {
-          "gitId": "HUANGXUANKUN"
+          "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "                \"| |  | | | | | |/ / _ \\\\ \u0027_ \\\\| | __/ _` | |\\n\""
+        "content": "    public void showLine() {"
       },
       {
         "lineNumber": 354,
         "author": {
-          "gitId": "HUANGXUANKUN"
+          "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "                +"
+        "content": "        System.out.println(\"____________________________________________________________\");"
       },
       {
         "lineNumber": 355,
         "author": {
-          "gitId": "HUANGXUANKUN"
+          "gitId": "WEIFENG-NUSCEG"
         },
-        "content": "                \"| |__| | |_| |   \u003c  __/ |_) | | || (_| | |\\n\""
+        "content": "    }"
       },
       {
         "lineNumber": 356,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "                +"
+        "content": ""
       },
       {
         "lineNumber": 357,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "                \"|_____/ \\\\__,_|_|\\\\_\\\\___| .__/|_|\\\\__\\\\__,_|_|\\n\""
+        "content": ""
       },
       {
         "lineNumber": 358,
         "author": {
-          "gitId": "HUANGXUANKUN"
+          "gitId": "-"
         },
-        "content": "                +"
+        "content": "    /**"
       },
       {
         "lineNumber": 359,
         "author": {
-          "gitId": "HUANGXUANKUN"
+          "gitId": "-"
         },
-        "content": "                \"                      | |                 \\n\""
+        "content": "     * Shows bye message to user."
       },
       {
         "lineNumber": 360,
         "author": {
-          "gitId": "HUANGXUANKUN"
+          "gitId": "-"
         },
-        "content": "                +"
+        "content": "     */"
       },
       {
         "lineNumber": 361,
         "author": {
-          "gitId": "qjie7"
+          "gitId": "-"
         },
-        "content": "                \"                      |_|                 \\n\";"
+        "content": "    public void exitInformation() {"
       },
       {
         "lineNumber": 362,
         "author": {
-          "gitId": "qjie7"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "        System.out.println(\"Bye. Hope to see you again soon!\");"
       },
       {
         "lineNumber": 363,
         "author": {
-          "gitId": "qjie7"
-        },
-        "content": "        System.out.println(logo);"
-      },
-      {
-        "lineNumber": 364,
-        "author": {
-          "gitId": "qjie7"
-        },
-        "content": "        System.out.println(\"Hello! I\u0027m Duke\\nWhat can I do for you?\\n\\n\");"
-      },
-      {
-        "lineNumber": 365,
-        "author": {
-          "gitId": "qjie7"
-        },
-        "content": "        System.out.println(\"Enter \u0027help\u0027 to show a list of commands \");"
-      },
-      {
-        "lineNumber": 366,
-        "author": {
-          "gitId": "qjie7"
+          "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 367,
+        "lineNumber": 364,
         "author": {
-          "gitId": "qjie7"
+          "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 368,
+        "lineNumber": 365,
         "author": {
-          "gitId": "HUANGXUANKUN"
+          "gitId": "-"
         },
         "content": "    /**"
+      },
+      {
+        "lineNumber": 366,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Shows Duke logo and welcome message, and user input instructions."
+      },
+      {
+        "lineNumber": 367,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 368,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void showWelcome() {"
       },
       {
         "lineNumber": 369,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "     * Show information is being updated successfully."
+        "content": "        String logo \u003d \" _____        _              _ _        _ \\n\""
       },
       {
         "lineNumber": 370,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "     */"
+        "content": "                +"
       },
       {
         "lineNumber": 371,
         "author": {
-          "gitId": "-"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "    public void showUpdatedSuccessfully() {"
+        "content": "                \"|  __ \\\\      | |            (_) |      | |\\n\""
       },
       {
         "lineNumber": 372,
         "author": {
-          "gitId": "-"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "        System.out.println(\"I have successfully updated the following information: \\n\");"
+        "content": "                +"
       },
       {
         "lineNumber": 373,
         "author": {
-          "gitId": "-"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "    }"
+        "content": "                \"| |  | |_   _| | _____ _ __  _| |_ __ _| |\\n\""
       },
       {
         "lineNumber": 374,
         "author": {
-          "gitId": "-"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": ""
+        "content": "                +"
       },
       {
         "lineNumber": 375,
         "author": {
-          "gitId": "-"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "    /**"
+        "content": "                \"| |  | | | | | |/ / _ \\\\ \u0027_ \\\\| | __/ _` | |\\n\""
       },
       {
         "lineNumber": 376,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "     * Show message of loading failure."
+        "content": "                +"
       },
       {
         "lineNumber": 377,
         "author": {
-          "gitId": "-"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "     */"
+        "content": "                \"| |__| | |_| |   \u003c  __/ |_) | | || (_| | |\\n\""
       },
       {
         "lineNumber": 378,
         "author": {
-          "gitId": "-"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "    public void showLoadingError() {"
+        "content": "                +"
       },
       {
         "lineNumber": 379,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "        System.out.println(\"Failed to load from local data file!\");"
+        "content": "                \"|_____/ \\\\__,_|_|\\\\_\\\\___| .__/|_|\\\\__\\\\__,_|_|\\n\""
       },
       {
         "lineNumber": 380,
         "author": {
-          "gitId": "WEIFENG-NUSCEG"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": "    }"
+        "content": "                +"
       },
       {
         "lineNumber": 381,
         "author": {
-          "gitId": "WEIFENG-NUSCEG"
+          "gitId": "HUANGXUANKUN"
         },
-        "content": ""
+        "content": "                \"                      | |                 \\n\""
       },
       {
         "lineNumber": 382,
         "author": {
           "gitId": "HUANGXUANKUN"
         },
-        "content": "    /**"
+        "content": "                +"
       },
       {
         "lineNumber": 383,
         "author": {
-          "gitId": "HUANGXUANKUN"
+          "gitId": "qjie7"
         },
-        "content": "     * It shows all info of patientTasks found which are associated with the patient given by user."
+        "content": "                \"                      |_|                 \\n\";"
       },
       {
         "lineNumber": 384,
         "author": {
-          "gitId": "HUANGXUANKUN"
+          "gitId": "qjie7"
         },
-        "content": "     *"
+        "content": ""
       },
       {
         "lineNumber": 385,
         "author": {
-          "gitId": "HUANGXUANKUN"
+          "gitId": "qjie7"
         },
-        "content": "     * @param patient     patient given by user"
+        "content": "        System.out.println(logo);"
       },
       {
         "lineNumber": 386,
         "author": {
-          "gitId": "HUANGXUANKUN"
+          "gitId": "qjie7"
         },
-        "content": "     * @param patientTask list of patienttasks being found associated with the patient"
+        "content": "        System.out.println(\"Hello! I\u0027m Duke\\nWhat can I do for you?\\n\\n\");"
       },
       {
         "lineNumber": 387,
         "author": {
-          "gitId": "HUANGXUANKUN"
+          "gitId": "qjie7"
         },
-        "content": "     * @param tasks       list of tasks relate to patienttasks found"
+        "content": "        System.out.println(\"Enter \u0027help\u0027 to show a list of commands \");"
       },
       {
         "lineNumber": 388,
-        "author": {
-          "gitId": "HUANGXUANKUN"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 389,
-        "author": {
-          "gitId": "WEIFENG-NUSCEG"
-        },
-        "content": "    public void patientTaskFound(Patient patient, ArrayList\u003cPatientTask\u003e patientTask, ArrayList\u003cTask\u003e tasks) {"
-      },
-      {
-        "lineNumber": 390,
-        "author": {
-          "gitId": "WEIFENG-NUSCEG"
-        },
-        "content": "        System.out.println(\"The tasks of patient \" + patient.getID() + \" \" + patient.getName() + \" is found : \\n\");"
-      },
-      {
-        "lineNumber": 391,
-        "author": {
-          "gitId": "WEIFENG-NUSCEG"
-        },
-        "content": "        for (int i \u003d 0; i \u003c patientTask.size(); i++) {"
-      },
-      {
-        "lineNumber": 392,
-        "author": {
-          "gitId": "WEIFENG-NUSCEG"
-        },
-        "content": "            showLine();"
-      },
-      {
-        "lineNumber": 393,
-        "author": {
-          "gitId": "WEIFENG-NUSCEG"
-        },
-        "content": "            System.out.println(tasks.get(i).getID() + \". \" + tasks.get(i).getDescription() + \"\\n\");"
-      },
-      {
-        "lineNumber": 394,
-        "author": {
-          "gitId": "WEIFENG-NUSCEG"
-        },
-        "content": "            System.out.println(patientTask.get(i).toString());"
-      },
-      {
-        "lineNumber": 395,
-        "author": {
-          "gitId": "WEIFENG-NUSCEG"
-        },
-        "content": "            showLine();"
-      },
-      {
-        "lineNumber": 396,
-        "author": {
-          "gitId": "WEIFENG-NUSCEG"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 397,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
+        "lineNumber": 389,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 390,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 391,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "     * Show information is being updated successfully."
+      },
+      {
+        "lineNumber": 392,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 393,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void showUpdatedSuccessfully() {"
+      },
+      {
+        "lineNumber": 394,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        System.out.println(\"I have successfully updated the following information: \\n\");"
+      },
+      {
+        "lineNumber": 395,
+        "author": {
+          "gitId": "qjie7"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 396,
+        "author": {
+          "gitId": "qjie7"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 397,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "    /**"
+      },
+      {
         "lineNumber": 398,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "     * Show message of loading failure."
+      },
+      {
+        "lineNumber": 399,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 400,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void showLoadingError() {"
+      },
+      {
+        "lineNumber": 401,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "        System.out.println(\"Failed to load from local data file!\");"
+      },
+      {
+        "lineNumber": 402,
+        "author": {
+          "gitId": "WEIFENG-NUSCEG"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 403,
+        "author": {
+          "gitId": "WEIFENG-NUSCEG"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 404,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 405,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "     * It shows all info of patientTasks found which are associated with the patient given by user."
+      },
+      {
+        "lineNumber": 406,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 407,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "     * @param patient     patient given by user"
+      },
+      {
+        "lineNumber": 408,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "     * @param patientTask list of patienttasks being found associated with the patient"
+      },
+      {
+        "lineNumber": 409,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "     * @param tasks       list of tasks relate to patienttasks found"
+      },
+      {
+        "lineNumber": 410,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 411,
+        "author": {
+          "gitId": "WEIFENG-NUSCEG"
+        },
+        "content": "    public void patientTaskFound(Patient patient, ArrayList\u003cPatientTask\u003e patientTask, ArrayList\u003cTask\u003e tasks) {"
+      },
+      {
+        "lineNumber": 412,
+        "author": {
+          "gitId": "WEIFENG-NUSCEG"
+        },
+        "content": "        System.out.println(\"The tasks of patient \" + patient.getID() + \" \" + patient.getName() + \" is found : \\n\");"
+      },
+      {
+        "lineNumber": 413,
+        "author": {
+          "gitId": "WEIFENG-NUSCEG"
+        },
+        "content": "        for (int i \u003d 0; i \u003c patientTask.size(); i++) {"
+      },
+      {
+        "lineNumber": 414,
+        "author": {
+          "gitId": "WEIFENG-NUSCEG"
+        },
+        "content": "            showLine();"
+      },
+      {
+        "lineNumber": 415,
+        "author": {
+          "gitId": "WEIFENG-NUSCEG"
+        },
+        "content": "            System.out.println(tasks.get(i).getID() + \". \" + tasks.get(i).getDescription() + \"\\n\");"
+      },
+      {
+        "lineNumber": 416,
+        "author": {
+          "gitId": "WEIFENG-NUSCEG"
+        },
+        "content": "            System.out.println(patientTask.get(i).toString());"
+      },
+      {
+        "lineNumber": 417,
+        "author": {
+          "gitId": "WEIFENG-NUSCEG"
+        },
+        "content": "            showLine();"
+      },
+      {
+        "lineNumber": 418,
+        "author": {
+          "gitId": "WEIFENG-NUSCEG"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 419,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 420,
         "author": {
           "gitId": "-"
         },
@@ -12564,11 +13581,11 @@
       }
     ],
     "authorContributionMap": {
-      "lmtaek": 12,
-      "WEIFENG-NUSCEG": 21,
+      "lmtaek": 15,
+      "WEIFENG-NUSCEG": 20,
       "qjie7": 20,
-      "-": 162,
-      "HUANGXUANKUN": 183
+      "-": 161,
+      "HUANGXUANKUN": 204
     }
   },
   {
@@ -22043,6 +23060,302 @@
       "lmtaek": 50,
       "-": 9,
       "HUANGXUANKUN": 43
+    }
+  },
+  {
+    "path": "src/test/java/duke/core/TypoCorrectorTest.java",
+    "fileType": "tests",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "package duke.core;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.assertEquals;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "import org.junit.jupiter.api.Test;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "import java.util.Arrays;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": " * Junit test for TypoCorrector class."
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": " *"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": " * @author HUANG XUAN KUN"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": " * @version 1.2"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "public class TypoCorrectorTest {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "    void stringMatchTest() {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "        ArrayList\u003cString[]\u003e testCases \u003d new ArrayList\u003cString[]\u003e("
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "                Arrays.asList(new String[]{\"beyee\", \"bye\"},"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "                        new String[]{\"bqe\", \"bye\"},"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "                        new String[]{\"lsit patant\", \"list patients\"},"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "                        new String[]{\"lsfvs takss\", \"list tasks\"},"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "                        new String[]{\"deelte Ptients #12\", \"delete patient #12\"},"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "                        new String[]{\"deleot tasksa task description\", \"delete task task description\"},"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "                        new String[]{\"delette tasks #1\", \"delete task #1\"},"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "                        new String[]{\"addd patents name nric room remark\", \"add patient name nric room remark\"},"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "                        new String[]{\"dad tsak a very long task name\", \"add task a very long task name\"},"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "                        new String[]{\"addd task abc\", \"add task abc\"}"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "                ));"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "        for (String[] testPair : testCases) {"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "            String correctedOutput \u003d TypoCorrector.commandCorrection(testPair[0]);"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "            System.out.println(\"Input Command: \" + testPair[0]);"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "            System.out.println(\"Expected Command: \" + testPair[1]);"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "            System.out.println(\"Corrected Command: \" + correctedOutput);"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "            System.out.println();"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "            assertEquals(testPair[1], correctedOutput);"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "HUANGXUANKUN"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "HUANGXUANKUN": 41
     }
   }
 ]
