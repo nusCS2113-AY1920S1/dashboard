@@ -436,9 +436,17 @@
           "gitId": "-"
         },
         "content": "}"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": ""
       }
     ],
     "authorContributionMap": {
+      "Krazzen": 1,
       "lionlim97": 16,
       "-": 46
     }
@@ -2382,6 +2390,535 @@
       "lionlim97": 13,
       "hwbjerry": 1,
       "-": 27
+    }
+  },
+  {
+    "path": "src/main/java/Commands/FilterCommand.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "package Commands;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "import Interface.Storage;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "import Interface.Ui;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "import Tasks.Task;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "import Tasks.TaskList;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": " * Represents the command to show the list of tasks corresponding to a keyword"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "public class FilterCommand extends  Command{"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "    private String keyword;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "    public FilterCommand(String keyword){"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "        this.keyword \u003dkeyword;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "     * Execute the displaying of all task the contains a certain keyword"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "     * @param events The TaskList object for events"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "     * @param deadlines The TaskList object for deadlines"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "     * @param ui The Ui object to display the list message"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "     * @param storage The Storage object to access file to load or save the tasks"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "     * @return This returns the method in the Ui object which returns the string to display list message"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "    public String execute(TaskList events, TaskList deadlines, Ui ui, Storage storage) throws Exception {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "        TaskList list \u003d new TaskList();"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "        ArrayList\u003cTask\u003e event \u003d events.getList();"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "        ArrayList\u003cTask\u003e deadline \u003d deadlines.getList();"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "        for(int i \u003d 0; i \u003cevent.size();i++){"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "            if (event.get(i).toString().toLowerCase().contains(keyword)|"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "                event.get(i).toString().toUpperCase().contains(keyword) ){"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "                list.addTask(event.get(i));"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "        for(int i \u003d 0; i \u003cdeadline.size();i++){"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "            if (deadline.get(i).toString().toLowerCase().contains(keyword)|"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "                    deadline.get(i).toString().toUpperCase().contains(keyword)){"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "                list.addTask(deadline.get(i));"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "        return ui.showFilter(list,this.keyword);"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Krazzen": 49
+    }
+  },
+  {
+    "path": "src/main/java/Commands/HelpCommand.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "package Commands;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "import Interface.Storage;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "import Interface.Ui;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "import Tasks.TaskList;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": " * Represents the command to display a guide to all commands"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "public class HelpCommand extends Command{"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "     * Executes the displaying of guide to all commands"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "     * @param events The TaskList object for events"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "     * @param deadlines The TaskList object for deadlines"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "     * @param ui The Ui object to display the delete task message"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "     * @param storage The Storage object to access file to load or save the tasks"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "     * @return This returns the method in the Ui object which returns the string to display delete task message"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "    public String execute(TaskList events, TaskList deadlines, Ui ui, Storage storage) throws Exception {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "        String help;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "        help \u003d \"Here is a guide of how to use the different commands\";"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "        return ui.showHelp(help);"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Krazzen": 24
     }
   },
   {
@@ -4898,320 +5435,320 @@
         "author": {
           "gitId": "Krazzen"
         },
-        "content": "import java.io.BufferedReader;"
+        "content": "import java.io.*;"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "Krazzen"
         },
-        "content": "import java.io.FileReader;"
+        "content": "import java.util.HashMap;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "Krazzen"
         },
-        "content": "import java.io.IOException;"
+        "content": "import java.util.Map;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "Krazzen"
         },
-        "content": "import java.util.HashMap;"
+        "content": ""
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "Krazzen"
         },
-        "content": "import java.util.Map;"
+        "content": "/**"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "Krazzen"
         },
-        "content": ""
+        "content": " * Lookup table that provides date given week and day"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "Krazzen"
         },
-        "content": "/**"
+        "content": " */"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "Krazzen"
         },
-        "content": " * Lookup table that provides date given week and day"
+        "content": "public class LookupTable {"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "Krazzen"
         },
-        "content": " */"
+        "content": "    private static Map\u003cString, String\u003e map \u003d new HashMap\u003c\u003e();"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "Krazzen"
         },
-        "content": "public class LookupTable {"
+        "content": ""
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "Krazzen"
         },
-        "content": "    private static Map\u003cString, String\u003e map \u003d new HashMap\u003c\u003e();"
+        "content": "    /**"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "Krazzen"
         },
-        "content": ""
+        "content": "     * Creates a lookup table object and read from Lookup.txt file"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "Krazzen"
         },
-        "content": "    /**"
+        "content": "     * @throws IOException"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "Krazzen"
         },
-        "content": "     * Creates a lookup table object and read from Lookup.txt file"
+        "content": "     */"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "Krazzen"
         },
-        "content": "     * @throws IOException"
+        "content": "    public LookupTable() throws IOException {"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "Krazzen"
         },
-        "content": "     */"
+        "content": "        String line;"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "Krazzen"
         },
-        "content": "    public LookupTable() throws IOException {"
+        "content": "        // InputStream is \u003d getClass().getResourceAsStream(\"Lookup.txt\");"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "Krazzen"
         },
-        "content": "        String line;"
+        "content": "         //InputStreamReader isr \u003d new InputStreamReader(is);"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "Krazzen"
         },
-        "content": "        BufferedReader reader \u003d new BufferedReader(new FileReader(System.getProperty(\"user.dir\") + \"\\\\data\\\\Lookup.txt\"));"
+        "content": "         //BufferedReader reader \u003d new BufferedReader(isr);"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "Krazzen"
         },
-        "content": "        while ((line \u003d reader.readLine()) !\u003d null)"
+        "content": "         BufferedReader reader \u003d new BufferedReader(new FileReader(System.getProperty(\"user.dir\") + \"\\\\data\\\\Lookup.txt\"));"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "Krazzen"
         },
-        "content": "        {"
+        "content": ""
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "Krazzen"
         },
-        "content": "            String[] parts \u003d line.split(\":\", 2);"
+        "content": "        while ((line \u003d reader.readLine()) !\u003d null)"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "Krazzen"
         },
-        "content": "            if (parts.length \u003e\u003d 2)"
+        "content": "        {"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "Krazzen"
         },
-        "content": "            {"
+        "content": "            String[] parts \u003d line.split(\":\", 2);"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "Krazzen"
         },
-        "content": "                String key \u003d parts[0].trim();"
+        "content": "            if (parts.length \u003e\u003d 2)"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "Krazzen"
         },
-        "content": "                String value \u003d parts[1].trim();"
+        "content": "            {"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "Krazzen"
         },
-        "content": "                this.map.put(key.toLowerCase(), value);"
+        "content": "                String key \u003d parts[0].trim();"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "Krazzen"
         },
-        "content": "            }"
+        "content": "                String value \u003d parts[1].trim();"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "Krazzen"
         },
-        "content": "        }"
+        "content": "                this.map.put(key.trim().toLowerCase(), value);"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "Krazzen"
         },
-        "content": "        reader.close();"
+        "content": "            }"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "Krazzen"
         },
-        "content": "    }"
+        "content": "        }"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "Krazzen"
         },
-        "content": ""
+        "content": "        reader.close();"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "Krazzen"
         },
-        "content": ""
+        "content": "        //isr.close();"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "Krazzen"
         },
-        "content": "    /**"
+        "content": "        //is.close();"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "Krazzen"
         },
-        "content": "     * Translate week,day to date"
+        "content": "    }"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "Krazzen"
         },
-        "content": "     * @param week_day week and day of activity in academic calender"
+        "content": ""
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "Krazzen"
         },
-        "content": "     * @return date of activity"
+        "content": ""
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "Krazzen"
         },
-        "content": "     */"
+        "content": "    /**"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "Krazzen"
         },
-        "content": "    public  String getDate(String week_day){"
+        "content": "     * Translate week,day to date"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "Krazzen"
         },
-        "content": "        String out \u003d map.get(week_day.toLowerCase().trim());//week_day in the format of (week x day x)"
+        "content": "     * @param week_day week and day of activity in academic calender"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "Krazzen"
         },
-        "content": "        return out;"
+        "content": "     * @return date of activity"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "Krazzen"
         },
-        "content": "    }"
+        "content": "     */"
       },
       {
         "lineNumber": 46,
         "author": {
-          "gitId": "hwbjerry"
+          "gitId": "Krazzen"
         },
-        "content": ""
+        "content": "    public  String getDate(String week_day){"
       },
       {
         "lineNumber": 47,
         "author": {
-          "gitId": "hwbjerry"
+          "gitId": "Krazzen"
         },
-        "content": "    public String getDates(String week){"
+        "content": "        String out \u003d map.get(week_day.toLowerCase().trim());//week_day in the format of (week x day x)"
       },
       {
         "lineNumber": 48,
         "author": {
-          "gitId": "hwbjerry"
+          "gitId": "Krazzen"
         },
-        "content": "        return map.get(week);"
+        "content": "        return out;"
       },
       {
         "lineNumber": 49,
         "author": {
-          "gitId": "hwbjerry"
+          "gitId": "Krazzen"
         },
         "content": "    }"
       },
@@ -5227,31 +5764,59 @@
         "author": {
           "gitId": "hwbjerry"
         },
-        "content": "    public String getWeek(String date){"
+        "content": "    public String getDates(String week){"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "hwbjerry"
         },
-        "content": "        String out \u003d map.get(date);"
+        "content": "        return map.get(week);"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "hwbjerry"
         },
-        "content": "        return out;"
+        "content": "    }"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "hwbjerry"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 55,
+        "author": {
+          "gitId": "hwbjerry"
+        },
+        "content": "    public String getWeek(String date){"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "hwbjerry"
+        },
+        "content": "        String out \u003d map.get(date);"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "hwbjerry"
+        },
+        "content": "        return out;"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "hwbjerry"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 59,
         "author": {
           "gitId": "Krazzen"
         },
@@ -5259,7 +5824,7 @@
       }
     ],
     "authorContributionMap": {
-      "Krazzen": 46,
+      "Krazzen": 50,
       "hwbjerry": 9
     }
   },
@@ -5291,366 +5856,366 @@
       {
         "lineNumber": 4,
         "author": {
-          "gitId": "Krazzen"
-        },
-        "content": "import JavaFx.MainWindow;"
-      },
-      {
-        "lineNumber": 5,
-        "author": {
           "gitId": "-"
         },
         "content": "import Tasks.*;"
       },
       {
-        "lineNumber": 6,
+        "lineNumber": 5,
         "author": {
           "gitId": "0325961"
         },
         "content": "import javafx.scene.control.Alert;"
       },
       {
-        "lineNumber": 7,
+        "lineNumber": 6,
         "author": {
           "gitId": "lionlim97"
         },
         "content": ""
       },
       {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "Krazzen"
-        },
-        "content": "import java.io.FileNotFoundException;"
-      },
-      {
-        "lineNumber": 9,
+        "lineNumber": 7,
         "author": {
           "gitId": "Krazzen"
         },
         "content": "import java.io.IOException;"
       },
       {
-        "lineNumber": 10,
+        "lineNumber": 8,
         "author": {
           "gitId": "-"
         },
         "content": "import java.text.ParseException;"
       },
       {
-        "lineNumber": 11,
+        "lineNumber": 9,
         "author": {
           "gitId": "-"
         },
         "content": "import java.text.SimpleDateFormat;"
       },
       {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "lionlim97"
-        },
-        "content": "import java.util.ArrayList;"
-      },
-      {
-        "lineNumber": 13,
-        "author": {
-          "gitId": "darrenoje"
-        },
-        "content": "import java.util.Calendar;"
-      },
-      {
-        "lineNumber": 14,
+        "lineNumber": 10,
         "author": {
           "gitId": "-"
         },
         "content": "import java.util.Date;"
       },
       {
-        "lineNumber": 15,
+        "lineNumber": 11,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 16,
+        "lineNumber": 12,
         "author": {
           "gitId": "-"
         },
         "content": "/**"
       },
       {
-        "lineNumber": 17,
+        "lineNumber": 13,
         "author": {
           "gitId": "-"
         },
         "content": " * Deals with the input of the user and tries to understand the"
       },
       {
-        "lineNumber": 18,
+        "lineNumber": 14,
         "author": {
           "gitId": "-"
         },
         "content": " * user\u0027s input with fixed commands."
       },
       {
-        "lineNumber": 19,
+        "lineNumber": 15,
         "author": {
           "gitId": "-"
         },
         "content": " */"
       },
       {
-        "lineNumber": 20,
+        "lineNumber": 16,
         "author": {
           "gitId": "-"
         },
         "content": "public class Parser {"
       },
       {
-        "lineNumber": 21,
+        "lineNumber": 17,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "    private static String[] split;"
       },
       {
-        "lineNumber": 22,
+        "lineNumber": 18,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "    private static String[] split1;"
       },
       {
-        "lineNumber": 23,
+        "lineNumber": 19,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "    private static String[] split2;"
       },
       {
-        "lineNumber": 24,
+        "lineNumber": 20,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "    private static String[] split3;"
       },
       {
-        "lineNumber": 25,
+        "lineNumber": 21,
         "author": {
           "gitId": "-"
         },
         "content": "    private static String[] arr;"
       },
       {
-        "lineNumber": 26,
+        "lineNumber": 22,
         "author": {
           "gitId": "-"
         },
         "content": "    private static String[] arr1;"
       },
       {
-        "lineNumber": 27,
+        "lineNumber": 23,
         "author": {
           "gitId": "darrenoje"
         },
         "content": "    private static String[] arr2;"
       },
       {
-        "lineNumber": 28,
+        "lineNumber": 24,
         "author": {
           "gitId": "darrenoje"
         },
         "content": "    private static String[] arr3;"
       },
       {
-        "lineNumber": 29,
+        "lineNumber": 25,
         "author": {
           "gitId": "darrenoje"
         },
         "content": "    private static String[] arr4;"
       },
       {
-        "lineNumber": 30,
+        "lineNumber": 26,
         "author": {
           "gitId": "Krazzen"
         },
         "content": "    private static LookupTable LT;"
       },
       {
-        "lineNumber": 31,
+        "lineNumber": 27,
         "author": {
           "gitId": "Krazzen"
         },
         "content": ""
       },
       {
-        "lineNumber": 32,
+        "lineNumber": 28,
         "author": {
           "gitId": "Krazzen"
         },
         "content": "    static {"
       },
       {
-        "lineNumber": 33,
+        "lineNumber": 29,
         "author": {
           "gitId": "Krazzen"
         },
         "content": "        try {"
       },
       {
-        "lineNumber": 34,
+        "lineNumber": 30,
         "author": {
           "gitId": "Krazzen"
         },
         "content": "            LT \u003d new LookupTable();"
       },
       {
-        "lineNumber": 35,
+        "lineNumber": 31,
         "author": {
           "gitId": "Krazzen"
         },
         "content": "        } catch (IOException e) {"
       },
       {
-        "lineNumber": 36,
+        "lineNumber": 32,
         "author": {
           "gitId": "Krazzen"
         },
         "content": "            e.printStackTrace();"
       },
       {
-        "lineNumber": 37,
+        "lineNumber": 33,
         "author": {
           "gitId": "Krazzen"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 38,
+        "lineNumber": 34,
         "author": {
           "gitId": "Krazzen"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 39,
+        "lineNumber": 35,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 40,
+        "lineNumber": 36,
         "author": {
           "gitId": "-"
         },
         "content": "    /**"
       },
       {
-        "lineNumber": 41,
+        "lineNumber": 37,
         "author": {
           "gitId": "-"
         },
         "content": "     * This method breaks apart the user\u0027s input and tries to make sense with it."
       },
       {
-        "lineNumber": 42,
+        "lineNumber": 38,
         "author": {
           "gitId": "-"
         },
         "content": "     * @param fullCommand The user\u0027s input"
       },
       {
-        "lineNumber": 43,
+        "lineNumber": 39,
         "author": {
           "gitId": "-"
         },
         "content": "     * @return This returns a Command object based on user\u0027s input"
       },
       {
-        "lineNumber": 44,
+        "lineNumber": 40,
         "author": {
           "gitId": "-"
         },
         "content": "     * @throws DukeException On invalid input or when wrong input format is entered"
       },
       {
-        "lineNumber": 45,
+        "lineNumber": 41,
         "author": {
           "gitId": "-"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 46,
+        "lineNumber": 42,
         "author": {
           "gitId": "-"
         },
         "content": "    public static Command parse(String fullCommand) throws DukeException {"
       },
       {
-        "lineNumber": 47,
+        "lineNumber": 43,
         "author": {
           "gitId": "-"
         },
         "content": "        try {"
       },
       {
-        "lineNumber": 48,
+        "lineNumber": 44,
         "author": {
           "gitId": "-"
         },
         "content": "            if (fullCommand.trim().equals(\"bye\")) {"
       },
       {
-        "lineNumber": 49,
+        "lineNumber": 45,
         "author": {
           "gitId": "-"
         },
         "content": "                return new ByeCommand();"
       },
       {
-        "lineNumber": 50,
+        "lineNumber": 46,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "            }else if(fullCommand.trim().equalsIgnoreCase(\"help\")){"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "              return new HelpCommand();"
+      },
+      {
+        "lineNumber": 48,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "            } else if (fullCommand.trim().substring(0, 4).equals(\"list\")) {"
       },
       {
-        "lineNumber": 51,
+        "lineNumber": 49,
         "author": {
           "gitId": "-"
         },
         "content": "                try {"
       },
       {
-        "lineNumber": 52,
+        "lineNumber": 50,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                    String list \u003d fullCommand.trim().substring(5);"
       },
       {
-        "lineNumber": 53,
+        "lineNumber": 51,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                    if (list.trim().isEmpty()) {"
       },
       {
-        "lineNumber": 54,
+        "lineNumber": 52,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                        throw new DukeException(\"\\u2639\" + \" OOPS!!! Please do not leave name of list blank.\");"
       },
       {
-        "lineNumber": 55,
+        "lineNumber": 53,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                    } else if (list.trim().equals(\"todo\")) {"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "lionlim97"
+        },
+        "content": "                        return new ListCommand(list);"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "lionlim97"
+        },
+        "content": "                    } else if (list.trim().equals(\"event\")) {"
       },
       {
         "lineNumber": 56,
@@ -5664,7 +6229,7 @@
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                    } else if (list.trim().equals(\"event\")) {"
+        "content": "                    } else if (list.trim().equals(\"deadline\")) {"
       },
       {
         "lineNumber": 58,
@@ -5678,2236 +6243,2250 @@
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                    } else if (list.trim().equals(\"deadline\")) {"
+        "content": "                    } else {"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                        return new ListCommand(list);"
+        "content": "                        throw new DukeException(\"\\u2639\" + \" OOPS!!! Please enter name of list\");"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                    } else {"
+        "content": "                    }"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                        throw new DukeException(\"\\u2639\" + \" OOPS!!! Please enter name of list\");"
+        "content": "                } catch (StringIndexOutOfBoundsException e) {"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                    }"
+        "content": "                    throw new DukeException(\"OOPS!!! Please enter list as follows:\\n\" +"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                } catch (StringIndexOutOfBoundsException e) {"
+        "content": "                            \"list name_of_list_to_view\\n\" +"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                    throw new DukeException(\"OOPS!!! Please enter list as follows:\\n\" +"
+        "content": "                            \"For example: list todo\");"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                            \"list name_of_list_to_view\\n\" +"
-      },
-      {
-        "lineNumber": 67,
-        "author": {
-          "gitId": "lionlim97"
-        },
-        "content": "                            \"For example: list todo\");"
-      },
-      {
-        "lineNumber": 68,
-        "author": {
-          "gitId": "lionlim97"
-        },
         "content": "                }"
       },
       {
-        "lineNumber": 69,
+        "lineNumber": 67,
         "author": {
           "gitId": "hwbjerry"
         },
         "content": "            } else if (fullCommand.trim().substring(0, 4).equals(\"done\")) {"
       },
       {
-        "lineNumber": 70,
+        "lineNumber": 68,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                try {"
       },
       {
-        "lineNumber": 71,
+        "lineNumber": 69,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                    split \u003d fullCommand.split(\" \");"
       },
       {
-        "lineNumber": 72,
+        "lineNumber": 70,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                    int index \u003d Integer.parseInt(split[1]) - 1;"
       },
       {
-        "lineNumber": 73,
+        "lineNumber": 71,
         "author": {
           "gitId": "-"
         },
         "content": "                    return new DoneCommand(index);"
       },
       {
-        "lineNumber": 74,
+        "lineNumber": 72,
         "author": {
           "gitId": "-"
         },
         "content": "                } catch (NumberFormatException e) {"
       },
       {
-        "lineNumber": 75,
+        "lineNumber": 73,
         "author": {
           "gitId": "-"
         },
         "content": "                    throw new DukeException(\"\\u2639\" + \" OOPS!!! Please enter a valid task number.\");"
       },
       {
-        "lineNumber": 76,
+        "lineNumber": 74,
         "author": {
           "gitId": "-"
         },
         "content": "                } catch (ArrayIndexOutOfBoundsException e) {"
       },
       {
-        "lineNumber": 77,
+        "lineNumber": 75,
         "author": {
           "gitId": "-"
         },
         "content": "                    throw new DukeException(\"\\u2639\" + \" OOPS!!! Please do not leave task number blank.\");"
       },
       {
-        "lineNumber": 78,
+        "lineNumber": 76,
         "author": {
           "gitId": "-"
         },
         "content": "                }"
       },
       {
-        "lineNumber": 79,
+        "lineNumber": 77,
         "author": {
           "gitId": "darrenoje"
         },
         "content": "            } else if (fullCommand.trim().substring(0, 5).equals(\"add/e\")) {"
       },
       {
-        "lineNumber": 80,
+        "lineNumber": 78,
         "author": {
           "gitId": "darrenoje"
         },
         "content": "                try { //add/e module_code description /at date from time to time"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "lionlim97"
+        },
+        "content": "                    String activity \u003d fullCommand.trim().substring(5);"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "                    split \u003d activity.split(\"/at\"); //split[0] is \" module_code description\", split[1] is \"date /from time /to time\""
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                    String activity \u003d fullCommand.trim().substring(5);"
+        "content": "                    if (split[0].trim().isEmpty()) {"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                    split \u003d activity.split(\"/at\"); //split[0] is \" module_code description\", split[1] is \"date from time to time\""
+        "content": "                        throw new DukeException(\"\\u2639\" + \" OOPS!!! The description of a event cannot be empty.\");"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                    if (split[0].trim().isEmpty()) {"
+        "content": "                    }"
       },
       {
         "lineNumber": 84,
         "author": {
-          "gitId": "lionlim97"
+          "gitId": "Krazzen"
         },
-        "content": "                        throw new DukeException(\"\\u2639\" + \" OOPS!!! The description of a event cannot be empty.\");"
+        "content": "                    split1 \u003d split[1].split(\"/from\"); //split1[0] is \"date\", split1[1] is \"time to time\""
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                    }"
+        "content": "                    String weekDate \u003d\"\";"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                    split1 \u003d split[1].split(\"from\"); //split1[0] is \"date\", split1[1] is \"time to time\""
+        "content": "                    split2 \u003d split1[0].trim().split(\" \");"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                    String weekDate \u003d\"\";"
+        "content": "                    weekDate \u003d split2[0];"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                    split2 \u003d split1[0].trim().split(\" \");"
+        "content": "                    if(weekDate.equalsIgnoreCase(\"reading\") || weekDate.equalsIgnoreCase(\"exam\")"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                    weekDate \u003d split2[0];"
+        "content": "                            || weekDate.equalsIgnoreCase(\"week\") || weekDate.equalsIgnoreCase(\"recess\")){"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                    if(weekDate.equalsIgnoreCase(\"reading\") || weekDate.equalsIgnoreCase(\"exam\")"
+        "content": "                        weekDate \u003d LT.getDate(split1[0].trim());"
       },
       {
         "lineNumber": 91,
         "author": {
-          "gitId": "lionlim97"
+          "gitId": "Krazzen"
         },
-        "content": "                            || weekDate.equalsIgnoreCase(\"week\") || weekDate.equalsIgnoreCase(\"recess\")){"
+        "content": "                    }else{"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                        weekDate \u003d LT.getDate(split1[0].trim());"
+        "content": "                        weekDate \u003d split1[0].trim();"
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "Krazzen"
         },
-        "content": "                    }else{"
-      },
-      {
-        "lineNumber": 94,
-        "author": {
-          "gitId": "lionlim97"
-        },
-        "content": "                        weekDate \u003d split1[0].trim();"
-      },
-      {
-        "lineNumber": 95,
-        "author": {
-          "gitId": "Krazzen"
-        },
         "content": "                    }"
       },
       {
-        "lineNumber": 96,
+        "lineNumber": 94,
         "author": {
           "gitId": "darrenoje"
         },
         "content": "                    SimpleDateFormat formatter \u003d new SimpleDateFormat(\"dd/MM/yyyy\"); //format date"
       },
       {
-        "lineNumber": 97,
+        "lineNumber": 95,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                    Date date \u003d formatter.parse(weekDate.trim());"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "                    split2 \u003d split1[1].split(\"/to\"); //split2[0] is (start) \"time\", split2[1] is (end) \"time\""
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "darrenoje"
+        },
+        "content": "                    SimpleDateFormat formatter1 \u003d new SimpleDateFormat(\"HHmm\"); //format time"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                    split2 \u003d split1[1].split(\"to\"); //split2[0] is (start) \"time\", split2[1] is (end) \"time\""
-      },
-      {
-        "lineNumber": 99,
-        "author": {
-          "gitId": "darrenoje"
-        },
-        "content": "                    SimpleDateFormat formatter1 \u003d new SimpleDateFormat(\"HHmm\"); //format time"
-      },
-      {
-        "lineNumber": 100,
-        "author": {
-          "gitId": "lionlim97"
-        },
         "content": "                    Date startTime \u003d formatter1.parse(split2[0].trim());"
       },
       {
-        "lineNumber": 101,
+        "lineNumber": 99,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                    Date endTime \u003d formatter1.parse(split2[1].trim());"
       },
       {
-        "lineNumber": 102,
+        "lineNumber": 100,
         "author": {
           "gitId": "darrenoje"
         },
         "content": "                    SimpleDateFormat dateFormat \u003d new SimpleDateFormat(\"E dd/MM/yyyy\");"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "darrenoje"
+        },
+        "content": "                    SimpleDateFormat timeFormat \u003d new SimpleDateFormat(\"hh:mm a\");"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "lionlim97"
+        },
+        "content": "                    String dateString \u003d dateFormat.format(date);"
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                    SimpleDateFormat timeFormat \u003d new SimpleDateFormat(\"hh:mm a\");"
-      },
-      {
-        "lineNumber": 104,
-        "author": {
-          "gitId": "lionlim97"
-        },
-        "content": "                    String dateString \u003d dateFormat.format(date);"
-      },
-      {
-        "lineNumber": 105,
-        "author": {
-          "gitId": "darrenoje"
-        },
         "content": "                    String startTimeString \u003d timeFormat.format(startTime);"
       },
       {
-        "lineNumber": 106,
+        "lineNumber": 104,
         "author": {
           "gitId": "darrenoje"
         },
         "content": "                    String endTimeString \u003d timeFormat.format(endTime);"
       },
       {
-        "lineNumber": 107,
+        "lineNumber": 105,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                    return new AddCommand(new Event(split[0].trim(), dateString, startTimeString, endTimeString));"
       },
       {
-        "lineNumber": 108,
+        "lineNumber": 106,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                } catch (ParseException | ArrayIndexOutOfBoundsException e) {"
       },
       {
-        "lineNumber": 109,
+        "lineNumber": 107,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                    throw new DukeException(\"OOPS!!! Please enter event as follows:\\n\" +"
       },
       {
-        "lineNumber": 110,
+        "lineNumber": 108,
         "author": {
           "gitId": "darrenoje"
         },
         "content": "                            \"add/e modCode name_of_event /at dd/MM/yyyy from HHmm to HHmm\\n\" +"
       },
       {
-        "lineNumber": 111,
+        "lineNumber": 109,
         "author": {
           "gitId": "darrenoje"
         },
         "content": "                            \"For example: add/e CS1231 project meeting /at 1/1/2020 from 1500 to 1700\");"
       },
       {
-        "lineNumber": 112,
+        "lineNumber": 110,
         "author": {
           "gitId": "darrenoje"
         },
         "content": "                }"
       },
       {
-        "lineNumber": 113,
+        "lineNumber": 111,
         "author": {
           "gitId": "darrenoje"
         },
         "content": "            } else if (fullCommand.trim().substring(0,7).equals(\"recur/e\")) {"
       },
       {
-        "lineNumber": 114,
+        "lineNumber": 112,
         "author": {
           "gitId": "-"
         },
         "content": "                try {"
       },
       {
-        "lineNumber": 115,
+        "lineNumber": 113,
         "author": {
           "gitId": "darrenoje"
         },
         "content": "                    String activity \u003d fullCommand.trim().substring(7);"
       },
       {
-        "lineNumber": 116,
+        "lineNumber": 114,
         "author": {
           "gitId": "darrenoje"
         },
         "content": "                    String startWeekDate;"
       },
       {
-        "lineNumber": 117,
+        "lineNumber": 115,
         "author": {
           "gitId": "darrenoje"
         },
         "content": "                    String endWeekDate;"
       },
       {
-        "lineNumber": 118,
+        "lineNumber": 116,
         "author": {
           "gitId": "darrenoje"
         },
         "content": "                    arr \u003d activity.split(\"/start\"); //arr[0] is \" module_code description\", arr[1] is \"date to date from time to time\""
       },
       {
-        "lineNumber": 119,
+        "lineNumber": 117,
         "author": {
           "gitId": "darrenoje"
         },
         "content": "                    if (arr[0].trim().isEmpty()) {"
       },
       {
-        "lineNumber": 120,
+        "lineNumber": 118,
         "author": {
           "gitId": "darrenoje"
         },
         "content": "                        throw new DukeException(\"\\u2639\" + \" OOPS!!! The description of a event cannot be empty.\");"
       },
       {
-        "lineNumber": 121,
+        "lineNumber": 119,
         "author": {
           "gitId": "darrenoje"
         },
         "content": "                    }"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "                    arr1 \u003d arr[1].split(\"/from\"); //arr1[0] is \"date to date\" or \"week X mon to week X mon\", arr1[1] is \"time to time\""
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "                    arr3 \u003d arr1[0].split(\"/to\"); //arr3[0] is (start) \"date\", arr3[1] is (end) \"date\""
       },
       {
         "lineNumber": 122,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                    arr1 \u003d arr[1].split(\"from\"); //arr1[0] is \"date to date\" or \"week X mon to week X mon\", arr1[1] is \"time to time\""
+        "content": "                    arr4 \u003d arr3[0].trim().split(\" \"); //split the start date"
       },
       {
         "lineNumber": 123,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                    arr3 \u003d arr1[0].split(\"to\"); //arr3[0] is (start) \"date\", arr3[1] is (end) \"date\""
+        "content": "                    //recess week mon / week 3 mon / exam week mon / reading week tue"
       },
       {
         "lineNumber": 124,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                    arr4 \u003d arr3[0].trim().split(\" \"); //split the start date"
+        "content": "                    startWeekDate \u003d arr4[0].trim();"
       },
       {
         "lineNumber": 125,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                    //recess week mon / week 3 mon / exam week mon / reading week tue"
+        "content": "                    if (startWeekDate.equalsIgnoreCase(\"reading\") || startWeekDate.equalsIgnoreCase(\"exam\")"
       },
       {
         "lineNumber": 126,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                    startWeekDate \u003d arr4[0].trim();"
+        "content": "                            || startWeekDate.equalsIgnoreCase(\"week\") || startWeekDate.equalsIgnoreCase(\"recess\")) {"
       },
       {
         "lineNumber": 127,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                    if (startWeekDate.equalsIgnoreCase(\"reading\") || startWeekDate.equalsIgnoreCase(\"exam\")"
+        "content": "                        startWeekDate \u003d LT.getDate(arr3[0].trim());"
       },
       {
         "lineNumber": 128,
         "author": {
-          "gitId": "darrenoje"
+          "gitId": "-"
         },
-        "content": "                            || startWeekDate.equalsIgnoreCase(\"week\") || startWeekDate.equalsIgnoreCase(\"recess\")) {"
+        "content": "                    } else {"
       },
       {
         "lineNumber": 129,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                        startWeekDate \u003d LT.getDate(arr3[0].trim());"
+        "content": "                        startWeekDate \u003d arr3[0].trim();"
       },
       {
         "lineNumber": 130,
         "author": {
           "gitId": "-"
         },
-        "content": "                    } else {"
+        "content": "                    }"
       },
       {
         "lineNumber": 131,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                        startWeekDate \u003d arr3[0].trim();"
-      },
-      {
-        "lineNumber": 132,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 133,
-        "author": {
-          "gitId": "darrenoje"
-        },
         "content": "                    arr4 \u003d arr3[1].trim().split(\" \"); //split the end date"
       },
       {
-        "lineNumber": 134,
+        "lineNumber": 132,
         "author": {
           "gitId": "darrenoje"
         },
         "content": "                    endWeekDate \u003d arr4[0].trim();"
       },
       {
-        "lineNumber": 135,
+        "lineNumber": 133,
         "author": {
           "gitId": "darrenoje"
         },
         "content": "                    if (endWeekDate.equalsIgnoreCase(\"reading\") || endWeekDate.equalsIgnoreCase(\"exam\")"
       },
       {
-        "lineNumber": 136,
+        "lineNumber": 134,
         "author": {
           "gitId": "darrenoje"
         },
         "content": "                            || endWeekDate.equalsIgnoreCase(\"week\") || endWeekDate.equalsIgnoreCase(\"recess\")) {"
       },
       {
-        "lineNumber": 137,
+        "lineNumber": 135,
         "author": {
           "gitId": "darrenoje"
         },
         "content": "                        endWeekDate \u003d LT.getDate(arr3[1].trim());"
       },
       {
-        "lineNumber": 138,
+        "lineNumber": 136,
         "author": {
           "gitId": "darrenoje"
         },
         "content": "                    } else {"
       },
       {
-        "lineNumber": 139,
+        "lineNumber": 137,
         "author": {
           "gitId": "darrenoje"
         },
         "content": "                        endWeekDate \u003d arr3[1].trim();"
       },
       {
-        "lineNumber": 140,
+        "lineNumber": 138,
         "author": {
           "gitId": "darrenoje"
         },
         "content": "                    }"
       },
       {
-        "lineNumber": 141,
+        "lineNumber": 139,
         "author": {
           "gitId": "darrenoje"
         },
         "content": "                    SimpleDateFormat formatter \u003d new SimpleDateFormat(\"dd/MM/yyyy\"); //format date"
       },
       {
-        "lineNumber": 142,
+        "lineNumber": 140,
         "author": {
           "gitId": "darrenoje"
         },
         "content": "                    Date startDate \u003d formatter.parse(startWeekDate);"
       },
       {
-        "lineNumber": 143,
+        "lineNumber": 141,
         "author": {
           "gitId": "darrenoje"
         },
         "content": "                    Date endDate \u003d formatter.parse(endWeekDate);"
       },
       {
-        "lineNumber": 144,
+        "lineNumber": 142,
         "author": {
-          "gitId": "darrenoje"
+          "gitId": "Krazzen"
         },
-        "content": "                    arr2 \u003d arr1[1].split(\"to\"); //arr2[0] is (start) \"time\", arr2[1] is (end) \"time\""
+        "content": "                    arr2 \u003d arr1[1].split(\"/to\"); //arr2[0] is (start) \"time\", arr2[1] is (end) \"time\""
       },
       {
-        "lineNumber": 145,
+        "lineNumber": 143,
         "author": {
           "gitId": "darrenoje"
         },
         "content": "                    SimpleDateFormat formatter1 \u003d new SimpleDateFormat(\"HHmm\"); //format time"
       },
       {
-        "lineNumber": 146,
+        "lineNumber": 144,
         "author": {
           "gitId": "darrenoje"
         },
         "content": "                    Date startTime \u003d formatter1.parse(arr2[0].trim());"
       },
       {
-        "lineNumber": 147,
+        "lineNumber": 145,
         "author": {
           "gitId": "darrenoje"
         },
         "content": "                    Date endTime \u003d formatter1.parse(arr2[1].trim());"
       },
       {
-        "lineNumber": 148,
+        "lineNumber": 146,
         "author": {
           "gitId": "darrenoje"
         },
         "content": "                    SimpleDateFormat timeFormat \u003d new SimpleDateFormat(\"hh:mm a\");"
+      },
+      {
+        "lineNumber": 147,
+        "author": {
+          "gitId": "darrenoje"
+        },
+        "content": "                    String startTimeString \u003d timeFormat.format(startTime);"
+      },
+      {
+        "lineNumber": 148,
+        "author": {
+          "gitId": "darrenoje"
+        },
+        "content": "                    String endTimeString \u003d timeFormat.format(endTime);"
       },
       {
         "lineNumber": 149,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                    String startTimeString \u003d timeFormat.format(startTime);"
+        "content": "                    return new RecurringCommand(arr[0].trim(),startDate, endDate, startTimeString, endTimeString);"
       },
       {
         "lineNumber": 150,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                    String endTimeString \u003d timeFormat.format(endTime);"
+        "content": "                } catch (ParseException | ArrayIndexOutOfBoundsException e) {"
       },
       {
         "lineNumber": 151,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                    return new RecurringCommand(arr[0].trim(),startDate, endDate, startTimeString, endTimeString);"
+        "content": "                    throw new DukeException(\"OOPS!!! Please enter recurring event as follows:\\n\" +"
       },
       {
         "lineNumber": 152,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                } catch (ParseException | ArrayIndexOutOfBoundsException e) {"
+        "content": "                            \"recur/e modCode name_of_event /start dd/MM/yyyy to dd/MM/yyyy from HHmm to HHmm\\n\" +"
       },
       {
         "lineNumber": 153,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                    throw new DukeException(\"OOPS!!! Please enter recurring event as follows:\\n\" +"
-      },
-      {
-        "lineNumber": 154,
-        "author": {
-          "gitId": "darrenoje"
-        },
-        "content": "                            \"recur/e modCode name_of_event /start dd/MM/yyyy to dd/MM/yyyy from HHmm to HHmm\\n\" +"
-      },
-      {
-        "lineNumber": 155,
-        "author": {
-          "gitId": "darrenoje"
-        },
         "content": "                            \"For example: recur/e CS1231 project meeting /start 1/10/2019 to 15/11/2019 from 1500 to 1700\");"
       },
       {
-        "lineNumber": 156,
+        "lineNumber": 154,
         "author": {
           "gitId": "-"
         },
         "content": "                }"
       },
       {
-        "lineNumber": 157,
+        "lineNumber": 155,
         "author": {
           "gitId": "Krazzen"
         },
         "content": "            }else if(fullCommand.trim().substring(0,8).equals(\"delete/e\")){"
       },
       {
-        "lineNumber": 158,
+        "lineNumber": 156,
         "author": {
           "gitId": "Krazzen"
         },
         "content": "                try { //add/e module_code description /at date from time to time"
       },
       {
-        "lineNumber": 159,
+        "lineNumber": 157,
         "author": {
           "gitId": "Krazzen"
         },
         "content": "                    String activity \u003d fullCommand.trim().substring(8);"
       },
       {
-        "lineNumber": 160,
+        "lineNumber": 158,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                    split \u003d activity.split(\"/at\"); //split[0] is \" module_code description\", split[1] is \"date from time to time\""
       },
       {
-        "lineNumber": 161,
+        "lineNumber": 159,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                    if (split[0].trim().isEmpty()) {"
       },
       {
-        "lineNumber": 162,
+        "lineNumber": 160,
         "author": {
           "gitId": "Krazzen"
         },
         "content": "                        throw new DukeException(\"\\u2639\" + \" OOPS!!! The description of a event cannot be empty.\");"
       },
       {
-        "lineNumber": 163,
+        "lineNumber": 161,
         "author": {
           "gitId": "Krazzen"
         },
         "content": "                    }"
+      },
+      {
+        "lineNumber": 162,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "                    split1 \u003d split[1].split(\"/from\"); //split1[0] is \"date\", split1[1] is \"time to time\""
+      },
+      {
+        "lineNumber": 163,
+        "author": {
+          "gitId": "lionlim97"
+        },
+        "content": "                    String weekDate \u003d\"\";"
       },
       {
         "lineNumber": 164,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                    split1 \u003d split[1].split(\"from\"); //split1[0] is \"date\", split1[1] is \"time to time\""
+        "content": "                    split2 \u003d split1[0].trim().split(\" \");"
       },
       {
         "lineNumber": 165,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                    String weekDate \u003d\"\";"
+        "content": "                    weekDate \u003d split2[0];"
       },
       {
         "lineNumber": 166,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                    split2 \u003d split1[0].trim().split(\" \");"
+        "content": "                    if(weekDate.equalsIgnoreCase(\"reading\") || weekDate.equalsIgnoreCase(\"exam\")"
       },
       {
         "lineNumber": 167,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                    weekDate \u003d split2[0];"
+        "content": "                            || weekDate.equalsIgnoreCase(\"week\") || weekDate.equalsIgnoreCase(\"recess\")){"
       },
       {
         "lineNumber": 168,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                    if(weekDate.equalsIgnoreCase(\"reading\") || weekDate.equalsIgnoreCase(\"exam\")"
+        "content": "                        weekDate \u003d LT.getDate(split1[0].trim());"
       },
       {
         "lineNumber": 169,
         "author": {
-          "gitId": "lionlim97"
+          "gitId": "Krazzen"
         },
-        "content": "                            || weekDate.equalsIgnoreCase(\"week\") || weekDate.equalsIgnoreCase(\"recess\")){"
+        "content": "                    }else{"
       },
       {
         "lineNumber": 170,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                        weekDate \u003d LT.getDate(split1[0].trim());"
+        "content": "                        weekDate \u003d split1[0].trim();"
       },
       {
         "lineNumber": 171,
         "author": {
           "gitId": "Krazzen"
         },
-        "content": "                    }else{"
-      },
-      {
-        "lineNumber": 172,
-        "author": {
-          "gitId": "lionlim97"
-        },
-        "content": "                        weekDate \u003d split1[0].trim();"
-      },
-      {
-        "lineNumber": 173,
-        "author": {
-          "gitId": "Krazzen"
-        },
         "content": "                    }"
       },
       {
-        "lineNumber": 174,
+        "lineNumber": 172,
         "author": {
           "gitId": "Krazzen"
         },
         "content": "                    SimpleDateFormat formatter \u003d new SimpleDateFormat(\"dd/MM/yyyy\"); //format date"
       },
       {
-        "lineNumber": 175,
+        "lineNumber": 173,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                    Date date \u003d formatter.parse(weekDate.trim());"
       },
       {
-        "lineNumber": 176,
+        "lineNumber": 174,
         "author": {
-          "gitId": "lionlim97"
+          "gitId": "Krazzen"
         },
-        "content": "                    split2 \u003d split1[1].split(\"to\"); //split2[0] is (start) \"time\", split2[1] is (end) \"time\""
+        "content": "                    split2 \u003d split1[1].split(\"/to\"); //split2[0] is (start) \"time\", split2[1] is (end) \"time\""
       },
       {
-        "lineNumber": 177,
+        "lineNumber": 175,
         "author": {
           "gitId": "Krazzen"
         },
         "content": "                    SimpleDateFormat formatter1 \u003d new SimpleDateFormat(\"HHmm\"); //format time"
       },
       {
-        "lineNumber": 178,
+        "lineNumber": 176,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                    Date startTime \u003d formatter1.parse(split2[0].trim());"
       },
       {
-        "lineNumber": 179,
+        "lineNumber": 177,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                    Date endTime \u003d formatter1.parse(split2[1].trim());"
       },
       {
-        "lineNumber": 180,
+        "lineNumber": 178,
         "author": {
           "gitId": "Krazzen"
         },
         "content": "                    SimpleDateFormat dateFormat \u003d new SimpleDateFormat(\"E dd/MM/yyyy\");"
+      },
+      {
+        "lineNumber": 179,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "                    SimpleDateFormat timeFormat \u003d new SimpleDateFormat(\"hh:mm a\");"
+      },
+      {
+        "lineNumber": 180,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "                    String dateString \u003d dateFormat.format(date);"
       },
       {
         "lineNumber": 181,
         "author": {
           "gitId": "Krazzen"
         },
-        "content": "                    SimpleDateFormat timeFormat \u003d new SimpleDateFormat(\"hh:mm a\");"
+        "content": "                    String startTimeString \u003d timeFormat.format(startTime);"
       },
       {
         "lineNumber": 182,
         "author": {
           "gitId": "Krazzen"
         },
-        "content": "                    String dateString \u003d dateFormat.format(date);"
-      },
-      {
-        "lineNumber": 183,
-        "author": {
-          "gitId": "Krazzen"
-        },
-        "content": "                    String startTimeString \u003d timeFormat.format(startTime);"
-      },
-      {
-        "lineNumber": 184,
-        "author": {
-          "gitId": "Krazzen"
-        },
         "content": "                    String endTimeString \u003d timeFormat.format(endTime);"
       },
       {
-        "lineNumber": 185,
+        "lineNumber": 183,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                    return new DeleteCommand(\"event\",new Event(split[0].trim(), dateString, startTimeString, endTimeString));"
       },
       {
-        "lineNumber": 186,
+        "lineNumber": 184,
         "author": {
           "gitId": "Krazzen"
         },
         "content": "                } catch (ParseException | ArrayIndexOutOfBoundsException e) {"
       },
       {
-        "lineNumber": 187,
+        "lineNumber": 185,
         "author": {
           "gitId": "Krazzen"
         },
         "content": "                    throw new DukeException(\"OOPS!!! Please enter in the format as follows:\\n\" +"
       },
       {
-        "lineNumber": 188,
+        "lineNumber": 186,
         "author": {
           "gitId": "Krazzen"
         },
         "content": "                            \"delete/e mod_code name_of_event /at dd/MM/yyyy from HHmm to HHmm\\n\" +"
       },
       {
-        "lineNumber": 189,
+        "lineNumber": 187,
         "author": {
           "gitId": "Krazzen"
         },
         "content": "                            \"or delete/e mod_code name_of_event /at week x day from HHmm to HHmm\\n\");"
       },
       {
-        "lineNumber": 190,
+        "lineNumber": 188,
         "author": {
           "gitId": "-"
         },
         "content": "                }"
       },
       {
-        "lineNumber": 191,
+        "lineNumber": 189,
         "author": {
           "gitId": "hwbjerry"
         },
         "content": "            } else if (fullCommand.trim().substring(0,6).equals(\"remind\")) {"
       },
       {
-        "lineNumber": 192,
+        "lineNumber": 190,
         "author": {
           "gitId": "-"
         },
         "content": "                try {"
       },
       {
-        "lineNumber": 193,
+        "lineNumber": 191,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                    boolean set \u003d false;"
       },
       {
-        "lineNumber": 194,
+        "lineNumber": 192,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                    String description \u003d \"\";"
       },
       {
-        "lineNumber": 195,
+        "lineNumber": 193,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                    String activity \u003d fullCommand.trim().substring(6);"
       },
       {
-        "lineNumber": 196,
+        "lineNumber": 194,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                    split \u003d activity.trim().split(\"/by\");"
       },
       {
-        "lineNumber": 197,
+        "lineNumber": 195,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                    if(split[0].contains(\"/set\")){"
       },
       {
-        "lineNumber": 198,
+        "lineNumber": 196,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                        description \u003d split[0].substring(4).trim();"
       },
       {
-        "lineNumber": 199,
+        "lineNumber": 197,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                        if (description.isEmpty()) {"
+      },
+      {
+        "lineNumber": 198,
+        "author": {
+          "gitId": "lionlim97"
+        },
+        "content": "                            throw new DukeException(\"\\u2639\" + \" OOPS!!! The description of a deadline cannot be empty.\");"
+      },
+      {
+        "lineNumber": 199,
+        "author": {
+          "gitId": "lionlim97"
+        },
+        "content": "                        }"
       },
       {
         "lineNumber": 200,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                            throw new DukeException(\"\\u2639\" + \" OOPS!!! The description of a deadline cannot be empty.\");"
+        "content": "                        set \u003d true;"
       },
       {
         "lineNumber": 201,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                        }"
+        "content": "                    } else {"
       },
       {
         "lineNumber": 202,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                        set \u003d true;"
+        "content": "                        description \u003d split[0].substring(3).trim();"
       },
       {
         "lineNumber": 203,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                    } else {"
+        "content": "                        if (description.isEmpty()) {"
       },
       {
         "lineNumber": 204,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                        description \u003d split[0].substring(3).trim();"
+        "content": "                            throw new DukeException(\"\\u2639\" + \" OOPS!!! The description of a deadline cannot be empty.\");"
       },
       {
         "lineNumber": 205,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                        if (description.isEmpty()) {"
+        "content": "                        }"
       },
       {
         "lineNumber": 206,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                            throw new DukeException(\"\\u2639\" + \" OOPS!!! The description of a deadline cannot be empty.\");"
+        "content": "                    }"
       },
       {
         "lineNumber": 207,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                        }"
+        "content": "                    split1 \u003d split[1].trim().split(\" /to \");"
       },
       {
         "lineNumber": 208,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                    }"
+        "content": "                    String weekDate \u003d \"\";"
       },
       {
         "lineNumber": 209,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                    split1 \u003d split[1].trim().split(\" /to \");"
+        "content": "                    String reminderDate \u003d \"\";"
       },
       {
         "lineNumber": 210,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                    String weekDate \u003d \"\";"
+        "content": "                    split2 \u003d split1[0].trim().split(\" \");"
       },
       {
         "lineNumber": 211,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                    String reminderDate \u003d \"\";"
+        "content": "                    weekDate \u003d split2[0];"
       },
       {
         "lineNumber": 212,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                    split2 \u003d split1[0].trim().split(\" \");"
+        "content": "                    split3 \u003d split1[1].trim().split(\" \");"
       },
       {
         "lineNumber": 213,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                    weekDate \u003d split2[0];"
+        "content": "                    reminderDate \u003d split3[0];"
       },
       {
         "lineNumber": 214,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                    split3 \u003d split1[1].trim().split(\" \");"
+        "content": "                    if (weekDate.equalsIgnoreCase(\"reading\") || weekDate.equalsIgnoreCase(\"exam\")"
       },
       {
         "lineNumber": 215,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                    reminderDate \u003d split3[0];"
+        "content": "                            || weekDate.equalsIgnoreCase(\"week\") || weekDate.equalsIgnoreCase(\"recess\")"
       },
       {
         "lineNumber": 216,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                    if (weekDate.equalsIgnoreCase(\"reading\") || weekDate.equalsIgnoreCase(\"exam\")"
+        "content": "                            || reminderDate.equalsIgnoreCase(\"reading\") || reminderDate.equalsIgnoreCase(\"exam\")"
       },
       {
         "lineNumber": 217,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                            || weekDate.equalsIgnoreCase(\"week\") || weekDate.equalsIgnoreCase(\"recess\")"
+        "content": "                            || reminderDate.equalsIgnoreCase(\"week\") || reminderDate.equalsIgnoreCase(\"recess\")) {"
       },
       {
         "lineNumber": 218,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                            || reminderDate.equalsIgnoreCase(\"reading\") || reminderDate.equalsIgnoreCase(\"exam\")"
+        "content": "                        weekDate \u003d split1[0].substring(0,split1[0].length()- 4);"
       },
       {
         "lineNumber": 219,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                            || reminderDate.equalsIgnoreCase(\"week\") || reminderDate.equalsIgnoreCase(\"recess\")) {"
+        "content": "                        reminderDate \u003d split1[1].substring(0,split1[1].length()- 4);"
       },
       {
         "lineNumber": 220,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                        weekDate \u003d split1[0].substring(0,split1[0].length()- 4);"
+        "content": "                        String time \u003d split1[0].substring(split1[0].length()- 4);"
       },
       {
         "lineNumber": 221,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                        reminderDate \u003d split1[1].substring(0,split1[1].length()- 4);"
+        "content": "                        weekDate \u003d LT.getDate(weekDate) + \" \" + time;"
       },
       {
         "lineNumber": 222,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                        String time \u003d split1[0].substring(split1[0].length()- 4);"
+        "content": "                        time \u003d split1[1].substring(split1[1].length()- 4);"
       },
       {
         "lineNumber": 223,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                        weekDate \u003d LT.getDate(weekDate) + \" \" + time;"
+        "content": "                        reminderDate \u003d LT.getDate(reminderDate) + \" \" + time;"
       },
       {
         "lineNumber": 224,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                        time \u003d split1[1].substring(split1[1].length()- 4);"
+        "content": "                    }else{"
       },
       {
         "lineNumber": 225,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                        reminderDate \u003d LT.getDate(reminderDate) + \" \" + time;"
+        "content": "                        weekDate \u003d split1[0];"
       },
       {
         "lineNumber": 226,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                    }else{"
-      },
-      {
-        "lineNumber": 227,
-        "author": {
-          "gitId": "lionlim97"
-        },
-        "content": "                        weekDate \u003d split1[0];"
-      },
-      {
-        "lineNumber": 228,
-        "author": {
-          "gitId": "lionlim97"
-        },
         "content": "                        reminderDate \u003d split1[1];"
       },
       {
-        "lineNumber": 229,
+        "lineNumber": 227,
         "author": {
           "gitId": "-"
         },
         "content": "                    }"
       },
       {
-        "lineNumber": 230,
+        "lineNumber": 228,
         "author": {
           "gitId": "-"
         },
         "content": "                    SimpleDateFormat formatter \u003d new SimpleDateFormat(\"dd/MM/yyyy HHmm\");"
       },
       {
-        "lineNumber": 231,
+        "lineNumber": 229,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                    Date dateOfTask \u003d formatter.parse(weekDate);"
       },
       {
-        "lineNumber": 232,
+        "lineNumber": 230,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                    Date dateOfReminder \u003d formatter.parse(reminderDate);"
       },
       {
-        "lineNumber": 233,
+        "lineNumber": 231,
         "author": {
           "gitId": "-"
         },
         "content": "                    SimpleDateFormat dateFormat \u003d new SimpleDateFormat(\"E dd/MM/yyyy hh:mm a\");"
       },
       {
-        "lineNumber": 234,
+        "lineNumber": 232,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                    String dateString \u003d dateFormat.format(dateOfTask);"
       },
       {
-        "lineNumber": 235,
+        "lineNumber": 233,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                    SimpleDateFormat timeFormat \u003d new SimpleDateFormat(\"hh:mm a\");"
       },
       {
-        "lineNumber": 236,
+        "lineNumber": 234,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                    String timeString \u003d timeFormat.format(dateOfTask);"
       },
       {
-        "lineNumber": 237,
+        "lineNumber": 235,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                    return new RemindCommand(new Deadline(description, dateString, timeString), dateOfReminder, set);"
       },
       {
-        "lineNumber": 238,
+        "lineNumber": 236,
         "author": {
           "gitId": "-"
         },
         "content": "                } catch (ParseException | ArrayIndexOutOfBoundsException e) {"
       },
       {
-        "lineNumber": 239,
+        "lineNumber": 237,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                    throw new DukeException(\"OOPS!!! Please enter remind as follows:\\n\" +"
       },
       {
-        "lineNumber": 240,
+        "lineNumber": 238,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                            \"remind/(set/rm) mod_code description /by week n.o day time /to week n.o day time\\n\" +"
       },
       {
-        "lineNumber": 241,
+        "lineNumber": 239,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                            \"For example: remind/set cs2100 hand in homework /by week 9 fri 1500 /to week 9 thu 1500\");"
       },
       {
-        "lineNumber": 242,
+        "lineNumber": 240,
         "author": {
           "gitId": "-"
         },
         "content": "                }"
       },
       {
-        "lineNumber": 243,
+        "lineNumber": 241,
         "author": {
           "gitId": "Krazzen"
         },
         "content": "            } else if (fullCommand.trim().substring(0,8).equals(\"delete/d\")) {"
       },
       {
-        "lineNumber": 244,
+        "lineNumber": 242,
         "author": {
           "gitId": "-"
         },
         "content": "                try {"
       },
       {
-        "lineNumber": 245,
+        "lineNumber": 243,
         "author": {
           "gitId": "Krazzen"
         },
         "content": "                    String activity \u003d fullCommand.trim().substring(8);"
       },
       {
-        "lineNumber": 246,
+        "lineNumber": 244,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                    split \u003d activity.split(\"/by\");"
+      },
+      {
+        "lineNumber": 245,
+        "author": {
+          "gitId": "lionlim97"
+        },
+        "content": "                    if (split[0].trim().isEmpty()) {"
+      },
+      {
+        "lineNumber": 246,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "                        throw new DukeException(\"\\u2639\" + \" OOPS!!! The description of a deadline cannot be empty.\");"
       },
       {
         "lineNumber": 247,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                    if (split[0].trim().isEmpty()) {"
+        "content": "                    }"
       },
       {
         "lineNumber": 248,
         "author": {
-          "gitId": "Krazzen"
+          "gitId": "lionlim97"
         },
-        "content": "                        throw new DukeException(\"\\u2639\" + \" OOPS!!! The description of a deadline cannot be empty.\");"
+        "content": "                    String weekDate \u003d\"\";"
       },
       {
         "lineNumber": 249,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                    }"
+        "content": "                    split2 \u003d split[1].trim().split(\" \");"
       },
       {
         "lineNumber": 250,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                    String weekDate \u003d\"\";"
+        "content": "                    weekDate \u003d split2[0];"
       },
       {
         "lineNumber": 251,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                    split2 \u003d split[1].trim().split(\" \");"
+        "content": "                    if(weekDate.equalsIgnoreCase(\"reading\") || weekDate.equalsIgnoreCase(\"exam\")"
       },
       {
         "lineNumber": 252,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                    weekDate \u003d split2[0];"
+        "content": "                            || weekDate.equalsIgnoreCase(\"week\") || weekDate.equalsIgnoreCase(\"recess\")){"
       },
       {
         "lineNumber": 253,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                    if(weekDate.equalsIgnoreCase(\"reading\") || weekDate.equalsIgnoreCase(\"exam\")"
+        "content": "                        weekDate \u003d split[1].substring(0,split[1].length()- 4); // week x day y"
       },
       {
         "lineNumber": 254,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                            || weekDate.equalsIgnoreCase(\"week\") || weekDate.equalsIgnoreCase(\"recess\")){"
+        "content": "                        String time \u003d split[1].substring(split[1].length()- 4); // time E.g 0300"
       },
       {
         "lineNumber": 255,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                        weekDate \u003d split[1].substring(0,split[1].length()- 4); // week x day y"
+        "content": "                        weekDate \u003d LT.getDate(weekDate) + \" \" + time;"
       },
       {
         "lineNumber": 256,
         "author": {
-          "gitId": "lionlim97"
+          "gitId": "Krazzen"
         },
-        "content": "                        String time \u003d split[1].substring(split[1].length()- 4); // time E.g 0300"
+        "content": "                    }else{"
       },
       {
         "lineNumber": 257,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                        weekDate \u003d LT.getDate(weekDate) + \" \" + time;"
+        "content": "                        weekDate \u003d split[1];"
       },
       {
         "lineNumber": 258,
         "author": {
           "gitId": "Krazzen"
         },
-        "content": "                    }else{"
-      },
-      {
-        "lineNumber": 259,
-        "author": {
-          "gitId": "lionlim97"
-        },
-        "content": "                        weekDate \u003d split[1];"
-      },
-      {
-        "lineNumber": 260,
-        "author": {
-          "gitId": "Krazzen"
-        },
         "content": "                    }"
       },
       {
-        "lineNumber": 261,
+        "lineNumber": 259,
         "author": {
           "gitId": "Krazzen"
         },
         "content": "                    SimpleDateFormat formatter \u003d new SimpleDateFormat(\"dd/MM/yyyy HHmm\");"
       },
       {
-        "lineNumber": 262,
+        "lineNumber": 260,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                    Date date \u003d formatter.parse(weekDate);"
       },
       {
-        "lineNumber": 263,
+        "lineNumber": 261,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                    SimpleDateFormat dateFormat \u003d new SimpleDateFormat(\"E dd/MM/yyyy\");"
       },
       {
-        "lineNumber": 264,
+        "lineNumber": 262,
         "author": {
           "gitId": "Krazzen"
         },
         "content": "                    String dateString \u003d dateFormat.format(date);"
+      },
+      {
+        "lineNumber": 263,
+        "author": {
+          "gitId": "lionlim97"
+        },
+        "content": "                    SimpleDateFormat timeFormat \u003d new SimpleDateFormat(\"hh:mm a\");"
+      },
+      {
+        "lineNumber": 264,
+        "author": {
+          "gitId": "lionlim97"
+        },
+        "content": "                    String timeString \u003d timeFormat.format(date);"
       },
       {
         "lineNumber": 265,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                    SimpleDateFormat timeFormat \u003d new SimpleDateFormat(\"hh:mm a\");"
-      },
-      {
-        "lineNumber": 266,
-        "author": {
-          "gitId": "lionlim97"
-        },
-        "content": "                    String timeString \u003d timeFormat.format(date);"
-      },
-      {
-        "lineNumber": 267,
-        "author": {
-          "gitId": "lionlim97"
-        },
         "content": "                    return new DeleteCommand(\"deadline\",new Deadline(split[0].trim(), dateString, timeString));"
       },
       {
-        "lineNumber": 268,
+        "lineNumber": 266,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 269,
+        "lineNumber": 267,
         "author": {
           "gitId": "Krazzen"
         },
         "content": "                } catch (ParseException | ArrayIndexOutOfBoundsException e) {"
       },
       {
-        "lineNumber": 270,
+        "lineNumber": 268,
         "author": {
           "gitId": "Krazzen"
         },
         "content": "                    throw new DukeException(\"OOPS!!! Please enter in the format as follows:\\n\" +"
       },
       {
-        "lineNumber": 271,
+        "lineNumber": 269,
         "author": {
           "gitId": "Krazzen"
         },
         "content": "                            \"delete/d mod_code name_of_event /by dd/MM/yyyy HHmm\\n\" +"
       },
       {
-        "lineNumber": 272,
+        "lineNumber": 270,
         "author": {
           "gitId": "Krazzen"
         },
         "content": "                            \"or delete/d mod_code name_of_event /by week x day HHmm\\n\");"
       },
       {
-        "lineNumber": 273,
+        "lineNumber": 271,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                }"
       },
       {
-        "lineNumber": 274,
+        "lineNumber": 272,
         "author": {
           "gitId": "Krazzen"
         },
         "content": "            } else if (fullCommand.trim().substring(0, 5).equals(\"add/d\")) {//deadline"
       },
       {
-        "lineNumber": 275,
+        "lineNumber": 273,
         "author": {
           "gitId": "-"
         },
         "content": "                try {"
       },
       {
-        "lineNumber": 276,
+        "lineNumber": 274,
         "author": {
           "gitId": "Krazzen"
         },
         "content": "                    String activity \u003d fullCommand.trim().substring(5);"
       },
       {
-        "lineNumber": 277,
+        "lineNumber": 275,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                    split \u003d activity.split(\"/by\");"
       },
       {
-        "lineNumber": 278,
+        "lineNumber": 276,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                    if (split[0].trim().isEmpty()) {"
       },
       {
-        "lineNumber": 279,
+        "lineNumber": 277,
         "author": {
           "gitId": "-"
         },
         "content": "                        throw new DukeException(\"\\u2639\" + \" OOPS!!! The description of a deadline cannot be empty.\");"
       },
       {
-        "lineNumber": 280,
+        "lineNumber": 278,
         "author": {
           "gitId": "-"
         },
         "content": "                    }"
       },
       {
-        "lineNumber": 281,
+        "lineNumber": 279,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                    String weekDate \u003d\"\";"
       },
       {
-        "lineNumber": 282,
+        "lineNumber": 280,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                    split2 \u003d split[1].trim().split(\" \");"
       },
       {
-        "lineNumber": 283,
+        "lineNumber": 281,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                    weekDate \u003d split2[0];"
       },
       {
-        "lineNumber": 284,
+        "lineNumber": 282,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                    if(weekDate.equalsIgnoreCase(\"reading\") || weekDate.equalsIgnoreCase(\"exam\")"
       },
       {
-        "lineNumber": 285,
+        "lineNumber": 283,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                        || weekDate.equalsIgnoreCase(\"week\") || weekDate.equalsIgnoreCase(\"recess\")){"
       },
       {
-        "lineNumber": 286,
+        "lineNumber": 284,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                        weekDate \u003d split[1].substring(0,split[1].length()- 4); // week x day y"
       },
       {
-        "lineNumber": 287,
+        "lineNumber": 285,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                        String time \u003d split[1].substring(split[1].length()- 4); // time E.g 0300"
       },
       {
-        "lineNumber": 288,
+        "lineNumber": 286,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                        weekDate \u003d LT.getDate(weekDate) + \" \" + time;"
       },
       {
-        "lineNumber": 289,
+        "lineNumber": 287,
         "author": {
           "gitId": "Krazzen"
         },
         "content": "                    }else{"
       },
       {
-        "lineNumber": 290,
+        "lineNumber": 288,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                        weekDate \u003d split[1];"
       },
       {
-        "lineNumber": 291,
+        "lineNumber": 289,
         "author": {
           "gitId": "Krazzen"
         },
         "content": "                    }"
       },
       {
-        "lineNumber": 292,
+        "lineNumber": 290,
         "author": {
           "gitId": "-"
         },
         "content": "                    SimpleDateFormat formatter \u003d new SimpleDateFormat(\"dd/MM/yyyy HHmm\");"
       },
       {
-        "lineNumber": 293,
+        "lineNumber": 291,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                    Date date \u003d formatter.parse(weekDate);"
       },
       {
-        "lineNumber": 294,
+        "lineNumber": 292,
         "author": {
           "gitId": "-"
         },
         "content": "                    SimpleDateFormat dateFormat \u003d new SimpleDateFormat(\"E dd/MM/yyyy hh:mm a\");"
       },
       {
-        "lineNumber": 295,
+        "lineNumber": 293,
         "author": {
           "gitId": "-"
         },
         "content": "                    String dateString \u003d dateFormat.format(date);"
       },
       {
-        "lineNumber": 296,
+        "lineNumber": 294,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                    SimpleDateFormat timeFormat \u003d new SimpleDateFormat(\"hh:mm a\");"
       },
       {
-        "lineNumber": 297,
+        "lineNumber": 295,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                    String timeString \u003d timeFormat.format(date);"
       },
       {
-        "lineNumber": 298,
+        "lineNumber": 296,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                    return new AddCommand(new Deadline(split[0].trim(), dateString, timeString));"
       },
       {
-        "lineNumber": 299,
+        "lineNumber": 297,
         "author": {
           "gitId": "-"
         },
         "content": "                } catch (ParseException | ArrayIndexOutOfBoundsException e) {"
       },
       {
-        "lineNumber": 300,
+        "lineNumber": 298,
         "author": {
           "gitId": "-"
         },
         "content": "                    throw new DukeException(\" OOPS!!! Please enter deadline as follows:\\n\" +"
       },
       {
-        "lineNumber": 301,
+        "lineNumber": 299,
         "author": {
           "gitId": "Krazzen"
         },
         "content": "                            \"add/d mod_code name_of_event /by dd/MM/yyyy HHmm\\n\" +"
       },
       {
-        "lineNumber": 302,
+        "lineNumber": 300,
         "author": {
           "gitId": "Krazzen"
         },
         "content": "                            \"or add/d mod_code name_of_event /by week x day HHmm\\n\");"
       },
       {
-        "lineNumber": 303,
+        "lineNumber": 301,
         "author": {
           "gitId": "-"
         },
         "content": "                }"
       },
       {
+        "lineNumber": 302,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "            } else if(fullCommand.trim().substring(0,6).equalsIgnoreCase(\"filter\")){"
+      },
+      {
+        "lineNumber": 303,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "                String keyword \u003d \"\";"
+      },
+      {
         "lineNumber": 304,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "                keyword \u003d fullCommand.trim().substring(7);"
+      },
+      {
+        "lineNumber": 305,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "                return new FilterCommand(keyword);"
+      },
+      {
+        "lineNumber": 306,
         "author": {
           "gitId": "hwbjerry"
         },
         "content": "            } else if (fullCommand.trim().substring(0,6).equals(\"snooze\")) {"
       },
       {
-        "lineNumber": 305,
+        "lineNumber": 307,
         "author": {
           "gitId": "-"
         },
         "content": "                try {"
       },
       {
-        "lineNumber": 306,
+        "lineNumber": 308,
         "author": {
           "gitId": "-"
         },
         "content": "                    String activity \u003d fullCommand.trim().substring(6);"
       },
       {
-        "lineNumber": 307,
+        "lineNumber": 309,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                    split \u003d activity.split(\"/to\");"
       },
       {
-        "lineNumber": 308,
+        "lineNumber": 310,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                    split1 \u003d split[0].trim().split(\" \");"
       },
       {
-        "lineNumber": 309,
+        "lineNumber": 311,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                    int index \u003d Integer.parseInt(split1[1]) - 1;"
       },
       {
-        "lineNumber": 310,
+        "lineNumber": 312,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                    if (split1[1].isEmpty()) {"
       },
       {
-        "lineNumber": 311,
+        "lineNumber": 313,
         "author": {
           "gitId": "-"
         },
         "content": "                        throw new DukeException(\"\\u2639\" + \" OOPS!!! The index of a snooze cannot be empty.\");"
       },
       {
-        "lineNumber": 312,
+        "lineNumber": 314,
         "author": {
           "gitId": "-"
         },
         "content": "                    }"
-      },
-      {
-        "lineNumber": 313,
-        "author": {
-          "gitId": "lionlim97"
-        },
-        "content": "                    if (split1[0].contains(\"deadline\")) {"
-      },
-      {
-        "lineNumber": 314,
-        "author": {
-          "gitId": "darrenoje"
-        },
-        "content": "                        SimpleDateFormat formatter \u003d new SimpleDateFormat(\"dd/MM/yyyy HHmm\");"
       },
       {
         "lineNumber": 315,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                        Date date \u003d formatter.parse(split[1].trim());"
+        "content": "                    if (split1[0].contains(\"deadline\")) {"
       },
       {
         "lineNumber": 316,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                        SimpleDateFormat dateFormat \u003d new SimpleDateFormat(\"E dd/MM/yyyy hh:mm a\");"
+        "content": "                        SimpleDateFormat formatter \u003d new SimpleDateFormat(\"dd/MM/yyyy HHmm\");"
       },
       {
         "lineNumber": 317,
         "author": {
-          "gitId": "darrenoje"
+          "gitId": "lionlim97"
         },
-        "content": "                        String dateString \u003d dateFormat.format(date);"
+        "content": "                        Date date \u003d formatter.parse(split[1].trim());"
       },
       {
         "lineNumber": 318,
         "author": {
-          "gitId": "lionlim97"
+          "gitId": "darrenoje"
         },
-        "content": "                        SimpleDateFormat timeFormat \u003d new SimpleDateFormat(\"hh:mm a\");"
+        "content": "                        SimpleDateFormat dateFormat \u003d new SimpleDateFormat(\"E dd/MM/yyyy hh:mm a\");"
       },
       {
         "lineNumber": 319,
         "author": {
-          "gitId": "lionlim97"
+          "gitId": "darrenoje"
         },
-        "content": "                        String timeString \u003d timeFormat.format(date);"
+        "content": "                        String dateString \u003d dateFormat.format(date);"
       },
       {
         "lineNumber": 320,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                        return new SnoozeCommand(index, dateString, timeString, dateString);"
+        "content": "                        SimpleDateFormat timeFormat \u003d new SimpleDateFormat(\"hh:mm a\");"
       },
       {
         "lineNumber": 321,
         "author": {
-          "gitId": "darrenoje"
+          "gitId": "lionlim97"
         },
-        "content": "                    } else {"
+        "content": "                        String timeString \u003d timeFormat.format(date);"
       },
       {
         "lineNumber": 322,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                        split2 \u003d split[1].trim().split(\"to\");"
+        "content": "                        return new SnoozeCommand(index, dateString, timeString, dateString);"
       },
       {
         "lineNumber": 323,
         "author": {
-          "gitId": "lionlim97"
+          "gitId": "darrenoje"
         },
-        "content": "                        split3 \u003d split2[0].trim().split(\" \");"
+        "content": "                    } else {"
       },
       {
         "lineNumber": 324,
         "author": {
-          "gitId": "darrenoje"
+          "gitId": "lionlim97"
         },
-        "content": "                        SimpleDateFormat formatter \u003d new SimpleDateFormat(\"dd/MM/yyyy\");"
+        "content": "                        split2 \u003d split[1].trim().split(\"to\");"
       },
       {
         "lineNumber": 325,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                        Date date \u003d formatter.parse(split3[0].trim());"
+        "content": "                        split3 \u003d split2[0].trim().split(\" \");"
       },
       {
         "lineNumber": 326,
         "author": {
-          "gitId": "hwbjerry"
+          "gitId": "darrenoje"
         },
-        "content": "                        SimpleDateFormat formatter1 \u003d new SimpleDateFormat(\"HHmm\");"
+        "content": "                        SimpleDateFormat formatter \u003d new SimpleDateFormat(\"dd/MM/yyyy\");"
       },
       {
         "lineNumber": 327,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "                        Date startTime \u003d formatter1.parse(split3[1].trim());"
+        "content": "                        Date date \u003d formatter.parse(split3[0].trim());"
       },
       {
         "lineNumber": 328,
+        "author": {
+          "gitId": "hwbjerry"
+        },
+        "content": "                        SimpleDateFormat formatter1 \u003d new SimpleDateFormat(\"HHmm\");"
+      },
+      {
+        "lineNumber": 329,
+        "author": {
+          "gitId": "lionlim97"
+        },
+        "content": "                        Date startTime \u003d formatter1.parse(split3[1].trim());"
+      },
+      {
+        "lineNumber": 330,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                        Date endTime \u003d formatter1.parse(split2[1].trim());"
       },
       {
-        "lineNumber": 329,
+        "lineNumber": 331,
         "author": {
           "gitId": "darrenoje"
         },
         "content": "                        SimpleDateFormat dateFormat \u003d new SimpleDateFormat(\"E dd/MM/yyyy\");"
       },
       {
-        "lineNumber": 330,
+        "lineNumber": 332,
         "author": {
           "gitId": "darrenoje"
         },
         "content": "                        SimpleDateFormat timeFormat \u003d new SimpleDateFormat(\"hh:mm a\");"
       },
       {
-        "lineNumber": 331,
+        "lineNumber": 333,
         "author": {
           "gitId": "darrenoje"
         },
         "content": "                        String dateString \u003d dateFormat.format(date);"
       },
       {
-        "lineNumber": 332,
+        "lineNumber": 334,
         "author": {
           "gitId": "darrenoje"
         },
         "content": "                        String startTimeString \u003d timeFormat.format(startTime);"
       },
       {
-        "lineNumber": 333,
+        "lineNumber": 335,
         "author": {
           "gitId": "darrenoje"
         },
         "content": "                        String endTimeString \u003d timeFormat.format(endTime);"
       },
       {
-        "lineNumber": 334,
+        "lineNumber": 336,
         "author": {
           "gitId": "lionlim97"
         },
         "content": "                        return new SnoozeCommand(index, dateString, startTimeString, endTimeString);"
       },
       {
-        "lineNumber": 335,
+        "lineNumber": 337,
         "author": {
           "gitId": "darrenoje"
         },
         "content": "                    }"
       },
       {
-        "lineNumber": 336,
+        "lineNumber": 338,
         "author": {
           "gitId": "-"
         },
         "content": "                } catch (ParseException | ArrayIndexOutOfBoundsException e) {"
-      },
-      {
-        "lineNumber": 337,
-        "author": {
-          "gitId": "darrenoje"
-        },
-        "content": "                    throw new DukeException(\" OOPS!!! Please enter snooze as follows respectively:\\n\" +"
-      },
-      {
-        "lineNumber": 338,
-        "author": {
-          "gitId": "darrenoje"
-        },
-        "content": "                            \"To snooze deadlines: snooze deadline index /to dd/MM/yyyy HHmm\\n\" +"
       },
       {
         "lineNumber": 339,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                            \"To snooze events: snooze event index /to dd/MM/yyyy HHmm to HHmm\\n\" +"
+        "content": "                    throw new DukeException(\" OOPS!!! Please enter snooze as follows respectively:\\n\" +"
       },
       {
         "lineNumber": 340,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                            \"For example: snooze event 2 /to 2/12/2019 1800 to 1900\");"
+        "content": "                            \"To snooze deadlines: snooze deadline index /to dd/MM/yyyy HHmm\\n\" +"
       },
       {
         "lineNumber": 341,
         "author": {
-          "gitId": "-"
+          "gitId": "darrenoje"
         },
-        "content": "                }"
+        "content": "                            \"To snooze events: snooze event index /to dd/MM/yyyy HHmm to HHmm\\n\" +"
       },
       {
         "lineNumber": 342,
         "author": {
-          "gitId": "0325961"
+          "gitId": "darrenoje"
         },
-        "content": "            } else if (fullCommand.contains(\"(from\") \u0026\u0026 fullCommand.contains(\"to\")) {"
+        "content": "                            \"For example: snooze event 2 /to 2/12/2019 1800 to 1900\");"
       },
       {
         "lineNumber": 343,
         "author": {
-          "gitId": "0325961"
+          "gitId": "-"
         },
-        "content": "                try {"
+        "content": "                }"
       },
       {
         "lineNumber": 344,
         "author": {
           "gitId": "0325961"
         },
-        "content": "                    boolean isValid \u003d true;"
+        "content": "            } else if (fullCommand.contains(\"(from\") \u0026\u0026 fullCommand.contains(\"to\")) {"
       },
       {
         "lineNumber": 345,
         "author": {
           "gitId": "0325961"
         },
-        "content": "                    SimpleDateFormat formatter \u003d new SimpleDateFormat(\"dd/MM/yyyy\");"
+        "content": "                try {"
       },
       {
         "lineNumber": 346,
         "author": {
           "gitId": "0325961"
         },
-        "content": "                    Date date \u003d new Date();"
+        "content": "                    boolean isValid \u003d true;"
       },
       {
         "lineNumber": 347,
         "author": {
           "gitId": "0325961"
         },
-        "content": "                    String currentDate \u003d formatter.format(date);"
+        "content": "                    SimpleDateFormat formatter \u003d new SimpleDateFormat(\"dd/MM/yyyy\");"
       },
       {
         "lineNumber": 348,
         "author": {
           "gitId": "0325961"
         },
-        "content": "                    int index \u003d fullCommand.indexOf(\"(from\");"
+        "content": "                    Date date \u003d new Date();"
       },
       {
         "lineNumber": 349,
         "author": {
           "gitId": "0325961"
         },
-        "content": "                    String taskDescription \u003d fullCommand.substring(0, index);"
+        "content": "                    String currentDate \u003d formatter.format(date);"
       },
       {
         "lineNumber": 350,
         "author": {
           "gitId": "0325961"
         },
-        "content": "                    fullCommand \u003d fullCommand.replace(taskDescription, \"\");"
+        "content": "                    int index \u003d fullCommand.indexOf(\"(from\");"
       },
       {
         "lineNumber": 351,
         "author": {
           "gitId": "0325961"
         },
-        "content": "                    fullCommand \u003d fullCommand.replace(\"(from\", \"\").trim();"
+        "content": "                    String taskDescription \u003d fullCommand.substring(0, index);"
       },
       {
         "lineNumber": 352,
         "author": {
           "gitId": "0325961"
         },
-        "content": "                    String[] startAndEndDate \u003d fullCommand.split(\" to \", 2);"
+        "content": "                    fullCommand \u003d fullCommand.replace(taskDescription, \"\");"
       },
       {
         "lineNumber": 353,
         "author": {
           "gitId": "0325961"
         },
-        "content": "                    String startDate \u003d startAndEndDate[0];"
+        "content": "                    fullCommand \u003d fullCommand.replace(\"(from\", \"\").trim();"
       },
       {
         "lineNumber": 354,
         "author": {
           "gitId": "0325961"
         },
-        "content": "                    String endDate \u003d startAndEndDate[1].replace(\")\", \"\").trim();"
+        "content": "                    String[] startAndEndDate \u003d fullCommand.split(\" to \", 2);"
       },
       {
         "lineNumber": 355,
         "author": {
           "gitId": "0325961"
         },
-        "content": "                    Date beginDate \u003d new SimpleDateFormat(\"dd/MM/yyyy\").parse(startDate);"
+        "content": "                    String startDate \u003d startAndEndDate[0];"
       },
       {
         "lineNumber": 356,
         "author": {
           "gitId": "0325961"
         },
-        "content": "                    Date newCurrentDate \u003d new SimpleDateFormat(\"dd/MM/yyyy\").parse(currentDate);"
+        "content": "                    String endDate \u003d startAndEndDate[1].replace(\")\", \"\").trim();"
       },
       {
         "lineNumber": 357,
         "author": {
-          "gitId": "-"
+          "gitId": "0325961"
         },
-        "content": ""
+        "content": "                    Date beginDate \u003d new SimpleDateFormat(\"dd/MM/yyyy\").parse(startDate);"
       },
       {
         "lineNumber": 358,
         "author": {
           "gitId": "0325961"
         },
-        "content": "                    if (beginDate.compareTo(newCurrentDate) \u003c 0) { //date is wrong"
+        "content": "                    Date newCurrentDate \u003d new SimpleDateFormat(\"dd/MM/yyyy\").parse(currentDate);"
       },
       {
         "lineNumber": 359,
-        "author": {
-          "gitId": "0325961"
-        },
-        "content": "                        AlertBox.display(\"Warning message\", \"Invalid date\", \"Please enter another valid date\","
-      },
-      {
-        "lineNumber": 360,
-        "author": {
-          "gitId": "0325961"
-        },
-        "content": "                                Alert.AlertType.WARNING);"
-      },
-      {
-        "lineNumber": 361,
-        "author": {
-          "gitId": "0325961"
-        },
-        "content": "                        isValid \u003d false;"
-      },
-      {
-        "lineNumber": 362,
-        "author": {
-          "gitId": "0325961"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 363,
-        "author": {
-          "gitId": "0325961"
-        },
-        "content": "                    System.out.println(\"value of isValid: \" + isValid);"
-      },
-      {
-        "lineNumber": 364,
-        "author": {
-          "gitId": "0325961"
-        },
-        "content": "                    System.out.println(\"start date: \" + startDate + \" Current date: \" + currentDate);"
-      },
-      {
-        "lineNumber": 365,
-        "author": {
-          "gitId": "0325961"
-        },
-        "content": "                    return new DoWithinPeriodTasksCommand(taskDescription, startDate, endDate, isValid);"
-      },
-      {
-        "lineNumber": 366,
-        "author": {
-          "gitId": "0325961"
-        },
-        "content": "                } catch (ParseException | ArrayIndexOutOfBoundsException e) {"
-      },
-      {
-        "lineNumber": 367,
-        "author": {
-          "gitId": "0325961"
-        },
-        "content": "                    throw new DukeException(\" OOPS!!! Please enter Do Within Period Task as follows:\\n\" +"
-      },
-      {
-        "lineNumber": 368,
-        "author": {
-          "gitId": "0325961"
-        },
-        "content": "                            \" \u0027Task Description\u0027 \u0027(from DD/MM/yyyy to DD/MM/yyyy)\u0027\");"
-      },
-      {
-        "lineNumber": 369,
-        "author": {
-          "gitId": "0325961"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 370,
-        "author": {
-          "gitId": "lionlim97"
-        },
-        "content": "            } else {"
-      },
-      {
-        "lineNumber": 371,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                throw new DukeException(\"\\u2639\" + \" OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\");"
-      },
-      {
-        "lineNumber": 372,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 373,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
+        "lineNumber": 360,
+        "author": {
+          "gitId": "0325961"
+        },
+        "content": "                    if (beginDate.compareTo(newCurrentDate) \u003c 0) { //date is wrong"
+      },
+      {
+        "lineNumber": 361,
+        "author": {
+          "gitId": "0325961"
+        },
+        "content": "                        AlertBox.display(\"Warning message\", \"Invalid date\", \"Please enter another valid date\","
+      },
+      {
+        "lineNumber": 362,
+        "author": {
+          "gitId": "0325961"
+        },
+        "content": "                                Alert.AlertType.WARNING);"
+      },
+      {
+        "lineNumber": 363,
+        "author": {
+          "gitId": "0325961"
+        },
+        "content": "                        isValid \u003d false;"
+      },
+      {
+        "lineNumber": 364,
+        "author": {
+          "gitId": "0325961"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 365,
+        "author": {
+          "gitId": "0325961"
+        },
+        "content": "                    System.out.println(\"value of isValid: \" + isValid);"
+      },
+      {
+        "lineNumber": 366,
+        "author": {
+          "gitId": "0325961"
+        },
+        "content": "                    System.out.println(\"start date: \" + startDate + \" Current date: \" + currentDate);"
+      },
+      {
+        "lineNumber": 367,
+        "author": {
+          "gitId": "0325961"
+        },
+        "content": "                    return new DoWithinPeriodTasksCommand(taskDescription, startDate, endDate, isValid);"
+      },
+      {
+        "lineNumber": 368,
+        "author": {
+          "gitId": "0325961"
+        },
+        "content": "                } catch (ParseException | ArrayIndexOutOfBoundsException e) {"
+      },
+      {
+        "lineNumber": 369,
+        "author": {
+          "gitId": "0325961"
+        },
+        "content": "                    throw new DukeException(\" OOPS!!! Please enter Do Within Period Task as follows:\\n\" +"
+      },
+      {
+        "lineNumber": 370,
+        "author": {
+          "gitId": "0325961"
+        },
+        "content": "                            \" \u0027Task Description\u0027 \u0027(from DD/MM/yyyy to DD/MM/yyyy)\u0027\");"
+      },
+      {
+        "lineNumber": 371,
+        "author": {
+          "gitId": "0325961"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 372,
+        "author": {
+          "gitId": "lionlim97"
+        },
+        "content": "            } else {"
+      },
+      {
+        "lineNumber": 373,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                throw new DukeException(\"\\u2639\" + \" OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\");"
+      },
+      {
         "lineNumber": 374,
         "author": {
-          "gitId": "Krazzen"
+          "gitId": "-"
         },
-        "content": "        } catch (StringIndexOutOfBoundsException e) {"
+        "content": "            }"
       },
       {
         "lineNumber": 375,
         "author": {
           "gitId": "-"
         },
-        "content": "            throw new DukeException(\"\\u2639\" + \" OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\");"
+        "content": ""
       },
       {
         "lineNumber": 376,
         "author": {
-          "gitId": "-"
+          "gitId": "Krazzen"
         },
-        "content": "        }"
+        "content": "        } catch (StringIndexOutOfBoundsException e) {"
       },
       {
         "lineNumber": 377,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "            throw new DukeException(\"\\u2639\" + \" OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\");"
       },
       {
         "lineNumber": 378,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 379,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 380,
         "author": {
           "gitId": "-"
         },
@@ -7915,10 +8494,10 @@
       }
     ],
     "authorContributionMap": {
-      "Krazzen": 50,
-      "lionlim97": 157,
+      "Krazzen": 62,
+      "lionlim97": 151,
       "0325961": 29,
-      "darrenoje": 70,
+      "darrenoje": 66,
       "hwbjerry": 4,
       "-": 68
     }
@@ -9874,26 +10453,264 @@
       {
         "lineNumber": 146,
         "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 147,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "     * Display recurring tasks that are added"
+      },
+      {
+        "lineNumber": 148,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "     * @param description desccription of recurring task"
+      },
+      {
+        "lineNumber": 149,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "     * @param startDate  start of recurrence"
+      },
+      {
+        "lineNumber": 150,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "     * @param endDate   end of recurrence"
+      },
+      {
+        "lineNumber": 151,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 152,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 153,
+        "author": {
           "gitId": "darrenoje"
         },
         "content": "    public String showRecurring(String description, String startDate, String endDate) {"
       },
       {
-        "lineNumber": 147,
+        "lineNumber": 154,
         "author": {
           "gitId": "darrenoje"
         },
         "content": "        return \"Recurring task: \" + description + \" has been added between \" + startDate + \" and \" + endDate + \"\\n\";"
       },
       {
-        "lineNumber": 148,
+        "lineNumber": 155,
         "author": {
           "gitId": "darrenoje"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 149,
+        "lineNumber": 156,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 157,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 158,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "     * Display task with instance of keyword"
+      },
+      {
+        "lineNumber": 159,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "     * @param list List of task with keyword"
+      },
+      {
+        "lineNumber": 160,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "     * @param keyword keyword entered by user"
+      },
+      {
+        "lineNumber": 161,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 162,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 163,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "    public String showFilter(TaskList list,String keyword){"
+      },
+      {
+        "lineNumber": 164,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 165,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "        if(list.taskListSize() \u003d\u003d 0) {"
+      },
+      {
+        "lineNumber": 166,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "                return \"There are no task(s) matching your keyword.\\n\";"
+      },
+      {
+        "lineNumber": 167,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "            } else {"
+      },
+      {
+        "lineNumber": 168,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "                String message \u003d \"Here are the following events/deadline with the keyword \" + keyword + \"\\n\";"
+      },
+      {
+        "lineNumber": 169,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 170,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "                for (int i \u003d 1; i \u003c\u003d list.taskListSize(); i++) {"
+      },
+      {
+        "lineNumber": 171,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "                    message \u003d message + i + \".\" + list.taskToString(i - 1) + \"\\n\";"
+      },
+      {
+        "lineNumber": 172,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 173,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "                return message;"
+      },
+      {
+        "lineNumber": 174,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 175,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 176,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 177,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 178,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "     *Display a guide to commands"
+      },
+      {
+        "lineNumber": 179,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 180,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "    public String showHelp(String help){"
+      },
+      {
+        "lineNumber": 181,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "        return help;"
+      },
+      {
+        "lineNumber": 182,
+        "author": {
+          "gitId": "Krazzen"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 183,
         "author": {
           "gitId": "-"
         },
@@ -9901,7 +10718,7 @@
       }
     ],
     "authorContributionMap": {
-      "Krazzen": 4,
+      "Krazzen": 38,
       "lionlim97": 14,
       "0325961": 21,
       "hwbjerry": 12,
@@ -17266,23 +18083,23 @@
       {
         "lineNumber": 86,
         "author": {
-          "gitId": "lionlim97"
+          "gitId": "Krazzen"
         },
-        "content": "        return split[0];"
+        "content": "        String modcode \u003d split[0].toUpperCase();"
       },
       {
         "lineNumber": 87,
         "author": {
-          "gitId": "lionlim97"
+          "gitId": "Krazzen"
         },
-        "content": "    }"
+        "content": "        return modcode;"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 89,
@@ -17296,136 +18113,143 @@
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "    public void setRemindTime(String time) {"
+        "content": ""
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "        remindTime \u003d time;"
+        "content": "    public void setRemindTime(String time) {"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "    }"
+        "content": "        remindTime \u003d time;"
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "    public String getRemindTime() {"
+        "content": ""
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "        return this.remindTime;"
+        "content": "    public String getRemindTime() {"
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "    }"
+        "content": "        return this.remindTime;"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "    public void setReminder(boolean reminder) {"
+        "content": ""
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "        this.isReminder \u003d reminder;"
+        "content": "    public void setReminder(boolean reminder) {"
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "    }"
+        "content": "        this.isReminder \u003d reminder;"
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "    public boolean getIsReminder() {"
+        "content": ""
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "        return this.isReminder;"
+        "content": "    public boolean getIsReminder() {"
       },
       {
         "lineNumber": 104,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": "    }"
+        "content": "        return this.isReminder;"
       },
       {
         "lineNumber": 105,
         "author": {
           "gitId": "lionlim97"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 106,
         "author": {
-          "gitId": "hwbjerry"
+          "gitId": "lionlim97"
         },
-        "content": "    public String toShow() {"
+        "content": ""
       },
       {
         "lineNumber": 107,
         "author": {
           "gitId": "hwbjerry"
         },
-        "content": "        return modCode + \"\\n\" + description;"
+        "content": "    public String toShow() {"
       },
       {
         "lineNumber": 108,
+        "author": {
+          "gitId": "hwbjerry"
+        },
+        "content": "        return modCode + \"\\n\" + description;"
+      },
+      {
+        "lineNumber": 109,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 109,
+        "lineNumber": 110,
         "author": {
           "gitId": "-"
         },
@@ -17433,8 +18257,8 @@
       }
     ],
     "authorContributionMap": {
-      "Krazzen": 2,
-      "lionlim97": 61,
+      "Krazzen": 4,
+      "lionlim97": 60,
       "hwbjerry": 7,
       "-": 39
     }
@@ -21417,7 +22241,7 @@
         "author": {
           "gitId": "Krazzen"
         },
-        "content": "        String w2 \u003d new Event(\"Test Event\", \"Wed 04/12/2019\", \"07:00 AM\", \"11:00 AM\", \"cs2101\").toString();"
+        "content": "        String w2 \u003d new Event(\"Test Event\", \"Wed 04/12/2019\", \"07:00 AM\", \"11:00 AM\").toString();"
       },
       {
         "lineNumber": 13,

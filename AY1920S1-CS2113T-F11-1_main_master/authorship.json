@@ -4345,437 +4345,458 @@
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": ""
+        "content": "import duke.parser.utilities.MapTokensToArguments;"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "import java.util.ArrayList;"
+        "content": "import duke.parser.utilities.ParserTokenizer;"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "import java.util.List;"
+        "content": "import duke.parser.utilities.Token;"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "import java.util.stream.Stream;"
+        "content": ""
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": ""
+        "content": "import java.util.ArrayList;"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": ""
+        "content": "import java.util.List;"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "import static duke.parser.PrefixSyntax.PREFIX_ADDRESS;"
+        "content": "import java.util.stream.Stream;"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "import static duke.parser.PrefixSyntax.PREFIX_SERIAL;"
+        "content": ""
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "import static duke.parser.PrefixSyntax.PREFIX_SIZE;"
+        "content": ""
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "import static duke.parser.PrefixSyntax.PREFIX_ZONE;"
+        "content": "import static duke.parser.utilities.Syntax.TOKEN_ADDRESS;"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "import static java.util.Objects.requireNonNull;"
+        "content": "import static duke.parser.utilities.Syntax.TOKEN_SERIAL;"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": ""
+        "content": "import static duke.parser.utilities.Syntax.TOKEN_SIZE;"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "public class AddBatchCommandParser {"
+        "content": "import static duke.parser.utilities.Syntax.TOKEN_ZONE;"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": ""
+        "content": "import static java.util.Objects.requireNonNull;"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "     * This function is used to parse the user input for adding batches."
+        "content": "public class AddBatchCommandParser {"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "     * Later it will be included with all the possible checks for the validity of the command"
+        "content": ""
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "     * @param userInput stores the command entered by the user"
+        "content": "    /**"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "     * @return reference to the the class AddBatchCommand"
+        "content": "     * This function is used to parse the user input for adding batches."
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "     * @throws DukeException when the command syntax is invalid"
+        "content": "     * Later it will be included with all the possible checks for the validity of the command"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "     */"
+        "content": "     * @param userInput stores the command entered by the user"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "    public Command parse(String userInput) throws DukeException {"
+        "content": "     * @return reference to the the class AddBatchCommand"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "        MapPrefixesToArguments mapPrefixesToArguments \u003d ParserTokenizer"
+        "content": "     * @throws DukeException when the command syntax is invalid"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "                .tokenize(userInput, PREFIX_SIZE, PREFIX_SERIAL,PREFIX_ADDRESS,PREFIX_ZONE);"
+        "content": "     */"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "        if (!checkAllPrefixesPresent(mapPrefixesToArguments,"
+        "content": "    public Command parse(String userInput) throws DukeException {"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "                PREFIX_SIZE,PREFIX_SERIAL,PREFIX_ADDRESS,PREFIX_ZONE)"
+        "content": "        MapTokensToArguments mapTokensToArguments \u003d ParserTokenizer"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "                || !mapPrefixesToArguments.getTextBeforeFirstPrefix().isEmpty()) {"
+        "content": "                .tokenize(userInput, TOKEN_SIZE, TOKEN_SERIAL, TOKEN_ADDRESS, TOKEN_ZONE);"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "            throw new DukeException(\" Invalid command format\");"
+        "content": "        if (!checkAllPrefixesPresent(mapTokensToArguments,"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "        }"
+        "content": "                TOKEN_SIZE, TOKEN_SERIAL, TOKEN_ADDRESS, TOKEN_ZONE)"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": ""
+        "content": "                || !mapTokensToArguments.getTextBeforeFirstToken().isEmpty()) {"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "        SerialNumber serialNumber \u003d ParserCheck.parseSerialNumber("
+        "content": "            throw new DukeException(\" Invalid command format\");"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "                mapPrefixesToArguments.getValue(PREFIX_SERIAL).get());"
+        "content": "        }"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "        Address address \u003d ParserCheck.parseAddress("
+        "content": ""
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "                mapPrefixesToArguments.getValue(PREFIX_ADDRESS).get());"
+        "content": "        SerialNumber serialNumber \u003d ParserCheck.parseSerialNumber("
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "        Zone zone  \u003d ParserCheck.parseZone("
+        "content": "                mapTokensToArguments.getValue(TOKEN_SERIAL).get());"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "                mapPrefixesToArguments.getValue(PREFIX_ZONE).get());"
+        "content": "        Address address \u003d ParserCheck.parseAddress("
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "        int size \u003d ParserCheck.parseSize("
+        "content": "                mapTokensToArguments.getValue(TOKEN_ADDRESS).get());"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "                mapPrefixesToArguments.getValue(PREFIX_SIZE).get());"
+        "content": "        Zone zone  \u003d ParserCheck.parseZone("
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "        List\u003cLocker\u003e addBatchOfLockers \u003d new ArrayList\u003c\u003e();"
+        "content": "                mapTokensToArguments.getValue(TOKEN_ZONE).get());"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "        addBatchOfLockers \u003d addLockersToList(addBatchOfLockers,serialNumber,address,zone,size);"
+        "content": "        int size \u003d ParserCheck.parseSize("
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "        return new AddBatchCommand(addBatchOfLockers);"
+        "content": "                mapTokensToArguments.getValue(TOKEN_SIZE).get());"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "    }"
+        "content": "        List\u003cLocker\u003e addBatchOfLockers \u003d new ArrayList\u003c\u003e();"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": ""
+        "content": "        addBatchOfLockers \u003d addLockersToList(addBatchOfLockers,serialNumber,address,zone,size);"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "    private static boolean checkAllPrefixesPresent("
+        "content": "        return new AddBatchCommand(addBatchOfLockers);"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "            MapPrefixesToArguments mapPrefixesToArguments,Prefix... prefixes) {"
+        "content": "    }"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "        return Stream.of(prefixes).allMatch(prefix -\u003e mapPrefixesToArguments"
+        "content": ""
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "                .getValue(prefix).isPresent());"
+        "content": "    private static boolean checkAllPrefixesPresent("
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "    }"
+        "content": "            MapTokensToArguments mapTokensToArguments, Token... tokens) {"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": ""
+        "content": "        return Stream.of(tokens).allMatch(token -\u003e mapTokensToArguments"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "    private static List\u003cLocker\u003e addLockersToList(List\u003cLocker\u003e addBatchOfLockers,"
+        "content": "                .getValue(token).isPresent());"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "                                                 SerialNumber serialNumber, Address address,"
+        "content": "    }"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "                                                 Zone zone, int size) throws DukeException {"
+        "content": ""
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "        requireNonNull(addBatchOfLockers);"
+        "content": "    private static List\u003cLocker\u003e addLockersToList(List\u003cLocker\u003e addBatchOfLockers,"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "        for (int i \u003d 1; i \u003c\u003d size; i++) {"
+        "content": "                                                 SerialNumber serialNumber, Address address,"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "            addBatchOfLockers.add("
+        "content": "                                                 Zone zone, int size) throws DukeException {"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "                    new Locker(serialNumber,address,zone,new Tag(\"not-in-use\")));"
+        "content": "        requireNonNull(addBatchOfLockers);"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "            int serial \u003d Integer.parseInt(serialNumber.getSerialNumberForLocker()) + 1;"
+        "content": "        for (int i \u003d 1; i \u003c\u003d size; i++) {"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "            serialNumber \u003d ParserCheck.parseSerialNumber(Integer.toString(serial));"
+        "content": "            addBatchOfLockers.add("
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "        }"
+        "content": "                    new Locker(serialNumber,address,zone,new Tag(\"not-in-use\")));"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "        return addBatchOfLockers;"
+        "content": "            int serial \u003d Integer.parseInt(serialNumber.getSerialNumberForLocker()) + 1;"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": ""
+        "content": "            serialNumber \u003d ParserCheck.parseSerialNumber(Integer.toString(serial));"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "    }"
+        "content": "        }"
       },
       {
         "lineNumber": 73,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "        return addBatchOfLockers;"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 76,
         "author": {
           "gitId": "Tejasvas123"
         },
@@ -4783,7 +4804,7 @@
       }
     ],
     "authorContributionMap": {
-      "Tejasvas123": 73
+      "Tejasvas123": 76
     }
   },
   {
@@ -4872,21 +4893,21 @@
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": ""
+        "content": "import duke.parser.utilities.MapTokensToArguments;"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": ""
+        "content": "import duke.parser.utilities.ParserTokenizer;"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "import java.util.stream.Stream;"
+        "content": "import duke.parser.utilities.Token;"
       },
       {
         "lineNumber": 15,
@@ -4900,238 +4921,238 @@
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "import static duke.parser.PrefixSyntax.PREFIX_ADDRESS;"
+        "content": ""
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "import static duke.parser.PrefixSyntax.PREFIX_SERIAL;"
+        "content": "import java.util.stream.Stream;"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "import static duke.parser.PrefixSyntax.PREFIX_ZONE;"
+        "content": ""
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": ""
+        "content": "import static duke.parser.utilities.Syntax.TOKEN_ADDRESS;"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "public class AddLockerCommandParser {"
+        "content": "import static duke.parser.utilities.Syntax.TOKEN_SERIAL;"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": ""
+        "content": "import static duke.parser.utilities.Syntax.TOKEN_ZONE;"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "     * This function is used to parse the user input for adding a new locker to the list."
+        "content": "public class AddLockerCommandParser {"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "     * Later it will include all checks for validating the user input"
+        "content": ""
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "     * @param userInput stores the user input"
+        "content": "    /**"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "     * @return reference to the class AddLockerCommand"
+        "content": "     * This function is used to parse the user input for adding a new locker to the list."
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "     * @throws DukeException when the command format is invalid"
+        "content": "     * Later it will include all checks for validating the user input"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "     */"
+        "content": "     * @param userInput stores the user input"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "    public Command parse(String userInput) throws DukeException {"
+        "content": "     * @return reference to the class AddLockerCommand"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "        MapPrefixesToArguments mapPrefixesToArguments \u003d"
+        "content": "     * @throws DukeException when the command format is invalid"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "                ParserTokenizer.tokenize(userInput, PREFIX_SERIAL, PREFIX_ADDRESS, PREFIX_ZONE);"
+        "content": "     */"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "        if (!checkAllPrefixesPresent(mapPrefixesToArguments,"
+        "content": "    public Command parse(String userInput) throws DukeException {"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "                PREFIX_SERIAL, PREFIX_ADDRESS, PREFIX_ZONE)"
+        "content": "        MapTokensToArguments mapTokensToArguments \u003d"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "                || !mapPrefixesToArguments.getTextBeforeFirstPrefix().isEmpty()) {"
+        "content": "                ParserTokenizer.tokenize(userInput, TOKEN_SERIAL, TOKEN_ADDRESS, TOKEN_ZONE);"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "            throw new DukeException(\" Invalid command format\");"
+        "content": "        if (!checkAllTokensPresent(mapTokensToArguments,"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "        }"
+        "content": "                TOKEN_SERIAL, TOKEN_ADDRESS, TOKEN_ZONE)"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": ""
+        "content": "                || !mapTokensToArguments.getTextBeforeFirstToken().isEmpty()) {"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "        SerialNumber serialNumber \u003d ParserCheck.parseSerialNumber("
+        "content": "            throw new DukeException(\" Invalid command format\");"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "                mapPrefixesToArguments.getValue(PREFIX_SERIAL).get());"
+        "content": "        }"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "        Address address \u003d ParserCheck.parseAddress("
+        "content": ""
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "                mapPrefixesToArguments.getValue(PREFIX_ADDRESS).get());"
+        "content": "        SerialNumber serialNumber \u003d ParserCheck.parseSerialNumber("
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "        Zone zone \u003d ParserCheck.parseZone(mapPrefixesToArguments.getValue(PREFIX_ZONE).get());"
+        "content": "                mapTokensToArguments.getValue(TOKEN_SERIAL).get());"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "        Tag tag \u003d new Tag(\"not-in-use\");"
+        "content": "        Address address \u003d ParserCheck.parseAddress("
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "        Locker locker \u003d new Locker(serialNumber, address, zone, tag);"
+        "content": "                mapTokensToArguments.getValue(TOKEN_ADDRESS).get());"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "        return new AddLockerCommand(locker);"
+        "content": "        Zone zone \u003d ParserCheck.parseZone(mapTokensToArguments.getValue(TOKEN_ZONE).get());"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "    }"
+        "content": "        Tag tag \u003d new Tag(\"not-in-use\");"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": ""
+        "content": "        Locker locker \u003d new Locker(serialNumber, address, zone, tag);"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "    private static boolean checkAllPrefixesPresent(MapPrefixesToArguments mapPrefixesToArguments,"
+        "content": "        return new AddLockerCommand(locker);"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "                                                   Prefix... prefixes) {"
+        "content": "    }"
       },
       {
         "lineNumber": 50,
@@ -5145,24 +5166,45 @@
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "        return Stream.of(prefixes).allMatch(prefix -\u003e mapPrefixesToArguments"
+        "content": "    private static boolean checkAllTokensPresent(MapTokensToArguments mapTokensToArguments,"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "                .getValue(prefix).isPresent());"
+        "content": "                                                 Token... tokens) {"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 54,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "        return Stream.of(tokens).allMatch(token -\u003e mapTokensToArguments"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "                .getValue(token).isPresent());"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 57,
         "author": {
           "gitId": "Tejasvas123"
         },
@@ -5170,7 +5212,7 @@
       }
     ],
     "authorContributionMap": {
-      "Tejasvas123": 54
+      "Tejasvas123": 57
     }
   },
   {
@@ -5767,407 +5809,6 @@
     ],
     "authorContributionMap": {
       "Tejasvas123": 11
-    }
-  },
-  {
-    "path": "src/main/java/duke/parser/MapPrefixesToArguments.java",
-    "fileType": "functional",
-    "lines": [
-      {
-        "lineNumber": 1,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "package duke.parser;"
-      },
-      {
-        "lineNumber": 2,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 3,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "import java.util.ArrayList;"
-      },
-      {
-        "lineNumber": 4,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "import java.util.HashMap;"
-      },
-      {
-        "lineNumber": 5,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "import java.util.List;"
-      },
-      {
-        "lineNumber": 6,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "import java.util.Map;"
-      },
-      {
-        "lineNumber": 7,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "import java.util.Optional;"
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 9,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "public class MapPrefixesToArguments {"
-      },
-      {
-        "lineNumber": 10,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "    private final Map\u003cPrefix, List\u003cString\u003e\u003e mapPrefixesToArguments \u003d new HashMap\u003c\u003e();"
-      },
-      {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 13,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "     * This function is used for mapping a given string to its corresponding prefix."
-      },
-      {
-        "lineNumber": 14,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "     * In this implementation, prefix is the key for the mapping"
-      },
-      {
-        "lineNumber": 15,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "     * @param prefix stores the prefix"
-      },
-      {
-        "lineNumber": 16,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "     * @param args stores the arguments mapped to a given key"
-      },
-      {
-        "lineNumber": 17,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 18,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "    public void setMapping(Prefix prefix, String args) {"
-      },
-      {
-        "lineNumber": 19,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "        List\u003cString\u003e arguments \u003d getAllValues(prefix);"
-      },
-      {
-        "lineNumber": 20,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "        arguments.add(args);"
-      },
-      {
-        "lineNumber": 21,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "        mapPrefixesToArguments.put(prefix, arguments);"
-      },
-      {
-        "lineNumber": 22,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 23,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 24,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 25,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "     * This function is used to get all the arguments mapped to a prefix."
-      },
-      {
-        "lineNumber": 26,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "     * As per the current implementation, we can have multiple arguments for the"
-      },
-      {
-        "lineNumber": 27,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "     * same prefix."
-      },
-      {
-        "lineNumber": 28,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "     * @param prefix stores the prefix/key for the mapping"
-      },
-      {
-        "lineNumber": 29,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "     * @return a list of all the arguments mapped to the prefix"
-      },
-      {
-        "lineNumber": 30,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "    public List\u003cString\u003e getAllValues(Prefix prefix) {"
-      },
-      {
-        "lineNumber": 32,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 33,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "        if (!mapPrefixesToArguments.containsKey(prefix)) {"
-      },
-      {
-        "lineNumber": 34,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "            return new ArrayList\u003c\u003e();"
-      },
-      {
-        "lineNumber": 35,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 36,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "        return new ArrayList\u003c\u003e(mapPrefixesToArguments.get(prefix));"
-      },
-      {
-        "lineNumber": 37,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 38,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 39,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 40,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "     * This function is used to get the argument that was mapped to the prefix."
-      },
-      {
-        "lineNumber": 41,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "     * @param prefix stores the prefix"
-      },
-      {
-        "lineNumber": 42,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "     * @return the argument mapped to the prefix"
-      },
-      {
-        "lineNumber": 43,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 44,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "    public Optional\u003cString\u003e getValue(Prefix prefix) {"
-      },
-      {
-        "lineNumber": 45,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "        /*In case of multiple arguments related to a prefix"
-      },
-      {
-        "lineNumber": 46,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "          this function will return the last argument associated with that token."
-      },
-      {
-        "lineNumber": 47,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "          Optional accounts for the case when the user does not input anything as argument"
-      },
-      {
-        "lineNumber": 48,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "         */"
-      },
-      {
-        "lineNumber": 49,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "        List\u003cString\u003e arguments \u003d getAllValues(prefix);"
-      },
-      {
-        "lineNumber": 50,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "        return arguments.isEmpty() ? Optional.empty() : Optional.of(arguments.get(arguments.size() - 1));"
-      },
-      {
-        "lineNumber": 51,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 52,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 53,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "    public String getTextBeforeFirstPrefix() {"
-      },
-      {
-        "lineNumber": 54,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "        return getValue(new Prefix(\"\")).orElse(\"\");"
-      },
-      {
-        "lineNumber": 55,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 56,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "}"
-      }
-    ],
-    "authorContributionMap": {
-      "Tejasvas123": 56
     }
   },
   {
@@ -7107,7 +6748,7 @@
     }
   },
   {
-    "path": "src/main/java/duke/parser/ParserTokenizer.java",
+    "path": "src/main/java/duke/parser/utilities/MapTokensToArguments.java",
     "fileType": "functional",
     "lines": [
       {
@@ -7115,7 +6756,408 @@
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "package duke.parser;"
+        "content": "package duke.parser.utilities;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "import java.util.HashMap;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "import java.util.List;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "import java.util.Map;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "import java.util.Optional;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "public class MapTokensToArguments {"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "    private final Map\u003cToken, List\u003cString\u003e\u003e mapTokensToArguments \u003d new HashMap\u003c\u003e();"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "     * This function is used for mapping a given string to its corresponding token."
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "     * In this implementation, token is the key for the mapping"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "     * @param token stores the token"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "     * @param args stores the arguments mapped to a given key"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "    public void setMapping(Token token, String args) {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "        List\u003cString\u003e arguments \u003d getAllValues(token);"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "        arguments.add(args);"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "        mapTokensToArguments.put(token, arguments);"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "     * This function is used to get all the arguments mapped to a token."
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "     * As per the current implementation, we can have multiple arguments for the"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "     * same token."
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "     * @param token stores the token/key for the mapping"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "     * @return a list of all the arguments mapped to the token"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "    public List\u003cString\u003e getAllValues(Token token) {"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "        if (!mapTokensToArguments.containsKey(token)) {"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "            return new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "        return new ArrayList\u003c\u003e(mapTokensToArguments.get(token));"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "     * This function is used to get the argument that was mapped to the token."
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "     * @param token stores the token"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "     * @return the argument mapped to the token"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "    public Optional\u003cString\u003e getValue(Token token) {"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "        /*In case of multiple arguments related to a prefix"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "          this function will return the last argument associated with that token."
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "          Optional accounts for the case when the user does not input anything as argument"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "         */"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "        List\u003cString\u003e arguments \u003d getAllValues(token);"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "        return arguments.isEmpty() ? Optional.empty() : Optional.of(arguments.get(arguments.size() - 1));"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "    public String getTextBeforeFirstToken() {"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "        return getValue(new Token(\"\")).orElse(\"\");"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Tejasvas123": 56
+    }
+  },
+  {
+    "path": "src/main/java/duke/parser/utilities/ParserTokenizer.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "package duke.parser.utilities;"
       },
       {
         "lineNumber": 2,
@@ -7185,7 +7227,7 @@
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "     * This function is responsible for mapping prefixes with their valid arguments."
+        "content": "     * This function is responsible for mapping tokens with their valid arguments."
       },
       {
         "lineNumber": 12,
@@ -7199,14 +7241,14 @@
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "     * @param prefixes stores the prefixes that are expected in the user input"
+        "content": "     * @param tokens stores the tokens that are expected in the user input"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "     * @return mapping of prefixes to arguments"
+        "content": "     * @return mapping of tokens to arguments"
       },
       {
         "lineNumber": 15,
@@ -7220,7 +7262,7 @@
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "    public static MapPrefixesToArguments tokenize(String args,Prefix... prefixes) {"
+        "content": "    public static MapTokensToArguments tokenize(String args, Token... tokens) {"
       },
       {
         "lineNumber": 17,
@@ -7248,14 +7290,14 @@
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "        List\u003cPositionOfPrefix\u003e prefixPositions \u003d findAllPrefixPositions(args, prefixes);"
+        "content": "        List\u003cPositionOfToken\u003e tokenPositions \u003d findAllTokenPositions(args, tokens);"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "        return getMapping(args,prefixPositions);"
+        "content": "        return getMapping(args,tokenPositions);"
       },
       {
         "lineNumber": 22,
@@ -7276,7 +7318,7 @@
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "    private static List\u003cPositionOfPrefix\u003e findAllPrefixPositions(String args,Prefix... prefixes) {"
+        "content": "    private static List\u003cPositionOfToken\u003e findAllTokenPositions(String args, Token... tokens) {"
       },
       {
         "lineNumber": 25,
@@ -7311,14 +7353,14 @@
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "        return Arrays.stream(prefixes)"
+        "content": "        return Arrays.stream(tokens)"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "                .flatMap(prefix -\u003e findPrefixPositions(args,prefix).stream())"
+        "content": "                .flatMap(token -\u003e findTokenPositions(args,token).stream())"
       },
       {
         "lineNumber": 31,
@@ -7346,14 +7388,14 @@
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "    private static List\u003cPositionOfPrefix\u003e findPrefixPositions(String args, Prefix prefix) {"
+        "content": "    private static List\u003cPositionOfToken\u003e findTokenPositions(String args, Token token) {"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "        List\u003cPositionOfPrefix\u003e positions \u003d new ArrayList\u003c\u003e();"
+        "content": "        List\u003cPositionOfToken\u003e positions \u003d new ArrayList\u003c\u003e();"
       },
       {
         "lineNumber": 36,
@@ -7367,35 +7409,35 @@
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "        int prefixPos \u003d findPrefixPosition(args, prefix.getPrefix(), 0);"
+        "content": "        int tokenPos \u003d findTokenPosition(args, token.getToken(), 0);"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "        while (prefixPos !\u003d -1) {"
+        "content": "        while (tokenPos !\u003d -1) {"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "            PositionOfPrefix extendedPrefix \u003d new PositionOfPrefix(prefix, prefixPos);"
+        "content": "            PositionOfToken extendedToken \u003d new PositionOfToken(token, tokenPos);"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "            positions.add(extendedPrefix);"
+        "content": "            positions.add(extendedToken);"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "            prefixPos \u003d findPrefixPosition(args, prefix.getPrefix(), prefixPos);"
+        "content": "            tokenPos \u003d findTokenPosition(args, token.getToken(), tokenPos);"
       },
       {
         "lineNumber": 42,
@@ -7437,21 +7479,21 @@
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "    private static int findPrefixPosition(String args,String prefix,int startFromIndex) {"
+        "content": "    private static int findTokenPosition(String args, String token, int startFromIndex) {"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "        int prefixIndex \u003d args.indexOf(\" \" + prefix,startFromIndex);"
+        "content": "        int tokenIndex \u003d args.indexOf(\" \" + token,startFromIndex);"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "        return prefixIndex \u003d\u003d -1 ? -1 : prefixIndex + 1; //prefixIndex + 1 offsets for the whitespace"
+        "content": "        return tokenIndex \u003d\u003d -1 ? -1 : tokenIndex + 1; //tokenIndex + 1 offsets for the whitespace"
       },
       {
         "lineNumber": 50,
@@ -7472,14 +7514,14 @@
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "    private static MapPrefixesToArguments getMapping(String args, List\u003cPositionOfPrefix\u003e prefixPositions) {"
+        "content": "    private static MapTokensToArguments getMapping(String args, List\u003cPositionOfToken\u003e positionOfTokens) {"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "        //Sorting is required as we are trying to implement friendlier syntax where the order of prefixes"
+        "content": "        //Sorting is required as we are trying to implement friendlier syntax where the order of tokens"
       },
       {
         "lineNumber": 54,
@@ -7493,7 +7535,7 @@
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "        prefixPositions.sort((prefix1,prefix2) -\u003e prefix1.getStartPosition() - prefix2.getStartPosition());"
+        "content": "        positionOfTokens.sort((token1,token2) -\u003e token1.getStartPosition() - token2.getStartPosition());"
       },
       {
         "lineNumber": 56,
@@ -7507,14 +7549,14 @@
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "        PositionOfPrefix startPosition \u003d new PositionOfPrefix(new Prefix(\"\"),0);"
+        "content": "        PositionOfToken startPosition \u003d new PositionOfToken(new Token(\"\"),0);"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "        prefixPositions.add(0,startPosition);"
+        "content": "        positionOfTokens.add(0,startPosition);"
       },
       {
         "lineNumber": 59,
@@ -7528,14 +7570,14 @@
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "        PositionOfPrefix endPosition \u003d new PositionOfPrefix(new Prefix(\"\"),args.length());"
+        "content": "        PositionOfToken endPosition \u003d new PositionOfToken(new Token(\"\"),args.length());"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "        prefixPositions.add(endPosition);"
+        "content": "        positionOfTokens.add(endPosition);"
       },
       {
         "lineNumber": 62,
@@ -7549,49 +7591,49 @@
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "        MapPrefixesToArguments mapPrefixesToArguments \u003d new MapPrefixesToArguments();"
+        "content": "        MapTokensToArguments mapTokensToArguments \u003d new MapTokensToArguments();"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "        for (int i \u003d 0; i \u003c prefixPositions.size() - 1; i++) {"
+        "content": "        for (int i \u003d 0; i \u003c positionOfTokens.size() - 1; i++) {"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "            Prefix currentPrefix \u003d prefixPositions.get(i).getPrefix();"
+        "content": "            Token currentToken \u003d positionOfTokens.get(i).getToken();"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "            //The mapping takes place by considering everything between the two prefixes as argument"
+        "content": "            //The mapping takes place by considering everything between the two tokens as argument"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "            String argumentForCurrentPrefix \u003d extractArgument(args,prefixPositions.get(i),"
+        "content": "            String argumentForCurrentToken \u003d extractArgument(args,positionOfTokens.get(i),"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "                    prefixPositions.get(i + 1));"
+        "content": "                    positionOfTokens.get(i + 1));"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "            mapPrefixesToArguments.setMapping(currentPrefix,argumentForCurrentPrefix);"
+        "content": "            mapTokensToArguments.setMapping(currentToken,argumentForCurrentToken);"
       },
       {
         "lineNumber": 70,
@@ -7605,7 +7647,7 @@
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "        return mapPrefixesToArguments;"
+        "content": "        return mapTokensToArguments;"
       },
       {
         "lineNumber": 72,
@@ -7626,28 +7668,28 @@
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "    private static String extractArgument(String arg, PositionOfPrefix currentPos,"
+        "content": "    private static String extractArgument(String arg, PositionOfToken currentPos,"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "                                          PositionOfPrefix nextPos) {"
+        "content": "                                          PositionOfToken nextPos) {"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "        Prefix prefix \u003d currentPos.getPrefix();"
+        "content": "        Token token \u003d currentPos.getToken();"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "        int startIndex \u003d currentPos.getStartPosition() + prefix.getPrefix().length();"
+        "content": "        int startIndex \u003d currentPos.getStartPosition() + token.getToken().length();"
       },
       {
         "lineNumber": 78,
@@ -7676,7 +7718,7 @@
     }
   },
   {
-    "path": "src/main/java/duke/parser/PositionOfPrefix.java",
+    "path": "src/main/java/duke/parser/utilities/PositionOfToken.java",
     "fileType": "functional",
     "lines": [
       {
@@ -7684,7 +7726,7 @@
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "package duke.parser;"
+        "content": "package duke.parser.utilities;"
       },
       {
         "lineNumber": 2,
@@ -7698,7 +7740,7 @@
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "public class PositionOfPrefix {"
+        "content": "public class PositionOfToken {"
       },
       {
         "lineNumber": 4,
@@ -7712,7 +7754,7 @@
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "    private Prefix prefix;"
+        "content": "    private Token token;"
       },
       {
         "lineNumber": 6,
@@ -7726,14 +7768,14 @@
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "    public PositionOfPrefix(Prefix prefix,int startPosition) {"
+        "content": "    public PositionOfToken(Token token, int startPosition) {"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "        this.prefix \u003d prefix;"
+        "content": "        this.token \u003d token;"
       },
       {
         "lineNumber": 9,
@@ -7789,14 +7831,14 @@
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "    Prefix getPrefix() {"
+        "content": "    Token getToken() {"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "        return prefix;"
+        "content": "        return token;"
       },
       {
         "lineNumber": 18,
@@ -7818,7 +7860,7 @@
     }
   },
   {
-    "path": "src/main/java/duke/parser/Prefix.java",
+    "path": "src/main/java/duke/parser/utilities/Syntax.java",
     "fileType": "functional",
     "lines": [
       {
@@ -7826,7 +7868,7 @@
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "package duke.parser;"
+        "content": "package duke.parser.utilities;"
       },
       {
         "lineNumber": 2,
@@ -7840,14 +7882,114 @@
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "public class Prefix {"
+        "content": "public class Syntax {"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "    private final String prefix;"
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "    // Used for command:addLocker"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "    public static final Token TOKEN_SERIAL \u003d new Token(\"s/\");"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "    public static final Token TOKEN_ADDRESS \u003d new Token(\"a/\");"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "    public static final Token TOKEN_ZONE \u003d new Token(\"z/\");"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "    //Used for command: addBatch"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "    public static final Token TOKEN_SIZE \u003d new Token(\"u/\");"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Tejasvas123": 13
+    }
+  },
+  {
+    "path": "src/main/java/duke/parser/utilities/Token.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "package duke.parser.utilities;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "public class Token {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Tejasvas123"
+        },
+        "content": "    private final String token;"
       },
       {
         "lineNumber": 5,
@@ -7861,14 +8003,14 @@
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "    public Prefix(String prefix) {"
+        "content": "    public Token(String token) {"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "        this.prefix \u003d prefix;"
+        "content": "        this.token \u003d token;"
       },
       {
         "lineNumber": 8,
@@ -7889,14 +8031,14 @@
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "    public String getPrefix() {"
+        "content": "    public String getToken() {"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "        return prefix;"
+        "content": "        return token;"
       },
       {
         "lineNumber": 12,
@@ -7931,7 +8073,7 @@
         "author": {
           "gitId": "Tejasvas123"
         },
-        "content": "        return prefix;"
+        "content": "        return token;"
       },
       {
         "lineNumber": 17,
@@ -7950,106 +8092,6 @@
     ],
     "authorContributionMap": {
       "Tejasvas123": 18
-    }
-  },
-  {
-    "path": "src/main/java/duke/parser/PrefixSyntax.java",
-    "fileType": "functional",
-    "lines": [
-      {
-        "lineNumber": 1,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "package duke.parser;"
-      },
-      {
-        "lineNumber": 2,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 3,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "public class PrefixSyntax {"
-      },
-      {
-        "lineNumber": 4,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 5,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "    // Used for command:addLocker"
-      },
-      {
-        "lineNumber": 6,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "    public static final Prefix PREFIX_SERIAL \u003d new Prefix(\"s/\");"
-      },
-      {
-        "lineNumber": 7,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "    public static final Prefix PREFIX_ADDRESS \u003d new Prefix(\"a/\");"
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "    public static final Prefix PREFIX_ZONE \u003d new Prefix(\"z/\");"
-      },
-      {
-        "lineNumber": 9,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 10,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "    //Used for command: addBatch"
-      },
-      {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "    public static final Prefix PREFIX_SIZE \u003d new Prefix(\"u/\");"
-      },
-      {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 13,
-        "author": {
-          "gitId": "Tejasvas123"
-        },
-        "content": "}"
-      }
-    ],
-    "authorContributionMap": {
-      "Tejasvas123": 13
     }
   },
   {
