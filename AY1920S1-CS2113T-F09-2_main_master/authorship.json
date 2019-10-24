@@ -1220,16 +1220,16 @@
       {
         "lineNumber": 4,
         "author": {
-          "gitId": "ZKathrynx"
+          "gitId": "kuromono"
         },
-        "content": "import cube.model.FoodList;"
+        "content": "import cube.model.Food;"
       },
       {
         "lineNumber": 5,
         "author": {
-          "gitId": "kuromono"
+          "gitId": "ZKathrynx"
         },
-        "content": "import cube.storage.ConfigStorage;"
+        "content": "import cube.model.FoodList;"
       },
       {
         "lineNumber": 6,
@@ -1306,206 +1306,157 @@
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    private ConfigStorage configStorage;"
+        "content": "    private FileUtilJson storage;"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    private FileUtilJson storage;"
+        "content": ""
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    private FoodList foodList;"
+        "content": "    public void init(String filePath) {"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "kuromono"
         },
-        "content": ""
+        "content": "        storage \u003d new FileUtilJson(filePath);"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    public void init(String filePath) {"
+        "content": ""
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "        storage \u003d new FileUtilJson(filePath);"
+        "content": "        try {"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "kuromono"
         },
-        "content": ""
+        "content": "            storageManager \u003d storage.load();"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "        try {"
+        "content": "            Food.updateRevenue(storageManager.getRevenue());"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "            storageManager \u003d storage.load();"
+        "content": "        } catch (CubeException e) {"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "            configStorage \u003d storage.loadConfig();"
+        "content": "            storageManager \u003d new StorageManager();"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "            foodList \u003d storageManager.getFoodList();"
+        "content": "        }"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "        } catch (CubeException e) {"
+        "content": "    }"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "            foodList \u003d new FoodList();"
+        "content": ""
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "            configStorage \u003d new ConfigStorage();"
+        "content": "    @Override"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "            storageManager \u003d new StorageManager();"
+        "content": "    public void start(Stage stage) {"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "        }"
+        "content": "        init(\"data\");"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "kuromono"
         },
-        "content": ""
+        "content": "        MainWindow mwc \u003d new MainWindow(stage, storageManager, storage);"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    @Override"
+        "content": ""
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    public void start(Stage stage) {"
+        "content": "        mwc.initComponents();"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "        init(\"data\");"
+        "content": "        mwc.show();"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "        //stage.setMinHeight(configStorage.getWindowHeight());"
-      },
-      {
-        "lineNumber": 38,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": "        //stage.setMinWidth(configStorage.getWindowWidth());"
-      },
-      {
-        "lineNumber": 39,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 40,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": "        MainWindow mwc \u003d new MainWindow(stage, storageManager, storage, foodList);"
-      },
-      {
-        "lineNumber": 41,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 42,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": "        mwc.initComponents();"
-      },
-      {
-        "lineNumber": 43,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": "        mwc.show();"
-      },
-      {
-        "lineNumber": 44,
-        "author": {
-          "gitId": "kuromono"
-        },
         "content": "    }"
       },
       {
-        "lineNumber": 45,
+        "lineNumber": 38,
         "author": {
           "gitId": "kuromono"
         },
@@ -1513,7 +1464,7 @@
       }
     ],
     "authorContributionMap": {
-      "kuromono": 44,
+      "kuromono": 37,
       "ZKathrynx": 1
     }
   },
@@ -5027,35 +4978,35 @@
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "import cube.logic.command.exception.CommandErrorMessage;"
+        "content": "//not fully functional yet, pls dont test it now"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "import cube.logic.command.exception.CommandException;"
+        "content": "//will make it functional within 2 days, before friday demo"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "import cube.model.Food;"
+        "content": "//also, change the name to revenue for user friendliness"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "import cube.model.FoodList;"
+        "content": "//updated by LL-Pengfei"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "import cube.storage.StorageManager;"
+        "content": ""
       },
       {
         "lineNumber": 13,
@@ -5069,196 +5020,196 @@
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "/**"
+        "content": "import cube.logic.command.exception.CommandErrorMessage;"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": " * This class supports commands related to generating revenue."
+        "content": "import cube.logic.command.exception.CommandException;"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": " */"
+        "content": "import cube.model.Food;"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "public class GenerateRevenueCommand extends Command {"
+        "content": "import cube.model.FoodList;"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "    /**"
+        "content": "import cube.storage.StorageManager;"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "     * Use enums to specify the states of the object whose revenue is to be generated."
+        "content": ""
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "     */"
+        "content": "/**"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "    public enum GenerateRevenueBy {"
+        "content": " * This class supports commands related to generating revenue."
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "        INDEX, NAME, TYPE"
+        "content": " */"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "    }"
+        "content": "public class GenerateRevenueCommand extends Command {"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "    private int generateRevenueIndex;"
+        "content": "     * Use enums to specify the states of the object whose revenue is to be generated."
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "    private String generateRevenueDescription;"
+        "content": "     */"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "    private GenerateRevenueCommand.GenerateRevenueBy param;"
+        "content": "    public enum GenerateRevenueBy {"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "    private final String MESSAGE_SUCCESS_SINGLE \u003d \"Nice! I\u0027ve generated the revenue for this food:\\n\""
+        "content": "        INDEX, NAME, TYPE"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "            + \"%1$s\\n\""
+        "content": "    }"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "            + \"Now you have %2$s food in the list.\\n\";"
+        "content": ""
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "    private final String MESSAGE_SUCCESS_MULTIPLE \u003d \"Nice! I\u0027ve generated the revenue for this type:\\n\""
+        "content": "    private int generateRevenueIndex;"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "            + \"%1$s\\n\""
+        "content": "    private String generateRevenueDescription;"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "            + \"This type contains \""
+        "content": "    private GenerateRevenueCommand.GenerateRevenueBy param;"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "            + \"%2$s food items\\n\""
+        "content": "    private final String MESSAGE_SUCCESS_SINGLE \u003d \"Nice! I\u0027ve generated the revenue for this food:\\n\""
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "            + \"Now you have %3$s food in the list.\\n\";"
+        "content": "            + \"%1$s\\n\""
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": ""
+        "content": "            + \"Now you have %2$s food in the list.\\n\";"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "    /**"
+        "content": "    private final String MESSAGE_SUCCESS_MULTIPLE \u003d \"Nice! I\u0027ve generated the revenue for this type:\\n\""
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "     * The default constructor, generating total revenue."
+        "content": "            + \"%1$s\\n\""
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "     */"
+        "content": "            + \"This type contains \""
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "    public GenerateRevenueCommand() {"
+        "content": "            + \"%2$s food items\\n\""
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "    }"
+        "content": "            + \"Now you have %3$s food in the list.\\n\";"
       },
       {
         "lineNumber": 42,
@@ -5279,546 +5230,546 @@
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "     * The constructor for generating revenue using index."
+        "content": "     * The default constructor, generating total revenue."
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "     *"
+        "content": "     */"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "     * @param index The index of the food whose revenue is to be generated."
+        "content": "    public GenerateRevenueCommand() {"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "     * @param param The parameter is used to specify the type of generating revenue."
+        "content": "    }"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "     */"
+        "content": ""
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "    public GenerateRevenueCommand(int index, String param) {"
+        "content": "    /**"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "        this.generateRevenueIndex \u003d index - 1;"
+        "content": "     * The constructor for generating revenue using index."
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "        this.param \u003d GenerateRevenueCommand.GenerateRevenueBy.valueOf(param);"
+        "content": "     *"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "    }"
+        "content": "     * @param index The index of the food whose revenue is to be generated."
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": ""
+        "content": "     * @param param The parameter is used to specify the type of generating revenue."
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "    /**"
+        "content": "     */"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "     * The constructor for generating revenue using food name or food type."
+        "content": "    public GenerateRevenueCommand(int index, String param) {"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "     *"
+        "content": "        this.generateRevenueIndex \u003d index - 1;"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "     * @param GenerateRevenueDescription The food name or food type whose revenue is to be generated."
+        "content": "        this.param \u003d GenerateRevenueCommand.GenerateRevenueBy.valueOf(param);"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "     * @param param The parameter is used to specify the type of generating revenue."
+        "content": "    }"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "     */"
+        "content": ""
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "    public GenerateRevenueCommand(String GenerateRevenueDescription, String param) {"
+        "content": "    /**"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "        this.generateRevenueDescription \u003d GenerateRevenueDescription;"
+        "content": "     * The constructor for generating revenue using food name or food type."
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "        this.param \u003d GenerateRevenueCommand.GenerateRevenueBy.valueOf(param);"
+        "content": "     *"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "    }"
+        "content": "     * @param GenerateRevenueDescription The food name or food type whose revenue is to be generated."
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": ""
+        "content": "     * @param param The parameter is used to specify the type of generating revenue."
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "    /**"
+        "content": "     */"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "     * The class checks whether a given index is valid or not."
+        "content": "    public GenerateRevenueCommand(String GenerateRevenueDescription, String param) {"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "     *"
+        "content": "        this.generateRevenueDescription \u003d GenerateRevenueDescription;"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "     * @param list The food list."
+        "content": "        this.param \u003d GenerateRevenueCommand.GenerateRevenueBy.valueOf(param);"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "     * @throws CommandException If the given index is invalid."
+        "content": "    }"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "     */"
+        "content": ""
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "    private void checkValidIndex(FoodList list) throws CommandException {"
+        "content": "    /**"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "        if (generateRevenueIndex \u003c 0 || generateRevenueIndex \u003e\u003d list.size()) {"
+        "content": "     * The class checks whether a given index is valid or not."
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "            throw new CommandException(CommandErrorMessage.FOOD_NOT_EXISTS);"
+        "content": "     *"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "        }"
+        "content": "     * @param list The food list."
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "    }"
+        "content": "     * @throws CommandException If the given index is invalid."
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": ""
+        "content": "     */"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "    /**"
+        "content": "    private void checkValidIndex(FoodList list) throws CommandException {"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "     * The class checks whether a given food name is in the food list or not."
+        "content": "        if (generateRevenueIndex \u003c 0 || generateRevenueIndex \u003e\u003d list.size()) {"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "     *"
+        "content": "            throw new CommandException(CommandErrorMessage.FOOD_NOT_EXISTS);"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "     * @param list The food list."
+        "content": "        }"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "     * @throws CommandException If the given food name is not inside the food list."
+        "content": "    }"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "     */"
+        "content": ""
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "    private void checkValidName(FoodList list) throws CommandException {"
+        "content": "    /**"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "        if (!list.existsName(generateRevenueDescription)) {"
+        "content": "     * The class checks whether a given food name is in the food list or not."
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "            throw new CommandException(CommandErrorMessage.FOOD_NOT_EXISTS);"
+        "content": "     *"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "        }"
+        "content": "     * @param list The food list."
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "    }"
+        "content": "     * @throws CommandException If the given food name is not inside the food list."
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": ""
+        "content": "     */"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "    /**"
+        "content": "    private void checkValidName(FoodList list) throws CommandException {"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "     * The class checks whether a given food type is in the food list or not."
+        "content": "        if (!list.existsName(generateRevenueDescription)) {"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "     * @param list The food list."
+        "content": "            throw new CommandException(CommandErrorMessage.FOOD_NOT_EXISTS);"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "     * @throws CommandException If the given food type is not inside the food list."
+        "content": "        }"
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "     */"
+        "content": "    }"
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "    private void checkValidType(FoodList list) throws CommandException {"
+        "content": ""
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "        if (!list.existsType(generateRevenueDescription)) {"
+        "content": "    /**"
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "            throw new CommandException(CommandErrorMessage.FOOD_NOT_EXISTS);"
+        "content": "     * The class checks whether a given food type is in the food list or not."
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "        }"
+        "content": "     * @param list The food list."
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "    }"
+        "content": "     * @throws CommandException If the given food type is not inside the food list."
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": ""
+        "content": "     */"
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "    /**"
+        "content": "    private void checkValidType(FoodList list) throws CommandException {"
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "     * The class generates the revenue for food whose revenue the user wishes to generate."
+        "content": "        if (!list.existsType(generateRevenueDescription)) {"
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "     *"
+        "content": "            throw new CommandException(CommandErrorMessage.FOOD_NOT_EXISTS);"
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "     * @param list The food list."
+        "content": "        }"
       },
       {
         "lineNumber": 104,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "     * @param storage The storage we have."
+        "content": "    }"
       },
       {
         "lineNumber": 105,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "     * @return The Feedback to User for Generate Revenue Command."
+        "content": ""
       },
       {
         "lineNumber": 106,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "     * @throws CommandException If Generating Revenue is unsuccessful."
+        "content": "    /**"
       },
       {
         "lineNumber": 107,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "     */"
+        "content": "     * The class generates the revenue for food whose revenue the user wishes to generate."
       },
       {
         "lineNumber": 108,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "    @Override"
+        "content": "     *"
       },
       {
         "lineNumber": 109,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "    public CommandResult execute(FoodList list, StorageManager storage) throws CommandException {"
+        "content": "     * @param list The food list."
       },
       {
         "lineNumber": 110,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "        Food toGenerateRevenue;"
+        "content": "     * @param storage The storage we have."
       },
       {
         "lineNumber": 111,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "        switch (param) {"
+        "content": "     * @return The Feedback to User for Generate Revenue Command."
       },
       {
         "lineNumber": 112,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "            case INDEX:"
+        "content": "     * @throws CommandException If Generating Revenue is unsuccessful."
       },
       {
         "lineNumber": 113,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "                checkValidIndex(list);"
+        "content": "     */"
       },
       {
         "lineNumber": 114,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "                toGenerateRevenue \u003d list.get(generateRevenueIndex);"
+        "content": "    @Override"
       },
       {
         "lineNumber": 115,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "                list.removeIndex(generateRevenueIndex);"
+        "content": "    public CommandResult execute(FoodList list, StorageManager storage) throws CommandException {"
       },
       {
         "lineNumber": 116,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "                storage.storeFoodList(list);"
+        "content": "        Food toGenerateRevenue;"
       },
       {
         "lineNumber": 117,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "                return new CommandResult(String.format(MESSAGE_SUCCESS_SINGLE, toGenerateRevenue, list.size()));"
+        "content": "        switch (param) {"
       },
       {
         "lineNumber": 118,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "            case NAME:"
+        "content": "            case INDEX:"
       },
       {
         "lineNumber": 119,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "                checkValidName(list);"
+        "content": "                checkValidIndex(list);"
       },
       {
         "lineNumber": 120,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "                toGenerateRevenue \u003d list.get(generateRevenueDescription);"
+        "content": "                toGenerateRevenue \u003d list.get(generateRevenueIndex);"
       },
       {
         "lineNumber": 121,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "                list.removeName(generateRevenueDescription);"
+        "content": "                list.removeIndex(generateRevenueIndex);"
       },
       {
         "lineNumber": 122,
@@ -5839,59 +5790,101 @@
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "            case TYPE:"
+        "content": "            case NAME:"
       },
       {
         "lineNumber": 125,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "                checkValidType(list);"
+        "content": "                checkValidName(list);"
       },
       {
         "lineNumber": 126,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "                int count \u003d list.removeType(generateRevenueDescription);"
+        "content": "                toGenerateRevenue \u003d list.get(generateRevenueDescription);"
       },
       {
         "lineNumber": 127,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "                storage.storeFoodList(list);"
+        "content": "                list.removeName(generateRevenueDescription);"
       },
       {
         "lineNumber": 128,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "                return new CommandResult(String.format(MESSAGE_SUCCESS_MULTIPLE, generateRevenueDescription, count, list.size()));"
+        "content": "                storage.storeFoodList(list);"
       },
       {
         "lineNumber": 129,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "        }"
+        "content": "                return new CommandResult(String.format(MESSAGE_SUCCESS_SINGLE, toGenerateRevenue, list.size()));"
       },
       {
         "lineNumber": 130,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "        return null;"
+        "content": "            case TYPE:"
       },
       {
         "lineNumber": 131,
         "author": {
           "gitId": "LL-Pengfei"
         },
-        "content": "    }"
+        "content": "                checkValidType(list);"
       },
       {
         "lineNumber": 132,
+        "author": {
+          "gitId": "LL-Pengfei"
+        },
+        "content": "                int count \u003d list.removeType(generateRevenueDescription);"
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "LL-Pengfei"
+        },
+        "content": "                storage.storeFoodList(list);"
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "LL-Pengfei"
+        },
+        "content": "                return new CommandResult(String.format(MESSAGE_SUCCESS_MULTIPLE, generateRevenueDescription, count, list.size()));"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "LL-Pengfei"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "LL-Pengfei"
+        },
+        "content": "        return null;"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "LL-Pengfei"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 138,
         "author": {
           "gitId": "LL-Pengfei"
         },
@@ -5899,7 +5892,7 @@
       }
     ],
     "authorContributionMap": {
-      "LL-Pengfei": 132
+      "LL-Pengfei": 138
     }
   },
   {
@@ -13762,425 +13755,516 @@
       {
         "lineNumber": 18,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "kuromono"
         },
-        "content": ""
+        "content": "\t@JsonProperty"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "\t/**"
+        "content": "\tprivate ConfigStorage configStorage;"
       },
       {
         "lineNumber": 20,
         "author": {
-          "gitId": "kuromono"
+          "gitId": "tygq13"
         },
-        "content": "\t * Default constructor."
+        "content": ""
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "\t * Creates a new instance of Food \u0026 Revenue Storage Classes."
+        "content": "\t/**"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "\t */"
+        "content": "\t * Default constructor."
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "\tpublic StorageManager() {"
+        "content": "\t * Creates a new instance of Food \u0026 Revenue Storage Classes."
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "\t\tthis.foodStorage \u003d new FoodStorage();"
+        "content": "\t */"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "\t\tthis.revenueStorage \u003d new RevenueStorage();"
+        "content": "\tpublic StorageManager() {"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "\t}"
+        "content": "\t\tthis.foodStorage \u003d new FoodStorage();"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "kuromono"
         },
-        "content": ""
+        "content": "\t\tthis.revenueStorage \u003d new RevenueStorage();"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "\t/**"
+        "content": "\t\tthis.configStorage \u003d new ConfigStorage();"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "\t * Constructor with 2 arguments."
+        "content": "\t}"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "\t * Creates a new instance of Food \u0026 Revenue Storage Classes."
+        "content": ""
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "\t */"
+        "content": "\t/**"
       },
       {
         "lineNumber": 32,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "kuromono"
         },
-        "content": "\tpublic StorageManager(FoodStorage foodStorage, RevenueStorage revenueStorage) {"
+        "content": "\t * Constructor with 2 arguments."
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "\t\tthis.foodStorage \u003d foodStorage;"
+        "content": "\t * Creates a new instance of Food \u0026 Revenue Storage Classes."
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "\t\tthis.revenueStorage \u003d revenueStorage;"
+        "content": "\t */"
       },
       {
         "lineNumber": 35,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "kuromono"
         },
-        "content": "\t}"
+        "content": "\tpublic StorageManager(FoodStorage foodStorage, RevenueStorage revenueStorage, ConfigStorage configStorage) {"
       },
       {
         "lineNumber": 36,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "kuromono"
         },
-        "content": ""
+        "content": "\t\tthis.foodStorage \u003d foodStorage;"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "\t/**"
+        "content": "\t\tthis.revenueStorage \u003d revenueStorage;"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "\t * Retrieves the FoodList stored in the FoodStorage."
+        "content": "\t\tthis.configStorage \u003d configStorage;"
       },
       {
         "lineNumber": 39,
         "author": {
-          "gitId": "kuromono"
+          "gitId": "tygq13"
         },
-        "content": "\t * @return FoodList object stored in the FoodStorage."
+        "content": "\t}"
       },
       {
         "lineNumber": 40,
         "author": {
-          "gitId": "kuromono"
+          "gitId": "tygq13"
         },
-        "content": "\t */"
+        "content": ""
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "\t@JsonIgnore"
+        "content": "\t/**"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "\tpublic FoodList getFoodList() {"
+        "content": "\t * Retrieves the FoodList stored in the FoodStorage."
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "\t\treturn foodStorage.getFoodList();"
+        "content": "\t * @return FoodList object stored in the FoodStorage."
       },
       {
         "lineNumber": 44,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "kuromono"
         },
-        "content": "\t}"
+        "content": "\t */"
       },
       {
         "lineNumber": 45,
-        "author": {
-          "gitId": "tygq13"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 46,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": "\t/**"
-      },
-      {
-        "lineNumber": 47,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": "\t * Appends a Food Item Object into the FoodStorage."
-      },
-      {
-        "lineNumber": 48,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": "\t */"
-      },
-      {
-        "lineNumber": 49,
-        "author": {
-          "gitId": "tygq13"
-        },
-        "content": "\tpublic void appendFood(Food food) {"
-      },
-      {
-        "lineNumber": 50,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": "\t\tfoodStorage.appendFood(food);"
-      },
-      {
-        "lineNumber": 51,
-        "author": {
-          "gitId": "tygq13"
-        },
-        "content": "\t}"
-      },
-      {
-        "lineNumber": 52,
-        "author": {
-          "gitId": "tygq13"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 53,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": "\t/**"
-      },
-      {
-        "lineNumber": 54,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": "\t * Stores the specified FoodList object into the FoodStorage."
-      },
-      {
-        "lineNumber": 55,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": "\t * @param foodlist FoodList object to be stored into the FoodStorage."
-      },
-      {
-        "lineNumber": 56,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": "\t */"
-      },
-      {
-        "lineNumber": 57,
-        "author": {
-          "gitId": "tygq13"
-        },
-        "content": "\tpublic void storeFoodList(FoodList foodlist) {"
-      },
-      {
-        "lineNumber": 58,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": "\t\tfoodStorage.storeFoodList(foodlist);"
-      },
-      {
-        "lineNumber": 59,
-        "author": {
-          "gitId": "tygq13"
-        },
-        "content": "\t}"
-      },
-      {
-        "lineNumber": 60,
-        "author": {
-          "gitId": "tygq13"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 61,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": "\t/**"
-      },
-      {
-        "lineNumber": 62,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": "\t * Retrieves the revenue stored in the RevenueStorage."
-      },
-      {
-        "lineNumber": 63,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": "\t * @return Revenue stored in the RevenueStorage."
-      },
-      {
-        "lineNumber": 64,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": "\t */"
-      },
-      {
-        "lineNumber": 65,
         "author": {
           "gitId": "kuromono"
         },
         "content": "\t@JsonIgnore"
       },
       {
-        "lineNumber": 66,
+        "lineNumber": 46,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "\tpublic double getRevenue() {"
+        "content": "\tpublic FoodList getFoodList() {"
       },
       {
-        "lineNumber": 67,
+        "lineNumber": 47,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "\t\treturn revenueStorage.getRevenue();"
+        "content": "\t\treturn foodStorage.getFoodList();"
       },
       {
-        "lineNumber": 68,
+        "lineNumber": 48,
         "author": {
-          "gitId": "kuromono"
+          "gitId": "tygq13"
         },
         "content": "\t}"
       },
       {
-        "lineNumber": 69,
+        "lineNumber": 49,
         "author": {
           "gitId": "tygq13"
         },
         "content": ""
       },
       {
-        "lineNumber": 70,
+        "lineNumber": 50,
         "author": {
           "gitId": "kuromono"
         },
         "content": "\t/**"
       },
       {
-        "lineNumber": 71,
+        "lineNumber": 51,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "\t * Stores the specified revenue into the RevenueStorage."
+        "content": "\t * Appends a Food Item Object into the FoodStorage."
       },
       {
-        "lineNumber": 72,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": "\t * @param revenue Revenue amount to be stored in the RevenueStorage."
-      },
-      {
-        "lineNumber": 73,
+        "lineNumber": 52,
         "author": {
           "gitId": "kuromono"
         },
         "content": "\t */"
       },
       {
-        "lineNumber": 74,
+        "lineNumber": 53,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\tpublic void appendFood(Food food) {"
+      },
+      {
+        "lineNumber": 54,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "\tpublic void storeRevenue(double revenue) {"
+        "content": "\t\tfoodStorage.appendFood(food);"
       },
       {
-        "lineNumber": 75,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": "\t\trevenueStorage.storeRevenue(revenue);"
-      },
-      {
-        "lineNumber": 76,
+        "lineNumber": 55,
         "author": {
           "gitId": "tygq13"
         },
         "content": "\t}"
       },
       {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "\t/**"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "\t * Stores the specified FoodList object into the FoodStorage."
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "\t * @param foodlist FoodList object to be stored into the FoodStorage."
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "\t */"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\tpublic void storeFoodList(FoodList foodlist) {"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "\t\tfoodStorage.storeFoodList(foodlist);"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t}"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "\t/**"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "\t * Retrieves the revenue stored in the RevenueStorage."
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "\t * @return Revenue stored in the RevenueStorage."
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "\t */"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "\t@JsonIgnore"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "\tpublic double getRevenue() {"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "\t\treturn revenueStorage.getRevenue();"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "\t}"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "\t/**"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "\t * Stores the specified revenue into the RevenueStorage."
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "\t * @param revenue Revenue amount to be stored in the RevenueStorage."
+      },
+      {
         "lineNumber": 77,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "\t */"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "\tpublic void storeRevenue(double revenue) {"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "\t\trevenueStorage.storeRevenue(revenue);"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t}"
+      },
+      {
+        "lineNumber": 81,
         "author": {
           "gitId": "kuromono"
         },
         "content": ""
       },
       {
-        "lineNumber": 78,
+        "lineNumber": 82,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "\t/**"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "\t * Retrieves the configuration storage containing user-defined configurations."
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "\t * @return ConfigStorage object containing the user-defined configurations."
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "\t */"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "\t@JsonIgnore"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "\tpublic ConfigStorage getConfig() {"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "\t\treturn configStorage;"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "\t}"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 91,
         "author": {
           "gitId": "tygq13"
         },
@@ -14188,8 +14272,8 @@
       }
     ],
     "authorContributionMap": {
-      "kuromono": 57,
-      "tygq13": 19,
+      "kuromono": 71,
+      "tygq13": 18,
       "ZKathrynx": 2
     }
   },
@@ -14681,371 +14765,371 @@
         "author": {
           "gitId": "kuromono"
         },
-        "content": "import cube.util.FileUtilJson;"
+        "content": "import cube.storage.ConfigStorage;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "import javafx.stage.Stage;"
+        "content": "import cube.util.FileUtilJson;"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "import javafx.scene.layout.StackPane;"
+        "content": "import javafx.stage.Stage;"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "import javafx.fxml.FXML;"
+        "content": "import javafx.scene.layout.StackPane;"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "kuromono"
         },
-        "content": ""
+        "content": "import javafx.fxml.FXML;"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "public class MainWindow extends UiManager\u003cStage\u003e {"
+        "content": ""
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    public static final String FXML \u003d \"MainWindow.fxml\";"
+        "content": "public class MainWindow extends UiManager\u003cStage\u003e {"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "kuromono"
         },
-        "content": ""
+        "content": "    public static final String FXML \u003d \"MainWindow.fxml\";"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    private Stage primaryStage;"
+        "content": ""
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    private ResultDisplay resultDisplay;"
+        "content": "    private Stage primaryStage;"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "kuromono"
         },
-        "content": ""
+        "content": "    private ResultDisplay resultDisplay;"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    @FXML"
+        "content": ""
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    private StackPane commandBoxPlaceholder;"
+        "content": "    @FXML"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "kuromono"
         },
-        "content": ""
+        "content": "    private StackPane commandBoxPlaceholder;"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    @FXML"
+        "content": ""
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    private StackPane resultDisplayPlaceholder;"
+        "content": "    @FXML"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "kuromono"
         },
-        "content": ""
+        "content": "    private StackPane resultDisplayPlaceholder;"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    private StorageManager storageManager;"
+        "content": ""
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    private FileUtilJson storage;"
+        "content": "    private StorageManager storageManager;"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    private FoodList foodList;"
+        "content": "    private ConfigStorage configStorage;"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "kuromono"
         },
-        "content": ""
+        "content": "    private FileUtilJson storage;"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    public MainWindow (Stage primaryStage) {"
+        "content": "    private FoodList foodList;"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "        super(FXML, primaryStage);"
+        "content": ""
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "kuromono"
         },
-        "content": ""
+        "content": "    public MainWindow (Stage primaryStage) {"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "        this.primaryStage \u003d primaryStage;"
+        "content": "        super(FXML, primaryStage);"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "kuromono"
         },
-        "content": ""
+        "content": "        this.primaryStage \u003d primaryStage;"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    public MainWindow (Stage primaryStage, StorageManager storageManager, FileUtilJson storage, FoodList foodList) {"
+        "content": "    }"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "        super(FXML, primaryStage);"
+        "content": ""
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "kuromono"
         },
-        "content": ""
+        "content": "    public MainWindow (Stage primaryStage, StorageManager storageManager, FileUtilJson storage) {"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "        this.primaryStage \u003d primaryStage;"
+        "content": "        super(FXML, primaryStage);"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "        this.storageManager \u003d storageManager;"
+        "content": ""
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "        this.storage \u003d storage;"
+        "content": "        this.primaryStage \u003d primaryStage;"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "        this.foodList \u003d foodList;"
+        "content": "        this.storageManager \u003d storageManager;"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    }"
+        "content": "        this.storage \u003d storage;"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "kuromono"
         },
-        "content": ""
+        "content": "        this.configStorage \u003d storageManager.getConfig();"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    public void show() {"
+        "content": "        this.foodList \u003d storageManager.getFoodList();"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "        primaryStage.show();"
+        "content": "    }"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "kuromono"
         },
-        "content": ""
+        "content": "    public void show() {"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    public void initComponents() {"
+        "content": "        primaryStage.show();"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "        CommandBox commandBox \u003d new CommandBox(this::executeCommand);"
+        "content": "    }"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());"
+        "content": ""
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "kuromono"
         },
-        "content": ""
+        "content": "    public void initComponents() {"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "        resultDisplay \u003d new ResultDisplay();"
+        "content": "        primaryStage.setHeight(configStorage.getWindowHeight());"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());"
+        "content": "        primaryStage.setWidth(configStorage.getWindowWidth());"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "kuromono"
         },
-        "content": ""
+        "content": "        CommandBox commandBox \u003d new CommandBox(this::executeCommand);"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    private CommandResult executeCommand(String command) throws CubeException {"
+        "content": "        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "        try {"
+        "content": ""
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "            Command c \u003d Parser.parse(command);"
+        "content": "        resultDisplay \u003d new ResultDisplay();"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "            CommandResult result \u003d c.execute(foodList, storageManager);"
+        "content": "        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "            resultDisplay.setResultText(result.getFeedbackToUser());"
+        "content": "    }"
       },
       {
         "lineNumber": 62,
@@ -15059,227 +15143,269 @@
         "author": {
           "gitId": "kuromono"
         },
-        "content": "            if (result.isShowHelp()) {"
+        "content": "    private CommandResult executeCommand(String command) throws CubeException {"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "                handleHelp();"
+        "content": "        try {"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "            }"
+        "content": "            Command c \u003d Parser.parse(command);"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "            if (result.isExit()) {"
+        "content": "            CommandResult result \u003d c.execute(foodList, storageManager);"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "                handleExit();"
+        "content": "            resultDisplay.setResultText(result.getFeedbackToUser());"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "            }"
+        "content": ""
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "kuromono"
         },
-        "content": ""
+        "content": "            if (result.isShowHelp()) {"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "            storage.save(storageManager);"
+        "content": "                handleHelp();"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "            return result;"
+        "content": "            }"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "        } catch (CubeException e) {"
+        "content": "            if (result.isExit()) {"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "            e.printStackTrace();"
+        "content": "                handleExit();"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "            resultDisplay.setResultText(e.getMessage());"
+        "content": "            }"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "            throw e;"
+        "content": ""
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "        }"
+        "content": "            storage.save(storageManager);"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    }"
+        "content": "            return result;"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "kuromono"
         },
-        "content": ""
+        "content": "        } catch (CubeException e) {"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    /**"
+        "content": "            e.printStackTrace();"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "     * Closes the application."
+        "content": "            resultDisplay.setResultText(e.getMessage());"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "     */"
+        "content": "            throw e;"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    @FXML"
+        "content": "        }"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    private void handleExit() {"
+        "content": "    }"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "        primaryStage.hide();"
+        "content": ""
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    }"
+        "content": "    /**"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "kuromono"
         },
-        "content": ""
+        "content": "     * Closes the application."
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    /**"
+        "content": "     */"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "     * Shows the help window."
+        "content": "    @FXML"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "     */"
+        "content": "    private void handleExit() {"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    @FXML"
+        "content": "        primaryStage.hide();"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    public void handleHelp() {"
+        "content": "    }"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "        //add a pop-up box here"
+        "content": ""
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    }"
+        "content": "    /**"
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "kuromono"
         },
-        "content": ""
+        "content": "     * Shows the help window."
       },
       {
         "lineNumber": 95,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "    @FXML"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "    public void handleHelp() {"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "        //add a pop-up box here"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 101,
         "author": {
           "gitId": "kuromono"
         },
@@ -15287,7 +15413,7 @@
       }
     ],
     "authorContributionMap": {
-      "kuromono": 94,
+      "kuromono": 100,
       "ZKathrynx": 1
     }
   },
@@ -16814,857 +16940,619 @@
         "author": {
           "gitId": "kuromono"
         },
-        "content": "import cube.storage.ConfigStorage;"
+        "content": "import cube.storage.StorageManager;"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "import cube.storage.StorageManager;"
+        "content": ""
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "kuromono"
         },
-        "content": ""
+        "content": "public class FileUtilJson {"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "public class FileUtilJson {"
+        "content": "    private String filePath;"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    private String filePath;"
+        "content": "    private String fileFullPath;"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    private String fileFullPath;"
+        "content": "    private static final String fileName \u003d \"cube.json\";"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    private String configFileFullPath;"
+        "content": ""
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    private static final String fileName \u003d \"cube.json\";"
+        "content": "    /**"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    private static final String configFileName \u003d \"config.json\";"
+        "content": "     * Constructor with one argument."
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "kuromono"
         },
-        "content": ""
+        "content": "     *"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    /**"
+        "content": "     * @param filePath the directory path where data will be stored."
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "     * Constructor with one argument."
+        "content": "     */"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "     *"
+        "content": "    public FileUtilJson(String filePath) {"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "     * @param filePath the directory path where data will be stored."
+        "content": "        this.filePath \u003d filePath;"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "     */"
+        "content": "        this.fileFullPath \u003d filePath + File.separator + fileName;"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    public FileUtilJson(String filePath) {"
+        "content": "    }"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "        this.filePath \u003d filePath;"
+        "content": ""
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "        this.fileFullPath \u003d filePath + File.separator + fileName;"
+        "content": "    /**"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "        this.configFileFullPath \u003d filePath + File.separator + configFileName;"
+        "content": "     * Creates the parent directory and file."
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    }"
+        "content": "     *"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "kuromono"
         },
-        "content": ""
+        "content": "     * @param file the file at which should be created."
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    /**"
+        "content": "     * @throws CubeLoadingException exception occurs when unable to create new file."
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "     * Creates the parent directory and file."
+        "content": "     */"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "     *"
+        "content": "    public void create(File file) throws CubeLoadingException {"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "     * @param file the file at which should be created."
+        "content": "        file.getParentFile().mkdirs();"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "     * @throws CubeLoadingException exception occurs when unable to create new file."
+        "content": "        try {"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "     */"
+        "content": "            file.createNewFile();"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    public void create(File file) throws CubeLoadingException {"
+        "content": "        } catch (IOException e) {"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "        file.getParentFile().mkdirs();"
+        "content": "            throw new CubeLoadingException(fileFullPath);"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "        try {"
+        "content": "        }"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "            file.createNewFile();"
+        "content": "    }"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "        } catch (IOException e) {"
+        "content": ""
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "            throw new CubeLoadingException(fileFullPath);"
+        "content": "    /**"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "        }"
+        "content": "     * Returns true if the data file is available, otherwise makes a new data file and returns false."
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    }"
+        "content": "     *"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "kuromono"
         },
-        "content": ""
+        "content": "     * @return true if data file available, otherwise false."
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    /**"
+        "content": "     * @throws CubeLoadingException exception occurs when unable to create new file."
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "     * Returns true if the data file is available, otherwise makes a new data file and returns false."
+        "content": "     */"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "     *"
+        "content": "    public boolean checkFileAvailable(String fullPath) throws CubeLoadingException {"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "     * @return true if data file available, otherwise false."
+        "content": "        File file \u003d new File(fullPath);"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "     * @throws CubeLoadingException exception occurs when unable to create new file."
+        "content": "        if (file.exists()) {"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "     */"
+        "content": "            return true;"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    public boolean checkFileAvailable(String fullPath) throws CubeLoadingException {"
+        "content": "        } else {"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "        File file \u003d new File(fullPath);"
+        "content": "            create(file);"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "        if (file.exists()) {"
+        "content": "            return false;"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "            return true;"
+        "content": "        }"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "        } else {"
+        "content": "    }"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "            create(file);"
+        "content": ""
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "            return false;"
+        "content": "    /**"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "        }"
+        "content": "     * Loads serialized StorageManager object from the JSON file."
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    }"
+        "content": "     *"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "kuromono"
         },
-        "content": ""
+        "content": "     * @return the list of tasks."
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    /**"
+        "content": "     * @throws CubeLoadingException exception occurs in reading from data file."
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "     * Loads serialized StorageManager object from the JSON file."
+        "content": "     */"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "     *"
+        "content": "    public StorageManager load() throws CubeException {"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "     * @return the list of tasks."
+        "content": "        StorageManager storageManager \u003d new StorageManager();"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "     * @throws CubeLoadingException exception occurs in reading from data file."
+        "content": "        if (checkFileAvailable(fileFullPath)) {"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "     */"
+        "content": "            System.out.println(\"Loading file from : \" + fileFullPath);"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    public StorageManager load() throws CubeException {"
+        "content": ""
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "        StorageManager storageManager \u003d new StorageManager();"
+        "content": "            try {"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "        if (checkFileAvailable(fileFullPath)) {"
+        "content": "                File fileSave \u003d new File(fileFullPath);"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "            System.out.println(\"Loading file from : \" + fileFullPath);"
+        "content": "                ObjectMapper mapper \u003d new ObjectMapper();"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "kuromono"
         },
-        "content": ""
+        "content": "                storageManager \u003d mapper.readValue(fileSave, StorageManager.class);"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "            try {"
+        "content": "            } catch (IOException e) {"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "                File fileSave \u003d new File(fileFullPath);"
+        "content": "                e.printStackTrace();"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "                ObjectMapper mapper \u003d new ObjectMapper();"
+        "content": "                throw new CubeLoadingException(fileFullPath);"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "                storageManager \u003d mapper.readValue(fileSave, StorageManager.class);"
+        "content": "            }"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "            } catch (IOException e) {"
+        "content": "        }"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "                e.printStackTrace();"
+        "content": "        return storageManager;"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "                throw new CubeLoadingException(fileFullPath);"
+        "content": "    }"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "            }"
+        "content": ""
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "        }"
+        "content": "    /**"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "        return storageManager;"
+        "content": "     * Saves the StorageManage object into a JSON file."
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    }"
+        "content": "     *"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "kuromono"
         },
-        "content": ""
+        "content": "     * @param storageManager containing FoodStorage \u0026 RevenueStorage data to save."
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    /**"
+        "content": "     * @throws CubeException exception happens in writing to the data file."
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "     * Saves the StorageManage object into a JSON file."
+        "content": "     */"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "     *"
+        "content": "    public void save(StorageManager storageManager) throws CubeException {"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "     * @param storageManager containing FoodStorage \u0026 RevenueStorage data to save."
+        "content": "        checkFileAvailable(fileFullPath);"
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "     * @throws CubeException exception happens in writing to the data file."
+        "content": "        try {"
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "     */"
+        "content": "            File fileSave \u003d new File(fileFullPath);"
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    public void save(StorageManager storageManager) throws CubeException {"
+        "content": "            ObjectMapper mapper \u003d new ObjectMapper();"
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "        checkFileAvailable(fileFullPath);"
+        "content": "            mapper.writeValue(fileSave, storageManager);"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "        try {"
+        "content": "        } catch (IOException e) {"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "            File fileSave \u003d new File(fileFullPath);"
+        "content": "            e.printStackTrace();"
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "            ObjectMapper mapper \u003d new ObjectMapper();"
+        "content": "            throw new CubeLoadingException(fileFullPath);"
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "            mapper.writeValue(fileSave, storageManager);"
+        "content": "        }"
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "        } catch (IOException e) {"
+        "content": "    }"
       },
       {
         "lineNumber": 102,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": "            e.printStackTrace();"
-      },
-      {
-        "lineNumber": 103,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": "            throw new CubeLoadingException(fileFullPath);"
-      },
-      {
-        "lineNumber": 104,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 105,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 106,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 107,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": "    public ConfigStorage loadConfig() throws CubeException {"
-      },
-      {
-        "lineNumber": 108,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": "        ConfigStorage configStorage \u003d new ConfigStorage();"
-      },
-      {
-        "lineNumber": 109,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": "        if (checkFileAvailable(configFileFullPath)) {"
-      },
-      {
-        "lineNumber": 110,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": "            System.out.println(\"Loading file from : \" + configFileFullPath);"
-      },
-      {
-        "lineNumber": 111,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 112,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": "            try {"
-      },
-      {
-        "lineNumber": 113,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": "                File fileSave \u003d new File(configFileFullPath);"
-      },
-      {
-        "lineNumber": 114,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": "                ObjectMapper mapper \u003d new ObjectMapper();"
-      },
-      {
-        "lineNumber": 115,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": "                configStorage \u003d mapper.readValue(fileSave, ConfigStorage.class);"
-      },
-      {
-        "lineNumber": 116,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": "            } catch (IOException e) {"
-      },
-      {
-        "lineNumber": 117,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": "                e.printStackTrace();"
-      },
-      {
-        "lineNumber": 118,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": "                throw new CubeLoadingException(configFileFullPath);"
-      },
-      {
-        "lineNumber": 119,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 120,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 121,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": "        return configStorage;"
-      },
-      {
-        "lineNumber": 122,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 123,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 124,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": "    public void saveConfig(ConfigStorage configStorage) throws CubeException {"
-      },
-      {
-        "lineNumber": 125,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": "        checkFileAvailable(configFileFullPath);"
-      },
-      {
-        "lineNumber": 126,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": "        System.out.println(\"haha\");"
-      },
-      {
-        "lineNumber": 127,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": "        try {"
-      },
-      {
-        "lineNumber": 128,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": "            File fileSave \u003d new File(configFileFullPath);"
-      },
-      {
-        "lineNumber": 129,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": "            ObjectMapper mapper \u003d new ObjectMapper();"
-      },
-      {
-        "lineNumber": 130,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": "            mapper.writeValue(fileSave, configStorage);"
-      },
-      {
-        "lineNumber": 131,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": "        } catch (IOException e) {"
-      },
-      {
-        "lineNumber": 132,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": "            e.printStackTrace();"
-      },
-      {
-        "lineNumber": 133,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": "            throw new CubeLoadingException(configFileFullPath);"
-      },
-      {
-        "lineNumber": 134,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 135,
-        "author": {
-          "gitId": "kuromono"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 136,
         "author": {
           "gitId": "kuromono"
         },
@@ -17672,7 +17560,7 @@
       }
     ],
     "authorContributionMap": {
-      "kuromono": 136
+      "kuromono": 102
     }
   },
   {
@@ -17966,7 +17854,7 @@
         "author": {
           "gitId": "kuromono"
         },
-        "content": "        \u003cStackPane fx:id\u003d\"resultDisplayPlaceholder\" maxHeight\u003d\"500\" minHeight\u003d\"500\" prefHeight\u003d\"500\" maxWidth\u003d\"600\" minWidth\u003d\"600\" prefWidth\u003d\"600\" styleClass\u003d\"pane-with-border\" VBox.vgrow\u003d\"NEVER\"\u003e"
+        "content": "        \u003cStackPane fx:id\u003d\"resultDisplayPlaceholder\" minHeight\u003d\"500\" prefHeight\u003d\"500\" minWidth\u003d\"600\" prefWidth\u003d\"600\" styleClass\u003d\"pane-with-border\" VBox.vgrow\u003d\"NEVER\"\u003e"
       },
       {
         "lineNumber": 33,
@@ -18008,7 +17896,7 @@
         "author": {
           "gitId": "kuromono"
         },
-        "content": "        \u003cVBox fx:id\u003d\"viewList\" minWidth\u003d\"340\" prefWidth\u003d\"340\" styleClass\u003d\"pane-with-border\" VBox.vgrow\u003d\"ALWAYS\"\u003e"
+        "content": "        \u003cVBox fx:id\u003d\"viewList\" minWidth\u003d\"600\" prefWidth\u003d\"600\" styleClass\u003d\"pane-with-border\" VBox.vgrow\u003d\"ALWAYS\"\u003e"
       },
       {
         "lineNumber": 39,
