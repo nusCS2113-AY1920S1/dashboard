@@ -7289,189 +7289,189 @@
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "/**"
+        "content": ""
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": " * The ListCommand Class handles all list commands."
+        "content": "/**"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": " */"
+        "content": " * The ListCommand Class handles all list commands."
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "public class ListCommand extends Command {"
+        "content": " */"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "    public static final String MESSAGE_USAGE \u003d \"list\\n\\t\""
+        "content": "public class ListCommand extends Command {"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "        + \"Format: list\\n\\t\""
+        "content": "    public static final String MESSAGE_USAGE \u003d \"list\\n\\t\""
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "        + \"e.g. \\\"list\\\"\\n\\n\""
+        "content": "        + \"Format: list\\n\\t\""
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "        + \"This command will list all the tasks stored in COMPal.\";"
+        "content": "        + \"e.g. \\\"list \\\\type deadline\\\"\\n\\n\""
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": ""
+        "content": "        + \"This command will list all the deadline stored in COMPal.\";"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "    private static final String LIST_PREFIX \u003d \"Here are the tasks in your list: \\n\";"
+        "content": ""
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "    public static final String LIST_EMPTY \u003d \"Looks like your list is empty!\\nStart adding in your task \""
+        "content": "    private static final String LIST_PREFIX \u003d \"Here are the tasks in your list: \\n\";"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "        + \"by looking at the help command!\";"
+        "content": "    public static final String LIST_EMPTY \u003d \"Looks like your list is empty!\\nStart adding in your task \""
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": ""
+        "content": "        + \"by looking at the help command!\";"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "    @Override"
+        "content": "    private String type \u003d \"\";"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "    public CommandResult commandExecute(TaskList taskList) {"
+        "content": "    private String listPrefixTwo;"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "        Comparator\u003cTask\u003e compareByDateTime \u003d Comparator.comparing(Task::getDate);"
+        "content": ""
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "        ArrayList\u003cTask\u003e toList \u003d taskList.getArrList();"
+        "content": "    /**"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "        Collections.sort(toList, compareByDateTime);"
+        "content": "     * Construct the ListCommand class."
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "        String finalList \u003d LIST_PREFIX;"
+        "content": "     *"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "        int count \u003d 1;"
+        "content": "     * @param type the type to be display if valid."
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "        for (Task t : toList) {"
+        "content": "     */"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "            String taskString \u003d count++ + \".\" + t.toString() + \"\\n\";"
+        "content": "    public ListCommand(String type) {"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "            finalList +\u003d taskString;"
+        "content": "        listPrefixTwo \u003d \"Here are the stored \" + type + \" in your list:\\n\\n\";"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "        }"
+        "content": "        if (\"deadline\".equals(type)) {"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": ""
+        "content": "            this.type \u003d \"D\";"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "        if (count \u003d\u003d 1) {"
+        "content": "        } else if (\"event\".equals(type)) {"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "            finalList \u003d LIST_EMPTY;"
+        "content": "            this.type \u003d \"E\";"
       },
       {
         "lineNumber": 38,
@@ -7485,24 +7485,241 @@
         "author": {
           "gitId": "SholihinK"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "        return new CommandResult(finalList, false);"
+        "content": ""
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 42,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "    public CommandResult commandExecute(TaskList taskList) {"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "        Comparator\u003cTask\u003e compareByDateTime \u003d Comparator.comparing(Task::getDate);"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "        ArrayList\u003cTask\u003e toList \u003d taskList.getArrList();"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "        Collections.sort(toList, compareByDateTime);"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "        String finalList;"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "        if (type.isEmpty()) {"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "            finalList \u003d LIST_PREFIX;"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "            finalList \u003d listPrefixTwo;"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "        int count \u003d 1;"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "        for (Task t : toList) {"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "            if (type.isEmpty()) {"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "                String taskString \u003d count++ + \".\" + t.toString() + \"\\n\";"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "                finalList +\u003d taskString;"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "            } else {"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "                if (t.getSymbol().equals(type)) {"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "                    String taskString \u003d count++ + \".\" + t.toString() + \"\\n\";"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "                    finalList +\u003d taskString;"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "        if (count \u003d\u003d 1) {"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "            finalList \u003d LIST_EMPTY;"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "        return new CommandResult(finalList, false);"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 73,
         "author": {
           "gitId": "SholihinK"
         },
@@ -7510,7 +7727,7 @@
       }
     ],
     "authorContributionMap": {
-      "SholihinK": 42
+      "SholihinK": 73
     }
   },
   {
@@ -15459,6 +15676,134 @@
     }
   },
   {
+    "path": "src/main/java/compal/logic/parser/ListCommandParser.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "package compal.logic.parser;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "import compal.logic.command.Command;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "import compal.logic.command.ListCommand;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "import compal.logic.parser.exceptions.ParserException;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "public class ListCommandParser implements CommandParser {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "    public Command parseCommand(String restOfInput) throws ParserException {"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "        if (restOfInput.isEmpty()) {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "            return new ListCommand(\"\");"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "            String type \u003d getType(restOfInput);"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "            return new ListCommand(type);"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "SholihinK"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "SholihinK": 17
+    }
+  },
+  {
     "path": "src/main/java/compal/logic/parser/ParserManager.java",
     "fileType": "functional",
     "lines": [
@@ -15985,7 +16330,7 @@
         "author": {
           "gitId": "SholihinK"
         },
-        "content": "            return new ListCommand();"
+        "content": "            return new ListCommandParser().parseCommand(restOfInput);"
       },
       {
         "lineNumber": 76,

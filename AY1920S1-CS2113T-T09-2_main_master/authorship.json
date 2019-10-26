@@ -2312,6 +2312,701 @@
     }
   },
   {
+    "path": "src/main/java/duchess/logic/commands/AddLessonCommand.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "package duchess.logic.commands;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "import duchess.exceptions.DuchessException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "import duchess.model.calendar.AcademicYear;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "import duchess.model.calendar.CalendarManager;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "import duchess.model.task.Event;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "import duchess.storage.Storage;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "import duchess.storage.Store;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "import duchess.ui.Ui;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "import java.time.LocalDate;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "import java.time.LocalDateTime;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": " * Adds recurring lessons."
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "public class AddLessonCommand extends Command {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    private String description;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    private LocalDate startDate;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    private LocalDateTime end;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    private LocalDateTime start;"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    private LocalDateTime endCopy;"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    private LocalDateTime startCopy;"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    private String moduleCode;"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    private final int studyWeeks \u003d 15;"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    private final String invalidStartDate"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            \u003d \"Invalid start date, start date provided must be within a semester.\";"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    private final String invalidModuleCode"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            \u003d \"Unrecognized module code, add module first before assigning lessons.\";"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     * Constructor to add lessons."
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     * @param description lesson description"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     * @param start start date and time"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     * @param end end date and time"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     * @param moduleCode module code of lesson"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    public AddLessonCommand(String description, LocalDateTime start, LocalDateTime end, String moduleCode) {"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        this.description \u003d description + \" (\" + moduleCode + \")\";"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        this.start \u003d start;"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        this.end \u003d end;"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        this.startCopy \u003d start;"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        this.endCopy \u003d end;"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        this.moduleCode \u003d moduleCode;"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        this.startDate \u003d start.toLocalDate();"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    public void execute(Store store, Ui ui, Storage storage) throws DuchessException {"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        AcademicYear academicYear \u003d new AcademicYear();"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        if (store.findModuleByCode(moduleCode).isEmpty()) {"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            // Throws an exception if module was not present before."
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            throw new DuchessException(invalidModuleCode);"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        } else if (!academicYear.isAcademicSemester(this.startDate)) {"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            // Throws an exception if startDate is not within semester."
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            throw new DuchessException(invalidStartDate);"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            // While AY not ended, and !recess_week \u0026\u0026 !reading_week. Add event."
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            // Find out which Sem does date fall into first"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            boolean isWithinSemOne \u003d academicYear.isFirstSemester(startDate);"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            boolean isWithinSemTwo \u003d academicYear.isSecondSemester(startDate);"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            LocalDate compareDate;"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            assert (isWithinSemOne || isWithinSemTwo);"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            if (isWithinSemOne) {"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "                compareDate \u003d academicYear.getSemOneStart();"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            } else {"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "                compareDate \u003d academicYear.getSemTwoStart();"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            // Find the corresponding week for the semester."
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            int currentWeek \u003d academicYear.getWeekAsInt(compareDate, startDate);"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            for (int i \u003d currentWeek; i \u003c\u003d studyWeeks; i++) {"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "                if (academicYear.isSemesterBreak(i) \u003d\u003d false) {"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "                    // Add classes similar to add events."
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "                    addLessons(store, ui, storage);"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "                    // Both startCopy and endCopy dates MUST BE INCREMENTED to next week."
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "                    startCopy \u003d startCopy.plusWeeks(1);"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "                    endCopy \u003d endCopy.plusWeeks(1);"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    private void addLessons(Store store, Ui ui, Storage storage) throws DuchessException {"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        Event task \u003d new Event(description, endCopy, startCopy);"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        if (!store.isClashing(task)) {"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            store.getTaskList().add(task);"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            ui.showTaskAdded(store.getTaskList(), task);"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            store.setDuchessCalendar(CalendarManager.addEntry(store.getDuchessCalendar(), task));"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            storage.save(store);"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "muserr": 98
+    }
+  },
+  {
     "path": "src/main/java/duchess/logic/commands/AddModuleCommand.java",
     "fileType": "functional",
     "lines": [
@@ -3138,6 +3833,428 @@
       "limsiying": 6,
       "mohideenik": 8,
       "nishanthelango": 2
+    }
+  },
+  {
+    "path": "src/main/java/duchess/logic/commands/DeleteLessonCommand.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "package duchess.logic.commands;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "import duchess.exceptions.DuchessException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "import duchess.model.calendar.CalendarManager;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "import duchess.model.task.Task;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "import duchess.storage.Storage;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "import duchess.storage.Store;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "import duchess.ui.Ui;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "import java.util.List;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "public class DeleteLessonCommand extends Command {"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    private String type;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    private String moduleCode;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    private String lessonDelete;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     * Constructor for DeleteLessonCommand."
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     * @param type lesson type"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     * @param moduleCode module code"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    public DeleteLessonCommand(String type, String moduleCode) {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        this.type \u003d type;"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        this.moduleCode \u003d moduleCode;"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        lessonDelete \u003d type + \" (\" + moduleCode + \")\";"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    public void execute(Store store, Ui ui, Storage storage) throws DuchessException {"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        boolean isDeleted \u003d false;"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        List\u003cInteger\u003e toDelete \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        Task task;"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        for (int i \u003d 0; i \u003c store.getTaskList().size(); i++) {"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            task \u003d store.getTaskList().get(i);"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            if (task.getDescription().equalsIgnoreCase(this.lessonDelete)) {"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "                store.getTaskList().remove(i);"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "                toDelete.add(i);"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "                isDeleted \u003d true;"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "                store.setDuchessCalendar(CalendarManager.deleteEntry(store.getDuchessCalendar(), task));"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "                // Decrement i by 1 every time removal is performed."
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "                i--;"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        if (isDeleted) {"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            ui.showDeletedLesson(moduleCode);"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            ui.showNoDeletedLesson(moduleCode);"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        storage.save(store);"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "muserr": 59
     }
   },
   {
@@ -5599,6 +6716,142 @@
     }
   },
   {
+    "path": "src/main/java/duchess/logic/commands/HistoryCommand.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "package duchess.logic.commands;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "nishanthelango"
+        },
+        "content": "import duchess.exceptions.DuchessException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "import duchess.model.task.DuchessLog;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "import duchess.storage.Storage;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "import duchess.storage.Store;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "import duchess.ui.Ui;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": " * Command to display input history."
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "public class HistoryCommand extends Command {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "nishanthelango"
+        },
+        "content": "    public void execute(Store store, Ui ui, Storage storage) throws DuchessException {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        ui.showUserHistory(DuchessLog.getFullLog());"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "nishanthelango": 2,
+      "muserr": 16
+    }
+  },
+  {
     "path": "src/main/java/duchess/logic/commands/ListModulesCommand.java",
     "fileType": "functional",
     "lines": [
@@ -5803,142 +7056,6 @@
     }
   },
   {
-    "path": "src/main/java/duchess/logic/commands/LogCommand.java",
-    "fileType": "functional",
-    "lines": [
-      {
-        "lineNumber": 1,
-        "author": {
-          "gitId": "muserr"
-        },
-        "content": "package duchess.logic.commands;"
-      },
-      {
-        "lineNumber": 2,
-        "author": {
-          "gitId": "muserr"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 3,
-        "author": {
-          "gitId": "nishanthelango"
-        },
-        "content": "import duchess.exceptions.DuchessException;"
-      },
-      {
-        "lineNumber": 4,
-        "author": {
-          "gitId": "muserr"
-        },
-        "content": "import duchess.model.task.DuchessLog;"
-      },
-      {
-        "lineNumber": 5,
-        "author": {
-          "gitId": "muserr"
-        },
-        "content": "import duchess.storage.Storage;"
-      },
-      {
-        "lineNumber": 6,
-        "author": {
-          "gitId": "muserr"
-        },
-        "content": "import duchess.storage.Store;"
-      },
-      {
-        "lineNumber": 7,
-        "author": {
-          "gitId": "muserr"
-        },
-        "content": "import duchess.ui.Ui;"
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "muserr"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 9,
-        "author": {
-          "gitId": "muserr"
-        },
-        "content": "/**"
-      },
-      {
-        "lineNumber": 10,
-        "author": {
-          "gitId": "muserr"
-        },
-        "content": " * Command to display input history."
-      },
-      {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "muserr"
-        },
-        "content": " */"
-      },
-      {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "muserr"
-        },
-        "content": "public class LogCommand extends Command {"
-      },
-      {
-        "lineNumber": 13,
-        "author": {
-          "gitId": "muserr"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 14,
-        "author": {
-          "gitId": "muserr"
-        },
-        "content": "    @Override"
-      },
-      {
-        "lineNumber": 15,
-        "author": {
-          "gitId": "nishanthelango"
-        },
-        "content": "    public void execute(Store store, Ui ui, Storage storage) throws DuchessException {"
-      },
-      {
-        "lineNumber": 16,
-        "author": {
-          "gitId": "muserr"
-        },
-        "content": "        ui.showUserHistory(DuchessLog.getFullLog());"
-      },
-      {
-        "lineNumber": 17,
-        "author": {
-          "gitId": "muserr"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 18,
-        "author": {
-          "gitId": "muserr"
-        },
-        "content": "}"
-      }
-    ],
-    "authorContributionMap": {
-      "nishanthelango": 2,
-      "muserr": 16
-    }
-  },
-  {
     "path": "src/main/java/duchess/logic/commands/RedoCommand.java",
     "fileType": "functional",
     "lines": [
@@ -6024,182 +7141,182 @@
         "author": {
           "gitId": "muserr"
         },
-        "content": ""
+        "content": "    private static final String REDO_USAGE_ERROR_MESSAGE \u003d \"Usage: redo [number]\";"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    /**"
+        "content": "    private static final String NEGATIVE_NUMBER_ERROR_MESSAGE"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "muserr"
         },
-        "content": "     * Checks if undo command contains additional parameters."
+        "content": "            \u003d \"[number] must be a positive integer, i.e. 1, 2, 3, ...\";"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "muserr"
         },
-        "content": "     *"
+        "content": "    private static final String INVALID_NUMBER_ERROR_MESSAGE"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "muserr"
         },
-        "content": "     * @param words additional parameters for undo"
+        "content": "            \u003d \"You have entered an invalid value.\";"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "muserr"
         },
-        "content": "     * @throws DuchessException throws exceptions if invalid command"
+        "content": ""
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "muserr"
         },
-        "content": "     */"
+        "content": "    /**"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    public RedoCommand(List\u003cString\u003e words) throws DuchessException {"
+        "content": "     * Checks if undo command contains additional parameters."
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        if (words.size() !\u003d 1 \u0026\u0026 words.size() !\u003d 0) {"
+        "content": "     *"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            throw new DuchessException(\"Usage: redo [number]\");"
+        "content": "     * @param words additional parameters for undo"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        } else if (words.size() \u003d\u003d 1) {"
+        "content": "     * @throws DuchessException throws exceptions if invalid command"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            redoCounter \u003d Integer.parseInt(words.get(0));"
+        "content": "     */"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        } else if (words.size() \u003d\u003d 0) {"
+        "content": "    public RedoCommand(List\u003cString\u003e words) throws DuchessException {"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            redoCounter \u003d 1;"
+        "content": "        if (words.size() !\u003d 1 \u0026\u0026 words.size() !\u003d 0) {"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        }"
+        "content": "            throw new DuchessException(REDO_USAGE_ERROR_MESSAGE);"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    }"
+        "content": "        } else if (words.size() \u003d\u003d 1) {"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "muserr"
         },
-        "content": ""
+        "content": "            try {"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    @Override"
+        "content": "                redoCounter \u003d Integer.parseInt(words.get(0));"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    public void execute(Store store, Ui ui, Storage storage) throws DuchessException {"
+        "content": ""
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        if (storage.getRedoStack().size() \u003d\u003d 0) {"
+        "content": "                if (redoCounter \u003c\u003d 0) {"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            redoCounter \u003d 0;"
+        "content": "                    throw new IllegalArgumentException();"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        } else if (storage.getRedoStack().size() \u003e 0 \u0026\u0026 redoCounter \u003e 1) {"
+        "content": "                }"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            int tempCounter \u003d redoCounter;"
+        "content": "            } catch (NumberFormatException e) {"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            while (tempCounter \u003e 0 \u0026\u0026 storage.getRedoStack().size() \u003e 0) {"
+        "content": "                throw new DuchessException(INVALID_NUMBER_ERROR_MESSAGE);"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "muserr"
         },
-        "content": "                setToNextStore(store, storage);"
+        "content": "            } catch (IllegalArgumentException e) {"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "muserr"
         },
-        "content": "                tempCounter--;"
+        "content": "                throw new DuchessException(NEGATIVE_NUMBER_ERROR_MESSAGE);"
       },
       {
         "lineNumber": 38,
@@ -6213,14 +7330,14 @@
         "author": {
           "gitId": "muserr"
         },
-        "content": "        } else if (storage.getRedoStack().size() \u003e 0 \u0026\u0026 redoCounter \u003d\u003d 1) {"
+        "content": "        } else if (words.size() \u003d\u003d 0) {"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            setToNextStore(store, storage);"
+        "content": "            redoCounter \u003d 1;"
       },
       {
         "lineNumber": 41,
@@ -6234,108 +7351,213 @@
         "author": {
           "gitId": "muserr"
         },
-        "content": "        // showUndo should only be placed after execution of undo."
+        "content": "    }"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        ui.showRedo(redoCounter);"
+        "content": ""
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    }"
+        "content": "    @Override"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "muserr"
         },
-        "content": ""
+        "content": "    public void execute(Store store, Ui ui, Storage storage) throws DuchessException {"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    private void setToNextStore(Store store, Storage storage) throws DuchessException {"
+        "content": "        if (storage.getRedoStack().size() \u003d\u003d 0) {"
       },
       {
         "lineNumber": 47,
         "author": {
-          "gitId": "mohideenik"
+          "gitId": "muserr"
         },
-        "content": "        // Obtain Store data from duchess.storage Stack"
+        "content": "            redoCounter \u003d 0;"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        Store prevStore \u003d storage.getFirstSnapshot();"
+        "content": "        } else if (storage.getRedoStack().size() \u003e 0 \u0026\u0026 redoCounter \u003e 1) {"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        storage.save(prevStore);"
+        "content": "            int tempCounter \u003d redoCounter;"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "muserr"
         },
-        "content": ""
+        "content": "            while (tempCounter \u003e 0 \u0026\u0026 storage.getRedoStack().size() \u003e 0) {"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        // Obtaining store from stack"
+        "content": "                setToNextStore(store, storage);"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        Store newStore \u003d storage.load();"
+        "content": "                tempCounter--;"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        store.setTaskList(newStore.getTaskList());"
+        "content": "            }"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        store.setModuleList(newStore.getModuleList());"
+        "content": "        } else if (storage.getRedoStack().size() \u003e 0 \u0026\u0026 redoCounter \u003d\u003d 1) {"
       },
       {
         "lineNumber": 55,
         "author": {
-          "gitId": "limsiying"
+          "gitId": "muserr"
         },
-        "content": "        store.setDuchessCalendar(newStore.getDuchessCalendar());"
+        "content": "            setToNextStore(store, storage);"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    }"
+        "content": "        }"
       },
       {
         "lineNumber": 57,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        // showUndo should only be placed after execution of undo."
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        ui.showRedo(redoCounter);"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    private void setToNextStore(Store store, Storage storage) throws DuchessException {"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        // Obtain Store data from duchess.storage Stack"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        Store prevStore \u003d storage.getFirstSnapshot();"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        storage.save(prevStore);"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        // Obtaining store from stack"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        Store newStore \u003d storage.load();"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        store.setTaskList(newStore.getTaskList());"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        store.setModuleList(newStore.getModuleList());"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": "        store.setDuchessCalendar(newStore.getDuchessCalendar());"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 72,
         "author": {
           "gitId": "muserr"
         },
@@ -6345,7 +7567,7 @@
     "authorContributionMap": {
       "limsiying": 1,
       "mohideenik": 1,
-      "muserr": 55
+      "muserr": 70
     }
   },
   {
@@ -7087,332 +8309,444 @@
         "author": {
           "gitId": "muserr"
         },
-        "content": ""
+        "content": "    private static final String UNDO_USAGE_ERROR_MESSAGE \u003d \"Usage: undo [number]\";"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    /**"
+        "content": "    private static final String NEGATIVE_NUMBER_ERROR_MESSAGE"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "muserr"
         },
-        "content": "     * Checks if undo command contains additional parameters."
+        "content": "            \u003d \"[number] must be a positive integer, i.e. 1, 2, 3, ...\";"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "muserr"
         },
-        "content": "     *"
+        "content": "    private static final String INVALID_NUMBER_ERROR_MESSAGE"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "muserr"
         },
-        "content": "     * @param words additional parameters for undo"
+        "content": "            \u003d \"You have entered an invalid value.\";"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "muserr"
         },
-        "content": "     * @throws DuchessException throws exceptions if invalid command"
+        "content": ""
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "muserr"
         },
-        "content": "     */"
+        "content": "    /**"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    public UndoCommand(List\u003cString\u003e words) throws DuchessException {"
+        "content": "     * Checks if undo command contains additional parameters."
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        if (words.size() !\u003d 1 \u0026\u0026 words.size() !\u003d 0) {"
+        "content": "     *"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            throw new DuchessException(\"Usage: undo [number]\");"
+        "content": "     * @param words additional parameters for undo"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        } else if (words.size() \u003d\u003d 1) {"
+        "content": "     * @throws DuchessException throws exceptions if invalid command"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            undoCounter \u003d Integer.parseInt(words.get(0));"
+        "content": "     */"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        } else if (words.size() \u003d\u003d 0) {"
+        "content": "    public UndoCommand(List\u003cString\u003e words) throws DuchessException {"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            undoCounter \u003d 1;"
+        "content": "        if (words.size() !\u003d 1 \u0026\u0026 words.size() !\u003d 0) {"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        }"
+        "content": "            throw new DuchessException(UNDO_USAGE_ERROR_MESSAGE);"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    }"
+        "content": "        } else if (words.size() \u003d\u003d 1) {"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "muserr"
         },
-        "content": ""
+        "content": "            try {"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    @Override"
+        "content": "                undoCounter \u003d Integer.parseInt(words.get(0));"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    public void execute(Store store, Ui ui, Storage storage) throws DuchessException {"
+        "content": ""
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        if (storage.getUndoStack().size() \u003d\u003d 1) {"
+        "content": "                if (undoCounter \u003c\u003d 0) {"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            undoCounter \u003d 0;"
+        "content": "                    throw new IllegalArgumentException();"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        } else if (storage.getUndoStack().size() \u003e 1 \u0026\u0026 undoCounter \u003e 1) {"
+        "content": "                }"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            storage.addToRedoStack();"
+        "content": "            } catch (NumberFormatException e) {"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            int tempCounter \u003d undoCounter;"
+        "content": "                throw new DuchessException(INVALID_NUMBER_ERROR_MESSAGE);"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            while (tempCounter \u003e 0 \u0026\u0026 storage.getUndoStack().size() \u003e 1) {"
+        "content": "            } catch (IllegalArgumentException e) {"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "muserr"
         },
-        "content": "                setToPreviousStore(store, storage);"
+        "content": "                throw new DuchessException(NEGATIVE_NUMBER_ERROR_MESSAGE);"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "muserr"
         },
-        "content": "                tempCounter--;"
+        "content": "            }"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            }"
+        "content": ""
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        } else if (storage.getUndoStack().size() \u003e 1 \u0026\u0026 undoCounter \u003d\u003d 1) {"
+        "content": "        } else if (words.size() \u003d\u003d 0) {"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            storage.addToRedoStack();"
+        "content": "            undoCounter \u003d 1;"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            setToPreviousStore(store, storage);"
+        "content": "        }"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        }"
+        "content": "    }"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        // showUndo should only be placed after execution of undo."
+        "content": ""
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        ui.showUndo(undoCounter);"
+        "content": "    @Override"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    }"
+        "content": "    public void execute(Store store, Ui ui, Storage storage) throws DuchessException {"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "muserr"
         },
-        "content": ""
+        "content": "        if (storage.getUndoStack().size() \u003d\u003d 1) {"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    private void setToPreviousStore(Store store, Storage storage) throws DuchessException {"
+        "content": "            undoCounter \u003d 0;"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        storage.getLastSnapshot();"
+        "content": "        } else if (storage.getUndoStack().size() \u003e 1 \u0026\u0026 undoCounter \u003e 1) {"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        storage.save(storage.peekUndoStackAsStore());"
+        "content": "            storage.addToRedoStack();"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "muserr"
         },
-        "content": ""
+        "content": "            int tempCounter \u003d undoCounter;"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        // Obtaining store from stack"
+        "content": "            while (tempCounter \u003e 0 \u0026\u0026 storage.getUndoStack().size() \u003e 1) {"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        Store newStore \u003d storage.load();"
+        "content": "                setToPreviousStore(store, storage);"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        assert (store.equals(newStore));"
+        "content": "                tempCounter--;"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        store.setTaskList(newStore.getTaskList());"
+        "content": "            }"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        store.setModuleList(newStore.getModuleList());"
+        "content": "        } else if (storage.getUndoStack().size() \u003e 1 \u0026\u0026 undoCounter \u003d\u003d 1) {"
       },
       {
         "lineNumber": 57,
         "author": {
-          "gitId": "limsiying"
+          "gitId": "muserr"
         },
-        "content": "        store.setDuchessCalendar(newStore.getDuchessCalendar());"
+        "content": "            storage.addToRedoStack();"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    }"
+        "content": "            setToPreviousStore(store, storage);"
       },
       {
         "lineNumber": 59,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        // showUndo should only be placed after execution of undo."
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        ui.showUndo(undoCounter);"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    private void setToPreviousStore(Store store, Storage storage) throws DuchessException {"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        storage.getLastSnapshot();"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        storage.save(storage.peekUndoStackAsStore());"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        // Obtaining store from stack"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        Store newStore \u003d storage.load();"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        assert (store.equals(newStore));"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        store.setTaskList(newStore.getTaskList());"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        store.setModuleList(newStore.getModuleList());"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": "        store.setDuchessCalendar(newStore.getDuchessCalendar());"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 75,
         "author": {
           "gitId": "muserr"
         },
@@ -7421,7 +8755,7 @@
     ],
     "authorContributionMap": {
       "limsiying": 1,
-      "muserr": 58
+      "muserr": 74
     }
   },
   {
@@ -10132,341 +11466,754 @@
       {
         "lineNumber": 36,
         "author": {
-          "gitId": "limsiying"
+          "gitId": "muserr"
         },
-        "content": "        final double week \u003d 7.0;"
+        "content": "        int currWeek \u003d getWeekAsInt(comparison, date);"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "limsiying"
         },
-        "content": "        long daysBetween \u003d ChronoUnit.DAYS.between(comparison, date) + 1;"
+        "content": "        if (currWeek \u003d\u003d 7) {"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "limsiying"
         },
-        "content": "        int currWeek \u003d (int) Math.ceil(daysBetween / week);"
+        "content": "            return \", Recess Week\";"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "limsiying"
         },
-        "content": "        if (currWeek \u003d\u003d 7) {"
+        "content": "        } else if (currWeek \u003e\u003d 8 \u0026\u0026 currWeek \u003c\u003d 14) {"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "limsiying"
         },
-        "content": "            return \", Recess Week\";"
+        "content": "            return \", W\" + (currWeek - 1);"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "limsiying"
         },
-        "content": "        } else if (currWeek \u003e\u003d 8 \u0026\u0026 currWeek \u003c\u003d 14) {"
+        "content": "        } else if (currWeek \u003d\u003d 15) {"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "limsiying"
         },
-        "content": "            return \", W\" + (currWeek - 1);"
+        "content": "            return \", Reading Week\";"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "limsiying"
         },
-        "content": "        } else if (currWeek \u003d\u003d 15) {"
+        "content": "        } else if (currWeek \u003d\u003d 16 || currWeek \u003d\u003d 17) {"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "limsiying"
         },
-        "content": "            return \", Reading Week\";"
+        "content": "            return \", Examinations\";"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "limsiying"
         },
-        "content": "        } else if (currWeek \u003d\u003d 16 || currWeek \u003d\u003d 17) {"
+        "content": "        } else {"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "limsiying"
         },
-        "content": "            return \", Examinations\";"
+        "content": "            return \", W\" + currWeek;"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "limsiying"
         },
-        "content": "        } else {"
+        "content": "        }"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "limsiying"
         },
-        "content": "            return \", W\" + currWeek;"
+        "content": "    }"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "limsiying"
         },
-        "content": "        }"
+        "content": ""
       },
       {
         "lineNumber": 50,
         "author": {
-          "gitId": "limsiying"
+          "gitId": "muserr"
         },
-        "content": "    }"
+        "content": "    /**"
       },
       {
         "lineNumber": 51,
         "author": {
-          "gitId": "limsiying"
+          "gitId": "muserr"
         },
-        "content": ""
+        "content": "     * Returns true if currWeek falls within semester break"
       },
       {
         "lineNumber": 52,
         "author": {
-          "gitId": "limsiying"
+          "gitId": "muserr"
         },
-        "content": "    private String processInformation(LocalDate date) {"
+        "content": "     * and false if currWeek does not fall within semester break."
       },
       {
         "lineNumber": 53,
         "author": {
-          "gitId": "limsiying"
+          "gitId": "muserr"
         },
-        "content": "        boolean isSemesterOne \u003d date.compareTo(semOneStart) \u003e\u003d 0 \u0026\u0026 date.compareTo(semOneEnd) \u003c\u003d 0;"
+        "content": "     *"
       },
       {
         "lineNumber": 54,
         "author": {
-          "gitId": "limsiying"
+          "gitId": "muserr"
         },
-        "content": "        boolean isSemesterTwo \u003d date.compareTo(semTwoStart) \u003e\u003d 0 \u0026\u0026 date.compareTo(semTwoEnd) \u003c\u003d 0;"
+        "content": "     * @param currWeek week of interest"
       },
       {
         "lineNumber": 55,
         "author": {
-          "gitId": "limsiying"
+          "gitId": "muserr"
         },
-        "content": "        boolean isSchoolTerm \u003d isSemesterOne || isSemesterTwo;"
+        "content": "     * @return boolean showing if currWeek falls within semester break"
       },
       {
         "lineNumber": 56,
         "author": {
-          "gitId": "limsiying"
+          "gitId": "muserr"
         },
-        "content": "        String str \u003d \"AY\" + semOneStart.getYear() + \"/\" + semOneStart.plusYears(1).getYear();"
+        "content": "     */"
       },
       {
         "lineNumber": 57,
         "author": {
-          "gitId": "limsiying"
+          "gitId": "muserr"
         },
-        "content": "        LocalDate comparison \u003d null;"
+        "content": "    public boolean isSemesterBreak(int currWeek) {"
       },
       {
         "lineNumber": 58,
         "author": {
-          "gitId": "limsiying"
+          "gitId": "muserr"
         },
-        "content": "        if (isSemesterOne) {"
+        "content": "        if (currWeek \u003d\u003d 7 || currWeek \u003e\u003d 15) {"
       },
       {
         "lineNumber": 59,
         "author": {
-          "gitId": "limsiying"
+          "gitId": "muserr"
         },
-        "content": "            str +\u003d \", Semester 1\";"
+        "content": "            return true;"
       },
       {
         "lineNumber": 60,
         "author": {
-          "gitId": "limsiying"
-        },
-        "content": "            comparison \u003d semOneStart;"
-      },
-      {
-        "lineNumber": 61,
-        "author": {
-          "gitId": "limsiying"
-        },
-        "content": "        } else if (isSemesterTwo) {"
-      },
-      {
-        "lineNumber": 62,
-        "author": {
-          "gitId": "limsiying"
-        },
-        "content": "            str +\u003d \", Semester 2\";"
-      },
-      {
-        "lineNumber": 63,
-        "author": {
-          "gitId": "limsiying"
-        },
-        "content": "            comparison \u003d semTwoStart;"
-      },
-      {
-        "lineNumber": 64,
-        "author": {
-          "gitId": "limsiying"
+          "gitId": "muserr"
         },
         "content": "        } else {"
       },
       {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            return false;"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
         "lineNumber": 65,
         "author": {
-          "gitId": "limsiying"
+          "gitId": "muserr"
         },
-        "content": "            str +\u003d \", Break\";"
+        "content": "    /**"
       },
       {
         "lineNumber": 66,
         "author": {
-          "gitId": "limsiying"
+          "gitId": "muserr"
         },
-        "content": "        }"
+        "content": "     * Returns a week as integer value within a school semester."
       },
       {
         "lineNumber": 67,
         "author": {
-          "gitId": "limsiying"
+          "gitId": "muserr"
         },
-        "content": "        if (isSchoolTerm) {"
+        "content": "     *"
       },
       {
         "lineNumber": 68,
         "author": {
-          "gitId": "limsiying"
+          "gitId": "muserr"
         },
-        "content": "            str +\u003d getWeek(comparison, date);"
+        "content": "     * @param comparison comparison date"
       },
       {
         "lineNumber": 69,
         "author": {
-          "gitId": "limsiying"
+          "gitId": "muserr"
         },
-        "content": "        }"
+        "content": "     * @param date interested date"
       },
       {
         "lineNumber": 70,
         "author": {
-          "gitId": "limsiying"
+          "gitId": "muserr"
         },
-        "content": "        return str;"
+        "content": "     * @return integer value representing week"
       },
       {
         "lineNumber": 71,
         "author": {
-          "gitId": "limsiying"
+          "gitId": "muserr"
         },
-        "content": "    }"
+        "content": "     */"
       },
       {
         "lineNumber": 72,
         "author": {
-          "gitId": "limsiying"
+          "gitId": "muserr"
         },
-        "content": ""
+        "content": "    public int getWeekAsInt(LocalDate comparison, LocalDate date) {"
       },
       {
         "lineNumber": 73,
         "author": {
-          "gitId": "limsiying"
+          "gitId": "muserr"
         },
-        "content": "    public String toString(LocalDate date) {"
+        "content": "        final double week \u003d 7.0;"
       },
       {
         "lineNumber": 74,
         "author": {
-          "gitId": "limsiying"
+          "gitId": "muserr"
         },
-        "content": "        return processInformation(date);"
+        "content": "        long daysBetween \u003d ChronoUnit.DAYS.between(comparison, date) + 1;"
       },
       {
         "lineNumber": 75,
         "author": {
-          "gitId": "limsiying"
+          "gitId": "muserr"
         },
-        "content": "    }"
+        "content": "        int currWeek \u003d (int) Math.ceil(daysBetween / week);"
       },
       {
         "lineNumber": 76,
         "author": {
-          "gitId": "limsiying"
+          "gitId": "muserr"
         },
-        "content": ""
+        "content": "        return currWeek;"
       },
       {
         "lineNumber": 77,
         "author": {
-          "gitId": "limsiying"
+          "gitId": "muserr"
         },
-        "content": "    public LocalDate getAcademicYearStart() {"
+        "content": "    }"
       },
       {
         "lineNumber": 78,
         "author": {
-          "gitId": "limsiying"
+          "gitId": "muserr"
         },
-        "content": "        return semOneStart;"
+        "content": ""
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "limsiying"
         },
-        "content": "    }"
+        "content": "    private String processInformation(LocalDate date) {"
       },
       {
         "lineNumber": 80,
         "author": {
-          "gitId": "limsiying"
+          "gitId": "muserr"
         },
-        "content": ""
+        "content": "        boolean isSemesterOne \u003d isFirstSemester(date);"
       },
       {
         "lineNumber": 81,
         "author": {
-          "gitId": "limsiying"
+          "gitId": "muserr"
         },
-        "content": "    public LocalDate getAcademicYearEnd() {"
+        "content": "        boolean isSemesterTwo \u003d isSecondSemester(date);"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "limsiying"
         },
-        "content": "        return ayEnd;"
+        "content": "        boolean isSchoolTerm \u003d isSemesterOne || isSemesterTwo;"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "limsiying"
         },
-        "content": "    }"
+        "content": "        String str \u003d \"AY\" + semOneStart.getYear() + \"/\" + semOneStart.plusYears(1).getYear();"
       },
       {
         "lineNumber": 84,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": "        LocalDate comparison \u003d null;"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": "        if (isSemesterOne) {"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": "            str +\u003d \", Semester 1\";"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": "            comparison \u003d semOneStart;"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": "        } else if (isSemesterTwo) {"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": "            str +\u003d \", Semester 2\";"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": "            comparison \u003d semTwoStart;"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": "            str +\u003d \", Break\";"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": "        if (isSchoolTerm) {"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": "            str +\u003d getWeek(comparison, date);"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": "        return str;"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": "    public String toString(LocalDate date) {"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": "        return processInformation(date);"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": "    public LocalDate getAcademicYearStart() {"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": "        return semOneStart;"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": "    public LocalDate getAcademicYearEnd() {"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": "        return ayEnd;"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     * Returns boolean showing if date falls within an academic semester."
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     * @param date interested date"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     * @return boolean showing if date is within an academic semester"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    public boolean isAcademicSemester(LocalDate date) {"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        boolean isSemesterOne \u003d isFirstSemester(date);"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        boolean isSemesterTwo \u003d isSecondSemester(date);"
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        return isSemesterOne || isSemesterTwo;"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    // jk"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    public boolean isFirstSemester(LocalDate date) {"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        return date.compareTo(semOneStart) \u003e\u003d 0 \u0026\u0026 date.compareTo(semOneEnd) \u003c\u003d 0;"
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    // jk"
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    public boolean isSecondSemester(LocalDate date) {"
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        return date.compareTo(semTwoStart) \u003e\u003d 0 \u0026\u0026 date.compareTo(semTwoEnd) \u003c\u003d 0;"
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    // jk"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    public LocalDate getSemOneStart() {"
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        return semOneStart;"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    // jk"
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    public LocalDate getSemTwoStart() {"
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        return semTwoStart;"
+      },
+      {
+        "lineNumber": 142,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 143,
         "author": {
           "gitId": "limsiying"
         },
@@ -10474,7 +12221,8 @@
       }
     ],
     "authorContributionMap": {
-      "limsiying": 84
+      "limsiying": 79,
+      "muserr": 64
     }
   },
   {
@@ -16142,6 +17890,374 @@
     }
   },
   {
+    "path": "src/main/java/duchess/parser/commands/DeleteLessonCommandParser.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "package duchess.parser.commands;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "import duchess.exceptions.DuchessException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "import duchess.logic.commands.Command;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "import duchess.logic.commands.DeleteLessonCommand;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "import java.util.Map;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "public class DeleteLessonCommandParser {"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     * Returns a command to delete lessons based on user input."
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     * @param parameters processed user input"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     * @return the command to execute"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     * @throws DuchessException if the user input is invalid"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    public static Command parse(Map\u003cString, String\u003e parameters) throws DuchessException {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        String description \u003d parameters.get(\"type\");"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        String moduleCode \u003d parameters.get(\"code\");"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        return new DeleteLessonCommand(description, moduleCode);"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "muserr": 23
+    }
+  },
+  {
+    "path": "src/main/java/duchess/parser/commands/LessonCommandParser.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "package duchess.parser.commands;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "import duchess.exceptions.DuchessException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "import duchess.logic.commands.AddLessonCommand;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "import duchess.logic.commands.Command;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "import duchess.parser.Util;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "import java.time.LocalDateTime;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "import java.util.Map;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "public class LessonCommandParser {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     * Returns a command to add lessons based on user input."
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     * @param parameters processed user input"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     * @return the command to execute"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     * @throws DuchessException if the user input is invalid"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    public static Command parse(Map\u003cString, String\u003e parameters) throws DuchessException {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        String description \u003d parameters.get(\"type\");"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        String moduleCode \u003d parameters.get(\"add\");"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        LocalDateTime startTimeString \u003d Util.parseDateTime(parameters.get(\"time\"));"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        LocalDateTime endTimeString \u003d Util.parseDateTime(parameters.get(\"to\"));"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        return new AddLessonCommand(description, startTimeString, endTimeString, moduleCode);"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "muserr": 27
+    }
+  },
+  {
     "path": "src/main/java/duchess/parser/commands/ListCommandParser.java",
     "fileType": "functional",
     "lines": [
@@ -16445,114 +18561,114 @@
       {
         "lineNumber": 9,
         "author": {
-          "gitId": "mohideenik"
+          "gitId": "limsiying"
         },
-        "content": "import duchess.logic.commands.DeleteModuleCommand;"
+        "content": "import duchess.logic.commands.DisplayCalendarCommand;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "import duchess.logic.commands.DeleteTaskCommand;"
-      },
-      {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "limsiying"
-        },
-        "content": "import duchess.logic.commands.DisplayCalendarCommand;"
-      },
-      {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "mohideenik"
-        },
         "content": "import duchess.logic.commands.DisplayCommand;"
       },
       {
-        "lineNumber": 13,
+        "lineNumber": 11,
         "author": {
           "gitId": "mohideenik"
         },
         "content": "import duchess.logic.commands.DoneCommand;"
       },
       {
-        "lineNumber": 14,
+        "lineNumber": 12,
         "author": {
           "gitId": "limsiying"
         },
         "content": "import duchess.logic.commands.ExportCommand;"
       },
       {
-        "lineNumber": 15,
+        "lineNumber": 13,
         "author": {
           "gitId": "mohideenik"
         },
         "content": "import duchess.logic.commands.FindCommand;"
       },
       {
-        "lineNumber": 16,
+        "lineNumber": 14,
         "author": {
-          "gitId": "mohideenik"
+          "gitId": "muserr"
         },
-        "content": "import duchess.logic.commands.LogCommand;"
+        "content": "import duchess.logic.commands.HistoryCommand;"
       },
       {
-        "lineNumber": 17,
+        "lineNumber": 15,
         "author": {
           "gitId": "mohideenik"
         },
         "content": "import duchess.logic.commands.RedoCommand;"
       },
       {
-        "lineNumber": 18,
+        "lineNumber": 16,
         "author": {
           "gitId": "mohideenik"
         },
         "content": "import duchess.logic.commands.ReminderCommand;"
       },
       {
-        "lineNumber": 19,
+        "lineNumber": 17,
         "author": {
           "gitId": "mohideenik"
         },
         "content": "import duchess.logic.commands.SnoozeCommand;"
       },
       {
-        "lineNumber": 20,
+        "lineNumber": 18,
         "author": {
           "gitId": "mohideenik"
         },
         "content": "import duchess.logic.commands.UndoCommand;"
       },
       {
-        "lineNumber": 21,
+        "lineNumber": 19,
         "author": {
           "gitId": "mohideenik"
         },
         "content": "import duchess.logic.commands.ViewScheduleCommand;"
       },
       {
-        "lineNumber": 22,
+        "lineNumber": 20,
         "author": {
           "gitId": "mohideenik"
         },
         "content": "import duchess.parser.Parser;"
       },
       {
-        "lineNumber": 23,
+        "lineNumber": 21,
         "author": {
           "gitId": "mohideenik"
         },
         "content": "import duchess.parser.Util;"
       },
       {
-        "lineNumber": 24,
+        "lineNumber": 22,
         "author": {
           "gitId": "mohideenik"
         },
         "content": "import duchess.parser.commands.DeleteCommandParser;"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "import duchess.parser.commands.DeleteLessonCommandParser;"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "import duchess.parser.commands.LessonCommandParser;"
       },
       {
         "lineNumber": 25,
@@ -16823,670 +18939,698 @@
       {
         "lineNumber": 63,
         "author": {
-          "gitId": "mohideenik"
+          "gitId": "muserr"
         },
-        "content": "        } else if (\"done\".equals(keyword)) {"
+        "content": "        } else if (\"ldelete\".equals(keyword)) {"
       },
       {
         "lineNumber": 64,
         "author": {
-          "gitId": "mohideenik"
+          "gitId": "muserr"
         },
-        "content": "            try {"
+        "content": "            return DeleteLessonCommandParser.parse(parameters);"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                return new DoneCommand(Integer.parseInt(words.get(0)) - 1);"
+        "content": "        } else if (\"done\".equals(keyword)) {"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            } catch (NumberFormatException e) {"
+        "content": "            try {"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                throw new DuchessException(\"Please supply a number. Eg: done 2\");"
+        "content": "                return new DoneCommand(Integer.parseInt(words.get(0)) - 1);"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            }"
+        "content": "            } catch (NumberFormatException e) {"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        } else if (\"todo\".equals(keyword)) {"
+        "content": "                throw new DuchessException(\"Please supply a number. Eg: done 2\");"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            if (arguments.size() \u003d\u003d 0) {"
+        "content": "            }"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                throw new DuchessException(\"Format for todo: todo \u003ctask\u003e\");"
+        "content": "        } else if (\"todo\".equals(keyword)) {"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            }"
+        "content": "            if (arguments.size() \u003d\u003d 0) {"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            if (arguments.get(arguments.size() - 1).charAt(0) \u003d\u003d \u0027#\u0027) {"
+        "content": "                throw new DuchessException(\"Format for todo: todo \u003ctask\u003e\");"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                String description \u003d String.join(\" \", arguments.subList(0, arguments.size() - 1));"
+        "content": "            }"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                String moduleCode \u003d arguments.get(arguments.size() - 1).substring(1);"
+        "content": "            if (arguments.get(arguments.size() - 1).charAt(0) \u003d\u003d \u0027#\u0027) {"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                return new AddTodoCommand(description, moduleCode);"
+        "content": "                String description \u003d String.join(\" \", arguments.subList(0, arguments.size() - 1));"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            } else {"
+        "content": "                String moduleCode \u003d arguments.get(arguments.size() - 1).substring(1);"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                String description \u003d String.join(\" \", arguments);"
+        "content": "                return new AddTodoCommand(description, moduleCode);"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                return new AddTodoCommand(description);"
+        "content": "            } else {"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            }"
+        "content": "                String description \u003d String.join(\" \", arguments);"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        } else if (\"deadline\".equals(keyword)) {"
+        "content": "                return new AddTodoCommand(description);"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            int separatorIndex \u003d arguments.indexOf(\"/by\");"
+        "content": "            }"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            if (arguments.size() \u003d\u003d 0 || separatorIndex \u003c\u003d 0) {"
+        "content": "        } else if (\"deadline\".equals(keyword)) {"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                throw new DuchessException(\"Format for deadline: deadline \u003ctask\u003e /by \u003cdeadline\u003e\");"
+        "content": "            int separatorIndex \u003d arguments.indexOf(\"/by\");"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            }"
+        "content": "            if (arguments.size() \u003d\u003d 0 || separatorIndex \u003c\u003d 0) {"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            if (arguments.get(arguments.size() - 1).charAt(0) \u003d\u003d \u0027#\u0027) {"
+        "content": "                throw new DuchessException(\"Format for deadline: deadline \u003ctask\u003e /by \u003cdeadline\u003e\");"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                String description \u003d String.join(\" \", arguments.subList(0, separatorIndex));"
+        "content": "            }"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                LocalDateTime deadline \u003d Util"
+        "content": "            if (arguments.get(arguments.size() - 1).charAt(0) \u003d\u003d \u0027#\u0027) {"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                        .parseDateTime(arguments.subList(0, arguments.size() - 1), separatorIndex + 1);"
+        "content": "                String description \u003d String.join(\" \", arguments.subList(0, separatorIndex));"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                String moduleCode \u003d arguments.get(arguments.size() - 1).substring(1);"
+        "content": "                LocalDateTime deadline \u003d Util"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                return new AddDeadlineCommand(description, deadline, moduleCode);"
+        "content": "                        .parseDateTime(arguments.subList(0, arguments.size() - 1), separatorIndex + 1);"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            } else {"
+        "content": "                String moduleCode \u003d arguments.get(arguments.size() - 1).substring(1);"
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                String description \u003d String.join(\" \", arguments.subList(0, separatorIndex));"
+        "content": "                return new AddDeadlineCommand(description, deadline, moduleCode);"
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                LocalDateTime deadline \u003d Util"
+        "content": "            } else {"
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                        .parseDateTime(arguments, separatorIndex + 1);"
+        "content": "                String description \u003d String.join(\" \", arguments.subList(0, separatorIndex));"
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                return new AddDeadlineCommand(description, deadline);"
+        "content": "                LocalDateTime deadline \u003d Util"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            }"
+        "content": "                        .parseDateTime(arguments, separatorIndex + 1);"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        } else if (\"reminder\".equals(keyword)) {"
+        "content": "                return new AddDeadlineCommand(description, deadline);"
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            return new ReminderCommand();"
+        "content": "            }"
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        } else if (\"snooze\".equals(keyword)) {"
+        "content": "        } else if (\"reminder\".equals(keyword)) {"
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            return new SnoozeCommand(arguments);"
+        "content": "            return new ReminderCommand();"
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        } else if (\"schedule\".equals(keyword)) {"
+        "content": "        } else if (\"snooze\".equals(keyword)) {"
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            try {"
+        "content": "            return new SnoozeCommand(arguments);"
       },
       {
         "lineNumber": 104,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                String view \u003d words.get(2);"
+        "content": "        } else if (\"schedule\".equals(keyword)) {"
       },
       {
         "lineNumber": 105,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                boolean isInvalidView \u003d !view.equals(\"day\") \u0026\u0026 !view.equals(\"week\");"
+        "content": "            try {"
       },
       {
         "lineNumber": 106,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                boolean isIllegalArgument \u003d isInvalidView \u0026\u0026 (words.size() \u003e 3);"
+        "content": "                String view \u003d words.get(2);"
       },
       {
         "lineNumber": 107,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                if (isIllegalArgument) {"
+        "content": "                boolean isInvalidView \u003d !view.equals(\"day\") \u0026\u0026 !view.equals(\"week\");"
       },
       {
         "lineNumber": 108,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                    throw new IllegalArgumentException();"
+        "content": "                boolean isIllegalArgument \u003d isInvalidView \u0026\u0026 (words.size() \u003e 3);"
       },
       {
         "lineNumber": 109,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                }"
+        "content": "                if (isIllegalArgument) {"
       },
       {
         "lineNumber": 110,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                String date \u003d words.get(1);"
+        "content": "                    throw new IllegalArgumentException();"
       },
       {
         "lineNumber": 111,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                return new ViewScheduleCommand(date, view);"
+        "content": "                }"
       },
       {
         "lineNumber": 112,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            } catch (IndexOutOfBoundsException e) {"
+        "content": "                String date \u003d words.get(1);"
       },
       {
         "lineNumber": 113,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                throw new DuchessException(\"Usage: schedule \u003cdate\u003e (day | week)\");"
+        "content": "                return new ViewScheduleCommand(date, view);"
       },
       {
         "lineNumber": 114,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            }"
+        "content": "            } catch (IndexOutOfBoundsException e) {"
       },
       {
         "lineNumber": 115,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        } else if (\"calendar\".equals(keyword)) {"
+        "content": "                throw new DuchessException(\"Usage: schedule \u003cdate\u003e (day | week)\");"
       },
       {
         "lineNumber": 116,
         "author": {
-          "gitId": "limsiying"
+          "gitId": "mohideenik"
         },
-        "content": "            if (words.size() !\u003d 2) {"
+        "content": "            }"
       },
       {
         "lineNumber": 117,
         "author": {
-          "gitId": "limsiying"
+          "gitId": "mohideenik"
         },
-        "content": "                throw new DuchessException(\"Usage: calendar \u003cdate\u003e\");"
+        "content": "        } else if (\"calendar\".equals(keyword)) {"
       },
       {
         "lineNumber": 118,
         "author": {
           "gitId": "limsiying"
         },
-        "content": "            }"
+        "content": "            if (words.size() !\u003d 2) {"
       },
       {
         "lineNumber": 119,
         "author": {
           "gitId": "limsiying"
         },
-        "content": "            return new DisplayCalendarCommand(Util.parseToWeekDates(Util.parseDate(words.get(1))));"
+        "content": "                throw new DuchessException(\"Usage: calendar \u003cdate\u003e\");"
       },
       {
         "lineNumber": 120,
         "author": {
-          "gitId": "mohideenik"
+          "gitId": "limsiying"
         },
-        "content": "        } else if (\"export\".equals(keyword)) {"
+        "content": "            }"
       },
       {
         "lineNumber": 121,
         "author": {
           "gitId": "limsiying"
         },
-        "content": "            if (words.size() !\u003d 2) {"
+        "content": "            return new DisplayCalendarCommand(Util.parseToWeekDates(Util.parseDate(words.get(1))));"
       },
       {
         "lineNumber": 122,
         "author": {
-          "gitId": "limsiying"
+          "gitId": "mohideenik"
         },
-        "content": "                throw new DuchessException(\"Usage: export \u003cdate\u003e\");"
+        "content": "        } else if (\"export\".equals(keyword)) {"
       },
       {
         "lineNumber": 123,
         "author": {
           "gitId": "limsiying"
         },
-        "content": "            }"
+        "content": "            if (words.size() !\u003d 2) {"
       },
       {
         "lineNumber": 124,
         "author": {
           "gitId": "limsiying"
         },
-        "content": "            return new ExportCommand(Util.parseToWeekDates(Util.parseDate(words.get(1))));"
+        "content": "                throw new DuchessException(\"Usage: export \u003cdate\u003e\");"
       },
       {
         "lineNumber": 125,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": "            return new ExportCommand(Util.parseToWeekDates(Util.parseDate(words.get(1))));"
+      },
+      {
+        "lineNumber": 127,
         "author": {
           "gitId": "mohideenik"
         },
         "content": "        } else if (\"grade\".equals(keyword)) {"
       },
       {
-        "lineNumber": 126,
+        "lineNumber": 128,
         "author": {
           "gitId": "nishanthelango"
         },
         "content": "            try {"
       },
       {
-        "lineNumber": 127,
+        "lineNumber": 129,
         "author": {
           "gitId": "nishanthelango"
         },
         "content": "                List\u003cString\u003e score \u003d Arrays.asList(parameters.get(\"general\").split(\"\\\\\\\\\"));"
       },
       {
-        "lineNumber": 128,
+        "lineNumber": 130,
         "author": {
           "gitId": "nishanthelango"
         },
         "content": "                int marks \u003d Integer.parseInt(score.get(0));"
       },
       {
-        "lineNumber": 129,
+        "lineNumber": 131,
         "author": {
           "gitId": "nishanthelango"
         },
         "content": "                int maxMarks \u003d Integer.parseInt(score.get(1));"
       },
       {
-        "lineNumber": 130,
+        "lineNumber": 132,
         "author": {
           "gitId": "nishanthelango"
         },
         "content": "                List\u003cString\u003e gradeTokens \u003d Arrays.asList(parameters.get(\"for\").split(\" \"));"
       },
       {
-        "lineNumber": 131,
+        "lineNumber": 133,
         "author": {
           "gitId": "nishanthelango"
         },
         "content": "                String moduleCode \u003d gradeTokens.get(0);"
       },
       {
-        "lineNumber": 132,
+        "lineNumber": 134,
         "author": {
           "gitId": "nishanthelango"
         },
         "content": "                String task \u003d gradeTokens.get(1);"
       },
       {
-        "lineNumber": 133,
+        "lineNumber": 135,
         "author": {
           "gitId": "nishanthelango"
         },
         "content": "                int weightage \u003d Integer.parseInt(parameters.getOrDefault(\"weightage\", \"0\"));"
       },
       {
-        "lineNumber": 134,
+        "lineNumber": 136,
         "author": {
           "gitId": "nishanthelango"
         },
         "content": "                return new AddGradeCommand(marks, maxMarks, weightage, task, moduleCode);"
       },
       {
-        "lineNumber": 135,
+        "lineNumber": 137,
         "author": {
           "gitId": "nishanthelango"
         },
         "content": "            } catch (NumberFormatException | NullPointerException | IndexOutOfBoundsException e) {"
       },
       {
-        "lineNumber": 136,
+        "lineNumber": 138,
         "author": {
           "gitId": "nishanthelango"
         },
         "content": "                throw new DuchessException(\"Usage: grade \u003cmarks\u003e /weightage \u003cweightage\u003e /for \u003cmodule\u003e \u003cassessment\u003e\\n\""
       },
       {
-        "lineNumber": 137,
+        "lineNumber": 139,
         "author": {
           "gitId": "nishanthelango"
         },
         "content": "                        + \"\\te.g. grade 15\\\\30 /weightage 25 /for CS2113 midterm\");"
       },
       {
-        "lineNumber": 138,
+        "lineNumber": 140,
         "author": {
           "gitId": "nishanthelango"
         },
         "content": "            }"
       },
       {
-        "lineNumber": 139,
-        "author": {
-          "gitId": "mohideenik"
-        },
-        "content": "        } else if (\"bye\".equals(keyword)) {"
-      },
-      {
-        "lineNumber": 140,
-        "author": {
-          "gitId": "mohideenik"
-        },
-        "content": "            return new ByeCommand();"
-      },
-      {
         "lineNumber": 141,
         "author": {
-          "gitId": "mohideenik"
+          "gitId": "muserr"
         },
-        "content": "        } else if (\"log\".equals(keyword)) {"
+        "content": "        } else if (\"lesson\".equals(keyword)) {"
       },
       {
         "lineNumber": 142,
         "author": {
-          "gitId": "mohideenik"
+          "gitId": "muserr"
         },
-        "content": "            return new LogCommand();"
+        "content": "            return LessonCommandParser.parse(parameters);"
       },
       {
         "lineNumber": 143,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        } else if (\"undo\".equals(keyword)) {"
+        "content": "        } else if (\"bye\".equals(keyword)) {"
       },
       {
         "lineNumber": 144,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            return new UndoCommand(arguments);"
+        "content": "            return new ByeCommand();"
       },
       {
         "lineNumber": 145,
         "author": {
-          "gitId": "mohideenik"
+          "gitId": "muserr"
         },
-        "content": "        } else if (\"redo\".equals(keyword)) {"
+        "content": "        } else if (\"history\".equals(keyword)) {"
       },
       {
         "lineNumber": 146,
         "author": {
-          "gitId": "mohideenik"
+          "gitId": "muserr"
         },
-        "content": "            return new RedoCommand(arguments);"
+        "content": "            return new HistoryCommand();"
       },
       {
         "lineNumber": 147,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        } else if (\"exit\".equals(keyword)) {"
+        "content": "        } else if (\"undo\".equals(keyword)) {"
       },
       {
         "lineNumber": 148,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            return new DisplayCommand(\"Operation aborted.\");"
+        "content": "            return new UndoCommand(arguments);"
       },
       {
         "lineNumber": 149,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        } else {"
+        "content": "        } else if (\"redo\".equals(keyword)) {"
       },
       {
         "lineNumber": 150,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            throw new DuchessException(\"Please enter a valid command.\");"
+        "content": "            return new RedoCommand(arguments);"
       },
       {
         "lineNumber": 151,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        }"
+        "content": "        } else if (\"exit\".equals(keyword)) {"
       },
       {
         "lineNumber": 152,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "            return new DisplayCommand(\"Operation aborted.\");"
       },
       {
         "lineNumber": 153,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "        } else {"
       },
       {
         "lineNumber": 154,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    @Override"
+        "content": "            throw new DuchessException(\"Please enter a valid command.\");"
       },
       {
         "lineNumber": 155,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public Command continueParsing(Map\u003cString, String\u003e parameters) throws DuchessException {"
+        "content": "        }"
       },
       {
         "lineNumber": 156,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        throw new DuchessException(\"An unexpected error occurred while processing your command.\");"
+        "content": "    }"
       },
       {
         "lineNumber": 157,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 158,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 159,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    public Command continueParsing(Map\u003cString, String\u003e parameters) throws DuchessException {"
+      },
+      {
+        "lineNumber": 160,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        throw new DuchessException(\"An unexpected error occurred while processing your command.\");"
+      },
+      {
+        "lineNumber": 161,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 162,
         "author": {
           "gitId": "mohideenik"
         },
@@ -17495,8 +19639,9 @@
     ],
     "authorContributionMap": {
       "limsiying": 10,
-      "mohideenik": 134,
-      "nishanthelango": 14
+      "mohideenik": 129,
+      "nishanthelango": 14,
+      "muserr": 9
     }
   },
   {
@@ -25378,110 +27523,166 @@
       {
         "lineNumber": 431,
         "author": {
-          "gitId": "mohideenik"
+          "gitId": "muserr"
         },
-        "content": "    /**"
+        "content": "    public void showDeletedLesson(String moduleCode) {"
       },
       {
         "lineNumber": 432,
         "author": {
-          "gitId": "mohideenik"
+          "gitId": "muserr"
         },
-        "content": "     * Displays a given message."
+        "content": "        printIndented(\"You have deleted lessons for \" + moduleCode + \".\");"
       },
       {
         "lineNumber": 433,
         "author": {
-          "gitId": "mohideenik"
+          "gitId": "muserr"
         },
-        "content": "     *"
+        "content": "    }"
       },
       {
         "lineNumber": 434,
         "author": {
-          "gitId": "mohideenik"
+          "gitId": "muserr"
         },
-        "content": "     * @param msg the message to display"
+        "content": ""
       },
       {
         "lineNumber": 435,
         "author": {
-          "gitId": "mohideenik"
+          "gitId": "muserr"
         },
-        "content": "     */"
+        "content": "    public void showNoDeletedLesson(String moduleCode) {"
       },
       {
         "lineNumber": 436,
         "author": {
-          "gitId": "mohideenik"
+          "gitId": "muserr"
         },
-        "content": "    public void displayMessage(String msg) {"
+        "content": "        printIndented(\"There are no lessons to be deleted for \" + moduleCode + \".\");"
       },
       {
         "lineNumber": 437,
         "author": {
-          "gitId": "mohideenik"
+          "gitId": "muserr"
         },
-        "content": "        printIndented(msg);"
+        "content": "    }"
       },
       {
         "lineNumber": 438,
         "author": {
-          "gitId": "mohideenik"
+          "gitId": "muserr"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 439,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 440,
         "author": {
-          "gitId": "muserr"
+          "gitId": "mohideenik"
         },
-        "content": "    /**"
+        "content": "     * Displays a given message."
       },
       {
         "lineNumber": 441,
         "author": {
-          "gitId": "muserr"
+          "gitId": "mohideenik"
         },
-        "content": "     * Prints a straight line."
+        "content": "     *"
       },
       {
         "lineNumber": 442,
         "author": {
-          "gitId": "muserr"
+          "gitId": "mohideenik"
         },
-        "content": "     */"
+        "content": "     * @param msg the message to display"
       },
       {
         "lineNumber": 443,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    private void printHR() {"
+        "content": "     */"
       },
       {
         "lineNumber": 444,
         "author": {
-          "gitId": "limsiying"
+          "gitId": "mohideenik"
         },
-        "content": "        printIndented(\"_______________________________________________________________\");"
+        "content": "    public void displayMessage(String msg) {"
       },
       {
         "lineNumber": 445,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "        printIndented(msg);"
       },
       {
         "lineNumber": 446,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 447,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 448,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 449,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     * Prints a straight line."
+      },
+      {
+        "lineNumber": 450,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 451,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    private void printHR() {"
+      },
+      {
+        "lineNumber": 452,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": "        printIndented(\"_______________________________________________________________\");"
+      },
+      {
+        "lineNumber": 453,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 454,
         "author": {
           "gitId": "mohideenik"
         },
@@ -25492,7 +27693,7 @@
       "limsiying": 116,
       "mohideenik": 183,
       "nishanthelango": 28,
-      "muserr": 119
+      "muserr": 127
     }
   },
   {
