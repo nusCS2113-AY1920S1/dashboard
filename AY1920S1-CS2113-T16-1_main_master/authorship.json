@@ -1915,14 +1915,14 @@
       {
         "lineNumber": 71,
         "author": {
-          "gitId": "-"
+          "gitId": "huangje"
         },
         "content": "            c \u003d new TodoCommand(user);"
       },
       {
         "lineNumber": 72,
         "author": {
-          "gitId": "-"
+          "gitId": "laurenthg"
         },
         "content": "        }"
       },
@@ -1936,7 +1936,7 @@
       {
         "lineNumber": 74,
         "author": {
-          "gitId": "laurenthg"
+          "gitId": "-"
         },
         "content": "            c \u003d new TodoCommand(user);"
       },
@@ -1957,37 +1957,37 @@
       {
         "lineNumber": 77,
         "author": {
-          "gitId": "huangje"
+          "gitId": "rshah918"
         },
-        "content": "        else if (user.matches(\" deadline (.*)\") | user.matches(\" deadline\")) {"
+        "content": "        else if (user.matches(\" homework (.*)\") | user.matches(\" homework\")) {"
       },
       {
         "lineNumber": 78,
         "author": {
-          "gitId": "laurenthg"
+          "gitId": "rshah918"
         },
-        "content": "            c \u003d new DeadlineCommand(user);"
+        "content": "            c \u003d new HomeworkCommand(user);"
       },
       {
         "lineNumber": 79,
         "author": {
-          "gitId": "laurenthg"
+          "gitId": "-"
         },
         "content": "        }"
       },
       {
         "lineNumber": 80,
         "author": {
-          "gitId": "huangje"
+          "gitId": "rshah918"
         },
-        "content": "        else if (user.matches(DeadlineCommand.getDeadlineShortcut() + \"(.*)\") | user.matches(DeadlineCommand.getDeadlineShortcut())) {"
+        "content": "        else if (user.matches(HomeworkCommand.getHomeworkShortcut() + \"(.*)\") | user.matches(HomeworkCommand.getHomeworkShortcut())) {"
       },
       {
         "lineNumber": 81,
         "author": {
-          "gitId": "-"
+          "gitId": "rshah918"
         },
-        "content": "            c \u003d new DeadlineCommand(user);"
+        "content": "            c \u003d new HomeworkCommand(user);"
       },
       {
         "lineNumber": 82,
@@ -2446,10 +2446,10 @@
       }
     ],
     "authorContributionMap": {
-      "huangje": 58,
-      "rshah918": 12,
-      "-": 55,
-      "laurenthg": 21
+      "huangje": 57,
+      "rshah918": 16,
+      "-": 54,
+      "laurenthg": 19
     }
   },
   {
@@ -3747,9 +3747,9 @@
       {
         "lineNumber": 185,
         "author": {
-          "gitId": "laurenthg"
+          "gitId": "rshah918"
         },
-        "content": "        System.out.println(\"\\t deadline DESCRIPTION /by DATE prio INDEX: create a deadline task ( prio index is optional) with priority index\");"
+        "content": "        System.out.println(\"\\t homework DESCRIPTION /by DATE prio INDEX: create a homework task ( prio index is optional) with priority index\");"
       },
       {
         "lineNumber": 186,
@@ -3901,9 +3901,9 @@
     ],
     "authorContributionMap": {
       "huangje": 45,
-      "rshah918": 68,
+      "rshah918": 69,
       "-": 83,
-      "laurenthg": 10
+      "laurenthg": 9
     }
   },
   {
@@ -4660,780 +4660,6 @@
     "authorContributionMap": {
       "huangje": 5,
       "-": 39
-    }
-  },
-  {
-    "path": "src/main/java/leduc/command/DeadlineCommand.java",
-    "fileType": "functional",
-    "lines": [
-      {
-        "lineNumber": 1,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "package leduc.command;"
-      },
-      {
-        "lineNumber": 2,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 3,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import leduc.Date;"
-      },
-      {
-        "lineNumber": 4,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import leduc.exception.*;"
-      },
-      {
-        "lineNumber": 5,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import leduc.storage.Storage;"
-      },
-      {
-        "lineNumber": 6,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import leduc.Ui;"
-      },
-      {
-        "lineNumber": 7,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import leduc.task.DeadlinesTask;"
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import leduc.task.TaskList;"
-      },
-      {
-        "lineNumber": 9,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 10,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "/**"
-      },
-      {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "-"
-        },
-        "content": " * Represents a deadline task Command."
-      },
-      {
-        "lineNumber": 13,
-        "author": {
-          "gitId": "-"
-        },
-        "content": " * Allow to add a deadline task to the task list and to the data file."
-      },
-      {
-        "lineNumber": 14,
-        "author": {
-          "gitId": "-"
-        },
-        "content": " */"
-      },
-      {
-        "lineNumber": 15,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "public class DeadlineCommand extends Command {"
-      },
-      {
-        "lineNumber": 16,
-        "author": {
-          "gitId": "huangje"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 17,
-        "author": {
-          "gitId": "huangje"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 18,
-        "author": {
-          "gitId": "huangje"
-        },
-        "content": "     * static variable used for shortcut"
-      },
-      {
-        "lineNumber": 19,
-        "author": {
-          "gitId": "huangje"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 20,
-        "author": {
-          "gitId": "huangje"
-        },
-        "content": "    private static String deadlineShortcut \u003d \"deadline\";"
-      },
-      {
-        "lineNumber": 21,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 22,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * Constructor of DeadlineCommand."
-      },
-      {
-        "lineNumber": 23,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * @param user String which represent the input string of the user."
-      },
-      {
-        "lineNumber": 24,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 25,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public DeadlineCommand(String user){"
-      },
-      {
-        "lineNumber": 26,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        super(user);"
-      },
-      {
-        "lineNumber": 27,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 28,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 29,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 30,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * Allow to add a deadline task to the task list and to the data file."
-      },
-      {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * @param tasks leduc.task.TaskList which is the list of task."
-      },
-      {
-        "lineNumber": 32,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * @param ui leduc.Ui which deals with the interactions with the user."
-      },
-      {
-        "lineNumber": 33,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * @param storage leduc.storage.Storage which deals with loading tasks from the file and saving tasks in the file."
-      },
-      {
-        "lineNumber": 34,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * @throws EmptyDeadlineDateException Exception caught when the date of the deadline task is not given."
-      },
-      {
-        "lineNumber": 35,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * @throws EmptyDeadlineException Exception caught when the description of the deadline task is not given."
-      },
-      {
-        "lineNumber": 36,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * @throws NonExistentDateException Exception caught when the date given does not exist."
-      },
-      {
-        "lineNumber": 37,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "     * @throws FileException Exception caught when the file can\u0027t be open or read or modify."
-      },
-      {
-        "lineNumber": 38,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "     * @throws PrioritizeLimitException Exception caught when the new priority is greater than 9 or less than 0."
-      },
-      {
-        "lineNumber": 39,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 40,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public void execute(TaskList tasks, Ui ui, Storage storage)"
-      },
-      {
-        "lineNumber": 41,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "            throws EmptyDeadlineDateException, EmptyDeadlineException, NonExistentDateException,"
-      },
-      {
-        "lineNumber": 42,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "            FileException, PrioritizeLimitException {"
-      },
-      {
-        "lineNumber": 43,
-        "author": {
-          "gitId": "huangje"
-        },
-        "content": "        String userSubstring;"
-      },
-      {
-        "lineNumber": 44,
-        "author": {
-          "gitId": "huangje"
-        },
-        "content": "        if(callByShortcut){"
-      },
-      {
-        "lineNumber": 45,
-        "author": {
-          "gitId": "huangje"
-        },
-        "content": "            userSubstring \u003d user.substring(DeadlineCommand.deadlineShortcut.length());"
-      },
-      {
-        "lineNumber": 46,
-        "author": {
-          "gitId": "huangje"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 47,
-        "author": {
-          "gitId": "huangje"
-        },
-        "content": "        else {"
-      },
-      {
-        "lineNumber": 48,
-        "author": {
-          "gitId": "huangje"
-        },
-        "content": "            userSubstring \u003d user.substring(8);"
-      },
-      {
-        "lineNumber": 49,
-        "author": {
-          "gitId": "huangje"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 50,
-        "author": {
-          "gitId": "huangje"
-        },
-        "content": "        if(userSubstring.isBlank()){"
-      },
-      {
-        "lineNumber": 51,
-        "author": {
-          "gitId": "huangje"
-        },
-        "content": "            throw new EmptyDeadlineException();"
-      },
-      {
-        "lineNumber": 52,
-        "author": {
-          "gitId": "huangje"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 53,
-        "author": {
-          "gitId": "huangje"
-        },
-        "content": "        String[] taskDescription \u003d userSubstring.split(\"/by\");"
-      },
-      {
-        "lineNumber": 54,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        if (taskDescription[0].isBlank()) {"
-      },
-      {
-        "lineNumber": 55,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            throw new EmptyDeadlineException();"
-      },
-      {
-        "lineNumber": 56,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        } else if (taskDescription.length \u003d\u003d 1) { // no /by in input"
-      },
-      {
-        "lineNumber": 57,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            throw new EmptyDeadlineDateException();"
-      },
-      {
-        "lineNumber": 58,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        } else {"
-      },
-      {
-        "lineNumber": 59,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            String description \u003d taskDescription[0].trim();"
-      },
-      {
-        "lineNumber": 60,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "            String[] prioritySplit \u003d taskDescription[1].trim().split(\"prio\");"
-      },
-      {
-        "lineNumber": 61,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "            String deadlineString \u003d prioritySplit[0].trim();"
-      },
-      {
-        "lineNumber": 62,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            //date format used: dd/MM/yyyy HH:mm"
-      },
-      {
-        "lineNumber": 63,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            if (deadlineString.isBlank()) {"
-      },
-      {
-        "lineNumber": 64,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                throw new EmptyDeadlineDateException();"
-      },
-      {
-        "lineNumber": 65,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 66,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            else {"
-      },
-      {
-        "lineNumber": 67,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "                Date d \u003d new Date(deadlineString);"
-      },
-      {
-        "lineNumber": 68,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "                DeadlinesTask newTask \u003d null;"
-      },
-      {
-        "lineNumber": 69,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "                if (prioritySplit.length \u003d\u003d 1){"
-      },
-      {
-        "lineNumber": 70,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "                    newTask \u003d new DeadlinesTask(description, d);"
-      },
-      {
-        "lineNumber": 71,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 72,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "                else {"
-      },
-      {
-        "lineNumber": 73,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "                    int priority \u003d -1 ;"
-      },
-      {
-        "lineNumber": 74,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "                    try{"
-      },
-      {
-        "lineNumber": 75,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "                        priority \u003d Integer.parseInt(prioritySplit[1].trim());"
-      },
-      {
-        "lineNumber": 76,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 77,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "                    catch(Exception e){"
-      },
-      {
-        "lineNumber": 78,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "                        throw new PrioritizeLimitException();"
-      },
-      {
-        "lineNumber": 79,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 80,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "                    if (priority \u003c 0 || priority \u003e 9) {"
-      },
-      {
-        "lineNumber": 81,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "                        throw new PrioritizeLimitException();"
-      },
-      {
-        "lineNumber": 82,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 83,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "                    newTask \u003d new DeadlinesTask(description,d,priority);"
-      },
-      {
-        "lineNumber": 84,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 85,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                tasks.add(newTask);"
-      },
-      {
-        "lineNumber": 86,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                storage.save(tasks.getList());"
-      },
-      {
-        "lineNumber": 87,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                ui.display(\"\\t Got it. I\u0027ve added this task:\\n\\t   \""
-      },
-      {
-        "lineNumber": 88,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                        + newTask.toString() +"
-      },
-      {
-        "lineNumber": 89,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                        \"\\n\\t Now you have \" + tasks.size() + \" tasks in the list.\");"
-      },
-      {
-        "lineNumber": 90,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 91,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 92,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 93,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 94,
-        "author": {
-          "gitId": "huangje"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 95,
-        "author": {
-          "gitId": "huangje"
-        },
-        "content": "     * getter because the shortcut is private"
-      },
-      {
-        "lineNumber": 96,
-        "author": {
-          "gitId": "huangje"
-        },
-        "content": "     * @return the shortcut name"
-      },
-      {
-        "lineNumber": 97,
-        "author": {
-          "gitId": "huangje"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 98,
-        "author": {
-          "gitId": "huangje"
-        },
-        "content": "    public static String getDeadlineShortcut() {"
-      },
-      {
-        "lineNumber": 99,
-        "author": {
-          "gitId": "huangje"
-        },
-        "content": "        return deadlineShortcut;"
-      },
-      {
-        "lineNumber": 100,
-        "author": {
-          "gitId": "huangje"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 101,
-        "author": {
-          "gitId": "huangje"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 102,
-        "author": {
-          "gitId": "huangje"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 103,
-        "author": {
-          "gitId": "huangje"
-        },
-        "content": "     * used when the user want to change the shortcut"
-      },
-      {
-        "lineNumber": 104,
-        "author": {
-          "gitId": "huangje"
-        },
-        "content": "     * @param deadlineShortcut the new shortcut"
-      },
-      {
-        "lineNumber": 105,
-        "author": {
-          "gitId": "huangje"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 106,
-        "author": {
-          "gitId": "huangje"
-        },
-        "content": "    public static void setDeadlineShortcut(String deadlineShortcut) {"
-      },
-      {
-        "lineNumber": 107,
-        "author": {
-          "gitId": "huangje"
-        },
-        "content": "        DeadlineCommand.deadlineShortcut \u003d deadlineShortcut;"
-      },
-      {
-        "lineNumber": 108,
-        "author": {
-          "gitId": "huangje"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 109,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "}"
-      }
-    ],
-    "authorContributionMap": {
-      "huangje": 31,
-      "-": 55,
-      "laurenthg": 23
     }
   },
   {
@@ -6459,14 +5685,14 @@
         "author": {
           "gitId": "laurenthg"
         },
-        "content": "import leduc.task.DeadlinesTask;"
+        "content": "import leduc.task.EventsTask;"
       },
       {
         "lineNumber": 8,
         "author": {
-          "gitId": "laurenthg"
+          "gitId": "rshah918"
         },
-        "content": "import leduc.task.EventsTask;"
+        "content": "import leduc.task.HomeworkTask;"
       },
       {
         "lineNumber": 9,
@@ -6926,9 +6152,9 @@
       {
         "lineNumber": 74,
         "author": {
-          "gitId": "laurenthg"
+          "gitId": "rshah918"
         },
-        "content": "                            if (t.isDeadline()) {"
+        "content": "                            if (t.isHomework()) {"
       },
       {
         "lineNumber": 75,
@@ -6954,16 +6180,16 @@
       {
         "lineNumber": 78,
         "author": {
-          "gitId": "laurenthg"
+          "gitId": "rshah918"
         },
-        "content": "                                DeadlinesTask deadlinesTask \u003d (DeadlinesTask) t;"
+        "content": "                                HomeworkTask homeworkTask \u003d (HomeworkTask) t;"
       },
       {
         "lineNumber": 79,
         "author": {
-          "gitId": "laurenthg"
+          "gitId": "rshah918"
         },
-        "content": "                                deadlinesTask.setDeadlines(d);"
+        "content": "                                homeworkTask.setDeadlines(d);"
       },
       {
         "lineNumber": 80,
@@ -7297,7 +6523,8 @@
     ],
     "authorContributionMap": {
       "huangje": 20,
-      "laurenthg": 106
+      "rshah918": 4,
+      "laurenthg": 102
     }
   },
   {
@@ -9440,6 +8667,780 @@
     }
   },
   {
+    "path": "src/main/java/leduc/command/HomeworkCommand.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "package leduc.command;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "import leduc.Date;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "import leduc.exception.*;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "import leduc.storage.Storage;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "import leduc.Ui;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "import leduc.task.HomeworkTask;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "import leduc.task.TaskList;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": " * Represents a homework task Command."
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": " * Allow to add a homework task to the task list and to the data file."
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "public class HomeworkCommand extends Command {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "     * static variable used for shortcut"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "    private static String homeworkShortcut \u003d \"homework\";"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "     * Constructor of HomeworkCommand."
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "     * @param user String which represent the input string of the user."
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "    public HomeworkCommand(String user){"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "        super(user);"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "     * Allow to add a homework task to the task list and to the data file."
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "     * @param tasks leduc.task.TaskList which is the list of task."
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "     * @param ui leduc.Ui which deals with the interactions with the user."
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "     * @param storage leduc.storage.Storage which deals with loading tasks from the file and saving tasks in the file."
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "     * @throws EmptyHomeworkDateException Exception caught when the date of the homework task is not given."
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "     * @throws EmptyHomeworkException Exception caught when the description of the homework task is not given."
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "     * @throws NonExistentDateException Exception caught when the date given does not exist."
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "     * @throws FileException Exception caught when the file can\u0027t be open or read or modify."
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "     * @throws PrioritizeLimitException Exception caught when the new priority is greater than 9 or less than 0."
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "    public void execute(TaskList tasks, Ui ui, Storage storage)"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "            throws EmptyHomeworkDateException, EmptyHomeworkException, NonExistentDateException,"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "            FileException, PrioritizeLimitException {"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        String userSubstring;"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        if(callByShortcut){"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "            userSubstring \u003d user.substring(HomeworkCommand.homeworkShortcut.length());"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        else {"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            userSubstring \u003d user.substring(8);"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        if(userSubstring.isBlank()){"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "            throw new EmptyHomeworkException();"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        String[] taskDescription \u003d userSubstring.split(\"/by\");"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "        if (taskDescription[0].isBlank()) {"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "            throw new EmptyHomeworkException();"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        } else if (taskDescription.length \u003d\u003d 1) { // no /by in input"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "            throw new EmptyHomeworkDateException();"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "            String description \u003d taskDescription[0].trim();"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "            String[] prioritySplit \u003d taskDescription[1].trim().split(\"prio\");"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "            String homeworkString \u003d prioritySplit[0].trim();"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "            //date format used: dd/MM/yyyy HH:mm"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "            if (homeworkString.isBlank()) {"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "                throw new EmptyHomeworkDateException();"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "            else {"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "                Date d \u003d new Date(homeworkString);"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "                HomeworkTask newTask \u003d null;"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "                if (prioritySplit.length \u003d\u003d 1){"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "                    newTask \u003d new HomeworkTask(description, d);"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "                else {"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "                    int priority \u003d -1 ;"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "                    try{"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "                        priority \u003d Integer.parseInt(prioritySplit[1].trim());"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "                    catch(Exception e){"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "                        throw new PrioritizeLimitException();"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "                    if (priority \u003c 0 || priority \u003e 9) {"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "                        throw new PrioritizeLimitException();"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "                    newTask \u003d new HomeworkTask(description,d,priority);"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "                tasks.add(newTask);"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "                storage.save(tasks.getList());"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "                ui.display(\"\\t Got it. I\u0027ve added this task:\\n\\t   \""
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "                        + newTask.toString() +"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "                        \"\\n\\t Now you have \" + tasks.size() + \" tasks in the list.\");"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "     * getter because the shortcut is private"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "     * @return the shortcut name"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "    public static String getHomeworkShortcut() {"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "        return homeworkShortcut;"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "     * used when the user want to change the shortcut"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "     * @param homeworkShortcut the new shortcut"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "    public static void setHomeworkShortcut(String homeworkShortcut) {"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "        HomeworkCommand.homeworkShortcut \u003d homeworkShortcut;"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "huangje": 40,
+      "rshah918": 27,
+      "laurenthg": 42
+    }
+  },
+  {
     "path": "src/main/java/leduc/command/ListCommand.java",
     "fileType": "functional",
     "lines": [
@@ -9656,159 +9657,166 @@
       {
         "lineNumber": 31,
         "author": {
-          "gitId": "-"
+          "gitId": "rshah918"
         },
-        "content": "        if (tasks.size() !\u003d 0) {"
+        "content": ""
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "-"
         },
-        "content": "            ui.showList(tasks);"
+        "content": "        if (tasks.size() !\u003d 0) {"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "            ui.showList(tasks);"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "-"
         },
-        "content": "        else {"
+        "content": "        }"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "-"
         },
-        "content": "            ui.display(\"\\t There is any task yet \");"
+        "content": "        else {"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "            ui.display(\"\\t There is any task yet \");"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "        }"
       },
       {
         "lineNumber": 38,
         "author": {
-          "gitId": "huangje"
+          "gitId": "-"
         },
-        "content": "    /**"
+        "content": "    }"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "huangje"
         },
-        "content": "     * getter because the shortcut is private"
+        "content": "    /**"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "huangje"
         },
-        "content": "     * @return the shortcut name"
+        "content": "     * getter because the shortcut is private"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "huangje"
         },
-        "content": "     */"
+        "content": "     * @return the shortcut name"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "huangje"
         },
-        "content": "    public static String getListShortcut() {"
+        "content": "     */"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        return listShortcut;"
+        "content": "    public static String getListShortcut() {"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "huangje"
         },
-        "content": "    }"
+        "content": "        return listShortcut;"
       },
       {
         "lineNumber": 45,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 46,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 46,
+        "lineNumber": 47,
         "author": {
           "gitId": "huangje"
         },
         "content": "    /**"
       },
       {
-        "lineNumber": 47,
+        "lineNumber": 48,
         "author": {
           "gitId": "huangje"
         },
         "content": "     * used when the user want to change the shortcut"
       },
       {
-        "lineNumber": 48,
+        "lineNumber": 49,
         "author": {
           "gitId": "huangje"
         },
         "content": "     * @param listShortcut the new shortcut"
       },
       {
-        "lineNumber": 49,
+        "lineNumber": 50,
         "author": {
           "gitId": "huangje"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 50,
+        "lineNumber": 51,
         "author": {
           "gitId": "huangje"
         },
         "content": "    public static void setListShortcut(String listShortcut) {"
       },
       {
-        "lineNumber": 51,
+        "lineNumber": 52,
         "author": {
           "gitId": "huangje"
         },
         "content": "        ListCommand.listShortcut \u003d listShortcut;"
       },
       {
-        "lineNumber": 52,
+        "lineNumber": 53,
         "author": {
           "gitId": "huangje"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 53,
+        "lineNumber": 54,
         "author": {
           "gitId": "-"
         },
@@ -9817,6 +9825,7 @@
     ],
     "authorContributionMap": {
       "huangje": 18,
+      "rshah918": 1,
       "-": 35
     }
   },
@@ -9869,9 +9878,9 @@
       {
         "lineNumber": 7,
         "author": {
-          "gitId": "-"
+          "gitId": "rshah918"
         },
-        "content": "import leduc.task.DeadlinesTask;"
+        "content": "import leduc.task.HomeworkTask;"
       },
       {
         "lineNumber": 8,
@@ -9911,9 +9920,9 @@
       {
         "lineNumber": 13,
         "author": {
-          "gitId": "-"
+          "gitId": "rshah918"
         },
-        "content": " * Represents Postpone command which postpone the deadline of a deadline task."
+        "content": " * Represents Postpone command which postpone the deadline of a homework task."
       },
       {
         "lineNumber": 14,
@@ -10072,9 +10081,9 @@
       {
         "lineNumber": 36,
         "author": {
-          "gitId": "-"
+          "gitId": "rshah918"
         },
-        "content": "     * @throws DeadlineTypeException Exception caught when the task is not a deadline task."
+        "content": "     * @throws HomeworkTypeException Exception caught when the task is not a deadline task."
       },
       {
         "lineNumber": 37,
@@ -10086,9 +10095,9 @@
       {
         "lineNumber": 38,
         "author": {
-          "gitId": "-"
+          "gitId": "rshah918"
         },
-        "content": "     * @throws EmptyDeadlineDateException Exception caught when the date of the deadline task is not given."
+        "content": "     * @throws EmptyHomeworkDateException Exception caught when the date of the homework task is not given."
       },
       {
         "lineNumber": 39,
@@ -10100,9 +10109,9 @@
       {
         "lineNumber": 40,
         "author": {
-          "gitId": "-"
+          "gitId": "rshah918"
         },
-        "content": "     * @throws PostponeDeadlineException Exception caught when the new deadline is before the old deadline."
+        "content": "     * @throws PostponeHomeworkException Exception caught when the new homework is before the old deadline."
       },
       {
         "lineNumber": 41,
@@ -10121,16 +10130,16 @@
       {
         "lineNumber": 43,
         "author": {
-          "gitId": "-"
+          "gitId": "rshah918"
         },
-        "content": "            DeadlineTypeException, FileException, EmptyDeadlineDateException, NonExistentDateException,"
+        "content": "            HomeworkTypeException, FileException, EmptyHomeworkDateException, NonExistentDateException,"
       },
       {
         "lineNumber": 44,
         "author": {
-          "gitId": "-"
+          "gitId": "rshah918"
         },
-        "content": "            PostponeDeadlineException {"
+        "content": "            PostponeHomeworkException {"
       },
       {
         "lineNumber": 45,
@@ -10198,9 +10207,9 @@
       {
         "lineNumber": 54,
         "author": {
-          "gitId": "-"
+          "gitId": "rshah918"
         },
-        "content": "            throw new EmptyDeadlineDateException();"
+        "content": "            throw new EmptyHomeworkDateException();"
       },
       {
         "lineNumber": 55,
@@ -10296,16 +10305,16 @@
       {
         "lineNumber": 68,
         "author": {
-          "gitId": "-"
+          "gitId": "rshah918"
         },
-        "content": "            if (!postponeTask.isDeadline()){"
+        "content": "            if (!postponeTask.isHomework()){"
       },
       {
         "lineNumber": 69,
         "author": {
-          "gitId": "-"
+          "gitId": "rshah918"
         },
-        "content": "                throw new DeadlineTypeException();"
+        "content": "                throw new HomeworkTypeException();"
       },
       {
         "lineNumber": 70,
@@ -10317,9 +10326,9 @@
       {
         "lineNumber": 71,
         "author": {
-          "gitId": "-"
+          "gitId": "rshah918"
         },
-        "content": "            DeadlinesTask postponeDeadlineTask \u003d (DeadlinesTask) postponeTask;"
+        "content": "            HomeworkTask postponeHomeworkTask \u003d (HomeworkTask) postponeTask;"
       },
       {
         "lineNumber": 72,
@@ -10331,9 +10340,9 @@
       {
         "lineNumber": 73,
         "author": {
-          "gitId": "laurenthg"
+          "gitId": "rshah918"
         },
-        "content": "            postponeDeadlineTask.postponeDeadline(d);"
+        "content": "            postponeHomeworkTask.postponeHomework(d);"
       },
       {
         "lineNumber": 74,
@@ -10352,16 +10361,16 @@
       {
         "lineNumber": 76,
         "author": {
-          "gitId": "-"
+          "gitId": "rshah918"
         },
-        "content": "                    \"\\t\\t \"+postponeDeadlineTask.getTag() + postponeDeadlineTask.getMark() + \" \" + postponeDeadlineTask.getTask()+"
+        "content": "                    \"\\t\\t \"+postponeHomeworkTask.getTag() + postponeHomeworkTask.getMark() + \" \" + postponeHomeworkTask.getTask()+"
       },
       {
         "lineNumber": 77,
         "author": {
-          "gitId": "-"
+          "gitId": "rshah918"
         },
-        "content": "                    \" by:\" + postponeDeadlineTask.getDeadlines() + \"\\n\");"
+        "content": "                    \" by:\" + postponeHomeworkTask.getDeadlines() + \"\\n\");"
       },
       {
         "lineNumber": 78,
@@ -10499,8 +10508,9 @@
     ],
     "authorContributionMap": {
       "huangje": 25,
-      "-": 68,
-      "laurenthg": 3
+      "rshah918": 14,
+      "-": 55,
+      "laurenthg": 2
     }
   },
   {
@@ -12643,402 +12653,409 @@
         "author": {
           "gitId": "rshah918"
         },
-        "content": "public class SetWelcomeCommand extends Command{"
+        "content": ""
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "rshah918"
         },
-        "content": ""
+        "content": "public class SetWelcomeCommand extends Command{"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "rshah918"
         },
-        "content": "    public SetWelcomeCommand(String user){"
+        "content": ""
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "rshah918"
         },
-        "content": "       super(user);"
+        "content": "    public SetWelcomeCommand(String user){"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "rshah918"
         },
-        "content": "    }"
+        "content": "       super(user);"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "rshah918"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 19,
         "author": {
-          "gitId": "huangje"
+          "gitId": "rshah918"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "huangje"
         },
-        "content": "     * static variable used for shortcut"
+        "content": "    /**"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "huangje"
         },
-        "content": "     */"
+        "content": "     * static variable used for shortcut"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "huangje"
         },
-        "content": "    private static String setWelcomeShortcut \u003d \"setwelcome\";"
+        "content": "     */"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "huangje"
         },
-        "content": ""
+        "content": "    private static String setWelcomeShortcut \u003d \"setwelcome\";"
       },
       {
         "lineNumber": 24,
         "author": {
-          "gitId": "rshah918"
+          "gitId": "huangje"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "rshah918"
         },
-        "content": "     * Allow to change the welcome message."
+        "content": "    /**"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "rshah918"
         },
-        "content": "     * @param tasks leduc.task.TaskList which is the list of task."
+        "content": "     * Allow to change the welcome message."
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "rshah918"
         },
-        "content": "     * @param ui leduc.Ui which deals with the interactions with the user."
+        "content": "     * @param tasks leduc.task.TaskList which is the list of task."
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "rshah918"
         },
-        "content": "     * @param storage leduc.storage.Storage which deals with loading tasks from the file and saving tasks in the file."
+        "content": "     * @param ui leduc.Ui which deals with the interactions with the user."
       },
       {
         "lineNumber": 29,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "     * @param storage leduc.storage.Storage which deals with loading tasks from the file and saving tasks in the file."
+      },
+      {
+        "lineNumber": 30,
         "author": {
           "gitId": "laurenthg"
         },
         "content": "     * @throws FileException Exception caught when the file can\u0027t be open or read or modify."
       },
       {
-        "lineNumber": 30,
+        "lineNumber": 31,
         "author": {
           "gitId": "rshah918"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 31,
+        "lineNumber": 32,
         "author": {
           "gitId": "huangje"
         },
         "content": "    public void execute(TaskList tasks, Ui ui, Storage storage) throws FileException {"
       },
       {
-        "lineNumber": 32,
+        "lineNumber": 33,
         "author": {
           "gitId": "rshah918"
         },
         "content": "        FileWriter fileWriter \u003d null;"
       },
       {
-        "lineNumber": 33,
+        "lineNumber": 34,
         "author": {
           "gitId": "rshah918"
         },
         "content": "        String filepath \u003d System.getProperty(\"user.dir\")+ \"/data/welcome.txt\";//get location of welcome message file"
       },
       {
-        "lineNumber": 34,
+        "lineNumber": 35,
         "author": {
           "gitId": "rshah918"
         },
         "content": "        File file \u003d Ui.openFile(filepath);"
       },
       {
-        "lineNumber": 35,
+        "lineNumber": 36,
         "author": {
           "gitId": "rshah918"
         },
         "content": "        //open fileWriter object"
       },
       {
-        "lineNumber": 36,
+        "lineNumber": 37,
         "author": {
           "gitId": "laurenthg"
         },
         "content": "        String welcomeMessage;"
       },
       {
-        "lineNumber": 37,
+        "lineNumber": 38,
         "author": {
           "gitId": "rshah918"
         },
         "content": "        try {"
       },
       {
-        "lineNumber": 38,
+        "lineNumber": 39,
         "author": {
           "gitId": "rshah918"
         },
         "content": "            fileWriter \u003d new FileWriter(file);"
       },
       {
-        "lineNumber": 39,
+        "lineNumber": 40,
         "author": {
           "gitId": "rshah918"
         },
         "content": "            try {"
       },
       {
-        "lineNumber": 40,
+        "lineNumber": 41,
         "author": {
           "gitId": "rshah918"
         },
         "content": "                //removes the first word of the user input"
       },
       {
-        "lineNumber": 41,
+        "lineNumber": 42,
         "author": {
           "gitId": "laurenthg"
         },
         "content": "                welcomeMessage \u003d String.join(\" \", Arrays.copyOfRange(user.split(\" \"), 1, user.split( \" \").length));"
       },
       {
-        "lineNumber": 42,
+        "lineNumber": 43,
         "author": {
           "gitId": "laurenthg"
         },
         "content": "                fileWriter.write(welcomeMessage);"
       },
       {
-        "lineNumber": 43,
-        "author": {
-          "gitId": "rshah918"
-        },
-        "content": "            }"
-      },
-      {
         "lineNumber": 44,
         "author": {
           "gitId": "rshah918"
         },
-        "content": "            finally{"
+        "content": "            }"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "rshah918"
         },
-        "content": "                fileWriter.close();"
+        "content": "            finally{"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "rshah918"
         },
-        "content": "            }"
+        "content": "                fileWriter.close();"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "rshah918"
         },
-        "content": "        }"
+        "content": "            }"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "rshah918"
         },
-        "content": "        catch (IOException e) {"
+        "content": "        }"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "rshah918"
         },
-        "content": "            e.printStackTrace();"
+        "content": "        catch (IOException e) {"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "rshah918"
         },
-        "content": "            throw new FileException();"
+        "content": "            e.printStackTrace();"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "rshah918"
         },
-        "content": "        }"
+        "content": "            throw new FileException();"
       },
       {
         "lineNumber": 52,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 53,
         "author": {
           "gitId": "laurenthg"
         },
         "content": "        ui.display(\"\\t The welcome message is edited: \" + welcomeMessage);"
       },
       {
-        "lineNumber": 53,
+        "lineNumber": 54,
         "author": {
           "gitId": "rshah918"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 54,
+        "lineNumber": 55,
         "author": {
           "gitId": "laurenthg"
         },
         "content": ""
       },
       {
-        "lineNumber": 55,
-        "author": {
-          "gitId": "huangje"
-        },
-        "content": "    /**"
-      },
-      {
         "lineNumber": 56,
         "author": {
           "gitId": "huangje"
         },
-        "content": "     * getter because the shortcut is private"
+        "content": "    /**"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "huangje"
         },
-        "content": "     * @return the shortcut name"
+        "content": "     * getter because the shortcut is private"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "huangje"
         },
-        "content": "     */"
+        "content": "     * @return the shortcut name"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "huangje"
         },
-        "content": "    public static String getSetWelcomeShortcut() {"
+        "content": "     */"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        return setWelcomeShortcut;"
+        "content": "    public static String getSetWelcomeShortcut() {"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "huangje"
         },
-        "content": "    }"
+        "content": "        return setWelcomeShortcut;"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "huangje"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "huangje"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "huangje"
         },
-        "content": "     * used when the user want to change the shortcut"
+        "content": "    /**"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "huangje"
         },
-        "content": "     * @param setWelcomeShortcut the new shortcut"
+        "content": "     * used when the user want to change the shortcut"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "huangje"
         },
-        "content": "     */"
+        "content": "     * @param setWelcomeShortcut the new shortcut"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "huangje"
         },
-        "content": "    public static void setSetWelcomeShortcut(String setWelcomeShortcut) {"
+        "content": "     */"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        SetWelcomeCommand.setWelcomeShortcut \u003d setWelcomeShortcut;"
+        "content": "    public static void setSetWelcomeShortcut(String setWelcomeShortcut) {"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "huangje"
         },
-        "content": "    }"
+        "content": "        SetWelcomeCommand.setWelcomeShortcut \u003d setWelcomeShortcut;"
       },
       {
         "lineNumber": 70,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 71,
         "author": {
           "gitId": "rshah918"
         },
@@ -13047,7 +13064,7 @@
     ],
     "authorContributionMap": {
       "huangje": 21,
-      "rshah918": 43,
+      "rshah918": 44,
       "laurenthg": 6
     }
   },
@@ -13597,9 +13614,9 @@
       {
         "lineNumber": 78,
         "author": {
-          "gitId": "huangje"
+          "gitId": "rshah918"
         },
-        "content": "                ui.display(\"The precedent shortcut for deadline is \" + DeadlineCommand.getDeadlineShortcut() +\" please enter new shortcut\");"
+        "content": "                ui.display(\"The precedent shortcut for homework is \" + HomeworkCommand.getHomeworkShortcut() +\" please enter new shortcut\");"
       },
       {
         "lineNumber": 79,
@@ -13618,9 +13635,9 @@
       {
         "lineNumber": 81,
         "author": {
-          "gitId": "huangje"
+          "gitId": "rshah918"
         },
-        "content": "            setOneShortcut(\"deadline\", newShortcut);"
+        "content": "            setOneShortcut(\"homework\", newShortcut);"
       },
       {
         "lineNumber": 82,
@@ -14010,9 +14027,9 @@
       {
         "lineNumber": 137,
         "author": {
-          "gitId": "huangje"
+          "gitId": "rshah918"
         },
-        "content": "                ui.display(\"The precedent shortcut for setWelcome is \" + ShowCommand.getShowShortcut() +\" please enter new shortcut\");"
+        "content": "                ui.display(\"The precedent shortcut for show is \" + ShowCommand.getShowShortcut() +\" please enter new shortcut\");"
       },
       {
         "lineNumber": 138,
@@ -14388,23 +14405,23 @@
       {
         "lineNumber": 191,
         "author": {
-          "gitId": "huangje"
+          "gitId": "rshah918"
         },
-        "content": "            case \"deadline\" :"
+        "content": "            case \"homework\" :"
       },
       {
         "lineNumber": 192,
         "author": {
-          "gitId": "huangje"
+          "gitId": "rshah918"
         },
-        "content": "                setShortcut.remove(DeadlineCommand.getDeadlineShortcut());"
+        "content": "                setShortcut.remove(HomeworkCommand.getHomeworkShortcut());"
       },
       {
         "lineNumber": 193,
         "author": {
-          "gitId": "huangje"
+          "gitId": "rshah918"
         },
-        "content": "                DeadlineCommand.setDeadlineShortcut(shortcutName);"
+        "content": "                HomeworkCommand.setHomeworkShortcut(shortcutName);"
       },
       {
         "lineNumber": 194,
@@ -14934,9 +14951,9 @@
       {
         "lineNumber": 269,
         "author": {
-          "gitId": "huangje"
+          "gitId": "rshah918"
         },
-        "content": "        setDefaultShortcut.add(\"deadline\");"
+        "content": "        setDefaultShortcut.add(\"homework\");"
       },
       {
         "lineNumber": 270,
@@ -15052,7 +15069,8 @@
       }
     ],
     "authorContributionMap": {
-      "huangje": 261,
+      "huangje": 254,
+      "rshah918": 7,
       "laurenthg": 24
     }
   },
@@ -15121,14 +15139,14 @@
         "author": {
           "gitId": "huangje"
         },
-        "content": "import leduc.task.DeadlinesTask;"
+        "content": "import leduc.task.EventsTask;"
       },
       {
         "lineNumber": 10,
         "author": {
-          "gitId": "huangje"
+          "gitId": "rshah918"
         },
-        "content": "import leduc.task.EventsTask;"
+        "content": "import leduc.task.HomeworkTask;"
       },
       {
         "lineNumber": 11,
@@ -15504,16 +15522,16 @@
       {
         "lineNumber": 64,
         "author": {
-          "gitId": "huangje"
+          "gitId": "rshah918"
         },
-        "content": "            if(t.isDeadline()){"
+        "content": "            if(t.isHomework()){"
       },
       {
         "lineNumber": 65,
         "author": {
-          "gitId": "huangje"
+          "gitId": "rshah918"
         },
-        "content": "                if(((DeadlinesTask)t).getDeadlines().getD().toLocalDate().isEqual(date)){"
+        "content": "                if(((HomeworkTask)t).getDeadlines().getD().toLocalDate().isEqual(date)){"
       },
       {
         "lineNumber": 66,
@@ -15609,16 +15627,16 @@
       {
         "lineNumber": 79,
         "author": {
-          "gitId": "huangje"
+          "gitId": "rshah918"
         },
-        "content": "            if(t.isDeadline()){"
+        "content": "            if(t.isHomework()){"
       },
       {
         "lineNumber": 80,
         "author": {
-          "gitId": "huangje"
+          "gitId": "rshah918"
         },
-        "content": "                if(((DeadlinesTask)t).getDeadlines().getD().getMonthValue() \u003d\u003d dateMonth \u0026\u0026 ((DeadlinesTask)t).getDeadlines().getD().getYear() \u003d\u003d dateYear){"
+        "content": "                if(((HomeworkTask)t).getDeadlines().getD().getMonthValue() \u003d\u003d dateMonth \u0026\u0026 ((HomeworkTask)t).getDeadlines().getD().getYear() \u003d\u003d dateYear){"
       },
       {
         "lineNumber": 81,
@@ -15714,16 +15732,16 @@
       {
         "lineNumber": 94,
         "author": {
-          "gitId": "huangje"
+          "gitId": "rshah918"
         },
-        "content": "            if(t.isDeadline()){"
+        "content": "            if(t.isHomework()){"
       },
       {
         "lineNumber": 95,
         "author": {
-          "gitId": "huangje"
+          "gitId": "rshah918"
         },
-        "content": "                if(((DeadlinesTask)t).getDeadlines().getD().getYear() \u003d\u003d dateYear){"
+        "content": "                if(((HomeworkTask)t).getDeadlines().getD().getYear() \u003d\u003d dateYear){"
       },
       {
         "lineNumber": 96,
@@ -16728,7 +16746,8 @@
       }
     ],
     "authorContributionMap": {
-      "huangje": 238
+      "huangje": 231,
+      "rshah918": 7
     }
   },
   {
@@ -16773,9 +16792,9 @@
       {
         "lineNumber": 6,
         "author": {
-          "gitId": "-"
+          "gitId": "rshah918"
         },
-        "content": "import leduc.task.DeadlinesTask;"
+        "content": "import leduc.task.HomeworkTask;"
       },
       {
         "lineNumber": 7,
@@ -16927,9 +16946,9 @@
       {
         "lineNumber": 28,
         "author": {
-          "gitId": "-"
+          "gitId": "rshah918"
         },
-        "content": "     * Allows to snooze the deadline of a deadline task."
+        "content": "     * Allows to snooze the deadline of a homework task."
       },
       {
         "lineNumber": 29,
@@ -16962,9 +16981,9 @@
       {
         "lineNumber": 33,
         "author": {
-          "gitId": "-"
+          "gitId": "rshah918"
         },
-        "content": "     * @throws DeadlineTypeException Exception caught when the task is not a deadline task."
+        "content": "     * @throws HomeworkTypeException Exception caught when the task is not a homework task."
       },
       {
         "lineNumber": 34,
@@ -16983,9 +17002,9 @@
       {
         "lineNumber": 36,
         "author": {
-          "gitId": "huangje"
+          "gitId": "rshah918"
         },
-        "content": "    public void execute(TaskList tasks, Ui ui, Storage storage) throws NonExistentTaskException, DeadlineTypeException, FileException {"
+        "content": "    public void execute(TaskList tasks, Ui ui, Storage storage) throws NonExistentTaskException, HomeworkTypeException, FileException {"
       },
       {
         "lineNumber": 37,
@@ -17081,16 +17100,16 @@
       {
         "lineNumber": 50,
         "author": {
-          "gitId": "-"
+          "gitId": "rshah918"
         },
-        "content": "            if (!snoozeTask.isDeadline()){"
+        "content": "            if (!snoozeTask.isHomework()){"
       },
       {
         "lineNumber": 51,
         "author": {
-          "gitId": "-"
+          "gitId": "rshah918"
         },
-        "content": "                throw new DeadlineTypeException();"
+        "content": "                throw new HomeworkTypeException();"
       },
       {
         "lineNumber": 52,
@@ -17102,9 +17121,9 @@
       {
         "lineNumber": 53,
         "author": {
-          "gitId": "-"
+          "gitId": "rshah918"
         },
-        "content": "            DeadlinesTask snoozeDeadlineTask \u003d (DeadlinesTask) snoozeTask;"
+        "content": "            HomeworkTask snoozeDeadlineTask \u003d (HomeworkTask) snoozeTask;"
       },
       {
         "lineNumber": 54,
@@ -17276,8 +17295,9 @@
       }
     ],
     "authorContributionMap": {
-      "huangje": 24,
-      "-": 53
+      "huangje": 23,
+      "rshah918": 7,
+      "-": 47
     }
   },
   {
@@ -18111,7 +18131,7 @@
         "author": {
           "gitId": "rshah918"
         },
-        "content": "        double numDeadlines \u003d 0.0;"
+        "content": "        double numHomework \u003d 0.0;"
       },
       {
         "lineNumber": 29,
@@ -18188,14 +18208,14 @@
         "author": {
           "gitId": "rshah918"
         },
-        "content": "            if(task.isDeadline()){"
+        "content": "            if(task.isHomework()){"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "rshah918"
         },
-        "content": "                numDeadlines++;"
+        "content": "                numHomework++;"
       },
       {
         "lineNumber": 41,
@@ -18300,7 +18320,7 @@
         "author": {
           "gitId": "rshah918"
         },
-        "content": "                \"Number of Deadlines: \" + numDeadlines + \"\\n\" +"
+        "content": "                \"Number of Homeworks: \" + numHomework + \"\\n\" +"
       },
       {
         "lineNumber": 56,
@@ -19879,6 +19899,511 @@
     }
   },
   {
+    "path": "src/main/java/leduc/exception/EmptyHomeworkDateException.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "package leduc.exception;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": " * Represent a exception when the deadline date of the homework task is not given by the user."
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "public class EmptyHomeworkDateException extends DukeException {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "     * Constructor of leduc.exception.EmptyDeadlineDateException."
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "    public EmptyHomeworkDateException(){"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        super();"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "     * Ask for a deadline date for the homework task to the user."
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "     * @return the error message"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "    public String print(){"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "        return \"\\t emptyHomeworkDateException:\\n\\t\\t ☹ OOPS!!! Please enter a deadline for the task\";"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "huangje": 6,
+      "rshah918": 5,
+      "laurenthg": 10
+    }
+  },
+  {
+    "path": "src/main/java/leduc/exception/EmptyHomeworkException.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "package leduc.exception;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": " * Represent a exception when the description of the homework task is not given by the user."
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "public class EmptyHomeworkException extends DukeException {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "     * Constructor of leduc.exception.EmptyDeadlineException."
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "    public EmptyHomeworkException(){"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "        super();"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "     * Ask for a description for the homework task to the user."
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "     * @return the error message"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "    public String print(){"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "        return \"\\t emptyHomeworkException:\\n\\t\\t ☹ OOPS!!! The description of a homework task cannot be empty\";"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "rshah918": 21
+    }
+  },
+  {
+    "path": "src/main/java/leduc/exception/HomeworkTypeException.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "package leduc.exception;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": " * Represent a exception when the task is not a homework task while it should be"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "public class HomeworkTypeException extends DukeException {"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "     * Constructor of leduc.exception.DeadlineTypeException"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "    public HomeworkTypeException(){"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "        super();"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "     * Tell the user that the tasks chosen should be a homework task."
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "     * @return the error message"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "    public String print(){"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "        return \"\\t HomeworkTypeException:\\n\\t\\t ☹ OOPS!!! The task should be a homework task\";"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "rshah918": 26
+    }
+  },
+  {
     "path": "src/main/java/leduc/exception/MeaninglessException.java",
     "fileType": "functional",
     "lines": [
@@ -20033,6 +20558,176 @@
     "authorContributionMap": {
       "huangje": 1,
       "-": 20
+    }
+  },
+  {
+    "path": "src/main/java/leduc/exception/PostponeHomeworkException.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "package leduc.exception;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": " * Represent a exception when the new homework deadline is before the old homework deadline."
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "public class PostponeHomeworkException extends DukeException {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "     * Constructor of leduc.exception.PostponeHomeworkException"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "    public PostponeHomeworkException(){"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "        super();"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "     * Tell the user that the new homework\u0027s deadline should not be before the old one."
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "     * @return the error message"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "    public String print(){"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "        return \"\\t PostponeHomeworkException:\\n\\t\\t ☹ OOPS!!! The new homework should not be before the old one\";"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "rshah918": 23
     }
   },
   {
@@ -21098,9 +21793,9 @@
       {
         "lineNumber": 84,
         "author": {
-          "gitId": "-"
+          "gitId": "rshah918"
         },
-        "content": "                case \"D\" :"
+        "content": "                case \"H\" :"
       },
       {
         "lineNumber": 85,
@@ -21112,9 +21807,9 @@
       {
         "lineNumber": 86,
         "author": {
-          "gitId": "laurenthg"
+          "gitId": "rshah918"
         },
-        "content": "                        tasks.add(new DeadlinesTask(tokens[2],tokens[1].trim(), new Date(LocalDateTime.parse(tokens[3], formatter))));"
+        "content": "                        tasks.add(new HomeworkTask(tokens[2],tokens[1].trim(), new Date(LocalDateTime.parse(tokens[3], formatter))));"
       },
       {
         "lineNumber": 87,
@@ -21147,9 +21842,9 @@
       {
         "lineNumber": 91,
         "author": {
-          "gitId": "laurenthg"
+          "gitId": "rshah918"
         },
-        "content": "                            tasks.add(new DeadlinesTask(tokens[2],tokens[1].trim(), new Date(LocalDateTime.parse(tokens[3], formatter))));"
+        "content": "                            tasks.add(new HomeworkTask(tokens[2],tokens[1].trim(), new Date(LocalDateTime.parse(tokens[3], formatter))));"
       },
       {
         "lineNumber": 92,
@@ -21168,9 +21863,9 @@
       {
         "lineNumber": 94,
         "author": {
-          "gitId": "laurenthg"
+          "gitId": "rshah918"
         },
-        "content": "                            tasks.add(new DeadlinesTask(tokens[2],tokens[1].trim(), new Date(LocalDateTime.parse(tokens[3], formatter)),priority));"
+        "content": "                            tasks.add(new HomeworkTask(tokens[2],tokens[1].trim(), new Date(LocalDateTime.parse(tokens[3], formatter)),priority));"
       },
       {
         "lineNumber": 95,
@@ -21427,16 +22122,16 @@
       {
         "lineNumber": 131,
         "author": {
-          "gitId": "-"
+          "gitId": "rshah918"
         },
-        "content": "                    } else if (task.isDeadline()) {"
+        "content": "                    } else if (task.isHomework()) {"
       },
       {
         "lineNumber": 132,
         "author": {
-          "gitId": "laurenthg"
+          "gitId": "rshah918"
         },
-        "content": "                        fileWriter.write(\"D//\"+ task.getMark() +\"//\" + task.getTask() + \"//\" + ((DeadlinesTask) task).getDeadlines().toString()+ \"//\" + task.getPriority() +\"\\n\");"
+        "content": "                        fileWriter.write(\"H//\"+ task.getMark() +\"//\" + task.getTask() + \"//\" + ((HomeworkTask) task).getDeadlines().toString()+ \"//\" + task.getPriority() +\"\\n\");"
       },
       {
         "lineNumber": 133,
@@ -21658,16 +22353,16 @@
       {
         "lineNumber": 164,
         "author": {
-          "gitId": "huangje"
+          "gitId": "rshah918"
         },
-        "content": "                fileWriter.write(\"deadline:\" + DeadlineCommand.getDeadlineShortcut() + \"\\n\");"
+        "content": "                fileWriter.write(\"homework:\" + HomeworkCommand.getHomeworkShortcut() + \"\\n\");"
       },
       {
         "lineNumber": 165,
         "author": {
-          "gitId": "huangje"
+          "gitId": "rshah918"
         },
-        "content": "                ShortcutCommand.getSetShortcut().add(DeadlineCommand.getDeadlineShortcut());"
+        "content": "                ShortcutCommand.getSetShortcut().add(HomeworkCommand.getHomeworkShortcut());"
       },
       {
         "lineNumber": 166,
@@ -21986,881 +22681,10 @@
       }
     ],
     "authorContributionMap": {
-      "huangje": 77,
-      "-": 90,
-      "laurenthg": 43
-    }
-  },
-  {
-    "path": "src/main/java/leduc/task/DeadlinesTask.java",
-    "fileType": "functional",
-    "lines": [
-      {
-        "lineNumber": 1,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "package leduc.task;"
-      },
-      {
-        "lineNumber": 2,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 3,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import leduc.Date;"
-      },
-      {
-        "lineNumber": 4,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import leduc.exception.PostponeDeadlineException;"
-      },
-      {
-        "lineNumber": 5,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 6,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 7,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "/**"
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "-"
-        },
-        "content": " * Represents a deadline Task."
-      },
-      {
-        "lineNumber": 9,
-        "author": {
-          "gitId": "-"
-        },
-        "content": " */"
-      },
-      {
-        "lineNumber": 10,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "public class DeadlinesTask extends Task {"
-      },
-      {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    private String tag; // [D]"
-      },
-      {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    private Date deadlines;"
-      },
-      {
-        "lineNumber": 13,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 14,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 15,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * Constructor of leduc.task.DeadlinesTask. The task is not done by default."
-      },
-      {
-        "lineNumber": 16,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "     * And the priority is 5 by default."
-      },
-      {
-        "lineNumber": 17,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "     * @param task String representing the description of the Task."
-      },
-      {
-        "lineNumber": 18,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * @param deadlines the deadline of the task."
-      },
-      {
-        "lineNumber": 19,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 20,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public DeadlinesTask(String task, Date deadlines){"
-      },
-      {
-        "lineNumber": 21,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        super(task);"
-      },
-      {
-        "lineNumber": 22,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        this.tag \u003d\"[D]\";"
-      },
-      {
-        "lineNumber": 23,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        this.deadlines \u003d deadlines;"
-      },
-      {
-        "lineNumber": 24,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 25,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 26,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 27,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "     * Constructor of leduc.task.DeadlinesTask. The task is not done by default."
-      },
-      {
-        "lineNumber": 28,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "     * @param task  String representing the description of the Task."
-      },
-      {
-        "lineNumber": 29,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "     * @param deadlines the deadline of the task."
-      },
-      {
-        "lineNumber": 30,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "     * @param priority the priority of the deadline task."
-      },
-      {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 32,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "    public DeadlinesTask(String task, Date deadlines, int priority){"
-      },
-      {
-        "lineNumber": 33,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "        super(task,priority);"
-      },
-      {
-        "lineNumber": 34,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "        this.deadlines \u003d deadlines;"
-      },
-      {
-        "lineNumber": 35,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 36,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 37,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 38,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * Constructor of leduc.task.DeadlinesTask. The task could be done or not depending on the parameter given."
-      },
-      {
-        "lineNumber": 39,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "     * And the priority is 5 by default."
-      },
-      {
-        "lineNumber": 40,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "     * @param task  String representing the description of the Task."
-      },
-      {
-        "lineNumber": 41,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * @param mark represent if the task is done or not."
-      },
-      {
-        "lineNumber": 42,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * @param deadlines the deadline of the task."
-      },
-      {
-        "lineNumber": 43,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 44,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public DeadlinesTask(String task, String mark, Date deadlines){"
-      },
-      {
-        "lineNumber": 45,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "        super(task,mark);"
-      },
-      {
-        "lineNumber": 46,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "        this.tag \u003d\"[D]\";"
-      },
-      {
-        "lineNumber": 47,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "        this.deadlines \u003d deadlines;"
-      },
-      {
-        "lineNumber": 48,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 49,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 50,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 51,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 52,
-        "author": {
-          "gitId": "huangje"
-        },
-        "content": "     * Constructor of leduc.task.DeadlinesTask. The task could be done or not depending on the parameter given."
-      },
-      {
-        "lineNumber": 53,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "     * @param task  String representing the description of the Task."
-      },
-      {
-        "lineNumber": 54,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "     * @param mark represent if the task is done or not."
-      },
-      {
-        "lineNumber": 55,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "     * @param deadlines the deadline of the task."
-      },
-      {
-        "lineNumber": 56,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "     * @param priority the priority of the deadline task."
-      },
-      {
-        "lineNumber": 57,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 58,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "    public DeadlinesTask(String task, String mark, Date deadlines, int priority){"
-      },
-      {
-        "lineNumber": 59,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "        super(task,mark,priority);"
-      },
-      {
-        "lineNumber": 60,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        this.tag \u003d\"[D]\";"
-      },
-      {
-        "lineNumber": 61,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        this.deadlines \u003d deadlines;"
-      },
-      {
-        "lineNumber": 62,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 63,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 64,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 65,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * Getter of Tag ( [D] )."
-      },
-      {
-        "lineNumber": 66,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * @return String : [D]"
-      },
-      {
-        "lineNumber": 67,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 68,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public String getTag(){ return this.tag;}"
-      },
-      {
-        "lineNumber": 69,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 70,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 71,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * Getter of deadline."
-      },
-      {
-        "lineNumber": 72,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * @return the deadline date of the task."
-      },
-      {
-        "lineNumber": 73,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 74,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public Date getDeadlines(){ return this.deadlines;}"
-      },
-      {
-        "lineNumber": 75,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 76,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 77,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "     * Setter of deadlines."
-      },
-      {
-        "lineNumber": 78,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "     * @param deadlines the new deadline date of the task."
-      },
-      {
-        "lineNumber": 79,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 80,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "    public void setDeadlines(Date deadlines){"
-      },
-      {
-        "lineNumber": 81,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "        this.deadlines \u003d deadlines;"
-      },
-      {
-        "lineNumber": 82,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 83,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 84,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 85,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * Allows to snooze the deadline date"
-      },
-      {
-        "lineNumber": 86,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 87,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public void snoozeDeadline() {"
-      },
-      {
-        "lineNumber": 88,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        this.deadlines.snoozeLocalDateTime();"
-      },
-      {
-        "lineNumber": 89,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 90,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 91,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     /**"
-      },
-      {
-        "lineNumber": 92,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * to know if whether is a deadline task of not"
-      },
-      {
-        "lineNumber": 93,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * @return true"
-      },
-      {
-        "lineNumber": 94,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 95,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    @Override"
-      },
-      {
-        "lineNumber": 96,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public boolean isDeadline(){"
-      },
-      {
-        "lineNumber": 97,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        return true;"
-      },
-      {
-        "lineNumber": 98,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 99,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 100,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 101,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * visualize a deadline task"
-      },
-      {
-        "lineNumber": 102,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * @return the string format to see a deadline task"
-      },
-      {
-        "lineNumber": 103,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 104,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public String toString(){"
-      },
-      {
-        "lineNumber": 105,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "        return super.toString() + \" by: \" + getDeadlines() + \" [Priority: \" + getPriority() + \"]\";"
-      },
-      {
-        "lineNumber": 106,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 107,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 108,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 109,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * Allow postpone the deadline of the deadline task."
-      },
-      {
-        "lineNumber": 110,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * With verification that the new deadline should be after the old one."
-      },
-      {
-        "lineNumber": 111,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "     * @param d Date d : the new deadline"
-      },
-      {
-        "lineNumber": 112,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * @throws PostponeDeadlineException Exception caught when the new deadline is before the old one."
-      },
-      {
-        "lineNumber": 113,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 114,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "    public void postponeDeadline(Date d) throws PostponeDeadlineException {"
-      },
-      {
-        "lineNumber": 115,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "        if (d.getD().isBefore(this.deadlines.getD())){"
-      },
-      {
-        "lineNumber": 116,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            throw new PostponeDeadlineException();"
-      },
-      {
-        "lineNumber": 117,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 118,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        else{"
-      },
-      {
-        "lineNumber": 119,
-        "author": {
-          "gitId": "laurenthg"
-        },
-        "content": "            this.deadlines \u003d d;"
-      },
-      {
-        "lineNumber": 120,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 121,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 122,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "}"
-      },
-      {
-        "lineNumber": 123,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      }
-    ],
-    "authorContributionMap": {
-      "huangje": 1,
-      "-": 80,
-      "laurenthg": 42
+      "huangje": 75,
+      "rshah918": 8,
+      "-": 88,
+      "laurenthg": 39
     }
   },
   {
@@ -23750,6 +23574,864 @@
     }
   },
   {
+    "path": "src/main/java/leduc/task/HomeworkTask.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "package leduc.task;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "import leduc.Date;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "import leduc.exception.PostponeHomeworkException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": " * Represents a homework Task."
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "public class HomeworkTask extends Task {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "    private String tag; // [H]"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "    private Date deadlines;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "     * Constructor of leduc.task.Homework. The task is not done by default."
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "     * And the priority is 5 by default."
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "     * @param task String representing the description of the Task."
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "     * @param deadlines the deadline of the task."
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "    public HomeworkTask(String task, Date deadlines){"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "        super(task);"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "        this.tag \u003d\"[H]\";"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "        this.deadlines \u003d deadlines;"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "     * Constructor of leduc.task.HomeworkTask. The task is not done by default."
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "     * @param task  String representing the description of the Task."
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "     * @param deadlines the deadline of the task."
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "     * @param priority the priority of the Homework task."
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "    public HomeworkTask(String task, Date deadlines, int priority){"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "        super(task,priority);"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "        this.deadlines \u003d deadlines;"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "     * Constructor of leduc.task.HomeworkTask. The task could be done or not depending on the parameter given."
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "     * And the priority is 5 by default."
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "     * @param task  String representing the description of the Task."
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "     * @param mark represent if the task is done or not."
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "     * @param deadlines the deadline of the task."
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "    public HomeworkTask(String task, String mark, Date deadlines){"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "        super(task,mark);"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "        this.tag \u003d\"[H]\";"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "        this.deadlines \u003d deadlines;"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "     * Constructor of leduc.task.HomeworkTask. The task could be done or not depending on the parameter given."
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "     * @param task  String representing the description of the Task."
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "     * @param mark represent if the task is done or not."
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "     * @param deadlines the deadline of the task."
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "     * @param priority the priority of the deadline task."
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "    public HomeworkTask(String task, String mark, Date deadlines, int priority){"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "        super(task,mark,priority);"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "        this.tag \u003d\"[H]\";"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "        this.deadlines \u003d deadlines;"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "     * Getter of Tag ( [H] )."
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "     * @return String : [H]"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "    public String getTag(){ return this.tag;}"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "     * Getter of homework."
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "     * @return the deadline date of the task."
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "    public Date getDeadlines(){ return this.deadlines;}"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "     * Setter of homework."
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "     * @param deadlines the new deadline date of the task."
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "    public void setDeadlines(Date deadlines){"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "        this.deadlines \u003d deadlines;"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "     * Allows to snooze the homework deadline date"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "    public void snoozeDeadline() {"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "        this.deadlines.snoozeLocalDateTime();"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "     /**"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "     * to know if whether is a homework task of not"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "     * @return true"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "    public boolean isHomework(){"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        return true;"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "     * visualize a deadline task"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "     * @return the string format to see a deadline task"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "    public String toString(){"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "        return super.toString() + \" by: \" + getDeadlines() + \" [Priority: \" + getPriority() + \"]\";"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "     * Allow postpone the deadline of the homework task."
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "     * With verification that the new deadline should be after the old one."
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "     * @param d Date d : the new deadline"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "     * @throws PostponeHomeworkException Exception caught when the new deadline is before the old one."
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "    public void postponeHomework(Date d) throws PostponeHomeworkException {"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "        if (d.getD().isBefore(this.deadlines.getD())){"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "rshah918"
+        },
+        "content": "            throw new PostponeHomeworkException();"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "        else{"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "            this.deadlines \u003d d;"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "laurenthg"
+        },
+        "content": ""
+      }
+    ],
+    "authorContributionMap": {
+      "huangje": 16,
+      "rshah918": 27,
+      "laurenthg": 78
+    }
+  },
+  {
     "path": "src/main/java/leduc/task/Task.java",
     "fileType": "functional",
     "lines": [
@@ -24575,9 +25257,9 @@
       {
         "lineNumber": 118,
         "author": {
-          "gitId": "-"
+          "gitId": "rshah918"
         },
-        "content": "     * to know if whether is a deadline task of not"
+        "content": "     * to know if whether is a homework task of not"
       },
       {
         "lineNumber": 119,
@@ -24596,9 +25278,9 @@
       {
         "lineNumber": 121,
         "author": {
-          "gitId": "-"
+          "gitId": "rshah918"
         },
-        "content": "    public boolean isDeadline(){"
+        "content": "    public boolean isHomework(){"
       },
       {
         "lineNumber": 122,
@@ -24757,23 +25439,23 @@
       {
         "lineNumber": 144,
         "author": {
-          "gitId": "laurenthg"
+          "gitId": "rshah918"
         },
-        "content": "        if (this.isDeadline()) {"
+        "content": "        if (this.isHomework()) {"
       },
       {
         "lineNumber": 145,
         "author": {
-          "gitId": "laurenthg"
+          "gitId": "rshah918"
         },
-        "content": "            DeadlinesTask deadline \u003d (DeadlinesTask)this;"
+        "content": "            HomeworkTask homework \u003d (HomeworkTask) this;"
       },
       {
         "lineNumber": 146,
         "author": {
-          "gitId": "laurenthg"
+          "gitId": "rshah918"
         },
-        "content": "            return (deadline.getDeadlines()).getD();"
+        "content": "            return (homework.getDeadlines()).getD();"
       },
       {
         "lineNumber": 147,
@@ -24854,8 +25536,9 @@
       }
     ],
     "authorContributionMap": {
-      "-": 83,
-      "laurenthg": 74
+      "rshah918": 5,
+      "-": 81,
+      "laurenthg": 71
     }
   },
   {
@@ -25712,9 +26395,9 @@
       {
         "lineNumber": 122,
         "author": {
-          "gitId": "laurenthg"
+          "gitId": "rshah918"
         },
-        "content": "     * Extracts all EventsTask/DeadlinesTask into a seperate arraylist. Tasks with/without dates must be seperated prior to sorting"
+        "content": "     * Extracts all EventsTask/HomeworkTasks into a seperate arraylist. Tasks with/without dates must be seperated prior to sorting"
       },
       {
         "lineNumber": 123,
@@ -25943,9 +26626,9 @@
     ],
     "authorContributionMap": {
       "huangje": 2,
-      "rshah918": 23,
+      "rshah918": 24,
       "-": 94,
-      "laurenthg": 35
+      "laurenthg": 34
     }
   },
   {
