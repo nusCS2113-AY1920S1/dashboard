@@ -3054,7 +3054,675 @@
     }
   },
   {
-    "path": "src/main/java/moomoo/command/GraphCommand.java",
+    "path": "src/main/java/moomoo/command/GraphCategoryCommand.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "package moomoo.command;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "jinwentay"
+        },
+        "content": "import moomoo.task.Budget;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "import moomoo.task.Category;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "jinwentay"
+        },
+        "content": "import moomoo.task.CategoryList;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "import moomoo.task.Expenditure;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "import moomoo.task.MooMooException;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "import moomoo.task.ScheduleList;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "import moomoo.task.Storage;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "import moomoo.task.Ui;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "public class GraphCategoryCommand extends Command {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "    private final String fullBlock \u003d \"H\";"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "    private final String halfBlock \u003d \"l\";"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "    private final String topBorder \u003d \"v\";"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "    private final String bottomBorder \u003d \"^\";"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "    private String horizontalAxisTop \u003d \"\";"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "    private String horizontalAxisBottom \u003d \"\";"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "    private String output \u003d \"\";"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "    private String categoryName \u003d \"\";"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "    private int month \u003d 0;"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "    "
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "     * Constructor requires the category for which to display the graph, and the respective date."
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "     * @param categoryName The name of the category that the user enters"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "     * @param month        The user\u0027s desired month"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "    public GraphCategoryCommand(String categoryName, int month) {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "        super(false, \"\");"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "        this.categoryName \u003d categoryName;"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "        this.month \u003d month;"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "    "
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "    public static double roundToTwoDp(double d) {"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "        return Math.floor(d * 100) / 100;"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "    "
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "jinwentay"
+        },
+        "content": "    public void execute(ScheduleList calendar, Budget budget, CategoryList catList,"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "jinwentay"
+        },
+        "content": "                        Category category, Ui ui, Storage storage)"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "            throws MooMooException {"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "        "
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "            Category cat \u003d catList.getCategory(categoryName);"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "            if (cat.size() \u003d\u003d 0) {"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "                throw new MooMooException(\"OOPS!!! MooMoo cannot find any expenditure data :(\");"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "            "
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "            double grandTotal \u003d cat.getCategoryMonthTotal();"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "            int maxAxisUnit \u003d (int) ((cat.getLargestExpenditure() / grandTotal) * 100) + 1;"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "            for (int i \u003d 0; i \u003c maxAxisUnit; i +\u003d 1) {"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "                horizontalAxisTop +\u003d topBorder;"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "                horizontalAxisBottom +\u003d bottomBorder;"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "            "
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "            String topSpace \u003d \"\";"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "            for (int i \u003d 0; i \u003c cat.getLongestExpenditure(); i +\u003d 1) {"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "                topSpace +\u003d \" \";"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "            output +\u003d topSpace + horizontalAxisTop + \"\\n\";"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "            "
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "            for (int i \u003d 0; i \u003c cat.size(); i +\u003d 1) {"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "                "
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "                "
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "                String expenditureName \u003d cat.get(i).toString();"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "                if (expenditureName.length() \u003e 14) {"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "                    expenditureName \u003d expenditureName.substring(0, 11) + \"...\";"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "                output \u003d output + expenditureName;"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "                "
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "                for (int j \u003d 0; j \u003c (cat.getLongestExpenditure() - expenditureName.length() + 1); j +\u003d 1) {"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "                    output +\u003d \" \";"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "                "
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "                Expenditure exp \u003d cat.get(i);"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "                double percentage \u003d 100 * (exp.getCost() / grandTotal);"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "                int noOfFullBars \u003d (int) percentage;"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "                for (int j \u003d 0; j \u003c noOfFullBars; j++) {"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "                    output \u003d output + fullBlock;"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "                int noOfHalfBars \u003d (int) Math.round(percentage % 1);"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "                if (noOfHalfBars \u003d\u003d 1) {"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "                    output \u003d output + halfBlock;"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "                output \u003d output + \"  \" + roundToTwoDp(percentage) + \"%\\n\";"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "            output +\u003d topSpace + horizontalAxisBottom + \"\\n\";"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "            ui.setOutput(output);"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "        } catch (Exception e) {"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "            throw new MooMooException(\"OH NO! No such category exists!\");"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "guanyewtan": 90,
+      "jinwentay": 4
+    }
+  },
+  {
+    "path": "src/main/java/moomoo/command/GraphTotalCommand.java",
     "fileType": "functional",
     "lines": [
       {
@@ -3081,14 +3749,14 @@
       {
         "lineNumber": 4,
         "author": {
-          "gitId": "jinwentay"
+          "gitId": "guanyewtan"
         },
         "content": "import moomoo.task.ScheduleList;"
       },
       {
         "lineNumber": 5,
         "author": {
-          "gitId": "jinwentay"
+          "gitId": "guanyewtan"
         },
         "content": "import moomoo.task.Budget;"
       },
@@ -3102,7 +3770,7 @@
       {
         "lineNumber": 7,
         "author": {
-          "gitId": "jinwentay"
+          "gitId": "guanyewtan"
         },
         "content": "import moomoo.task.CategoryList;"
       },
@@ -3146,549 +3814,472 @@
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "public class GraphCommand extends Command {"
+        "content": "public class GraphTotalCommand extends Command {"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "    private ArrayList\u003cString\u003e verticalAxis;"
+        "content": "    private final String fullBlock \u003d \"H\";"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "    private final String fullBlock \u003d \"H\";"
+        "content": "    private final String halfBlock \u003d \"l\";"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "    private final String halfBlock \u003d \"l\";"
+        "content": "    private final String topBorder \u003d \"v\";"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "    private final String topBorder \u003d \"v\";"
+        "content": "    private final String bottomBorder \u003d \"^\";"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "    private final String bottomBorder \u003d \"^\";"
+        "content": "    private String horizontalAxisTop \u003d \"\";"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "    private String horizontalAxisTop \u003d \"\";"
+        "content": "    private String horizontalAxisBottom \u003d \"\";"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "    private String horizontalAxisBottom \u003d \"\";"
+        "content": "    private String output \u003d \"\";"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "    private String output \u003d \"\";"
+        "content": "    "
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "    "
+        "content": "    public GraphTotalCommand() {"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "    public GraphCommand(String input) {"
+        "content": "        super(false, \"\");"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "        super(false, input);"
+        "content": "    }"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "        verticalAxis \u003d new ArrayList\u003cString\u003e();"
+        "content": "    "
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "    }"
+        "content": "    public static double roundToTwoDp(double d) {"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "    "
+        "content": "        return Math.floor(d * 100) / 100;"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "    public static double roundToTwoDp(double d) {"
+        "content": "    }"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "        return Math.floor(d * 100) / 100;"
+        "content": "    "
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "    }"
+        "content": "    @Override"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "    "
+        "content": "    public void execute(ScheduleList calendar, Budget budget, CategoryList catList,"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "    @Override"
-      },
-      {
-        "lineNumber": 33,
-        "author": {
-          "gitId": "jinwentay"
-        },
-        "content": "    public void execute(ScheduleList calendar, Budget budget, CategoryList catList,"
-      },
-      {
-        "lineNumber": 34,
-        "author": {
-          "gitId": "jinwentay"
-        },
         "content": "                        Category category, Ui ui, Storage storage)"
       },
       {
-        "lineNumber": 35,
+        "lineNumber": 33,
         "author": {
           "gitId": "guanyewtan"
         },
         "content": "            throws MooMooException {"
       },
       {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "        "
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "        if (catList.size() \u003d\u003d 0) {"
+      },
+      {
         "lineNumber": 36,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "        if (input.length() \u003c 7) {"
+        "content": "            throw new MooMooException(\"OOPS!!! MooMoo cannot find any category data :(\");"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "            throw new MooMooException(\"OOPS!!! Please use the total/[CATEGORY} sub-command\");"
+        "content": "        }"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "        }"
+        "content": "        "
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "        input \u003d input.substring(6);"
+        "content": "        double grandTotal \u003d catList.getGrandMonthTotal(1);"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": ""
+        "content": "        int maxAxisUnit \u003d (int) ((catList.getLargestExpenditure(1) / grandTotal) * 100) + 1;"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "        if (input.equals(\"total\")) {"
+        "content": "        for (int i \u003d 0; i \u003c maxAxisUnit; i +\u003d 1) {"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "            if (catList.size() \u003d\u003d 0) {"
+        "content": "            horizontalAxisTop +\u003d topBorder;"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "                throw new MooMooException(\"OOPS!!! MooMoo cannot find any expenditure data :(\");"
+        "content": "            horizontalAxisBottom +\u003d bottomBorder;"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "            }"
+        "content": "        }"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "            for (int i \u003d 0; i \u003c catList.size(); i +\u003d 1) {"
+        "content": "        "
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "                String categoryName \u003d catList.get(i).toString();"
+        "content": "        String topSpace \u003d \"\";"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "                if (categoryName.length() \u003e 14) {"
+        "content": "        for (int i \u003d 0; i \u003c catList.getLongestCategory(); i +\u003d 1) {"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "                    categoryName \u003d categoryName.substring(0, 11) + \"...\";"
+        "content": "            topSpace +\u003d \" \";"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "                }"
+        "content": "        }"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "                verticalAxis.add(categoryName);"
+        "content": "        output +\u003d topSpace + horizontalAxisTop + \"\\n\";"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "            }"
+        "content": "        "
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": ""
+        "content": "        for (int i \u003d 0; i \u003c catList.size(); i +\u003d 1) {"
       },
       {
         "lineNumber": 53,
         "author": {
-          "gitId": "shannonlee98"
+          "gitId": "guanyewtan"
         },
-        "content": "            double grandTotal \u003d catList.getGrandMonthTotal(1);"
+        "content": "            Category cat \u003d catList.get(i);"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "            int maxAxisUnit \u003d (int) ((catList.getLargestExpenditure(1) / grandTotal) * 100) + 1;"
+        "content": "            double percentage \u003d 100 * (cat.getMonthlyTotal(1) / grandTotal);"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "            for (int i \u003d 0; i \u003c maxAxisUnit; i +\u003d 1) {"
+        "content": "            percentage \u003d roundToTwoDp(percentage);"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "                horizontalAxisTop +\u003d topBorder;"
+        "content": "            "
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "                horizontalAxisBottom +\u003d bottomBorder;"
+        "content": "            String categoryName \u003d catList.get(i).toString();"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "            }"
+        "content": "            if (categoryName.length() \u003e 14) {"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": ""
+        "content": "                categoryName \u003d categoryName.substring(0, 11) + \"...\";"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "            String topSpace \u003d \"\";"
+        "content": "            }"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "            for (int i \u003d 0; i \u003c catList.getLongestCategory(); i +\u003d 1) {"
+        "content": "            output \u003d output + categoryName;"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "                topSpace +\u003d \" \";"
+        "content": "            "
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "            }"
+        "content": "            for (int j \u003d 0; j \u003c (catList.getLongestCategory() - categoryName.length() + 1); j +\u003d 1) {"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "            output +\u003d topSpace + horizontalAxisTop + \"\\n\";"
+        "content": "                output +\u003d \" \";"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": ""
+        "content": "            }"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "            for (int i \u003d 0; i \u003c catList.size(); i +\u003d 1) {"
+        "content": "    "
       },
       {
         "lineNumber": 67,
         "author": {
-          "gitId": "JOSHTAM"
+          "gitId": "guanyewtan"
         },
-        "content": "                Category cat \u003d catList.get(i);"
+        "content": "            int noOfFullBars \u003d (int) percentage;"
       },
       {
         "lineNumber": 68,
         "author": {
-          "gitId": "JOSHTAM"
+          "gitId": "guanyewtan"
         },
-        "content": "                double percentage \u003d 100 * (cat.getMonthlyTotal(1) / grandTotal);"
+        "content": "            for (int j \u003d 0; j \u003c noOfFullBars; j +\u003d 1) {"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "                percentage \u003d roundToTwoDp(percentage);"
+        "content": "                output \u003d output + fullBlock;"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "                "
+        "content": "            }"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "                int noOfFullBars \u003d (int) percentage;"
+        "content": "            int noOfHalfBars \u003d (int) Math.round(percentage % 1);"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "                output \u003d output + verticalAxis.get(i);"
+        "content": "            if (noOfHalfBars \u003d\u003d 1) {"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "                for (int j \u003d 0; j \u003c (catList.getLongestCategory() - verticalAxis.get(i).length() + 1); j +\u003d 1) {"
+        "content": "                output \u003d output + halfBlock;"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "                    output +\u003d \" \";"
+        "content": "            }"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "                }"
+        "content": "            output \u003d output + \"  \" + percentage + \"%\\n\";"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "                for (int j \u003d 0; j \u003c noOfFullBars; j +\u003d 1) {"
+        "content": "        }"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "                    output \u003d output + fullBlock;"
+        "content": "        output +\u003d topSpace + horizontalAxisBottom + \"\\n\";"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "                }"
+        "content": "        ui.setOutput(output);"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "                int noOfHalfBars \u003d (int) Math.round(percentage % 1);"
-      },
-      {
-        "lineNumber": 80,
-        "author": {
-          "gitId": "guanyewtan"
-        },
-        "content": "                if (noOfHalfBars \u003d\u003d 1) {"
-      },
-      {
-        "lineNumber": 81,
-        "author": {
-          "gitId": "guanyewtan"
-        },
-        "content": "                    output \u003d output + halfBlock;"
-      },
-      {
-        "lineNumber": 82,
-        "author": {
-          "gitId": "guanyewtan"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 83,
-        "author": {
-          "gitId": "guanyewtan"
-        },
-        "content": "                output \u003d output + \"  \" + percentage + \"%\\n\";"
-      },
-      {
-        "lineNumber": 84,
-        "author": {
-          "gitId": "guanyewtan"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 85,
-        "author": {
-          "gitId": "guanyewtan"
-        },
-        "content": "            output +\u003d topSpace + horizontalAxisBottom + \"\\n\";"
-      },
-      {
-        "lineNumber": 86,
-        "author": {
-          "gitId": "guanyewtan"
-        },
-        "content": "            ui.setOutput(output);"
-      },
-      {
-        "lineNumber": 87,
-        "author": {
-          "gitId": "guanyewtan"
-        },
-        "content": "        } else {"
-      },
-      {
-        "lineNumber": 88,
-        "author": {
-          "gitId": "guanyewtan"
-        },
-        "content": "            throw new MooMooException(\"OOPS!!! Wrong sub-command! Please use the total/[CATEGORY} sub-command\");"
-      },
-      {
-        "lineNumber": 89,
-        "author": {
-          "gitId": "guanyewtan"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 90,
-        "author": {
-          "gitId": "guanyewtan"
-        },
         "content": "    }"
       },
       {
-        "lineNumber": 91,
+        "lineNumber": 80,
         "author": {
           "gitId": "guanyewtan"
         },
@@ -3696,10 +4287,7 @@
       }
     ],
     "authorContributionMap": {
-      "JOSHTAM": 2,
-      "guanyewtan": 83,
-      "jinwentay": 5,
-      "shannonlee98": 1
+      "guanyewtan": 80
     }
   },
   {
@@ -8668,9 +9256,9 @@
       {
         "lineNumber": 24,
         "author": {
-          "gitId": "JOSHTAM"
+          "gitId": "guanyewtan"
         },
-        "content": "    public int getCategoryArraySize() {"
+        "content": "    public int size() {"
       },
       {
         "lineNumber": 25,
@@ -8866,304 +9454,668 @@
         "author": {
           "gitId": "shannonlee98"
         },
-        "content": ""
+        "content": "    "
       },
       {
         "lineNumber": 53,
         "author": {
-          "gitId": "Greatnest"
+          "gitId": "guanyewtan"
         },
-        "content": "    /**"
+        "content": "    public void setCategoryMonthTotal() {"
       },
       {
         "lineNumber": 54,
         "author": {
-          "gitId": "Greatnest"
+          "gitId": "guanyewtan"
         },
-        "content": "     * Returns the total expenditure for the given month and year."
+        "content": "        monthTotal \u003d getCategoryMonthTotal();"
       },
       {
         "lineNumber": 55,
         "author": {
-          "gitId": "Greatnest"
+          "gitId": "guanyewtan"
         },
-        "content": "     * @param month integer value representing the month"
+        "content": "    }"
       },
       {
         "lineNumber": 56,
         "author": {
-          "gitId": "Greatnest"
+          "gitId": "guanyewtan"
         },
-        "content": "     * @param year integer value representing the value."
+        "content": "    "
       },
       {
         "lineNumber": 57,
         "author": {
-          "gitId": "Greatnest"
+          "gitId": "guanyewtan"
         },
-        "content": "     * @return total expenditure spent for corresponding month and year"
+        "content": "    /**"
       },
       {
         "lineNumber": 58,
         "author": {
-          "gitId": "Greatnest"
+          "gitId": "guanyewtan"
         },
-        "content": "     */"
+        "content": "     * Return the expenditure with the largest value."
       },
       {
         "lineNumber": 59,
         "author": {
-          "gitId": "Greatnest"
+          "gitId": "guanyewtan"
         },
-        "content": "    public double getCategoryTotalPerMonthYear(int month, int year) {"
+        "content": "     * @return expenditure The value of the largest expenditure"
       },
       {
         "lineNumber": 60,
         "author": {
-          "gitId": "Greatnest"
+          "gitId": "guanyewtan"
         },
-        "content": "        double totalCost \u003d 0.00;"
+        "content": "     */"
       },
       {
         "lineNumber": 61,
         "author": {
-          "gitId": "Greatnest"
+          "gitId": "guanyewtan"
         },
-        "content": "        for (int i \u003d 0; i \u003c category.size(); i++) {"
+        "content": "    public double getLargestExpenditure() {"
       },
       {
         "lineNumber": 62,
         "author": {
-          "gitId": "Greatnest"
+          "gitId": "guanyewtan"
         },
-        "content": "            Expenditure currExpenditure \u003d category.get(i);"
+        "content": "        double expenditure \u003d 0;"
       },
       {
         "lineNumber": 63,
         "author": {
-          "gitId": "Greatnest"
+          "gitId": "guanyewtan"
         },
-        "content": "            if (currExpenditure.getDateTime().getMonthValue() \u003d\u003d month"
+        "content": "        for (Expenditure exp : category) {"
       },
       {
         "lineNumber": 64,
         "author": {
-          "gitId": "Greatnest"
+          "gitId": "guanyewtan"
         },
-        "content": "                    \u0026\u0026 currExpenditure.getDateTime().getYear() \u003d\u003d year) {"
+        "content": "            if (exp.getCost() \u003e expenditure) {"
       },
       {
         "lineNumber": 65,
         "author": {
-          "gitId": "Greatnest"
+          "gitId": "guanyewtan"
         },
-        "content": "                totalCost +\u003d currExpenditure.getCost();"
+        "content": "                expenditure \u003d exp.getCost();"
       },
       {
         "lineNumber": 66,
         "author": {
-          "gitId": "Greatnest"
+          "gitId": "guanyewtan"
         },
         "content": "            }"
       },
       {
         "lineNumber": 67,
         "author": {
-          "gitId": "Greatnest"
+          "gitId": "guanyewtan"
         },
         "content": "        }"
       },
       {
         "lineNumber": 68,
         "author": {
-          "gitId": "Greatnest"
+          "gitId": "guanyewtan"
         },
-        "content": "        return totalCost;"
+        "content": "        return expenditure;"
       },
       {
         "lineNumber": 69,
         "author": {
-          "gitId": "Greatnest"
+          "gitId": "guanyewtan"
         },
         "content": "    }"
       },
       {
         "lineNumber": 70,
         "author": {
-          "gitId": "Greatnest"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 71,
-        "author": {
-          "gitId": "shannonlee98"
-        },
-        "content": "    public double getMonthlyTotal(int month) {"
-      },
-      {
-        "lineNumber": 72,
-        "author": {
-          "gitId": "guanyewtan"
-        },
-        "content": "        return monthTotal;"
-      },
-      {
-        "lineNumber": 73,
-        "author": {
-          "gitId": "shannonlee98"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 74,
-        "author": {
-          "gitId": "shannonlee98"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 75,
-        "author": {
-          "gitId": "Greatnest"
-        },
-        "content": "    public void addExpenditure() {"
-      },
-      {
-        "lineNumber": 76,
-        "author": {
-          "gitId": "shannonlee98"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 77,
-        "author": {
-          "gitId": "shannonlee98"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 78,
-        "author": {
-          "gitId": "shannonlee98"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 79,
-        "author": {
-          "gitId": "Greatnest"
-        },
-        "content": "    public void editExpenditure() {"
-      },
-      {
-        "lineNumber": 80,
-        "author": {
-          "gitId": "shannonlee98"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 81,
-        "author": {
-          "gitId": "shannonlee98"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 82,
-        "author": {
-          "gitId": "shannonlee98"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 83,
-        "author": {
-          "gitId": "Greatnest"
-        },
-        "content": "    public void deleteExpenditure() {"
-      },
-      {
-        "lineNumber": 84,
-        "author": {
-          "gitId": "shannonlee98"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 85,
-        "author": {
-          "gitId": "guanyewtan"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 86,
-        "author": {
           "gitId": "guanyewtan"
         },
         "content": "    "
       },
       {
-        "lineNumber": 87,
+        "lineNumber": 71,
         "author": {
           "gitId": "guanyewtan"
         },
         "content": "    /**"
       },
       {
-        "lineNumber": 88,
+        "lineNumber": 72,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "     * Set the month total (FOR TESTING PURPOSES)."
+        "content": "     * The expenditure with the longest name."
       },
       {
-        "lineNumber": 89,
+        "lineNumber": 73,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "     * @param value The value to be set"
+        "content": "     * @return The name of the longest expenditure"
       },
       {
-        "lineNumber": 90,
+        "lineNumber": 74,
         "author": {
           "gitId": "guanyewtan"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 91,
+        "lineNumber": 75,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "    public void setMonthTotal(int value) {"
+        "content": "    public int getLongestExpenditure() {"
       },
       {
-        "lineNumber": 92,
+        "lineNumber": 76,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "        monthTotal \u003d value;"
+        "content": "        int longestName \u003d 0;"
       },
       {
-        "lineNumber": 93,
+        "lineNumber": 77,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "        for (Expenditure exp : category) {"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "            if (exp.toString().length() \u003e longestName) {"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "                longestName \u003d exp.toString().length();"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "            if (longestName \u003e\u003d 14) {"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "                longestName \u003d 14;"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "        return longestName;"
+      },
+      {
+        "lineNumber": 87,
         "author": {
           "gitId": "guanyewtan"
         },
         "content": "    }"
       },
       {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "     * Returns the total expenditure for the given month and year."
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "     * @param month integer value representing the month"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "     * @param year integer value representing the value."
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "     * @return total expenditure spent for corresponding month and year"
+      },
+      {
         "lineNumber": 94,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "    public double getCategoryTotalPerMonthYear(int month, int year) {"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "        double totalCost \u003d 0.00;"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "        for (int i \u003d 0; i \u003c category.size(); i++) {"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "            Expenditure currExpenditure \u003d category.get(i);"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "            if (currExpenditure.getDateTime().getMonthValue() \u003d\u003d month"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "                    \u0026\u0026 currExpenditure.getDateTime().getYear() \u003d\u003d year) {"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "                totalCost +\u003d currExpenditure.getCost();"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "        return totalCost;"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "shannonlee98"
+        },
+        "content": "    public double getMonthlyTotal(int month) {"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "        return monthTotal;"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "shannonlee98"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "shannonlee98"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "    public void addExpenditure() {"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "shannonlee98"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "shannonlee98"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "shannonlee98"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "    public void editExpenditure() {"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "shannonlee98"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "shannonlee98"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "shannonlee98"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "    public void deleteExpenditure() {"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "shannonlee98"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 122,
         "author": {
           "gitId": "guanyewtan"
         },
         "content": "    "
       },
       {
-        "lineNumber": 95,
+        "lineNumber": 123,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "     * Set the month total (FOR TESTING PURPOSES)."
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "     * @param value The value to be set"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "    public void setMonthTotal(int value) {"
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "        monthTotal \u003d value;"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "    "
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "     * Populate the categoryList array with dummy variables. FOR TESTING PURPOSES."
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "    public void testPopulate() {"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "        ArrayList\u003cString\u003e population \u003d new ArrayList\u003cString\u003e();"
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "        population.add(\"SanicTheHodgepodge\");"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "        population.add(\"MetalGearLiquid\");"
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "        population.add(\"GTB\");"
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "        population.add(\"Far:Automata\");"
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "        population.add(\"League of Mobile Legends\");"
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "        for (int i \u003d 0; i \u003c 5; i +\u003d 1) {"
+      },
+      {
+        "lineNumber": 142,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "            Expenditure newExp \u003d new Expenditure(population.get(i), i * 100 / (i + 3), null);"
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "            category.add(newExp);"
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 145,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "        monthTotal \u003d 75;"
+      },
+      {
+        "lineNumber": 146,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 147,
         "author": {
           "gitId": "Greatnest"
         },
@@ -9171,9 +10123,9 @@
       }
     ],
     "authorContributionMap": {
-      "JOSHTAM": 24,
+      "JOSHTAM": 23,
       "Greatnest": 27,
-      "guanyewtan": 12,
+      "guanyewtan": 65,
       "shannonlee98": 32
     }
   },
@@ -10054,122 +11006,164 @@
         "author": {
           "gitId": "Greatnest"
         },
-        "content": ""
+        "content": "    "
       },
       {
         "lineNumber": 126,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 127,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "     * Populate the categoryList array with dummy variables. FOT TESTING PURPOSES"
+        "content": "    /**"
       },
       {
         "lineNumber": 128,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "     */"
+        "content": "     * Populate the categoryList array with dummy variables. FOR TESTING PURPOSES."
       },
       {
         "lineNumber": 129,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "    public void testPopulate() {"
+        "content": "     */"
       },
       {
         "lineNumber": 130,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "        ArrayList\u003cString\u003e population \u003d new ArrayList\u003cString\u003e();"
+        "content": "    public void testPopulate() {"
       },
       {
         "lineNumber": 131,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "        population.add(\"Games\");"
+        "content": "        ArrayList\u003cString\u003e population \u003d new ArrayList\u003cString\u003e();"
       },
       {
         "lineNumber": 132,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "        population.add(\"Food\");"
+        "content": "        population.add(\"Drugs\");"
       },
       {
         "lineNumber": 133,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "        population.add(\"Transportation\");"
+        "content": "        population.add(\"Food\");"
       },
       {
         "lineNumber": 134,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "        population.add(\"Individualistically\");"
+        "content": "        population.add(\"Transportation\");"
       },
       {
         "lineNumber": 135,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "        population.add(\"Compartmentalisation\");"
+        "content": "        population.add(\"Individualistically\");"
       },
       {
         "lineNumber": 136,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "        for (int i \u003d 0; i \u003c 5; i +\u003d 1) {"
+        "content": "        population.add(\"Compartmentalisation\");"
       },
       {
         "lineNumber": 137,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "            Category newCategory \u003d new Category(population.get(i));"
+        "content": "        for (int i \u003d 0; i \u003c 5; i +\u003d 1) {"
       },
       {
         "lineNumber": 138,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "            newCategory.setMonthTotal(i * 100 / (i + 3));"
+        "content": "            Category newCategory \u003d new Category(population.get(i));"
       },
       {
         "lineNumber": 139,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "            categoryList.add(newCategory);"
+        "content": "            newCategory.setMonthTotal(i * 100 / (i + 3));"
       },
       {
         "lineNumber": 140,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "        }"
+        "content": "            categoryList.add(newCategory);"
       },
       {
         "lineNumber": 141,
         "author": {
           "gitId": "guanyewtan"
         },
-        "content": "    }"
+        "content": "        }"
       },
       {
         "lineNumber": 142,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "        Category gameCategory \u003d new Category(\"Games\");"
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "        gameCategory.testPopulate();"
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "        gameCategory.setCategoryMonthTotal();"
+      },
+      {
+        "lineNumber": 145,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "        categoryList.add(gameCategory);"
+      },
+      {
+        "lineNumber": 146,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "        "
+      },
+      {
+        "lineNumber": 147,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 148,
         "author": {
           "gitId": "shannonlee98"
         },
@@ -10179,7 +11173,7 @@
     "authorContributionMap": {
       "JOSHTAM": 3,
       "Greatnest": 31,
-      "guanyewtan": 67,
+      "guanyewtan": 73,
       "shannonlee98": 41
     }
   },
@@ -10227,7 +11221,7 @@
         "author": {
           "gitId": "shannonlee98"
         },
-        "content": ""
+        "content": "    "
       },
       {
         "lineNumber": 7,
@@ -10255,7 +11249,7 @@
         "author": {
           "gitId": "shannonlee98"
         },
-        "content": ""
+        "content": "    "
       },
       {
         "lineNumber": 11,
@@ -10283,7 +11277,7 @@
         "author": {
           "gitId": "JOSHTAM"
         },
-        "content": ""
+        "content": "    "
       },
       {
         "lineNumber": 15,
@@ -10318,7 +11312,7 @@
         "author": {
           "gitId": "Greatnest"
         },
-        "content": ""
+        "content": "    "
       },
       {
         "lineNumber": 20,
@@ -10337,100 +11331,100 @@
       {
         "lineNumber": 22,
         "author": {
-          "gitId": "Greatnest"
+          "gitId": "guanyewtan"
         },
-        "content": "     * @param name Name of the expenditure (e.g chicken rice)"
+        "content": "     *"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "     * @param cost Cost of the expenditure"
+        "content": "     * @param name     Name of the expenditure (e.g chicken rice)"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "     * @param dateTime Time of the expenditure."
+        "content": "     * @param cost     Cost of the expenditure"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "     */"
+        "content": "     * @param dateTime Time of the expenditure."
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "    public Expenditure(String name, double cost, LocalDateTime dateTime) {"
+        "content": "     */"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        this.name \u003d name;"
+        "content": "    public Expenditure(String name, double cost, LocalDateTime dateTime) {"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        this.cost +\u003d 0.0;"
+        "content": "        this.name \u003d name;"
       },
       {
         "lineNumber": 29,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "        this.cost \u003d cost;"
+      },
+      {
+        "lineNumber": 30,
         "author": {
           "gitId": "Greatnest"
         },
         "content": "        this.dateTime \u003d dateTime;"
       },
       {
-        "lineNumber": 30,
+        "lineNumber": 31,
         "author": {
           "gitId": "JOSHTAM"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "JOSHTAM"
-        },
-        "content": ""
-      },
-      {
         "lineNumber": 32,
         "author": {
           "gitId": "JOSHTAM"
         },
-        "content": ""
+        "content": "    "
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "JOSHTAM"
         },
-        "content": "    public String toString() {"
+        "content": "    "
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "JOSHTAM"
         },
-        "content": "        String output \u003d \"current spending is \";"
+        "content": "    public String toString() {"
       },
       {
         "lineNumber": 35,
         "author": {
-          "gitId": "JOSHTAM"
+          "gitId": "guanyewtan"
         },
-        "content": "        return this.name + output + \"$ \" + this.cost;"
+        "content": "        return name;"
       },
       {
         "lineNumber": 36,
@@ -10444,7 +11438,7 @@
         "author": {
           "gitId": "shannonlee98"
         },
-        "content": ""
+        "content": "    "
       },
       {
         "lineNumber": 38,
@@ -10472,7 +11466,7 @@
         "author": {
           "gitId": "shannonlee98"
         },
-        "content": ""
+        "content": "    "
       },
       {
         "lineNumber": 42,
@@ -10504,8 +11498,9 @@
       }
     ],
     "authorContributionMap": {
-      "JOSHTAM": 13,
-      "Greatnest": 20,
+      "JOSHTAM": 11,
+      "Greatnest": 19,
+      "guanyewtan": 3,
       "shannonlee98": 12
     }
   },
@@ -10688,2441 +11683,2630 @@
       {
         "lineNumber": 9,
         "author": {
-          "gitId": "JOSHTAM"
+          "gitId": "guanyewtan"
         },
-        "content": "import moomoo.command.GraphCommand;"
+        "content": "import moomoo.command.GraphCategoryCommand;"
       },
       {
         "lineNumber": 10,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "import moomoo.command.GraphTotalCommand;"
+      },
+      {
+        "lineNumber": 11,
         "author": {
           "gitId": "Greatnest"
         },
         "content": "import moomoo.command.ListBudgetCommand;"
       },
       {
-        "lineNumber": 11,
+        "lineNumber": 12,
         "author": {
           "gitId": "JOSHTAM"
         },
         "content": "import moomoo.command.ListCategoryCommand;"
       },
       {
-        "lineNumber": 12,
+        "lineNumber": 13,
         "author": {
           "gitId": "Greatnest"
         },
         "content": "import moomoo.command.SavingsBudgetCommand;"
       },
       {
-        "lineNumber": 13,
+        "lineNumber": 14,
         "author": {
           "gitId": "jinwentay"
         },
         "content": "import moomoo.command.ScheduleCommand;"
       },
       {
-        "lineNumber": 14,
+        "lineNumber": 15,
         "author": {
           "gitId": "Greatnest"
         },
         "content": "import moomoo.command.SetBudgetCommand;"
       },
       {
-        "lineNumber": 15,
+        "lineNumber": 16,
         "author": {
           "gitId": "JOSHTAM"
         },
         "content": "import moomoo.command.TotalCommand;"
       },
       {
-        "lineNumber": 16,
+        "lineNumber": 17,
         "author": {
           "gitId": "guanyewtan"
         },
         "content": ""
-      },
-      {
-        "lineNumber": 17,
-        "author": {
-          "gitId": "Greatnest"
-        },
-        "content": "import java.time.LocalDate;"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "import java.time.format.DateTimeFormatter;"
+        "content": "import java.time.LocalDate;"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "import java.util.ArrayList;"
+        "content": "import java.time.format.DateTimeFormatter;"
       },
       {
         "lineNumber": 20,
         "author": {
-          "gitId": "shannonlee98"
+          "gitId": "Greatnest"
         },
-        "content": "import java.util.NoSuchElementException;"
+        "content": "import java.util.ArrayList;"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "shannonlee98"
         },
-        "content": "import java.util.Scanner;"
+        "content": "import java.util.NoSuchElementException;"
       },
       {
         "lineNumber": 22,
         "author": {
-          "gitId": "Greatnest"
+          "gitId": "shannonlee98"
         },
-        "content": ""
+        "content": "import java.util.Scanner;"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "/**"
+        "content": ""
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": " * Takes in a string and parses it to return a valid command to be ran."
+        "content": "/**"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": " */"
+        "content": " * Takes in a string and parses it to return a valid command to be ran."
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "public class Parser {"
+        "content": " */"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "    /**"
+        "content": "public class Parser {"
       },
       {
         "lineNumber": 28,
         "author": {
-          "gitId": "shannonlee98"
+          "gitId": "Greatnest"
         },
-        "content": "     * Takes in input from user and returns a command based on the input given. All parsing of input"
+        "content": "    /**"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "shannonlee98"
         },
-        "content": "     * should be done here including separating a line of command into parts for each command."
+        "content": "     * Takes in input from user and returns a command based on the input given. All parsing of input"
       },
       {
         "lineNumber": 30,
         "author": {
-          "gitId": "Greatnest"
+          "gitId": "shannonlee98"
         },
-        "content": "     *"
+        "content": "     * should be done here including separating a line of command into parts for each command."
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "     * @param input String given by the user"
+        "content": "     *"
       },
       {
         "lineNumber": 32,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "     * @param input String given by the user"
+      },
+      {
+        "lineNumber": 33,
         "author": {
           "gitId": "shannonlee98"
         },
         "content": "     * @param ui    MooMoo\u0027s ui"
       },
       {
-        "lineNumber": 33,
+        "lineNumber": 34,
         "author": {
           "gitId": "Greatnest"
         },
         "content": "     * @return The command object corresponding to the user input"
       },
       {
-        "lineNumber": 34,
+        "lineNumber": 35,
         "author": {
           "gitId": "Greatnest"
         },
         "content": "     * @throws MooMooException Thrown when an invalid input is given"
       },
       {
-        "lineNumber": 35,
+        "lineNumber": 36,
         "author": {
           "gitId": "Greatnest"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 36,
+        "lineNumber": 37,
         "author": {
           "gitId": "shannonlee98"
         },
         "content": "    public static Command parse(String input, Ui ui) throws MooMooException {"
       },
       {
-        "lineNumber": 37,
+        "lineNumber": 38,
         "author": {
           "gitId": "shannonlee98"
         },
         "content": "        Scanner scanner \u003d new Scanner(input);"
       },
       {
-        "lineNumber": 38,
+        "lineNumber": 39,
         "author": {
           "gitId": "shannonlee98"
         },
         "content": "        String commandType \u003d scanner.next();"
       },
       {
-        "lineNumber": 39,
+        "lineNumber": 40,
         "author": {
           "gitId": "shannonlee98"
         },
         "content": "        switch (commandType) {"
       },
       {
-        "lineNumber": 40,
+        "lineNumber": 41,
         "author": {
           "gitId": "Greatnest"
         },
         "content": "        case (\"bye\"):"
       },
       {
-        "lineNumber": 41,
+        "lineNumber": 42,
         "author": {
           "gitId": "Greatnest"
         },
         "content": "            return new ExitCommand(true);"
       },
       {
-        "lineNumber": 42,
+        "lineNumber": 43,
         "author": {
           "gitId": "Greatnest"
         },
         "content": "        case (\"budget\"):"
       },
       {
-        "lineNumber": 43,
+        "lineNumber": 44,
         "author": {
           "gitId": "Greatnest"
         },
         "content": "            return parseBudget(scanner);"
       },
       {
-        "lineNumber": 44,
+        "lineNumber": 45,
         "author": {
           "gitId": "Greatnest"
         },
         "content": "        case (\"categories\"):"
       },
       {
-        "lineNumber": 45,
-        "author": {
-          "gitId": "Greatnest"
-        },
-        "content": "            return new ListCategoryCommand();"
-      },
-      {
         "lineNumber": 46,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        case (\"schedule\"):"
+        "content": "            return new ListCategoryCommand();"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            return new ScheduleCommand(false, input);"
+        "content": "        case (\"schedule\"):"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        case (\"add\"):"
+        "content": "            return new ScheduleCommand(false, input);"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            return parseAdd(scanner, ui);"
+        "content": "        case (\"add\"):"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        case (\"delete\"):"
+        "content": "            return parseAdd(scanner, ui);"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            return parseDelete(scanner, ui);"
+        "content": "        case (\"delete\"):"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        case (\"list\"):"
+        "content": "            return parseDelete(scanner, ui);"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            return parseList(scanner, ui);"
+        "content": "        case (\"list\"):"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        case (\"graph\"):"
+        "content": "            return parseList(scanner, ui);"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            return new GraphCommand(input);"
+        "content": "        case (\"graph\"):"
       },
       {
         "lineNumber": 56,
         "author": {
-          "gitId": "Greatnest"
+          "gitId": "guanyewtan"
         },
-        "content": "        case (\"total\"):"
+        "content": "            return parseGraph(scanner);"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            return new TotalCommand();"
+        "content": "        case (\"total\"):"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        default:"
+        "content": "            return new TotalCommand();"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            throw new MooMooException(\"OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\");"
+        "content": "        default:"
       },
       {
         "lineNumber": 60,
         "author": {
-          "gitId": "shannonlee98"
+          "gitId": "Greatnest"
         },
-        "content": "        }"
+        "content": "            throw new MooMooException(\"OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\");"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "shannonlee98"
         },
-        "content": "    }"
+        "content": "        }"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "shannonlee98"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "shannonlee98"
         },
-        "content": "    private static Command parseList(Scanner scanner, Ui ui) throws MooMooException {"
+        "content": "    "
       },
       {
         "lineNumber": 64,
         "author": {
-          "gitId": "shannonlee98"
+          "gitId": "guanyewtan"
         },
-        "content": "        String input \u003d parseInput(scanner, ui, \"list\");"
+        "content": "    private static Command parseGraph(Scanner scanner) throws MooMooException {"
       },
       {
         "lineNumber": 65,
         "author": {
-          "gitId": "shannonlee98"
+          "gitId": "guanyewtan"
         },
-        "content": "        switch (input) {"
+        "content": "        String input;"
       },
       {
         "lineNumber": 66,
         "author": {
-          "gitId": "Greatnest"
+          "gitId": "guanyewtan"
         },
-        "content": "        case (\"category\"):"
+        "content": "        try {"
       },
       {
         "lineNumber": 67,
         "author": {
-          "gitId": "Greatnest"
+          "gitId": "guanyewtan"
         },
-        "content": "            return new ListCategoryCommand();"
+        "content": "            input \u003d scanner.next();"
       },
       {
         "lineNumber": 68,
         "author": {
-          "gitId": "Greatnest"
+          "gitId": "guanyewtan"
         },
-        "content": "        default:"
+        "content": "        } catch (Exception e) {"
       },
       {
         "lineNumber": 69,
         "author": {
-          "gitId": "Greatnest"
+          "gitId": "guanyewtan"
         },
-        "content": "            throw new MooMooException(\"Sorry I did not recognize that command.\");"
+        "content": "            throw new MooMooException(\"Try adding c/[CATEGORY] d/[MONTH] or \\\"total\\\"!\");"
       },
       {
         "lineNumber": 70,
         "author": {
-          "gitId": "shannonlee98"
+          "gitId": "guanyewtan"
         },
         "content": "        }"
       },
       {
         "lineNumber": 71,
         "author": {
-          "gitId": "shannonlee98"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 72,
-        "author": {
-          "gitId": "shannonlee98"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 73,
-        "author": {
-          "gitId": "shannonlee98"
-        },
-        "content": "    private static Command parseDelete(Scanner scanner, Ui ui) throws MooMooException {"
-      },
-      {
-        "lineNumber": 74,
-        "author": {
-          "gitId": "shannonlee98"
-        },
-        "content": "        String input \u003d parseInput(scanner, ui, \"delete\");"
-      },
-      {
-        "lineNumber": 75,
-        "author": {
-          "gitId": "shannonlee98"
+          "gitId": "guanyewtan"
         },
         "content": "        switch (input) {"
       },
       {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "        case \"total\":"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "            return new GraphTotalCommand();"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "        default:"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "            String month;"
+      },
+      {
         "lineNumber": 76,
         "author": {
-          "gitId": "Greatnest"
+          "gitId": "guanyewtan"
         },
-        "content": "        case (\"category\"):"
+        "content": "            try {"
       },
       {
         "lineNumber": 77,
         "author": {
-          "gitId": "Greatnest"
+          "gitId": "guanyewtan"
         },
-        "content": "            return new DeleteCategoryCommand();"
+        "content": "                month \u003d scanner.next();"
       },
       {
         "lineNumber": 78,
         "author": {
-          "gitId": "Greatnest"
+          "gitId": "guanyewtan"
         },
-        "content": "        default:"
+        "content": "                if (0 \u003c Integer.valueOf(month) \u0026\u0026 Integer.valueOf(month) \u003c 13) {"
       },
       {
         "lineNumber": 79,
         "author": {
-          "gitId": "Greatnest"
+          "gitId": "guanyewtan"
         },
-        "content": "            throw new MooMooException(\"Sorry I did not recognize that command.\");"
+        "content": "                    return new GraphCategoryCommand(input, Integer.valueOf(month));"
       },
       {
         "lineNumber": 80,
         "author": {
-          "gitId": "shannonlee98"
+          "gitId": "guanyewtan"
         },
-        "content": "        }"
+        "content": "                } else {"
       },
       {
         "lineNumber": 81,
         "author": {
-          "gitId": "shannonlee98"
+          "gitId": "guanyewtan"
         },
-        "content": "    }"
+        "content": "                    throw new MooMooException(\"Month must be from 1 to 12 inclusive!\");"
       },
       {
         "lineNumber": 82,
         "author": {
-          "gitId": "shannonlee98"
+          "gitId": "guanyewtan"
         },
-        "content": ""
+        "content": "                }"
       },
       {
         "lineNumber": 83,
         "author": {
-          "gitId": "shannonlee98"
+          "gitId": "guanyewtan"
         },
-        "content": "    private static Command parseAdd(Scanner scanner, Ui ui) throws MooMooException {"
+        "content": "            } catch (Exception e) {"
       },
       {
         "lineNumber": 84,
         "author": {
-          "gitId": "JOSHTAM"
+          "gitId": "guanyewtan"
         },
-        "content": "        switch (scanner.next()) {"
+        "content": "                throw new MooMooException(\"Try adding c/[CATEGORY] d/[MONTH] or \\\"total\\\"!\");"
       },
       {
         "lineNumber": 85,
         "author": {
-          "gitId": "Greatnest"
+          "gitId": "guanyewtan"
         },
-        "content": "        case (\"category\"):"
+        "content": "            }"
       },
       {
         "lineNumber": 86,
         "author": {
-          "gitId": "Greatnest"
+          "gitId": "guanyewtan"
         },
-        "content": "            return new AddCategoryCommand();"
+        "content": "            "
       },
       {
         "lineNumber": 87,
         "author": {
-          "gitId": "Greatnest"
+          "gitId": "guanyewtan"
         },
-        "content": "        case (\"expenditure\"):"
+        "content": "        }"
       },
       {
         "lineNumber": 88,
         "author": {
-          "gitId": "Greatnest"
+          "gitId": "guanyewtan"
         },
-        "content": "            return parseAddExpenditure(ui);"
+        "content": "    }"
       },
       {
         "lineNumber": 89,
         "author": {
-          "gitId": "shannonlee98"
+          "gitId": "guanyewtan"
         },
-        "content": "        default:"
+        "content": "    "
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "shannonlee98"
         },
-        "content": "            throw new MooMooException(\"Sorry I did not recognize that command.\");"
+        "content": "    private static Command parseList(Scanner scanner, Ui ui) throws MooMooException {"
       },
       {
         "lineNumber": 91,
         "author": {
-          "gitId": "guanyewtan"
+          "gitId": "shannonlee98"
         },
-        "content": ""
+        "content": "        String input \u003d parseInput(scanner, ui, \"list\");"
       },
       {
         "lineNumber": 92,
         "author": {
-          "gitId": "Greatnest"
+          "gitId": "shannonlee98"
         },
-        "content": "        }"
+        "content": "        switch (input) {"
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "    }"
+        "content": "        case (\"category\"):"
       },
       {
         "lineNumber": 94,
         "author": {
-          "gitId": "shannonlee98"
+          "gitId": "Greatnest"
         },
-        "content": ""
+        "content": "            return new ListCategoryCommand();"
       },
       {
         "lineNumber": 95,
-        "author": {
-          "gitId": "JOSHTAM"
-        },
-        "content": "    private static Command parseAddExpenditure(Ui ui) {"
-      },
-      {
-        "lineNumber": 96,
-        "author": {
-          "gitId": "JOSHTAM"
-        },
-        "content": "        ui.showAddExpenditureMessage();"
-      },
-      {
-        "lineNumber": 97,
-        "author": {
-          "gitId": "JOSHTAM"
-        },
-        "content": "        String input \u003d ui.readCommand();"
-      },
-      {
-        "lineNumber": 98,
-        "author": {
-          "gitId": "JOSHTAM"
-        },
-        "content": "        String[] parts \u003d input.split(\"-\");"
-      },
-      {
-        "lineNumber": 99,
-        "author": {
-          "gitId": "JOSHTAM"
-        },
-        "content": "        String expenditureName \u003d parts[0];"
-      },
-      {
-        "lineNumber": 100,
-        "author": {
-          "gitId": "JOSHTAM"
-        },
-        "content": "        String amount \u003d parts[1];"
-      },
-      {
-        "lineNumber": 101,
-        "author": {
-          "gitId": "JOSHTAM"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 102,
-        "author": {
-          "gitId": "JOSHTAM"
-        },
-        "content": "        return new AddExpenditureCommand(false, amount, expenditureName);"
-      },
-      {
-        "lineNumber": 103,
-        "author": {
-          "gitId": "JOSHTAM"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 104,
-        "author": {
-          "gitId": "JOSHTAM"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 105,
-        "author": {
-          "gitId": "shannonlee98"
-        },
-        "content": "    private static String parseInput(Scanner scanner, Ui ui, String text) {"
-      },
-      {
-        "lineNumber": 106,
-        "author": {
-          "gitId": "shannonlee98"
-        },
-        "content": "        String input;"
-      },
-      {
-        "lineNumber": 107,
-        "author": {
-          "gitId": "shannonlee98"
-        },
-        "content": "        try {"
-      },
-      {
-        "lineNumber": 108,
-        "author": {
-          "gitId": "shannonlee98"
-        },
-        "content": "            input \u003d scanner.next();"
-      },
-      {
-        "lineNumber": 109,
-        "author": {
-          "gitId": "shannonlee98"
-        },
-        "content": "        } catch (NoSuchElementException e) {"
-      },
-      {
-        "lineNumber": 110,
-        "author": {
-          "gitId": "shannonlee98"
-        },
-        "content": "            ui.showAddMessage(text);"
-      },
-      {
-        "lineNumber": 111,
-        "author": {
-          "gitId": "shannonlee98"
-        },
-        "content": "            input \u003d ui.readCommand();"
-      },
-      {
-        "lineNumber": 112,
-        "author": {
-          "gitId": "shannonlee98"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 113,
-        "author": {
-          "gitId": "shannonlee98"
-        },
-        "content": "        return input;"
-      },
-      {
-        "lineNumber": 114,
-        "author": {
-          "gitId": "Greatnest"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 115,
-        "author": {
-          "gitId": "Greatnest"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 116,
-        "author": {
-          "gitId": "Greatnest"
-        },
-        "content": "    private static Command parseBudget(Scanner scanner) throws MooMooException {"
-      },
-      {
-        "lineNumber": 117,
-        "author": {
-          "gitId": "Greatnest"
-        },
-        "content": "        String input;"
-      },
-      {
-        "lineNumber": 118,
-        "author": {
-          "gitId": "Greatnest"
-        },
-        "content": "        try {"
-      },
-      {
-        "lineNumber": 119,
-        "author": {
-          "gitId": "Greatnest"
-        },
-        "content": "            input \u003d scanner.next();"
-      },
-      {
-        "lineNumber": 120,
-        "author": {
-          "gitId": "Greatnest"
-        },
-        "content": "        } catch (Exception e) {"
-      },
-      {
-        "lineNumber": 121,
-        "author": {
-          "gitId": "Greatnest"
-        },
-        "content": "            throw new MooMooException(\"There is only edit/set/list/savings command under budget.\");"
-      },
-      {
-        "lineNumber": 122,
-        "author": {
-          "gitId": "Greatnest"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 123,
-        "author": {
-          "gitId": "Greatnest"
-        },
-        "content": "        switch (input) {"
-      },
-      {
-        "lineNumber": 124,
-        "author": {
-          "gitId": "Greatnest"
-        },
-        "content": "        case \"set\":"
-      },
-      {
-        "lineNumber": 125,
-        "author": {
-          "gitId": "Greatnest"
-        },
-        "content": "            return setBudget(scanner);"
-      },
-      {
-        "lineNumber": 126,
-        "author": {
-          "gitId": "Greatnest"
-        },
-        "content": "        case \"edit\":"
-      },
-      {
-        "lineNumber": 127,
-        "author": {
-          "gitId": "Greatnest"
-        },
-        "content": "            return editBudget(scanner);"
-      },
-      {
-        "lineNumber": 128,
-        "author": {
-          "gitId": "Greatnest"
-        },
-        "content": "        case \"list\":"
-      },
-      {
-        "lineNumber": 129,
-        "author": {
-          "gitId": "Greatnest"
-        },
-        "content": "            return listBudget(scanner);"
-      },
-      {
-        "lineNumber": 130,
-        "author": {
-          "gitId": "Greatnest"
-        },
-        "content": "        case \"savings\":"
-      },
-      {
-        "lineNumber": 131,
-        "author": {
-          "gitId": "Greatnest"
-        },
-        "content": "            return savingsBudget(scanner);"
-      },
-      {
-        "lineNumber": 132,
         "author": {
           "gitId": "Greatnest"
         },
         "content": "        default:"
       },
       {
-        "lineNumber": 133,
+        "lineNumber": 96,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            throw new MooMooException(\"There is only edit/set/list/savings command under budget.\");"
+        "content": "            throw new MooMooException(\"Sorry I did not recognize that command.\");"
       },
       {
-        "lineNumber": 134,
+        "lineNumber": 97,
+        "author": {
+          "gitId": "shannonlee98"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "shannonlee98"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "shannonlee98"
+        },
+        "content": "    "
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "shannonlee98"
+        },
+        "content": "    private static Command parseDelete(Scanner scanner, Ui ui) throws MooMooException {"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "shannonlee98"
+        },
+        "content": "        String input \u003d parseInput(scanner, ui, \"delete\");"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "shannonlee98"
+        },
+        "content": "        switch (input) {"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "        case (\"category\"):"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "            return new DeleteCategoryCommand();"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "        default:"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "            throw new MooMooException(\"Sorry I did not recognize that command.\");"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "shannonlee98"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "shannonlee98"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "shannonlee98"
+        },
+        "content": "    "
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "shannonlee98"
+        },
+        "content": "    private static Command parseAdd(Scanner scanner, Ui ui) throws MooMooException {"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "JOSHTAM"
+        },
+        "content": "        switch (scanner.next()) {"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "        case (\"category\"):"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "            return new AddCategoryCommand();"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "        case (\"expenditure\"):"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "            return parseAddExpenditure(ui);"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "shannonlee98"
+        },
+        "content": "        default:"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "            throw new MooMooException(\"Sorry! I did not recognize that command.\");"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "guanyewtan"
+        },
+        "content": "            "
+      },
+      {
+        "lineNumber": 119,
         "author": {
           "gitId": "Greatnest"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 135,
+        "lineNumber": 120,
         "author": {
           "gitId": "Greatnest"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 136,
+        "lineNumber": 121,
         "author": {
-          "gitId": "Greatnest"
+          "gitId": "shannonlee98"
         },
-        "content": ""
+        "content": "    "
       },
       {
-        "lineNumber": 137,
+        "lineNumber": 122,
         "author": {
-          "gitId": "Greatnest"
+          "gitId": "JOSHTAM"
         },
-        "content": "    private static Command setBudget(Scanner scanner) throws MooMooException {"
+        "content": "    private static Command parseAddExpenditure(Ui ui) {"
       },
       {
-        "lineNumber": 138,
+        "lineNumber": 123,
         "author": {
-          "gitId": "Greatnest"
+          "gitId": "JOSHTAM"
+        },
+        "content": "        ui.showAddExpenditureMessage();"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "JOSHTAM"
+        },
+        "content": "        String input \u003d ui.readCommand();"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "JOSHTAM"
+        },
+        "content": "        String[] parts \u003d input.split(\"-\");"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "JOSHTAM"
+        },
+        "content": "        String expenditureName \u003d parts[0];"
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "JOSHTAM"
+        },
+        "content": "        String amount \u003d parts[1];"
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "JOSHTAM"
+        },
+        "content": "        "
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "JOSHTAM"
+        },
+        "content": "        return new AddExpenditureCommand(false, amount, expenditureName);"
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "JOSHTAM"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "JOSHTAM"
+        },
+        "content": "    "
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "shannonlee98"
+        },
+        "content": "    private static String parseInput(Scanner scanner, Ui ui, String text) {"
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "shannonlee98"
         },
         "content": "        String input;"
       },
       {
-        "lineNumber": 139,
+        "lineNumber": 134,
         "author": {
-          "gitId": "Greatnest"
+          "gitId": "shannonlee98"
         },
         "content": "        try {"
       },
       {
-        "lineNumber": 140,
+        "lineNumber": 135,
         "author": {
-          "gitId": "Greatnest"
+          "gitId": "shannonlee98"
         },
         "content": "            input \u003d scanner.next();"
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "shannonlee98"
+        },
+        "content": "        } catch (NoSuchElementException e) {"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "shannonlee98"
+        },
+        "content": "            ui.showAddMessage(text);"
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "shannonlee98"
+        },
+        "content": "            input \u003d ui.readCommand();"
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "shannonlee98"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "shannonlee98"
+        },
+        "content": "        return input;"
       },
       {
         "lineNumber": 141,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        } catch (Exception e) {"
+        "content": "    }"
       },
       {
         "lineNumber": 142,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            throw new MooMooException(\"Please input in this format \\\"c/CATEGORY b/BUDGET\\\"\");"
+        "content": "    "
       },
       {
         "lineNumber": 143,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        }"
+        "content": "    private static Command parseBudget(Scanner scanner) throws MooMooException {"
       },
       {
         "lineNumber": 144,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        int count \u003d 0;"
+        "content": "        String input;"
       },
       {
         "lineNumber": 145,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        ArrayList\u003cString\u003e categories \u003d new ArrayList\u003c\u003e();"
+        "content": "        try {"
       },
       {
         "lineNumber": 146,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        ArrayList\u003cDouble\u003e budgets \u003d new ArrayList\u003c\u003e();"
+        "content": "            input \u003d scanner.next();"
       },
       {
         "lineNumber": 147,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        String inputCategory \u003d \"\";"
+        "content": "        } catch (Exception e) {"
       },
       {
         "lineNumber": 148,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": ""
+        "content": "            throw new MooMooException(\"There is only edit/set/list/savings command under budget.\");"
       },
       {
         "lineNumber": 149,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        while (!\"\".equals(input)) {"
+        "content": "        }"
       },
       {
         "lineNumber": 150,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            if (input.startsWith(\"c/\") \u0026\u0026 count % 2 \u003d\u003d 0) {"
+        "content": "        switch (input) {"
       },
       {
         "lineNumber": 151,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                inputCategory +\u003d input.substring(2).toLowerCase();"
+        "content": "        case \"set\":"
       },
       {
         "lineNumber": 152,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            } else if (input.startsWith(\"b/\") \u0026\u0026 count % 2 !\u003d 0) {"
+        "content": "            return setBudget(scanner);"
       },
       {
         "lineNumber": 153,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                double budget \u003d 0;"
+        "content": "        case \"edit\":"
       },
       {
         "lineNumber": 154,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                try {"
+        "content": "            return editBudget(scanner);"
       },
       {
         "lineNumber": 155,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                    budget \u003d Double.parseDouble(input.substring(2));"
+        "content": "        case \"list\":"
       },
       {
         "lineNumber": 156,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                    if (budget \u003c\u003d 0) {"
+        "content": "            return listBudget(scanner);"
       },
       {
         "lineNumber": 157,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                        throw new MooMooException(\"Please insert a number larger than 0 for the budget\");"
+        "content": "        case \"savings\":"
       },
       {
         "lineNumber": 158,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                    }"
+        "content": "            return savingsBudget(scanner);"
       },
       {
         "lineNumber": 159,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                } catch (NumberFormatException e) {"
+        "content": "        default:"
       },
       {
         "lineNumber": 160,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                    throw new MooMooException(\"Please insert a number larger than 0 for the budget\");"
+        "content": "            throw new MooMooException(\"There is only edit/set/list/savings command under budget.\");"
       },
       {
         "lineNumber": 161,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                }"
+        "content": "        }"
       },
       {
         "lineNumber": 162,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                categories.add(inputCategory);"
+        "content": "    }"
       },
       {
         "lineNumber": 163,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                budgets.add(budget);"
+        "content": "    "
       },
       {
         "lineNumber": 164,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                inputCategory \u003d \"\";"
+        "content": "    private static Command setBudget(Scanner scanner) throws MooMooException {"
       },
       {
         "lineNumber": 165,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            } else {"
+        "content": "        String input;"
       },
       {
         "lineNumber": 166,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                if (inputCategory !\u003d \"\") {"
+        "content": "        try {"
       },
       {
         "lineNumber": 167,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                    inputCategory +\u003d \" \" + input;"
+        "content": "            input \u003d scanner.next();"
       },
       {
         "lineNumber": 168,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                } else {"
+        "content": "        } catch (Exception e) {"
       },
       {
         "lineNumber": 169,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                    throw new MooMooException(\"Please input in this format \\\"c/CATEGORY b/BUDGET\\\"\");"
+        "content": "            throw new MooMooException(\"Please input in this format \\\"c/CATEGORY b/BUDGET\\\"\");"
       },
       {
         "lineNumber": 170,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                }"
+        "content": "        }"
       },
       {
         "lineNumber": 171,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            }"
+        "content": "        int count \u003d 0;"
       },
       {
         "lineNumber": 172,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            ++count;"
+        "content": "        ArrayList\u003cString\u003e categories \u003d new ArrayList\u003c\u003e();"
       },
       {
         "lineNumber": 173,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            try {"
+        "content": "        ArrayList\u003cDouble\u003e budgets \u003d new ArrayList\u003c\u003e();"
       },
       {
         "lineNumber": 174,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                input \u003d scanner.next();"
+        "content": "        String inputCategory \u003d \"\";"
       },
       {
         "lineNumber": 175,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            } catch (NoSuchElementException e) {"
+        "content": "        "
       },
       {
         "lineNumber": 176,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                break;"
+        "content": "        while (!\"\".equals(input)) {"
       },
       {
         "lineNumber": 177,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            }"
+        "content": "            if (input.startsWith(\"c/\") \u0026\u0026 count % 2 \u003d\u003d 0) {"
       },
       {
         "lineNumber": 178,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        }"
+        "content": "                inputCategory +\u003d input.substring(2).toLowerCase();"
       },
       {
         "lineNumber": 179,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": ""
+        "content": "            } else if (input.startsWith(\"b/\") \u0026\u0026 count % 2 !\u003d 0) {"
       },
       {
         "lineNumber": 180,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": ""
+        "content": "                double budget \u003d 0;"
       },
       {
         "lineNumber": 181,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        if (categories.size() \u003d\u003d 0 || budgets.size() \u003d\u003d 0) {"
+        "content": "                try {"
       },
       {
         "lineNumber": 182,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            throw new MooMooException(\"You have entered the command wrongly. \""
+        "content": "                    budget \u003d Double.parseDouble(input.substring(2));"
       },
       {
         "lineNumber": 183,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                    + \"Please input in this format \\\"c/CATEGORY b/BUDGET\\\"\");"
+        "content": "                    if (budget \u003c\u003d 0) {"
       },
       {
         "lineNumber": 184,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        }"
+        "content": "                        throw new MooMooException(\"Please insert a number larger than 0 for the budget\");"
       },
       {
         "lineNumber": 185,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": ""
+        "content": "                    }"
       },
       {
         "lineNumber": 186,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        return new SetBudgetCommand(false, categories, budgets);"
+        "content": "                } catch (NumberFormatException e) {"
       },
       {
         "lineNumber": 187,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "    }"
+        "content": "                    throw new MooMooException(\"Please insert a number larger than 0 for the budget\");"
       },
       {
         "lineNumber": 188,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": ""
+        "content": "                }"
       },
       {
         "lineNumber": 189,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "    private static Command editBudget(Scanner scanner) throws MooMooException {"
+        "content": "                categories.add(inputCategory);"
       },
       {
         "lineNumber": 190,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        String input;"
+        "content": "                budgets.add(budget);"
       },
       {
         "lineNumber": 191,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        try {"
+        "content": "                inputCategory \u003d \"\";"
       },
       {
         "lineNumber": 192,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            input \u003d scanner.next();"
+        "content": "            } else {"
       },
       {
         "lineNumber": 193,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        } catch (Exception e) {"
+        "content": "                if (inputCategory !\u003d \"\") {"
       },
       {
         "lineNumber": 194,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            throw new MooMooException(\"Please input in this format \\\"c/CATEGORY b/BUDGET\\\"\");"
+        "content": "                    inputCategory +\u003d \" \" + input;"
       },
       {
         "lineNumber": 195,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        }"
+        "content": "                } else {"
       },
       {
         "lineNumber": 196,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        int count \u003d 0;"
+        "content": "                    throw new MooMooException(\"Please input in this format \\\"c/CATEGORY b/BUDGET\\\"\");"
       },
       {
         "lineNumber": 197,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        ArrayList\u003cString\u003e categories \u003d new ArrayList\u003c\u003e();"
+        "content": "                }"
       },
       {
         "lineNumber": 198,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        ArrayList\u003cDouble\u003e budgets \u003d new ArrayList\u003c\u003e();"
+        "content": "            }"
       },
       {
         "lineNumber": 199,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        String inputCategory \u003d \"\";"
+        "content": "            ++count;"
       },
       {
         "lineNumber": 200,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": ""
+        "content": "            try {"
       },
       {
         "lineNumber": 201,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        while (!\"\".equals(input)) {"
+        "content": "                input \u003d scanner.next();"
       },
       {
         "lineNumber": 202,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            if (input.startsWith(\"c/\") \u0026\u0026 count % 2 \u003d\u003d 0) {"
+        "content": "            } catch (NoSuchElementException e) {"
       },
       {
         "lineNumber": 203,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                inputCategory +\u003d input.substring(2).toLowerCase();"
+        "content": "                break;"
       },
       {
         "lineNumber": 204,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            } else if (input.startsWith(\"b/\") \u0026\u0026 count % 2 !\u003d 0) {"
+        "content": "            }"
       },
       {
         "lineNumber": 205,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                double budget \u003d 0;"
+        "content": "        }"
       },
       {
         "lineNumber": 206,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                try {"
+        "content": "        "
       },
       {
         "lineNumber": 207,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                    budget \u003d Double.parseDouble(input.substring(2));"
+        "content": "        "
       },
       {
         "lineNumber": 208,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                    if (budget \u003c\u003d 0) {"
+        "content": "        if (categories.size() \u003d\u003d 0 || budgets.size() \u003d\u003d 0) {"
       },
       {
         "lineNumber": 209,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                        throw new MooMooException(\"Please insert a number larger than 0 for the budget\");"
+        "content": "            throw new MooMooException(\"You have entered the command wrongly. \""
       },
       {
         "lineNumber": 210,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                    }"
+        "content": "                    + \"Please input in this format \\\"c/CATEGORY b/BUDGET\\\"\");"
       },
       {
         "lineNumber": 211,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                } catch (NumberFormatException e) {"
+        "content": "        }"
       },
       {
         "lineNumber": 212,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                    throw new MooMooException(\"Please insert a number larger than 0 for the budget\");"
+        "content": "        "
       },
       {
         "lineNumber": 213,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                }"
+        "content": "        return new SetBudgetCommand(false, categories, budgets);"
       },
       {
         "lineNumber": 214,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                categories.add(inputCategory);"
+        "content": "    }"
       },
       {
         "lineNumber": 215,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                budgets.add(budget);"
+        "content": "    "
       },
       {
         "lineNumber": 216,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                inputCategory \u003d \"\";"
+        "content": "    private static Command editBudget(Scanner scanner) throws MooMooException {"
       },
       {
         "lineNumber": 217,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            } else {"
+        "content": "        String input;"
       },
       {
         "lineNumber": 218,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                if (inputCategory !\u003d \"\") {"
+        "content": "        try {"
       },
       {
         "lineNumber": 219,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                    inputCategory +\u003d \" \" + input;"
+        "content": "            input \u003d scanner.next();"
       },
       {
         "lineNumber": 220,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                } else {"
+        "content": "        } catch (Exception e) {"
       },
       {
         "lineNumber": 221,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                    throw new MooMooException(\"Please input in this format \\\"c/CATEGORY b/BUDGET\\\"\");"
+        "content": "            throw new MooMooException(\"Please input in this format \\\"c/CATEGORY b/BUDGET\\\"\");"
       },
       {
         "lineNumber": 222,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                }"
+        "content": "        }"
       },
       {
         "lineNumber": 223,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            }"
+        "content": "        int count \u003d 0;"
       },
       {
         "lineNumber": 224,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            ++count;"
+        "content": "        ArrayList\u003cString\u003e categories \u003d new ArrayList\u003c\u003e();"
       },
       {
         "lineNumber": 225,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            try {"
+        "content": "        ArrayList\u003cDouble\u003e budgets \u003d new ArrayList\u003c\u003e();"
       },
       {
         "lineNumber": 226,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                input \u003d scanner.next();"
+        "content": "        String inputCategory \u003d \"\";"
       },
       {
         "lineNumber": 227,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            } catch (NoSuchElementException e) {"
+        "content": "        "
       },
       {
         "lineNumber": 228,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                break;"
+        "content": "        while (!\"\".equals(input)) {"
       },
       {
         "lineNumber": 229,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            }"
+        "content": "            if (input.startsWith(\"c/\") \u0026\u0026 count % 2 \u003d\u003d 0) {"
       },
       {
         "lineNumber": 230,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        }"
+        "content": "                inputCategory +\u003d input.substring(2).toLowerCase();"
       },
       {
         "lineNumber": 231,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": ""
+        "content": "            } else if (input.startsWith(\"b/\") \u0026\u0026 count % 2 !\u003d 0) {"
       },
       {
         "lineNumber": 232,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": ""
+        "content": "                double budget \u003d 0;"
       },
       {
         "lineNumber": 233,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        if (categories.size() \u003d\u003d 0 || budgets.size() \u003d\u003d 0) {"
+        "content": "                try {"
       },
       {
         "lineNumber": 234,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            throw new MooMooException(\"You have entered the command wrongly. \""
+        "content": "                    budget \u003d Double.parseDouble(input.substring(2));"
       },
       {
         "lineNumber": 235,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                    + \"Please input in this format \\\"c/CATEGORY b/BUDGET\\\"\");"
+        "content": "                    if (budget \u003c\u003d 0) {"
       },
       {
         "lineNumber": 236,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        }"
+        "content": "                        throw new MooMooException(\"Please insert a number larger than 0 for the budget\");"
       },
       {
         "lineNumber": 237,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": ""
+        "content": "                    }"
       },
       {
         "lineNumber": 238,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        return new EditBudgetCommand(false, categories, budgets);"
+        "content": "                } catch (NumberFormatException e) {"
       },
       {
         "lineNumber": 239,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "    }"
+        "content": "                    throw new MooMooException(\"Please insert a number larger than 0 for the budget\");"
       },
       {
         "lineNumber": 240,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": ""
+        "content": "                }"
       },
       {
         "lineNumber": 241,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "    private static Command listBudget(Scanner scanner) throws MooMooException {"
+        "content": "                categories.add(inputCategory);"
       },
       {
         "lineNumber": 242,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        String input \u003d \"\";"
+        "content": "                budgets.add(budget);"
       },
       {
         "lineNumber": 243,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        try {"
+        "content": "                inputCategory \u003d \"\";"
       },
       {
         "lineNumber": 244,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            input \u003d scanner.next();"
+        "content": "            } else {"
       },
       {
         "lineNumber": 245,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        } catch (Exception e) {"
+        "content": "                if (inputCategory !\u003d \"\") {"
       },
       {
         "lineNumber": 246,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            throw new MooMooException(\"Please input in this format \\\"c/CATEGORY\\\"\");"
+        "content": "                    inputCategory +\u003d \" \" + input;"
       },
       {
         "lineNumber": 247,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        }"
+        "content": "                } else {"
       },
       {
         "lineNumber": 248,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        ArrayList\u003cString\u003e categories \u003d new ArrayList\u003c\u003e();"
+        "content": "                    throw new MooMooException(\"Please input in this format \\\"c/CATEGORY b/BUDGET\\\"\");"
       },
       {
         "lineNumber": 249,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        String inputCategory \u003d \"\";"
+        "content": "                }"
       },
       {
         "lineNumber": 250,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": ""
+        "content": "            }"
       },
       {
         "lineNumber": 251,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        while (!\"\".equals(input)) {"
+        "content": "            ++count;"
       },
       {
         "lineNumber": 252,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            if (input.startsWith(\"c/\")) {"
+        "content": "            try {"
       },
       {
         "lineNumber": 253,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                if (inputCategory !\u003d \"\") {"
+        "content": "                input \u003d scanner.next();"
       },
       {
         "lineNumber": 254,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                    categories.add(inputCategory);"
+        "content": "            } catch (NoSuchElementException e) {"
       },
       {
         "lineNumber": 255,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                    inputCategory \u003d \"\";"
+        "content": "                break;"
       },
       {
         "lineNumber": 256,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                }"
+        "content": "            }"
       },
       {
         "lineNumber": 257,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                inputCategory +\u003d input.substring(2).toLowerCase();"
+        "content": "        }"
       },
       {
         "lineNumber": 258,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            } else {"
+        "content": "        "
       },
       {
         "lineNumber": 259,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                if (!\"\".equals(inputCategory)) {"
+        "content": "        "
       },
       {
         "lineNumber": 260,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                    inputCategory +\u003d \" \" + input;"
+        "content": "        if (categories.size() \u003d\u003d 0 || budgets.size() \u003d\u003d 0) {"
       },
       {
         "lineNumber": 261,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                } else {"
+        "content": "            throw new MooMooException(\"You have entered the command wrongly. \""
       },
       {
         "lineNumber": 262,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                    throw new MooMooException(\"Please input in this format \\\"c/CATEGORY\\\"\");"
+        "content": "                    + \"Please input in this format \\\"c/CATEGORY b/BUDGET\\\"\");"
       },
       {
         "lineNumber": 263,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                }"
+        "content": "        }"
       },
       {
         "lineNumber": 264,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            }"
+        "content": "        "
       },
       {
         "lineNumber": 265,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            try {"
+        "content": "        return new EditBudgetCommand(false, categories, budgets);"
       },
       {
         "lineNumber": 266,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                input \u003d scanner.next();"
+        "content": "    }"
       },
       {
         "lineNumber": 267,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            } catch (NoSuchElementException e) {"
+        "content": "    "
       },
       {
         "lineNumber": 268,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                if (!\"\".equals(inputCategory)) {"
+        "content": "    private static Command listBudget(Scanner scanner) throws MooMooException {"
       },
       {
         "lineNumber": 269,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                    categories.add(inputCategory);"
+        "content": "        String input \u003d \"\";"
       },
       {
         "lineNumber": 270,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                }"
+        "content": "        try {"
       },
       {
         "lineNumber": 271,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                break;"
+        "content": "            input \u003d scanner.next();"
       },
       {
         "lineNumber": 272,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            }"
+        "content": "        } catch (Exception e) {"
       },
       {
         "lineNumber": 273,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        }"
+        "content": "            throw new MooMooException(\"Please input in this format \\\"c/CATEGORY\\\"\");"
       },
       {
         "lineNumber": 274,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        return new ListBudgetCommand(false, categories);"
+        "content": "        }"
       },
       {
         "lineNumber": 275,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "    }"
+        "content": "        ArrayList\u003cString\u003e categories \u003d new ArrayList\u003c\u003e();"
       },
       {
         "lineNumber": 276,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": ""
+        "content": "        String inputCategory \u003d \"\";"
       },
       {
         "lineNumber": 277,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "    private static Command savingsBudget(Scanner scanner) throws MooMooException {"
+        "content": "        "
       },
       {
         "lineNumber": 278,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        String input;"
+        "content": "        while (!\"\".equals(input)) {"
       },
       {
         "lineNumber": 279,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        try {"
+        "content": "            if (input.startsWith(\"c/\")) {"
       },
       {
         "lineNumber": 280,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            input \u003d scanner.next();"
+        "content": "                if (inputCategory !\u003d \"\") {"
       },
       {
         "lineNumber": 281,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        } catch (Exception e) {"
+        "content": "                    categories.add(inputCategory);"
       },
       {
         "lineNumber": 282,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            throw new MooMooException(\"Please input in this format \\\"c/CATEGORY s/STARTMONTHYEAR e/ENDMONTHYEAR\\\"\");"
+        "content": "                    inputCategory \u003d \"\";"
       },
       {
         "lineNumber": 283,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        }"
+        "content": "                }"
       },
       {
         "lineNumber": 284,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": ""
+        "content": "                inputCategory +\u003d input.substring(2).toLowerCase();"
       },
       {
         "lineNumber": 285,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        ArrayList\u003cString\u003e categories \u003d new ArrayList\u003c\u003e();"
+        "content": "            } else {"
       },
       {
         "lineNumber": 286,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        String startMonth \u003d \"\";"
+        "content": "                if (!\"\".equals(inputCategory)) {"
       },
       {
         "lineNumber": 287,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        String endMonth \u003d \"\";"
+        "content": "                    inputCategory +\u003d \" \" + input;"
       },
       {
         "lineNumber": 288,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        String inputCategory \u003d \"\";"
+        "content": "                } else {"
       },
       {
         "lineNumber": 289,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": ""
+        "content": "                    throw new MooMooException(\"Please input in this format \\\"c/CATEGORY\\\"\");"
       },
       {
         "lineNumber": 290,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        while (!\"\".equals(input)) {"
+        "content": "                }"
       },
       {
         "lineNumber": 291,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            if (input.startsWith(\"c/\")) {"
+        "content": "            }"
       },
       {
         "lineNumber": 292,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                if (!\"\".equals(inputCategory)) {"
+        "content": "            try {"
       },
       {
         "lineNumber": 293,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                    categories.add(inputCategory);"
+        "content": "                input \u003d scanner.next();"
       },
       {
         "lineNumber": 294,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                    inputCategory \u003d \"\";"
+        "content": "            } catch (NoSuchElementException e) {"
       },
       {
         "lineNumber": 295,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                }"
+        "content": "                if (!\"\".equals(inputCategory)) {"
       },
       {
         "lineNumber": 296,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                inputCategory +\u003d input.substring(2).toLowerCase();"
+        "content": "                    categories.add(inputCategory);"
       },
       {
         "lineNumber": 297,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            } else if (input.startsWith(\"s/\")) {"
+        "content": "                }"
       },
       {
         "lineNumber": 298,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                if (!\"\".equals(inputCategory)) {"
+        "content": "                break;"
       },
       {
         "lineNumber": 299,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                    categories.add(inputCategory);"
+        "content": "            }"
       },
       {
         "lineNumber": 300,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                    inputCategory \u003d \"\";"
+        "content": "        }"
       },
       {
         "lineNumber": 301,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                }"
+        "content": "        return new ListBudgetCommand(false, categories);"
       },
       {
         "lineNumber": 302,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                if (!\"\".equals(startMonth)) {"
+        "content": "    }"
       },
       {
         "lineNumber": 303,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                    throw new MooMooException(\"Please only set 1 starting period.\");"
+        "content": "    "
       },
       {
         "lineNumber": 304,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                }"
+        "content": "    private static Command savingsBudget(Scanner scanner) throws MooMooException {"
       },
       {
         "lineNumber": 305,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                startMonth \u003d input.substring(2);"
+        "content": "        String input;"
       },
       {
         "lineNumber": 306,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            } else if (input.startsWith(\"e/\")) {"
+        "content": "        try {"
       },
       {
         "lineNumber": 307,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                if (!\"\".equals(endMonth)) {"
+        "content": "            input \u003d scanner.next();"
       },
       {
         "lineNumber": 308,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                    throw new MooMooException(\"Please only set 1 ending period.\");"
+        "content": "        } catch (Exception e) {"
       },
       {
         "lineNumber": 309,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                }"
+        "content": "            throw new MooMooException(\"Please input in this format \\\"c/CATEGORY s/STARTMONTHYEAR e/ENDMONTHYEAR\\\"\");"
       },
       {
         "lineNumber": 310,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                endMonth \u003d input.substring(2);"
+        "content": "        }"
       },
       {
         "lineNumber": 311,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": ""
+        "content": "        "
       },
       {
         "lineNumber": 312,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            } else {"
+        "content": "        ArrayList\u003cString\u003e categories \u003d new ArrayList\u003c\u003e();"
       },
       {
         "lineNumber": 313,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                if (!\"\".equals(inputCategory)) {"
+        "content": "        String startMonth \u003d \"\";"
       },
       {
         "lineNumber": 314,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                    inputCategory +\u003d \" \" + input;"
+        "content": "        String endMonth \u003d \"\";"
       },
       {
         "lineNumber": 315,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                }"
+        "content": "        String inputCategory \u003d \"\";"
       },
       {
         "lineNumber": 316,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                throw new MooMooException(\"Please input in this format \\\"c/CATEGORY s/STARTMONTHYEAR e/ENDMONTHYEAR\\\"\");"
+        "content": "        "
       },
       {
         "lineNumber": 317,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            }"
+        "content": "        while (!\"\".equals(input)) {"
       },
       {
         "lineNumber": 318,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": ""
+        "content": "            if (input.startsWith(\"c/\")) {"
       },
       {
         "lineNumber": 319,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            try {"
+        "content": "                if (!\"\".equals(inputCategory)) {"
       },
       {
         "lineNumber": 320,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                input \u003d scanner.next();"
+        "content": "                    categories.add(inputCategory);"
       },
       {
         "lineNumber": 321,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            } catch (NoSuchElementException e) {"
+        "content": "                    inputCategory \u003d \"\";"
       },
       {
         "lineNumber": 322,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                break;"
+        "content": "                }"
       },
       {
         "lineNumber": 323,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            }"
+        "content": "                inputCategory +\u003d input.substring(2).toLowerCase();"
       },
       {
         "lineNumber": 324,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        }"
+        "content": "            } else if (input.startsWith(\"s/\")) {"
       },
       {
         "lineNumber": 325,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        if (\"\".equals(startMonth)) {"
+        "content": "                if (!\"\".equals(inputCategory)) {"
       },
       {
         "lineNumber": 326,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            throw new MooMooException(\"Please set a start month and year in this format \\\"s/01/2019\\\"\");"
+        "content": "                    categories.add(inputCategory);"
       },
       {
         "lineNumber": 327,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        }"
+        "content": "                    inputCategory \u003d \"\";"
       },
       {
         "lineNumber": 328,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": ""
+        "content": "                }"
       },
       {
         "lineNumber": 329,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        LocalDate startDate \u003d parseMonth(startMonth);"
+        "content": "                if (!\"\".equals(startMonth)) {"
       },
       {
         "lineNumber": 330,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        LocalDate endDate \u003d parseMonth(endMonth);"
+        "content": "                    throw new MooMooException(\"Please only set 1 starting period.\");"
       },
       {
         "lineNumber": 331,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": ""
+        "content": "                }"
       },
       {
         "lineNumber": 332,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        if (startDate \u003d\u003d null) {"
+        "content": "                startMonth \u003d input.substring(2);"
       },
       {
         "lineNumber": 333,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            throw new MooMooException(\"Please set a start month and year in this format \\\"s/01/2019\\\"\");"
+        "content": "            } else if (input.startsWith(\"e/\")) {"
       },
       {
         "lineNumber": 334,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        }"
+        "content": "                if (!\"\".equals(endMonth)) {"
       },
       {
         "lineNumber": 335,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": ""
+        "content": "                    throw new MooMooException(\"Please only set 1 ending period.\");"
       },
       {
         "lineNumber": 336,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        if (!\"\".equals(endMonth) \u0026\u0026 endDate \u003d\u003d null) {"
+        "content": "                }"
       },
       {
         "lineNumber": 337,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            throw new MooMooException(\"Please set a end month and year in this format \\\"e/01/2019\\\"\");"
+        "content": "                endMonth \u003d input.substring(2);"
       },
       {
         "lineNumber": 338,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        }"
+        "content": "                "
       },
       {
         "lineNumber": 339,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": ""
+        "content": "            } else {"
       },
       {
         "lineNumber": 340,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        if (categories.size() \u003d\u003d 0) {"
+        "content": "                if (!\"\".equals(inputCategory)) {"
       },
       {
         "lineNumber": 341,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            throw new MooMooException(\"You have entered the command wrongly. \""
+        "content": "                    inputCategory +\u003d \" \" + input;"
       },
       {
         "lineNumber": 342,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "                    + \"Please input in this format \\\"c/CATEGORY s/STARTMONTHYEAR e/ENDMONTHYEAR\\\"\");"
+        "content": "                }"
       },
       {
         "lineNumber": 343,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        }"
+        "content": "                throw new MooMooException(\"Please input in this format \\\"c/CATEGORY s/STARTMONTHYEAR e/ENDMONTHYEAR\\\"\");"
       },
       {
         "lineNumber": 344,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": ""
+        "content": "            }"
       },
       {
         "lineNumber": 345,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        return new SavingsBudgetCommand(false, categories, startDate, endDate);"
+        "content": "            "
       },
       {
         "lineNumber": 346,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "    }"
+        "content": "            try {"
       },
       {
         "lineNumber": 347,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": ""
+        "content": "                input \u003d scanner.next();"
       },
       {
         "lineNumber": 348,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "    private static LocalDate parseMonth(String inputDate) {"
+        "content": "            } catch (NoSuchElementException e) {"
       },
       {
         "lineNumber": 349,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        try {"
+        "content": "                break;"
       },
       {
         "lineNumber": 350,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            String fullDate \u003d \"01/\" + inputDate;"
+        "content": "            }"
       },
       {
         "lineNumber": 351,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            DateTimeFormatter formatter \u003d DateTimeFormatter.ofPattern(\"dd/MM/yyyy\");"
+        "content": "        }"
       },
       {
         "lineNumber": 352,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            return LocalDate.parse(fullDate, formatter);"
+        "content": "        if (\"\".equals(startMonth)) {"
       },
       {
         "lineNumber": 353,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        } catch (Exception e) {"
+        "content": "            throw new MooMooException(\"Please set a start month and year in this format \\\"s/01/2019\\\"\");"
       },
       {
         "lineNumber": 354,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "            return null;"
+        "content": "        }"
       },
       {
         "lineNumber": 355,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "        }"
+        "content": "        "
       },
       {
         "lineNumber": 356,
         "author": {
           "gitId": "Greatnest"
         },
-        "content": "    }"
+        "content": "        LocalDate startDate \u003d parseMonth(startMonth);"
       },
       {
         "lineNumber": 357,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "        LocalDate endDate \u003d parseMonth(endMonth);"
+      },
+      {
+        "lineNumber": 358,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "        "
+      },
+      {
+        "lineNumber": 359,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "        if (startDate \u003d\u003d null) {"
+      },
+      {
+        "lineNumber": 360,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "            throw new MooMooException(\"Please set a start month and year in this format \\\"s/01/2019\\\"\");"
+      },
+      {
+        "lineNumber": 361,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 362,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "        "
+      },
+      {
+        "lineNumber": 363,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "        if (!\"\".equals(endMonth) \u0026\u0026 endDate \u003d\u003d null) {"
+      },
+      {
+        "lineNumber": 364,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "            throw new MooMooException(\"Please set a end month and year in this format \\\"e/01/2019\\\"\");"
+      },
+      {
+        "lineNumber": 365,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 366,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "        "
+      },
+      {
+        "lineNumber": 367,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "        if (categories.size() \u003d\u003d 0) {"
+      },
+      {
+        "lineNumber": 368,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "            throw new MooMooException(\"You have entered the command wrongly. \""
+      },
+      {
+        "lineNumber": 369,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "                    + \"Please input in this format \\\"c/CATEGORY s/STARTMONTHYEAR e/ENDMONTHYEAR\\\"\");"
+      },
+      {
+        "lineNumber": 370,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 371,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "        "
+      },
+      {
+        "lineNumber": 372,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "        return new SavingsBudgetCommand(false, categories, startDate, endDate);"
+      },
+      {
+        "lineNumber": 373,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 374,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "    "
+      },
+      {
+        "lineNumber": 375,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "    private static LocalDate parseMonth(String inputDate) {"
+      },
+      {
+        "lineNumber": 376,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 377,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "            String fullDate \u003d \"01/\" + inputDate;"
+      },
+      {
+        "lineNumber": 378,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "            DateTimeFormatter formatter \u003d DateTimeFormatter.ofPattern(\"dd/MM/yyyy\");"
+      },
+      {
+        "lineNumber": 379,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "            return LocalDate.parse(fullDate, formatter);"
+      },
+      {
+        "lineNumber": 380,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "        } catch (Exception e) {"
+      },
+      {
+        "lineNumber": 381,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "            return null;"
+      },
+      {
+        "lineNumber": 382,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 383,
+        "author": {
+          "gitId": "Greatnest"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 384,
         "author": {
           "gitId": "Greatnest"
         },
@@ -13130,11 +14314,11 @@
       }
     ],
     "authorContributionMap": {
-      "JOSHTAM": 18,
-      "Greatnest": 299,
-      "guanyewtan": 2,
+      "JOSHTAM": 17,
+      "Greatnest": 298,
+      "guanyewtan": 32,
       "jinwentay": 1,
-      "shannonlee98": 37
+      "shannonlee98": 36
     }
   },
   {
