@@ -5390,7 +5390,7 @@
         "author": {
           "gitId": "AmosChan97"
         },
-        "content": "            throw new DukeException(\"OOPS!!! Please add the index for the booking you want to delete\");"
+        "content": "            throw new DukeException(\"OOPS!!! Please add the index for the booking you want to delete.\");"
       },
       {
         "lineNumber": 28,
@@ -5432,7 +5432,7 @@
         "author": {
           "gitId": "AmosChan97"
         },
-        "content": "            throw new DukeException(\"OOPS!!! Index should be a number\");"
+        "content": "            throw new DukeException(\"OOPS!!! Index should be an integer.\");"
       },
       {
         "lineNumber": 34,
@@ -5488,7 +5488,7 @@
         "author": {
           "gitId": "AmosChan97"
         },
-        "content": "            throw new DukeException(\"OOPS!!! You have entered an index that is out of bounds\");"
+        "content": "            throw new DukeException(\"OOPS!!! You have entered an index that is out of bounds.\");"
       },
       {
         "lineNumber": 42,
@@ -5591,6 +5591,449 @@
     ],
     "authorContributionMap": {
       "AmosChan97": 55
+    }
+  },
+  {
+    "path": "src/main/java/command/DeleteRoomCommand.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "package command;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "import booking.BookingList;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "import exception.DukeException;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "import room.RoomList;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "import room.Room;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "import ui.Ui;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "import storage.Storage;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "import user.User;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "import java.io.IOException;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "public class DeleteRoomCommand extends Command {"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "    private int index;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "    private Room deletedRoom;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "     * Deletes a room from the room list based on index (1-based)."
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "     * @param input user input"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "     * @param splitStr tokenized user input"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "     * @throws DukeException if no index is entered or index is not an integer"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "    public DeleteRoomCommand(String input, String[] splitStr) throws DukeException {"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "        if (splitStr.length \u003c\u003d 1) {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "            throw new DukeException(\"OOPS!!! Please add the index for the room you want to delete.\");"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "        input \u003d input.substring(11);"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "            this.index \u003d Integer.parseInt(input) - 1;"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "        } catch (Exception e) {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "            throw new DukeException(\"OOPS!!! Index should be an integer.\");"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "     * Executes the command to delete a room from room list to the system."
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "     * @param roomList"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "     * @param bookingList bookings list"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "     * @param ui user interface"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "     * @param bookingStorage handles read write of text file"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "     * @param roomStorage"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "     * @param user Current user"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "     * @throws DukeException"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "    public void execute(RoomList roomList, BookingList bookingList, Ui ui, Storage bookingStorage,"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "                        Storage roomStorage, User user) throws DukeException {"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "        if (index \u003c 0 || index \u003e roomList.size() - 1) {"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "            throw new DukeException(\"OOPS!!! You have entered an index that is out of bounds.\");"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "        deletedRoom \u003d roomList.get(index);"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "        roomList.remove(index);"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "            roomStorage.saveToFile(roomList);"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "        } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "            throw new DukeException(\"OOPS!!! An error occurred while deleting your booking!\");"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "        ui.addToOutput(\"This room has been successfully removed:\\n\""
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "                + deletedRoom.toString()"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "                + \"\\nYou now have \" + roomList.size() + \" rooms in your list.\");"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "zkchang97": 62
     }
   },
   {
@@ -9762,383 +10205,404 @@
       {
         "lineNumber": 20,
         "author": {
+          "gitId": "zkchang97"
+        },
+        "content": "import command.DeleteRoomCommand;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
           "gitId": "AmosChan97"
         },
         "content": "import exception.DukeException;"
       },
       {
-        "lineNumber": 21,
+        "lineNumber": 22,
         "author": {
           "gitId": "Alex-Teo"
         },
         "content": "import storage.Constants;"
       },
       {
-        "lineNumber": 22,
+        "lineNumber": 23,
         "author": {
           "gitId": "AmirAzhar"
         },
         "content": "import java.io.IOException;"
       },
       {
-        "lineNumber": 23,
+        "lineNumber": 24,
         "author": {
           "gitId": "AmirAzhar"
         },
         "content": ""
-      },
-      {
-        "lineNumber": 24,
-        "author": {
-          "gitId": "AmosChan97"
-        },
-        "content": "/**"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "AmosChan97"
         },
-        "content": " * Parse input and execute respective user command."
+        "content": "/**"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "AmosChan97"
         },
-        "content": " */"
+        "content": " * Parse input and execute respective user command."
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "AmosChan97"
         },
-        "content": "public class Parser {"
+        "content": " */"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "AmosChan97"
         },
-        "content": ""
+        "content": "public class Parser {"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "AmosChan97"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "AmosChan97"
         },
-        "content": "     * Converts user input into commands for control.Duke."
+        "content": "    /**"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "AmosChan97"
         },
-        "content": "     * @param input from user"
+        "content": "     * Converts user input into commands for control.Duke."
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "AmosChan97"
         },
-        "content": "     * @return Command to be executed"
+        "content": "     * @param input from user"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "AmosChan97"
         },
-        "content": "     * @throws DukeException if user enters wrong input format"
+        "content": "     * @return Command to be executed"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "AmosChan97"
         },
-        "content": "     */"
+        "content": "     * @throws DukeException if user enters wrong input format"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "AmosChan97"
         },
-        "content": "    public static Command parse(String input, boolean loginStatus) throws DukeException, IOException {"
+        "content": "     */"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "AmosChan97"
         },
-        "content": "        String[] splitStr \u003d input.split(\" \");"
+        "content": "    public static Command parse(String input, boolean loginStatus) throws DukeException, IOException {"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "AmosChan97"
         },
-        "content": "        switch (splitStr[0]) {"
+        "content": "        String[] splitStr \u003d input.split(\" \");"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "AmosChan97"
         },
-        "content": "        case \"bye\":"
+        "content": "        switch (splitStr[0]) {"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "AmosChan97"
         },
-        "content": "            return new ByeCommand();"
+        "content": "        case \"bye\":"
       },
       {
         "lineNumber": 40,
         "author": {
-          "gitId": "AmirAzhar"
+          "gitId": "AmosChan97"
         },
-        "content": "        case \"login\":"
+        "content": "            return new ByeCommand();"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "AmirAzhar"
         },
-        "content": "            return new LoginCommand(input, splitStr);"
+        "content": "        case \"login\":"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "AmirAzhar"
         },
-        "content": "        case \"logout\":"
+        "content": "            return new LoginCommand(input, splitStr);"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "AmirAzhar"
         },
-        "content": "            return new LogoutCommand(input, splitStr);"
+        "content": "        case \"logout\":"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "AmirAzhar"
         },
-        "content": "        case \"create\":"
+        "content": "            return new LogoutCommand(input, splitStr);"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "AmirAzhar"
         },
-        "content": "            return new CreateAccountCommand(input, splitStr);"
+        "content": "        case \"create\":"
       },
       {
         "lineNumber": 46,
         "author": {
-          "gitId": "Alex-Teo"
+          "gitId": "AmirAzhar"
         },
-        "content": "        case \"add\":"
+        "content": "            return new CreateAccountCommand(input, splitStr);"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "Alex-Teo"
         },
-        "content": "            return new AddBookingCommand(input, splitStr);"
+        "content": "        case \"add\":"
       },
       {
         "lineNumber": 48,
         "author": {
-          "gitId": "zkchang97"
+          "gitId": "Alex-Teo"
         },
-        "content": "        case \"addroom\":"
+        "content": "            return new AddBookingCommand(input, splitStr);"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "zkchang97"
         },
-        "content": "            return new AddRoomCommand(input, splitStr);"
+        "content": "        case \"addroom\":"
       },
       {
         "lineNumber": 50,
         "author": {
-          "gitId": "AmosChan97"
+          "gitId": "zkchang97"
         },
-        "content": "        case \"list\":"
+        "content": "            return new AddRoomCommand(input, splitStr);"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "AmosChan97"
         },
-        "content": "            return new ListCommand();"
+        "content": "        case \"list\":"
       },
       {
         "lineNumber": 52,
         "author": {
-          "gitId": "zkchang97"
+          "gitId": "AmosChan97"
         },
-        "content": "        case \"listroom\":"
+        "content": "            return new ListCommand();"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "zkchang97"
         },
-        "content": "            return new ListRoomCommand();"
+        "content": "        case \"listroom\":"
       },
       {
         "lineNumber": 54,
         "author": {
-          "gitId": "Alex-Teo"
+          "gitId": "zkchang97"
         },
-        "content": "        case \"edit\":"
+        "content": "            return new ListRoomCommand();"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "Alex-Teo"
         },
-        "content": "            return new EditBookingCommand(input, splitStr);"
+        "content": "        case \"edit\":"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "Alex-Teo"
         },
-        "content": "        case \"approve\":"
+        "content": "            return new EditBookingCommand(input, splitStr);"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "Alex-Teo"
         },
-        "content": "            return new ApproveCommand(input, splitStr);"
+        "content": "        case \"approve\":"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "Alex-Teo"
         },
-        "content": "        case \"reject\":"
+        "content": "            return new ApproveCommand(input, splitStr);"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "Alex-Teo"
         },
-        "content": "            return new RejectCommand(input, splitStr);"
+        "content": "        case \"reject\":"
       },
       {
         "lineNumber": 60,
+        "author": {
+          "gitId": "Alex-Teo"
+        },
+        "content": "            return new RejectCommand(input, splitStr);"
+      },
+      {
+        "lineNumber": 61,
         "author": {
           "gitId": "AmosChan97"
         },
         "content": "        case \"delete\":"
       },
       {
-        "lineNumber": 61,
+        "lineNumber": 62,
         "author": {
           "gitId": "Alex-Teo"
         },
         "content": "            return new DeleteBookingCommand(input, splitStr);"
       },
       {
-        "lineNumber": 62,
+        "lineNumber": 63,
         "author": {
           "gitId": "Alex-Teo"
         },
         "content": "        case \"findindex\" :"
       },
       {
-        "lineNumber": 63,
+        "lineNumber": 64,
         "author": {
           "gitId": "Alex-Teo"
         },
         "content": "            return new FindBookingIndexCommand(input, splitStr);"
       },
       {
-        "lineNumber": 64,
+        "lineNumber": 65,
         "author": {
           "gitId": "Alex-Teo"
         },
         "content": "        case \"find\" :"
       },
       {
-        "lineNumber": 65,
+        "lineNumber": 66,
         "author": {
           "gitId": "Alex-Teo"
         },
         "content": "            return new FindBookingCommand(input, splitStr);"
       },
       {
-        "lineNumber": 66,
+        "lineNumber": 67,
         "author": {
           "gitId": "Alex-Teo"
         },
         "content": "        case \"listday\":"
       },
       {
-        "lineNumber": 67,
+        "lineNumber": 68,
         "author": {
           "gitId": "Alex-Teo"
         },
         "content": "            return new ListBookingDailyCommand(input, splitStr);"
       },
       {
-        "lineNumber": 68,
+        "lineNumber": 69,
         "author": {
           "gitId": "Alex-Teo"
         },
         "content": "        case \"listmonth\":"
       },
       {
-        "lineNumber": 69,
+        "lineNumber": 70,
         "author": {
           "gitId": "Alex-Teo"
         },
         "content": "            return new ListBookingMonthCommand(input, splitStr);"
       },
       {
-        "lineNumber": 70,
-        "author": {
-          "gitId": "AmosChan97"
-        },
-        "content": "        default:"
-      },
-      {
         "lineNumber": 71,
         "author": {
-          "gitId": "Alex-Teo"
+          "gitId": "zkchang97"
         },
-        "content": "            throw new DukeException(Constants.UNHAPPY + \" OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\");"
+        "content": "        case \"deleteroom\":"
       },
       {
         "lineNumber": 72,
         "author": {
-          "gitId": "AmosChan97"
+          "gitId": "zkchang97"
         },
-        "content": "        }"
+        "content": "            return new DeleteRoomCommand(input, splitStr);"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "AmosChan97"
         },
-        "content": "    }"
+        "content": "        default:"
       },
       {
         "lineNumber": 74,
+        "author": {
+          "gitId": "Alex-Teo"
+        },
+        "content": "            throw new DukeException(Constants.UNHAPPY + \" OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\");"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "AmosChan97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 77,
         "author": {
           "gitId": "AmosChan97"
         },
@@ -10147,7 +10611,7 @@
     ],
     "authorContributionMap": {
       "Alex-Teo": 36,
-      "zkchang97": 4,
+      "zkchang97": 7,
       "AmosChan97": 26,
       "AmirAzhar": 8
     }
@@ -10437,7 +10901,7 @@
         "author": {
           "gitId": "AmosChan97"
         },
-        "content": "        return (\"[RM]\" + this.roomcode + \" date: \" + this.date + \" timeslot: \" + this.timeslot);"
+        "content": "        return (\"[RM] \" + this.roomcode + \" date: \" + this.date + \" timeslot: \" + this.timeslot);"
       },
       {
         "lineNumber": 26,

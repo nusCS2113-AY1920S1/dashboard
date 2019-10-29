@@ -1351,556 +1351,549 @@
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    private static final Logger logger \u003d LogsCenter.getLogger(LogsCenter.class);"
+        "content": "    private static FileHandler fileHandler;"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    private static FileHandler fileHandler;"
+        "content": "    private static ConsoleHandler consoleHandler;"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    private static ConsoleHandler consoleHandler;"
+        "content": ""
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    /**"
+        "content": "     * Creates a logger with the given name."
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     * Creates a logger with the given name."
+        "content": "     */"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     */"
+        "content": "    public static Logger getLogger(String name) {"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    public static Logger getLogger(String name) {"
+        "content": "        Logger logger \u003d Logger.getLogger(name);"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "        Logger logger \u003d Logger.getLogger(name);"
+        "content": "        logger.setUseParentHandlers(false);"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "        logger.setUseParentHandlers(false);"
+        "content": ""
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": ""
+        "content": "        removeHandlers(logger);"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "        removeHandlers(logger);"
+        "content": "        addConsoleHandler(logger);"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "        addConsoleHandler(logger);"
+        "content": "        addFileHandler(logger);"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "        addFileHandler(logger);"
+        "content": ""
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": ""
+        "content": "        return Logger.getLogger(name);"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "        return Logger.getLogger(name);"
+        "content": "    }"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    /**"
+        "content": "     * Creates a Logger for the given class name."
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     * Creates a Logger for the given class name."
+        "content": "     */"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     */"
+        "content": "    public static \u003cT\u003e Logger getLogger(Class\u003cT\u003e clazz) {"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    public static \u003cT\u003e Logger getLogger(Class\u003cT\u003e clazz) {"
+        "content": "        if (clazz \u003d\u003d null) {"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "        if (clazz \u003d\u003d null) {"
+        "content": "            return Logger.getLogger(\"\");"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "            return Logger.getLogger(\"\");"
+        "content": "        }"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "        }"
+        "content": "        return getLogger(clazz.getSimpleName());"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "        return getLogger(clazz.getSimpleName());"
+        "content": "    }"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    /**"
+        "content": "     * Adds the {@code consoleHandler} to the {@code logger}. \u003cbr\u003e"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     * Adds the {@code consoleHandler} to the {@code logger}. \u003cbr\u003e"
+        "content": "     * Creates the {@code consoleHandler} if it is null."
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     * Creates the {@code consoleHandler} if it is null."
+        "content": "     */"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     */"
+        "content": "    private static void addConsoleHandler(Logger logger) {"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    private static void addConsoleHandler(Logger logger) {"
+        "content": "        if (consoleHandler \u003d\u003d null) {"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "        if (consoleHandler \u003d\u003d null) {"
+        "content": "            consoleHandler \u003d createConsoleHandler();"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "            consoleHandler \u003d createConsoleHandler();"
+        "content": "        }"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "        }"
+        "content": "        logger.addHandler(consoleHandler);"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "        logger.addHandler(consoleHandler);"
+        "content": "    }"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    /**"
+        "content": "     * Remove all the handlers from {@code logger}."
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     * Remove all the handlers from {@code logger}."
+        "content": "     */"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     */"
+        "content": "    private static void removeHandlers(Logger logger) {"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    private static void removeHandlers(Logger logger) {"
+        "content": "        Arrays.stream(logger.getHandlers())"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "        Arrays.stream(logger.getHandlers())"
+        "content": "                .forEach(logger::removeHandler);"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "                .forEach(logger::removeHandler);"
+        "content": "    }"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    /**"
+        "content": "     * Adds the {@code fileHandler} to the {@code logger}. \u003cbr\u003e"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     * Adds the {@code fileHandler} to the {@code logger}. \u003cbr\u003e"
+        "content": "     * Creates {@code fileHandler} if it is null."
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     * Creates {@code fileHandler} if it is null."
+        "content": "     */"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     */"
+        "content": "    private static void addFileHandler(Logger logger) {"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    private static void addFileHandler(Logger logger) {"
+        "content": "        try {"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "        try {"
+        "content": "            if (fileHandler \u003d\u003d null) {"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "            if (fileHandler \u003d\u003d null) {"
+        "content": "                fileHandler \u003d createFileHandler();"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "                fileHandler \u003d createFileHandler();"
+        "content": "            }"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "            }"
+        "content": "            logger.addHandler(fileHandler);"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "            logger.addHandler(fileHandler);"
+        "content": "        } catch (IOException e) {"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "        } catch (IOException e) {"
+        "content": "            logger.warning(\"Error adding file handler for logger.\");"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "            logger.warning(\"Error adding file handler for logger.\");"
+        "content": "        }"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "        }"
+        "content": "    }"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    /**"
+        "content": "     * Creates a {@code FileHandler} for the log file."
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     * Creates a {@code FileHandler} for the log file."
+        "content": "     *"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     *"
+        "content": "     * @throws IOException if there are problems opening the file."
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     * @throws IOException if there are problems opening the file."
+        "content": "     */"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     */"
+        "content": "    private static FileHandler createFileHandler() throws IOException {"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    private static FileHandler createFileHandler() throws IOException {"
+        "content": "        FileHandler fileHandler \u003d new FileHandler(LOG_FILE, MAX_FILE_SIZE_IN_BYTES, MAX_FILE_COUNT, true);"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "        FileHandler fileHandler \u003d new FileHandler(LOG_FILE, MAX_FILE_SIZE_IN_BYTES, MAX_FILE_COUNT, true);"
+        "content": "        fileHandler.setFormatter(new SimpleFormatter());"
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "        fileHandler.setFormatter(new SimpleFormatter());"
+        "content": "        fileHandler.setLevel(currentLogLevel);"
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "        fileHandler.setLevel(currentLogLevel);"
+        "content": "        return fileHandler;"
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "        return fileHandler;"
+        "content": "    }"
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": ""
+        "content": "    private static ConsoleHandler createConsoleHandler() {"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    private static ConsoleHandler createConsoleHandler() {"
+        "content": "        ConsoleHandler consoleHandler \u003d new ConsoleHandler();"
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "        ConsoleHandler consoleHandler \u003d new ConsoleHandler();"
+        "content": "        consoleHandler.setLevel(currentLogLevel);"
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "        consoleHandler.setLevel(currentLogLevel);"
+        "content": "        return consoleHandler;"
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "        return consoleHandler;"
-      },
-      {
-        "lineNumber": 102,
-        "author": {
-          "gitId": "liujiajun"
-        },
         "content": "    }"
       },
       {
-        "lineNumber": 103,
+        "lineNumber": 102,
         "author": {
           "gitId": "liujiajun"
         },
@@ -1908,7 +1901,7 @@
       }
     ],
     "authorContributionMap": {
-      "liujiajun": 103
+      "liujiajun": 102
     }
   },
   {
@@ -47724,2287 +47717,2280 @@
       {
         "lineNumber": 12,
         "author": {
-          "gitId": "liushiru"
-        },
-        "content": "import java.sql.Time;"
-      },
-      {
-        "lineNumber": 13,
-        "author": {
           "gitId": "eugenelim97"
         },
         "content": "import java.util.ArrayList;"
       },
       {
-        "lineNumber": 14,
+        "lineNumber": 13,
         "author": {
           "gitId": "chekjun"
         },
         "content": "import java.util.Date;"
       },
       {
-        "lineNumber": 15,
+        "lineNumber": 14,
         "author": {
           "gitId": "liujiajun"
         },
         "content": "import java.util.List;"
       },
       {
-        "lineNumber": 16,
+        "lineNumber": 15,
         "author": {
           "gitId": "liujiajun"
         },
         "content": "import java.util.function.Predicate;"
       },
       {
-        "lineNumber": 17,
+        "lineNumber": 16,
         "author": {
           "gitId": "liujiajun"
         },
         "content": ""
       },
       {
-        "lineNumber": 18,
+        "lineNumber": 17,
         "author": {
           "gitId": "liujiajun"
         },
         "content": "/**"
       },
       {
-        "lineNumber": 19,
+        "lineNumber": 18,
         "author": {
           "gitId": "liujiajun"
         },
         "content": " * The API of the Model component."
       },
       {
-        "lineNumber": 20,
+        "lineNumber": 19,
         "author": {
           "gitId": "liujiajun"
         },
         "content": " */"
       },
       {
-        "lineNumber": 21,
+        "lineNumber": 20,
         "author": {
           "gitId": "liujiajun"
         },
         "content": "public interface Model {"
       },
       {
-        "lineNumber": 22,
+        "lineNumber": 21,
         "author": {
           "gitId": "liujiajun"
         },
         "content": "    Predicate\u003cOrder\u003e PREDICATE_SHOW_ALL_ORDERS \u003d unused -\u003e true;"
       },
       {
-        "lineNumber": 23,
+        "lineNumber": 22,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": ""
       },
       {
-        "lineNumber": 24,
+        "lineNumber": 23,
         "author": {
           "gitId": "chekjun"
         },
         "content": "    Predicate\u003cSale\u003e PREDICATE_SHOW_ALL_SALES \u003d unused -\u003e true;"
       },
       {
-        "lineNumber": 25,
+        "lineNumber": 24,
         "author": {
           "gitId": "liujiajun"
         },
         "content": ""
       },
       {
-        "lineNumber": 26,
+        "lineNumber": 25,
         "author": {
           "gitId": "liushiru"
         },
         "content": "    Predicate\u003cProduct\u003e PREDICATE_SHOW_ALL_PRODUCTS \u003d product -\u003e true;"
       },
       {
-        "lineNumber": 27,
+        "lineNumber": 26,
         "author": {
           "gitId": "liushiru"
         },
         "content": "    Predicate\u003cProduct\u003e PREDICATE_SHOW_ACTIVE_PRODUCTS \u003d product -\u003e {"
       },
       {
-        "lineNumber": 28,
+        "lineNumber": 27,
         "author": {
           "gitId": "liushiru"
         },
         "content": "        return product.getStatus() \u003d\u003d Product.Status.ACTIVE;"
       },
       {
-        "lineNumber": 29,
+        "lineNumber": 28,
         "author": {
           "gitId": "liushiru"
         },
         "content": "    };"
       },
       {
-        "lineNumber": 30,
+        "lineNumber": 29,
         "author": {
           "gitId": "liushiru"
         },
         "content": "    Predicate\u003cProduct\u003e PREDICATE_SHOW_ARCHIVE_PRODUCTS \u003d product -\u003e {"
       },
       {
-        "lineNumber": 31,
+        "lineNumber": 30,
         "author": {
           "gitId": "liushiru"
         },
         "content": "        return product.getStatus() \u003d\u003d Product.Status.ARCHIVE;"
       },
       {
-        "lineNumber": 32,
+        "lineNumber": 31,
         "author": {
           "gitId": "liushiru"
         },
         "content": "    };"
       },
       {
-        "lineNumber": 33,
+        "lineNumber": 32,
         "author": {
           "gitId": "liushiru"
         },
         "content": ""
       },
       {
-        "lineNumber": 34,
+        "lineNumber": 33,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": "    Predicate\u003cItem\u003cIngredient\u003e\u003e PREDICATE_SHOW_ALL_INVENTORY \u003d unused -\u003e true;"
       },
       {
-        "lineNumber": 35,
+        "lineNumber": 34,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": ""
       },
       {
-        "lineNumber": 36,
+        "lineNumber": 35,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": "    Predicate\u003cItem\u003cIngredient\u003e\u003e PREDICATE_SHOW_ALL_SHOPPING \u003d ingredientItem -\u003e true;"
       },
       {
-        "lineNumber": 37,
+        "lineNumber": 36,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": "    Predicate\u003cItem\u003cIngredient\u003e\u003e PREDICATE_SHOW_AVAILABLE_SHOPPING \u003d  ingredientItem -\u003e {"
       },
       {
-        "lineNumber": 38,
+        "lineNumber": 37,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": "        return ingredientItem.getQuantity().getNumber() \u003e 0;"
       },
       {
-        "lineNumber": 39,
+        "lineNumber": 38,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": "    };"
       },
       {
-        "lineNumber": 40,
+        "lineNumber": 39,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": ""
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "liujiajun"
+        },
+        "content": "    /**"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    /**"
+        "content": "     * Returns true if the model has previous baking home states to restore."
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     * Returns true if the model has previous baking home states to restore."
+        "content": "     */"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     */"
+        "content": "    boolean canUndo();"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    boolean canUndo();"
+        "content": ""
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    /**"
+        "content": "     * Returns true if the model has undone baking home states to restore."
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     * Returns true if the model has undone baking home states to restore."
+        "content": "     */"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     */"
+        "content": "    boolean canRedo();"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    boolean canRedo();"
+        "content": ""
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    /**"
+        "content": "     * Restores BakingHome to its previous state."
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     * Restores BakingHome to its previous state."
+        "content": "     * @return the commit message of the current state."
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     * @return the commit message of the current state."
+        "content": "     */"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     */"
+        "content": "    String undo();"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    String undo();"
+        "content": ""
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    /**"
+        "content": "     * Restores the address book to its previously undone state."
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     * Restores the address book to its previously undone state."
+        "content": "     * @return the commit message of the previous state."
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     * @return the commit message of the previous state."
+        "content": "     */"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     */"
+        "content": "    String redo();"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    String redo();"
+        "content": ""
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    /**"
+        "content": "     * Saves the current baking home state for undo/redo."
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     * Saves the current baking home state for undo/redo."
+        "content": "     *"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     *"
+        "content": "     * @param commitMessage the message describing the details of the commit"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     * @param commitMessage the message describing the details of the commit"
+        "content": "     */"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     */"
+        "content": "    void commit(String commitMessage);"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    void commit(String commitMessage);"
+        "content": ""
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    /**"
+        "content": "     * TODO: add details."
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     * TODO: add details."
+        "content": "     *"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     *"
+        "content": "     * @param isEnabled should be set to true to enable version control."
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     * @param isEnabled should be set to true to enable version control."
+        "content": "     */"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     */"
+        "content": "    void setVersionControl(Boolean isEnabled);"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    void setVersionControl(Boolean isEnabled);"
+        "content": ""
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    /**"
+        "content": "     * Returns the BakingHome."
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     * Returns the BakingHome."
+        "content": "     */"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     */"
+        "content": "    ReadOnlyBakingHome getBakingHome();"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    ReadOnlyBakingHome getBakingHome();"
+        "content": ""
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    /**"
+        "content": "     * Replaces baking home data with the data in {@code bakingHome}."
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     * Replaces baking home data with the data in {@code bakingHome}."
+        "content": "     */"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     */"
+        "content": "    void setBakingHome(ReadOnlyBakingHome bakingHome);"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    void setBakingHome(ReadOnlyBakingHome bakingHome);"
+        "content": ""
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": ""
+        "content": "    //\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003dOrder operations\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    //\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003dOrder operations\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d"
+        "content": ""
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    /**"
+        "content": "     * Returns true if an order with the same id as {@code order} exists in order list."
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     * Returns true if an order with the same id as {@code order} exists in order list."
+        "content": "     */"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     */"
+        "content": "    boolean hasOrder(Order order);"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    boolean hasOrder(Order order);"
+        "content": ""
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    /**"
+        "content": "     * Deletes the given order."
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     * Deletes the given order."
+        "content": "     * The order must exist in order list."
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     * The order must exist in order list."
+        "content": "     */"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     */"
+        "content": "    void deleteOrder(Order target);"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    void deleteOrder(Order target);"
+        "content": ""
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    /**"
+        "content": "     * Adds the given order."
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     * Adds the given order."
+        "content": "     * The order must not exist in order list"
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     * The order must not exist in order list"
+        "content": "     */"
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     */"
+        "content": "    void addOrder(Order order);"
       },
       {
         "lineNumber": 104,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    void addOrder(Order order);"
+        "content": ""
       },
       {
         "lineNumber": 105,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 106,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    /**"
+        "content": "     * Replaces the given order {@code target} in the list with {@code editedOrder}."
       },
       {
         "lineNumber": 107,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     * Replaces the given order {@code target} in the list with {@code editedOrder}."
+        "content": "     * {@code target} must exist in order list"
       },
       {
         "lineNumber": 108,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     * {@code target} must exist in order list"
+        "content": "     */"
       },
       {
         "lineNumber": 109,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     */"
+        "content": "    void setOrder(Order target, Order editedOrder);"
       },
       {
         "lineNumber": 110,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    void setOrder(Order target, Order editedOrder);"
+        "content": ""
       },
       {
         "lineNumber": 111,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 112,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    /**"
+        "content": "     * Replaces the order at {@code Index} in the list with {@code editedOrder}."
       },
       {
         "lineNumber": 113,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     * Replaces the order at {@code Index} in the list with {@code editedOrder}."
+        "content": "     * {@code Index} must be a valid index"
       },
       {
         "lineNumber": 114,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     * {@code Index} must be a valid index"
+        "content": "     * {@code target} must exist in order list"
       },
       {
         "lineNumber": 115,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     * {@code target} must exist in order list"
+        "content": "     */"
       },
       {
         "lineNumber": 116,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     */"
+        "content": "    void setOrder(Index index, Order order);"
       },
       {
         "lineNumber": 117,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    void setOrder(Index index, Order order);"
+        "content": ""
       },
       {
         "lineNumber": 118,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 119,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    /**"
+        "content": "     * Returns an unmodifiable view of the filtered order list."
       },
       {
         "lineNumber": 120,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     * Returns an unmodifiable view of the filtered order list."
+        "content": "     */"
       },
       {
         "lineNumber": 121,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     */"
+        "content": "    ObservableList\u003cOrder\u003e getFilteredOrderList();"
       },
       {
         "lineNumber": 122,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    ObservableList\u003cOrder\u003e getFilteredOrderList();"
+        "content": ""
       },
       {
         "lineNumber": 123,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 124,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    /**"
+        "content": "     * Updates the filter of the filtered order list to filter by the given {@code predicate}."
       },
       {
         "lineNumber": 125,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     * Updates the filter of the filtered order list to filter by the given {@code predicate}."
+        "content": "     *"
       },
       {
         "lineNumber": 126,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     *"
+        "content": "     * @throws NullPointerException if {@code predicate} is null."
       },
       {
         "lineNumber": 127,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     * @throws NullPointerException if {@code predicate} is null."
+        "content": "     */"
       },
       {
         "lineNumber": 128,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     */"
+        "content": "    void updateFilteredOrderList(Predicate\u003cOrder\u003e predicate);"
       },
       {
         "lineNumber": 129,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    void updateFilteredOrderList(Predicate\u003cOrder\u003e predicate);"
+        "content": ""
       },
       {
         "lineNumber": 130,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": ""
+        "content": "    //\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003dProduct operations\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d"
       },
       {
         "lineNumber": 131,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    //\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003dProduct operations\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d"
+        "content": ""
       },
       {
         "lineNumber": 132,
         "author": {
-          "gitId": "liujiajun"
+          "gitId": "liushiru"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 133,
         "author": {
           "gitId": "liushiru"
         },
-        "content": "    /**"
+        "content": "     * Deletes the given product."
       },
       {
         "lineNumber": 134,
         "author": {
           "gitId": "liushiru"
         },
-        "content": "     * Deletes the given product."
+        "content": "     * The order must exist in product list."
       },
       {
         "lineNumber": 135,
         "author": {
           "gitId": "liushiru"
         },
-        "content": "     * The order must exist in product list."
+        "content": "     */"
       },
       {
         "lineNumber": 136,
         "author": {
           "gitId": "liushiru"
         },
-        "content": "     */"
+        "content": "    void deleteProduct(Product product);"
       },
       {
         "lineNumber": 137,
         "author": {
           "gitId": "liushiru"
         },
-        "content": "    void deleteProduct(Product product);"
+        "content": ""
       },
       {
         "lineNumber": 138,
         "author": {
-          "gitId": "liushiru"
+          "gitId": "liujiajun"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 139,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    /**"
+        "content": "     * Adds the given product."
       },
       {
         "lineNumber": 140,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     * Adds the given product."
-      },
-      {
-        "lineNumber": 141,
-        "author": {
-          "gitId": "liujiajun"
-        },
         "content": "     */"
       },
       {
-        "lineNumber": 142,
+        "lineNumber": 141,
         "author": {
           "gitId": "liushiru"
         },
         "content": "    void addProduct(Product product);"
       },
       {
-        "lineNumber": 143,
+        "lineNumber": 142,
         "author": {
           "gitId": "liushiru"
         },
         "content": ""
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "liushiru"
+        },
+        "content": "    /**"
       },
       {
         "lineNumber": 144,
         "author": {
           "gitId": "liushiru"
         },
-        "content": "    /**"
+        "content": "     * Replaces the given product {@code original} in the list with {@code editedProduct}."
       },
       {
         "lineNumber": 145,
         "author": {
           "gitId": "liushiru"
         },
-        "content": "     * Replaces the given product {@code original} in the list with {@code editedProduct}."
+        "content": "     * {@code originalProduct} must exist in product list"
       },
       {
         "lineNumber": 146,
         "author": {
           "gitId": "liushiru"
         },
-        "content": "     * {@code originalProduct} must exist in product list"
+        "content": "     */"
       },
       {
         "lineNumber": 147,
         "author": {
           "gitId": "liushiru"
         },
-        "content": "     */"
+        "content": "    void setProduct(Product originalProduct, Product editedProduct);"
       },
       {
         "lineNumber": 148,
         "author": {
           "gitId": "liushiru"
         },
-        "content": "    void setProduct(Product originalProduct, Product editedProduct);"
+        "content": ""
       },
       {
         "lineNumber": 149,
         "author": {
           "gitId": "liushiru"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 150,
         "author": {
           "gitId": "liushiru"
         },
-        "content": "    /**"
+        "content": "     * Returns true if an product has the same name as {@code product} exists in product list."
       },
       {
         "lineNumber": 151,
         "author": {
           "gitId": "liushiru"
         },
-        "content": "     * Returns true if an product has the same name as {@code product} exists in product list."
+        "content": "     */"
       },
       {
         "lineNumber": 152,
         "author": {
           "gitId": "liushiru"
         },
-        "content": "     */"
+        "content": "    boolean hasProduct(Product product);"
       },
       {
         "lineNumber": 153,
         "author": {
           "gitId": "liushiru"
         },
-        "content": "    boolean hasProduct(Product product);"
+        "content": ""
       },
       {
         "lineNumber": 154,
         "author": {
           "gitId": "liushiru"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 155,
         "author": {
           "gitId": "liushiru"
         },
-        "content": "    /**"
+        "content": "     * Returns an unmodifiable view of the filtered product list."
       },
       {
         "lineNumber": 156,
         "author": {
           "gitId": "liushiru"
         },
-        "content": "     * Returns an unmodifiable view of the filtered product list."
+        "content": "     */"
       },
       {
         "lineNumber": 157,
         "author": {
           "gitId": "liushiru"
         },
-        "content": "     */"
+        "content": "    ObservableList\u003cProduct\u003e getFilteredProductList(); //implement archive"
       },
       {
         "lineNumber": 158,
         "author": {
           "gitId": "liushiru"
         },
-        "content": "    ObservableList\u003cProduct\u003e getFilteredProductList(); //implement archive"
+        "content": ""
       },
       {
         "lineNumber": 159,
         "author": {
           "gitId": "liushiru"
         },
-        "content": ""
-      },
-      {
-        "lineNumber": 160,
-        "author": {
-          "gitId": "liushiru"
-        },
         "content": "    void updateFilteredProductList(Predicate\u003cProduct\u003e predicate);"
       },
       {
-        "lineNumber": 161,
+        "lineNumber": 160,
         "author": {
           "gitId": "liujiajun"
         },
         "content": ""
       },
       {
-        "lineNumber": 162,
+        "lineNumber": 161,
         "author": {
           "gitId": "chekjun"
         },
         "content": "    //\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003dSale operations\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d"
       },
       {
-        "lineNumber": 163,
+        "lineNumber": 162,
         "author": {
           "gitId": "chekjun"
         },
         "content": ""
+      },
+      {
+        "lineNumber": 163,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "    /**"
       },
       {
         "lineNumber": 164,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "    /**"
+        "content": "     * Returns true if an sale with the same id as {@code sale} exists in sale list."
       },
       {
         "lineNumber": 165,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "     * Returns true if an sale with the same id as {@code sale} exists in sale list."
+        "content": "     */"
       },
       {
         "lineNumber": 166,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "     */"
+        "content": "    boolean hasSale(Sale sale);"
       },
       {
         "lineNumber": 167,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "    boolean hasSale(Sale sale);"
+        "content": ""
       },
       {
         "lineNumber": 168,
         "author": {
           "gitId": "chekjun"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 169,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "    /**"
+        "content": "     * Deletes the given sale."
       },
       {
         "lineNumber": 170,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "     * Deletes the given sale."
+        "content": "     * The sale must exist in sale list."
       },
       {
         "lineNumber": 171,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "     * The sale must exist in sale list."
+        "content": "     */"
       },
       {
         "lineNumber": 172,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "     */"
+        "content": "    void deleteSale(Sale target);"
       },
       {
         "lineNumber": 173,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "    void deleteSale(Sale target);"
+        "content": ""
       },
       {
         "lineNumber": 174,
         "author": {
           "gitId": "chekjun"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 175,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "    /**"
+        "content": "     * Adds the given sale."
       },
       {
         "lineNumber": 176,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "     * Adds the given sale."
+        "content": "     * The sale must not exist in sale list"
       },
       {
         "lineNumber": 177,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "     * The sale must not exist in sale list"
+        "content": "     */"
       },
       {
         "lineNumber": 178,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "     */"
+        "content": "    void addSale(Sale sale);"
       },
       {
         "lineNumber": 179,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "    void addSale(Sale sale);"
+        "content": ""
       },
       {
         "lineNumber": 180,
         "author": {
           "gitId": "chekjun"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 181,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "    /**"
+        "content": "     * Replaces the given sale {@code target} in the list with {@code editedSale}."
       },
       {
         "lineNumber": 182,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "     * Replaces the given sale {@code target} in the list with {@code editedSale}."
+        "content": "     * {@code target} must exist in sale list"
       },
       {
         "lineNumber": 183,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "     * {@code target} must exist in sale list"
+        "content": "     */"
       },
       {
         "lineNumber": 184,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "     */"
+        "content": "    void setSale(Sale target, Sale editedSale);"
       },
       {
         "lineNumber": 185,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "    void setSale(Sale target, Sale editedSale);"
+        "content": ""
       },
       {
         "lineNumber": 186,
         "author": {
           "gitId": "chekjun"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 187,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "    /**"
+        "content": "     * Replaces the sale at {@code Index} in the list with {@code editedSale}."
       },
       {
         "lineNumber": 188,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "     * Replaces the sale at {@code Index} in the list with {@code editedSale}."
+        "content": "     * {@code Index} must be a valid index"
       },
       {
         "lineNumber": 189,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "     * {@code Index} must be a valid index"
+        "content": "     * {@code target} must exist in sale list"
       },
       {
         "lineNumber": 190,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "     * {@code target} must exist in sale list"
+        "content": "     */"
       },
       {
         "lineNumber": 191,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "     */"
+        "content": "    void setSale(Index index, Sale sale);"
       },
       {
         "lineNumber": 192,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "    void setSale(Index index, Sale sale);"
+        "content": ""
       },
       {
         "lineNumber": 193,
         "author": {
           "gitId": "chekjun"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 194,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "    /**"
+        "content": "     * Returns an unmodifiable view of the filtered sale list."
       },
       {
         "lineNumber": 195,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "     * Returns an unmodifiable view of the filtered sale list."
+        "content": "     */"
       },
       {
         "lineNumber": 196,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "     */"
+        "content": "    ObservableList\u003cSale\u003e getFilteredSaleList();"
       },
       {
         "lineNumber": 197,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "    ObservableList\u003cSale\u003e getFilteredSaleList();"
+        "content": ""
       },
       {
         "lineNumber": 198,
         "author": {
           "gitId": "chekjun"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 199,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "    /**"
+        "content": "     * Updates the filter of the filtered sale list to filter by the given {@code predicate}."
       },
       {
         "lineNumber": 200,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "     * Updates the filter of the filtered sale list to filter by the given {@code predicate}."
+        "content": "     * @throws NullPointerException if {@code predicate} is null."
       },
       {
         "lineNumber": 201,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "     * @throws NullPointerException if {@code predicate} is null."
+        "content": "     */"
       },
       {
         "lineNumber": 202,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "     */"
+        "content": "    void updateFilteredSaleList(Predicate\u003cSale\u003e predicate);"
       },
       {
         "lineNumber": 203,
         "author": {
-          "gitId": "chekjun"
+          "gitId": "liujiajun"
         },
-        "content": "    void updateFilteredSaleList(Predicate\u003cSale\u003e predicate);"
+        "content": ""
       },
       {
         "lineNumber": 204,
         "author": {
-          "gitId": "liujiajun"
+          "gitId": "chekjun"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 205,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "    /**"
+        "content": "     *"
       },
       {
         "lineNumber": 206,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "     *"
+        "content": "     * @param from start date to filter not inclusive of itself"
       },
       {
         "lineNumber": 207,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "     * @param from start date to filter not inclusive of itself"
+        "content": "     * @param to end date to filter not inclusive of itself"
       },
       {
         "lineNumber": 208,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "     * @param to end date to filter not inclusive of itself"
+        "content": "     * @return"
       },
       {
         "lineNumber": 209,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "     * @return"
+        "content": "     */"
       },
       {
         "lineNumber": 210,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "     */"
+        "content": "    default Predicate\u003cSale\u003e getSalesBetween(Date from, Date to) {"
       },
       {
         "lineNumber": 211,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "    default Predicate\u003cSale\u003e getSalesBetween(Date from, Date to) {"
+        "content": "        Predicate\u003cSale\u003e showSaleBetween \u003d"
       },
       {
         "lineNumber": 212,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "        Predicate\u003cSale\u003e showSaleBetween \u003d"
+        "content": "                sale -\u003e sale.getSaleDate().before(to) \u0026\u0026 sale.getSaleDate().after(from);"
       },
       {
         "lineNumber": 213,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "                sale -\u003e sale.getSaleDate().before(to) \u0026\u0026 sale.getSaleDate().after(from);"
+        "content": "        return showSaleBetween;"
       },
       {
         "lineNumber": 214,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "        return showSaleBetween;"
+        "content": "    }"
       },
       {
         "lineNumber": 215,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 216,
         "author": {
           "gitId": "chekjun"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 217,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "    /**"
+        "content": "     * Creates a Sale entry from a completed Order."
       },
       {
         "lineNumber": 218,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "     * Creates a Sale entry from a completed Order."
+        "content": "     * @param order"
       },
       {
         "lineNumber": 219,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "     * @param order"
+        "content": "     */"
       },
       {
         "lineNumber": 220,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "     */"
+        "content": "    void addSaleFromOrder(Order order);"
       },
       {
         "lineNumber": 221,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "    void addSaleFromOrder(Order order);"
+        "content": ""
       },
       {
         "lineNumber": 222,
         "author": {
           "gitId": "chekjun"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 223,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "    /**"
+        "content": "     * Creates a Sale entry from purchase of ingredients."
       },
       {
         "lineNumber": 224,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "     * Creates a Sale entry from purchase of ingredients."
+        "content": "     * @param totalCost total added cost of ingredients."
       },
       {
         "lineNumber": 225,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "     * @param totalCost total added cost of ingredients."
+        "content": "     * @param toBuyList ArrayList of Item generic of ingredients."
       },
       {
         "lineNumber": 226,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "     * @param toBuyList ArrayList of Item generic of ingredients."
-      },
-      {
-        "lineNumber": 227,
-        "author": {
-          "gitId": "chekjun"
-        },
         "content": "     */"
       },
       {
-        "lineNumber": 228,
+        "lineNumber": 227,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": "    void addSaleFromShopping(Double totalCost, ArrayList\u003cItem\u003cIngredient\u003e\u003e toBuyList);"
       },
       {
-        "lineNumber": 229,
+        "lineNumber": 228,
         "author": {
           "gitId": "chekjun"
         },
         "content": ""
       },
       {
-        "lineNumber": 230,
+        "lineNumber": 229,
         "author": {
           "gitId": "liujiajun"
         },
         "content": "    //\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003dIngredient operations\u003d\u003d\u003d\u003d\u003d\u003d"
       },
       {
-        "lineNumber": 231,
+        "lineNumber": 230,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": "    /**"
       },
       {
-        "lineNumber": 232,
+        "lineNumber": 231,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": "     * Returns an unmodifiable view of the filtered inventory list."
       },
       {
-        "lineNumber": 233,
+        "lineNumber": 232,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 234,
+        "lineNumber": 233,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": "    ObservableList\u003cItem\u003cIngredient\u003e\u003e getFilteredInventoryList();"
       },
       {
-        "lineNumber": 235,
+        "lineNumber": 234,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": ""
       },
       {
-        "lineNumber": 236,
+        "lineNumber": 235,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": "    void updateFilteredInventoryList(Predicate\u003cItem\u003cIngredient\u003e\u003e predicate);"
       },
       {
-        "lineNumber": 237,
+        "lineNumber": 236,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": ""
       },
       {
-        "lineNumber": 238,
+        "lineNumber": 237,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": "    /**"
       },
       {
-        "lineNumber": 239,
+        "lineNumber": 238,
         "author": {
           "gitId": "liujiajun"
         },
         "content": "     * Adds an inventory item to the inventory list."
       },
       {
-        "lineNumber": 240,
+        "lineNumber": 239,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": "     * @param inventory The inventory item"
+      },
+      {
+        "lineNumber": 240,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "     */"
       },
       {
         "lineNumber": 241,
         "author": {
           "gitId": "eugenelim97"
         },
-        "content": "     */"
+        "content": "    void addInventory(Item\u003cIngredient\u003e inventory);"
       },
       {
         "lineNumber": 242,
         "author": {
           "gitId": "eugenelim97"
         },
-        "content": "    void addInventory(Item\u003cIngredient\u003e inventory);"
+        "content": ""
       },
       {
         "lineNumber": 243,
         "author": {
           "gitId": "eugenelim97"
         },
-        "content": ""
-      },
-      {
-        "lineNumber": 244,
-        "author": {
-          "gitId": "eugenelim97"
-        },
         "content": "    /**"
       },
       {
-        "lineNumber": 245,
+        "lineNumber": 244,
         "author": {
           "gitId": "liujiajun"
         },
         "content": "     * Checks if the item with the same name already exists in the inventory list."
       },
       {
-        "lineNumber": 246,
+        "lineNumber": 245,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": "     * @return true if the given inventory item already exists in the inventory list"
       },
       {
-        "lineNumber": 247,
+        "lineNumber": 246,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 248,
+        "lineNumber": 247,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": "    boolean hasInventory(Item\u003cIngredient\u003e inventory);"
       },
       {
-        "lineNumber": 249,
+        "lineNumber": 248,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": ""
       },
       {
-        "lineNumber": 250,
+        "lineNumber": 249,
         "author": {
           "gitId": "liujiajun"
         },
         "content": "    boolean hasIngredient(Ingredient ingredient);"
       },
       {
-        "lineNumber": 251,
+        "lineNumber": 250,
         "author": {
           "gitId": "liujiajun"
         },
         "content": ""
       },
       {
-        "lineNumber": 252,
+        "lineNumber": 251,
         "author": {
           "gitId": "liujiajun"
         },
         "content": "    boolean deductIngredient(Ingredient ingredient, double amount);"
       },
       {
-        "lineNumber": 253,
+        "lineNumber": 252,
         "author": {
           "gitId": "liujiajun"
         },
         "content": ""
       },
       {
-        "lineNumber": 254,
+        "lineNumber": 253,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": "    /**"
       },
       {
-        "lineNumber": 255,
+        "lineNumber": 254,
         "author": {
           "gitId": "liujiajun"
         },
         "content": "     * Removes an inventory item from the inventory list."
       },
       {
-        "lineNumber": 256,
+        "lineNumber": 255,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": "     * @param inventory The inventory item"
       },
       {
-        "lineNumber": 257,
+        "lineNumber": 256,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 258,
+        "lineNumber": 257,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": "    void deleteInventory(Item\u003cIngredient\u003e inventory);"
       },
       {
-        "lineNumber": 259,
+        "lineNumber": 258,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": ""
       },
       {
-        "lineNumber": 260,
+        "lineNumber": 259,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": "    /**"
       },
       {
-        "lineNumber": 261,
+        "lineNumber": 260,
         "author": {
           "gitId": "liujiajun"
         },
         "content": "     * Edits the ingredient toEdit with the ingredient edited."
+      },
+      {
+        "lineNumber": 261,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "     * @param toEdit the ingredient to be edited"
       },
       {
         "lineNumber": 262,
         "author": {
           "gitId": "eugenelim97"
         },
-        "content": "     * @param toEdit the ingredient to be edited"
+        "content": "     * @param edited the edited ingredient with changes"
       },
       {
         "lineNumber": 263,
         "author": {
           "gitId": "eugenelim97"
         },
-        "content": "     * @param edited the edited ingredient with changes"
+        "content": "     */"
       },
       {
         "lineNumber": 264,
         "author": {
           "gitId": "eugenelim97"
         },
-        "content": "     */"
+        "content": "    void setInventory(Item\u003cIngredient\u003e toEdit, Item\u003cIngredient\u003e edited);"
       },
       {
         "lineNumber": 265,
         "author": {
           "gitId": "eugenelim97"
         },
-        "content": "    void setInventory(Item\u003cIngredient\u003e toEdit, Item\u003cIngredient\u003e edited);"
+        "content": ""
       },
       {
         "lineNumber": 266,
         "author": {
           "gitId": "eugenelim97"
         },
-        "content": ""
+        "content": "    void setInventory(List\u003cItem\u003cIngredient\u003e\u003e replacement);"
       },
       {
         "lineNumber": 267,
         "author": {
           "gitId": "eugenelim97"
         },
-        "content": "    void setInventory(List\u003cItem\u003cIngredient\u003e\u003e replacement);"
+        "content": ""
       },
       {
         "lineNumber": 268,
         "author": {
           "gitId": "eugenelim97"
         },
-        "content": ""
-      },
-      {
-        "lineNumber": 269,
-        "author": {
-          "gitId": "eugenelim97"
-        },
         "content": "    /**"
       },
       {
-        "lineNumber": 270,
+        "lineNumber": 269,
         "author": {
           "gitId": "liujiajun"
         },
         "content": "     * Clears the inventory list."
       },
       {
-        "lineNumber": 271,
+        "lineNumber": 270,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": "     * @param emptyList"
       },
       {
-        "lineNumber": 272,
+        "lineNumber": 271,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 273,
+        "lineNumber": 272,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": "    void clearInventory(List\u003cItem\u003cIngredient\u003e\u003e emptyList);"
       },
       {
-        "lineNumber": 274,
+        "lineNumber": 273,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": ""
       },
       {
-        "lineNumber": 275,
+        "lineNumber": 274,
         "author": {
           "gitId": "liujiajun"
         },
         "content": "    //\u003d\u003d\u003d\u003d\u003d\u003dShopping list operations\u003d\u003d\u003d\u003d\u003d"
       },
       {
-        "lineNumber": 276,
+        "lineNumber": 275,
         "author": {
           "gitId": "liujiajun"
         },
         "content": ""
       },
       {
-        "lineNumber": 277,
+        "lineNumber": 276,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": "    ObservableList\u003cItem\u003cIngredient\u003e\u003e getFilteredShoppingList();"
       },
       {
-        "lineNumber": 278,
+        "lineNumber": 277,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": ""
       },
       {
-        "lineNumber": 279,
+        "lineNumber": 278,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": "    void updateFilteredShoppingList(Predicate\u003cItem\u003cIngredient\u003e\u003e predicate);"
       },
       {
-        "lineNumber": 280,
+        "lineNumber": 279,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": ""
       },
       {
-        "lineNumber": 281,
+        "lineNumber": 280,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": "    /**"
       },
       {
-        "lineNumber": 282,
+        "lineNumber": 281,
         "author": {
           "gitId": "liujiajun"
         },
         "content": "     * Adds an ingredient to the shopping list."
       },
       {
-        "lineNumber": 283,
+        "lineNumber": 282,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": "     * @param toAdd the ingredient to be added"
       },
       {
-        "lineNumber": 284,
+        "lineNumber": 283,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 285,
+        "lineNumber": 284,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": "    void addShoppingList(Item\u003cIngredient\u003e toAdd);"
       },
       {
-        "lineNumber": 286,
+        "lineNumber": 285,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": ""
       },
       {
-        "lineNumber": 287,
+        "lineNumber": 286,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": "    /**"
       },
       {
-        "lineNumber": 288,
+        "lineNumber": 287,
         "author": {
           "gitId": "liujiajun"
         },
         "content": "     * Checks if the item with the same name already exists in the shopping list."
       },
       {
-        "lineNumber": 289,
+        "lineNumber": 288,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": "     * @return true if the given ingredient item already exists in the shopping list"
       },
       {
-        "lineNumber": 290,
+        "lineNumber": 289,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 291,
+        "lineNumber": 290,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": "    boolean hasShoppingList(Item\u003cIngredient\u003e ingredientItem);"
       },
       {
-        "lineNumber": 292,
+        "lineNumber": 291,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": ""
       },
       {
-        "lineNumber": 293,
+        "lineNumber": 292,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": "    /**"
       },
       {
-        "lineNumber": 294,
+        "lineNumber": 293,
         "author": {
           "gitId": "liujiajun"
         },
         "content": "     * Removes an ingredient item from the shopping list."
       },
       {
-        "lineNumber": 295,
+        "lineNumber": 294,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": "     * @param toDelete the ingredient item"
       },
       {
-        "lineNumber": 296,
+        "lineNumber": 295,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 297,
+        "lineNumber": 296,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": "    void deleteShoppingList(Item\u003cIngredient\u003e toDelete);"
       },
       {
-        "lineNumber": 298,
+        "lineNumber": 297,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": ""
       },
       {
-        "lineNumber": 299,
+        "lineNumber": 298,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": "    /**"
       },
       {
-        "lineNumber": 300,
+        "lineNumber": 299,
         "author": {
           "gitId": "liujiajun"
         },
         "content": "     * Edits the ingredient toEdit with the ingredient edited."
       },
       {
-        "lineNumber": 301,
+        "lineNumber": 300,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": "     * @param toEdit the ingredient to be edited"
       },
       {
-        "lineNumber": 302,
+        "lineNumber": 301,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": "     * @param edited the edited ingredient with changes"
       },
       {
-        "lineNumber": 303,
+        "lineNumber": 302,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 304,
+        "lineNumber": 303,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": "    void setShoppingList(Item\u003cIngredient\u003e toEdit, Item\u003cIngredient\u003e edited);"
       },
       {
-        "lineNumber": 305,
+        "lineNumber": 304,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": ""
       },
       {
-        "lineNumber": 306,
+        "lineNumber": 305,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": "    void setShoppingList(List\u003cItem\u003cIngredient\u003e\u003e replacement);"
       },
       {
-        "lineNumber": 307,
+        "lineNumber": 306,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": ""
       },
       {
-        "lineNumber": 308,
+        "lineNumber": 307,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": "    /**"
       },
       {
-        "lineNumber": 309,
+        "lineNumber": 308,
         "author": {
           "gitId": "liujiajun"
         },
         "content": "     * Clears the shopping list."
       },
       {
-        "lineNumber": 310,
+        "lineNumber": 309,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": "     * @param emptyList an empty list"
       },
       {
-        "lineNumber": 311,
+        "lineNumber": 310,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 312,
+        "lineNumber": 311,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": "    void clearShoppingList(List\u003cItem\u003cIngredient\u003e\u003e emptyList);"
       },
       {
-        "lineNumber": 313,
+        "lineNumber": 312,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": ""
       },
       {
-        "lineNumber": 314,
+        "lineNumber": 313,
         "author": {
           "gitId": "liujiajun"
         },
         "content": "    //\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003dShortcut operations\u003d\u003d\u003d\u003d\u003d\u003d\u003d"
       },
       {
-        "lineNumber": 315,
+        "lineNumber": 314,
         "author": {
           "gitId": "liujiajun"
         },
         "content": ""
+      },
+      {
+        "lineNumber": 315,
+        "author": {
+          "gitId": "liujiajun"
+        },
+        "content": "    /**"
       },
       {
         "lineNumber": 316,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    /**"
+        "content": "     * Adds {@code shortcut} to shortcut list."
       },
       {
         "lineNumber": 317,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     * Adds {@code shortcut} to shortcut list."
+        "content": "     * If the shortcut already exists, it overrides the old shortcut."
       },
       {
         "lineNumber": 318,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     * If the shortcut already exists, it overrides the old shortcut."
+        "content": "     */"
       },
       {
         "lineNumber": 319,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     */"
+        "content": "    void setShortcut(Shortcut shortcut);"
       },
       {
         "lineNumber": 320,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    void setShortcut(Shortcut shortcut);"
+        "content": ""
       },
       {
         "lineNumber": 321,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 322,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    /**"
+        "content": "     * Deletes the given {@code shortcut}."
       },
       {
         "lineNumber": 323,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     * Deletes the given {@code shortcut}."
+        "content": "     * The shortcut must exist in order list."
       },
       {
         "lineNumber": 324,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     * The shortcut must exist in order list."
+        "content": "     */"
       },
       {
         "lineNumber": 325,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     */"
+        "content": "    void removeShortcut(Shortcut shortcut);"
       },
       {
         "lineNumber": 326,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    void removeShortcut(Shortcut shortcut);"
+        "content": ""
       },
       {
         "lineNumber": 327,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 328,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    /**"
+        "content": "     * Returns true if a shortcut with the same name as {@code order} exists in shortcut list."
       },
       {
         "lineNumber": 329,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     * Returns true if a shortcut with the same name as {@code order} exists in shortcut list."
+        "content": "     */"
       },
       {
         "lineNumber": 330,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     */"
+        "content": "    boolean hasShortcut(Shortcut shortcut);"
       },
       {
         "lineNumber": 331,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    boolean hasShortcut(Shortcut shortcut);"
+        "content": ""
       },
       {
         "lineNumber": 332,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 333,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    /**"
+        "content": "     * Returns an unmodifiable view of the shortcut list."
       },
       {
         "lineNumber": 334,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     * Returns an unmodifiable view of the shortcut list."
+        "content": "     */"
       },
       {
         "lineNumber": 335,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 336,
-        "author": {
-          "gitId": "liujiajun"
-        },
         "content": "    List\u003cShortcut\u003e getShortcutList();"
       },
       {
-        "lineNumber": 337,
+        "lineNumber": 336,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": ""
       },
       {
-        "lineNumber": 338,
+        "lineNumber": 337,
         "author": {
           "gitId": "liujiajun"
         },
@@ -50013,7 +49999,7 @@
     ],
     "authorContributionMap": {
       "liujiajun": 156,
-      "liushiru": 35,
+      "liushiru": 34,
       "chekjun": 68,
       "eugenelim97": 79
     }
@@ -67297,7 +67283,7 @@
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "        orderPage \u003d new OrderPage(logic.getFilteredOrderList(), logic.getFilteredInventoryList());"
+        "content": "        orderPage \u003d new OrderPage(logic.getFilteredOrderList());"
       },
       {
         "lineNumber": 110,
@@ -70087,70 +70073,70 @@
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "import duke.model.commons.Item;"
+        "content": "import duke.model.order.Order;"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "import duke.model.inventory.Ingredient;"
+        "content": "import javafx.collections.ListChangeListener;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "import duke.model.order.Order;"
+        "content": "import javafx.collections.ObservableList;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "import javafx.collections.ListChangeListener;"
+        "content": "import javafx.fxml.FXML;"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "import javafx.collections.ObservableList;"
+        "content": "import javafx.scene.control.Label;"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "import javafx.fxml.FXML;"
+        "content": "import javafx.scene.control.ListCell;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "import javafx.scene.control.Label;"
+        "content": "import javafx.scene.control.ListView;"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "import javafx.scene.control.ListCell;"
+        "content": "import javafx.scene.layout.AnchorPane;"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "import javafx.scene.control.ListView;"
+        "content": ""
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "import javafx.scene.layout.AnchorPane;"
+        "content": "import java.util.logging.Logger;"
       },
       {
         "lineNumber": 14,
@@ -70164,189 +70150,189 @@
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "import java.util.logging.Logger;"
+        "content": "/**"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": ""
+        "content": " * Controller class for order page."
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "/**"
+        "content": " * An order page contains order cards and a statistics bar."
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": " * Controller class for order page."
+        "content": " */"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": " * An order page contains order cards and a statistics bar."
+        "content": "public class OrderPage extends UiPart\u003cAnchorPane\u003e {"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": " */"
+        "content": "    private static final String FXML \u003d \"OrderPage.fxml\";"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "public class OrderPage extends UiPart\u003cAnchorPane\u003e {"
+        "content": "    private final Logger logger \u003d LogsCenter.getLogger(OrderPage.class);"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    private static final String FXML \u003d \"OrderPage.fxml\";"
+        "content": ""
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    private final Logger logger \u003d LogsCenter.getLogger(OrderPage.class);"
+        "content": "    @FXML"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": ""
+        "content": "    private ListView\u003cOrder\u003e orderListView;"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    @FXML"
+        "content": ""
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    private ListView\u003cOrder\u003e orderListView;"
+        "content": "    @FXML"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": ""
+        "content": "    private Label active;"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    @FXML"
+        "content": ""
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    private Label active;"
+        "content": "    @FXML"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": ""
+        "content": "    private Label finished;"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    @FXML"
+        "content": ""
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    private Label finished;"
+        "content": "    @FXML"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": ""
+        "content": "    private Label canceled;"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    @FXML"
+        "content": ""
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    private Label canceled;"
+        "content": "    /**"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": ""
+        "content": "     * Creates an order page displaying orders from {@code orderList}."
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    /**"
+        "content": "     */"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     * Creates an order page."
+        "content": "    public OrderPage(ObservableList\u003cOrder\u003e orderList) {"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "     */"
+        "content": "        super(FXML);"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "    public OrderPage(ObservableList\u003cOrder\u003e orderList, ObservableList\u003cItem\u003cIngredient\u003e\u003e inventoryList) {"
+        "content": ""
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "liujiajun"
         },
-        "content": "        super(FXML);"
+        "content": "        logger.info(\"Initializing Order Page\");"
       },
       {
         "lineNumber": 42,
