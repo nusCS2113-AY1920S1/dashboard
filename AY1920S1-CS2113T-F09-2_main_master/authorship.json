@@ -2246,6 +2246,631 @@
     }
   },
   {
+    "path": "src/main/java/cube/logic/command/BatchCommand.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": " * BatchCommand.java"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": " * Support commands related to batch file imports \u0026 exports."
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": " *"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": " * @author kuromono"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "package cube.logic.command;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "import cube.exception.CubeException;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "import cube.logic.command.util.CommandResult;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "import cube.model.ModelManager;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "import cube.model.food.Food;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "import cube.model.food.FoodList;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "import cube.storage.StorageManager;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "import cube.util.FileUtilCSV;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "public class BatchCommand extends Command {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "     * Use enums to specify the export or import operations to be performed by FileUtilCSV."
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "    public enum OperationType {"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "        EXPORT, IMPORT"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "    private String fileName;"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "    private BatchCommand.OperationType operationType;"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "    private FileUtilCSV\u003cFood\u003e batchUtil;"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "    private final String MESSAGE_SUCCESS \u003d \"The product list has been successfully %1$s as file:\\n\""
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "        + \"%2$s\\n\";"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "    private final String MESSAGE_EXPORT \u003d \"exported\";"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "    private final String MESSAGE_IMPORT \u003d \"imported\";"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "     * Default constructor."
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "     * @param fileName Sets the filename of the CSV file to be loaded/saved from."
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "     * @param operationType Specifies to either IMPORT or EXPORT operation."
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "    public BatchCommand(String fileName, String operationType) {"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "        this.fileName \u003d fileName;"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "        this.operationType \u003d OperationType.valueOf(operationType);"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "        this.batchUtil \u003d new FileUtilCSV\u003c\u003e(\"data\", fileName, new Food());"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "     * Calls \u0026 updates the required functions for CSV batch import operations."
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "     * @param model ModelManager object to update the FoodList object from the import."
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "     * @param storage StorageManager object to update the FoodList object from the import."
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "     * @throws CubeException Throws an exception if error occured during file handling."
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "    private void batchImport(ModelManager model, StorageManager storage) throws CubeException {"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "        ArrayList\u003cFood\u003e foodList \u003d batchUtil.load();"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "        FoodList importedFoodList \u003d new FoodList(foodList);"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "        model.setFoodList(importedFoodList);"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "        storage.storeFoodList(importedFoodList);"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "     * Calls \u0026 updates the required functions for CSV batch export operations."
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "     * @param storage StorageManager object that contains the FoodList object to be saved."
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "     * @throws CubeException Throws an exception if error occured during file handling."
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "    private void batchExport(StorageManager storage) throws CubeException {"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "        batchUtil.save(storage.getFoodList().getFoodList());"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "     * Constructs the command result output to be shown to the user."
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "    public CommandResult execute(ModelManager model, StorageManager storage) {"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "            switch (operationType) {"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "            case IMPORT:"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "                batchImport(model, storage);"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "                return new CommandResult(String.format(MESSAGE_SUCCESS, MESSAGE_IMPORT, fileName));"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "            case EXPORT:"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "                batchExport(storage);"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "                return new CommandResult(String.format(MESSAGE_SUCCESS, MESSAGE_EXPORT, fileName));"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "        } catch (CubeException e) {"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "            e.printStackTrace();"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "        return null;"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "kuromono": 88
+    }
+  },
+  {
     "path": "src/main/java/cube/logic/command/Command.java",
     "fileType": "functional",
     "lines": [
@@ -2427,6 +3052,456 @@
     ],
     "authorContributionMap": {
       "tygq13": 25
+    }
+  },
+  {
+    "path": "src/main/java/cube/logic/command/ConfigCommand.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": " * ConfigCommand.java"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": " * Support commands related to stored settings configurations."
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": " *"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": " * @author kuromono"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "package cube.logic.command;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "import cube.logic.command.util.CommandResult;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "import cube.model.ModelManager;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "import cube.storage.ConfigStorage;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "import cube.storage.StorageManager;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "import cube.storage.config.UiConfig;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "public class ConfigCommand extends Command {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "     * Use enums to specify the configuration type to be configured."
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "    public enum ConfigType {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "        UI"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "    private ConfigType configType;"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "    private UiConfig uiConfig;"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "    private final String MESSAGE_SUCCESS \u003d \"The %1$s settings has been configured successfully.\\n\""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "        + \"Settings will be applied when you restart the program.\\n\";"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "     * Default Constructor for changing UI-related configurations."
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "     * @param configType Type of configuration to set."
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "     * @param uiConfig UiConfig object containing configuration parameters to set."
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "    public ConfigCommand(ConfigType configType, UiConfig uiConfig) {"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "        this.configType \u003d configType;"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "        this.uiConfig \u003d uiConfig;"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "     * Calls \u0026 updates the required functions for updating UiConfig values."
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "     * @param storage StorageManager object that contains the ConfigStorage object to be saved."
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "    private void configureUiConfig(StorageManager storage) {"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "        ConfigStorage configStorage \u003d storage.getConfig();"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "        configStorage.setUiConfig(uiConfig);"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "        storage.setConfig(configStorage);"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "     * Constructs the command result output to be shown to the user."
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "    public CommandResult execute(ModelManager model, StorageManager storage) {"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "        switch (configType) {"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "            case UI:"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "                configureUiConfig(storage);"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "                return new CommandResult(String.format(MESSAGE_SUCCESS, configType.toString()));"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "        return null;"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "kuromono": 63
     }
   },
   {
@@ -5092,103 +6167,117 @@
       {
         "lineNumber": 21,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "kuromono"
         },
-        "content": "\t\t\t+ String.format(\"%1$-50s\", \"  \u0027bye\u0027 OR \u0027exit\u0027 OR \u0027quit\u0027\") + \"to exit the programme\\n\""
+        "content": "\t\t\t+ String.format(\"%1$-50s\", \"  \u0027batch -i \u003cfilename\u003e OR -o \u003cfilename\u003e\u0027\") + \"batch imports or outputs the list of food products as the filename in CSV.\\n\""
       },
       {
         "lineNumber": 22,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "kuromono"
         },
-        "content": "\t\t\t+ String.format(\"%1$-50s\", \"  \u0027help\u0027\") + \"to show a list of available command\\n\";"
+        "content": "\t\t\t+ String.format(\"%1$-50s\", \"  \u0027config UI -h \u003cheight\u003e -w \u003cwidth\u003e\u0027\") + \"updates the default window size configuration with specified values.\\n\""
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "tygq13"
         },
-        "content": ""
+        "content": "\t\t\t+ String.format(\"%1$-50s\", \"  \u0027bye\u0027 OR \u0027exit\u0027 OR \u0027quit\u0027\") + \"to exit the programme\\n\""
       },
       {
         "lineNumber": 24,
         "author": {
-          "gitId": "parvathi14"
+          "gitId": "tygq13"
         },
-        "content": "\t/**"
+        "content": "\t\t\t+ String.format(\"%1$-50s\", \"  \u0027help\u0027\") + \"to show a list of available command\\n\";"
       },
       {
         "lineNumber": 25,
         "author": {
-          "gitId": "parvathi14"
+          "gitId": "tygq13"
         },
-        "content": "\t * Shows the list of available command."
+        "content": ""
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t *"
+        "content": "\t/**"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t * @param list the list of food products."
+        "content": "\t * Shows the list of available command."
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t * @param storage storage of Duke."
+        "content": "\t *"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": "\t */"
+        "content": "\t * @param list the list of food products."
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "parvathi14"
         },
-        "content": ""
+        "content": "\t * @param storage storage of Duke."
       },
       {
         "lineNumber": 31,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "parvathi14"
         },
-        "content": "\t@Override"
+        "content": "\t */"
       },
       {
         "lineNumber": 32,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "parvathi14"
         },
-        "content": "\tpublic CommandResult execute(ModelManager model, StorageManager storage) {"
+        "content": ""
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\treturn new CommandResult(MESSAGE_SUCCESS, true, false);"
+        "content": "\t@Override"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t}"
+        "content": "\tpublic CommandResult execute(ModelManager model, StorageManager storage) {"
       },
       {
         "lineNumber": 35,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\treturn new CommandResult(MESSAGE_SUCCESS, true, false);"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t}"
+      },
+      {
+        "lineNumber": 37,
         "author": {
           "gitId": "tygq13"
         },
@@ -5197,6 +6286,7 @@
     ],
     "authorContributionMap": {
       "parvathi14": 7,
+      "kuromono": 2,
       "tygq13": 25,
       "ZKathrynx": 1,
       "LL-Pengfei": 2
@@ -6504,101 +7594,129 @@
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\tobtainFoodSold(list);"
+        "content": "\t\tSalesHistory salesHistory \u003d model.getSalesHistory();"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\tCommandUtil.requireValidQuantity(toSold, quantity);"
+        "content": "\t\tobtainFoodSold(list);"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\t"
+        "content": "\t\tCommandUtil.requireValidQuantity(toSold, quantity);"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\tint originalQty \u003d toSold.getStock();"
+        "content": "\t\t"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\tdouble revenue \u003d quantity * toSold.getPrice();"
+        "content": "\t\tint originalQty \u003d toSold.getStock();"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\ttoSold.setStock(originalQty - quantity);"
+        "content": "\t\tdouble revenue \u003d quantity * toSold.getPrice();"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\t// old function"
+        "content": "\t\ttoSold.setStock(originalQty - quantity);"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\tFood.updateRevenue(Food.getRevenue() + revenue);"
+        "content": "\t\t// old function"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\t// new function"
+        "content": "\t\tFood.updateRevenue(Food.getRevenue() + revenue);"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\tdouble profit \u003d revenue - quantity * toSold.getCost();"
+        "content": "\t\t// new function"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\tnew Sale(quantity, revenue, profit, soldDate);"
+        "content": "\t\tdouble profit \u003d revenue - quantity * toSold.getCost();"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\tstorage.storeRevenue(Food.getRevenue());"
+        "content": "\t\tSale saleRecord \u003d new Sale(foodName, quantity, revenue, profit, soldDate);"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\treturn new CommandResult(String.format(MESSAGE_SUCCESS, quantity, foodName, revenue, Food.getRevenue()));"
+        "content": "\t\tsalesHistory.add(saleRecord);"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t}"
+        "content": "\t\tstorage.storeSalesHistory(salesHistory);"
       },
       {
         "lineNumber": 69,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\tstorage.storeRevenue(Food.getRevenue());"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\treturn new CommandResult(String.format(MESSAGE_SUCCESS, quantity, foodName, revenue, Food.getRevenue()));"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t}"
+      },
+      {
+        "lineNumber": 73,
         "author": {
           "gitId": "tygq13"
         },
@@ -6606,7 +7724,7 @@
       }
     ],
     "authorContributionMap": {
-      "tygq13": 69
+      "tygq13": 73
     }
   },
   {
@@ -8140,6 +9258,493 @@
     }
   },
   {
+    "path": "src/main/java/cube/logic/parser/BatchCommandParser.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "package cube.logic.parser;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "import cube.logic.command.BatchCommand;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "import cube.logic.parser.exception.ParserErrorMessage;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "import cube.logic.parser.exception.ParserException;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "public class BatchCommandParser implements ParserPrototype\u003cBatchCommand\u003e {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "    public BatchCommand parse(String[] args) throws ParserException {"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "        if (args.length \u003c 3) {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "            throw new ParserException(ParserErrorMessage.NOT_ENOUGH_PARAMETER);"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "        switch (args[1]) {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "        case \"-o\":"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "            return new BatchCommand(args[2], \"EXPORT\");"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "        case \"-i\":"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "            return new BatchCommand(args[2], \"IMPORT\");"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "        return null;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "kuromono": 22
+    }
+  },
+  {
+    "path": "src/main/java/cube/logic/parser/ConfigCommandParser.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "package cube.logic.parser;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "import cube.logic.command.ConfigCommand;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "import cube.logic.command.ConfigCommand.ConfigType;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "import cube.logic.parser.exception.ParserErrorMessage;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "import cube.logic.parser.exception.ParserException;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "import cube.storage.config.UiConfig;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "public class ConfigCommandParser implements ParserPrototype\u003cConfigCommand\u003e {"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "    public ConfigCommand parse(String[] args) throws ParserException {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "        if (args.length \u003c 3) {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "            throw new ParserException(ParserErrorMessage.NOT_ENOUGH_PARAMETER);"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "        int configTypeIndex \u003d 1;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "        ConfigType configType \u003d ConfigType.valueOf(args[configTypeIndex]);"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "        switch (configType) {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "            case UI:"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "                int heightIndex \u003d -1;"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "                int widthIndex \u003d -1;"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "                for (int i \u003d 1; i \u003c args.length; i ++) {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "                    if (args[i].equals(\"-h\")) {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "                        heightIndex \u003d i;"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "                    if (args[i].equals(\"-w\")) {"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "                        widthIndex \u003d i;"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "                UiConfig uiConfig \u003d new UiConfig();"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "                if (heightIndex !\u003d -1) {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "                    uiConfig.setWindowHeight(Double.parseDouble(args[heightIndex + 1]));"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "                if (widthIndex !\u003d -1) {"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "                    uiConfig.setWindowWidth(Double.parseDouble(args[widthIndex + 1]));"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "                return new ConfigCommand(configType, uiConfig);"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "        return null;"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "kuromono": 45
+    }
+  },
+  {
     "path": "src/main/java/cube/logic/parser/DeleteCommandParser.java",
     "fileType": "functional",
     "lines": [
@@ -9305,82 +10910,110 @@
       {
         "lineNumber": 53,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "kuromono"
         },
-        "content": "\t\t\tcase \"help\":"
+        "content": "\t\t\tcase \"batch\":"
       },
       {
         "lineNumber": 54,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "kuromono"
         },
-        "content": "\t\t\t\treturn new HelpCommand();"
+        "content": "\t\t\t\treturn new BatchCommandParser().parse(inputs);"
       },
       {
         "lineNumber": 55,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "kuromono"
         },
-        "content": "\t\t\tcase \"bye\":"
+        "content": "\t\t\tcase \"config\":"
       },
       {
         "lineNumber": 56,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "kuromono"
         },
-        "content": "\t\t\tcase \"exit\":"
+        "content": "\t\t\t\treturn new ConfigCommandParser().parse(inputs);"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\t\tcase \"quit\":"
+        "content": "\t\t\tcase \"help\":"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\t\t\treturn new ExitCommand();"
+        "content": "\t\t\t\treturn new HelpCommand();"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\t\tdefault:"
+        "content": "\t\t\tcase \"bye\":"
       },
       {
         "lineNumber": 60,
         "author": {
-          "gitId": "ZKathrynx"
+          "gitId": "tygq13"
         },
-        "content": "\t\t\t\tthrow new ParserException(ParserErrorMessage.INVALID_COMMAND);"
+        "content": "\t\t\tcase \"exit\":"
       },
       {
         "lineNumber": 61,
         "author": {
-          "gitId": "ZKathrynx"
+          "gitId": "tygq13"
         },
-        "content": "\t\t}"
+        "content": "\t\t\tcase \"quit\":"
       },
       {
         "lineNumber": 62,
         "author": {
-          "gitId": "ZKathrynx"
+          "gitId": "tygq13"
         },
-        "content": "\t}"
+        "content": "\t\t\t\treturn new ExitCommand();"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "}"
+        "content": "\t\t\tdefault:"
       },
       {
         "lineNumber": 64,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t\t\tthrow new ParserException(ParserErrorMessage.INVALID_COMMAND);"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t\t}"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "ZKathrynx"
+        },
+        "content": "\t}"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 68,
         "author": {
           "gitId": "tygq13"
         },
@@ -9389,6 +11022,7 @@
     ],
     "authorContributionMap": {
       "parvathi14": 2,
+      "kuromono": 4,
       "tygq13": 22,
       "ZKathrynx": 36,
       "LL-Pengfei": 4
@@ -10928,28 +12562,28 @@
       {
         "lineNumber": 32,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "kuromono"
         },
-        "content": "\tpublic SalesHistory getSalesHistory() {"
+        "content": "\tpublic void setFoodList(FoodList foodList) {"
       },
       {
         "lineNumber": 33,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "kuromono"
         },
-        "content": "\t\treturn salesHistory;"
+        "content": "\t\tthis.foodList \u003d foodList;"
       },
       {
         "lineNumber": 34,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "kuromono"
         },
         "content": "\t}"
       },
       {
         "lineNumber": 35,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "kuromono"
         },
         "content": ""
       },
@@ -10958,10 +12592,39 @@
         "author": {
           "gitId": "tygq13"
         },
+        "content": "\tpublic SalesHistory getSalesHistory() {"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\treturn salesHistory;"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t}"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "tygq13"
+        },
         "content": "}"
       }
     ],
     "authorContributionMap": {
+      "kuromono": 4,
       "tygq13": 36
     }
   },
@@ -13963,14 +15626,14 @@
         "author": {
           "gitId": "tygq13"
         },
-        "content": ""
+        "content": "import com.fasterxml.jackson.annotation.JsonProperty;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "public class Sale {"
+        "content": "import com.fasterxml.jackson.annotation.JsonIgnore;"
       },
       {
         "lineNumber": 11,
@@ -13984,210 +15647,210 @@
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\tprotected int quantitySold;"
+        "content": "public class Sale implements Comparable\u003cSale\u003e{"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\tprotected double profit;"
+        "content": "\t@JsonProperty"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\tprotected double revenue;"
+        "content": "\tprotected String foodName;"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\tprotected Date soldDate;"
+        "content": "\t@JsonProperty"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "tygq13"
         },
-        "content": ""
+        "content": "\tprotected int quantitySold;"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t/**"
+        "content": "\t@JsonProperty"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t * Constructor with four arguments."
+        "content": "\tprotected double profit;"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t *"
+        "content": "\t@JsonProperty"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t * @param quantity The quantity sold in this sale."
+        "content": "\tprotected double revenue;"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t * @param profit The profit earned in this sale."
+        "content": "\t@JsonProperty"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t * @param revenue The revenue earned in this sale."
+        "content": "\tprotected Date soldDate;"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t * @param date The date of sale."
+        "content": ""
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t */"
+        "content": "\tpublic Sale(){"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\tpublic Sale(int quantity, double revenue, double profit, Date date) {"
+        "content": "\t\tthis(null, 0, 0, 0, null);"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\tthis.quantitySold \u003d quantity;"
+        "content": "\t}"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\tthis.revenue \u003d revenue;"
+        "content": ""
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\tthis.profit \u003d profit;"
+        "content": "\t/**"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\tthis.soldDate \u003d date;"
+        "content": "\t * Constructor with four arguments."
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t}"
+        "content": "\t *"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "tygq13"
         },
-        "content": ""
+        "content": "\t * @param quantitySold The quantitySold sold in this sale."
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\tpublic int getQuantity() {"
+        "content": "\t * @param profit The profit earned in this sale."
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\treturn quantitySold;"
+        "content": "\t * @param revenue The revenue earned in this sale."
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t}"
+        "content": "\t * @param soldDate The date of sale."
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "tygq13"
         },
-        "content": ""
+        "content": "\t */"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\tpublic double getRevenue() {"
+        "content": "\tpublic Sale(String foodName, int quantitySold, double revenue, double profit, Date soldDate) {"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\treturn revenue;"
+        "content": "\t\tthis.foodName \u003d foodName;"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t}"
+        "content": "\t\tthis.quantitySold \u003d quantitySold;"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "tygq13"
         },
-        "content": ""
+        "content": "\t\tthis.revenue \u003d revenue;"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\tpublic double getProfit() {"
+        "content": "\t\tthis.profit \u003d profit;"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\treturn profit;"
+        "content": "\t\tthis.soldDate \u003d soldDate;"
       },
       {
         "lineNumber": 42,
@@ -14208,103 +15871,318 @@
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\tpublic Date getDate() {"
+        "content": "\t@JsonIgnore"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\treturn soldDate;"
+        "content": "\tpublic String getName() {"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t}"
+        "content": "\t\treturn foodName;"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "}"
-      }
-    ],
-    "authorContributionMap": {
-      "tygq13": 47
-    }
-  },
-  {
-    "path": "src/main/java/cube/model/sale/SaleUtil.java",
-    "fileType": "functional",
-    "lines": [
-      {
-        "lineNumber": 1,
-        "author": {
-          "gitId": "tygq13"
-        },
-        "content": "package cube.model.sale;"
+        "content": "\t}"
       },
       {
-        "lineNumber": 2,
+        "lineNumber": 48,
         "author": {
           "gitId": "tygq13"
         },
         "content": ""
       },
       {
-        "lineNumber": 3,
+        "lineNumber": 49,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "import java.util.Comparator;"
+        "content": "\t@JsonIgnore"
       },
       {
-        "lineNumber": 4,
+        "lineNumber": 50,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "import java.util.Date;"
+        "content": "\tpublic int getQuantity() {"
       },
       {
-        "lineNumber": 5,
+        "lineNumber": 51,
         "author": {
           "gitId": "tygq13"
         },
-        "content": ""
+        "content": "\t\treturn quantitySold;"
       },
       {
-        "lineNumber": 6,
-        "author": {
-          "gitId": "tygq13"
-        },
-        "content": "class SaleComparator implements Comparator\u003cSale\u003e {"
-      },
-      {
-        "lineNumber": 7,
-        "author": {
-          "gitId": "tygq13"
-        },
-        "content": "\tpublic int compare(Sale a, Sale b) {"
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "tygq13"
-        },
-        "content": "\t\treturn a.getDate().compareTo(b.getDate());"
-      },
-      {
-        "lineNumber": 9,
+        "lineNumber": 52,
         "author": {
           "gitId": "tygq13"
         },
         "content": "\t}"
       },
       {
-        "lineNumber": 10,
+        "lineNumber": 53,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t@JsonIgnore"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\tpublic double getRevenue() {"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\treturn revenue;"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t}"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t@JsonIgnore"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\tpublic double getProfit() {"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\treturn profit;"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t}"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t@JsonIgnore"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\tpublic Date getDate() {"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\treturn soldDate;"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t}"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t@Override"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\tpublic String toString() {"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\treturn \"  Quantity Sold: \" + quantitySold +"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\t\t\t\"\\n  Revenue: $\" + revenue +"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\t\t\t\"\\n  Profit: \" + profit +"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\t\t\t\"\\n  Transaction Date: \" + soldDate;"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t}"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t@Override"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\tpublic int compareTo(Sale b) {"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\t// expand the list of comparison to reduce chance of equal transaction"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\tif(soldDate.compareTo(b.getDate()) !\u003d 0) {"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\t\treturn soldDate.compareTo(b.getDate());"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\t} else if (foodName.compareTo(b.getName()) !\u003d 0) {"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\t\treturn foodName.compareTo(b.getName());"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\t} else {"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\t\t// the order does not matter if time and name the same"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\t\treturn 1;"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\t}"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t}"
+      },
+      {
+        "lineNumber": 89,
         "author": {
           "gitId": "tygq13"
         },
@@ -14312,7 +16190,7 @@
       }
     ],
     "authorContributionMap": {
-      "tygq13": 10
+      "tygq13": 89
     }
   },
   {
@@ -14343,103 +16221,243 @@
       {
         "lineNumber": 4,
         "author": {
-          "gitId": "kuromono"
+          "gitId": "tygq13"
         },
-        "content": "import com.fasterxml.jackson.annotation.JsonProperty;"
+        "content": "import java.util.Iterator;"
       },
       {
         "lineNumber": 5,
         "author": {
-          "gitId": "tygq13"
+          "gitId": "kuromono"
         },
-        "content": ""
+        "content": "import com.fasterxml.jackson.annotation.JsonProperty;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "public class SalesHistory {"
+        "content": ""
       },
       {
         "lineNumber": 7,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "public class SalesHistory {"
+      },
+      {
+        "lineNumber": 8,
         "author": {
           "gitId": "kuromono"
         },
         "content": "\t@JsonProperty"
       },
       {
-        "lineNumber": 8,
+        "lineNumber": 9,
         "author": {
           "gitId": "tygq13"
         },
         "content": "\tprivate TreeSet\u003cSale\u003e salesSet;"
       },
       {
-        "lineNumber": 9,
-        "author": {
-          "gitId": "tygq13"
-        },
-        "content": ""
-      },
-      {
         "lineNumber": 10,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\tpublic SalesHistory() {"
+        "content": ""
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\tthis.salesSet \u003d new TreeSet\u003cSale\u003e(new SaleComparator());"
+        "content": "\tpublic SalesHistory() {"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t}"
+        "content": "\t\tthis.salesSet \u003d new TreeSet\u003cSale\u003e();"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "tygq13"
         },
-        "content": ""
+        "content": "\t}"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\tpublic SalesHistory(TreeSet\u003cSale\u003e salesSet) {"
+        "content": ""
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t\tthis.salesSet \u003d salesSet;"
+        "content": "\tpublic SalesHistory(TreeSet\u003cSale\u003e salesSet) {"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "tygq13"
         },
-        "content": "\t}"
+        "content": "\t\tthis.salesSet \u003d salesSet;"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "tygq13"
         },
-        "content": ""
+        "content": "\t}"
       },
       {
         "lineNumber": 18,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\tpublic void add(Sale saleRecord) {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\tsalesSet.add(saleRecord);"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t}"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\tpublic int size() {"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\treturn salesSet.size();"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t}"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t@Override"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t// more for debug use for now"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\tpublic String toString() {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\tString result \u003d \"\";"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\tIterator i \u003d salesSet.iterator();"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\twhile(i.hasNext()) {"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\t\tresult +\u003d i.next() + \"\\n\";"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\t}"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t\treturn result;"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": "\t}"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "tygq13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 38,
         "author": {
           "gitId": "tygq13"
         },
@@ -14448,7 +16466,7 @@
     ],
     "authorContributionMap": {
       "kuromono": 2,
-      "tygq13": 16
+      "tygq13": 36
     }
   },
   {
@@ -16365,13 +18383,76 @@
       {
         "lineNumber": 105,
         "author": {
+          "gitId": "kuromono"
+        },
+        "content": "\t/**"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "\t * Sets the configuration storage containing user-defined configurations."
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "\t * @return ConfigStorage object containing the user-defined configurations."
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "\t */"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "\t@JsonIgnore"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "\tpublic void setConfig(ConfigStorage configStorage) {"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "\t\tthis.configStorage \u003d configStorage;"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "\t}"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 114,
+        "author": {
           "gitId": "tygq13"
         },
         "content": "}"
       }
     ],
     "authorContributionMap": {
-      "kuromono": 89,
+      "kuromono": 98,
       "tygq13": 16
     }
   },
@@ -20045,364 +22126,364 @@
         "author": {
           "gitId": "kuromono"
         },
-        "content": "import com.fasterxml.jackson.dataformat.csv.CsvMapper;"
+        "content": "import com.fasterxml.jackson.databind.SerializationFeature;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "import com.fasterxml.jackson.dataformat.csv.CsvSchema;"
+        "content": "import com.fasterxml.jackson.dataformat.csv.CsvMapper;"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "import com.fasterxml.jackson.databind.ObjectReader;"
+        "content": "import com.fasterxml.jackson.dataformat.csv.CsvSchema;"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "import com.fasterxml.jackson.databind.MappingIterator;"
+        "content": "import com.fasterxml.jackson.databind.ObjectReader;"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "import cube.exception.CubeException;"
+        "content": "import com.fasterxml.jackson.databind.MappingIterator;"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "import cube.exception.CubeLoadingException;"
+        "content": "import cube.exception.CubeException;"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "kuromono"
         },
-        "content": ""
+        "content": "import cube.exception.CubeLoadingException;"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "import java.io.File;"
+        "content": ""
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "import java.io.IOException;"
+        "content": "import java.io.File;"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "import java.util.ArrayList;"
+        "content": "import java.io.IOException;"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "import java.util.Collection;"
+        "content": "import java.util.ArrayList;"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "kuromono"
         },
-        "content": ""
+        "content": "import java.util.Collection;"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "public class FileUtilCSV\u003cType\u003e extends FileUtil {"
+        "content": ""
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    private Type fileObject;"
+        "content": "public class FileUtilCSV\u003cType\u003e extends FileUtil {"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    private String fileFullPath;"
+        "content": "    private Type fileObject;"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    private File file;"
+        "content": "    private String fileFullPath;"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    private CsvMapper mapper;"
+        "content": "    private File file;"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "kuromono"
         },
-        "content": ""
+        "content": "    private CsvMapper mapper;"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "     * Constructor with two argument."
+        "content": "    /**"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "     *"
+        "content": "     * Constructor with two argument."
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "     * @param filePath the directory path where data will be stored."
+        "content": "     *"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "     */"
+        "content": "     * @param filePath the directory path where data will be stored."
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    public FileUtilCSV(String filePath, String fileName, Type fileObject) {"
+        "content": "     */"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "        super(filePath, fileName);"
+        "content": "    public FileUtilCSV(String filePath, String fileName, Type fileObject) {"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "        this.fileFullPath \u003d filePath + File.separator + fileName;"
+        "content": "        super(filePath, fileName);"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "        this.fileObject \u003d fileObject;"
+        "content": "        this.fileFullPath \u003d filePath + File.separator + fileName;"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "        this.file \u003d new File(fileFullPath);"
+        "content": "        this.fileObject \u003d fileObject;"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "        this.mapper \u003d new CsvMapper();"
+        "content": "        this.file \u003d new File(fileFullPath);"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    }"
+        "content": "        this.mapper \u003d new CsvMapper();"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "kuromono"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "     * Loads data from the CSV file to an ArrayList."
+        "content": "    /**"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "     *"
+        "content": "     * Loads data from the CSV file to an ArrayList."
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "     * @throws CubeException exception happens in reading from the data file."
+        "content": "     *"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "     */"
+        "content": "     * @throws CubeException exception happens in reading from the data file."
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    public ArrayList\u003cType\u003e load() throws CubeException {"
+        "content": "     */"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "        ArrayList\u003cType\u003e collectionToLoad \u003d new ArrayList\u003c\u003e();"
+        "content": "    public ArrayList\u003cType\u003e load() throws CubeException {"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "kuromono"
         },
-        "content": ""
+        "content": "        ArrayList\u003cType\u003e collectionToLoad \u003d new ArrayList\u003c\u003e();"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "        if (checkFileAvailable(fileFullPath)) {"
+        "content": ""
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "            System.out.println(\"Loading file from : \" + fileFullPath);"
+        "content": "        if (checkFileAvailable(fileFullPath)) {"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "            try {"
+        "content": "            System.out.println(\"Loading file from : \" + fileFullPath);"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "                CsvSchema schema \u003d CsvSchema.emptySchema().withHeader();"
+        "content": "            try {"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "                JavaType type \u003d mapper.getTypeFactory().constructType(fileObject.getClass());"
+        "content": "                CsvSchema schema \u003d CsvSchema.emptySchema().withHeader();"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "                ObjectReader reader \u003d mapper.readerFor(type).with(schema);"
+        "content": "                JavaType type \u003d mapper.getTypeFactory().constructType(fileObject.getClass());"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "kuromono"
         },
-        "content": ""
+        "content": "                ObjectReader reader \u003d mapper.readerFor(type).with(schema);"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "                MappingIterator\u003cType\u003e iterator \u003d reader.readValues(file);"
+        "content": ""
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "kuromono"
         },
-        "content": ""
+        "content": "                MappingIterator\u003cType\u003e iterator \u003d reader.readValues(file);"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "                while(iterator.hasNext()) {"
+        "content": ""
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "                    Type currentObject \u003d iterator.next();"
+        "content": "                while(iterator.hasNext()) {"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "                    collectionToLoad.add(currentObject);"
+        "content": "                    Type currentObject \u003d iterator.next();"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "                    System.out.println(currentObject.toString());"
+        "content": "                    collectionToLoad.add(currentObject);"
       },
       {
         "lineNumber": 61,
@@ -20563,45 +22644,52 @@
         "author": {
           "gitId": "kuromono"
         },
-        "content": "            mapper.writerFor(collectionToSave.getClass()).with(schema).writeValue(file, collectionToSave);"
+        "content": "            mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "        } catch (IOException e) {"
+        "content": "            mapper.writerFor(collectionToSave.getClass()).with(schema).writeValue(file, collectionToSave);"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "            e.printStackTrace();"
+        "content": "        } catch (IOException e) {"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "            throw new CubeLoadingException(fileFullPath);"
+        "content": "            e.printStackTrace();"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "        }"
+        "content": "            throw new CubeLoadingException(fileFullPath);"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "kuromono"
         },
-        "content": "    }"
+        "content": "        }"
       },
       {
         "lineNumber": 89,
+        "author": {
+          "gitId": "kuromono"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 90,
         "author": {
           "gitId": "kuromono"
         },
@@ -20609,7 +22697,7 @@
       }
     ],
     "authorContributionMap": {
-      "kuromono": 89
+      "kuromono": 90
     }
   },
   {

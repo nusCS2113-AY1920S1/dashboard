@@ -13093,7 +13093,7 @@
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": " * @version v1.0"
+        "content": " * @version v1.1"
       },
       {
         "lineNumber": 13,
@@ -13226,66 +13226,80 @@
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "        String newDescription \u003d editCommandParts[1].trim();"
+        "content": "        String newDescription;"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "        if (newDescription.isEmpty()) {"
+        "content": "        try {"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "            UiTemporary.printOutput(ChronologerException.emptyUserDescription());"
+        "content": "            newDescription \u003d editCommandParts[1].trim();"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "            logger.writeLog(EMPTY_DESCRIPTION, this.getClass().getName(), userInput);"
+        "content": "        } catch (ArrayIndexOutOfBoundsException e) {"
       },
       {
         "lineNumber": 35,
         "author": {
-          "gitId": "E0310898"
+          "gitId": "TanYiXiang"
         },
-        "content": "            throw new ChronologerException(ChronologerException.emptyUserDescription());"
+        "content": "            UiTemporary.printOutput(ChronologerException.emptyUserDescription());"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "        }"
+        "content": "            logger.writeLog(EMPTY_DESCRIPTION, this.getClass().getName(), userInput);"
       },
       {
         "lineNumber": 37,
         "author": {
-          "gitId": "TanYiXiang"
+          "gitId": "E0310898"
         },
-        "content": "        return newDescription;"
+        "content": "            throw new ChronologerException(ChronologerException.emptyUserDescription());"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "    }"
+        "content": "        }"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": ""
+        "content": "        return newDescription;"
       },
       {
         "lineNumber": 40,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 42,
         "author": {
           "gitId": "TanYiXiang"
         },
@@ -13294,7 +13308,7 @@
     ],
     "authorContributionMap": {
       "E0310898": 7,
-      "TanYiXiang": 33
+      "TanYiXiang": 35
     }
   },
   {
@@ -33128,77 +33142,77 @@
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "import org.junit.jupiter.api.Assertions;"
+        "content": "import chronologer.command.EditCommand;"
       },
       {
         "lineNumber": 2,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "import org.junit.jupiter.api.Test;"
+        "content": "import chronologer.exception.ChronologerException;"
       },
       {
         "lineNumber": 3,
         "author": {
-          "gitId": "E0310898"
+          "gitId": "TanYiXiang"
         },
-        "content": "import chronologer.task.Deadline;"
+        "content": "import chronologer.parser.ParserFactory;"
       },
       {
         "lineNumber": 4,
         "author": {
-          "gitId": "E0310898"
+          "gitId": "TanYiXiang"
         },
-        "content": "import chronologer.task.Task;"
+        "content": "import chronologer.storage.Storage;"
       },
       {
         "lineNumber": 5,
         "author": {
-          "gitId": "E0310898"
+          "gitId": "TanYiXiang"
         },
-        "content": "import chronologer.task.TaskList;"
+        "content": "import org.junit.jupiter.api.AfterAll;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": ""
+        "content": "import org.junit.jupiter.api.Assertions;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "import java.time.LocalDateTime;"
+        "content": "import org.junit.jupiter.api.BeforeAll;"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "import java.util.ArrayList;"
+        "content": "import org.junit.jupiter.api.Test;"
       },
       {
         "lineNumber": 9,
         "author": {
-          "gitId": "TanYiXiang"
+          "gitId": "E0310898"
         },
-        "content": ""
+        "content": "import chronologer.task.Deadline;"
       },
       {
         "lineNumber": 10,
         "author": {
-          "gitId": "TanYiXiang"
+          "gitId": "E0310898"
         },
-        "content": "public class EditCommandTest {"
+        "content": "import chronologer.task.Task;"
       },
       {
         "lineNumber": 11,
         "author": {
-          "gitId": "TanYiXiang"
+          "gitId": "E0310898"
         },
-        "content": "    private LocalDateTime testDate \u003d LocalDateTime.of(2, 2, 2, 2, 2, 2, 2);"
+        "content": "import chronologer.task.TaskList;"
       },
       {
         "lineNumber": 12,
@@ -33212,80 +33226,570 @@
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "    @Test"
+        "content": "import java.io.File;"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "    public void testEdit() {"
+        "content": "import java.time.LocalDateTime;"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "        Deadline testTask \u003d new Deadline(\"Minecraft\", testDate);"
+        "content": "import java.util.ArrayList;"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "        ArrayList\u003cTask\u003e test \u003d new ArrayList\u003c\u003e();"
+        "content": ""
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "        test.add(testTask);"
+        "content": ""
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "        TaskList testList \u003d new TaskList(test);"
+        "content": "/**"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "        testList.editTaskDescription(0, \"Roblox\");"
+        "content": " * Test class for edit commands."
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": ""
+        "content": " *"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "        test \u003d testList.getTasks();"
+        "content": " * @author Tan Yi Xiang"
       },
       {
         "lineNumber": 22,
         "author": {
-          "gitId": "hanskw4267"
+          "gitId": "TanYiXiang"
         },
-        "content": "        Assertions.assertEquals(test.get(0).getDescription(), \"Roblox\");"
+        "content": " * @version V1.0"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "    }"
+        "content": " */"
       },
       {
         "lineNumber": 24,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "class EditCommandTest {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "    private LocalDateTime testDate \u003d LocalDateTime.of(2, 2, 2, 2, 2, 2, 2);"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "    private static TaskList tasks;"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "    private static File file;"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "    private static Storage storage;"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "    @BeforeAll"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "    static void setup() {"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "        ArrayList\u003cTask\u003e testList \u003d new ArrayList\u003cTask\u003e();"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "        tasks \u003d new TaskList(testList);"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "        file \u003d new File(System.getProperty(\"user.dir\") + \"/src/test/PriorityList\");"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "        storage \u003d new Storage(file);"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "     * Test edit command basic functionality."
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "    void testEdit() throws ChronologerException {"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "        Task deadlineTest \u003d new Deadline(\"ABC\", LocalDateTime.of(2001, 1, 1, 1, 0));"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "        tasks.add(deadlineTest);"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "        EditCommand command \u003d new EditCommand(0, \"CDF\");"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "        command.execute(tasks, storage);"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "        Assertions.assertEquals(\"CDF\", deadlineTest.getDescription());"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "     * Test invalid inputs for edit commands."
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "    void testError() {"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "        Assertions.assertThrows(ChronologerException.class, () -\u003e {"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "            ParserFactory.parse(\"edit\");"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "        });"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "        Assertions.assertThrows(ChronologerException.class, () -\u003e {"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "            ParserFactory.parse((\"edit -1 New description\"));"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "        });"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "        Assertions.assertThrows(ChronologerException.class, () -\u003e {"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "            ParserFactory.parse((\"edit 1\"));"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "        });"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "        Assertions.assertThrows(ChronologerException.class, () -\u003e {"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "            EditCommand test \u003d new EditCommand(2, \"Foxtrot\");"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "            test.execute(tasks, storage);"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "        });"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "     * Test the task list edit function."
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "    void testTaskListEdit() {"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "        Deadline testTask \u003d new Deadline(\"Minecraft\", testDate);"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "        ArrayList\u003cTask\u003e test \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "        test.add(testTask);"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "        TaskList testList \u003d new TaskList(test);"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "        testList.editTaskDescription(0, \"Roblox\");"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "        test \u003d testList.getTasks();"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "        Assertions.assertEquals(test.get(0).getDescription(), \"Roblox\");"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "     * Ensure that file is deleted to prevent repetition related errors and preserve space."
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "    @AfterAll"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "    static void teardownSetup() {"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "        assert file.delete();"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 94,
         "author": {
           "gitId": "TanYiXiang"
         },
@@ -33295,7 +33799,7 @@
     "authorContributionMap": {
       "E0310898": 3,
       "hanskw4267": 1,
-      "TanYiXiang": 20
+      "TanYiXiang": 90
     }
   },
   {
@@ -33307,42 +33811,42 @@
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "import chronologer.task.Event;"
+        "content": "import chronologer.exception.ChronologerException;"
       },
       {
         "lineNumber": 2,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "import chronologer.task.Priority;"
+        "content": "import chronologer.parser.ParserFactory;"
       },
       {
         "lineNumber": 3,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "import org.junit.jupiter.api.Assertions;"
+        "content": "import chronologer.task.Event;"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "import org.junit.jupiter.api.Test;"
+        "content": "import chronologer.task.Priority;"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": ""
+        "content": "import org.junit.jupiter.api.Assertions;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "import java.time.LocalDateTime;"
+        "content": "import org.junit.jupiter.api.Test;"
       },
       {
         "lineNumber": 7,
@@ -33356,423 +33860,486 @@
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": ""
+        "content": "import java.time.LocalDateTime;"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "/**"
+        "content": ""
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": " * Basic unit test for Event tasks."
+        "content": ""
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": " *"
+        "content": "/**"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": " * @author Tan Yi Xiang"
+        "content": " * Basic unit test for Event tasks."
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": " * @version 1.0"
+        "content": " *"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": " */"
+        "content": " * @author Tan Yi Xiang"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "public class EventTest {"
+        "content": " * @version 1.0"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": ""
+        "content": " */"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "    private static final String EVENT \u003d \"EVENT\";"
+        "content": "class EventTest {"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "    private LocalDateTime fromDate \u003d LocalDateTime.of(2001, 1, 1, 1, 0);"
+        "content": ""
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "    private LocalDateTime toDate \u003d LocalDateTime.of(2001, 2, 2, 1, 0);"
+        "content": "    private static final String EVENT \u003d \"EVENT\";"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "    private Event event \u003d new Event(\"Test event\", fromDate, toDate);"
+        "content": "    private LocalDateTime fromDate \u003d LocalDateTime.of(2001, 1, 1, 1, 0);"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": ""
+        "content": "    private LocalDateTime toDate \u003d LocalDateTime.of(2001, 2, 2, 1, 0);"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "    @Test"
+        "content": "    private Event event \u003d new Event(\"Test event\", fromDate, toDate);"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "    void testEventCreation() {"
+        "content": ""
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "        String title \u003d event.getDescription();"
+        "content": "    @Test"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "        LocalDateTime startDate \u003d event.getStartDate();"
+        "content": "    void testEventCreation() {"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "        LocalDateTime endDate \u003d event.getEndDate();"
+        "content": "        String title \u003d event.getDescription();"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "        Assertions.assertEquals(title, \"Test event\");"
+        "content": "        LocalDateTime startDate \u003d event.getStartDate();"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "        Assertions.assertEquals(startDate, fromDate);"
+        "content": "        LocalDateTime endDate \u003d event.getEndDate();"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "        Assertions.assertEquals(EVENT, event.getType());"
+        "content": "        Assertions.assertEquals(title, \"Test event\");"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "        Assertions.assertEquals(endDate, toDate);"
+        "content": "        Assertions.assertEquals(startDate, fromDate);"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "        Assertions.assertEquals(event.toString(),"
+        "content": "        Assertions.assertEquals(EVENT, event.getType());"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "            \"[\\u2605\\u2605][E][\\u2718] Test event(at: 01/01/2001 0100-02/02/2001 0100)\");//Test"
+        "content": "        Assertions.assertEquals(endDate, toDate);"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "    }"
+        "content": "        Assertions.assertEquals(event.toString(),"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": ""
+        "content": "            \"[\\u2605\\u2605][E][\\u2718] Test event(at: 01/01/2001 0100-02/02/2001 0100)\");//Test"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "    @Test"
+        "content": "    }"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "    void testEventEditing() {"
+        "content": ""
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "        event.setIgnored(true);"
+        "content": "    @Test"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "        Assertions.assertTrue(event.isIgnored());"
+        "content": "    void testEventEditing() {"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "        event.setIgnored(false);"
+        "content": "        event.setIgnored(true);"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "        Assertions.assertFalse(event.isIgnored());"
+        "content": "        Assertions.assertTrue(event.isIgnored());"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": ""
+        "content": "        event.setIgnored(false);"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "        event.setDone(true);"
+        "content": "        Assertions.assertFalse(event.isIgnored());"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "        Assertions.assertTrue(event.isDone());"
+        "content": ""
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "        event.setDone(false);"
+        "content": "        event.setDone(true);"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "        Assertions.assertFalse(event.isDone());"
+        "content": "        Assertions.assertTrue(event.isDone());"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": ""
+        "content": "        event.setDone(false);"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "        Priority priority \u003d Priority.getPriorityLevel(\"HIGH\");"
+        "content": "        Assertions.assertFalse(event.isDone());"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "        event.setPriority(priority);"
+        "content": ""
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "        Assertions.assertEquals(event.toString(),"
+        "content": "        Priority priority \u003d Priority.getPriorityLevel(\"HIGH\");"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "            \"[\\u2605\\u2605\\u2605][E][\\u2718] Test event(at: 01/01/2001 0100-02/02/2001 0100)\");//Test"
+        "content": "        event.setPriority(priority);"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": ""
+        "content": "        Assertions.assertEquals(event.toString(),"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "        String comment \u003d \"This is a test\";"
+        "content": "            \"[\\u2605\\u2605\\u2605][E][\\u2718] Test event(at: 01/01/2001 0100-02/02/2001 0100)\");//Test"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "        event.setComment(comment);"
+        "content": ""
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "        Assertions.assertEquals(comment, event.getComment());"
+        "content": "        String comment \u003d \"This is a test\";"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "    }"
+        "content": "        event.setComment(comment);"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": ""
+        "content": "        Assertions.assertEquals(comment, event.getComment());"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "    @Test"
+        "content": "    }"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "    void testEventPostponement() {"
+        "content": ""
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "        LocalDateTime newFromDate \u003d LocalDateTime.of(2003, 1, 1, 1, 0);"
+        "content": "    @Test"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "        LocalDateTime newEndDate \u003d LocalDateTime.of(2003, 2, 2, 2, 0);"
+        "content": "    void testEventPostponement() {"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": ""
+        "content": "        LocalDateTime newFromDate \u003d LocalDateTime.of(2003, 1, 1, 1, 0);"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "        event.setStartDate(newFromDate);"
+        "content": "        LocalDateTime newEndDate \u003d LocalDateTime.of(2003, 2, 2, 2, 0);"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "        event.setEndDate(newEndDate);"
+        "content": ""
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "        Assertions.assertEquals(event.toString(),"
+        "content": "        event.setStartDate(newFromDate);"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "            \"[\\u2605\\u2605][E][\\u2718] Test event(at: 01/01/2003 0100-02/02/2003 0200)\");//Test"
+        "content": "        event.setEndDate(newEndDate);"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "    }"
+        "content": "        Assertions.assertEquals(event.toString(),"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": ""
+        "content": "            \"[\\u2605\\u2605][E][\\u2718] Test event(at: 01/01/2003 0100-02/02/2003 0200)\");//Test"
       },
       {
         "lineNumber": 68,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "    void whenExceptionThrown() {"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "        Assertions.assertThrows(ChronologerException.class, () -\u003e {"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "            ParserFactory.parse(\"event\");"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "        });"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 77,
         "author": {
           "gitId": "TanYiXiang"
         },
@@ -33780,7 +34347,7 @@
       }
     ],
     "authorContributionMap": {
-      "TanYiXiang": 68
+      "TanYiXiang": 77
     }
   },
   {
@@ -34380,6 +34947,638 @@
       "E0310898": 11,
       "hanskw4267": 1,
       "fauzt": 72
+    }
+  },
+  {
+    "path": "src/test/java/PriorityCommandTest.java",
+    "fileType": "tests",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "import chronologer.command.PriorityCommand;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "import chronologer.exception.ChronologerException;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "import chronologer.parser.ParserFactory;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "import chronologer.storage.Storage;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "import chronologer.task.Deadline;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "import chronologer.task.Priority;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "import chronologer.task.Task;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "import chronologer.task.TaskList;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "import org.junit.jupiter.api.AfterAll;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "import org.junit.jupiter.api.Assertions;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "import org.junit.jupiter.api.BeforeAll;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "import org.junit.jupiter.api.Test;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "import java.io.File;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "import java.time.LocalDateTime;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": " * Test class for priority commands."
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": " * @author Tan Yi Xiang"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": " * @version V1.0"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "class PriorityCommandTest {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "    private static TaskList tasks;"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "    private static File file;"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "    private static Storage storage;"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "    @BeforeAll"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "    static void setup() {"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "        ArrayList\u003cTask\u003e testList \u003d new ArrayList\u003cTask\u003e();"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "        tasks \u003d new TaskList(testList);"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "        file \u003d new File(System.getProperty(\"user.dir\") + \"/src/test/PriorityList\");"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "        storage \u003d new Storage(file);"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "     * Test whether priority function works for corresponding strings regardless of cases."
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "     * Also test default priority value."
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "    void testPriority() throws ChronologerException {"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "        Task deadlineTest \u003d new Deadline(\"ABC\", LocalDateTime.of(2001, 1, 1, 1, 0));"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "        tasks.add(deadlineTest);"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "        Assertions.assertEquals(deadlineTest.getPriority(), Priority.MEDIUM);"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "        PriorityCommand command \u003d new PriorityCommand(0, \"HIGH\");"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "        command.execute(tasks, storage);"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "        Assertions.assertEquals(deadlineTest.getPriority(), Priority.HIGH);"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "        command \u003d new PriorityCommand(0, \"MedIum\");"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "        command.execute(tasks, storage);"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "        Assertions.assertEquals(deadlineTest.getPriority(), Priority.MEDIUM);"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "        command \u003d new PriorityCommand(0, \"low\");"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "        command.execute(tasks, storage);"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "        Assertions.assertEquals(deadlineTest.getPriority(), Priority.LOW);"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "     * Test invalid inputs for priority related commands."
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "    void testError() {"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "        Assertions.assertThrows(ChronologerException.class, () -\u003e {"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "            ParserFactory.parse(\"priority\");"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "        });"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "        Assertions.assertThrows(ChronologerException.class, () -\u003e {"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "            ParserFactory.parse((\"priority -1 low\"));"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "        });"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "        Assertions.assertThrows(ChronologerException.class, () -\u003e {"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "            PriorityCommand test \u003d new PriorityCommand(0, \"Gibberish\");"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "            test.execute(tasks, storage);"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "        });"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "     * Ensure that file is deleted to prevent repetition related errors and preserve space."
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "    @AfterAll"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "    static void teardownSetup() {"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "        assert file.delete();"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "TanYiXiang": 89
     }
   },
   {
