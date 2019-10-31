@@ -2040,47 +2040,68 @@
       {
         "lineNumber": 44,
         "author": {
-          "gitId": "JOSHTAM"
+          "gitId": "jinwentay"
         },
-        "content": "                storage.saveExpenditureToFile(newExpenditure, categoryName);"
+        "content": "                Category cat \u003d categoryList.get(i);"
       },
       {
         "lineNumber": 45,
         "author": {
-          "gitId": "JOSHTAM"
+          "gitId": "jinwentay"
         },
-        "content": "                ui.showNewExpenditureMessage(expenditureName, categoryName);"
+        "content": "                NotificationCommand alert \u003d new NotificationCommand(categoryName, cat.getCategoryMonthTotal());"
       },
       {
         "lineNumber": 46,
         "author": {
-          "gitId": "JOSHTAM"
+          "gitId": "jinwentay"
         },
-        "content": "            }"
+        "content": "                alert.execute(calendar, budget, categoryList, category, ui, storage);"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "JOSHTAM"
         },
-        "content": "        }"
+        "content": "                storage.saveExpenditureToFile(newExpenditure, categoryName);"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "JOSHTAM"
         },
-        "content": "    }"
+        "content": "                ui.showNewExpenditureMessage(expenditureName, categoryName);"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "JOSHTAM"
         },
-        "content": "}"
+        "content": "            }"
       },
       {
         "lineNumber": 50,
+        "author": {
+          "gitId": "JOSHTAM"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "JOSHTAM"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "JOSHTAM"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 53,
         "author": {
           "gitId": "JOSHTAM"
         },
@@ -2089,7 +2110,7 @@
     ],
     "authorContributionMap": {
       "JOSHTAM": 49,
-      "jinwentay": 1
+      "jinwentay": 4
     }
   },
   {
@@ -5215,6 +5236,302 @@
       "Greatnest": 1,
       "jinwentay": 2,
       "shannonlee98": 16
+    }
+  },
+  {
+    "path": "src/main/java/moomoo/command/NotificationCommand.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "jinwentay"
+        },
+        "content": "package moomoo.command;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "jinwentay"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "jinwentay"
+        },
+        "content": "import moomoo.task.Budget;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "jinwentay"
+        },
+        "content": "import moomoo.task.Category;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "jinwentay"
+        },
+        "content": "import moomoo.task.CategoryList;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "jinwentay"
+        },
+        "content": "import moomoo.task.MooMooException;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "jinwentay"
+        },
+        "content": "import moomoo.task.ScheduleList;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "jinwentay"
+        },
+        "content": "import moomoo.task.Storage;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "jinwentay"
+        },
+        "content": "import moomoo.task.Ui;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "jinwentay"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "jinwentay"
+        },
+        "content": "public class NotificationCommand extends Command {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "jinwentay"
+        },
+        "content": "    private String cat;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "jinwentay"
+        },
+        "content": "    private double expenditure;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "jinwentay"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "jinwentay"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "jinwentay"
+        },
+        "content": "     * Alerts user if user exceeded the budget."
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "jinwentay"
+        },
+        "content": "     * @param cat The name of the category that user just added his expenditure to."
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "jinwentay"
+        },
+        "content": "     * @param expenditure The total current expenditure of that category."
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "jinwentay"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "jinwentay"
+        },
+        "content": "    public NotificationCommand(String cat, double expenditure) {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "jinwentay"
+        },
+        "content": "        super(false, \"\");"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "jinwentay"
+        },
+        "content": "        this.cat \u003d cat;"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "jinwentay"
+        },
+        "content": "        this.expenditure \u003d expenditure;"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "jinwentay"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "jinwentay"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "jinwentay"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "jinwentay"
+        },
+        "content": "    public void execute(ScheduleList calendar, Budget budget, CategoryList catList, Category category,"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "jinwentay"
+        },
+        "content": "                        Ui ui, Storage storage) throws MooMooException {"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "jinwentay"
+        },
+        "content": "        String alert \u003d \"\";"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "jinwentay"
+        },
+        "content": "        if (expenditure \u003e budget.getBudgetFromCategory(cat)) {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "jinwentay"
+        },
+        "content": "            alert \u003d \"You have exceeded your budget of \" + budget.getBudgetFromCategory(cat) + \" for \" + cat + \"!\\n\";"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "jinwentay"
+        },
+        "content": "        } else if (expenditure \u003d\u003d budget.getBudgetFromCategory(cat)) {"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "jinwentay"
+        },
+        "content": "            alert \u003d \"You have reached your budget limit of \" + budget.getBudgetFromCategory(cat) + \".\\n\";"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "jinwentay"
+        },
+        "content": "        } else if (expenditure \u003e budget.getBudgetFromCategory(cat) * 0.9) {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "jinwentay"
+        },
+        "content": "            alert \u003d \"You are reaching your budget limit of \" + budget.getBudgetFromCategory(cat) + \" for \" + cat"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "jinwentay"
+        },
+        "content": "                    + \".\\n\";"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "jinwentay"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "jinwentay"
+        },
+        "content": "        double balance \u003d budget.getBudgetFromCategory(cat) - expenditure;"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "jinwentay"
+        },
+        "content": "        ui.setOutput(alert + \"Budget remaining \u003d \" + balance);"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "jinwentay"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "jinwentay"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "jinwentay": 41
     }
   },
   {
@@ -12088,43 +12405,6 @@
     ],
     "authorContributionMap": {
       "Greatnest": 10
-    }
-  },
-  {
-    "path": "src/main/java/moomoo/task/Notification.java",
-    "fileType": "functional",
-    "lines": [
-      {
-        "lineNumber": 1,
-        "author": {
-          "gitId": "jinwentay"
-        },
-        "content": "package moomoo.task;"
-      },
-      {
-        "lineNumber": 2,
-        "author": {
-          "gitId": "jinwentay"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 3,
-        "author": {
-          "gitId": "jinwentay"
-        },
-        "content": "public class Notification {"
-      },
-      {
-        "lineNumber": 4,
-        "author": {
-          "gitId": "jinwentay"
-        },
-        "content": "}"
-      }
-    ],
-    "authorContributionMap": {
-      "jinwentay": 4
     }
   },
   {
