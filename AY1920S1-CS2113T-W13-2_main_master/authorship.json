@@ -3588,7 +3588,7 @@
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    public void clearQueries() {"
+        "content": "    private void clearQueries() {"
       },
       {
         "lineNumber": 264,
@@ -5747,112 +5747,112 @@
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        //File file \u003d new File(defaultDirectoryPath + defaultFileName);"
+        "content": "        Storage.generateFolder(new File(\"data/notes/\"));"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        Storage.generateFolder(new File(\"data/notes/\"));"
+        "content": "        checksValidityOfCommand(inputCommand);"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        processCreateNoteCommand(inputCommand);"
+        "content": "    }"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    /**"
+        "content": "     * Creates a file based on auto-generated file name, if no parameter is given."
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * If inputCommand has no parameter, command will create a file based on auto-generated file name."
+        "content": "     * Checks if auto-generated file name exist."
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * Auto-generation is done by checking if file containing the defaultFileName exists."
+        "content": "     * Concatenates defaultFileName with number if file name already exists."
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * If it exists, number starting from \u00271\u0027 will be concatenated to the defaultFileName."
+        "content": "     * Checks if specified file name is valid if inputCommand has a parameter."
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * If inputCommand has a parameter, command checks if specified file name is valid."
+        "content": "     * Creates file if specified file name is valid."
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * Creates file if specified file name is valid."
+        "content": "     * @param inputCommand Input Command from the user to create note."
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * @param inputCommand Input Command from the user to create note."
+        "content": "     * @throws CakeException If the input command is invalid."
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * @throws CakeException If the input command is invalid."
+        "content": "     */"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     */"
+        "content": "    private void checksValidityOfCommand(String inputCommand) throws CakeException {"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    private void processCreateNoteCommand(String inputCommand) throws CakeException {"
+        "content": "        String bySpaces \u003d \"\\\\s+\";"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        String[] wordsInInputCommand \u003d inputCommand.split(\"\\\\s+\");"
+        "content": "        String[] wordsInInputCommand \u003d inputCommand.split(bySpaces);"
       },
       {
         "lineNumber": 45,
@@ -5873,752 +5873,1039 @@
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            if (!containsIllegals(wordsInInputCommand[1])) {"
+        "content": "            String userSpecifiedFileName \u003d wordsInInputCommand[1];"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "                userGivenFileName \u003d wordsInInputCommand[1];"
+        "content": "            checksForIllegalCharacters(userSpecifiedFileName);"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            } else {"
+        "content": "        } else if (validCommandWithNoSpecifiedFileName(inputCommand)) {"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "                throw new CakeException(\"Invalid file name: Illegal character in file name detected!\");"
+        "content": "            generateFileName();"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            }"
+        "content": "        } else {"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        } else if (validCommandWithNoSpecifiedFileName(inputCommand)) {"
+        "content": "            throw new CakeException(\"Invalid command: To write notes, \""
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            while (checkNotesFileExist(defaultDirectoryPath + userGivenFileName + \".txt\")) {"
+        "content": "                    + \"type \u0027createnote\u0027 followed by desired (optional) filename.\");"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "                generateNewDefaultFileName();"
+        "content": "        }"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            }"
+        "content": "    }"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        } else {"
+        "content": ""
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            throw new CakeException(\"Invalid command: To write notes, \""
+        "content": "    /**"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "                    + \"type \u0027createnote\u0027 followed by desired (optional) filename.\");"
+        "content": "     * Generates new unique file name to create new file."
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        }"
+        "content": "     */"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    }"
+        "content": "    private void generateFileName() {"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": ""
+        "content": "        while (noteFileAlreadyExist(defaultDirectoryPath + userGivenFileName + \".txt\")) {"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    /**"
+        "content": "            generateNewDefaultFileName();"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * Checks if CreateNoteCommand has a specified file name."
+        "content": "        }"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * @param inputCommand Input Command from the user to create note."
+        "content": "    }"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * @return True if CreateNoteCommand has a specified file name."
+        "content": ""
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     */"
+        "content": "    /**"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    private boolean createNoteCommandHasSpecifiedFileName(String inputCommand) {"
+        "content": "     * Checks if file name contains illegal characters."
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        String[] wordsInInputCommand \u003d inputCommand.split(\"\\\\s+\");"
+        "content": "     * @param fileName Name of the file."
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        if (wordsInInputCommand.length \u003d\u003d 2 \u0026\u0026 wordsInInputCommand[0].equals(\"createnote\")) {"
+        "content": "     * @throws CakeException If file name contains illegal characters."
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            return true;"
+        "content": "     */"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        }"
+        "content": "    private void checksForIllegalCharacters(String fileName) throws CakeException {"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        return false;"
+        "content": "        if (noIllegalCharacters(fileName)) {"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    }"
+        "content": "            userGivenFileName \u003d fileName;"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": ""
+        "content": "        } else {"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    /**"
+        "content": "            throw new CakeException(\"Invalid file name: Illegal character in file name detected!\");"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * Checks if CreateNoteCommand with no parameter is valid."
+        "content": "        }"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * @param inputCommand Input Command from the user to create note."
+        "content": "    }"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * @return True if CreateNoteCommand with no parameter is valid."
+        "content": ""
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     */"
+        "content": "    /**"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    private boolean validCommandWithNoSpecifiedFileName(String inputCommand) {"
+        "content": "     * Checks if CreateNoteCommand has a specified file name."
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        String[] wordsInInputCommand \u003d inputCommand.split(\"\\\\s+\");"
+        "content": "     * @param inputCommand Input Command from the user to create note."
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        if (wordsInInputCommand.length \u003d\u003d 1 \u0026\u0026 wordsInInputCommand[0].equals(\"createnote\")) {"
+        "content": "     * @return True if CreateNoteCommand has a specified file name."
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            return true;"
+        "content": "     */"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        }"
+        "content": "    private boolean createNoteCommandHasSpecifiedFileName(String inputCommand) {"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        return false;"
+        "content": "        String bySpaces \u003d \"\\\\s+\";"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    }"
+        "content": "        String[] wordsInInputCommand \u003d inputCommand.split(bySpaces);"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": ""
+        "content": "        if (wordsInInputCommand.length \u003d\u003d 2) {"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    /**"
+        "content": "            return true;"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * Checks if the input file name contains any illegal characters."
+        "content": "        }"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * @param inputFileName Specified file name by user."
+        "content": "        return false;"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * @return True if file name does not contains illegal characters."
+        "content": "    }"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     */"
+        "content": ""
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    public static boolean containsIllegals(String inputFileName) {"
+        "content": "    /**"
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        for (char illegalChar : ILLEGAL_CHARACTERS) {"
+        "content": "     * Checks if CreateNoteCommand with no parameter is valid."
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            if (inputFileName.indexOf(illegalChar) \u003e\u003d 0) {"
+        "content": "     * @param inputCommand Input Command from the user to create note."
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "                return true;"
+        "content": "     * @return True if CreateNoteCommand with no parameter is valid."
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            }"
+        "content": "     */"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        }"
+        "content": "    private boolean validCommandWithNoSpecifiedFileName(String inputCommand) {"
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        return false;"
+        "content": "        String[] wordsInInputCommand \u003d inputCommand.split(\"\\\\s+\");"
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": ""
+        "content": "        if (wordsInInputCommand.length \u003d\u003d 1) {"
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    /**"
+        "content": "            return true;"
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * Generates file name for user."
+        "content": "        }"
       },
       {
         "lineNumber": 104,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * Generated by concatenating number to defaultFileName."
+        "content": "        return false;"
       },
       {
         "lineNumber": 105,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     */"
+        "content": "    }"
       },
       {
         "lineNumber": 106,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    private void generateNewDefaultFileName() {"
+        "content": ""
       },
       {
         "lineNumber": 107,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        userGivenFileName \u003d defaultFileName + defaultFileNameCounter;"
+        "content": "    /**"
       },
       {
         "lineNumber": 108,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        defaultFileNameCounter++;"
+        "content": "     * Checks if the input file name contains any illegal characters."
       },
       {
         "lineNumber": 109,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    }"
+        "content": "     * @param inputFileName Specified file name by user."
       },
       {
         "lineNumber": 110,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": ""
+        "content": "     * @return True if file name does not contains illegal characters."
       },
       {
         "lineNumber": 111,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    /**"
+        "content": "     */"
       },
       {
         "lineNumber": 112,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * Checks if file name already exists."
+        "content": "    public static boolean noIllegalCharacters(String inputFileName) {"
       },
       {
         "lineNumber": 113,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * If file name does not exist, create note for user."
+        "content": "        for (char illegalChar : ILLEGAL_CHARACTERS) {"
       },
       {
         "lineNumber": 114,
         "author": {
-          "gitId": "RusdiHaizim"
+          "gitId": "GlenWong97"
         },
-        "content": "     * @param logic TaskList containing current tasks"
+        "content": "            if (containsIllegal(inputFileName, illegalChar)) {"
       },
       {
         "lineNumber": 115,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * @param ui the Ui responsible for outputting messages"
+        "content": "                return false;"
       },
       {
         "lineNumber": 116,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "     * @param storageManager storage container"
-      },
-      {
-        "lineNumber": 117,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "     * @return Message when note is created successfully."
-      },
-      {
-        "lineNumber": 118,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "     * @throws CakeException If file does not exists."
-      },
-      {
-        "lineNumber": 119,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 120,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "    @Override"
-      },
-      {
-        "lineNumber": 121,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "    public String execute(Logic logic, Ui ui, StorageManager storageManager) throws CakeException {"
-      },
-      {
-        "lineNumber": 122,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "        try {"
-      },
-      {
-        "lineNumber": 123,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            StringBuilder sb \u003d new StringBuilder();"
-      },
-      {
-        "lineNumber": 124,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            sb.append(userGivenFileName).append(\".txt\");"
-      },
-      {
-        "lineNumber": 125,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            String formattedFileName \u003d sb.toString();"
-      },
-      {
-        "lineNumber": 126,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            sb.insert(0, defaultDirectoryPath);"
-      },
-      {
-        "lineNumber": 127,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            String newFilePath \u003d sb.toString();"
-      },
-      {
-        "lineNumber": 128,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            //System.out.println(newFilePath);"
-      },
-      {
-        "lineNumber": 129,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            if (checkNotesFileExist(newFilePath)) {"
-      },
-      {
-        "lineNumber": 130,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                throw new CakeException(\"File already exists, please type \u0027editnote \""
-      },
-      {
-        "lineNumber": 131,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                        + formattedFileName + \"\u0027 to edit the file instead\");"
-      },
-      {
-        "lineNumber": 132,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            } else  {"
-      },
-      {
-        "lineNumber": 133,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                File file \u003d new File(newFilePath);"
-      },
-      {
-        "lineNumber": 134,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                if (!file.createNewFile()) {"
-      },
-      {
-        "lineNumber": 135,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                    throw new CakeException(\"File \u0027\" + formattedFileName + \"\u0027 was not created! Pls try again!\");"
-      },
-      {
-        "lineNumber": 136,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 137,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                return \"File \u0027\" + formattedFileName + \"\u0027has been created successfully!\\n\";"
-      },
-      {
-        "lineNumber": 138,
         "author": {
           "gitId": "GlenWong97"
         },
         "content": "            }"
       },
       {
-        "lineNumber": 139,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "        } catch (IOException e) {"
-      },
-      {
-        "lineNumber": 140,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            throw new CakeException(e.getMessage());"
-      },
-      {
-        "lineNumber": 141,
+        "lineNumber": 117,
         "author": {
           "gitId": "GlenWong97"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 142,
+        "lineNumber": 118,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": ""
+        "content": "        return true;"
       },
       {
-        "lineNumber": 143,
+        "lineNumber": 119,
         "author": {
           "gitId": "GlenWong97"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 144,
+        "lineNumber": 120,
         "author": {
           "gitId": "GlenWong97"
         },
         "content": ""
       },
       {
-        "lineNumber": 145,
+        "lineNumber": 121,
         "author": {
           "gitId": "GlenWong97"
         },
         "content": "    /**"
       },
       {
-        "lineNumber": 146,
+        "lineNumber": 122,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * Checks if file specified in file path exists."
+        "content": "     * Checks if file name contains illegal characters."
       },
       {
-        "lineNumber": 147,
+        "lineNumber": 123,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * @param filePath Path to the file to be created."
+        "content": "     * @param inputFileName Name of input file."
       },
       {
-        "lineNumber": 148,
+        "lineNumber": 124,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * @return True if file already exists."
+        "content": "     * @param illegalChar Characters that are not allowed in file name."
       },
       {
-        "lineNumber": 149,
+        "lineNumber": 125,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "     * @return True if file name contains illegal character."
+      },
+      {
+        "lineNumber": 126,
         "author": {
           "gitId": "GlenWong97"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 150,
+        "lineNumber": 127,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    private boolean checkNotesFileExist(String filePath) {"
+        "content": "    private static boolean containsIllegal(String inputFileName, char illegalChar) {"
       },
       {
-        "lineNumber": 151,
+        "lineNumber": 128,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        File tempFile \u003d new File(filePath);"
+        "content": "        return inputFileName.indexOf(illegalChar) \u003e\u003d 0;"
       },
       {
-        "lineNumber": 152,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "        return tempFile.exists();"
-      },
-      {
-        "lineNumber": 153,
+        "lineNumber": 129,
         "author": {
           "gitId": "GlenWong97"
         },
         "content": "    }"
       },
       {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "     * Generates file name for user."
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "     * Generated by concatenating number to defaultFileName."
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    private void generateNewDefaultFileName() {"
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        userGivenFileName \u003d defaultFileName + defaultFileNameCounter;"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        defaultFileNameCounter++;"
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "     * Checks if file name already exists."
+      },
+      {
+        "lineNumber": 142,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "     * If file name does not exist, create note for user."
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "     * @param logic TaskList containing current tasks"
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "     * @param ui the Ui responsible for outputting messages"
+      },
+      {
+        "lineNumber": 145,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "     * @param storageManager storage container"
+      },
+      {
+        "lineNumber": 146,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "     * @return Message when note is created successfully."
+      },
+      {
+        "lineNumber": 147,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "     * @throws CakeException If file does not exists."
+      },
+      {
+        "lineNumber": 148,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 149,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 150,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    public String execute(Logic logic, Ui ui, StorageManager storageManager) throws CakeException {"
+      },
+      {
+        "lineNumber": 151,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        StringBuilder sb \u003d new StringBuilder();"
+      },
+      {
+        "lineNumber": 152,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        sb.append(userGivenFileName).append(\".txt\");"
+      },
+      {
+        "lineNumber": 153,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        String formattedFileName \u003d sb.toString();"
+      },
+      {
         "lineNumber": 154,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        sb.insert(0, defaultDirectoryPath);"
+      },
+      {
+        "lineNumber": 155,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        String newFilePath \u003d sb.toString();"
+      },
+      {
+        "lineNumber": 156,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 157,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        if (noteFileAlreadyExist(newFilePath)) {"
+      },
+      {
+        "lineNumber": 158,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            String errorMessage \u003d \"File already exists, please type \u0027editnote \""
+      },
+      {
+        "lineNumber": 159,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                    + formattedFileName + \"\u0027 to edit the file instead\";"
+      },
+      {
+        "lineNumber": 160,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            throw new CakeException(errorMessage);"
+      },
+      {
+        "lineNumber": 161,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 162,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            File file \u003d new File(newFilePath);"
+      },
+      {
+        "lineNumber": 163,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            createFile(file, formattedFileName);"
+      },
+      {
+        "lineNumber": 164,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            return \"File \u0027\" + formattedFileName + \"\u0027has been created successfully!\\n\";"
+      },
+      {
+        "lineNumber": 165,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 166,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 167,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 168,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 169,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 170,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "     * Creates file using given file name."
+      },
+      {
+        "lineNumber": 171,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "     * Verifies if file creation is successful."
+      },
+      {
+        "lineNumber": 172,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "     * @param file File to be created as note."
+      },
+      {
+        "lineNumber": 173,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "     * @param formattedFileName Formatted file name used for new file."
+      },
+      {
+        "lineNumber": 174,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "     * @throws CakeException If file creation is unsuccessful."
+      },
+      {
+        "lineNumber": 175,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 176,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    private void createFile(File file, String formattedFileName) throws CakeException {"
+      },
+      {
+        "lineNumber": 177,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 178,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            if (!file.createNewFile()) {"
+      },
+      {
+        "lineNumber": 179,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                throw new CakeException(\"File \u0027\" + formattedFileName + \"\u0027 was not created! Pls try again!\");"
+      },
+      {
+        "lineNumber": 180,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 181,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 182,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            throw new CakeException(e.getMessage());"
+      },
+      {
+        "lineNumber": 183,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 184,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 185,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 186,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 187,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "     * Checks if file specified in file path exists."
+      },
+      {
+        "lineNumber": 188,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "     * @param filePath Path to the file to be created."
+      },
+      {
+        "lineNumber": 189,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "     * @return True if file already exists."
+      },
+      {
+        "lineNumber": 190,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 191,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    private boolean noteFileAlreadyExist(String filePath) {"
+      },
+      {
+        "lineNumber": 192,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        File tempFile \u003d new File(filePath);"
+      },
+      {
+        "lineNumber": 193,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        return tempFile.exists();"
+      },
+      {
+        "lineNumber": 194,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 195,
         "author": {
           "gitId": "GlenWong97"
         },
@@ -6626,7 +6913,7 @@
       }
     ],
     "authorContributionMap": {
-      "GlenWong97": 151,
+      "GlenWong97": 192,
       "RusdiHaizim": 3
     }
   },
@@ -7195,633 +7482,759 @@
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    /**"
+        "content": "    private static final char[] ILLEGAL_CHARACTERS \u003d { \u0027/\u0027, \u0027\\n\u0027, \u0027\\r\u0027, \u0027\\t\u0027,"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * Constructor for DeleteNoteCommand."
+        "content": "        \u0027\\0\u0027, \u0027\\f\u0027, \u0027`\u0027, \u0027?\u0027, \u0027*\u0027, \u0027\\\\\u0027, \u0027\u003c\u0027, \u0027\u003e\u0027, \u0027|\u0027, \u0027\\\"\u0027, \u0027:\u0027, \u0027.\u0027, \u0027,\u0027};"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * Command used to delete a specific existing notes."
+        "content": ""
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * @param inputCommand Command input from the user."
+        "content": ""
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * @throws CakeException If user does not input parameter."
+        "content": "    /**"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     */"
+        "content": "     * Constructor for DeleteNoteCommand."
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    public DeleteNoteCommand(String inputCommand) throws CakeException {"
+        "content": "     * Command used to delete a specific existing notes."
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        try {"
+        "content": "     * @param inputCommand Command input from the user."
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            String[] parametersInCommand \u003d inputCommand.split(\"\\\\s+\");"
+        "content": "     * @throws CakeException If user does not input parameter."
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            String inputFileName \u003d parametersInCommand[1];"
+        "content": "     */"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            processFile(inputFileName);"
+        "content": "    public DeleteNoteCommand(String inputCommand) throws CakeException {"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            type \u003d CmdType.DELETENOTE;"
+        "content": "        try {"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        } catch (NullPointerException e) {"
+        "content": "            String[] parametersInCommand \u003d inputCommand.split(\"\\\\s+\");"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            throw new CakeException(e.getMessage());"
+        "content": "            String inputFileName \u003d parametersInCommand[1];"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        }"
+        "content": "            processFile(inputFileName);"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    }"
+        "content": "            type \u003d CmdType.DELETENOTE;"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": ""
+        "content": "        } catch (NullPointerException e) {"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    /**"
+        "content": "            throw new CakeException(e.getMessage());"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * Executes the deleting process."
+        "content": "        }"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * Verifies if the file specified by the user has been deleted."
+        "content": "    }"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * @param logic TaskList containing current tasks"
+        "content": ""
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * @param ui the Ui responsible for outputting messages"
+        "content": "    /**"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * @param storageManager storage container"
+        "content": "     * Executes the deleting process."
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * @return Notification messages depending delete outcome."
+        "content": "     * Verifies if the file specified by the user has been deleted."
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * @throws CakeException If file does not exist."
+        "content": "     * @param logic TaskList containing current tasks"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     */"
+        "content": "     * @param ui the Ui responsible for outputting messages"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    @Override"
+        "content": "     * @param storageManager storage container"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    public String execute(Logic logic, Ui ui, StorageManager storageManager) throws CakeException {"
+        "content": "     * @return Notification messages depending delete outcome."
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        try {"
+        "content": "     * @throws CakeException If file does not exist."
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            File tempFile \u003d new File(fullFilePath);"
+        "content": "     */"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            if (tempFile.delete()) {"
+        "content": "    @Override"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "                return fileName + \".txt has been deleted succesfully!\";"
+        "content": "    public String execute(Logic logic, Ui ui, StorageManager storageManager) throws CakeException {"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            } else {"
+        "content": "        try {"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "                return \"Unable to delete \" + fileName + \".txt\";"
+        "content": "            File tempFile \u003d new File(fullFilePath);"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            }"
+        "content": "            if (tempFile.delete()) {"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        } catch (Exception e) {"
+        "content": "                return fileName + \".txt has been deleted succesfully!\";"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            throw new CakeException(e.getMessage());"
+        "content": "            } else {"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        }"
+        "content": "                return \"Unable to delete \" + fileName + \".txt\";"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    }"
+        "content": "            }"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": ""
+        "content": "        } catch (Exception e) {"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    /**"
+        "content": "            throw new CakeException(e.getMessage());"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * Method used for verification process."
+        "content": "        }"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * Checks for illegal characters and if file exists."
+        "content": "    }"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * Assigns inputFileName to fileName to prepare for deletion."
+        "content": ""
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * @param inputFileName Name of file user wants to delete."
+        "content": "    /**"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * @throws CakeException If illegal character or invalid file name detected."
+        "content": "     * Method used for verification process."
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     */"
+        "content": "     * Checks for illegal characters and if file exists."
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    private void processFile(String inputFileName) throws CakeException {"
+        "content": "     * Assigns inputFileName to fileName to prepare for deletion."
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        if (containsIllegalCharacters(inputFileName)) {"
+        "content": "     * @param inputFileName Name of file user wants to delete."
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            throw new CakeException(\"Invalid file name: Illegal character in file name detected!\");"
+        "content": "     * @throws CakeException If illegal character or invalid file name detected."
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        } else if (fileDoesNotExist(inputFileName)) {"
+        "content": "     */"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            throw new CakeException(\"Invalid file name: No such file!\");"
+        "content": "    private void processFile(String inputFileName) throws CakeException {"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        } else {"
+        "content": "        if (hasIllegalCharacters(inputFileName)) {"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            fileName \u003d inputFileName;"
+        "content": "            throw new CakeException(\"Invalid file name: Illegal character in file name detected!\");"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        }"
+        "content": "        } else if (fileDoesNotExist(inputFileName)) {"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    }"
+        "content": "            throw new CakeException(\"Invalid file name: No such file!\");"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": ""
+        "content": "        } else {"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    /**"
+        "content": "            fileName \u003d inputFileName;"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * Method to generate full file path to the file to be deleted."
+        "content": "        }"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * Concatenates the desired file name with the default path to notes."
+        "content": "    }"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * @param inputFileName name of file user wants to delete."
+        "content": ""
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * @return Full file path to the file to be deleted."
+        "content": "    /**"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     */"
+        "content": "     * Method to generate full file path to the file to be deleted."
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    private String processFilePath(String inputFileName) {"
+        "content": "     * Concatenates the desired file name with the default path to notes."
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        String filePath \u003d \"data/notes/\";"
+        "content": "     * @param inputFileName name of file user wants to delete."
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        fullFilePath \u003d filePath + inputFileName + \".txt\" + \"/\";"
+        "content": "     * @return Full file path to the file to be deleted."
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        return fullFilePath;"
+        "content": "     */"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    }"
+        "content": "    private String processFilePath(String inputFileName) {"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": ""
+        "content": "        String filePath \u003d \"data/notes/\";"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    /**"
+        "content": "        fullFilePath \u003d filePath + inputFileName + \".txt\" + \"/\";"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * Checks for illegal characters in file name given by users."
+        "content": "        return fullFilePath;"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * Ensures no illegal access to other files in other directories."
+        "content": "    }"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * @param inputFileName name of file user wants to delete."
+        "content": ""
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * @return true if inputFileName contains illegal characters."
+        "content": "    /**"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     */"
+        "content": "     * Checks if the input file name contains any illegal characters."
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    private boolean containsIllegalCharacters(String inputFileName) {"
+        "content": "     * @param inputFileName Specified file name by user."
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        return CreateNoteCommand.containsIllegals(inputFileName);"
+        "content": "     * @return True if file name contains illegal characters."
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    }"
+        "content": "     */"
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": ""
+        "content": "    public static boolean hasIllegalCharacters(String inputFileName) {"
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    /**"
+        "content": "        for (char illegalChar : ILLEGAL_CHARACTERS) {"
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * Checks if file exists in the note storage."
+        "content": "            if (containsIllegal(inputFileName, illegalChar)) {"
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * @param inputFileName name of file user wants to delete."
+        "content": "                return true;"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * @return True if file does not exist."
+        "content": "            }"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     */"
+        "content": "        }"
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    private boolean fileDoesNotExist(String inputFileName) {"
+        "content": "        return false;"
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        String fullFilePath \u003d processFilePath(inputFileName);"
+        "content": "    }"
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        File tempFile \u003d new File(fullFilePath);"
+        "content": ""
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        return (!tempFile.exists());"
+        "content": "    /**"
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    }"
+        "content": "     * Checks if file name contains illegal characters."
       },
       {
         "lineNumber": 104,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": ""
+        "content": "     * @param inputFileName Name of input file."
       },
       {
         "lineNumber": 105,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "     * @param illegalChar Characters that are not allowed in file name."
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "     * @return True if file name contains illegal character."
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    private static boolean containsIllegal(String inputFileName, char illegalChar) {"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        return inputFileName.indexOf(illegalChar) \u003e\u003d 0;"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "     * Checks if file exists in the note storage."
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "     * @param inputFileName name of file user wants to delete."
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "     * @return True if file does not exist."
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    private boolean fileDoesNotExist(String inputFileName) {"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        String fullFilePath \u003d processFilePath(inputFileName);"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        File tempFile \u003d new File(fullFilePath);"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        return (!tempFile.exists());"
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 123,
         "author": {
           "gitId": "GlenWong97"
         },
@@ -7829,7 +8242,7 @@
       }
     ],
     "authorContributionMap": {
-      "GlenWong97": 105
+      "GlenWong97": 123
     }
   },
   {
@@ -17129,353 +17542,360 @@
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "import java.io.IOException;"
+        "content": "import java.io.File;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "import java.nio.file.Files;"
+        "content": "import java.io.IOException;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "import java.nio.file.Path;"
+        "content": "import java.nio.file.Files;"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "import java.nio.file.Paths;"
+        "content": "import java.nio.file.Path;"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": ""
+        "content": "import java.nio.file.Paths;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "import java.util.ArrayList;"
+        "content": ""
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "import java.util.List;"
+        "content": "import java.util.ArrayList;"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "import java.util.stream.Collectors;"
+        "content": "import java.util.List;"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "import java.util.stream.Stream;"
+        "content": "import java.util.stream.Collectors;"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": ""
+        "content": "import java.util.stream.Stream;"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "public class NoteList {"
+        "content": ""
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": ""
+        "content": "public class NoteList {"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    public ArrayList\u003cNote\u003e al \u003d new ArrayList\u003c\u003e();"
+        "content": ""
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": ""
+        "content": "    public ArrayList\u003cNote\u003e al \u003d new ArrayList\u003c\u003e();"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * Using Depth-First-Search to find all text files."
+        "content": "    /**"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * In current directory, the text files are notes."
+        "content": "     * Using Depth-First-Search to find all text files."
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * @return ArrayList storing all the notes."
+        "content": "     * In current directory, the text files are notes."
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * @throws CakeException If text file does not exist."
+        "content": "     * @return ArrayList storing all the notes."
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     */"
+        "content": "     * @throws CakeException If text file does not exist."
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    public ArrayList\u003cNote\u003e compileNotes() throws CakeException {"
+        "content": "     */"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        try {"
+        "content": "    public ArrayList\u003cNote\u003e compileNotes() throws CakeException {"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            Stream\u003cPath\u003e walk \u003d Files.walk(Paths.get(\"data/notes/\"));"
+        "content": "        try {"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            List\u003cString\u003e result \u003d walk.filter(Files::isRegularFile)"
+        "content": "            Stream\u003cPath\u003e walk \u003d Files.walk(Paths.get(\"data/notes/\"));"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "                    .map(x -\u003e x.toString()).collect(Collectors.toList());"
+        "content": "            List\u003cString\u003e result \u003d walk.filter(Files::isRegularFile)"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": ""
+        "content": "                    .map(x -\u003e x.toString()).collect(Collectors.toList());"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            for (String resultName : result) {"
+        "content": ""
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "                String processedName \u003d processFileNames(resultName);"
+        "content": "            for (String resultName : result) {"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "                al.add(new Note(processedName));"
+        "content": "                String processedName \u003d processFileNames(resultName);"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            }"
+        "content": "                al.add(new Note(processedName));"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        } catch (NullPointerException | IOException e) {"
+        "content": "            }"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            throw new CakeException(\"Content not found!\" + \"\\nPls key \u0027back\u0027 or \u0027list\u0027 to view previous content!\");"
+        "content": "        } catch (NullPointerException | IOException e) {"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        }"
+        "content": "            throw new CakeException(\"Content not found!\" + \"\\nPls key \u0027back\u0027 or \u0027list\u0027 to view previous content!\");"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        return al;"
+        "content": "        }"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    }"
+        "content": "        return al;"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * Format the names to only display the last partition of file path."
+        "content": "    /**"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * @param resultName File paths that are not processed."
+        "content": "     * Format the names to only display the last partition of file path."
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * @return String containing the last partition of file path."
+        "content": "     * @param resultName File paths that are not processed."
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * @throws CakeException If index of array does not exist."
+        "content": "     * @return String containing the last partition of file path."
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     */"
+        "content": "     * @throws CakeException If index of array does not exist."
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    private String processFileNames(String resultName) throws CakeException {"
+        "content": "     */"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        try {"
+        "content": "    private String processFileNames(String resultName) throws CakeException {"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            String[] partitionsInFilePath \u003d resultName.split(\"\\\\\\\\\");"
+        "content": "        try {"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            return partitionsInFilePath[partitionsInFilePath.length - 1];"
+        "content": "            File file \u003d new File(resultName);"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        } catch (IndexOutOfBoundsException e) {"
+        "content": "            return file.getName();"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            throw new CakeException(e.getMessage());"
+        "content": "        } catch (IndexOutOfBoundsException e) {"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        }"
+        "content": "            throw new CakeException(e.getMessage());"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    }"
+        "content": "        }"
       },
       {
         "lineNumber": 55,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 56,
         "author": {
           "gitId": "GlenWong97"
         },
@@ -17483,7 +17903,7 @@
       }
     ],
     "authorContributionMap": {
-      "GlenWong97": 55
+      "GlenWong97": 56
     }
   },
   {
@@ -39770,6 +40190,85 @@
     ],
     "authorContributionMap": {
       "RusdiHaizim": 29
+    }
+  },
+  {
+    "path": "src/test/java/CreateNoteTest.java",
+    "fileType": "tests",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "import org.junit.jupiter.api.Test;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "public class CreateNoteTest {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    public void processCreateNoteCommandTest() {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "GlenWong97": 10
     }
   },
   {
