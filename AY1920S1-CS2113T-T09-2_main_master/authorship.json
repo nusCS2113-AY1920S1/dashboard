@@ -29740,7 +29740,7 @@
         "author": {
           "gitId": "muserr"
         },
-        "content": "    public Store peekUndoStackAsStore() {"
+        "content": "    public Store peekUndoStackAsStore() throws DuchessException {"
       },
       {
         "lineNumber": 188,
@@ -29789,14 +29789,14 @@
         "author": {
           "gitId": "muserr"
         },
-        "content": "            } catch (Exception e) {"
+        "content": "            } catch (IOException e) {"
       },
       {
         "lineNumber": 195,
         "author": {
           "gitId": "muserr"
         },
-        "content": "                System.out.println(STRING_TO_STORE_ERROR_MESSAGE);"
+        "content": "                throw new DuchessException(STRING_TO_STORE_ERROR_MESSAGE);"
       },
       {
         "lineNumber": 196,
@@ -40887,6 +40887,2185 @@
     "authorContributionMap": {
       "mohideenik": 8,
       "nishanthelango": 47
+    }
+  },
+  {
+    "path": "src/test/java/duchess/storage/StorageTest.java",
+    "fileType": "tests",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "package duchess.storage;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "import com.fasterxml.jackson.annotation.JsonInclude;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "import com.fasterxml.jackson.core.JsonProcessingException;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "import com.fasterxml.jackson.databind.MapperFeature;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "import com.fasterxml.jackson.databind.ObjectMapper;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "import com.fasterxml.jackson.databind.SerializationFeature;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "import duchess.exceptions.DuchessException;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "import duchess.model.task.Task;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "import duchess.model.task.Todo;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "import org.junit.jupiter.api.Test;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "import java.util.Deque;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.assertEquals;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.assertNotEquals;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.assertTrue;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "public class StorageTest {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    private final String emptyTestFilePath \u003d \"testEmptyData.json\";"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    private final String nonEmptyTestFilePath \u003d \"testNonEmptyData.json\";"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    private final String blankTestFilePath \u003d \"testBlankData.json\";"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    private final String unreadableFileMessage"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            \u003d \"Unable to read file, continuing with empty list.\";"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    private final String emptyRedoStackErrorMessage"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            \u003d \"Redo stack is empty.\";"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    private final String emptyUndoStackErrorMessage"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            \u003d \"Undo stack is empty.\";"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    private static final String stringToStoreErrorMessage"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            \u003d \"Unable to convert String to Store.\";"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    public void load_emptyFile_exceptionThrown() {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            Storage storage \u003d new Storage(blankTestFilePath);"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            assertEquals(storage.load(), new Store());"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        } catch (DuchessException | ClassCastException e) {"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            assertEquals(e.getMessage(), unreadableFileMessage);"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    public void load_nonEmptyFile_noExceptionThrown() {"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            Storage storage \u003d new Storage(nonEmptyTestFilePath);"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            Store store \u003d storage.load();"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            assertNotEquals(store, null);"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            assertNotEquals(store, new Store());"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        } catch (DuchessException | ClassCastException e) {"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            assertEquals(e.getMessage(), unreadableFileMessage);"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    public void getFirstSnapshot_emptyFile_exceptionThrown() {"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        Storage storage \u003d new Storage(emptyTestFilePath);"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            Store store \u003d storage.getFirstSnapshot();"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            assertEquals(store, null);"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        } catch (DuchessException e) {"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            assertEquals(e.getMessage(), emptyRedoStackErrorMessage);"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    public void getLastSnapshot_emptyFile_exceptionThrown() {"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        Storage storage \u003d new Storage(emptyTestFilePath);"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            Store store \u003d storage.getLastSnapshot();"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            assertEquals(store, null);"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        } catch (DuchessException e) {"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            assertEquals(e.getMessage(), emptyUndoStackErrorMessage);"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    public void getUndoStack_success() {"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        Storage storageA \u003d new Storage(emptyTestFilePath);"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        Storage storageB \u003d new Storage(nonEmptyTestFilePath);"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        Deque\u003cString\u003e testUndoStackA \u003d storageA.getUndoStack();"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        Deque\u003cString\u003e testUndoStackB \u003d storageB.getUndoStack();"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        assertTrue(testUndoStackA.size() \u003d\u003d 0);"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        assertTrue(testUndoStackA !\u003d null);"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        assertTrue(testUndoStackB.size() \u003d\u003d 0);"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        assertTrue(testUndoStackB !\u003d null);"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    public void getRedoStack_success() {"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        Storage storageA \u003d new Storage(emptyTestFilePath);"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        Storage storageB \u003d new Storage(nonEmptyTestFilePath);"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        Deque\u003cString\u003e testRedoStackA \u003d storageA.getRedoStack();"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        Deque\u003cString\u003e testRedoStackB \u003d storageB.getRedoStack();"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        assertTrue(testRedoStackA.size() \u003d\u003d 0);"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        assertTrue(testRedoStackA !\u003d null);"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        assertTrue(testRedoStackB.size() \u003d\u003d 0);"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        assertTrue(testRedoStackB !\u003d null);"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    public void peekUndoStackAsStore_emptyUndoStack_emptyStoreObject() {"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        Storage storage \u003d new Storage(emptyTestFilePath);"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            assertTrue(storage.getUndoStack().size() \u003d\u003d 0);"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            Store store \u003d storage.peekUndoStackAsStore();"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            assertNotEquals(store, null);"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        } catch (DuchessException e) {"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            assertEquals(e.getMessage(),stringToStoreErrorMessage);"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    public void peekUndoStackAsStore_nonEmptyUndoStack_nonEmptyStoreObject() {"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        Storage storage \u003d new Storage(emptyTestFilePath);"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        Store storeA \u003d new Store();"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        storage.addToUndoStackPush(storeA);"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            assertTrue(storage.getUndoStack().size() \u003d\u003d 1);"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            Store store \u003d storage.peekUndoStackAsStore();"
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            assertNotEquals(store, null);"
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        } catch (DuchessException e) {"
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            assertEquals(e.getMessage(),stringToStoreErrorMessage);"
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    public void addToRedoStack_success() {"
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        Storage storage \u003d new Storage(emptyTestFilePath);"
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        Store store \u003d new Store();"
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        storage.addToUndoStackPush(store);"
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 142,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        assertTrue(storage.getUndoStack().size() \u003d\u003d 1);"
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        assertTrue(storage.getRedoStack().size() \u003d\u003d 0);"
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 145,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        storage.addToRedoStack();"
+      },
+      {
+        "lineNumber": 146,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        assertTrue(storage.getUndoStack().size() \u003d\u003d 1);"
+      },
+      {
+        "lineNumber": 147,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        assertTrue(storage.getRedoStack().size() \u003d\u003d 1);"
+      },
+      {
+        "lineNumber": 148,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 149,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 150,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 151,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    public void addToUndoStackPush_validStore_success() {"
+      },
+      {
+        "lineNumber": 152,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 153,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            Storage storage \u003d new Storage(nonEmptyTestFilePath);"
+      },
+      {
+        "lineNumber": 154,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            Store store \u003d storage.load();"
+      },
+      {
+        "lineNumber": 155,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 156,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            assertTrue(storage.getUndoStack().size() \u003d\u003d 0);"
+      },
+      {
+        "lineNumber": 157,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            storage.addToUndoStackPush(store);"
+      },
+      {
+        "lineNumber": 158,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 159,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            assertTrue(storage.getUndoStack().size() \u003d\u003d 1);"
+      },
+      {
+        "lineNumber": 160,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 161,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        } catch (DuchessException | ClassCastException e) {"
+      },
+      {
+        "lineNumber": 162,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            assertEquals(e.getMessage(), unreadableFileMessage);"
+      },
+      {
+        "lineNumber": 163,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 164,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 165,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 166,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 167,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    public void addToUndoStackPush_consecutiveRepeatedStore_unsuccessful() {"
+      },
+      {
+        "lineNumber": 168,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 169,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            Storage storage \u003d new Storage(nonEmptyTestFilePath);"
+      },
+      {
+        "lineNumber": 170,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            final Store storeA \u003d new Store();"
+      },
+      {
+        "lineNumber": 171,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            final Store storeB \u003d new Store();"
+      },
+      {
+        "lineNumber": 172,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 173,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            assertTrue(storage.getUndoStack().size() \u003d\u003d 0);"
+      },
+      {
+        "lineNumber": 174,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            assertTrue(storeA !\u003d null);"
+      },
+      {
+        "lineNumber": 175,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            storage.addToUndoStackPush(storeA);"
+      },
+      {
+        "lineNumber": 176,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 177,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            assertTrue(storage.getUndoStack().size() \u003d\u003d 1);"
+      },
+      {
+        "lineNumber": 178,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            assertTrue(storeB !\u003d null);"
+      },
+      {
+        "lineNumber": 179,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            storage.addToUndoStackPush(storeB);"
+      },
+      {
+        "lineNumber": 180,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 181,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            assertTrue(storage.getUndoStack().size() \u003d\u003d 1);"
+      },
+      {
+        "lineNumber": 182,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 183,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        } catch (ClassCastException e) {"
+      },
+      {
+        "lineNumber": 184,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            assertEquals(e.getMessage(), unreadableFileMessage);"
+      },
+      {
+        "lineNumber": 185,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 186,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 187,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 188,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 189,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    public void getLastSnapshot_success() {"
+      },
+      {
+        "lineNumber": 190,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 191,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            Storage storage \u003d new Storage(nonEmptyTestFilePath);"
+      },
+      {
+        "lineNumber": 192,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            final Store storeA \u003d storage.load();"
+      },
+      {
+        "lineNumber": 193,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            final Store storeB \u003d new Store();"
+      },
+      {
+        "lineNumber": 194,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 195,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            final Task taskA \u003d new Todo(\"Star jumps\");"
+      },
+      {
+        "lineNumber": 196,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            final Task taskB \u003d new Todo(\"Jogging with friends.\");"
+      },
+      {
+        "lineNumber": 197,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            storeB.getTaskList().add(taskA);"
+      },
+      {
+        "lineNumber": 198,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            storeB.getTaskList().add(taskB);"
+      },
+      {
+        "lineNumber": 199,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 200,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            assertTrue(storage.getUndoStack().size() \u003d\u003d 0);"
+      },
+      {
+        "lineNumber": 201,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            storage.addToUndoStackPush(storeA);"
+      },
+      {
+        "lineNumber": 202,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            assertTrue(storage.getUndoStack().size() \u003d\u003d 1);"
+      },
+      {
+        "lineNumber": 203,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            storage.addToUndoStackPush(storeB);"
+      },
+      {
+        "lineNumber": 204,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            assertTrue(storage.getUndoStack().size() \u003d\u003d 2);"
+      },
+      {
+        "lineNumber": 205,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 206,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            Store testStore \u003d storage.getLastSnapshot();"
+      },
+      {
+        "lineNumber": 207,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            assertNotEquals(testStore, null);"
+      },
+      {
+        "lineNumber": 208,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 209,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            assertTrue(storage.getUndoStack().size() \u003d\u003d 1);"
+      },
+      {
+        "lineNumber": 210,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            assertEquals(getStoreToString(testStore),getStoreToString(storeB));"
+      },
+      {
+        "lineNumber": 211,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            assertTrue(storage.getUndoStack().size() \u003d\u003d 1);"
+      },
+      {
+        "lineNumber": 212,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 213,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        } catch (DuchessException | ClassCastException e) {"
+      },
+      {
+        "lineNumber": 214,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            assertEquals(e.getMessage(), unreadableFileMessage);"
+      },
+      {
+        "lineNumber": 215,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 216,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 217,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 218,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 219,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    public void getFirstSnapshot_success() {"
+      },
+      {
+        "lineNumber": 220,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 221,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            Storage storage \u003d new Storage(nonEmptyTestFilePath);"
+      },
+      {
+        "lineNumber": 222,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            Store storeA \u003d storage.load();"
+      },
+      {
+        "lineNumber": 223,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            Store storeB \u003d new Store();"
+      },
+      {
+        "lineNumber": 224,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 225,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            final Task taskA \u003d new Todo(\"Star jumps\");"
+      },
+      {
+        "lineNumber": 226,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            final Task taskB \u003d new Todo(\"Jogging with friends.\");"
+      },
+      {
+        "lineNumber": 227,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            storeB.getTaskList().add(taskA);"
+      },
+      {
+        "lineNumber": 228,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            storeB.getTaskList().add(taskB);"
+      },
+      {
+        "lineNumber": 229,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 230,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            storage.addToUndoStackPush(storeA);"
+      },
+      {
+        "lineNumber": 231,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            storage.addToUndoStackPush(storeB);"
+      },
+      {
+        "lineNumber": 232,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            assertTrue(storage.getUndoStack().size() \u003d\u003d 2);"
+      },
+      {
+        "lineNumber": 233,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            assertTrue(storage.getRedoStack().size() \u003d\u003d 0);"
+      },
+      {
+        "lineNumber": 234,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 235,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            storage.addToRedoStack();"
+      },
+      {
+        "lineNumber": 236,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            assertTrue(storage.getRedoStack().size() \u003d\u003d 1);"
+      },
+      {
+        "lineNumber": 237,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            assertTrue(storage.getUndoStack().size() \u003d\u003d 2);"
+      },
+      {
+        "lineNumber": 238,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 239,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            // Obtain first object in redoStack."
+      },
+      {
+        "lineNumber": 240,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            Store testStore \u003d storage.getFirstSnapshot();"
+      },
+      {
+        "lineNumber": 241,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            assertNotEquals(testStore, null);"
+      },
+      {
+        "lineNumber": 242,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 243,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            assertTrue(storage.getRedoStack().size() \u003d\u003d 0);"
+      },
+      {
+        "lineNumber": 244,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            assertEquals(getStoreToString(testStore), getStoreToString(storeB));"
+      },
+      {
+        "lineNumber": 245,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 246,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        } catch (DuchessException | ClassCastException e) {"
+      },
+      {
+        "lineNumber": 247,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            assertEquals(e.getMessage(), unreadableFileMessage);"
+      },
+      {
+        "lineNumber": 248,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 249,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 250,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 251,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 252,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    public void save_emptyStore_success() {"
+      },
+      {
+        "lineNumber": 253,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        Storage storage \u003d new Storage(emptyTestFilePath);"
+      },
+      {
+        "lineNumber": 254,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 255,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            Store storeBeforeSave \u003d storage.load();"
+      },
+      {
+        "lineNumber": 256,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 257,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            storage.save(storeBeforeSave);"
+      },
+      {
+        "lineNumber": 258,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            Store storeAfterSave \u003d storage.load();"
+      },
+      {
+        "lineNumber": 259,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 260,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            assertEquals(getStoreToString(storeBeforeSave), getStoreToString(storeAfterSave));"
+      },
+      {
+        "lineNumber": 261,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 262,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        } catch (DuchessException | ClassCastException e) {"
+      },
+      {
+        "lineNumber": 263,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            assertEquals(e.getMessage(), unreadableFileMessage);"
+      },
+      {
+        "lineNumber": 264,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 265,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 266,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 267,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 268,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    public void save_nonEmptyStore_success() {"
+      },
+      {
+        "lineNumber": 269,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        Storage storageA \u003d new Storage(emptyTestFilePath);"
+      },
+      {
+        "lineNumber": 270,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        Storage storageB \u003d new Storage(nonEmptyTestFilePath);"
+      },
+      {
+        "lineNumber": 271,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 272,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            Store storeA \u003d new Store();"
+      },
+      {
+        "lineNumber": 273,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            Store storeB \u003d storageB.load();"
+      },
+      {
+        "lineNumber": 274,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 275,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            assertNotEquals(getStoreToString(storeA), getStoreToString(storeB));"
+      },
+      {
+        "lineNumber": 276,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 277,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            storageA.save(storeB);"
+      },
+      {
+        "lineNumber": 278,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            Store storeAfterSave \u003d storageA.load();"
+      },
+      {
+        "lineNumber": 279,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            assertEquals(getStoreToString(storeAfterSave), getStoreToString(storeB));"
+      },
+      {
+        "lineNumber": 280,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 281,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            // Clear contents of testEmptyData.json"
+      },
+      {
+        "lineNumber": 282,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            storageA.save(new Store());"
+      },
+      {
+        "lineNumber": 283,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 284,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        } catch (DuchessException | ClassCastException e) {"
+      },
+      {
+        "lineNumber": 285,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            assertEquals(e.getMessage(), unreadableFileMessage);"
+      },
+      {
+        "lineNumber": 286,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 287,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 288,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 289,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    private String getStoreToString(Store store) {"
+      },
+      {
+        "lineNumber": 290,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        String jsonVal;"
+      },
+      {
+        "lineNumber": 291,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 292,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            jsonVal \u003d getObjectMapper().writeValueAsString(store);"
+      },
+      {
+        "lineNumber": 293,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        } catch (JsonProcessingException e) {"
+      },
+      {
+        "lineNumber": 294,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            jsonVal \u003d new String();"
+      },
+      {
+        "lineNumber": 295,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            assert (jsonVal.equals(\"\"));"
+      },
+      {
+        "lineNumber": 296,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 297,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        return jsonVal;"
+      },
+      {
+        "lineNumber": 298,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 299,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 300,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    private ObjectMapper getObjectMapper() {"
+      },
+      {
+        "lineNumber": 301,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        return new ObjectMapper()"
+      },
+      {
+        "lineNumber": 302,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "                .enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL)"
+      },
+      {
+        "lineNumber": 303,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "                .disable(MapperFeature.AUTO_DETECT_CREATORS,"
+      },
+      {
+        "lineNumber": 304,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "                        MapperFeature.AUTO_DETECT_FIELDS,"
+      },
+      {
+        "lineNumber": 305,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "                        MapperFeature.AUTO_DETECT_GETTERS,"
+      },
+      {
+        "lineNumber": 306,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "                        MapperFeature.AUTO_DETECT_IS_GETTERS)"
+      },
+      {
+        "lineNumber": 307,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "                .enable(SerializationFeature.INDENT_OUTPUT)"
+      },
+      {
+        "lineNumber": 308,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "                .setSerializationInclusion(JsonInclude.Include.NON_NULL);"
+      },
+      {
+        "lineNumber": 309,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 310,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "muserr": 310
     }
   },
   {

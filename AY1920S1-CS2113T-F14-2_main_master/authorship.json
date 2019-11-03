@@ -15185,7 +15185,7 @@
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            if (farmio.getStage() \u003d\u003d Farmio.Stage.MENU_START) {"
+        "content": "            if (farmio.getStage() \u003d\u003d Farmio.Stage.MENU_START || farmio.getStage() \u003d\u003d Farmio.Stage.WELCOME) {"
       },
       {
         "lineNumber": 31,
@@ -15241,7 +15241,7 @@
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                ui.showInfo(\"Load game failed! Resume to previous session.\");"
+        "content": "                ui.typeWriter(\"Load game failed! Resume to previous session.\", true);"
       },
       {
         "lineNumber": 39,
@@ -21118,30 +21118,30 @@
       {
         "lineNumber": 3,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
-        "content": "import commands.*;"
+        "content": "import commands.Command;"
       },
       {
         "lineNumber": 4,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
-        "content": "import exceptions.FarmioException;"
+        "content": "import commands.CommandWelcome;"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "import exceptions.FarmioFatalException;"
+        "content": "import exceptions.FarmioException;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "import frontend.AsciiColours;"
+        "content": "import exceptions.FarmioFatalException;"
       },
       {
         "lineNumber": 7,
@@ -21167,775 +21167,950 @@
       {
         "lineNumber": 10,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
-        "content": "import java.util.EnumSet;"
+        "content": "import java.io.IOException;"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": ""
+        "content": "import java.util.EnumSet;"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "public class Farmio {"
+        "content": "import java.util.logging.FileHandler;"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    private Storage storage;"
+        "content": "import java.util.logging.Handler;"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    private Farmer farmer;"
+        "content": "import java.util.logging.Logger;"
       },
       {
         "lineNumber": 15,
         "author": {
-          "gitId": "tzw0"
+          "gitId": "Exprescode"
         },
-        "content": "    private Simulation simulation;"
+        "content": "import java.util.logging.SimpleFormatter;"
       },
       {
         "lineNumber": 16,
         "author": {
-          "gitId": "Exprescode"
+          "gitId": "jing-xuan"
         },
-        "content": "    private Ui ui;"
+        "content": ""
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    private Level level;"
+        "content": "public class Farmio {"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    private boolean isExit;"
+        "content": "    private final Logger LOGGER \u003d Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    private Stage stage;"
+        "content": "    private Storage storage;"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": ""
+        "content": "    private Farmer farmer;"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "tzw0"
         },
-        "content": "    public Farmio() {"
+        "content": "    private Simulation simulation;"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        storage \u003d new Storage();"
+        "content": "    private Ui ui;"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        farmer \u003d new Farmer();"
+        "content": "    private Level level;"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        ui \u003d new Ui();"
+        "content": "    private boolean isExit;"
       },
       {
         "lineNumber": 25,
         "author": {
-          "gitId": "tzw0"
+          "gitId": "Exprescode"
         },
-        "content": "        simulation \u003d new Simulation(this);"
+        "content": "    private Stage stage;"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        stage \u003d Stage.WELCOME;"
+        "content": ""
       },
       {
         "lineNumber": 27,
         "author": {
-          "gitId": "Exprescode"
+          "gitId": "tzw0"
         },
-        "content": "        isExit \u003d false;"
+        "content": "    public Farmio() {"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    }"
+        "content": "        storage \u003d new StorageManager();"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": ""
+        "content": "        farmer \u003d new Farmer();"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    private void run() {"
+        "content": "        ui \u003d new Ui();"
       },
       {
         "lineNumber": 31,
         "author": {
-          "gitId": "Exprescode"
+          "gitId": "tzw0"
         },
-        "content": "        Command command;"
+        "content": "        simulation \u003d new Simulation(this);"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        command \u003d new CommandWelcome();"
+        "content": "        stage \u003d Stage.WELCOME;"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        try {"
+        "content": "        isExit \u003d false;"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            try {"
+        "content": "    }"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                command.execute(this);"
+        "content": ""
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            } catch (FarmioException e) {"
+        "content": "    private void run() {"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                ui.showWarning(e.getMessage());"
+        "content": "        try {"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            }"
+        "content": "            setupLogger();"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            while (!isExit) {"
+        "content": "            LOGGER.log(java.util.logging.Level.INFO, \"New game session started.\");"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                try {"
+        "content": "            Command command;"
       },
       {
         "lineNumber": 41,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
-        "content": "                    if (Stage.noInput.contains(stage)) {"
+        "content": "            command \u003d new CommandWelcome();"
       },
       {
         "lineNumber": 42,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
-        "content": "                        command \u003d Parser.parse(\" \", stage);"
+        "content": "            try {"
       },
       {
         "lineNumber": 43,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
-        "content": "                    } else {"
+        "content": "                command.execute(this);"
       },
       {
         "lineNumber": 44,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
-        "content": "                        command \u003d Parser.parse(ui.getInput(), stage);"
+        "content": "            } catch (FarmioException e) {"
       },
       {
         "lineNumber": 45,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
-        "content": "                    }"
+        "content": "                ui.showWarning(e.getMessage());"
       },
       {
         "lineNumber": 46,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "                    command.execute(this);"
-      },
-      {
-        "lineNumber": 47,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "                } catch (FarmioException e) {"
-      },
-      {
-        "lineNumber": 48,
-        "author": {
-          "gitId": "tzw0"
-        },
-        "content": "                    simulation.simulate();"
-      },
-      {
-        "lineNumber": 49,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "                    ui.showWarning(e.getMessage());"
-      },
-      {
-        "lineNumber": 50,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 51,
         "author": {
           "gitId": "Exprescode"
         },
         "content": "            }"
       },
       {
-        "lineNumber": 52,
+        "lineNumber": 47,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        } catch (FarmioFatalException e) {"
+        "content": "            while (!isExit) {"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                try {"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "                    if (Stage.noInput.contains(stage)) {"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "                        command \u003d Parser.parse(\" \", stage);"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "                    } else {"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "                        command \u003d Parser.parse(ui.getInput(), stage);"
       },
       {
         "lineNumber": 53,
         "author": {
-          "gitId": "Exprescode"
+          "gitId": "jing-xuan"
         },
-        "content": "            ui.showError(e.getMessage());"
+        "content": "                    }"
       },
       {
         "lineNumber": 54,
         "author": {
-          "gitId": "Exprescode"
+          "gitId": "jing-xuan"
         },
-        "content": "            ui.showInfo(\"Encounterd fatal error. Exiting program.\");"
+        "content": "                    command.execute(this);"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        }"
+        "content": "                } catch (FarmioException e) {"
       },
       {
         "lineNumber": 56,
         "author": {
-          "gitId": "Exprescode"
+          "gitId": "tzw0"
         },
-        "content": "        storage.storeFarmerPartial(farmer);"
+        "content": "                    simulation.simulate();"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        ui.showExit();"
+        "content": "                    ui.showWarning(e.getMessage());"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    }"
+        "content": "                }"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": ""
+        "content": "            }"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    public static void main(String[] args) {    //TODO - configure both OS"
+        "content": "        } catch (FarmioFatalException e) {"
       },
       {
         "lineNumber": 61,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
-        "content": ""
+        "content": "            ui.showError(e.getMessage());"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        new Farmio().run();"
+        "content": "            ui.showInfo(\"Encounterd fatal error. Exiting program.\");"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    }"
+        "content": "        }"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": ""
+        "content": "        storage.storeFarmerPartial(farmer);"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    public enum Stage {"
+        "content": "        ui.showExit();"
       },
       {
         "lineNumber": 66,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
-        "content": "        WELCOME,"
+        "content": "    }"
       },
       {
         "lineNumber": 67,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
-        "content": "        MENU_START,"
+        "content": ""
       },
       {
         "lineNumber": 68,
         "author": {
-          "gitId": "JohnTYH"
+          "gitId": "Exprescode"
         },
-        "content": "        NAME_ADD,"
+        "content": "    public static void main(String[] args) {"
       },
       {
         "lineNumber": 69,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
-        "content": "        LEVEL_START,"
+        "content": "        new Farmio().run();"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        MENU,"
+        "content": "    }"
       },
       {
         "lineNumber": 71,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
-        "content": "        TASK_ADD,"
+        "content": ""
       },
       {
         "lineNumber": 72,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
-        "content": "        RUNNING_DAY,"
+        "content": "    public enum Stage {"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "        CHECK_OBJECTIVES,"
+        "content": "        WELCOME,"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "        DAY_END,"
+        "content": "        MENU_START,"
       },
       {
         "lineNumber": 75,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "JohnTYH"
         },
-        "content": "        DAY_START,"
+        "content": "        NAME_ADD,"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "        LEVEL_END,"
+        "content": "        LEVEL_START,"
       },
       {
         "lineNumber": 77,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
-        "content": "        LEVEL_FAILED;"
+        "content": "        MENU,"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": ""
+        "content": "        TASK_ADD,"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "        public static EnumSet\u003cStage\u003e noInput \u003d EnumSet.of(LEVEL_START, RUNNING_DAY, CHECK_OBJECTIVES, DAY_START, LEVEL_END, LEVEL_FAILED);"
+        "content": "        RUNNING_DAY,"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "        public static EnumSet\u003cStage\u003e reqInput \u003d EnumSet.complementOf(noInput);"
+        "content": "        CHECK_OBJECTIVES,"
       },
       {
         "lineNumber": 81,
         "author": {
-          "gitId": "Exprescode"
+          "gitId": "jing-xuan"
         },
-        "content": "    }"
+        "content": "        DAY_END,"
       },
       {
         "lineNumber": 82,
         "author": {
-          "gitId": "Exprescode"
+          "gitId": "jing-xuan"
         },
-        "content": ""
+        "content": "        DAY_START,"
       },
       {
         "lineNumber": 83,
         "author": {
-          "gitId": "Exprescode"
+          "gitId": "jing-xuan"
         },
-        "content": "    public Storage getStorage() {"
+        "content": "        LEVEL_END,"
       },
       {
         "lineNumber": 84,
         "author": {
-          "gitId": "Exprescode"
+          "gitId": "jing-xuan"
         },
-        "content": "        return storage;"
+        "content": "        LEVEL_FAILED;"
       },
       {
         "lineNumber": 85,
         "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 86,
-        "author": {
-          "gitId": "Exprescode"
+          "gitId": "jing-xuan"
         },
         "content": ""
       },
       {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "        public static EnumSet\u003cStage\u003e noInput \u003d EnumSet.of(LEVEL_START, RUNNING_DAY, CHECK_OBJECTIVES, DAY_START, LEVEL_END, LEVEL_FAILED);"
+      },
+      {
         "lineNumber": 87,
         "author": {
-          "gitId": "Exprescode"
+          "gitId": "jing-xuan"
         },
-        "content": "    public Ui getUi() {"
+        "content": "        public static EnumSet\u003cStage\u003e reqInput \u003d EnumSet.complementOf(noInput);"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        return ui;"
+        "content": "    }"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": ""
+        "content": "    public Storage getStorage() {"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    public Farmer getFarmer() {"
+        "content": "        return storage;"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        return farmer;"
+        "content": "    }"
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": ""
+        "content": "    public Ui getUi() {"
       },
       {
         "lineNumber": 95,
         "author": {
-          "gitId": "tzw0"
+          "gitId": "Exprescode"
         },
-        "content": "    public Simulation getSimulation() {return simulation;}"
+        "content": "        return ui;"
       },
       {
         "lineNumber": 96,
         "author": {
-          "gitId": "tzw0"
+          "gitId": "Exprescode"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    public Stage getStage() {"
+        "content": ""
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        return stage;"
+        "content": "    public Farmer getFarmer() {"
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    }"
+        "content": "        return farmer;"
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    public Level getLevel() {"
+        "content": ""
       },
       {
         "lineNumber": 102,
         "author": {
-          "gitId": "Exprescode"
+          "gitId": "tzw0"
         },
-        "content": "        return level;"
+        "content": "    public Simulation getSimulation() {return simulation;}"
       },
       {
         "lineNumber": 103,
         "author": {
-          "gitId": "Exprescode"
+          "gitId": "tzw0"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 104,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": ""
+        "content": "    public Stage getStage() {"
       },
       {
         "lineNumber": 105,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    public void setFarmer(Farmer farmer) {"
+        "content": "        return stage;"
       },
       {
         "lineNumber": 106,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        this.farmer \u003d farmer;"
+        "content": "    }"
       },
       {
         "lineNumber": 107,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 108,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": ""
+        "content": "    public Level getLevel() {"
       },
       {
         "lineNumber": 109,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    public void setStage(Stage stage) {"
+        "content": "        return level;"
       },
       {
         "lineNumber": 110,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        this.stage \u003d stage;"
+        "content": "    }"
       },
       {
         "lineNumber": 111,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 112,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": ""
+        "content": "    public void setFarmer(Farmer farmer) {"
       },
       {
         "lineNumber": 113,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    public void setLevel(Level level) {"
+        "content": "        this.farmer \u003d farmer;"
       },
       {
         "lineNumber": 114,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        this.level \u003d level;"
+        "content": "    }"
       },
       {
         "lineNumber": 115,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 116,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": ""
+        "content": "    public void setStage(Stage stage) {"
       },
       {
         "lineNumber": 117,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    public void setExit() {"
+        "content": "        this.stage \u003d stage;"
       },
       {
         "lineNumber": 118,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        this.isExit \u003d true;"
+        "content": "    }"
       },
       {
         "lineNumber": 119,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 120,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public void setLevel(Level level) {"
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        this.level \u003d level;"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public void setExit() {"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        this.isExit \u003d true;"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    private void setupLogger() throws FarmioFatalException {"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        Logger logger \u003d Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);"
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        Logger rootLogger \u003d Logger.getLogger(\"global\");"
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        Handler[] handlers \u003d rootLogger.getHandlers();"
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        for(Handler handler: handlers){"
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "            rootLogger.removeHandler(handler);"
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        logger.setLevel(java.util.logging.Level.INFO);"
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        FileHandler handler;"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "            handler \u003d new FileHandler(\"farmio.log\");"
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "            throw new FarmioFatalException(\"Failed to access \\\u0027farmio.log\\\u0027.\\nPlease try running farmio in another directory.\");"
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 142,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        handler.setFormatter(new SimpleFormatter());"
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        logger.addHandler(handler);"
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 145,
         "author": {
           "gitId": "Exprescode"
         },
@@ -21944,9 +22119,9 @@
     ],
     "authorContributionMap": {
       "JohnTYH": 1,
-      "Exprescode": 84,
+      "Exprescode": 112,
       "tzw0": 6,
-      "jing-xuan": 29
+      "jing-xuan": 26
     }
   },
   {
@@ -24809,2119 +24984,2098 @@
       {
         "lineNumber": 15,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
-        "content": "/**"
+        "content": "import java.util.logging.Level;"
       },
       {
         "lineNumber": 16,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
-        "content": " * Parser class is responsible for parsing all user input and generating the corresponding Command."
+        "content": "import java.util.logging.Logger;"
       },
       {
         "lineNumber": 17,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
-        "content": " */"
+        "content": "import java.util.regex.Matcher;"
       },
       {
         "lineNumber": 18,
         "author": {
-          "gitId": "tzw0"
+          "gitId": "Exprescode"
         },
-        "content": ""
+        "content": "import java.util.regex.Pattern;"
       },
       {
         "lineNumber": 19,
         "author": {
-          "gitId": "tzw0"
+          "gitId": "Exprescode"
         },
-        "content": "public class Parser {"
+        "content": ""
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": ""
+        "content": "/**"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "    /**"
+        "content": " * Parser class is responsible for parsing all user input and generating the corresponding Command."
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "     * Returns a Command depending on the current Stage of the game, and the user\u0027s input."
+        "content": " */"
       },
       {
         "lineNumber": 23,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "tzw0"
         },
-        "content": "     *"
+        "content": ""
       },
       {
         "lineNumber": 24,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "tzw0"
         },
-        "content": "     * @param userInput input String either from user or Farmio depending on the game stage"
+        "content": "public class Parser {"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "     * @param stage enum that represents the current game stage"
+        "content": ""
       },
       {
         "lineNumber": 26,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
-        "content": "     * @return a Command that can be executed, based on the current stage and user input"
+        "content": "    private static final Logger LOGGER \u003d Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);"
       },
       {
         "lineNumber": 27,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
-        "content": "     * @throws FarmioException if an unknown game stage is passed"
+        "content": ""
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "     */"
+        "content": "    /**"
       },
       {
         "lineNumber": 29,
         "author": {
-          "gitId": "tzw0"
+          "gitId": "jing-xuan"
         },
-        "content": "    public static Command parse(String userInput, Farmio.Stage stage) throws FarmioException {"
+        "content": "     * Returns a Command depending on the current Stage of the game, and the user\u0027s input."
       },
       {
         "lineNumber": 30,
         "author": {
-          "gitId": "Exprescode"
+          "gitId": "jing-xuan"
         },
-        "content": "        userInput \u003d userInput.toLowerCase().trim();"
+        "content": "     *"
       },
       {
         "lineNumber": 31,
         "author": {
-          "gitId": "tzw0"
+          "gitId": "jing-xuan"
         },
-        "content": "        if (userInput.equals(\"quit game\") || userInput.equals(\"exit\")) {"
+        "content": "     * @param userInput input String either from user or Farmio depending on the game stage"
       },
       {
         "lineNumber": 32,
         "author": {
-          "gitId": "Exprescode"
+          "gitId": "jing-xuan"
         },
-        "content": "            return new CommandGameQuit();"
+        "content": "     * @param stage enum that represents the current game stage"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "        }"
+        "content": "     * @return a Command that can be executed, based on the current stage and user input"
       },
       {
         "lineNumber": 34,
         "author": {
-          "gitId": "Exprescode"
+          "gitId": "jing-xuan"
         },
-        "content": "        if (stage !\u003d Farmio.Stage.WELCOME \u0026\u0026 stage !\u003d Farmio.Stage.MENU_START \u0026\u0026 userInput.equals(\"save game\")) {"
+        "content": "     * @throws FarmioException if an unknown game stage is passed"
       },
       {
         "lineNumber": 35,
         "author": {
-          "gitId": "Exprescode"
+          "gitId": "jing-xuan"
         },
-        "content": "            return new CommandGameSave();"
+        "content": "     */"
       },
       {
         "lineNumber": 36,
         "author": {
-          "gitId": "Exprescode"
+          "gitId": "tzw0"
         },
-        "content": "        }"
+        "content": "    public static Command parse(String userInput, Farmio.Stage stage) throws FarmioException {"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        if (userInput.equals(\"load game\")) {"
+        "content": "        userInput \u003d userInput.toLowerCase().trim();"
       },
       {
         "lineNumber": 38,
         "author": {
-          "gitId": "Exprescode"
+          "gitId": "tzw0"
         },
-        "content": "            return new CommandGameLoad();"
+        "content": "        if (userInput.equals(\"quit game\") || userInput.equals(\"exit\")) {"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        }"
+        "content": "            return new CommandGameQuit();"
       },
       {
         "lineNumber": 40,
         "author": {
-          "gitId": "Exprescode"
+          "gitId": "jing-xuan"
         },
-        "content": "        if (userInput.equals(\"new game\")) {"
+        "content": "        }"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            return new CommandGameNew();"
+        "content": "        if (stage !\u003d Farmio.Stage.WELCOME \u0026\u0026 stage !\u003d Farmio.Stage.MENU_START \u0026\u0026 userInput.equals(\"save game\")) {"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        }"
+        "content": "            return new CommandGameSave();"
       },
       {
         "lineNumber": 43,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
-        "content": "        switch (stage) {"
+        "content": "        }"
       },
       {
         "lineNumber": 44,
         "author": {
-          "gitId": "tzw0"
+          "gitId": "Exprescode"
         },
-        "content": "        case WELCOME:"
+        "content": "        if (userInput.equals(\"load game\")) {"
       },
       {
         "lineNumber": 45,
         "author": {
-          "gitId": "tzw0"
+          "gitId": "Exprescode"
         },
-        "content": "            return new CommandMenuStart();"
+        "content": "            return new CommandGameLoad();"
       },
       {
         "lineNumber": 46,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
-        "content": "        case LEVEL_START:"
+        "content": "        }"
       },
       {
         "lineNumber": 47,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
-        "content": "            return new CommandLevelStart();"
+        "content": "        if (userInput.equals(\"new game\")) {"
       },
       {
         "lineNumber": 48,
         "author": {
-          "gitId": "JohnTYH"
+          "gitId": "Exprescode"
         },
-        "content": "//        case MENU:"
+        "content": "            return new CommandGameNew();"
       },
       {
         "lineNumber": 49,
         "author": {
-          "gitId": "JohnTYH"
+          "gitId": "Exprescode"
         },
-        "content": "//            return parseMenu(userInput);"
+        "content": "        }"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "        case RUNNING_DAY:"
+        "content": "        switch (stage) {"
       },
       {
         "lineNumber": 51,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "tzw0"
         },
-        "content": "            return new CommandTasksRun();"
+        "content": "        case WELCOME:"
       },
       {
         "lineNumber": 52,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "tzw0"
         },
-        "content": "        case CHECK_OBJECTIVES:"
+        "content": "            return new CommandMenuStart();"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "            return new CommandCheckObjectives();"
+        "content": "        case LEVEL_START:"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "        case DAY_START:"
+        "content": "            return new CommandLevelStart();"
       },
       {
         "lineNumber": 55,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "JohnTYH"
         },
-        "content": "            return new CommandDayStart();"
+        "content": "//        case MENU:"
       },
       {
         "lineNumber": 56,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "JohnTYH"
         },
-        "content": "        case LEVEL_END:"
+        "content": "//            return parseMenu(userInput);"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "            return new CommandLevelEnd();"
+        "content": "        case RUNNING_DAY:"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "        case LEVEL_FAILED:"
+        "content": "            return new CommandTasksRun();"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "            return new CommandLevelReset();"
+        "content": "        case CHECK_OBJECTIVES:"
       },
       {
         "lineNumber": 60,
         "author": {
-          "gitId": "tzw0"
+          "gitId": "jing-xuan"
         },
-        "content": "        case DAY_END:"
+        "content": "            return new CommandCheckObjectives();"
       },
       {
         "lineNumber": 61,
         "author": {
-          "gitId": "tzw0"
+          "gitId": "jing-xuan"
         },
-        "content": "            return parseDayEnd(userInput);"
+        "content": "        case DAY_START:"
       },
       {
         "lineNumber": 62,
-        "author": {
-          "gitId": "JohnTYH"
-        },
-        "content": "        case NAME_ADD:"
-      },
-      {
-        "lineNumber": 63,
-        "author": {
-          "gitId": "JohnTYH"
-        },
-        "content": "            return new CommandAddName(userInput);"
-      },
-      {
-        "lineNumber": 64,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        case TASK_ADD:"
-      },
-      {
-        "lineNumber": 65,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "            return parseTaskAdd(userInput);"
-      },
-      {
-        "lineNumber": 66,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        default:"
-      },
-      {
-        "lineNumber": 67,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "            throw new FarmioException(\"Invalid Command!\");"
-      },
-      {
-        "lineNumber": 68,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 69,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 70,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 71,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 72,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "     * Allows the user to resume the game from the menu."
-      },
-      {
-        "lineNumber": 73,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "     *"
-      },
-      {
-        "lineNumber": 74,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "     * @param userInput input String from the user"
-      },
-      {
-        "lineNumber": 75,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "     * @return Command that corresponds to the user\u0027s actions"
-      },
-      {
-        "lineNumber": 76,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "     * @throws FarmioException if user input is invalid"
-      },
-      {
-        "lineNumber": 77,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 78,
-        "author": {
-          "gitId": "JohnTYH"
-        },
-        "content": "//    private static Command parseMenu(String userInput) throws FarmioException {"
-      },
-      {
-        "lineNumber": 79,
-        "author": {
-          "gitId": "JohnTYH"
-        },
-        "content": "//        if (userInput.equals(\"resume game\")) {"
-      },
-      {
-        "lineNumber": 80,
-        "author": {
-          "gitId": "JohnTYH"
-        },
-        "content": "//            return new CommandLevelStart();"
-      },
-      {
-        "lineNumber": 81,
-        "author": {
-          "gitId": "JohnTYH"
-        },
-        "content": "//        } else if (userInput.equals(\"actions\") || userInput.equals(\"conditions\") || userInput.equals(\"market\") || userInput.equals(\"\")) {"
-      },
-      {
-        "lineNumber": 82,
-        "author": {
-          "gitId": "JohnTYH"
-        },
-        "content": "//            return new CommandMenuInGame(userInput);"
-      },
-      {
-        "lineNumber": 83,
-        "author": {
-          "gitId": "JohnTYH"
-        },
-        "content": "//        } else {"
-      },
-      {
-        "lineNumber": 84,
-        "author": {
-          "gitId": "JohnTYH"
-        },
-        "content": "//            throw new FarmioException(\"Invalid command!\");"
-      },
-      {
-        "lineNumber": 85,
-        "author": {
-          "gitId": "JohnTYH"
-        },
-        "content": "//        }"
-      },
-      {
-        "lineNumber": 86,
-        "author": {
-          "gitId": "JohnTYH"
-        },
-        "content": "//    }"
-      },
-      {
-        "lineNumber": 87,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 88,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 89,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "     * Used to parse the user input during the DAY_END stage. User can choose to either reset the level,"
-      },
-      {
-        "lineNumber": 90,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "     * or proceed to the next day"
-      },
-      {
-        "lineNumber": 91,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "     *"
-      },
-      {
-        "lineNumber": 92,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "     * @param userInput user input String"
-      },
-      {
-        "lineNumber": 93,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "     * @return Command that either resets the level, or lets the user proceed to the next day"
-      },
-      {
-        "lineNumber": 94,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "     * @throws FarmioException if user input is invalid"
-      },
-      {
-        "lineNumber": 95,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 96,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "    private static Command parseDayEnd(String userInput) throws FarmioException {"
-      },
-      {
-        "lineNumber": 97,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "        if (userInput.length() \u003d\u003d 0) {"
-      },
-      {
-        "lineNumber": 98,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "            return new CommandDayEnd();"
-      },
-      {
-        "lineNumber": 99,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 100,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "        if (userInput.equals(\"reset\")) {"
-      },
-      {
-        "lineNumber": 101,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "            return new CommandLevelReset();"
-      },
-      {
-        "lineNumber": 102,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 103,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "        throw new FarmioException(\"Invalid Command!\");"
-      },
-      {
-        "lineNumber": 104,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 105,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 106,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 107,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "     * Used to parse the user\u0027s input during the TASK_ADD stage. Facilitates creating, editing and deleting of tasks,"
-      },
-      {
-        "lineNumber": 108,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "     * as well as opening in\u003dgame menu, or seeing the list of actions or conditions"
-      },
-      {
-        "lineNumber": 109,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "     *"
-      },
-      {
-        "lineNumber": 110,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "     * @param userInput user input String"
-      },
-      {
-        "lineNumber": 111,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "     * @return Command that corresponds to the user\u0027s input"
-      },
-      {
-        "lineNumber": 112,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "     * @throws FarmioException if user input is invalid"
-      },
-      {
-        "lineNumber": 113,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 114,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "    private static Command parseTaskAdd(String userInput) throws FarmioException {"
-      },
-      {
-        "lineNumber": 115,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "        if (userInput.equals(\"menu\")) {"
-      },
-      {
-        "lineNumber": 116,
-        "author": {
-          "gitId": "JohnTYH"
-        },
-        "content": "            return new CommandMenuInGame();"
-      },
-      {
-        "lineNumber": 117,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 118,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "        if (userInput.equals(\"deleteall\") || userInput.equals(\"delete all\")) {"
-      },
-      {
-        "lineNumber": 119,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "            return new CommandTaskDeleteAll();"
-      },
-      {
-        "lineNumber": 120,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 121,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "        if (userInput.startsWith(\"delete\")) {"
-      },
-      {
-        "lineNumber": 122,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "            return parseTaskDelete(userInput);"
-      },
-      {
-        "lineNumber": 123,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 124,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "        if (userInput.startsWith(\"insert\")) {"
-      },
-      {
-        "lineNumber": 125,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "            return insertTask(userInput);"
-      },
-      {
-        "lineNumber": 126,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 127,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "        if (userInput.startsWith(\"edit\")) {"
-      },
-      {
-        "lineNumber": 128,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "            return editTask(userInput);"
-      },
-      {
-        "lineNumber": 129,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 130,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "        if (userInput.toLowerCase().equals(\"start\")) {"
-      },
-      {
-        "lineNumber": 131,
         "author": {
           "gitId": "jing-xuan"
         },
         "content": "            return new CommandDayStart();"
       },
       {
-        "lineNumber": 132,
+        "lineNumber": 63,
         "author": {
           "gitId": "jing-xuan"
+        },
+        "content": "        case LEVEL_END:"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "            return new CommandLevelEnd();"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "        case LEVEL_FAILED:"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "            return new CommandLevelReset();"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "tzw0"
+        },
+        "content": "        case DAY_END:"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "tzw0"
+        },
+        "content": "            return parseDayEnd(userInput);"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "JohnTYH"
+        },
+        "content": "        case NAME_ADD:"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "JohnTYH"
+        },
+        "content": "            return new CommandAddName(userInput);"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        case TASK_ADD:"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "            return parseTaskAdd(userInput);"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        default:"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "            LOGGER.log(Level.INFO, \"Deteched invalid command at stage: \""
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                    + stage.toString() + \" command: \" + userInput);"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "            throw new FarmioException(\"Invalid Command!\");"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "Exprescode"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 133,
+        "lineNumber": 78,
         "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "        if (userInput.equals(\"conditions\") || userInput.equals(\"condition\")) {"
-      },
-      {
-        "lineNumber": 134,
-        "author": {
-          "gitId": "tzw0"
-        },
-        "content": "            return new CommandShowList(\"ConditionList\");"
-      },
-      {
-        "lineNumber": 135,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 136,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "        if (userInput.equals(\"actions\") || userInput.equals(\"action\")) {"
-      },
-      {
-        "lineNumber": 137,
-        "author": {
-          "gitId": "tzw0"
-        },
-        "content": "            return new CommandShowList(\"ActionList\");"
-      },
-      {
-        "lineNumber": 138,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 139,
-        "author": {
-          "gitId": "tzw0"
-        },
-        "content": "        if (userInput.equals(\"market\")) {"
-      },
-      {
-        "lineNumber": 140,
-        "author": {
-          "gitId": "tzw0"
-        },
-        "content": "            return new CommandShowList(\"MarketList\");"
-      },
-      {
-        "lineNumber": 141,
-        "author": {
-          "gitId": "tzw0"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 142,
-        "author": {
-          "gitId": "tzw0"
-        },
-        "content": "        if (userInput.equals(\"task commands\") || userInput.equals(\"task command\")) {"
-      },
-      {
-        "lineNumber": 143,
-        "author": {
-          "gitId": "tzw0"
-        },
-        "content": "            return new CommandShowList(\"TaskCommands\");"
-      },
-      {
-        "lineNumber": 144,
-        "author": {
-          "gitId": "tzw0"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 145,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "        if (userInput.startsWith(\"do\") || userInput.startsWith(\"if\")"
-      },
-      {
-        "lineNumber": 146,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "                || userInput.startsWith(\"for\") || userInput.startsWith(\"while\")) {"
-      },
-      {
-        "lineNumber": 147,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "            return new CommandTaskCreate(parseTask(userInput));"
-      },
-      {
-        "lineNumber": 148,
-        "author": {
-          "gitId": "tzw0"
-        },
-        "content": "        } else if (userInput.equals(\"hint\")) {"
-      },
-      {
-        "lineNumber": 149,
-        "author": {
-          "gitId": "tzw0"
-        },
-        "content": "            return new CommandTasksHint();"
-      },
-      {
-        "lineNumber": 150,
-        "author": {
-          "gitId": "tzw0"
-        },
-        "content": "        } else if (userInput.equals(\"\")) {"
-      },
-      {
-        "lineNumber": 151,
-        "author": {
-          "gitId": "tzw0"
-        },
-        "content": "            return new CommandTaskAddReset();"
-      },
-      {
-        "lineNumber": 152,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 153,
-        "author": {
-          "gitId": "tzw0"
-        },
-        "content": "        throw new FarmioException(\"Invalid command!\");"
-      },
-      {
-        "lineNumber": 154,
-        "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 155,
+        "lineNumber": 79,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
         "content": ""
       },
       {
-        "lineNumber": 156,
+        "lineNumber": 80,
         "author": {
           "gitId": "jing-xuan"
         },
         "content": "    /**"
       },
       {
-        "lineNumber": 157,
+        "lineNumber": 81,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "     * Used to parse the user\u0027s command if it is determined to be a delete task command."
+        "content": "     * Allows the user to resume the game from the menu."
       },
       {
-        "lineNumber": 158,
+        "lineNumber": 82,
         "author": {
           "gitId": "jing-xuan"
         },
         "content": "     *"
       },
       {
-        "lineNumber": 159,
+        "lineNumber": 83,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "     * @param userInput user input String"
+        "content": "     * @param userInput input String from the user"
       },
       {
-        "lineNumber": 160,
+        "lineNumber": 84,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "     * @return Command that deletes the specified task when executed"
+        "content": "     * @return Command that corresponds to the user\u0027s actions"
       },
       {
-        "lineNumber": 161,
+        "lineNumber": 85,
         "author": {
           "gitId": "jing-xuan"
         },
         "content": "     * @throws FarmioException if user input is invalid"
       },
       {
-        "lineNumber": 162,
+        "lineNumber": 86,
         "author": {
           "gitId": "jing-xuan"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 163,
+        "lineNumber": 87,
+        "author": {
+          "gitId": "JohnTYH"
+        },
+        "content": "//    private static Command parseMenu(String userInput) throws FarmioException {"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "JohnTYH"
+        },
+        "content": "//        if (userInput.equals(\"resume game\")) {"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "JohnTYH"
+        },
+        "content": "//            return new CommandLevelStart();"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "JohnTYH"
+        },
+        "content": "//        } else if (userInput.equals(\"actions\") || userInput.equals(\"conditions\") || userInput.equals(\"market\") || userInput.equals(\"\")) {"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "JohnTYH"
+        },
+        "content": "//            return new CommandMenuInGame(userInput);"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "JohnTYH"
+        },
+        "content": "//        } else {"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "JohnTYH"
+        },
+        "content": "//            throw new FarmioException(\"Invalid command!\");"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "JohnTYH"
+        },
+        "content": "//        }"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "JohnTYH"
+        },
+        "content": "//    }"
+      },
+      {
+        "lineNumber": 96,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "    private static Command parseTaskDelete(String userInput) throws FarmioException {"
+        "content": ""
       },
       {
-        "lineNumber": 164,
+        "lineNumber": 97,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "        if (userInput.matches(\"(delete)\\\\s+\\\\d+\")) {"
+        "content": "    /**"
       },
       {
-        "lineNumber": 165,
+        "lineNumber": 98,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "            int taskID \u003d Integer.parseInt((userInput.substring(userInput.indexOf(\" \"))).trim());"
+        "content": "     * Used to parse the user input during the DAY_END stage. User can choose to either reset the level,"
       },
       {
-        "lineNumber": 166,
+        "lineNumber": 99,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "            return new CommandTaskDelete(taskID);"
+        "content": "     * or proceed to the next day"
       },
       {
-        "lineNumber": 167,
+        "lineNumber": 100,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "     * @param userInput user input String"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "     * @return Command that either resets the level, or lets the user proceed to the next day"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "     * @throws FarmioException if user input is invalid"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "    private static Command parseDayEnd(String userInput) throws FarmioException {"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "        if (userInput.length() \u003d\u003d 0) {"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "            return new CommandDayEnd();"
+      },
+      {
+        "lineNumber": 108,
         "author": {
           "gitId": "jing-xuan"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 168,
+        "lineNumber": 109,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "        if (userInput.equals(\"reset\")) {"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "            return new CommandLevelReset();"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        LOGGER.log(Level.SEVERE, \"Deteched invalid command for command: \" + userInput);"
+      },
+      {
+        "lineNumber": 113,
         "author": {
           "gitId": "jing-xuan"
         },
         "content": "        throw new FarmioException(\"Invalid Command!\");"
       },
       {
-        "lineNumber": 169,
+        "lineNumber": 114,
         "author": {
           "gitId": "jing-xuan"
         },
         "content": "    }"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "     * Used to parse the user\u0027s input during the TASK_ADD stage. Facilitates creating, editing and deleting of tasks,"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "     * as well as opening in\u003dgame menu, or seeing the list of actions or conditions"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "     * @param userInput user input String"
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "     * @return Command that corresponds to the user\u0027s input"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "     * @throws FarmioException if user input is invalid"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "    private static Command parseTaskAdd(String userInput) throws FarmioException {"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "        if (userInput.equals(\"menu\")) {"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "JohnTYH"
+        },
+        "content": "            return new CommandMenuInGame();"
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "        if (userInput.equals(\"deleteall\") || userInput.equals(\"delete all\")) {"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "            return new CommandTaskDeleteAll();"
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "        if (userInput.startsWith(\"delete\")) {"
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "            return parseTaskDelete(userInput);"
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "        if (userInput.startsWith(\"insert\")) {"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "            return insertTask(userInput);"
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "        if (userInput.startsWith(\"edit\")) {"
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "            return editTask(userInput);"
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "        if (userInput.toLowerCase().equals(\"start\")) {"
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "            return new CommandDayStart();"
+      },
+      {
+        "lineNumber": 142,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "        if (userInput.equals(\"conditions\") || userInput.equals(\"condition\")) {"
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "tzw0"
+        },
+        "content": "            return new CommandShowList(\"ConditionList\");"
+      },
+      {
+        "lineNumber": 145,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 146,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "        if (userInput.equals(\"actions\") || userInput.equals(\"action\")) {"
+      },
+      {
+        "lineNumber": 147,
+        "author": {
+          "gitId": "tzw0"
+        },
+        "content": "            return new CommandShowList(\"ActionList\");"
+      },
+      {
+        "lineNumber": 148,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 149,
+        "author": {
+          "gitId": "tzw0"
+        },
+        "content": "        if (userInput.equals(\"market\")) {"
+      },
+      {
+        "lineNumber": 150,
+        "author": {
+          "gitId": "tzw0"
+        },
+        "content": "            return new CommandShowList(\"MarketList\");"
+      },
+      {
+        "lineNumber": 151,
+        "author": {
+          "gitId": "tzw0"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 152,
+        "author": {
+          "gitId": "tzw0"
+        },
+        "content": "        if (userInput.equals(\"task commands\") || userInput.equals(\"task command\")) {"
+      },
+      {
+        "lineNumber": 153,
+        "author": {
+          "gitId": "tzw0"
+        },
+        "content": "            return new CommandShowList(\"TaskCommands\");"
+      },
+      {
+        "lineNumber": 154,
+        "author": {
+          "gitId": "tzw0"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 155,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "        if (userInput.startsWith(\"do\") || userInput.startsWith(\"if\")"
+      },
+      {
+        "lineNumber": 156,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "                || userInput.startsWith(\"for\") || userInput.startsWith(\"while\")) {"
+      },
+      {
+        "lineNumber": 157,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "            return new CommandTaskCreate(parseTask(userInput));"
+      },
+      {
+        "lineNumber": 158,
+        "author": {
+          "gitId": "tzw0"
+        },
+        "content": "        } else if (userInput.equals(\"hint\")) {"
+      },
+      {
+        "lineNumber": 159,
+        "author": {
+          "gitId": "tzw0"
+        },
+        "content": "            return new CommandTasksHint();"
+      },
+      {
+        "lineNumber": 160,
+        "author": {
+          "gitId": "tzw0"
+        },
+        "content": "        } else if (userInput.equals(\"\")) {"
+      },
+      {
+        "lineNumber": 161,
+        "author": {
+          "gitId": "tzw0"
+        },
+        "content": "            return new CommandTaskAddReset();"
+      },
+      {
+        "lineNumber": 162,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 163,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        LOGGER.log(Level.INFO, \"Deteched invalid commandfor command: \" + userInput);"
+      },
+      {
+        "lineNumber": 164,
+        "author": {
+          "gitId": "tzw0"
+        },
+        "content": "        throw new FarmioException(\"Invalid command!\");"
+      },
+      {
+        "lineNumber": 165,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 166,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 167,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 168,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "     * Used to parse the user\u0027s command if it is determined to be a delete task command."
+      },
+      {
+        "lineNumber": 169,
+        "author": {
+          "gitId": "jing-xuan"
+        },
+        "content": "     *"
       },
       {
         "lineNumber": 170,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": ""
+        "content": "     * @param userInput user input String"
       },
       {
         "lineNumber": 171,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "    /**"
+        "content": "     * @return Command that deletes the specified task when executed"
       },
       {
         "lineNumber": 172,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "     * Determines if the user is creating a DoTask or a ConditionalTask, and calls the corresponding function."
+        "content": "     * @throws FarmioException if user input is invalid"
       },
       {
         "lineNumber": 173,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "     * to further parse the user input"
+        "content": "     */"
       },
       {
         "lineNumber": 174,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "     *"
+        "content": "    private static Command parseTaskDelete(String userInput) throws FarmioException {"
       },
       {
         "lineNumber": 175,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
-        "content": "     * @param userInput user input String"
+        "content": "        Matcher matcher \u003d Pattern.compile(\"^delete\\\\s+(?\u003cindex\u003e\\\\d+)$\").matcher(userInput);"
       },
       {
         "lineNumber": 176,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
-        "content": "     * @return Task generated from the user\u0027s input"
+        "content": "        if (matcher.find()) {"
       },
       {
         "lineNumber": 177,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
-        "content": "     * @throws FarmioException if there is an error in generating a Task from the user\u0027s input"
+        "content": "            int taskID \u003d Integer.parseInt(matcher.group(\"index\"));"
       },
       {
         "lineNumber": 178,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "     */"
+        "content": "            return new CommandTaskDelete(taskID);"
       },
       {
         "lineNumber": 179,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "    private static Task parseTask(String userInput) throws FarmioException {"
+        "content": "        }"
       },
       {
         "lineNumber": 180,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
-        "content": "        if (userInput.startsWith(\"do\")) {"
+        "content": "        LOGGER.log(Level.INFO, \"Deteched invalid command for command: \" + userInput);"
       },
       {
         "lineNumber": 181,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
-        "content": "            return parseDoTask(userInput);"
+        "content": "        throw new FarmioException(\"Invalid argument.\");"
       },
       {
         "lineNumber": 182,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "        } else {"
+        "content": "    }"
       },
       {
         "lineNumber": 183,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "            return parseConditionalTask(userInput);"
+        "content": ""
       },
       {
         "lineNumber": 184,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "        }"
+        "content": "    /**"
       },
       {
         "lineNumber": 185,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "    }"
+        "content": "     * Determines if the user is creating a DoTask or a ConditionalTask, and calls the corresponding function."
       },
       {
         "lineNumber": 186,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": ""
+        "content": "     * to further parse the user input"
       },
       {
         "lineNumber": 187,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "    /**"
+        "content": "     *"
       },
       {
         "lineNumber": 188,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "     * Used to generate a DoTask from the user\u0027s input."
+        "content": "     * @param userInput user input String"
       },
       {
         "lineNumber": 189,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "     *"
+        "content": "     * @return Task generated from the user\u0027s input"
       },
       {
         "lineNumber": 190,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "     * @param userInput user input String"
+        "content": "     * @throws FarmioException if there is an error in generating a Task from the user\u0027s input"
       },
       {
         "lineNumber": 191,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "     * @return Task corresponding to the user input"
+        "content": "     */"
       },
       {
         "lineNumber": 192,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "     * @throws FarmioException if user input is of incorrect format, or the taskType or action is invalid"
+        "content": "    private static Task parseTask(String userInput) throws FarmioException {"
       },
       {
         "lineNumber": 193,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "     */"
+        "content": "        if (userInput.startsWith(\"do\")) {"
       },
       {
         "lineNumber": 194,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "    private static Task parseDoTask(String userInput) throws FarmioException {"
+        "content": "            return parseDoTask(userInput);"
       },
       {
         "lineNumber": 195,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "        String taskType \u003d \"\";"
+        "content": "        } else {"
       },
       {
         "lineNumber": 196,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "        String userAction \u003d \"\";"
+        "content": "            return parseConditionalTask(userInput);"
       },
       {
         "lineNumber": 197,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "        try {"
+        "content": "        }"
       },
       {
         "lineNumber": 198,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "            taskType \u003d userInput.substring(0, userInput.indexOf(\" \"));"
+        "content": "    }"
       },
       {
         "lineNumber": 199,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "            userAction \u003d (userInput.substring(userInput.indexOf(\" \"))).trim();"
+        "content": ""
       },
       {
         "lineNumber": 200,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "        } catch (IndexOutOfBoundsException e) {"
+        "content": "    /**"
       },
       {
         "lineNumber": 201,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "            throw new FarmioException(\"Invalid command format!\");"
+        "content": "     * Used to generate a DoTask from the user\u0027s input."
       },
       {
         "lineNumber": 202,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "        }"
+        "content": "     *"
       },
       {
         "lineNumber": 203,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "        if (!taskType.equals(\"do\")) {"
+        "content": "     * @param userInput user input String"
       },
       {
         "lineNumber": 204,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "            throw new FarmioException(\"Invalid task type!\");"
+        "content": "     * @return Task corresponding to the user input"
       },
       {
         "lineNumber": 205,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "        }"
+        "content": "     * @throws FarmioException if user input is of incorrect format, or the taskType or action is invalid"
       },
       {
         "lineNumber": 206,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "        if (Action.isValidAction(userAction)) {"
+        "content": "     */"
       },
       {
         "lineNumber": 207,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "            return new DoTask(Condition.toCondition(\"true\"), Action.toAction(userAction));"
+        "content": "    private static Task parseDoTask(String userInput) throws FarmioException {"
       },
       {
         "lineNumber": 208,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "        } else {"
+        "content": "        String taskType \u003d \"\";"
       },
       {
         "lineNumber": 209,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "            throw new FarmioException(\"Invalid action!\");"
+        "content": "        String userAction \u003d \"\";"
       },
       {
         "lineNumber": 210,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "        }"
+        "content": "        try {"
       },
       {
         "lineNumber": 211,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "    }"
+        "content": "            taskType \u003d userInput.substring(0, userInput.indexOf(\" \"));"
       },
       {
         "lineNumber": 212,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": ""
+        "content": "            userAction \u003d (userInput.substring(userInput.indexOf(\" \"))).trim();"
       },
       {
         "lineNumber": 213,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "    /**"
+        "content": "        } catch (IndexOutOfBoundsException e) {"
       },
       {
         "lineNumber": 214,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
-        "content": "     * Creates a Conditional Task from the user input."
+        "content": "            LOGGER.log(Level.WARNING, e.toString());"
       },
       {
         "lineNumber": 215,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "     *"
+        "content": "            throw new FarmioException(\"Invalid command format!\");"
       },
       {
         "lineNumber": 216,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "     * @param userInput user input String"
+        "content": "        }"
       },
       {
         "lineNumber": 217,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "     * @return Task corresponding to the user input"
+        "content": "        if (!taskType.equals(\"do\")) {"
       },
       {
         "lineNumber": 218,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
-        "content": "     * @throws FarmioException if user input is of wrong format, or either the tasktype, action or condition is invalid"
+        "content": "            LOGGER.log(Level.INFO, \"Deteched invalid task type for command: \" + userInput);"
       },
       {
         "lineNumber": 219,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "     */"
+        "content": "            throw new FarmioException(\"Invalid task type!\");"
       },
       {
         "lineNumber": 220,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "    private static Task parseConditionalTask(String userInput) throws FarmioException {"
+        "content": "        }"
       },
       {
         "lineNumber": 221,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "        String taskType \u003d \"\";"
+        "content": "        if (Action.isValidAction(userAction)) {"
       },
       {
         "lineNumber": 222,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "        String condition \u003d \"\";"
+        "content": "            return new DoTask(Condition.toCondition(\"true\"), Action.toAction(userAction));"
       },
       {
         "lineNumber": 223,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "        String action \u003d \"\";"
+        "content": "        } else {"
       },
       {
         "lineNumber": 224,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
-        "content": "        try {"
+        "content": "            LOGGER.log(Level.INFO, \"Deteched invalid action for command: \" + userInput);"
       },
       {
         "lineNumber": 225,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "            taskType \u003d (userInput.substring(0, userInput.indexOf(\" \"))).trim();"
+        "content": "            throw new FarmioException(\"Invalid action!\");"
       },
       {
         "lineNumber": 226,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "            condition \u003d (userInput.substring(userInput.indexOf(\" \") + 1, userInput.indexOf(\"do\"))).trim();"
+        "content": "        }"
       },
       {
         "lineNumber": 227,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "            action \u003d userInput.substring(userInput.lastIndexOf(\" \") + 1);"
+        "content": "    }"
       },
       {
         "lineNumber": 228,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "        } catch (IndexOutOfBoundsException e) {"
+        "content": ""
       },
       {
         "lineNumber": 229,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "            throw new FarmioException(\"Invalid command format!\");"
+        "content": "    /**"
       },
       {
         "lineNumber": 230,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "        }"
+        "content": "     * Creates a Conditional Task from the user input."
       },
       {
         "lineNumber": 231,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "        if (!taskType.equals(\"if\")  \u0026\u0026 !taskType.equals(\"for\") \u0026\u0026 !taskType.equals(\"while\")) {"
+        "content": "     *"
       },
       {
         "lineNumber": 232,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "            throw new FarmioException(\"Invalid task type!\");"
+        "content": "     * @param userInput user input String"
       },
       {
         "lineNumber": 233,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "        }"
+        "content": "     * @return Task corresponding to the user input"
       },
       {
         "lineNumber": 234,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "        if (!Condition.isValidCondition(condition)) {"
+        "content": "     * @throws FarmioException if user input is of wrong format, or either the tasktype, action or condition is invalid"
       },
       {
         "lineNumber": 235,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "            throw new FarmioException(\"Invalid Condition!\");"
+        "content": "     */"
       },
       {
         "lineNumber": 236,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "        }"
+        "content": "    private static Task parseConditionalTask(String userInput) throws FarmioException {"
       },
       {
         "lineNumber": 237,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "        if (!Action.isValidAction(action)) {"
+        "content": "        String taskType \u003d \"\";"
       },
       {
         "lineNumber": 238,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "            throw new FarmioException(\"Invalid Action!\");"
+        "content": "        String condition \u003d \"\";"
       },
       {
         "lineNumber": 239,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "        }"
+        "content": "        String action \u003d \"\";"
       },
       {
         "lineNumber": 240,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "        Task task;"
+        "content": "        try {"
       },
       {
         "lineNumber": 241,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "        switch (taskType) {"
+        "content": "            taskType \u003d (userInput.substring(0, userInput.indexOf(\" \"))).trim();"
       },
       {
         "lineNumber": 242,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "        case \"if\":"
+        "content": "            condition \u003d (userInput.substring(userInput.indexOf(\" \") + 1, userInput.indexOf(\"do\"))).trim();"
       },
       {
         "lineNumber": 243,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "            task \u003d new IfTask(Condition.toCondition(condition), Action.toAction(action));"
+        "content": "            action \u003d userInput.substring(userInput.lastIndexOf(\" \") + 1);"
       },
       {
         "lineNumber": 244,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "            break;"
+        "content": "        } catch (IndexOutOfBoundsException e) {"
       },
       {
         "lineNumber": 245,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
-        "content": "        case \"for\":"
+        "content": "            LOGGER.log(Level.WARNING, e.toString());"
       },
       {
         "lineNumber": 246,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "            task \u003d new ForTask(Condition.toCondition(condition), Action.toAction(action));"
+        "content": "            throw new FarmioException(\"Invalid command format!\");"
       },
       {
         "lineNumber": 247,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "            break;"
+        "content": "        }"
       },
       {
         "lineNumber": 248,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "        case \"while\":"
+        "content": "        if (!taskType.equals(\"if\")  \u0026\u0026 !taskType.equals(\"for\") \u0026\u0026 !taskType.equals(\"while\")) {"
       },
       {
         "lineNumber": 249,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
-        "content": "            task \u003d new WhileTask(Condition.toCondition(condition), Action.toAction(action));"
+        "content": "            LOGGER.log(Level.INFO, \"Deteched invalid task type for command: \" + userInput);"
       },
       {
         "lineNumber": 250,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "            break;"
+        "content": "            throw new FarmioException(\"Invalid task type!\");"
       },
       {
         "lineNumber": 251,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "        default:"
+        "content": "        }"
       },
       {
         "lineNumber": 252,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "            throw new FarmioException(\"Error Creating Task!\");"
+        "content": "        if (!Condition.isValidCondition(condition)) {"
       },
       {
         "lineNumber": 253,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
-        "content": "        }"
+        "content": "            LOGGER.log(Level.INFO, \"Deteched invalid condition for command: \" + userInput);"
       },
       {
         "lineNumber": 254,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "        return task;"
+        "content": "            throw new FarmioException(\"Invalid Condition!\");"
       },
       {
         "lineNumber": 255,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "    }"
+        "content": "        }"
       },
       {
         "lineNumber": 256,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": ""
+        "content": "        if (!Action.isValidAction(action)) {"
       },
       {
         "lineNumber": 257,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
-        "content": "    /**"
+        "content": "            LOGGER.log(Level.INFO, \"Deteched invalid action for command: \" + userInput);"
       },
       {
         "lineNumber": 258,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "     * Parses commands meant to edit any Task in the TaskList."
+        "content": "            throw new FarmioException(\"Invalid Action!\");"
       },
       {
         "lineNumber": 259,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "     * Edit commands must be of the form \u0027edit [TaskID] [taskType] [Condition] do [Action]."
+        "content": "        }"
       },
       {
         "lineNumber": 260,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "     *"
+        "content": "        Task task;"
       },
       {
         "lineNumber": 261,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "     * @param userInput user input String"
+        "content": "        switch (taskType) {"
       },
       {
         "lineNumber": 262,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "     * @return Command that will edit the Task in the TaskList with the specified ID when executed"
+        "content": "        case \"if\":"
       },
       {
         "lineNumber": 263,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "     * @throws FarmioException if the user\u0027s input is of wrong format or the task description is invalid"
+        "content": "            task \u003d new IfTask(Condition.toCondition(condition), Action.toAction(action));"
       },
       {
         "lineNumber": 264,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "     */"
+        "content": "            break;"
       },
       {
         "lineNumber": 265,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "    private static Command editTask(String userInput) throws FarmioException {"
+        "content": "        case \"for\":"
       },
       {
         "lineNumber": 266,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "        String keyword \u003d \"\";"
+        "content": "            task \u003d new ForTask(Condition.toCondition(condition), Action.toAction(action));"
       },
       {
         "lineNumber": 267,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "        String taskID \u003d \"\";"
+        "content": "            break;"
       },
       {
         "lineNumber": 268,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "        String taskDesc \u003d \"\";"
+        "content": "        case \"while\":"
       },
       {
         "lineNumber": 269,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "        if (userInput.matches(\"(edit)\\\\s+\\\\d+\\\\s+.+\")) {"
+        "content": "            task \u003d new WhileTask(Condition.toCondition(condition), Action.toAction(action));"
       },
       {
         "lineNumber": 270,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "            try {"
+        "content": "            break;"
       },
       {
         "lineNumber": 271,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "                keyword \u003d userInput.substring(0, userInput.indexOf(\" \"));"
+        "content": "        default:"
       },
       {
         "lineNumber": 272,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
-        "content": "                userInput \u003d (userInput.substring(userInput.indexOf(\" \") + 1)).trim();"
+        "content": "            LOGGER.log(Level.SEVERE, \"Impossible exception reached! command:\" + userInput);"
       },
       {
         "lineNumber": 273,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "                taskID \u003d (userInput.substring(0, userInput.indexOf(\" \"))).trim();"
+        "content": "            throw new FarmioException(\"Error Creating Task!\");"
       },
       {
         "lineNumber": 274,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "                taskDesc \u003d (userInput.substring(userInput.indexOf(\" \") + 1)).trim();"
+        "content": "        }"
       },
       {
         "lineNumber": 275,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "            } catch (IndexOutOfBoundsException e) {"
+        "content": "        return task;"
       },
       {
         "lineNumber": 276,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "                throw new FarmioException(\"Invalid command format!\");"
+        "content": "    }"
       },
       {
         "lineNumber": 277,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "            }"
+        "content": ""
       },
       {
         "lineNumber": 278,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "            if (!keyword.equals(\"edit\")) {"
+        "content": "    /**"
       },
       {
         "lineNumber": 279,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "                throw new FarmioException(\"Invalid Command!\");"
+        "content": "     * Parses commands meant to edit any Task in the TaskList."
       },
       {
         "lineNumber": 280,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "            }"
+        "content": "     * Edit commands must be of the form \u0027edit [TaskID] [taskType] [Condition] do [Action]."
       },
       {
         "lineNumber": 281,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "            Task task \u003d parseTask(taskDesc);"
+        "content": "     *"
       },
       {
         "lineNumber": 282,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "            return new CommandTaskEdit(Integer.parseInt(taskID), task);"
+        "content": "     * @param userInput user input String"
       },
       {
         "lineNumber": 283,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "        } else {"
+        "content": "     * @return Command that will edit the Task in the TaskList with the specified ID when executed"
       },
       {
         "lineNumber": 284,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "            throw new FarmioException(\"Invalid Command Format\");"
+        "content": "     * @throws FarmioException if the user\u0027s input is of wrong format or the task description is invalid"
       },
       {
         "lineNumber": 285,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "        }"
+        "content": "     */"
       },
       {
         "lineNumber": 286,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "    }"
+        "content": "    private static Command editTask(String userInput) throws FarmioException {"
       },
       {
         "lineNumber": 287,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
-        "content": ""
+        "content": "        Matcher matcher \u003d Pattern.compile(\"^(?\u003ckey\u003eedit)\\\\s+(?\u003cindex\u003e-?\\\\d+)\\\\s(?\u003ccmd\u003e.+)$\").matcher(userInput);"
       },
       {
         "lineNumber": 288,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
-        "content": "    /**"
+        "content": "        if(matcher.find()){"
       },
       {
         "lineNumber": 289,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
-        "content": "     * Parses commands meant to insert a Task at a specific position in the TaskList."
+        "content": "            int taskID \u003d Integer.parseInt(matcher.group(\"index\"));"
       },
       {
         "lineNumber": 290,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
-        "content": "     *"
+        "content": "            Task task \u003d parseTask(matcher.group(\"cmd\"));"
       },
       {
         "lineNumber": 291,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
-        "content": "     * @param userInput user input String"
+        "content": "            return new CommandTaskEdit(taskID, task);"
       },
       {
         "lineNumber": 292,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "     * @return Command that inserts a Task at the specified position"
+        "content": "        }"
       },
       {
         "lineNumber": 293,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
-        "content": "     * @throws FarmioException if the user input is of invalid format, or the task description is invalid"
+        "content": "        LOGGER.log(Level.SEVERE, \"Deteched invalid command for command: \" + userInput);"
       },
       {
         "lineNumber": 294,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
-        "content": "     */"
+        "content": "        throw new FarmioException(\"Invalid Command\");"
       },
       {
         "lineNumber": 295,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "    private static Command insertTask(String userInput) throws FarmioException {"
+        "content": "    }"
       },
       {
         "lineNumber": 296,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "        String keyword \u003d \"\";"
+        "content": ""
       },
       {
         "lineNumber": 297,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "        String taskID \u003d \"\";"
+        "content": "    /**"
       },
       {
         "lineNumber": 298,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "        String taskDesc \u003d \"\";"
+        "content": "     * Parses commands meant to insert a Task at a specific position in the TaskList."
       },
       {
         "lineNumber": 299,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "        if (userInput.matches(\"(insert)\\\\s+\\\\d+\\\\s+.+\")) {"
+        "content": "     *"
       },
       {
         "lineNumber": 300,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "            try {"
+        "content": "     * @param userInput user input String"
       },
       {
         "lineNumber": 301,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "                keyword \u003d userInput.substring(0, userInput.indexOf(\" \"));"
+        "content": "     * @return Command that inserts a Task at the specified position"
       },
       {
         "lineNumber": 302,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "                userInput \u003d (userInput.substring(userInput.indexOf(\" \") + 1)).trim();"
+        "content": "     * @throws FarmioException if the user input is of invalid format, or the task description is invalid"
       },
       {
         "lineNumber": 303,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "                taskID \u003d (userInput.substring(0, userInput.indexOf(\" \"))).trim();"
+        "content": "     */"
       },
       {
         "lineNumber": 304,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "                taskDesc \u003d (userInput.substring(userInput.indexOf(\" \") + 1)).trim();"
+        "content": "    private static Command insertTask(String userInput) throws FarmioException {"
       },
       {
         "lineNumber": 305,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
-        "content": "            } catch (IndexOutOfBoundsException e) {"
+        "content": "        Matcher matcher \u003d Pattern.compile(\"^(?\u003ckey\u003einsert)\\\\s+(?\u003cid\u003e-?\\\\d+)\\\\s+(?\u003ctask\u003e.+)$\").matcher(userInput);"
       },
       {
         "lineNumber": 306,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
-        "content": "                throw new FarmioException(\"Invalid command format!\");"
+        "content": "        if(matcher.find()){"
       },
       {
         "lineNumber": 307,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
-        "content": "            }"
+        "content": "            int taskID \u003d Integer.parseInt(matcher.group(\"id\"));"
       },
       {
         "lineNumber": 308,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
-        "content": "            if (!keyword.equals(\"insert\")) {"
+        "content": "            Task task \u003d parseTask(matcher.group(\"task\"));"
       },
       {
         "lineNumber": 309,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
-        "content": "                throw new FarmioException(\"Invalid Command!\");"
+        "content": "            return new CommandTaskEdit(taskID, task);"
       },
       {
         "lineNumber": 310,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "            }"
+        "content": "        }"
       },
       {
         "lineNumber": 311,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
-        "content": "            Task task \u003d parseTask(taskDesc);"
+        "content": "        LOGGER.log(Level.SEVERE, \"Deteched invalid command for command: \" + userInput);"
       },
       {
         "lineNumber": 312,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
-        "content": "            return new CommandTaskInsert(Integer.parseInt(taskID), task);"
+        "content": "        throw new FarmioException(\"Invalid Command\");"
       },
       {
         "lineNumber": 313,
         "author": {
           "gitId": "jing-xuan"
         },
-        "content": "        } else {"
-      },
-      {
-        "lineNumber": 314,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "            throw new FarmioException(\"Invalid Command Format\");"
-      },
-      {
-        "lineNumber": 315,
-        "author": {
-          "gitId": "jing-xuan"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 316,
-        "author": {
-          "gitId": "jing-xuan"
-        },
         "content": "    }"
       },
       {
-        "lineNumber": 317,
+        "lineNumber": 314,
         "author": {
           "gitId": "tzw0"
         },
@@ -26930,9 +27084,9 @@
     ],
     "authorContributionMap": {
       "JohnTYH": 15,
-      "Exprescode": 20,
+      "Exprescode": 58,
       "tzw0": 24,
-      "jing-xuan": 258
+      "jing-xuan": 217
     }
   },
   {
@@ -26970,7 +27124,776 @@
       {
         "lineNumber": 5,
         "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "import org.json.simple.JSONObject;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "public interface Storage {"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "     * Check the existence of a save.json file on the current working directory."
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "     * @return True if save.json exist and false if save.json does not exist."
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    boolean getSaveExist();"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "     * Reads save.json file as an json formatted file and returns farmer JSON data."
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "     * @return  JSONObject containing all farmer assets."
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "     * @throws FarmioException Error reading or parsing save.json."
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    JSONObject loadFarmer() throws FarmioException;"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "     * A recovery process to load farmer json data from previous successful storeFarmer."
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "     * @return JSONObject that represent farmer object in json format."
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "     * @throws FarmioException No previous successful save or"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    JSONObject loadFarmerBackup() throws FarmioException;"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
           "gitId": "jing-xuan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "     * Gets json representation of farmer form the argumentand write json data into save.json."
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "     * @param farmer Farmio.Farmer object to be stored in to save.json."
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    boolean storeFarmer(Farmer farmer);"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "     * Get previous successful storeFarmer, update task list in json data and write to save.json."
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "     * @param farmer Farmer instance to be updated to from json data."
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "     * @return True if save is successful."
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    String storeFarmerPartial(Farmer farmer);"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "     * Retirve frames from resource folder and formats frame into string array list."
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "     * @param path the path of the frames in resource folder."
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "     * @param frameId frame number to be read."
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "     * @param frameWidth Width of the fame to be filled."
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "     * @param frameHeight Height of the frame to be filled."
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "     * @return An string array list of a specified frame in path."
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "     * @throws FarmioFatalException In intolerable rror reading frame from path."
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    ArrayList\u003cString\u003e loadFrame(String path, int frameId, int frameWidth, int frameHeight) throws FarmioFatalException;"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "     * Retrive level information from resource folder."
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "     * @param level level number to be retrived"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "     * @return level json data in JSONObject to be restored using Level constructor."
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "     * @throws FarmioFatalException Intolerable error when reading level json file."
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    JSONObject getLevel(double level) throws FarmioFatalException;"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "tzw0"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Exprescode": 57,
+      "tzw0": 1,
+      "jing-xuan": 4
+    }
+  },
+  {
+    "path": "src/main/java/farmio/StorageDummy.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "package farmio;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "import exceptions.FarmioException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "import exceptions.FarmioFatalException;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "import org.json.simple.JSONObject;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "public class StorageDummy implements Storage{"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public boolean getSaveExist() {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        return false;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public JSONObject loadFarmer() throws FarmioException {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        return null;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public JSONObject loadFarmerBackup() throws FarmioException {"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        return null;"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public boolean storeFarmer(Farmer farmer) {"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        return false;"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public String storeFarmerPartial(Farmer farmer) {"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        return null;"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public ArrayList\u003cString\u003e loadFrame(String path, int frameId, int frameWidth, int frameHeight) throws FarmioFatalException {"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        return null;"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public JSONObject getLevel(double level) throws FarmioFatalException {"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        return null;"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Exprescode": 45
+    }
+  },
+  {
+    "path": "src/main/java/farmio/StorageManager.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "package farmio;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "import exceptions.FarmioException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "import exceptions.FarmioFatalException;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Exprescode"
         },
         "content": "import frontend.AsciiColours;"
       },
@@ -27021,14 +27944,14 @@
         "author": {
           "gitId": "Exprescode"
         },
-        "content": ""
+        "content": "import java.util.logging.Level;"
       },
       {
         "lineNumber": 13,
         "author": {
-          "gitId": "tzw0"
+          "gitId": "Exprescode"
         },
-        "content": "public class Storage {"
+        "content": "import java.util.logging.*;"
       },
       {
         "lineNumber": 14,
@@ -27042,1420 +27965,1187 @@
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    private String appDir;"
+        "content": "public class StorageManager implements Storage {"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    private String jsonName \u003d \"save.json\";"
+        "content": ""
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    private JSONObject jsonFarmer \u003d null;"
+        "content": "    private String GAME_FILENAME \u003d \"save.json\";"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": ""
+        "content": "    private JSONObject jsonFarmer;"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    /**"
+        "content": "    private final Logger LOGGER \u003d Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "     * Storage constructor to initialise storage object."
+        "content": ""
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "     */"
+        "content": "    /**"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    public Storage() {"
+        "content": "     * Storage constructor to initialise storage object."
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        appDir \u003d System.getProperty(\"user.dir\");"
+        "content": "     */"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        if (System.getProperty(\"os.name\").startsWith(\"Windows\")) {"
+        "content": "    public StorageManager() {"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            jsonName \u003d \"\\\\\" + jsonName;"
+        "content": "        jsonFarmer \u003d null;"
       },
       {
         "lineNumber": 26,
         "author": {
-          "gitId": "tzw0"
+          "gitId": "Exprescode"
         },
-        "content": "            AsciiColours.inActivate();"
+        "content": "    }"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        } else {"
+        "content": ""
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            jsonName \u003d \"/\" + jsonName;"
+        "content": "    @Override"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        }"
+        "content": "    public boolean getSaveExist() {"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    }"
+        "content": "        return new File(GAME_FILENAME).exists();"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "     * Check the esistence of a save.json file on the application directory."
+        "content": "    @Override"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "     * @return True is save.json exist and false if save.json does not exist."
+        "content": "    public JSONObject loadFarmer() throws FarmioException {"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "     */"
+        "content": "        Reader reader;"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    public boolean getSaveExist() {"
+        "content": "        try {"
       },
       {
         "lineNumber": 37,
         "author": {
-          "gitId": "tzw0"
+          "gitId": "Exprescode"
         },
-        "content": "//        System.out.println(new File(appDir.concat(jsonName)).toString());"
+        "content": "            reader \u003d new FileReader(GAME_FILENAME);"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        return new File(appDir.concat(jsonName)).exists();"
+        "content": "        } catch (FileNotFoundException e) {"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    }"
+        "content": "            LOGGER.log(Level.WARNING, e.toString());"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": ""
+        "content": "            throw new FarmioException(\"Game save not found!\");"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    /**"
+        "content": "        }"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "     * Read save.json file as an json formatted file"
+        "content": "        JSONParser parser \u003d new JSONParser();"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "     * and returns JSON representation of farmer."
+        "content": "        try {"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "     * @return  JSONObject containing all farmer assets."
+        "content": "            jsonFarmer \u003d (JSONObject) parser.parse(reader);"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "     * @throws FarmioException Error reading or parsing save.json."
+        "content": "        } catch (Exception e) {"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "     */"
+        "content": "            LOGGER.log(Level.WARNING, e.toString());"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    public JSONObject loadFarmer() throws FarmioException {"
+        "content": "            throw new FarmioException(\"Game save corrupted!\");"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        Reader reader \u003d null;"
+        "content": "        }"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        try {"
+        "content": "        try{"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            reader \u003d new FileReader(appDir.concat(jsonName));"
+        "content": "            double level \u003d (Double) jsonFarmer.get(\"level\");"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        } catch (FileNotFoundException e) {"
+        "content": "            if(!getLevelExist(level)){"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            throw new FarmioException(\"Game save not found!\");"
+        "content": "                LOGGER.log(Level.INFO, \"Detected invalid level: \" + level);"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        }"
+        "content": "                throw new FarmioException(\"Game level corrupted!\");"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        JSONParser parser \u003d new JSONParser();"
+        "content": "            }"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        try {"
+        "content": "        }catch(Exception e){"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            jsonFarmer \u003d (JSONObject) parser.parse(reader);"
+        "content": "            LOGGER.log(Level.WARNING, \"Failed level double check. \u003e\" + e.toString());"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        } catch (IOException | ParseException e) {"
+        "content": "        }"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            throw new FarmioException(\"Gave save corrupted!\");"
+        "content": "        return jsonFarmer;"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        }"
+        "content": "    }"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        return jsonFarmer;"
+        "content": ""
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    }"
+        "content": "    @Override"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": ""
+        "content": "    public JSONObject loadFarmerBackup() throws FarmioException {"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    /**"
+        "content": "        FileWriter file;"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "     * A recovery process to load farmer json data from previous successful"
+        "content": "        try {"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "     * saved farmer json data stored withing the application during runtime."
+        "content": "            file \u003d new FileWriter(GAME_FILENAME);"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "     * Method also attempts to write previous successful saved farmer json data"
+        "content": "            file.write(jsonFarmer.toJSONString());"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "     * to save.json."
+        "content": "            file.close();"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "     * @return JSONObject that represent farmer object in json format."
+        "content": "        } catch (Exception e) {"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "     * @throws FarmioException No previous successful save or"
+        "content": "            LOGGER.log(Level.WARNING, e.toString());"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "     */"
+        "content": "            throw new FarmioException(\"Recovery failed!\");"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    public JSONObject loadFarmerBackup() throws FarmioException {"
+        "content": "        }"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        if(jsonFarmer \u003d\u003d null){"
+        "content": "        return jsonFarmer;"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            throw new FarmioException(\"Recovery failed!\");"
+        "content": "    }"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        }"
+        "content": ""
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        recoverFarmer();"
+        "content": "    @Override"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        return jsonFarmer;"
+        "content": "    public boolean storeFarmer(Farmer farmer) {"
       },
       {
         "lineNumber": 77,
         "author": {
-          "gitId": "tzw0"
+          "gitId": "Exprescode"
         },
-        "content": "    }"
+        "content": "        FileWriter file;"
       },
       {
         "lineNumber": 78,
         "author": {
-          "gitId": "jing-xuan"
+          "gitId": "Exprescode"
         },
-        "content": ""
+        "content": "        try {"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    /**"
+        "content": "            file \u003d new FileWriter(GAME_FILENAME);"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "     * Gets json representation of farmer form the argumentand write json data into save.json."
+        "content": "            jsonFarmer \u003d farmer.toJson();"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "     * @param farmer Farmio.Farmer object to be stored in to save.json."
+        "content": "            file.write(jsonFarmer.toJSONString());"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "     */"
+        "content": "            file.close();"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    public boolean storeFarmer(Farmer farmer) {"
+        "content": "        } catch (IOException e) {"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        FileWriter file;"
+        "content": "            return false;"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        try {"
+        "content": "        }"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            file \u003d new FileWriter(appDir.concat(jsonName));"
+        "content": "        return true;"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            jsonFarmer \u003d farmer.toJson();"
+        "content": "    }"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            file.write(jsonFarmer.toJSONString());"
+        "content": ""
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            file.close();"
+        "content": "    @Override"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        } catch (IOException e) {"
+        "content": "    public String storeFarmerPartial(Farmer farmer) {"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            return false;"
+        "content": "        if(jsonFarmer \u003d\u003d null){"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        }"
+        "content": "            return null;"
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        return true;"
+        "content": "        }"
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    }"
+        "content": "        FileWriter file;"
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": ""
+        "content": "        try {"
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    /**"
+        "content": "            file \u003d new FileWriter(GAME_FILENAME);"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "     * Get previous successful famer json data save and update task list in json data."
+        "content": "            jsonFarmer \u003d farmer.updateJSON(jsonFarmer);"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "     * After updat, json data will be stored in save.json."
+        "content": "            file.write(jsonFarmer.toJSONString());"
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "     * @param farmer Farmer instance to be updated to from json data."
+        "content": "            file.close();"
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "     * @return True if save is successful."
+        "content": "        } catch (IOException e) {"
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "     */"
+        "content": "            return null;"
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    public String storeFarmerPartial(Farmer farmer) {"
+        "content": "        }"
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        if(jsonFarmer \u003d\u003d null){"
+        "content": "        return System.getProperty(\"user.dir\").concat(GAME_FILENAME);"
       },
       {
         "lineNumber": 104,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            return null;"
+        "content": "    }"
       },
       {
         "lineNumber": 105,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        }"
+        "content": ""
       },
       {
         "lineNumber": 106,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        FileWriter file;"
+        "content": "    @Override"
       },
       {
         "lineNumber": 107,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        try {"
+        "content": "    public ArrayList\u003cString\u003e loadFrame(String path, int frameId, int frameWidth, int frameHeight) throws FarmioFatalException {"
       },
       {
         "lineNumber": 108,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            file \u003d new FileWriter(appDir.concat(jsonName));"
+        "content": "        path \u003d \"asciiArt/\" + path + \"/frame\" + frameId + \".txt\";"
       },
       {
         "lineNumber": 109,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            jsonFarmer \u003d farmer.updateJSON(jsonFarmer);"
+        "content": "        BufferedReader bufferedReader \u003d new BufferedReader(new InputStreamReader(getResourceStream(path)));"
       },
       {
         "lineNumber": 110,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            file.write(jsonFarmer.toJSONString());"
+        "content": "        String line;"
       },
       {
         "lineNumber": 111,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            file.close();"
+        "content": "        ArrayList\u003cString\u003e frame \u003d new ArrayList\u003c\u003e();"
       },
       {
         "lineNumber": 112,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        } catch (IOException e) {"
+        "content": "        while (true) {"
       },
       {
         "lineNumber": 113,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            return null;"
+        "content": "            try {"
       },
       {
         "lineNumber": 114,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        }"
+        "content": "                if ((line \u003d bufferedReader.readLine()) \u003d\u003d null) break;"
       },
       {
         "lineNumber": 115,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        return appDir.concat(jsonName);"
+        "content": "            } catch (IOException e) {"
       },
       {
         "lineNumber": 116,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    }"
+        "content": "                LOGGER.log(Level.WARNING, e.toString());"
       },
       {
         "lineNumber": 117,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": ""
+        "content": "                throw new FarmioFatalException(formatFatalMessage(path));"
       },
       {
         "lineNumber": 118,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    /**"
+        "content": "            }"
       },
       {
         "lineNumber": 119,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "     * Write previous successful farmer save into save.json."
+        "content": "            if (line.length() \u003c\u003d frameWidth) {"
       },
       {
         "lineNumber": 120,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "     * @return  True if save is successful."
+        "content": "                line \u003d String.format(\"%-\" + frameWidth + \"s\", line);"
       },
       {
         "lineNumber": 121,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "     */"
+        "content": "            } else {"
       },
       {
         "lineNumber": 122,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    private boolean recoverFarmer() {"
+        "content": "                line \u003d String.format(\"%\" + frameWidth + \"s\", \"\");"
       },
       {
         "lineNumber": 123,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        FileWriter file;"
+        "content": "            }"
       },
       {
         "lineNumber": 124,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        try {"
+        "content": "            frame.add("
       },
       {
         "lineNumber": 125,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            file \u003d new FileWriter(appDir.concat(jsonName));"
+        "content": "                    \"|\" +"
       },
       {
         "lineNumber": 126,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            file.write(jsonFarmer.toJSONString());"
+        "content": "                            AsciiColours.BACKGROUND_WHITE +"
       },
       {
         "lineNumber": 127,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            file.close();"
+        "content": "                            AsciiColours.BLACK +"
       },
       {
         "lineNumber": 128,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        } catch (IOException e) {"
+        "content": "                            line +"
       },
       {
         "lineNumber": 129,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            return false;"
+        "content": "                            AsciiColours.SANE +"
       },
       {
         "lineNumber": 130,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        }"
+        "content": "                            \"|\""
       },
       {
         "lineNumber": 131,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        return true;"
+        "content": "            );"
       },
       {
         "lineNumber": 132,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    }"
+        "content": "        }"
       },
       {
         "lineNumber": 133,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": ""
+        "content": "        if (frame.size() \u003c frameHeight) {"
       },
       {
         "lineNumber": 134,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    /**"
+        "content": "            for (int i \u003d frame.size(); i \u003c frameHeight; i++) {"
       },
       {
         "lineNumber": 135,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "     * Retirve frames from resource folder using path parameter. Reads and formats frame into string array list."
+        "content": "                frame.add("
       },
       {
         "lineNumber": 136,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "     * @param path the path of the frames in resource folder."
+        "content": "                        \"|\" +"
       },
       {
         "lineNumber": 137,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "     * @param frameId frame number to be read."
+        "content": "                                AsciiColours.BACKGROUND_WHITE +"
       },
       {
         "lineNumber": 138,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "     * @param frameWidth Width of the fame to be filled."
+        "content": "                                AsciiColours.BLACK +"
       },
       {
         "lineNumber": 139,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "     * @param frameHeight Height of the frame to be filled."
+        "content": "                                String.format(\"%\" + frameWidth + \"s\", \"\") +"
       },
       {
         "lineNumber": 140,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "     * @return An string array list of a specified frame in path."
+        "content": "                                AsciiColours.SANE +"
       },
       {
         "lineNumber": 141,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "     * @throws FarmioFatalException In intolerable rror reading frame from path."
+        "content": "                                \"|\""
       },
       {
         "lineNumber": 142,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "     */"
+        "content": "                );"
       },
       {
         "lineNumber": 143,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    public ArrayList\u003cString\u003e loadFrame(String path, int frameId, int frameWidth, int frameHeight) throws FarmioFatalException {"
+        "content": "            }"
       },
       {
         "lineNumber": 144,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        path \u003d \"asciiArt/\" + path + \"/frame\" + frameId + \".txt\";"
+        "content": "        }"
       },
       {
         "lineNumber": 145,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        BufferedReader bufferedReader \u003d new BufferedReader(new InputStreamReader(getResourceStream(path)));"
+        "content": "        return frame;"
       },
       {
         "lineNumber": 146,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        String line;"
+        "content": "    }"
       },
       {
         "lineNumber": 147,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        ArrayList\u003cString\u003e frame \u003d new ArrayList\u003c\u003e();"
+        "content": ""
       },
       {
         "lineNumber": 148,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        while (true) {"
+        "content": "    @Override"
       },
       {
         "lineNumber": 149,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            try {"
+        "content": "    public JSONObject getLevel(double level) throws FarmioFatalException {"
       },
       {
         "lineNumber": 150,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                if ((line \u003d bufferedReader.readLine()) \u003d\u003d null) break;"
+        "content": "        String path \u003d \"levels/\" + level + \".json\";"
       },
       {
         "lineNumber": 151,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            } catch (IOException e) {"
+        "content": "        JSONParser parser \u003d new JSONParser();"
       },
       {
         "lineNumber": 152,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                throw new FarmioFatalException(formatFatalMessage(path));"
+        "content": "        try {"
       },
       {
         "lineNumber": 153,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            }"
+        "content": "            return (JSONObject) parser.parse(new InputStreamReader(getResourceStream(path)));"
       },
       {
         "lineNumber": 154,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            if (line.length() \u003c\u003d frameWidth) {"
+        "content": "        } catch (IOException | ParseException e) {"
       },
       {
         "lineNumber": 155,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                line \u003d String.format(\"%-\" + frameWidth + \"s\", line);"
+        "content": "            LOGGER.log(Level.WARNING, e.toString());"
       },
       {
         "lineNumber": 156,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            } else {"
+        "content": "            throw new FarmioFatalException(formatFatalMessage(path));"
       },
       {
         "lineNumber": 157,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                line \u003d String.format(\"%\" + frameWidth + \"s\", \"\");"
+        "content": "        }"
       },
       {
         "lineNumber": 158,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            }"
+        "content": "    }"
       },
       {
         "lineNumber": 159,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            frame.add("
+        "content": ""
       },
       {
         "lineNumber": 160,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                    \"|\" +"
+        "content": ""
       },
       {
         "lineNumber": 161,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                            AsciiColours.BACKGROUND_WHITE +"
+        "content": "    private boolean getLevelExist(double level){"
       },
       {
         "lineNumber": 162,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                            AsciiColours.BLACK +"
+        "content": "        String path \u003d \"levels/\" + level + \".json\";"
       },
       {
         "lineNumber": 163,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                            line +"
+        "content": "        return getResourceStream(path) !\u003d null;"
       },
       {
         "lineNumber": 164,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                            AsciiColours.SANE +"
+        "content": "    }"
       },
       {
         "lineNumber": 165,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                            \"|\""
+        "content": ""
       },
       {
         "lineNumber": 166,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            );"
+        "content": "    /**"
       },
       {
         "lineNumber": 167,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        }"
+        "content": "     * Locate path in resouces folder and return stream to be processed."
       },
       {
         "lineNumber": 168,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        if (frame.size() \u003c frameHeight) {"
+        "content": "     * @param path Path of interest in resouce folder."
       },
       {
         "lineNumber": 169,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            for (int i \u003d frame.size(); i \u003c frameHeight; i++) {"
+        "content": "     * @return InputStream to be process using InputStreamReader."
       },
       {
         "lineNumber": 170,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                frame.add("
+        "content": "     */"
       },
       {
         "lineNumber": 171,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                        \"|\" +"
+        "content": "    private InputStream getResourceStream(String path) {"
       },
       {
         "lineNumber": 172,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                                AsciiColours.BACKGROUND_WHITE +"
+        "content": "        return ClassLoader.getSystemClassLoader().getResourceAsStream(path);"
       },
       {
         "lineNumber": 173,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                                AsciiColours.BLACK +"
+        "content": "    }"
       },
       {
         "lineNumber": 174,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                                String.format(\"%\" + frameWidth + \"s\", \"\") +"
+        "content": ""
       },
       {
         "lineNumber": 175,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                                AsciiColours.SANE +"
+        "content": "    /**"
       },
       {
         "lineNumber": 176,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                                \"|\""
+        "content": "     * Format fatal message to be displayed in ui."
       },
       {
         "lineNumber": 177,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                );"
+        "content": "     * @param path Path that caused a FarmioFatalException."
       },
       {
         "lineNumber": 178,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            }"
+        "content": "     * @return Formatted error message to be displayed."
       },
       {
         "lineNumber": 179,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        }"
+        "content": "     */"
       },
       {
         "lineNumber": 180,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        return frame;"
+        "content": "    private String formatFatalMessage(String path) {"
       },
       {
         "lineNumber": 181,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    }"
+        "content": "        return \"\\\"\" + path + \"\\\" not found!\";"
       },
       {
         "lineNumber": 182,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 183,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 184,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "     * Retrive specific level information from resource folder."
-      },
-      {
-        "lineNumber": 185,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "     * @param level level number to be retrived"
-      },
-      {
-        "lineNumber": 186,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "     * @return level json data in JSONObject to be restored using Level constructor."
-      },
-      {
-        "lineNumber": 187,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "     * @throws FarmioFatalException Intolerable error when reading level json file."
-      },
-      {
-        "lineNumber": 188,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 189,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "    public JSONObject getLevel(double level) throws FarmioFatalException {"
-      },
-      {
-        "lineNumber": 190,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        String path \u003d \"levels/\" + level + \".json\";"
-      },
-      {
-        "lineNumber": 191,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        JSONParser parser \u003d new JSONParser();"
-      },
-      {
-        "lineNumber": 192,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        try {"
-      },
-      {
-        "lineNumber": 193,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "            return (JSONObject) parser.parse(new InputStreamReader(getResourceStream(path)));"
-      },
-      {
-        "lineNumber": 194,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        } catch (IOException | ParseException e) {"
-      },
-      {
-        "lineNumber": 195,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "            throw new FarmioFatalException(formatFatalMessage(path));"
-      },
-      {
-        "lineNumber": 196,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 197,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 198,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 199,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 200,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "     * Locate path in resouces folder and return stream to be processed."
-      },
-      {
-        "lineNumber": 201,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "     * @param path Path of interest in resouce folder."
-      },
-      {
-        "lineNumber": 202,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "     * @return InputStream to be process using InputStreamReader."
-      },
-      {
-        "lineNumber": 203,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 204,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "    private InputStream getResourceStream(String path) {"
-      },
-      {
-        "lineNumber": 205,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        return ClassLoader.getSystemClassLoader().getResourceAsStream(path);"
-      },
-      {
-        "lineNumber": 206,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 207,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 208,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 209,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "     * Format fatal message to be displayed in ui."
-      },
-      {
-        "lineNumber": 210,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "     * @param path Path that caused a FarmioFatalException."
-      },
-      {
-        "lineNumber": 211,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "     * @return Formatted error message to be displayed."
-      },
-      {
-        "lineNumber": 212,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 213,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "    private String formatFatalMessage(String path) {"
-      },
-      {
-        "lineNumber": 214,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        return \"\\\"\" + path + \"\\\" not found!\";"
-      },
-      {
-        "lineNumber": 215,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 216,
-        "author": {
-          "gitId": "tzw0"
-        },
         "content": "}"
       }
     ],
     "authorContributionMap": {
-      "Exprescode": 206,
-      "tzw0": 5,
-      "jing-xuan": 5
+      "Exprescode": 183
     }
   },
   {

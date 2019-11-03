@@ -2844,7 +2844,7 @@
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "                                      \"/resumetimer\", \"/showtimer\", \"/addFromList\", \"/remove\"};"
+        "content": "                                      \"/resumetimer\", \"/showtimer\", \"/addfromlist\", \"/remove\"};"
       },
       {
         "lineNumber": 143,
@@ -2886,7 +2886,7 @@
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "        String command \u003d input.split(\" \")[0];"
+        "content": "        String command \u003d input.split(\" \")[0].toLowerCase();"
       },
       {
         "lineNumber": 149,
@@ -36477,432 +36477,628 @@
       {
         "lineNumber": 3,
         "author": {
-          "gitId": "yzia2000"
+          "gitId": "ngjiewu"
         },
-        "content": "import java.util.List;"
+        "content": "import java.time.LocalDateTime;"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "yzia2000"
         },
-        "content": "import java.util.Arrays;"
+        "content": "import java.util.List;"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "yzia2000"
         },
-        "content": "import java.time.format.DateTimeParseException;"
+        "content": "import java.util.Arrays;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "yzia2000"
         },
-        "content": "import seedu.hustler.task.TaskList;"
+        "content": "import java.time.format.DateTimeParseException;"
       },
       {
         "lineNumber": 7,
+        "author": {
+          "gitId": "yzia2000"
+        },
+        "content": "import seedu.hustler.task.TaskList;"
+      },
+      {
+        "lineNumber": 8,
         "author": {
           "gitId": "ngjiewu"
         },
         "content": "import seedu.hustler.logic.CommandLineException;"
       },
       {
-        "lineNumber": 8,
+        "lineNumber": 9,
         "author": {
           "gitId": "yzia2000"
         },
         "content": "import static seedu.hustler.logic.parser.DateTimeParser.getDateTime;"
       },
       {
-        "lineNumber": 9,
+        "lineNumber": 10,
         "author": {
           "gitId": "yzia2000"
         },
         "content": ""
-      },
-      {
-        "lineNumber": 10,
-        "author": {
-          "gitId": "ngjiewu"
-        },
-        "content": "/**"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": " * Detects anomalies in add command inputted by user."
+        "content": "/**"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": " */"
+        "content": " * Detects anomalies in add command inputted by user."
       },
       {
         "lineNumber": 13,
         "author": {
-          "gitId": "yzia2000"
+          "gitId": "ngjiewu"
         },
-        "content": "public class AddCommandAnomaly extends DetectAnomaly {"
+        "content": " */"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "yzia2000"
         },
-        "content": ""
+        "content": "public class AddCommandAnomaly extends DetectAnomaly {"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "yzia2000"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "     * Detects anomaly in add command input."
+        "content": "    private static final String MESSAGE_INVALID_COMMAND_FORMAT \u003d \"The add command does not follow the right format.\\n\""
       },
       {
         "lineNumber": 17,
         "author": {
-          "gitId": "yzia2000"
+          "gitId": "ngjiewu"
         },
-        "content": "     *"
+        "content": "            + \"\\t_____________________________________\\n\""
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "     * @param userInput input for which anomaly is detected"
+        "content": "            + \"\\tPlease follow the format given below:\\n\""
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "     * @throws CommandLineException if the user input does not conform the expected format"
+        "content": "            + \"\\tAdding ToDo: /add \u003ctask description\u003e\\n\""
       },
       {
         "lineNumber": 20,
         "author": {
-          "gitId": "yzia2000"
+          "gitId": "ngjiewu"
         },
-        "content": "     */"
+        "content": "            + \"\\tAdding Deadline: /add \u003ctask description\u003e /by \u003cdate\u003e \u003ctime\u003e\\n\""
       },
       {
         "lineNumber": 21,
         "author": {
-          "gitId": "yzia2000"
+          "gitId": "ngjiewu"
         },
-        "content": "    public void detect(String[] userInput) throws CommandLineException {"
+        "content": "            + \"\\tAdding Event: /add \u003ctask description\u003e /at \u003cdate\u003e \u003ctime\u003e\\n\""
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "        if (userInput.length \u003d\u003d 1 || userInput[1].isBlank()) {"
+        "content": "            + \"\\t_____________________________________\\n\""
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "            throw new CommandLineException(\"Task description cannot be empty!\");"
+        "content": "            + \"\\tOptional that can be appended to above format\\n\""
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "        }"
+        "content": "            + \"\\tAdd recurring: /every \u003cinteger\u003e \u003cunit\u003e\\n\""
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": ""
+        "content": "            + \"\\tAdd difficulty: /d \u003cdifficulty\u003e\\n\""
       },
       {
         "lineNumber": 26,
         "author": {
-          "gitId": "yzia2000"
+          "gitId": "ngjiewu"
         },
-        "content": "        try {"
+        "content": "            + \"\\tAdd tags: /tags \u003ctag\u003e\";"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "            List\u003cString\u003e parsedInput \u003d Arrays.asList(userInput[1].split(\" \"));"
+        "content": "    private static final String MESSAGE_EMPTY_TASK_DESCRIPTION \u003d \"Task description cannot be empty!\";"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "            if (parsedInput.contains(\"/d\")) {"
+        "content": "    private static final String MESSAGE_INVALID_DIFFICULTY \u003d \"Invalid difficulty provided. Difficulty should be H/M/L.\";"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "                int difficultyIndex \u003d parsedInput.indexOf(\"/d\") + 1;"
+        "content": "    private static final String MESSAGE_INVALID_DATE_TIME \u003d \"Date Time should follow the format DD/MM/YYYY HHmm.\";"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "                String difficulty \u003d parsedInput.get(difficultyIndex);"
+        "content": "    private static final String MESSAGE_INVALID_PERIOD \u003d \"The \u003cunit\u003e provided is invalid!\\n\\t\""
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "                if (!(difficulty.equals(\"H\") || difficulty.equals(\"L\") || difficulty.equals(\"M\"))) {"
+        "content": "            + \"Valid \u003cunit\u003e are minutes/hours/days/weeks/months.\";"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "                    throw new CommandLineException(\"Difficulty should be H, M or L.\");"
+        "content": "    private static final String MESSAGE_PASSED_DATE_TIME \u003d \"A past date and time has been provided.\\n\""
       },
       {
         "lineNumber": 33,
         "author": {
-          "gitId": "yzia2000"
+          "gitId": "ngjiewu"
         },
-        "content": "                }"
+        "content": "        + \"\\tPlease only provide upcoming date and time.\";"
       },
       {
         "lineNumber": 34,
         "author": {
-          "gitId": "yzia2000"
+          "gitId": "ngjiewu"
         },
-        "content": "            }"
+        "content": ""
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "yzia2000"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "            if (parsedInput.contains(\"/tag\")) {"
+        "content": "     * Detects anomaly in add command input."
       },
       {
         "lineNumber": 37,
         "author": {
-          "gitId": "ngjiewu"
+          "gitId": "yzia2000"
         },
-        "content": "                int tagIndex \u003d parsedInput.indexOf(\"/tag\") + 1;"
+        "content": "     *"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "                parsedInput.get(tagIndex);"
+        "content": "     * @param userInput input for which anomaly is detected"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "            }"
+        "content": "     * @throws CommandLineException if the user input does not conform the expected format"
       },
       {
         "lineNumber": 40,
         "author": {
-          "gitId": "ngjiewu"
+          "gitId": "yzia2000"
         },
-        "content": ""
+        "content": "     */"
       },
       {
         "lineNumber": 41,
         "author": {
-          "gitId": "ngjiewu"
+          "gitId": "yzia2000"
         },
-        "content": "            if (parsedInput.contains(\"/by\") || parsedInput.contains(\"/at\")) {"
+        "content": "    public void detect(String[] userInput) throws CommandLineException {"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "                getDateTime(TaskList.getTimeString(parsedInput));"
+        "content": "        if (userInput.length \u003d\u003d 1 || userInput[1].isBlank()) {"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "                if (parsedInput.contains(\"/every\")) {"
+        "content": "            throw new CommandLineException(MESSAGE_EMPTY_TASK_DESCRIPTION);"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "                    int everyIndex \u003d parsedInput.indexOf(\"/every\");"
+        "content": "        }"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "                    Integer.parseInt(parsedInput.get(everyIndex + 1));"
+        "content": ""
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "                    String unit \u003d parsedInput.get(everyIndex + 2);"
+        "content": "        String taskDescription \u003d userInput[1].split(\"/by|/at\")[0];"
       },
       {
         "lineNumber": 47,
         "author": {
-          "gitId": "yzia2000"
+          "gitId": "ngjiewu"
         },
-        "content": "                    if (!(unit.equals(\"days\") || unit.equals(\"weeks\") ||  unit.equals(\"minutes\")"
+        "content": "        if (taskDescription.isBlank()) {"
       },
       {
         "lineNumber": 48,
         "author": {
-          "gitId": "yzia2000"
+          "gitId": "ngjiewu"
         },
-        "content": "                        || unit.equals(\"hours\") || unit.equals(\"months\"))) {"
+        "content": "            throw new CommandLineException(MESSAGE_EMPTY_TASK_DESCRIPTION);"
       },
       {
         "lineNumber": 49,
         "author": {
-          "gitId": "yzia2000"
+          "gitId": "ngjiewu"
         },
-        "content": "                        throw new CommandLineException(\"/every units are minutes, hours, days, weeks, months.\");"
+        "content": "        }"
       },
       {
         "lineNumber": 50,
         "author": {
-          "gitId": "yzia2000"
+          "gitId": "ngjiewu"
         },
-        "content": "                    }"
+        "content": ""
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "yzia2000"
         },
-        "content": "                }"
+        "content": "        try {"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "            } else if (parsedInput.contains(\"/every\")) {"
+        "content": "            List\u003cString\u003e parsedInput \u003d Arrays.asList(userInput[1].split(\" \"));"
       },
       {
         "lineNumber": 53,
         "author": {
-          "gitId": "yzia2000"
+          "gitId": "ngjiewu"
         },
-        "content": "                throw new CommandLineException(\"/every does not work on ToDo tasks.\");"
+        "content": ""
       },
       {
         "lineNumber": 54,
         "author": {
-          "gitId": "yzia2000"
+          "gitId": "ngjiewu"
         },
-        "content": "            }"
+        "content": "            if (parsedInput.contains(\"/d\")) {"
       },
       {
         "lineNumber": 55,
         "author": {
-          "gitId": "yzia2000"
+          "gitId": "ngjiewu"
         },
-        "content": "        } catch (ArrayIndexOutOfBoundsException e) {"
+        "content": "                int difficultyIndex \u003d parsedInput.indexOf(\"/d\") + 1;"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "            throw new CommandLineException(\"The description of the command does not follow the right format.\\n\""
+        "content": "                String difficulty \u003d parsedInput.get(difficultyIndex);"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "                    + \"\\tRefer to User Guide for more info.\");"
+        "content": "                String[] validDifficulty \u003d {\"H\", \"M\", \"L\"};"
       },
       {
         "lineNumber": 58,
         "author": {
-          "gitId": "yzia2000"
+          "gitId": "ngjiewu"
         },
-        "content": "        } catch (DateTimeParseException e) {"
+        "content": "                if (!Arrays.asList(validDifficulty).contains(difficulty)) {"
       },
       {
         "lineNumber": 59,
         "author": {
-          "gitId": "yzia2000"
+          "gitId": "ngjiewu"
         },
-        "content": "            throw new CommandLineException(\"Date Time should follow the format DD/MM/YY HHmm.\");"
+        "content": "                    throw new CommandLineException(MESSAGE_INVALID_DIFFICULTY );"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "yzia2000"
         },
-        "content": "        } catch (NumberFormatException e) {"
+        "content": "                }"
       },
       {
         "lineNumber": 61,
         "author": {
-          "gitId": "ngjiewu"
+          "gitId": "yzia2000"
         },
-        "content": "            throw new CommandLineException(\"Please enter an integer after /every\");"
+        "content": "            }"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "yzia2000"
         },
-        "content": "        }"
+        "content": ""
       },
       {
         "lineNumber": 63,
+        "author": {
+          "gitId": "ngjiewu"
+        },
+        "content": "            if (parsedInput.contains(\"/tag\")) {"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "ngjiewu"
+        },
+        "content": "                int tagIndex \u003d parsedInput.indexOf(\"/tag\") + 1;"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "ngjiewu"
+        },
+        "content": "                parsedInput.get(tagIndex);"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "ngjiewu"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "ngjiewu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "ngjiewu"
+        },
+        "content": "            if (parsedInput.contains(\"/by\") || parsedInput.contains(\"/at\")) {"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "ngjiewu"
+        },
+        "content": "                if (LocalDateTime.now().isAfter(getDateTime(TaskList.getTimeString(parsedInput)))) {"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "ngjiewu"
+        },
+        "content": "                    throw new CommandLineException(MESSAGE_PASSED_DATE_TIME);"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "ngjiewu"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "ngjiewu"
+        },
+        "content": "                if (parsedInput.contains(\"/every\")) {"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "ngjiewu"
+        },
+        "content": "                    int everyIndex \u003d parsedInput.indexOf(\"/every\");"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "ngjiewu"
+        },
+        "content": "                    Integer.parseInt(parsedInput.get(everyIndex + 1));"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "ngjiewu"
+        },
+        "content": "                    String unit \u003d parsedInput.get(everyIndex + 2);"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "ngjiewu"
+        },
+        "content": "                    String[] validUnits \u003d {\"minutes\", \"hours\", \"days\", \"weeks\", \"months\"};"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "ngjiewu"
+        },
+        "content": "                    if (!Arrays.asList(validUnits).contains(unit)) {"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "ngjiewu"
+        },
+        "content": "                        throw new CommandLineException(MESSAGE_INVALID_PERIOD);"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "yzia2000"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "yzia2000"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "ngjiewu"
+        },
+        "content": "            } else if (parsedInput.contains(\"/every\")) {"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "yzia2000"
+        },
+        "content": "                throw new CommandLineException(\"/every does not work on ToDo tasks.\");"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "yzia2000"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "yzia2000"
+        },
+        "content": "        } catch (ArrayIndexOutOfBoundsException e) {"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "ngjiewu"
+        },
+        "content": "            throw new CommandLineException(MESSAGE_INVALID_COMMAND_FORMAT);"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "yzia2000"
+        },
+        "content": "        } catch (DateTimeParseException e) {"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "ngjiewu"
+        },
+        "content": "            throw new CommandLineException(MESSAGE_INVALID_DATE_TIME);"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "yzia2000"
+        },
+        "content": "        } catch (NumberFormatException e) {"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "ngjiewu"
+        },
+        "content": "            throw new CommandLineException(\"Please enter an integer after /every\");"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "yzia2000"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 91,
         "author": {
           "gitId": "yzia2000"
         },
         "content": "    } "
       },
       {
-        "lineNumber": 64,
+        "lineNumber": 92,
         "author": {
           "gitId": "yzia2000"
         },
@@ -36910,8 +37106,8 @@
       }
     ],
     "authorContributionMap": {
-      "yzia2000": 32,
-      "ngjiewu": 32
+      "yzia2000": 28,
+      "ngjiewu": 64
     }
   },
   {
@@ -39282,14 +39478,14 @@
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": ""
+        "content": "import seedu.hustler.logic.command.Command;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "import java.time.format.DateTimeParseException;"
+        "content": "import seedu.hustler.task.ToDo;"
       },
       {
         "lineNumber": 7,
@@ -39301,436 +39497,436 @@
       {
         "lineNumber": 8,
         "author": {
-          "gitId": "yzia2000"
+          "gitId": "ngjiewu"
         },
-        "content": "import static seedu.hustler.logic.parser.DateTimeParser.getDateTime;"
+        "content": "import java.time.LocalDateTime;"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": ""
+        "content": "import java.time.format.DateTimeParseException;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "/**"
+        "content": "import java.util.Arrays;"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": " * Detects anomalies in snooze command inputted by user."
+        "content": ""
       },
       {
         "lineNumber": 12,
         "author": {
-          "gitId": "ngjiewu"
+          "gitId": "yzia2000"
         },
-        "content": " */"
+        "content": "import static seedu.hustler.logic.parser.DateTimeParser.getDateTime;"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "public class SnoozeAnomaly extends DetectAnomaly {"
+        "content": ""
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": ""
+        "content": "/**"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "    private static final String MESSAGE_INVALID_COMMAND_FORMAT \u003d \"Snooze format should be: \u0027snooze \u003cindex\u003e \u003cdate\u003e \u003ctime\u003e\u0027 OR\\n\\t\""
+        "content": " * Detects anomalies in snooze command inputted by user."
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "            + \"\u0027snooze \u003cindex\u003e \u003cinteger\u003e \u003cperiod\u003e\u0027\";"
+        "content": " */"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "    private static final String MESSAGE_INVALID_TASK_DISPLAYED_INDEX \u003d \"The task index provided is invalid!\";"
+        "content": "public class SnoozeAnomaly extends DetectAnomaly {"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "    private static final String MESSAGE_INVALID_DATE_TIME \u003d \"Date Time should follow the format DD/MM/YY HHmm.\";"
+        "content": ""
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "    private static final String MESSAGE_INVALID_PERIOD \u003d \"The period provided is invalid!\\n\\t\""
+        "content": "    private static final String MESSAGE_INVALID_COMMAND_FORMAT \u003d \"Snooze format should be: \u0027/snooze \u003cindex\u003e \u003cdate\u003e \u003ctime\u003e\u0027 OR\\n\\t\""
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "            + \"Valid periods are minutes/hours/days/weeks/months\";"
+        "content": "            + \"\u0027/snooze \u003cindex\u003e \u003cinteger\u003e \u003cunit\u003e\u0027\";"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": ""
+        "content": "    private static final String MESSAGE_INVALID_INDEX \u003d \"The task index provided is invalid!\";"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "    /**"
+        "content": "    private static final String MESSAGE_INVALID_DATE_TIME \u003d \"Date Time should follow the format DD/MM/YYYY HHmm.\";"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "     * Detects anomalies in snooze command input."
+        "content": "    private static final String MESSAGE_INVALID_PERIOD \u003d \"The \u003cunit\u003e provided is invalid!\\n\\t\""
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "     *"
+        "content": "            + \"Valid \u003cunit\u003e are minutes/hours/days/weeks/months.\";"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "     * @param userInput input for which anomaly is detected"
+        "content": "    private static final String MESSAGE_INVALID_TASK_TYPE \u003d \"You cannot snooze a ToDo Task!\";"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "     * @throws CommandLineException if the user input does not conform the expected format"
+        "content": "    private static final String MESSAGE_INVALID_INTEGER \u003d \"Please enter an integer for \u003cindex\u003e!\";"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "     */"
+        "content": "    private static final String MESSAGE_PASSED_DATE_TIME \u003d \"A past date and time has been provided.\\n\""
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "    @Override"
+        "content": "            + \"\\tPlease only provide upcoming date and time.\";"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "    public void detect(String[] userInput) throws CommandLineException {"
+        "content": ""
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "        if (userInput.length \u003d\u003d 1) {"
+        "content": "    /**"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "            throw new CommandLineException(MESSAGE_INVALID_COMMAND_FORMAT);"
+        "content": "     * Detects anomalies in snooze command input."
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "        }"
+        "content": "     *"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": ""
+        "content": "     * @param userInput input for which anomaly is detected"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "        String[] parsedInput \u003d userInput[1].split(\" \");"
+        "content": "     * @throws CommandLineException if the user input does not conform the expected format"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "        if (parsedInput.length !\u003d 3) {"
+        "content": "     */"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "            throw new CommandLineException(MESSAGE_INVALID_COMMAND_FORMAT);"
+        "content": "    @Override"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "        }"
+        "content": "    public void detect(String[] userInput) throws CommandLineException {"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": ""
+        "content": "        if (userInput.length \u003d\u003d 1) {"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "        int snoozeIndex;"
+        "content": "            throw new CommandLineException(MESSAGE_INVALID_COMMAND_FORMAT);"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "        try {"
+        "content": "        }"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "            snoozeIndex \u003d Integer.parseInt(parsedInput[0]);"
+        "content": ""
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "        } catch (NumberFormatException e) {"
+        "content": "        String[] parsedInput \u003d userInput[1].split(\" \");"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "            throw new CommandLineException(\"Please enter an integer for the index.\");"
+        "content": "        if (parsedInput.length !\u003d 3) {"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "        }"
+        "content": "            throw new CommandLineException(MESSAGE_INVALID_COMMAND_FORMAT);"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "        snoozeIndex--;"
+        "content": ""
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "        if (snoozeIndex \u003e\u003d Hustler.list.size()) {"
+        "content": "        int snoozeIndex;"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "            throw new CommandLineException(MESSAGE_INVALID_TASK_DISPLAYED_INDEX);"
+        "content": "        try {"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "        }"
+        "content": "            snoozeIndex \u003d Integer.parseInt(parsedInput[0]);"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": ""
+        "content": "        } catch (NumberFormatException e) {"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "        // 1st method to snooze"
+        "content": "            throw new CommandLineException(MESSAGE_INVALID_INTEGER);"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "        if (parsedInput[1].contains(\"/\")) {"
+        "content": "        }"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "            String dateTime \u003d parsedInput[1] + \" \" + parsedInput[2];"
+        "content": ""
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "            try {"
+        "content": "        snoozeIndex--;"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "                getDateTime(dateTime);"
+        "content": "        if (snoozeIndex \u003e\u003d Hustler.list.size()) {"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "            } catch (DateTimeParseException e) {"
+        "content": "            throw new CommandLineException(MESSAGE_INVALID_INDEX);"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "                throw new CommandLineException(MESSAGE_INVALID_DATE_TIME);"
+        "content": "        }"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "            }"
+        "content": ""
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "            return;"
+        "content": "        if (Hustler.list.get(snoozeIndex) instanceof ToDo) {"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "        } else {"
+        "content": "            throw new CommandLineException((MESSAGE_INVALID_TASK_TYPE));"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "            // 2nd method to snooze"
+        "content": "        }"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "            try {"
+        "content": ""
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "                Integer.parseInt(parsedInput[1]);"
+        "content": "        // 1st method to snooze"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "                String period \u003d parsedInput[2];"
+        "content": "        if (parsedInput[1].contains(\"/\")) {"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "                String[] periods \u003d {\"minutes\", \"hours\", \"days\", \"weeks\", \"months\"};"
+        "content": "            String dateTimeString \u003d parsedInput[1] + \" \" + parsedInput[2];"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "                for (String validPeriod : periods) {"
+        "content": "            try {"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "                    if (period.equals(validPeriod)) {"
+        "content": "                LocalDateTime dateTime \u003d getDateTime(dateTimeString);"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "                        return;"
+        "content": "                if (LocalDateTime.now().isAfter(dateTime)) {"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "                    }"
+        "content": "                    throw new CommandLineException(MESSAGE_PASSED_DATE_TIME);"
       },
       {
         "lineNumber": 70,
@@ -39744,14 +39940,14 @@
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "            } catch (NumberFormatException e) {"
+        "content": "            } catch (DateTimeParseException e) {"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "                throw new CommandLineException(MESSAGE_INVALID_COMMAND_FORMAT);"
+        "content": "                throw new CommandLineException(MESSAGE_INVALID_DATE_TIME);"
       },
       {
         "lineNumber": 73,
@@ -39765,24 +39961,108 @@
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "            throw new CommandLineException(MESSAGE_INVALID_PERIOD);"
+        "content": "        } else {"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "        }"
+        "content": "            // 2nd method to snooze"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "    }"
+        "content": "            try {"
       },
       {
         "lineNumber": 77,
+        "author": {
+          "gitId": "ngjiewu"
+        },
+        "content": "                Integer.parseInt(parsedInput[1]);"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "ngjiewu"
+        },
+        "content": "            } catch (NumberFormatException e) {"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "ngjiewu"
+        },
+        "content": "                throw new CommandLineException(MESSAGE_INVALID_INTEGER);"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "ngjiewu"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "ngjiewu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "ngjiewu"
+        },
+        "content": "            String unit \u003d parsedInput[2];"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "ngjiewu"
+        },
+        "content": "            String[] validUnits \u003d {\"minutes\", \"hours\", \"days\", \"weeks\", \"months\"};"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "ngjiewu"
+        },
+        "content": "            if (!Arrays.asList(validUnits).contains(unit.toLowerCase())) {"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "ngjiewu"
+        },
+        "content": "                throw new CommandLineException(MESSAGE_INVALID_PERIOD);"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "ngjiewu"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "ngjiewu"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "ngjiewu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 89,
         "author": {
           "gitId": "ngjiewu"
         },
@@ -39791,7 +40071,7 @@
     ],
     "authorContributionMap": {
       "yzia2000": 1,
-      "ngjiewu": 76
+      "ngjiewu": 88
     }
   },
   {
@@ -39831,238 +40111,238 @@
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "/**"
+        "content": "import java.util.Arrays;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": " * Detects anomalies in sort command inputted by user."
+        "content": ""
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": " */"
+        "content": "/**"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "public class SortAnomaly extends DetectAnomaly {"
+        "content": " * Detects anomalies in sort command inputted by user."
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": ""
+        "content": " */"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "    private static final String MESSAGE_INVALID_COMMAND_FORMAT \u003d \"Sort format should be: /sort \u003csortType\u003e\";"
+        "content": "public class SortAnomaly extends DetectAnomaly {"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "    private static final String MESSAGE_INVALID_SORT_TYPE \u003d \"The sort type provided is invalid!\\n\\t\""
+        "content": ""
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "        + \"Valid sort types are: normal/datetime/priority.\";"
+        "content": "    private static final String MESSAGE_INVALID_COMMAND_FORMAT \u003d \"Sort format should be: /sort \u003csortType\u003e\";"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": ""
+        "content": "    private static final String MESSAGE_EMPTY_SORT_TYPE \u003d \"The description of \u003csortType\u003e cannot be empty!\";"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "    /**"
+        "content": "    private static final String MESSAGE_INVALID_SORT_TYPE \u003d \"The \u003csortType\u003e provided is invalid!\\n\\t\""
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "     * Detects anomalies in sort command input."
+        "content": "        + \"Valid \u003csortType\u003e are normal/datetime/priority.\";"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "     *"
+        "content": ""
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "     * @param userInput input for which anomaly is detected"
+        "content": "    /**"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "     * @throws CommandLineException if the user input does not conform the expected format"
+        "content": "     * Detects anomalies in sort command input."
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "     */"
+        "content": "     *"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "    @Override"
+        "content": "     * @param userInput input for which anomaly is detected"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "    public void detect(String[] userInput) throws CommandLineException {"
+        "content": "     * @throws CommandLineException if the user input does not conform the expected format"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "        if (userInput.length \u003d\u003d 1) {"
+        "content": "     */"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "            throw new CommandLineException(MESSAGE_INVALID_COMMAND_FORMAT);"
+        "content": "    @Override"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "        }"
+        "content": "    public void detect(String[] userInput) throws CommandLineException {"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": ""
+        "content": "        if (userInput.length \u003d\u003d 1 || userInput[1].isBlank()) {"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "        String[] parsedInput \u003d userInput[1].split(\" \");"
+        "content": "            throw new CommandLineException(MESSAGE_EMPTY_SORT_TYPE);"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "        if (parsedInput.length !\u003d 1) {"
+        "content": "        }"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "            throw new CommandLineException(MESSAGE_INVALID_COMMAND_FORMAT);"
+        "content": ""
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "        }"
+        "content": "        String[] parsedInput \u003d userInput[1].split(\" \");"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": ""
+        "content": "        if (parsedInput.length !\u003d 1) {"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "        String sortType \u003d parsedInput[0];"
+        "content": "            throw new CommandLineException(MESSAGE_INVALID_COMMAND_FORMAT);"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "        String[] sortTypes \u003d {\"normal\", \"datetime\", \"priority\"};"
+        "content": "        }"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "        for (String validSortType: sortTypes) {"
+        "content": ""
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "            if (sortType.equals(validSortType)) {"
+        "content": "        String sortType \u003d userInput[1];"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "                return;"
+        "content": "        String[] validSortTypes \u003d {\"normal\", \"datetime\", \"priority\"};"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "            }"
+        "content": "        if (!Arrays.asList(validSortTypes).contains(sortType.toLowerCase())) {"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "        }"
+        "content": "            throw new CommandLineException(MESSAGE_INVALID_SORT_TYPE);"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "ngjiewu"
         },
-        "content": "        throw new CommandLineException(MESSAGE_INVALID_SORT_TYPE);"
+        "content": "        }"
       },
       {
         "lineNumber": 39,
