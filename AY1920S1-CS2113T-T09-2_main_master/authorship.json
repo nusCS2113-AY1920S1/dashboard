@@ -2838,161 +2838,161 @@
         "author": {
           "gitId": "muserr"
         },
-        "content": "    @Override"
+        "content": "    /**"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    public void execute(Store store, Ui ui, Storage storage) throws DuchessException {"
+        "content": "     * Compares user inputs and adds recurring lessons for the semester."
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        AcademicYear academicYear \u003d new AcademicYear();"
+        "content": "     *"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "muserr"
         },
-        "content": ""
+        "content": "     * @param store store object"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        if (store.findModuleByCode(moduleCode).isEmpty()) {"
+        "content": "     * @param ui user interaction object"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            // Throws an exception if module was not present before."
+        "content": "     * @param storage storage object"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            throw new DuchessException(invalidModuleCode);"
+        "content": "     * @throws DuchessException exception thrown if invalid module code or start date"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        } else if (!academicYear.isAcademicSemester(this.startDate)) {"
+        "content": "     */"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            // Throws an exception if startDate is not within semester."
+        "content": "    @Override"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            throw new DuchessException(invalidStartDate);"
+        "content": "    public void execute(Store store, Ui ui, Storage storage) throws DuchessException {"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        } else {"
+        "content": "        AcademicYear academicYear \u003d new AcademicYear();"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            // While AY not ended, and !recess_week \u0026\u0026 !reading_week. Add event."
+        "content": ""
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            // Find out which Sem does date fall into first"
+        "content": "        if (store.findModuleByCode(moduleCode).isEmpty()) {"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            boolean isWithinSemOne \u003d academicYear.isFirstSemester(startDate);"
+        "content": "            // Throws an exception if module was not present before."
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            boolean isWithinSemTwo \u003d academicYear.isSecondSemester(startDate);"
+        "content": "            throw new DuchessException(invalidModuleCode);"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "muserr"
         },
-        "content": ""
+        "content": "        } else if (!academicYear.isAcademicSemester(this.startDate)) {"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            LocalDate compareDate;"
+        "content": "            // Throws an exception if startDate is not within semester."
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            assert (isWithinSemOne || isWithinSemTwo);"
+        "content": "            throw new DuchessException(invalidStartDate);"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            if (isWithinSemOne) {"
+        "content": "        } else {"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "muserr"
         },
-        "content": "                compareDate \u003d academicYear.getSemOneStart();"
+        "content": "            // While AY not ended, and !recess_week \u0026\u0026 !reading_week. Add event."
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            } else {"
+        "content": "            // Find out which Sem does date fall into first"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "muserr"
         },
-        "content": "                compareDate \u003d academicYear.getSemTwoStart();"
+        "content": "            boolean isWithinSemOne \u003d academicYear.isFirstSemester(startDate);"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            }"
+        "content": "            boolean isWithinSemTwo \u003d academicYear.isSecondSemester(startDate);"
       },
       {
         "lineNumber": 72,
@@ -3006,140 +3006,140 @@
         "author": {
           "gitId": "muserr"
         },
-        "content": "            // Find the corresponding week for the semester."
+        "content": "            LocalDate compareDate;"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            int currentWeek \u003d academicYear.getWeekAsInt(compareDate, startDate);"
+        "content": "            assert (isWithinSemOne || isWithinSemTwo);"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            int prevTaskListSize \u003d store.getTaskList().size();"
+        "content": "            if (isWithinSemOne) {"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "muserr"
         },
-        "content": ""
+        "content": "                compareDate \u003d academicYear.getSemOneStart();"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            for (int i \u003d currentWeek; i \u003c\u003d studyWeeks; i++) {"
+        "content": "            } else {"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "muserr"
         },
-        "content": "                if (academicYear.isSemesterBreak(i) \u003d\u003d false) {"
+        "content": "                compareDate \u003d academicYear.getSemTwoStart();"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "muserr"
         },
-        "content": "                    // Add classes similar to add events."
+        "content": "            }"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "muserr"
         },
-        "content": "                    addLessons(store, storage);"
+        "content": ""
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "muserr"
         },
-        "content": "                    // Both startCopy and endCopy dates MUST BE INCREMENTED to next week."
+        "content": "            // Find the corresponding week for the semester."
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "muserr"
         },
-        "content": "                    startCopy \u003d startCopy.plusWeeks(1);"
+        "content": "            int currentWeek \u003d academicYear.getWeekAsInt(compareDate, startDate);"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "muserr"
         },
-        "content": "                    endCopy \u003d endCopy.plusWeeks(1);"
+        "content": "            int prevTaskListSize \u003d store.getTaskList().size();"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "muserr"
         },
-        "content": "                }"
+        "content": ""
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            }"
+        "content": "            for (int i \u003d currentWeek; i \u003c\u003d studyWeeks; i++) {"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "muserr"
         },
-        "content": ""
+        "content": "                if (academicYear.isSemesterBreak(i) \u003d\u003d false) {"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            int currTaskListSize \u003d store.getTaskList().size();"
+        "content": "                    // Add classes similar to add events."
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "muserr"
         },
-        "content": ""
+        "content": "                    addLessons(store, storage);"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            if (currTaskListSize \u003e prevTaskListSize) {"
+        "content": "                    // Both startCopy and endCopy dates MUST BE INCREMENTED to next week."
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "muserr"
         },
-        "content": "                ui.showLessonsAdded(moduleCode);"
+        "content": "                    startCopy \u003d startCopy.plusWeeks(1);"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            } else {"
+        "content": "                    endCopy \u003d endCopy.plusWeeks(1);"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "muserr"
         },
-        "content": "                ui.showNoLessonsAdded(moduleCode);"
+        "content": "                }"
       },
       {
         "lineNumber": 93,
@@ -3153,14 +3153,14 @@
         "author": {
           "gitId": "muserr"
         },
-        "content": "        }"
+        "content": ""
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    }"
+        "content": "            int currTaskListSize \u003d store.getTaskList().size();"
       },
       {
         "lineNumber": 96,
@@ -3174,66 +3174,171 @@
         "author": {
           "gitId": "muserr"
         },
-        "content": "    private void addLessons(Store store, Storage storage) throws DuchessException {"
+        "content": "            if (currTaskListSize \u003e prevTaskListSize) {"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        Event task \u003d new Event(description, endCopy, startCopy);"
+        "content": "                ui.showLessonsAdded(moduleCode);"
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "muserr"
         },
-        "content": ""
+        "content": "            } else {"
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        if (!store.isClashing(task)) {"
+        "content": "                ui.showNoLessonsAdded(moduleCode);"
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            store.getTaskList().add(task);"
+        "content": "            }"
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            store.setDuchessCalendar(CalendarManager.addEntry(store.getDuchessCalendar(), task));"
+        "content": "        }"
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            storage.save(store);"
+        "content": "    }"
       },
       {
         "lineNumber": 104,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        }"
+        "content": ""
       },
       {
         "lineNumber": 105,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    }"
+        "content": "    /**"
       },
       {
         "lineNumber": 106,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     * Adds lessons to task list."
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     * @param store store object"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     * @param storage storage object"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     * @throws DuchessException exception thrown if adding lessons is unsuccessful"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    private void addLessons(Store store, Storage storage) throws DuchessException {"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        Event task \u003d new Event(description, endCopy, startCopy);"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        if (!store.isClashing(task)) {"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            store.getTaskList().add(task);"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            store.setDuchessCalendar(CalendarManager.addEntry(store.getDuchessCalendar(), task));"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "            storage.save(store);"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 121,
         "author": {
           "gitId": "muserr"
         },
@@ -3241,7 +3346,7 @@
       }
     ],
     "authorContributionMap": {
-      "muserr": 106
+      "muserr": 121
     }
   },
   {
@@ -3309,157 +3414,227 @@
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "public class AddModuleCommand extends Command {"
+        "content": "/**"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    private String moduleCode;"
+        "content": " * Command to add a given module to the store."
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    private String moduleName;"
+        "content": " */"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "public class AddModuleCommand extends Command {"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    /**"
+        "content": "    private String moduleCode;"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "     * Create a command to add a module."
+        "content": "    private String moduleName;"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "     *"
+        "content": ""
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "     * @param moduleName the name of the module"
+        "content": "    /**"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "     * @param moduleCode the code of the module"
+        "content": "     * Create a command to add a module."
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "     */"
+        "content": "     *"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public AddModuleCommand(String moduleName, String moduleCode) {"
+        "content": "     * @param moduleName the name of the module"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        this.moduleName \u003d moduleName;"
+        "content": "     * @param moduleCode the code of the module"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        this.moduleCode \u003d moduleCode;"
+        "content": "     */"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "    public AddModuleCommand(String moduleName, String moduleCode) {"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "        this.moduleName \u003d moduleName;"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    @Override"
+        "content": "        this.moduleCode \u003d moduleCode;"
       },
       {
         "lineNumber": 25,
-        "author": {
-          "gitId": "nishanthelango"
-        },
-        "content": "    public void execute(Store store, Ui ui, Storage storage) throws DuchessException {"
-      },
-      {
-        "lineNumber": 26,
-        "author": {
-          "gitId": "mohideenik"
-        },
-        "content": "        Module module \u003d new Module(moduleCode, moduleName);"
-      },
-      {
-        "lineNumber": 27,
-        "author": {
-          "gitId": "mohideenik"
-        },
-        "content": "        store.getModuleList().add(module);"
-      },
-      {
-        "lineNumber": 28,
-        "author": {
-          "gitId": "mohideenik"
-        },
-        "content": "        ui.showModuleAdded(module, store.getModuleList());"
-      },
-      {
-        "lineNumber": 29,
-        "author": {
-          "gitId": "mohideenik"
-        },
-        "content": "        storage.save(store);"
-      },
-      {
-        "lineNumber": 30,
         "author": {
           "gitId": "mohideenik"
         },
         "content": "    }"
       },
       {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "     * Instantiates the module, adds it to the store and saves it."
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "     * @param store the application store"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "     * @param ui the Ui object to give feedback to the user"
+      },
+      {
         "lineNumber": 31,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "     * @param storage the storage object to save the store to the disk"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "     * @throws DuchessException if there is an error creating the module or saving the module"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "nishanthelango"
+        },
+        "content": "    public void execute(Store store, Ui ui, Storage storage) throws DuchessException {"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        Module module \u003d new Module(moduleCode, moduleName);"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        store.getModuleList().add(module);"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        ui.showModuleAdded(module, store.getModuleList());"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        storage.save(store);"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 41,
         "author": {
           "gitId": "mohideenik"
         },
@@ -3468,7 +3643,7 @@
     ],
     "authorContributionMap": {
       "limsiying": 1,
-      "mohideenik": 28,
+      "mohideenik": 38,
       "nishanthelango": 2
     }
   },
@@ -7279,31 +7454,87 @@
         "author": {
           "gitId": "muserr"
         },
-        "content": "    @Override"
+        "content": "    /**"
       },
       {
         "lineNumber": 15,
         "author": {
-          "gitId": "nishanthelango"
+          "gitId": "muserr"
         },
-        "content": "    public void execute(Store store, Ui ui, Storage storage) throws DuchessException {"
+        "content": "     * Displays full log command to users."
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        ui.showUserHistory(DuchessHistory.getFullLog());"
+        "content": "     *"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    }"
+        "content": "     * @param store store object"
       },
       {
         "lineNumber": 18,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     * @param ui user interaction object"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     * @param storage storage object"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     * @throws DuchessException if display is unsuccessful"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "nishanthelango"
+        },
+        "content": "    public void execute(Store store, Ui ui, Storage storage) throws DuchessException {"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        ui.showUserHistory(DuchessHistory.getFullLog());"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 26,
         "author": {
           "gitId": "muserr"
         },
@@ -7312,7 +7543,7 @@
     ],
     "authorContributionMap": {
       "nishanthelango": 2,
-      "muserr": 16
+      "muserr": 24
     }
   },
   {
@@ -7789,437 +8020,563 @@
         "author": {
           "gitId": "muserr"
         },
-        "content": "public class RedoCommand extends Command {"
+        "content": "/**"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    private int redoCounter;"
+        "content": " * Redo feature."
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    private static final String REDO_USAGE_ERROR_MESSAGE \u003d \"Usage: redo [number]\";"
+        "content": " */"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    private static final String NEGATIVE_NUMBER_ERROR_MESSAGE"
+        "content": "public class RedoCommand extends Command {"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            \u003d \"[number] must be a positive integer, i.e. 1, 2, 3, ...\";"
+        "content": "    private int redoCounter;"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    private static final String INVALID_NUMBER_ERROR_MESSAGE"
+        "content": "    private static final String REDO_USAGE_ERROR_MESSAGE \u003d \"Usage: redo [number]\";"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            \u003d \"You have entered an invalid value.\";"
+        "content": "    private static final String NEGATIVE_NUMBER_ERROR_MESSAGE"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "muserr"
         },
-        "content": ""
+        "content": "            \u003d \"[number] must be a positive integer, i.e. 1, 2, 3, ...\";"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    /**"
+        "content": "    private static final String INVALID_NUMBER_ERROR_MESSAGE"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "muserr"
         },
-        "content": "     * Checks if undo command contains additional parameters."
+        "content": "            \u003d \"You have entered an invalid value.\";"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "muserr"
         },
-        "content": "     *"
+        "content": ""
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "muserr"
         },
-        "content": "     * @param words additional parameters for undo"
+        "content": "    /**"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "muserr"
         },
-        "content": "     * @throws DuchessException throws exceptions if invalid command"
+        "content": "     * Checks if redo command contains additional parameters."
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "muserr"
         },
-        "content": "     */"
+        "content": "     *"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    public RedoCommand(List\u003cString\u003e words) throws DuchessException {"
+        "content": "     * @param words additional parameters for redo"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        if (words.size() !\u003d 1 \u0026\u0026 words.size() !\u003d 0) {"
+        "content": "     * @throws DuchessException if invalid command"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            throw new DuchessException(REDO_USAGE_ERROR_MESSAGE);"
+        "content": "     */"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        } else if (words.size() \u003d\u003d 1) {"
+        "content": "    public RedoCommand(List\u003cString\u003e words) throws DuchessException {"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            try {"
+        "content": "        if (words.size() !\u003d 1 \u0026\u0026 words.size() !\u003d 0) {"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "muserr"
         },
-        "content": "                redoCounter \u003d Integer.parseInt(words.get(0));"
+        "content": "            throw new DuchessException(REDO_USAGE_ERROR_MESSAGE);"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "muserr"
         },
-        "content": ""
+        "content": "        } else if (words.size() \u003d\u003d 1) {"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "muserr"
         },
-        "content": "                if (redoCounter \u003c\u003d 0) {"
+        "content": "            try {"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "muserr"
         },
-        "content": "                    throw new IllegalArgumentException();"
+        "content": "                redoCounter \u003d Integer.parseInt(words.get(0));"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "muserr"
         },
-        "content": "                }"
+        "content": ""
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            } catch (NumberFormatException e) {"
+        "content": "                if (redoCounter \u003c\u003d 0) {"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "muserr"
         },
-        "content": "                throw new DuchessException(INVALID_NUMBER_ERROR_MESSAGE);"
+        "content": "                    throw new IllegalArgumentException();"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            } catch (IllegalArgumentException e) {"
+        "content": "                }"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "muserr"
         },
-        "content": "                throw new DuchessException(NEGATIVE_NUMBER_ERROR_MESSAGE);"
+        "content": "            } catch (NumberFormatException e) {"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            }"
+        "content": "                throw new DuchessException(INVALID_NUMBER_ERROR_MESSAGE);"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        } else if (words.size() \u003d\u003d 0) {"
+        "content": "            } catch (IllegalArgumentException e) {"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            redoCounter \u003d 1;"
+        "content": "                throw new DuchessException(NEGATIVE_NUMBER_ERROR_MESSAGE);"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        }"
+        "content": "            }"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    }"
+        "content": "        } else if (words.size() \u003d\u003d 0) {"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "muserr"
         },
-        "content": ""
+        "content": "            redoCounter \u003d 1;"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    @Override"
+        "content": "        }"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    public void execute(Store store, Ui ui, Storage storage) throws DuchessException {"
+        "content": "    }"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        if (storage.getRedoStack().size() \u003d\u003d 0) {"
+        "content": ""
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            redoCounter \u003d 0;"
+        "content": "    /**"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        } else if (storage.getRedoStack().size() \u003e 0 \u0026\u0026 redoCounter \u003e 1) {"
+        "content": "     * Restores previous undo command user executes."
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            int tempCounter \u003d redoCounter;"
+        "content": "     *"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            while (tempCounter \u003e 0 \u0026\u0026 storage.getRedoStack().size() \u003e 0) {"
+        "content": "     * @param store store object"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "muserr"
         },
-        "content": "                setToNextStore(store, storage);"
+        "content": "     * @param ui user interaction object"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "muserr"
         },
-        "content": "                tempCounter--;"
+        "content": "     * @param storage storage object"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            }"
+        "content": "     * @throws DuchessException if redo is unsuccessful"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        } else if (storage.getRedoStack().size() \u003e 0 \u0026\u0026 redoCounter \u003d\u003d 1) {"
+        "content": "     */"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            setToNextStore(store, storage);"
+        "content": "    @Override"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        }"
+        "content": "    public void execute(Store store, Ui ui, Storage storage) throws DuchessException {"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        // showUndo should only be placed after execution of undo."
+        "content": "        if (storage.getRedoStack().size() \u003d\u003d 0) {"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        ui.showRedo(redoCounter);"
+        "content": "            redoCounter \u003d 0;"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    }"
+        "content": "        } else if (storage.getRedoStack().size() \u003e 0 \u0026\u0026 redoCounter \u003e 1) {"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "muserr"
         },
-        "content": ""
+        "content": "            int tempCounter \u003d redoCounter;"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    private void setToNextStore(Store store, Storage storage) throws DuchessException {"
+        "content": "            while (tempCounter \u003e 0 \u0026\u0026 storage.getRedoStack().size() \u003e 0) {"
       },
       {
         "lineNumber": 62,
         "author": {
-          "gitId": "mohideenik"
+          "gitId": "muserr"
         },
-        "content": "        // Obtain Store data from duchess.storage Stack"
+        "content": "                setToNextStore(store, storage);"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        Store prevStore \u003d storage.getFirstSnapshot();"
+        "content": "                tempCounter--;"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        storage.save(prevStore);"
+        "content": "            }"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "muserr"
         },
-        "content": ""
+        "content": "        } else if (storage.getRedoStack().size() \u003e 0 \u0026\u0026 redoCounter \u003d\u003d 1) {"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        // Obtaining store from stack"
+        "content": "            setToNextStore(store, storage);"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        Store newStore \u003d storage.load();"
+        "content": "        }"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        store.setTaskList(newStore.getTaskList());"
+        "content": "        // showUndo should only be placed after execution of undo."
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        store.setModuleList(newStore.getModuleList());"
+        "content": "        ui.showRedo(redoCounter);"
       },
       {
         "lineNumber": 70,
-        "author": {
-          "gitId": "limsiying"
-        },
-        "content": "        store.setDuchessCalendar(newStore.getDuchessCalendar());"
-      },
-      {
-        "lineNumber": 71,
         "author": {
           "gitId": "muserr"
         },
         "content": "    }"
       },
       {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
         "lineNumber": 72,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     * Updates data to previous Store values."
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     * @param store store object"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     * @param storage storage object"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     * @throws DuchessException if updating store is unsuccessful"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    private void setToNextStore(Store store, Storage storage) throws DuchessException {"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        // Obtain Store data from duchess.storage Stack"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        Store prevStore \u003d storage.getFirstSnapshot();"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        storage.save(prevStore);"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        // Obtaining store from stack"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        Store newStore \u003d storage.load();"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        store.setTaskList(newStore.getTaskList());"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        store.setModuleList(newStore.getModuleList());"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": "        store.setDuchessCalendar(newStore.getDuchessCalendar());"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 90,
         "author": {
           "gitId": "muserr"
         },
@@ -8229,7 +8586,7 @@
     "authorContributionMap": {
       "limsiying": 1,
       "mohideenik": 1,
-      "muserr": 70
+      "muserr": 88
     }
   },
   {
@@ -8957,458 +9314,584 @@
         "author": {
           "gitId": "muserr"
         },
-        "content": "public class UndoCommand extends Command {"
+        "content": "/**"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    private int undoCounter;"
+        "content": " * Undo feature."
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    private static final String UNDO_USAGE_ERROR_MESSAGE \u003d \"Usage: undo [number]\";"
+        "content": " */"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    private static final String NEGATIVE_NUMBER_ERROR_MESSAGE"
+        "content": "public class UndoCommand extends Command {"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            \u003d \"[number] must be a positive integer, i.e. 1, 2, 3, ...\";"
+        "content": "    private int undoCounter;"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    private static final String INVALID_NUMBER_ERROR_MESSAGE"
+        "content": "    private static final String UNDO_USAGE_ERROR_MESSAGE \u003d \"Usage: undo [number]\";"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            \u003d \"You have entered an invalid value.\";"
+        "content": "    private static final String NEGATIVE_NUMBER_ERROR_MESSAGE"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "muserr"
         },
-        "content": ""
+        "content": "            \u003d \"[number] must be a positive integer, i.e. 1, 2, 3, ...\";"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    /**"
+        "content": "    private static final String INVALID_NUMBER_ERROR_MESSAGE"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "muserr"
         },
-        "content": "     * Checks if undo command contains additional parameters."
+        "content": "            \u003d \"You have entered an invalid value.\";"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "muserr"
         },
-        "content": "     *"
+        "content": ""
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "muserr"
         },
-        "content": "     * @param words additional parameters for undo"
+        "content": "    /**"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "muserr"
         },
-        "content": "     * @throws DuchessException throws exceptions if invalid command"
+        "content": "     * Checks if undo command contains additional parameters."
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "muserr"
         },
-        "content": "     */"
+        "content": "     *"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    public UndoCommand(List\u003cString\u003e words) throws DuchessException {"
+        "content": "     * @param words additional parameters for undo"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        if (words.size() !\u003d 1 \u0026\u0026 words.size() !\u003d 0) {"
+        "content": "     * @throws DuchessException throws exceptions if invalid command"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            throw new DuchessException(UNDO_USAGE_ERROR_MESSAGE);"
+        "content": "     */"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        } else if (words.size() \u003d\u003d 1) {"
+        "content": "    public UndoCommand(List\u003cString\u003e words) throws DuchessException {"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            try {"
+        "content": "        if (words.size() !\u003d 1 \u0026\u0026 words.size() !\u003d 0) {"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "muserr"
         },
-        "content": "                undoCounter \u003d Integer.parseInt(words.get(0));"
+        "content": "            throw new DuchessException(UNDO_USAGE_ERROR_MESSAGE);"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "muserr"
         },
-        "content": ""
+        "content": "        } else if (words.size() \u003d\u003d 1) {"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "muserr"
         },
-        "content": "                if (undoCounter \u003c\u003d 0) {"
+        "content": "            try {"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "muserr"
         },
-        "content": "                    throw new IllegalArgumentException();"
+        "content": "                undoCounter \u003d Integer.parseInt(words.get(0));"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "muserr"
         },
-        "content": "                }"
+        "content": ""
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            } catch (NumberFormatException e) {"
+        "content": "                if (undoCounter \u003c\u003d 0) {"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "muserr"
         },
-        "content": "                throw new DuchessException(INVALID_NUMBER_ERROR_MESSAGE);"
+        "content": "                    throw new IllegalArgumentException();"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            } catch (IllegalArgumentException e) {"
+        "content": "                }"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "muserr"
         },
-        "content": "                throw new DuchessException(NEGATIVE_NUMBER_ERROR_MESSAGE);"
+        "content": "            } catch (NumberFormatException e) {"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            }"
+        "content": "                throw new DuchessException(INVALID_NUMBER_ERROR_MESSAGE);"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "muserr"
         },
-        "content": ""
+        "content": "            } catch (IllegalArgumentException e) {"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        } else if (words.size() \u003d\u003d 0) {"
+        "content": "                throw new DuchessException(NEGATIVE_NUMBER_ERROR_MESSAGE);"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            undoCounter \u003d 1;"
+        "content": "            }"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        }"
+        "content": ""
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    }"
+        "content": "        } else if (words.size() \u003d\u003d 0) {"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "muserr"
         },
-        "content": ""
+        "content": "            undoCounter \u003d 1;"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    @Override"
+        "content": "        }"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    public void execute(Store store, Ui ui, Storage storage) throws DuchessException {"
+        "content": "    }"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        if (storage.getUndoStack().size() \u003d\u003d 1) {"
+        "content": ""
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            undoCounter \u003d 0;"
+        "content": "    /**"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        } else if (storage.getUndoStack().size() \u003e 1 \u0026\u0026 undoCounter \u003e 1) {"
+        "content": "     * Restores previous available state."
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            storage.addToRedoStack();"
+        "content": "     *"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            int tempCounter \u003d undoCounter;"
+        "content": "     * @param store store object"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            while (tempCounter \u003e 0 \u0026\u0026 storage.getUndoStack().size() \u003e 1) {"
+        "content": "     * @param ui user interaction object"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "muserr"
         },
-        "content": "                setToPreviousStore(store, storage);"
+        "content": "     * @param storage storage object"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "muserr"
         },
-        "content": "                tempCounter--;"
+        "content": "     * @throws DuchessException if undo is unsuccessful"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            }"
+        "content": "     */"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        } else if (storage.getUndoStack().size() \u003e 1 \u0026\u0026 undoCounter \u003d\u003d 1) {"
+        "content": "    @Override"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            storage.addToRedoStack();"
+        "content": "    public void execute(Store store, Ui ui, Storage storage) throws DuchessException {"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "muserr"
         },
-        "content": "            setToPreviousStore(store, storage);"
+        "content": "        if (storage.getUndoStack().size() \u003d\u003d 1) {"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        }"
+        "content": "            undoCounter \u003d 0;"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        // showUndo should only be placed after execution of undo."
+        "content": "        } else if (storage.getUndoStack().size() \u003e 1 \u0026\u0026 undoCounter \u003e 1) {"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        ui.showUndo(undoCounter);"
+        "content": "            storage.addToRedoStack();"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    }"
+        "content": "            int tempCounter \u003d undoCounter;"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "muserr"
         },
-        "content": ""
+        "content": "            while (tempCounter \u003e 0 \u0026\u0026 storage.getUndoStack().size() \u003e 1) {"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "muserr"
         },
-        "content": "    private void setToPreviousStore(Store store, Storage storage) throws DuchessException {"
+        "content": "                setToPreviousStore(store, storage);"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        storage.getLastSnapshot();"
+        "content": "                tempCounter--;"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        storage.save(storage.peekUndoStackAsStore());"
+        "content": "            }"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "muserr"
         },
-        "content": ""
+        "content": "        } else if (storage.getUndoStack().size() \u003e 1 \u0026\u0026 undoCounter \u003d\u003d 1) {"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        // Obtaining store from stack"
+        "content": "            storage.addToRedoStack();"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        Store newStore \u003d storage.load();"
+        "content": "            setToPreviousStore(store, storage);"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        assert (store.equals(newStore));"
+        "content": "        }"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        store.setTaskList(newStore.getTaskList());"
+        "content": "        // showUndo should only be placed after execution of undo."
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "muserr"
         },
-        "content": "        store.setModuleList(newStore.getModuleList());"
+        "content": "        ui.showUndo(undoCounter);"
       },
       {
         "lineNumber": 73,
-        "author": {
-          "gitId": "limsiying"
-        },
-        "content": "        store.setDuchessCalendar(newStore.getDuchessCalendar());"
-      },
-      {
-        "lineNumber": 74,
         "author": {
           "gitId": "muserr"
         },
         "content": "    }"
       },
       {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
         "lineNumber": 75,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     * Updates data to previous Store values."
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     * @param store store object"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     * @param storage storage object"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     * @throws DuchessException if updating store is unsuccessful"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    private void setToPreviousStore(Store store, Storage storage) throws DuchessException {"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        storage.getLastSnapshot();"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        storage.save(storage.peekUndoStackAsStore());"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        // Obtaining store from stack"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        Store newStore \u003d storage.load();"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        assert (store.equals(newStore));"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        store.setTaskList(newStore.getTaskList());"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "        store.setModuleList(newStore.getModuleList());"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": "        store.setDuchessCalendar(newStore.getDuchessCalendar());"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "muserr"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 93,
         "author": {
           "gitId": "muserr"
         },
@@ -9417,7 +9900,7 @@
     ],
     "authorContributionMap": {
       "limsiying": 1,
-      "muserr": 74
+      "muserr": 92
     }
   },
   {
@@ -11194,301 +11677,301 @@
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "public class Module {"
+        "content": "/**"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    private String name;"
+        "content": " * Represents an academic module taken by students."
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    private String code;"
+        "content": " */"
       },
       {
         "lineNumber": 14,
         "author": {
-          "gitId": "nishanthelango"
+          "gitId": "mohideenik"
         },
-        "content": "    private List\u003cGrade\u003e grades;"
+        "content": "public class Module {"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "    private String name;"
       },
       {
         "lineNumber": 16,
         "author": {
-          "gitId": "nishanthelango"
+          "gitId": "mohideenik"
         },
-        "content": "    /**"
+        "content": "    private String code;"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "nishanthelango"
         },
-        "content": "     * Creates a new Module."
+        "content": "    private List\u003cGrade\u003e grades;"
       },
       {
         "lineNumber": 18,
         "author": {
-          "gitId": "nishanthelango"
+          "gitId": "mohideenik"
         },
-        "content": "     *"
+        "content": ""
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "nishanthelango"
         },
-        "content": "     * @param code the code of the module"
+        "content": "    /**"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "nishanthelango"
         },
-        "content": "     * @param name the mame of the module"
+        "content": "     * Creates a new Module."
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "nishanthelango"
         },
-        "content": "     */"
+        "content": "     *"
       },
       {
         "lineNumber": 22,
         "author": {
-          "gitId": "mohideenik"
+          "gitId": "nishanthelango"
         },
-        "content": "    @JsonCreator"
+        "content": "     * @param code the code of the module"
       },
       {
         "lineNumber": 23,
         "author": {
-          "gitId": "mohideenik"
+          "gitId": "nishanthelango"
         },
-        "content": "    public Module(@JsonProperty(\"code\") String code, @JsonProperty(\"name\") String name) {"
+        "content": "     * @param name the mame of the module"
       },
       {
         "lineNumber": 24,
         "author": {
-          "gitId": "mohideenik"
+          "gitId": "nishanthelango"
         },
-        "content": "        this.code \u003d code;"
+        "content": "     */"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        this.name \u003d name;"
+        "content": "    @JsonCreator"
       },
       {
         "lineNumber": 26,
         "author": {
-          "gitId": "nishanthelango"
+          "gitId": "mohideenik"
         },
-        "content": "        grades \u003d new ArrayList\u003c\u003e();"
+        "content": "    public Module(@JsonProperty(\"code\") String code, @JsonProperty(\"name\") String name) {"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "        this.code \u003d code;"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "        this.name \u003d name;"
       },
       {
         "lineNumber": 29,
         "author": {
-          "gitId": "mohideenik"
+          "gitId": "nishanthelango"
         },
-        "content": "    public String toString() {"
+        "content": "        grades \u003d new ArrayList\u003c\u003e();"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        return this.code + \" \" + this.name;"
+        "content": "    }"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public boolean isOfCode(String code) {"
+        "content": "     * Returns true if the module has the same code as the supplied code."
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        return this.code.equalsIgnoreCase(code);"
+        "content": "     *"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "     * @param code the code to check against the module code"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "     * @return true if there is a match"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    /**"
+        "content": "     */"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "     * Returns true if two modules share the same code."
+        "content": "    public boolean isOfCode(String code) {"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "     *"
+        "content": "        return this.code.equalsIgnoreCase(code);"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "     * @param other the other module to compare"
+        "content": "    }"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "     * @return the equality status"
+        "content": ""
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "     */"
+        "content": "    /**"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public boolean equals(Object other) {"
+        "content": "     * Returns true if two modules share the same code."
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        if (!(other instanceof Module)) {"
+        "content": "     *"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            return false;"
+        "content": "     * @param other the other module to compare"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        }"
+        "content": "     * @return the equality status"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        Module that \u003d (Module) other;"
+        "content": "     */"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        return this.code.equalsIgnoreCase(that.code);"
+        "content": "    public boolean equals(Object other) {"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "        if (!(other instanceof Module)) {"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "            return false;"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    @JsonGetter(\"name\")"
+        "content": "        }"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public String getName() {"
+        "content": "        Module that \u003d (Module) other;"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        return name;"
+        "content": "        return this.code.equalsIgnoreCase(that.code);"
       },
       {
         "lineNumber": 54,
@@ -11509,21 +11992,21 @@
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    @JsonGetter(\"code\")"
+        "content": "    @Override"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public String getCode() {"
+        "content": "    public String toString() {"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        return code;"
+        "content": "        return this.code + \" \" + this.name;"
       },
       {
         "lineNumber": 59,
@@ -11535,131 +12018,264 @@
       {
         "lineNumber": 60,
         "author": {
-          "gitId": "nishanthelango"
+          "gitId": "mohideenik"
         },
         "content": ""
       },
       {
         "lineNumber": 61,
         "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "     * Adds a given grade object to the module."
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "     * @param grade the grade to add"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    public void addGrade(Grade grade) {"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        this.grades.add(grade);"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "     * Deletes the specified grade object from the module."
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "     * @param gradeNo the index of the grade to delete"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    public void deleteGrade(int gradeNo) {"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        this.grades.remove(gradeNo);"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    @JsonGetter(\"name\")"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    public String getName() {"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        return name;"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    @JsonGetter(\"code\")"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    public String getCode() {"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        return code;"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "nishanthelango"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 88,
+        "author": {
           "gitId": "nishanthelango"
         },
         "content": "    @JsonSetter(\"grades\")"
       },
       {
-        "lineNumber": 62,
+        "lineNumber": 89,
         "author": {
           "gitId": "nishanthelango"
         },
         "content": "    public void setGrades(List\u003cGrade\u003e grades) {"
       },
       {
-        "lineNumber": 63,
+        "lineNumber": 90,
         "author": {
           "gitId": "nishanthelango"
         },
         "content": "        this.grades \u003d grades;"
       },
       {
-        "lineNumber": 64,
+        "lineNumber": 91,
         "author": {
           "gitId": "nishanthelango"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 65,
+        "lineNumber": 92,
         "author": {
           "gitId": "nishanthelango"
         },
         "content": ""
       },
       {
-        "lineNumber": 66,
+        "lineNumber": 93,
         "author": {
           "gitId": "nishanthelango"
         },
         "content": "    @JsonGetter(\"grades\")"
       },
       {
-        "lineNumber": 67,
+        "lineNumber": 94,
         "author": {
           "gitId": "nishanthelango"
         },
         "content": "    public List\u003cGrade\u003e getGrades() {"
       },
       {
-        "lineNumber": 68,
+        "lineNumber": 95,
         "author": {
           "gitId": "nishanthelango"
         },
         "content": "        return grades;"
       },
       {
-        "lineNumber": 69,
+        "lineNumber": 96,
         "author": {
           "gitId": "nishanthelango"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 70,
-        "author": {
-          "gitId": "nishanthelango"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 71,
-        "author": {
-          "gitId": "nishanthelango"
-        },
-        "content": "    public void addGrade(Grade grade) {"
-      },
-      {
-        "lineNumber": 72,
-        "author": {
-          "gitId": "nishanthelango"
-        },
-        "content": "        this.grades.add(grade);"
-      },
-      {
-        "lineNumber": 73,
-        "author": {
-          "gitId": "nishanthelango"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 74,
-        "author": {
-          "gitId": "nishanthelango"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 75,
-        "author": {
-          "gitId": "nishanthelango"
-        },
-        "content": "    public void deleteGrade(int gradeNo) {"
-      },
-      {
-        "lineNumber": 76,
-        "author": {
-          "gitId": "nishanthelango"
-        },
-        "content": "        this.grades.remove(gradeNo);"
-      },
-      {
-        "lineNumber": 77,
-        "author": {
-          "gitId": "nishanthelango"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 78,
+        "lineNumber": 97,
         "author": {
           "gitId": "mohideenik"
         },
@@ -11667,8 +12283,8 @@
       }
     ],
     "authorContributionMap": {
-      "mohideenik": 48,
-      "nishanthelango": 30
+      "mohideenik": 75,
+      "nishanthelango": 22
     }
   },
   {
@@ -11706,364 +12322,364 @@
       {
         "lineNumber": 5,
         "author": {
-          "gitId": "limsiying"
+          "gitId": "mohideenik"
         },
-        "content": "public class TimeFrame implements Comparable\u003cTimeFrame\u003e {"
+        "content": "/**"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    /**"
+        "content": " * Represents an interval in time."
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "     * Start and end points of the timeframe."
+        "content": " *"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "     */"
+        "content": " * \u003cp\u003e"
       },
       {
         "lineNumber": 9,
         "author": {
-          "gitId": "nishanthelango"
+          "gitId": "mohideenik"
         },
-        "content": "    private LocalDateTime start;"
+        "content": " * This module is used to compare times and possible clashes of tasks such as"
       },
       {
         "lineNumber": 10,
         "author": {
-          "gitId": "nishanthelango"
+          "gitId": "mohideenik"
         },
-        "content": "    private LocalDateTime end;"
+        "content": " * events, deadlines and todos."
       },
       {
         "lineNumber": 11,
         "author": {
-          "gitId": "limsiying"
+          "gitId": "mohideenik"
         },
-        "content": ""
+        "content": " * \u003c/p\u003e"
       },
       {
         "lineNumber": 12,
         "author": {
-          "gitId": "limsiying"
+          "gitId": "mohideenik"
         },
-        "content": "    /**"
+        "content": " */"
       },
       {
         "lineNumber": 13,
         "author": {
-          "gitId": "mohideenik"
+          "gitId": "limsiying"
         },
-        "content": "     * Marks timeframe as indefinite, i.e. things that"
+        "content": "public class TimeFrame implements Comparable\u003cTimeFrame\u003e {"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "     * don\u0027t have a definite start or end time."
+        "content": "    /**"
       },
       {
         "lineNumber": 15,
         "author": {
-          "gitId": "limsiying"
+          "gitId": "mohideenik"
         },
-        "content": "     */"
+        "content": "     * Start and end points of the timeframe."
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    private boolean isIndefinite;"
+        "content": "     */"
       },
       {
         "lineNumber": 17,
+        "author": {
+          "gitId": "nishanthelango"
+        },
+        "content": "    private LocalDateTime start;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "nishanthelango"
+        },
+        "content": "    private LocalDateTime end;"
+      },
+      {
+        "lineNumber": 19,
         "author": {
           "gitId": "limsiying"
         },
         "content": ""
       },
       {
-        "lineNumber": 18,
+        "lineNumber": 20,
         "author": {
           "gitId": "limsiying"
         },
         "content": "    /**"
-      },
-      {
-        "lineNumber": 19,
-        "author": {
-          "gitId": "mohideenik"
-        },
-        "content": "     * Marks time frame as instantaneous."
-      },
-      {
-        "lineNumber": 20,
-        "author": {
-          "gitId": "mohideenik"
-        },
-        "content": "     */"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    private boolean isInstantaneous;"
+        "content": "     * Marks timeframe as indefinite, i.e. things that"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "     * don\u0027t have a definite start or end time."
       },
       {
         "lineNumber": 23,
-        "author": {
-          "gitId": "mohideenik"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 24,
-        "author": {
-          "gitId": "mohideenik"
-        },
-        "content": "     * Creates a TimeFrame that represents an interval in time."
-      },
-      {
-        "lineNumber": 25,
-        "author": {
-          "gitId": "limsiying"
-        },
-        "content": "     *"
-      },
-      {
-        "lineNumber": 26,
-        "author": {
-          "gitId": "mohideenik"
-        },
-        "content": "     * @param start Starting time"
-      },
-      {
-        "lineNumber": 27,
-        "author": {
-          "gitId": "mohideenik"
-        },
-        "content": "     * @param end   Ending time"
-      },
-      {
-        "lineNumber": 28,
         "author": {
           "gitId": "limsiying"
         },
         "content": "     */"
       },
       {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    private boolean isIndefinite;"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "     * Marks time frame as instantaneous."
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "     */"
+      },
+      {
         "lineNumber": 29,
         "author": {
-          "gitId": "nishanthelango"
+          "gitId": "mohideenik"
         },
-        "content": "    public TimeFrame(LocalDateTime start, LocalDateTime end) {"
+        "content": "    private boolean isInstantaneous;"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        this.start \u003d start;"
+        "content": ""
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        this.end \u003d end;"
+        "content": "    /**"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        this.isIndefinite \u003d false;"
+        "content": "     * Creates a TimeFrame that represents an interval in time."
       },
       {
         "lineNumber": 33,
         "author": {
-          "gitId": "mohideenik"
+          "gitId": "limsiying"
         },
-        "content": "        this.isInstantaneous \u003d false;"
+        "content": "     *"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "     * @param start Starting time"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "     * @param end   Ending time"
       },
       {
         "lineNumber": 36,
         "author": {
-          "gitId": "nishanthelango"
+          "gitId": "limsiying"
         },
-        "content": "    private TimeFrame(LocalDateTime time) {"
+        "content": "     */"
       },
       {
         "lineNumber": 37,
         "author": {
-          "gitId": "mohideenik"
+          "gitId": "nishanthelango"
         },
-        "content": "        this.start \u003d time;"
+        "content": "    public TimeFrame(LocalDateTime start, LocalDateTime end) {"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        this.end \u003d time;"
+        "content": "        this.start \u003d start;"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        this.isIndefinite \u003d false;"
+        "content": "        this.end \u003d end;"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        this.isInstantaneous \u003d true;"
+        "content": "        this.isIndefinite \u003d false;"
       },
       {
         "lineNumber": 41,
-        "author": {
-          "gitId": "limsiying"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 42,
-        "author": {
-          "gitId": "limsiying"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 43,
-        "author": {
-          "gitId": "mohideenik"
-        },
-        "content": "    private TimeFrame() {"
-      },
-      {
-        "lineNumber": 44,
-        "author": {
-          "gitId": "mohideenik"
-        },
-        "content": "        this.isIndefinite \u003d true;"
-      },
-      {
-        "lineNumber": 45,
         "author": {
           "gitId": "mohideenik"
         },
         "content": "        this.isInstantaneous \u003d false;"
       },
       {
-        "lineNumber": 46,
+        "lineNumber": 42,
         "author": {
           "gitId": "mohideenik"
         },
         "content": "    }"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "nishanthelango"
+        },
+        "content": "    private TimeFrame(LocalDateTime time) {"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        this.start \u003d time;"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        this.end \u003d time;"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "        this.isIndefinite \u003d false;"
       },
       {
         "lineNumber": 48,
         "author": {
-          "gitId": "nishanthelango"
+          "gitId": "mohideenik"
         },
-        "content": "    public static TimeFrame ofInstantaneousTask(LocalDateTime time) {"
+        "content": "        this.isInstantaneous \u003d true;"
       },
       {
         "lineNumber": 49,
         "author": {
-          "gitId": "mohideenik"
+          "gitId": "limsiying"
         },
-        "content": "        return new TimeFrame(time);"
+        "content": "    }"
       },
       {
         "lineNumber": 50,
         "author": {
-          "gitId": "mohideenik"
+          "gitId": "limsiying"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "    private TimeFrame() {"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public static TimeFrame ofTimelessTask() {"
+        "content": "        this.isIndefinite \u003d true;"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        return new TimeFrame();"
+        "content": "        this.isInstantaneous \u003d false;"
       },
       {
         "lineNumber": 54,
         "author": {
-          "gitId": "limsiying"
+          "gitId": "mohideenik"
         },
         "content": "    }"
       },
       {
         "lineNumber": 55,
         "author": {
-          "gitId": "limsiying"
+          "gitId": "mohideenik"
         },
         "content": ""
       },
       {
         "lineNumber": 56,
         "author": {
-          "gitId": "limsiying"
+          "gitId": "mohideenik"
         },
         "content": "    /**"
       },
@@ -12072,12 +12688,12 @@
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "     * Returns true if this TimeFrame lies within the other TimeFrame."
+        "content": "     * Creates and returns a TimeFrame that represents a point in time."
       },
       {
         "lineNumber": 58,
         "author": {
-          "gitId": "limsiying"
+          "gitId": "mohideenik"
         },
         "content": "     *"
       },
@@ -12086,367 +12702,598 @@
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "     * @param that the other TimeFrame"
+        "content": "     * @param time the point in time"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "     * @return true if falls within"
+        "content": "     * @return the TimeFrame"
       },
       {
         "lineNumber": 61,
         "author": {
-          "gitId": "limsiying"
+          "gitId": "mohideenik"
         },
         "content": "     */"
       },
       {
         "lineNumber": 62,
         "author": {
-          "gitId": "mohideenik"
+          "gitId": "nishanthelango"
         },
-        "content": "    public boolean fallsWithin(TimeFrame that) {"
+        "content": "    public static TimeFrame ofInstantaneousTask(LocalDateTime time) {"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        if (this.isIndefinite || that.isIndefinite) {"
+        "content": "        return new TimeFrame(time);"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            return false;"
+        "content": "    }"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        }"
+        "content": ""
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 67,
         "author": {
-          "gitId": "nishanthelango"
+          "gitId": "mohideenik"
         },
-        "content": "        return !(this.end.isBefore(that.start) || that.end.isBefore(this.start));"
+        "content": "     * Creates and returns a TimeFrame that does not fall in any point in time."
       },
       {
         "lineNumber": 68,
         "author": {
-          "gitId": "limsiying"
+          "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "     *"
       },
       {
         "lineNumber": 69,
         "author": {
-          "gitId": "limsiying"
+          "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "     * @return the TimeFrame"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    /**"
+        "content": "     */"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "     * Returns true if this TimeFrame clashes with the other TimeFrame."
+        "content": "    public static TimeFrame ofTimelessTask() {"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "     *"
+        "content": "        return new TimeFrame();"
       },
       {
         "lineNumber": 73,
         "author": {
-          "gitId": "mohideenik"
+          "gitId": "limsiying"
         },
-        "content": "     * @param that the other TimeFrame"
+        "content": "    }"
       },
       {
         "lineNumber": 74,
         "author": {
-          "gitId": "mohideenik"
+          "gitId": "limsiying"
         },
-        "content": "     * @return true if there is clash"
+        "content": ""
       },
       {
         "lineNumber": 75,
-        "author": {
-          "gitId": "mohideenik"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 76,
-        "author": {
-          "gitId": "mohideenik"
-        },
-        "content": "    public boolean clashesWith(TimeFrame that) {"
-      },
-      {
-        "lineNumber": 77,
-        "author": {
-          "gitId": "mohideenik"
-        },
-        "content": "        if (this.isInstantaneous || that.isInstantaneous) {"
-      },
-      {
-        "lineNumber": 78,
-        "author": {
-          "gitId": "mohideenik"
-        },
-        "content": "            return false;"
-      },
-      {
-        "lineNumber": 79,
-        "author": {
-          "gitId": "limsiying"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 80,
-        "author": {
-          "gitId": "limsiying"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 81,
-        "author": {
-          "gitId": "mohideenik"
-        },
-        "content": "        return this.fallsWithin(that);"
-      },
-      {
-        "lineNumber": 82,
-        "author": {
-          "gitId": "limsiying"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 83,
-        "author": {
-          "gitId": "limsiying"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 84,
-        "author": {
-          "gitId": "limsiying"
-        },
-        "content": "    public LocalDateTime getStart() {"
-      },
-      {
-        "lineNumber": 85,
-        "author": {
-          "gitId": "limsiying"
-        },
-        "content": "        return start;"
-      },
-      {
-        "lineNumber": 86,
-        "author": {
-          "gitId": "limsiying"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 87,
-        "author": {
-          "gitId": "limsiying"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 88,
         "author": {
           "gitId": "limsiying"
         },
         "content": "    /**"
       },
       {
-        "lineNumber": 89,
+        "lineNumber": 76,
         "author": {
-          "gitId": "limsiying"
+          "gitId": "mohideenik"
         },
-        "content": "     * Checks if TimeFrame belongs to task of type event."
+        "content": "     * Returns true if this TimeFrame lies within the other TimeFrame."
       },
       {
-        "lineNumber": 90,
+        "lineNumber": 77,
         "author": {
           "gitId": "limsiying"
         },
         "content": "     *"
       },
       {
-        "lineNumber": 91,
+        "lineNumber": 78,
         "author": {
-          "gitId": "limsiying"
+          "gitId": "mohideenik"
         },
-        "content": "     * @return true if task is an event"
+        "content": "     * @param that the other TimeFrame"
       },
       {
-        "lineNumber": 92,
+        "lineNumber": 79,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "     * @return true if falls within"
+      },
+      {
+        "lineNumber": 80,
         "author": {
           "gitId": "limsiying"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 93,
-        "author": {
-          "gitId": "limsiying"
-        },
-        "content": "    public boolean hasDuration() {"
-      },
-      {
-        "lineNumber": 94,
-        "author": {
-          "gitId": "limsiying"
-        },
-        "content": "        return !isIndefinite \u0026\u0026 !isInstantaneous;"
-      },
-      {
-        "lineNumber": 95,
-        "author": {
-          "gitId": "limsiying"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 96,
-        "author": {
-          "gitId": "limsiying"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 97,
-        "author": {
-          "gitId": "limsiying"
-        },
-        "content": "    @Override"
-      },
-      {
-        "lineNumber": 98,
+        "lineNumber": 81,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public int compareTo(TimeFrame that) {"
+        "content": "    public boolean fallsWithin(TimeFrame that) {"
       },
       {
-        "lineNumber": 99,
+        "lineNumber": 82,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        if (this.isIndefinite \u0026\u0026 that.isIndefinite) {"
+        "content": "        if (this.isIndefinite || that.isIndefinite) {"
       },
       {
-        "lineNumber": 100,
+        "lineNumber": 83,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            return 0;"
+        "content": "            return false;"
       },
       {
-        "lineNumber": 101,
-        "author": {
-          "gitId": "mohideenik"
-        },
-        "content": "        } else if (this.isIndefinite) {"
-      },
-      {
-        "lineNumber": 102,
-        "author": {
-          "gitId": "mohideenik"
-        },
-        "content": "            return -1;"
-      },
-      {
-        "lineNumber": 103,
-        "author": {
-          "gitId": "mohideenik"
-        },
-        "content": "        } else if (that.isIndefinite) {"
-      },
-      {
-        "lineNumber": 104,
-        "author": {
-          "gitId": "mohideenik"
-        },
-        "content": "            return 1;"
-      },
-      {
-        "lineNumber": 105,
-        "author": {
-          "gitId": "mohideenik"
-        },
-        "content": "        } else if (!this.start.equals(that.start)) {"
-      },
-      {
-        "lineNumber": 106,
-        "author": {
-          "gitId": "mohideenik"
-        },
-        "content": "            return this.start.compareTo(that.start);"
-      },
-      {
-        "lineNumber": 107,
-        "author": {
-          "gitId": "mohideenik"
-        },
-        "content": "        } else {"
-      },
-      {
-        "lineNumber": 108,
-        "author": {
-          "gitId": "mohideenik"
-        },
-        "content": "            return this.end.compareTo(that.end);"
-      },
-      {
-        "lineNumber": 109,
+        "lineNumber": 84,
         "author": {
           "gitId": "mohideenik"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 110,
+        "lineNumber": 85,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "nishanthelango"
+        },
+        "content": "        return !(this.end.isBefore(that.start) || that.end.isBefore(this.start));"
+      },
+      {
+        "lineNumber": 87,
         "author": {
           "gitId": "limsiying"
         },
         "content": "    }"
       },
       {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "     * Returns true if this TimeFrame clashes with the other TimeFrame."
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "     * @param that the other TimeFrame"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "     * @return true if there is clash"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    public boolean clashesWith(TimeFrame that) {"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        if (this.isInstantaneous || that.isInstantaneous) {"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "            return false;"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        return this.fallsWithin(that);"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "     * Returns the start time of the TimeFrame, if present."
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "     * @return the start time if present, null otherwise"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": "    public LocalDateTime getStart() {"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": "        return start;"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": ""
+      },
+      {
         "lineNumber": 111,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": "     * Checks if TimeFrame belongs to task of type event."
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": "     * @return true if task is an event"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": "    public boolean hasDuration() {"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": "        return !isIndefinite \u0026\u0026 !isInstantaneous;"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "     * Comparator to compare TimeFrame that orders TimeFrame objects in chronological order."
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "     * \u003cp\u003e"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "     * If the TimeFrame is indefinite (no associated time), it is ordered first."
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "     * \u003c/p\u003e"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "     * @param that the other TimeFrame to compare"
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "     * @return an integer value indicating order (follows Java\u0027s conventions)"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    public int compareTo(TimeFrame that) {"
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        if (this.isIndefinite \u0026\u0026 that.isIndefinite) {"
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "            return 0;"
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        } else if (this.isIndefinite) {"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "            return -1;"
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        } else if (that.isIndefinite) {"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "            return 1;"
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        } else if (!this.start.equals(that.start)) {"
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "            return this.start.compareTo(that.start);"
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "            return this.end.compareTo(that.end);"
+      },
+      {
+        "lineNumber": 142,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "limsiying"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 144,
         "author": {
           "gitId": "limsiying"
         },
@@ -12455,7 +13302,7 @@
     ],
     "authorContributionMap": {
       "limsiying": 40,
-      "mohideenik": 64,
+      "mohideenik": 97,
       "nishanthelango": 7
     }
   },
@@ -33966,6 +34813,197 @@
     }
   },
   {
+    "path": "src/test/java/duchess/commands/AddModuleCommandTest.java",
+    "fileType": "tests",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "package duchess.commands;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "import duchess.exceptions.DuchessException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "import duchess.logic.commands.AddModuleCommand;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "import duchess.model.Module;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "import duchess.storage.Storage;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "import duchess.storage.Store;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "import duchess.ui.Ui;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "import org.junit.jupiter.api.Test;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.assertTrue;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "class AddModuleCommandTest {"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    private final Storage storage \u003d new Storage(\"data.json\");"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    private final Store store \u003d new Store();"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    private final Ui ui \u003d new Ui();"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    public void validCommand_executes() throws DuchessException {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        AddModuleCommand validCommand \u003d new AddModuleCommand(\"Math\", \"MA1511\");"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        validCommand.execute(store, ui, storage);"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        Module addedModule \u003d store.getModuleList().get(0);"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        assertTrue(addedModule.getCode().equalsIgnoreCase(\"MA1511\"));"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        assertTrue(addedModule.getName().equals(\"Math\"));"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "mohideenik": 26
+    }
+  },
+  {
     "path": "src/test/java/duchess/commands/ReminderCommandTest.java",
     "fileType": "tests",
     "lines": [
@@ -35527,147 +36565,147 @@
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    private final LocalDateTime dateTime \u003d Util.parseDateTime(\"12/12/2019 1200\");"
+        "content": "    private final TimeFrame instantFrame;"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    private final LocalDateTime dateTime2 \u003d Util.parseDateTime(\"12/12/2019 1400\");"
+        "content": "    private final TimeFrame indefiniteFrame;"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "    private final TimeFrame normalFrame;"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    private final TimeFrame instantFrame \u003d TimeFrame.ofInstantaneousTask(dateTime);"
+        "content": "    private final TimeFrame normalFrame2;"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    private final TimeFrame indefiniteFrame \u003d TimeFrame.ofTimelessTask();"
+        "content": ""
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    private final TimeFrame normalFrame \u003d new TimeFrame(dateTime, dateTime2);"
+        "content": "    /**"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "     * Initializes few TimeFrames for testing."
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public TimeFrameTest() throws DuchessException {"
+        "content": "     *"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "     * @throws DuchessException if unable to create a TimeFrame"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "     */"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    @Test"
+        "content": "    public TimeFrameTest() throws DuchessException {"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public void compareTo() {"
+        "content": "        LocalDateTime dateTime \u003d Util.parseDateTime(\"12/12/2019 1200\");"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        assertTrue(indefiniteFrame.compareTo(indefiniteFrame) \u003d\u003d 0);"
+        "content": "        LocalDateTime dateTime2 \u003d Util.parseDateTime(\"12/12/2019 1400\");"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        assertTrue(indefiniteFrame.compareTo(instantFrame) \u003c 0);"
+        "content": "        normalFrame \u003d new TimeFrame(dateTime, dateTime2);"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        assertTrue(instantFrame.compareTo(indefiniteFrame) \u003e 0);"
+        "content": ""
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        assertTrue(normalFrame.compareTo(normalFrame) \u003d\u003d 0);"
+        "content": "        LocalDateTime dateTime3 \u003d Util.parseDateTime(\"12/12/2019 1300\");"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "        LocalDateTime dateTime4 \u003d Util.parseDateTime(\"12/12/2019 1500\");"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "        normalFrame2 \u003d new TimeFrame(dateTime3, dateTime4);"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    @Test"
+        "content": ""
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public void fallsWithin_indefiniteTasks() {"
+        "content": "        instantFrame \u003d TimeFrame.ofInstantaneousTask(dateTime);"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        assertFalse(normalFrame.fallsWithin(indefiniteFrame));"
+        "content": "        indefiniteFrame \u003d TimeFrame.ofTimelessTask();"
       },
       {
         "lineNumber": 34,
@@ -35695,24 +36733,164 @@
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public void clashesWith_instantaneousTask() {"
+        "content": "    public void compareTo() {"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        assertFalse(normalFrame.clashesWith(instantFrame));"
+        "content": "        assertTrue(indefiniteFrame.compareTo(indefiniteFrame) \u003d\u003d 0);"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "        assertTrue(indefiniteFrame.compareTo(instantFrame) \u003c 0);"
       },
       {
         "lineNumber": 40,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        assertTrue(instantFrame.compareTo(indefiniteFrame) \u003e 0);"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        assertTrue(normalFrame.compareTo(normalFrame) \u003d\u003d 0);"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        assertTrue(normalFrame.compareTo(normalFrame2) \u003c 0);"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    public void fallsWithin_indefiniteTimeFrame() {"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        assertFalse(normalFrame.fallsWithin(indefiniteFrame));"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    public void clashesWith_instantaneousTimeFrame() {"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        assertFalse(normalFrame.clashesWith(instantFrame));"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    public void clashesWith_normalTimeFrame() {"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        assertTrue(normalFrame.clashesWith(normalFrame2));"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        assertTrue(normalFrame2.clashesWith(normalFrame));"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 60,
         "author": {
           "gitId": "mohideenik"
         },
@@ -35720,7 +36898,7 @@
       }
     ],
     "authorContributionMap": {
-      "mohideenik": 40
+      "mohideenik": 60
     }
   },
   {
@@ -37452,7 +38630,7 @@
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    void parse() {"
+        "content": "    public void parse_parses() {"
       },
       {
         "lineNumber": 17,
@@ -37508,80 +38686,143 @@
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    private class ParserStateStub extends ParserState {"
+        "content": "    @Test"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        @Override"
+        "content": "    public void continueParsing_parses() {"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        public Command parse(String input) throws DuchessException {"
+        "content": "        parser.setParserState(new ParserStateStub());"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            throw new DuchessException(\"Stub test\");"
+        "content": "        assertThrows("
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        }"
+        "content": "            DuchessException.class,"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "            () -\u003e parser.continueParsing(Util.parameterizeWithoutCommand(\"test command\")),"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        @Override"
+        "content": "            \"Stub test 2\");"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        public Command continueParsing(Map\u003cString, String\u003e parameters) throws DuchessException {"
+        "content": "    }"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            throw new DuchessException(\"Stub test\");"
+        "content": ""
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        }"
+        "content": "    private class ParserStateStub extends ParserState {"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "        @Override"
       },
       {
         "lineNumber": 35,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        public Command parse(String input) throws DuchessException {"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "            throw new DuchessException(\"Stub test\");"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        @Override"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        public Command continueParsing(Map\u003cString, String\u003e parameters) throws DuchessException {"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "            throw new DuchessException(\"Stub test 2\");"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 44,
         "author": {
           "gitId": "mohideenik"
         },
@@ -37589,7 +38830,7 @@
       }
     ],
     "authorContributionMap": {
-      "mohideenik": 35
+      "mohideenik": 44
     }
   },
   {
@@ -42043,7 +43284,7 @@
         "author": {
           "gitId": "muserr"
         },
-        "content": "            assertEquals(storage.load(), new Store());"
+        "content": "            assertTrue(getStoreToString(storage.load()).equals(\"\"));"
       },
       {
         "lineNumber": 38,
@@ -42141,7 +43382,7 @@
         "author": {
           "gitId": "muserr"
         },
-        "content": "            assertNotEquals(store, new Store());"
+        "content": "            assertTrue(!getStoreToString(store).equals(\"\"));"
       },
       {
         "lineNumber": 52,
