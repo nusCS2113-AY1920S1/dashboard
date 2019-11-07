@@ -906,605 +906,717 @@
         "author": {
           "gitId": "fauzt"
         },
-        "content": "import chronologer.ui.UiTemporary;"
+        "content": "import chronologer.ui.MessageBuilder;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "fauzt"
         },
-        "content": ""
+        "content": "import chronologer.ui.UiTemporary;"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "import java.time.LocalDateTime;"
+        "content": ""
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "import java.time.temporal.ChronoUnit;"
+        "content": "import java.time.LocalDateTime;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "import java.util.ArrayList;"
+        "content": "import java.time.temporal.ChronoUnit;"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "fauzt"
         },
-        "content": ""
+        "content": "import java.util.ArrayList;"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "public final class TaskScheduler {"
+        "content": ""
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "fauzt"
         },
-        "content": ""
+        "content": "public final class TaskScheduler {"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "    private static final int SEARCH_HARD_LIMIT \u003d 30;"
+        "content": ""
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "    private static final String SCHEDULE_ANYTIME_BY_DEADLINE \u003d"
+        "content": "    private static final int SEARCH_HARD_LIMIT \u003d 30;"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "            \"You can schedule this task from now till the deadline.\\n\";"
+        "content": "    private static final String SCHEDULE_ANYTIME_BY_DEADLINE \u003d"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "    private static final String SCHEDULE_ANYTIME \u003d \"You can schedule this task anytime.\\n\";"
+        "content": "            \"You can schedule this task from now till the deadline.\\n\";"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "    private static final String SCHEDULE_NOW_TILL_FORMAT \u003d \"You can schedule this task from now till %s \\n\";"
+        "content": "    private static final String SCHEDULE_ANYTIME \u003d \"You can schedule this task anytime.\\n\";"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "    private static final String SCHEDULE_FROM_TILL_FORMAT \u003d \"You can schedule this task from %s till %s \\n\";"
+        "content": "    private static final String SCHEDULE_NOW_TILL_FORMAT \u003d \"You can schedule this task from now till %s\\n\";"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "    private static final String NO_FREE_SLOTS \u003d"
+        "content": "    private static final String SCHEDULE_FROM_TILL_FORMAT \u003d \"You can schedule this task from %s till %s\\n\";"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "            \"There is no free slot to insert the task. Consider freeing up your schedule.\";"
+        "content": "    private static final String NO_FREE_SLOTS \u003d"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "fauzt"
         },
-        "content": ""
+        "content": "            \"There is no free slot to insert the task. Consider freeing up your schedule.\\n\";"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "     * Finds a free period of time within the user\u0027s schedule for a given duration by a given deadline."
+        "content": "    /**"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "     * @param tasks is the master task list in the program"
+        "content": "     * Finds a free period of time within the user\u0027s schedule for a given duration by a given deadline."
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "     * @param durationToSchedule is the minimum duration to find a large enough period that is free"
+        "content": "     * @param tasks is the master task list in the program"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "     * @param deadlineDate is the date to find any periods by"
+        "content": "     * @param durationToSchedule is the minimum duration to find a large enough period that is free"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "     */"
+        "content": "     * @param deadlineDate is the date to find any periods by"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "    public static void scheduleByDeadline(TaskList tasks, Long durationToSchedule, LocalDateTime deadlineDate) {"
+        "content": "     */"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "        ArrayList\u003cEvent\u003e dateList \u003d tasks.obtainEventList(deadlineDate);"
+        "content": "    public static void scheduleByDeadline(TaskList tasks, Long durationToSchedule, LocalDateTime deadlineDate) {"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "        if (dateList.size() \u003d\u003d 0) {"
+        "content": "        ArrayList\u003cEvent\u003e dateList \u003d tasks.obtainEventList(deadlineDate);"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "            UiTemporary.printOutput(SCHEDULE_ANYTIME_BY_DEADLINE);"
+        "content": "        if (dateList.size() \u003d\u003d 0) {"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "            return;"
+        "content": "            UiTemporary.printOutput(SCHEDULE_ANYTIME_BY_DEADLINE);"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "        }"
+        "content": "            return;"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "fauzt"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "        searchFreePeriodsInEventList(durationToSchedule, deadlineDate, dateList);"
+        "content": ""
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "    }"
+        "content": "        searchFreePeriodsInEventList(durationToSchedule, deadlineDate, dateList);"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "fauzt"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "     * Finds a free period of time within the user\u0027s schedule for a given duration without concerning a deadline."
+        "content": "    /**"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "     * @param tasks is the master task list in the program"
+        "content": "     * Finds a free period of time within the user\u0027s schedule for a given duration without concerning a deadline."
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "     * @param durationToSchedule is the minimum duration to find a large enough period that is free"
+        "content": "     * @param tasks is the master task list in the program"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "     */"
+        "content": "     * @param durationToSchedule is the minimum duration to find a large enough period that is free"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "    public static void scheduleTask(TaskList tasks, Long durationToSchedule) {"
+        "content": "     */"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "        LocalDateTime deadlineDate \u003d LocalDateTime.now().plusDays(SEARCH_HARD_LIMIT);"
+        "content": "    public static void scheduleTask(TaskList tasks, Long durationToSchedule) {"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "        ArrayList\u003cEvent\u003e eventList \u003d tasks.obtainEventList(deadlineDate);"
+        "content": "        LocalDateTime deadlineDate \u003d LocalDateTime.now().plusDays(SEARCH_HARD_LIMIT);"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "        if (eventList.size() \u003d\u003d 0) {"
+        "content": "        ArrayList\u003cEvent\u003e eventList \u003d tasks.obtainEventList(deadlineDate);"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "            UiTemporary.printOutput(SCHEDULE_ANYTIME);"
+        "content": "        if (eventList.size() \u003d\u003d 0) {"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "            return;"
+        "content": "            UiTemporary.printOutput(SCHEDULE_ANYTIME);"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "        }"
+        "content": "            return;"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "fauzt"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "        searchFreePeriodsInEventList(durationToSchedule, deadlineDate, eventList);"
+        "content": ""
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "    }"
+        "content": "        searchFreePeriodsInEventList(durationToSchedule, deadlineDate, eventList);"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "fauzt"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "    private static void searchFreePeriodsInEventList(Long durationToSchedule, LocalDateTime deadlineDate,"
+        "content": ""
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "                                                     ArrayList\u003cEvent\u003e eventList) {"
+        "content": "    private static void searchFreePeriodsInEventList(Long durationToSchedule, LocalDateTime deadlineDate,"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "        Long duration;"
+        "content": "                                                     ArrayList\u003cEvent\u003e eventList) {"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "        LocalDateTime nextStartDate \u003d eventList.get(0).getStartDate();"
+        "content": "        boolean isFreeBetweenEvents;"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "        duration \u003d ChronoUnit.HOURS.between(LocalDateTime.now(), nextStartDate);"
+        "content": "        Long duration;"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "        if (durationToSchedule \u003c\u003d duration) {"
+        "content": ""
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "            String formattedNextStartDate \u003d nextStartDate.format(DateTimeExtractor.DATE_FORMATTER);"
+        "content": "        MessageBuilder.initialiseMessage();"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "            UiTemporary.printOutput(String.format(SCHEDULE_NOW_TILL_FORMAT, formattedNextStartDate));"
+        "content": "        isFreeBetweenEvents \u003d checkPeriodFromNowTillFirstEvent(durationToSchedule, eventList);"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "            return;"
+        "content": "        LocalDateTime nextStartDate;"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "        }"
+        "content": ""
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "fauzt"
         },
-        "content": ""
+        "content": "        for (int i \u003d 0; i \u003c eventList.size(); i++) {"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "        boolean isFreeBetweenEvents \u003d false;"
+        "content": "            LocalDateTime currentEndDate \u003d eventList.get(i).getEndDate();"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "        for (int i \u003d 0; i \u003c eventList.size(); i++) {"
+        "content": "            if (i \u003d\u003d eventList.size() - 1) {"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "            LocalDateTime currentEndDate \u003d eventList.get(i).getEndDate();"
+        "content": "                nextStartDate \u003d deadlineDate;"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "            if (i \u003d\u003d eventList.size() - 1) {"
+        "content": "                if (currentEndDate.isAfter(deadlineDate)) {"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "                nextStartDate \u003d deadlineDate;"
+        "content": "                    currentEndDate \u003d deadlineDate;"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "                if (currentEndDate.isAfter(deadlineDate)) {"
+        "content": "                }"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "                    currentEndDate \u003d deadlineDate;"
+        "content": "            } else {"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "                }"
+        "content": "                nextStartDate \u003d eventList.get(i + 1).getStartDate();"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "            } else {"
+        "content": "            }"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "                nextStartDate \u003d eventList.get(i + 1).getStartDate();"
+        "content": ""
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "            }"
+        "content": "            duration \u003d ChronoUnit.HOURS.between(currentEndDate, nextStartDate);"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "fauzt"
         },
-        "content": ""
+        "content": "            if (durationToSchedule \u003c\u003d duration) {"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "            duration \u003d ChronoUnit.HOURS.between(currentEndDate, nextStartDate);"
+        "content": "                isFreeBetweenEvents \u003d true;"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "            if (durationToSchedule \u003c\u003d duration) {"
+        "content": "                String formattedCurrentEndDate \u003d currentEndDate.format(DateTimeExtractor.DATE_FORMATTER);"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "                isFreeBetweenEvents \u003d true;"
+        "content": "                String formattedNextStartDate \u003d nextStartDate.format(DateTimeExtractor.DATE_FORMATTER);"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "                String formattedCurrentEndDate \u003d currentEndDate.format(DateTimeExtractor.DATE_FORMATTER);"
+        "content": "                MessageBuilder.loadMessage(String.format(SCHEDULE_FROM_TILL_FORMAT, formattedCurrentEndDate,"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "                String formattedNextStartDate \u003d nextStartDate.format(DateTimeExtractor.DATE_FORMATTER);"
+        "content": "                        formattedNextStartDate));"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "                UiTemporary.printOutput(String.format(SCHEDULE_FROM_TILL_FORMAT,"
+        "content": "            }"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "                        formattedCurrentEndDate, formattedNextStartDate));"
+        "content": "        }"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "            }"
+        "content": ""
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "        }"
+        "content": "        if (!isFreeBetweenEvents) {"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "fauzt"
         },
-        "content": ""
+        "content": "            UiTemporary.printOutput(NO_FREE_SLOTS);"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "        if (!isFreeBetweenEvents) {"
+        "content": "            return;"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "            UiTemporary.printOutput(NO_FREE_SLOTS);"
+        "content": "        }"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "        }"
+        "content": ""
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "    }"
+        "content": "        String output \u003d MessageBuilder.getMessage();"
       },
       {
         "lineNumber": 92,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "        UiTemporary.printOutput(output);"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "    private static boolean checkPeriodFromNowTillFirstEvent(Long durationToSchedule, ArrayList\u003cEvent\u003e eventList) {"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "        boolean isFreeBetweenEvents \u003d false;"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "        Long duration;"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "        LocalDateTime nextStartDate \u003d eventList.get(0).getStartDate();"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "        duration \u003d ChronoUnit.HOURS.between(LocalDateTime.now(), nextStartDate);"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "        if (durationToSchedule \u003c\u003d duration) {"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "            isFreeBetweenEvents \u003d true;"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "            String formattedNextStartDate \u003d nextStartDate.format(DateTimeExtractor.DATE_FORMATTER);"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "            MessageBuilder.loadMessage(String.format(SCHEDULE_NOW_TILL_FORMAT, formattedNextStartDate));"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "        return isFreeBetweenEvents;"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 108,
         "author": {
           "gitId": "fauzt"
         },
@@ -1512,7 +1624,7 @@
       }
     ],
     "authorContributionMap": {
-      "fauzt": 92
+      "fauzt": 108
     }
   },
   {
@@ -3604,9 +3716,9 @@
       {
         "lineNumber": 43,
         "author": {
-          "gitId": "E0310898"
+          "gitId": "hanskw4267"
         },
-        "content": "            UiTemporary.printOutput(\"Noted. Your new task comment is:\" + \"\\n \" + taskToEdit.getComment());"
+        "content": "            UiTemporary.printOutput(\"Noted. Your comment has been added:\" + \"\\n \" + taskToEdit.toString());"
       },
       {
         "lineNumber": 44,
@@ -3694,8 +3806,8 @@
       }
     ],
     "authorContributionMap": {
-      "E0310898": 26,
-      "hanskw4267": 29
+      "E0310898": 25,
+      "hanskw4267": 30
     }
   },
   {
@@ -7639,9 +7751,9 @@
       {
         "lineNumber": 45,
         "author": {
-          "gitId": "E0310898"
+          "gitId": "hanskw4267"
         },
-        "content": "                + taskWithLocation.toString() + \" \" + taskWithLocation.getLocation());"
+        "content": "                + taskWithLocation.toString());"
       },
       {
         "lineNumber": 46,
@@ -7666,7 +7778,8 @@
       }
     ],
     "authorContributionMap": {
-      "E0310898": 48
+      "E0310898": 47,
+      "hanskw4267": 1
     }
   },
   {
@@ -12253,367 +12366,409 @@
         "author": {
           "gitId": "fauzt"
         },
-        "content": "            } catch (ClassCastException e) {"
+        "content": "            } catch (IndexOutOfBoundsException e) {"
       },
       {
         "lineNumber": 97,
         "author": {
-          "gitId": "TanYiXiang"
+          "gitId": "fauzt"
         },
-        "content": "                UiTemporary.printOutput(\"Task selected is not a Todo with a duration\");"
+        "content": "                UiTemporary.printOutput(ChronologerException.invalidIndex());"
       },
       {
         "lineNumber": 98,
         "author": {
-          "gitId": "E0310898"
+          "gitId": "fauzt"
         },
-        "content": "                throw new ChronologerException(\"Task selected is not a Todo with a duration\");"
+        "content": "                throw new ChronologerException(ChronologerException.invalidIndex());"
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "            }"
+        "content": "            } catch (ClassCastException e) {"
       },
       {
         "lineNumber": 100,
         "author": {
-          "gitId": "fauzt"
+          "gitId": "TanYiXiang"
         },
-        "content": "            duration \u003d (long) todo.duration;"
+        "content": "                UiTemporary.printOutput(\"Task selected is not a Todo with a duration\");"
       },
       {
         "lineNumber": 101,
         "author": {
-          "gitId": "fauzt"
+          "gitId": "E0310898"
         },
-        "content": "        } else {"
+        "content": "                throw new ChronologerException(\"Task selected is not a Todo with a duration\");"
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "            duration \u003d this.durationToSchedule;"
+        "content": "            }"
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "        }"
+        "content": "            duration \u003d (long) todo.duration;"
       },
       {
         "lineNumber": 104,
         "author": {
           "gitId": "fauzt"
         },
-        "content": ""
+        "content": "        } else {"
       },
       {
         "lineNumber": 105,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "        if (this.indexOfDeadline !\u003d null) {"
+        "content": "            duration \u003d this.durationToSchedule;"
       },
       {
         "lineNumber": 106,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "            try {"
+        "content": "        }"
       },
       {
         "lineNumber": 107,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "                deadline \u003d (Deadline) list.get(indexOfDeadline);"
+        "content": ""
       },
       {
         "lineNumber": 108,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "            } catch (ClassCastException e) {"
+        "content": "        if (this.indexOfDeadline !\u003d null) {"
       },
       {
         "lineNumber": 109,
         "author": {
-          "gitId": "TanYiXiang"
+          "gitId": "fauzt"
         },
-        "content": "                UiTemporary.printOutput(\"Task selected is not a Deadline\");"
+        "content": "            try {"
       },
       {
         "lineNumber": 110,
         "author": {
-          "gitId": "E0310898"
+          "gitId": "fauzt"
         },
-        "content": "                throw new ChronologerException(\"Task selected is not a Deadline\");"
+        "content": "                deadline \u003d (Deadline) list.get(indexOfDeadline);"
       },
       {
         "lineNumber": 111,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "            }"
+        "content": "            } catch (IndexOutOfBoundsException e) {"
       },
       {
         "lineNumber": 112,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "            deadlineDate \u003d deadline.getStartDate();"
+        "content": "                UiTemporary.printOutput(ChronologerException.invalidIndex());"
       },
       {
         "lineNumber": 113,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "        } else {"
+        "content": "                throw new ChronologerException(ChronologerException.invalidIndex());"
       },
       {
         "lineNumber": 114,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "            deadlineDate \u003d this.deadlineDate;"
+        "content": "            } catch (ClassCastException e) {"
       },
       {
         "lineNumber": 115,
         "author": {
-          "gitId": "fauzt"
+          "gitId": "TanYiXiang"
         },
-        "content": "        }"
+        "content": "                UiTemporary.printOutput(\"Task selected is not a Deadline\");"
       },
       {
         "lineNumber": 116,
         "author": {
-          "gitId": "fauzt"
+          "gitId": "E0310898"
         },
-        "content": ""
+        "content": "                throw new ChronologerException(\"Task selected is not a Deadline\");"
       },
       {
         "lineNumber": 117,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "        if (deadlineDate \u003d\u003d null) {"
+        "content": "            }"
       },
       {
         "lineNumber": 118,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "            TaskScheduler.scheduleTask(tasks, duration);"
+        "content": "            deadlineDate \u003d deadline.getStartDate();"
       },
       {
         "lineNumber": 119,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "            return;"
+        "content": "        } else {"
       },
       {
         "lineNumber": 120,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "        }"
+        "content": "            deadlineDate \u003d this.deadlineDate;"
       },
       {
         "lineNumber": 121,
         "author": {
           "gitId": "fauzt"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 122,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "        if (LocalDateTime.now().isAfter(deadlineDate)) {"
+        "content": ""
       },
       {
         "lineNumber": 123,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "            UiTemporary.printOutput(\"The selected deadline is overdue!\");"
+        "content": "        if (deadlineDate \u003d\u003d null) {"
       },
       {
         "lineNumber": 124,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "            throw new ChronologerException(\"The selected deadline is overdue!\");"
+        "content": "            TaskScheduler.scheduleTask(tasks, duration);"
       },
       {
         "lineNumber": 125,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "        }"
+        "content": "            return;"
       },
       {
         "lineNumber": 126,
         "author": {
           "gitId": "fauzt"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 127,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "        TaskScheduler.scheduleByDeadline(tasks, duration, deadlineDate);"
+        "content": ""
       },
       {
         "lineNumber": 128,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "    }"
+        "content": "        if (LocalDateTime.now().isAfter(deadlineDate)) {"
       },
       {
         "lineNumber": 129,
         "author": {
           "gitId": "fauzt"
         },
-        "content": ""
+        "content": "            UiTemporary.printOutput(\"The selected deadline is overdue!\");"
       },
       {
         "lineNumber": 130,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "    // TODO: Figure a way for GUI to accept subsequent inputs"
+        "content": "            throw new ChronologerException(\"The selected deadline is overdue!\");"
       },
       {
         "lineNumber": 131,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "    private boolean confirmSchedule(Task t, LocalDateTime start, long duration, TaskList tasks, Storage storage)"
+        "content": "        }"
       },
       {
         "lineNumber": 132,
         "author": {
-          "gitId": "E0310898"
+          "gitId": "fauzt"
         },
-        "content": "            throws ChronologerException {"
+        "content": ""
       },
       {
         "lineNumber": 133,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "        while (true) {"
+        "content": "        TaskScheduler.scheduleByDeadline(tasks, duration, deadlineDate);"
       },
       {
         "lineNumber": 134,
-        "author": {
-          "gitId": "E0310898"
-        },
-        "content": "            String answer \u003d UiTemporary.readInput().toLowerCase();"
-      },
-      {
-        "lineNumber": 135,
-        "author": {
-          "gitId": "fauzt"
-        },
-        "content": "            if (answer.equals(\"y\")) {"
-      },
-      {
-        "lineNumber": 136,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "                String description \u003d t.getDescription() + \"(Recommended period)\";"
-      },
-      {
-        "lineNumber": 137,
-        "author": {
-          "gitId": "fauzt"
-        },
-        "content": "                LocalDateTime end \u003d start.plusHours(duration);"
-      },
-      {
-        "lineNumber": 138,
-        "author": {
-          "gitId": "fauzt"
-        },
-        "content": "                Command command \u003d new AddCommand(\"todo\", description, start, end);"
-      },
-      {
-        "lineNumber": 139,
-        "author": {
-          "gitId": "fauzt"
-        },
-        "content": "                command.execute(tasks, storage);"
-      },
-      {
-        "lineNumber": 140,
-        "author": {
-          "gitId": "fauzt"
-        },
-        "content": "                return true;"
-      },
-      {
-        "lineNumber": 141,
-        "author": {
-          "gitId": "fauzt"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 142,
-        "author": {
-          "gitId": "fauzt"
-        },
-        "content": "            if (answer.equals(\"n\")) {"
-      },
-      {
-        "lineNumber": 143,
-        "author": {
-          "gitId": "fauzt"
-        },
-        "content": "                return false;"
-      },
-      {
-        "lineNumber": 144,
-        "author": {
-          "gitId": "fauzt"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 145,
-        "author": {
-          "gitId": "E0310898"
-        },
-        "content": "            UiTemporary.printOutput(\"Not a valid input. Please answer as y/n\\n\");"
-      },
-      {
-        "lineNumber": 146,
-        "author": {
-          "gitId": "fauzt"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 147,
         "author": {
           "gitId": "fauzt"
         },
         "content": "    }"
       },
       {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "    // TODO: Figure a way for GUI to accept subsequent inputs"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "    private boolean confirmSchedule(Task t, LocalDateTime start, long duration, TaskList tasks, Storage storage)"
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "E0310898"
+        },
+        "content": "            throws ChronologerException {"
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "        while (true) {"
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "E0310898"
+        },
+        "content": "            String answer \u003d UiTemporary.readInput().toLowerCase();"
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "            if (answer.equals(\"y\")) {"
+      },
+      {
+        "lineNumber": 142,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "                String description \u003d t.getDescription() + \"(Recommended period)\";"
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "                LocalDateTime end \u003d start.plusHours(duration);"
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "                Command command \u003d new AddCommand(\"todo\", description, start, end);"
+      },
+      {
+        "lineNumber": 145,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "                command.execute(tasks, storage);"
+      },
+      {
+        "lineNumber": 146,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "                return true;"
+      },
+      {
+        "lineNumber": 147,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "            }"
+      },
+      {
         "lineNumber": 148,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "            if (answer.equals(\"n\")) {"
+      },
+      {
+        "lineNumber": 149,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "                return false;"
+      },
+      {
+        "lineNumber": 150,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 151,
+        "author": {
+          "gitId": "E0310898"
+        },
+        "content": "            UiTemporary.printOutput(\"Not a valid input. Please answer as y/n\\n\");"
+      },
+      {
+        "lineNumber": 152,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 153,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 154,
         "author": {
           "gitId": "fauzt"
         },
@@ -12624,7 +12779,7 @@
       "E0310898": 15,
       "hanskw4267": 1,
       "TanYiXiang": 2,
-      "fauzt": 130
+      "fauzt": 136
     }
   },
   {
@@ -29034,14 +29189,14 @@
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        if (!comment.isBlank()) {"
+        "content": "        if (!location.isBlank()) {"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            dateString \u003d dateString + \"\\n  Note to self: \" + comment;"
+        "content": "            dateString \u003d dateString + \"\\n\" + location;"
       },
       {
         "lineNumber": 58,
@@ -29053,89 +29208,110 @@
       {
         "lineNumber": 59,
         "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "        if (!comment.isBlank()) {"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "            dateString \u003d dateString + \"\\nNote to self: \" + comment;"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
           "gitId": "TanYiXiang"
         },
         "content": "        return message.concat(dateString);"
       },
       {
-        "lineNumber": 60,
+        "lineNumber": 63,
         "author": {
           "gitId": "E0310898"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 61,
+        "lineNumber": 64,
         "author": {
           "gitId": "E0310898"
         },
         "content": ""
-      },
-      {
-        "lineNumber": 62,
-        "author": {
-          "gitId": "fauzt"
-        },
-        "content": "    @Override"
-      },
-      {
-        "lineNumber": 63,
-        "author": {
-          "gitId": "TanYiXiang"
-        },
-        "content": "    public boolean isClash(Task taskToCheck) {"
-      },
-      {
-        "lineNumber": 64,
-        "author": {
-          "gitId": "fauzt"
-        },
-        "content": "        if (taskToCheck.endDate \u003d\u003d null) {"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "            return (this.startDate.isEqual(taskToCheck.startDate));"
+        "content": "    @Override"
       },
       {
         "lineNumber": 66,
         "author": {
-          "gitId": "fauzt"
+          "gitId": "TanYiXiang"
         },
-        "content": "        } else {"
+        "content": "    public boolean isClash(Task taskToCheck) {"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "            return (taskToCheck.startDate.isBefore(this.startDate) \u0026\u0026 taskToCheck.endDate.isAfter(this.startDate));"
+        "content": "        if (taskToCheck.endDate \u003d\u003d null) {"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "        }"
+        "content": "            return (this.startDate.isEqual(taskToCheck.startDate));"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "    }"
+        "content": "        } else {"
       },
       {
         "lineNumber": 70,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "            return (taskToCheck.startDate.isBefore(this.startDate) \u0026\u0026 taskToCheck.endDate.isAfter(this.startDate));"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 73,
         "author": {
           "gitId": "TanYiXiang"
         },
         "content": ""
       },
       {
-        "lineNumber": 71,
+        "lineNumber": 74,
         "author": {
           "gitId": "E0310898"
         },
@@ -29144,7 +29320,7 @@
     ],
     "authorContributionMap": {
       "E0310898": 19,
-      "hanskw4267": 29,
+      "hanskw4267": 32,
       "TanYiXiang": 11,
       "fauzt": 12
     }
@@ -29662,14 +29838,14 @@
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        if (!comment.isBlank()) {"
+        "content": "        if (!location.isBlank()) {"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            dateString \u003d dateString + \"\\n  Note to self: \" + comment;"
+        "content": "            dateString \u003d dateString + \"\\n\" + location;"
       },
       {
         "lineNumber": 75,
@@ -29681,89 +29857,110 @@
       {
         "lineNumber": 76,
         "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "        if (!comment.isBlank()) {"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "            dateString \u003d dateString + \"\\nNote to self: \" + comment;"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
           "gitId": "TanYiXiang"
         },
         "content": "        return message.concat(dateString);"
       },
       {
-        "lineNumber": 77,
+        "lineNumber": 80,
         "author": {
           "gitId": "E0310898"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 78,
+        "lineNumber": 81,
         "author": {
           "gitId": "E0310898"
         },
         "content": ""
-      },
-      {
-        "lineNumber": 79,
-        "author": {
-          "gitId": "fauzt"
-        },
-        "content": "    @Override"
-      },
-      {
-        "lineNumber": 80,
-        "author": {
-          "gitId": "TanYiXiang"
-        },
-        "content": "    boolean isClash(Task taskToCheck) {"
-      },
-      {
-        "lineNumber": 81,
-        "author": {
-          "gitId": "fauzt"
-        },
-        "content": "        if (taskToCheck.endDate \u003d\u003d null) {"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "            return (this.startDate.isBefore(taskToCheck.startDate) \u0026\u0026 this.endDate.isAfter(taskToCheck.startDate));"
+        "content": "    @Override"
       },
       {
         "lineNumber": 83,
         "author": {
-          "gitId": "hanskw4267"
+          "gitId": "TanYiXiang"
         },
-        "content": "        } else {"
+        "content": "    boolean isClash(Task taskToCheck) {"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "            return this.startDate.isBefore(taskToCheck.endDate) \u0026\u0026 this.endDate.isAfter(taskToCheck.startDate);"
+        "content": "        if (taskToCheck.endDate \u003d\u003d null) {"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "        }"
+        "content": "            return (this.startDate.isBefore(taskToCheck.startDate) \u0026\u0026 this.endDate.isAfter(taskToCheck.startDate));"
       },
       {
         "lineNumber": 86,
         "author": {
-          "gitId": "fauzt"
+          "gitId": "hanskw4267"
         },
-        "content": "    }"
+        "content": "        } else {"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "fauzt"
         },
-        "content": ""
+        "content": "            return this.startDate.isBefore(taskToCheck.endDate) \u0026\u0026 this.endDate.isAfter(taskToCheck.startDate);"
       },
       {
         "lineNumber": 88,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 91,
         "author": {
           "gitId": "E0310898"
         },
@@ -29772,7 +29969,7 @@
     ],
     "authorContributionMap": {
       "E0310898": 19,
-      "hanskw4267": 46,
+      "hanskw4267": 49,
       "TanYiXiang": 8,
       "fauzt": 15
     }
@@ -30311,7 +30508,7 @@
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    protected String location;"
+        "content": "    protected String location \u003d \"\";"
       },
       {
         "lineNumber": 20,
@@ -30491,392 +30688,392 @@
       {
         "lineNumber": 45,
         "author": {
-          "gitId": "E0310898"
+          "gitId": "hanskw4267"
         },
-        "content": "    }"
+        "content": "        this.location \u003d \"\";"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "E0310898"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "E0310898"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 48,
+        "author": {
+          "gitId": "E0310898"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 49,
         "author": {
           "gitId": "TanYiXiang"
         },
         "content": "     * Check if any task reminders are triggered."
       },
       {
-        "lineNumber": 49,
+        "lineNumber": 50,
         "author": {
           "gitId": "E0310898"
         },
         "content": "     *"
       },
       {
-        "lineNumber": 50,
+        "lineNumber": 51,
         "author": {
           "gitId": "TanYiXiang"
         },
         "content": "     * @return if triggered"
       },
       {
-        "lineNumber": 51,
+        "lineNumber": 52,
         "author": {
           "gitId": "E0310898"
         },
         "content": "     */"
-      },
-      {
-        "lineNumber": 52,
-        "author": {
-          "gitId": "TanYiXiang"
-        },
-        "content": "    public boolean isReminderTrigger() {"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "        if (isIgnored) {"
+        "content": "    public boolean isReminderTrigger() {"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "            return false;"
+        "content": "        if (isIgnored) {"
       },
       {
         "lineNumber": 55,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "            return false;"
+      },
+      {
+        "lineNumber": 56,
         "author": {
           "gitId": "E0310898"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 56,
+        "lineNumber": 57,
         "author": {
           "gitId": "fauzt"
         },
         "content": "        if (reminder !\u003d null) {"
       },
       {
-        "lineNumber": 57,
+        "lineNumber": 58,
         "author": {
           "gitId": "TanYiXiang"
         },
         "content": "            return reminder.isReminderTrigger();"
       },
       {
-        "lineNumber": 58,
+        "lineNumber": 59,
         "author": {
           "gitId": "TanYiXiang"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 59,
+        "lineNumber": 60,
         "author": {
           "gitId": "TanYiXiang"
         },
         "content": "        return false;"
       },
       {
-        "lineNumber": 60,
-        "author": {
-          "gitId": "E0310898"
-        },
-        "content": "    }"
-      },
-      {
         "lineNumber": 61,
         "author": {
           "gitId": "E0310898"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "E0310898"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 63,
+        "author": {
+          "gitId": "E0310898"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 64,
         "author": {
           "gitId": "hanskw4267"
         },
         "content": "     * Returns a priority symbol to be printed as output."
       },
       {
-        "lineNumber": 64,
+        "lineNumber": 65,
         "author": {
           "gitId": "E0310898"
         },
         "content": "     *"
       },
       {
-        "lineNumber": 65,
+        "lineNumber": 66,
         "author": {
           "gitId": "TanYiXiang"
         },
         "content": "     * @return Unicode that represent priority level."
       },
       {
-        "lineNumber": 66,
+        "lineNumber": 67,
         "author": {
           "gitId": "E0310898"
         },
         "content": "     */"
-      },
-      {
-        "lineNumber": 67,
-        "author": {
-          "gitId": "TanYiXiang"
-        },
-        "content": "    public String getPriorityIcon() {"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "        if (priority \u003d\u003d Priority.HIGH) {"
+        "content": "    public String getPriorityIcon() {"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "            return PRIORITY_HIGH; // Return triple star symbols"
+        "content": "        if (priority \u003d\u003d Priority.HIGH) {"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "        } else if (priority \u003d\u003d Priority.MEDIUM) {"
+        "content": "            return PRIORITY_HIGH; // Return triple star symbols"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "            return PRIORITY_MED;// Return double star symbol"
+        "content": "        } else if (priority \u003d\u003d Priority.MEDIUM) {"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "        } else {"
+        "content": "            return PRIORITY_MED;// Return double star symbol"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "            return PRIORITY_LOW;// Return single star symbol"
+        "content": "        } else {"
       },
       {
         "lineNumber": 74,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "            return PRIORITY_LOW;// Return single star symbol"
+      },
+      {
+        "lineNumber": 75,
         "author": {
           "gitId": "E0310898"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 75,
+        "lineNumber": 76,
         "author": {
           "gitId": "fauzt"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 76,
+        "lineNumber": 77,
         "author": {
           "gitId": "fauzt"
         },
         "content": ""
       },
       {
-        "lineNumber": 77,
+        "lineNumber": 78,
         "author": {
           "gitId": "hanskw4267"
         },
         "content": "    /**"
-      },
-      {
-        "lineNumber": 78,
-        "author": {
-          "gitId": "TanYiXiang"
-        },
-        "content": "     * This getStatusIcon function returns the tick or cross symbols to be printed"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "     * as output."
+        "content": "     * This getStatusIcon function returns the tick or cross symbols to be printed"
       },
       {
         "lineNumber": 80,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "     * as output."
+      },
+      {
+        "lineNumber": 81,
         "author": {
           "gitId": "hanskw4267"
         },
         "content": "     *"
       },
       {
-        "lineNumber": 81,
+        "lineNumber": 82,
         "author": {
           "gitId": "TanYiXiang"
         },
         "content": "     * @return This function returns either a tick or a cross."
       },
       {
-        "lineNumber": 82,
+        "lineNumber": 83,
         "author": {
           "gitId": "hanskw4267"
         },
         "content": "     */"
-      },
-      {
-        "lineNumber": 83,
-        "author": {
-          "gitId": "TanYiXiang"
-        },
-        "content": "    public String getStatusIcon() {"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "        return (isDone ? TICK : CROSS); // Return tick or cross symbol"
+        "content": "    public String getStatusIcon() {"
       },
       {
         "lineNumber": 85,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "        return (isDone ? TICK : CROSS); // Return tick or cross symbol"
+      },
+      {
+        "lineNumber": 86,
         "author": {
           "gitId": "fauzt"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 86,
+        "lineNumber": 87,
         "author": {
           "gitId": "TanYiXiang"
         },
         "content": ""
-      },
-      {
-        "lineNumber": 87,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "    /**"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * converts the task to a string."
+        "content": "    /**"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     */"
+        "content": "     * converts the task to a string."
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    public String toString() {"
+        "content": "     */"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        String message \u003d getPriorityIcon() + \"[\" + getStatusIcon() + \"] \" + description;"
+        "content": "    public String toString() {"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        if (!comment.isBlank()) {"
+        "content": "        String message \u003d getPriorityIcon() + \"[\" + getStatusIcon() + \"] \" + description;"
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            message \u003d message + \"  Note to self: \" + comment;"
+        "content": "        if (!comment.isBlank()) {"
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        }"
+        "content": "            message \u003d message + \"\\nNote to self: \" + comment;"
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        return message;"
+        "content": "        }"
       },
       {
         "lineNumber": 96,
         "author": {
-          "gitId": "fauzt"
+          "gitId": "hanskw4267"
         },
-        "content": "    }"
+        "content": "        if (!location.isBlank()) {"
       },
       {
         "lineNumber": 97,
         "author": {
-          "gitId": "TanYiXiang"
+          "gitId": "hanskw4267"
         },
-        "content": ""
+        "content": "            message \u003d message + \"\\n\" + location;"
       },
       {
         "lineNumber": 98,
         "author": {
-          "gitId": "TanYiXiang"
+          "gitId": "hanskw4267"
         },
-        "content": "    public String getType() {"
+        "content": "        }"
       },
       {
         "lineNumber": 99,
         "author": {
-          "gitId": "TanYiXiang"
+          "gitId": "hanskw4267"
         },
-        "content": "        return type;"
+        "content": "        return message;"
       },
       {
         "lineNumber": 100,
         "author": {
-          "gitId": "TanYiXiang"
+          "gitId": "fauzt"
         },
         "content": "    }"
       },
@@ -30890,42 +31087,42 @@
       {
         "lineNumber": 102,
         "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "    public String getType() {"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "        return type;"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 106,
+        "author": {
           "gitId": "hanskw4267"
         },
         "content": "    abstract boolean isClash(Task taskToCheck);"
       },
       {
-        "lineNumber": 103,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 104,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "    public String getDescription() {"
-      },
-      {
-        "lineNumber": 105,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "        return description;"
-      },
-      {
-        "lineNumber": 106,
-        "author": {
-          "gitId": "fauzt"
-        },
-        "content": "    }"
-      },
-      {
         "lineNumber": 107,
         "author": {
-          "gitId": "TanYiXiang"
+          "gitId": "hanskw4267"
         },
         "content": ""
       },
@@ -30934,42 +31131,42 @@
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    public void setDescription(String description) {"
+        "content": "    public String getDescription() {"
       },
       {
         "lineNumber": 109,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        this.description \u003d description;"
+        "content": "        return description;"
       },
       {
         "lineNumber": 110,
         "author": {
-          "gitId": "TanYiXiang"
+          "gitId": "fauzt"
         },
         "content": "    }"
       },
       {
         "lineNumber": 111,
         "author": {
-          "gitId": "fauzt"
+          "gitId": "TanYiXiang"
         },
         "content": ""
       },
       {
         "lineNumber": 112,
         "author": {
-          "gitId": "TanYiXiang"
+          "gitId": "hanskw4267"
         },
-        "content": "    public void setStartDate(LocalDateTime startDate) {"
+        "content": "    public void setDescription(String description) {"
       },
       {
         "lineNumber": 113,
         "author": {
-          "gitId": "TanYiXiang"
+          "gitId": "hanskw4267"
         },
-        "content": "        this.startDate \u003d startDate;"
+        "content": "        this.description \u003d description;"
       },
       {
         "lineNumber": 114,
@@ -30981,79 +31178,79 @@
       {
         "lineNumber": 115,
         "author": {
-          "gitId": "TanYiXiang"
+          "gitId": "fauzt"
         },
         "content": ""
       },
       {
         "lineNumber": 116,
         "author": {
-          "gitId": "hanskw4267"
+          "gitId": "TanYiXiang"
         },
-        "content": "    public LocalDateTime getStartDate() {"
+        "content": "    public void setStartDate(LocalDateTime startDate) {"
       },
       {
         "lineNumber": 117,
         "author": {
-          "gitId": "hanskw4267"
+          "gitId": "TanYiXiang"
         },
-        "content": "        return startDate;"
+        "content": "        this.startDate \u003d startDate;"
       },
       {
         "lineNumber": 118,
         "author": {
-          "gitId": "hanskw4267"
+          "gitId": "TanYiXiang"
         },
         "content": "    }"
       },
       {
         "lineNumber": 119,
         "author": {
-          "gitId": "hanskw4267"
+          "gitId": "TanYiXiang"
         },
         "content": ""
       },
       {
         "lineNumber": 120,
         "author": {
-          "gitId": "TanYiXiang"
+          "gitId": "hanskw4267"
         },
-        "content": "    public void setEndDate(LocalDateTime endDate) {"
+        "content": "    public LocalDateTime getStartDate() {"
       },
       {
         "lineNumber": 121,
         "author": {
-          "gitId": "TanYiXiang"
+          "gitId": "hanskw4267"
         },
-        "content": "        this.endDate \u003d endDate;"
+        "content": "        return startDate;"
       },
       {
         "lineNumber": 122,
         "author": {
-          "gitId": "TanYiXiang"
+          "gitId": "hanskw4267"
         },
         "content": "    }"
       },
       {
         "lineNumber": 123,
         "author": {
-          "gitId": "TanYiXiang"
+          "gitId": "hanskw4267"
         },
         "content": ""
       },
       {
         "lineNumber": 124,
         "author": {
-          "gitId": "hanskw4267"
+          "gitId": "TanYiXiang"
         },
-        "content": "    public LocalDateTime getEndDate() {"
+        "content": "    public void setEndDate(LocalDateTime endDate) {"
       },
       {
         "lineNumber": 125,
         "author": {
-          "gitId": "hanskw4267"
+          "gitId": "TanYiXiang"
         },
-        "content": "        return endDate;"
+        "content": "        this.endDate \u003d endDate;"
       },
       {
         "lineNumber": 126,
@@ -31074,14 +31271,14 @@
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    public String getLocation() {"
+        "content": "    public LocalDateTime getEndDate() {"
       },
       {
         "lineNumber": 129,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        return location;"
+        "content": "        return endDate;"
       },
       {
         "lineNumber": 130,
@@ -31102,19 +31299,19 @@
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    public void setLocation(String location) {"
+        "content": "    public String getLocation() {"
       },
       {
         "lineNumber": 133,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        this.location \u003d location;"
+        "content": "        return location;"
       },
       {
         "lineNumber": 134,
         "author": {
-          "gitId": "fauzt"
+          "gitId": "TanYiXiang"
         },
         "content": "    }"
       },
@@ -31130,26 +31327,26 @@
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    public Priority getPriority() {"
+        "content": "    public void setLocation(String location) {"
       },
       {
         "lineNumber": 137,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        return priority;"
+        "content": "        this.location \u003d location;"
       },
       {
         "lineNumber": 138,
         "author": {
-          "gitId": "hanskw4267"
+          "gitId": "fauzt"
         },
         "content": "    }"
       },
       {
         "lineNumber": 139,
         "author": {
-          "gitId": "hanskw4267"
+          "gitId": "TanYiXiang"
         },
         "content": ""
       },
@@ -31158,14 +31355,14 @@
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    public void setPriority(Priority priority) {"
+        "content": "    public Priority getPriority() {"
       },
       {
         "lineNumber": 141,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        this.priority \u003d priority;"
+        "content": "        return priority;"
       },
       {
         "lineNumber": 142,
@@ -31186,14 +31383,14 @@
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    public Reminder getReminder() {"
+        "content": "    public void setPriority(Priority priority) {"
       },
       {
         "lineNumber": 145,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        return reminder;"
+        "content": "        this.priority \u003d priority;"
       },
       {
         "lineNumber": 146,
@@ -31214,14 +31411,14 @@
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    public void setReminder(int days) {"
+        "content": "    public Reminder getReminder() {"
       },
       {
         "lineNumber": 149,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        reminder \u003d new Reminder(days, startDate);"
+        "content": "        return reminder;"
       },
       {
         "lineNumber": 150,
@@ -31242,14 +31439,14 @@
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    public String getComment() {"
+        "content": "    public void setReminder(int days) {"
       },
       {
         "lineNumber": 153,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        return comment;"
+        "content": "        reminder \u003d new Reminder(days, startDate);"
       },
       {
         "lineNumber": 154,
@@ -31270,14 +31467,14 @@
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    public void setComment(String comment) {"
+        "content": "    public String getComment() {"
       },
       {
         "lineNumber": 157,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        this.comment \u003d comment;"
+        "content": "        return comment;"
       },
       {
         "lineNumber": 158,
@@ -31298,14 +31495,14 @@
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    public boolean isIgnored() {"
+        "content": "    public void setComment(String comment) {"
       },
       {
         "lineNumber": 161,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        return isIgnored;"
+        "content": "        this.comment \u003d comment;"
       },
       {
         "lineNumber": 162,
@@ -31326,14 +31523,14 @@
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    public void setIgnored(boolean isIgnored) {"
+        "content": "    public boolean isIgnored() {"
       },
       {
         "lineNumber": 165,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        this.isIgnored \u003d isIgnored;"
+        "content": "        return isIgnored;"
       },
       {
         "lineNumber": 166,
@@ -31354,14 +31551,14 @@
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    public boolean isDone() {"
+        "content": "    public void setIgnored(boolean isIgnored) {"
       },
       {
         "lineNumber": 169,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        return isDone;"
+        "content": "        this.isIgnored \u003d isIgnored;"
       },
       {
         "lineNumber": 170,
@@ -31382,26 +31579,26 @@
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    public void setDone(boolean isDone) {"
+        "content": "    public boolean isDone() {"
       },
       {
         "lineNumber": 173,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        this.isDone \u003d isDone;"
+        "content": "        return isDone;"
       },
       {
         "lineNumber": 174,
         "author": {
-          "gitId": "TanYiXiang"
+          "gitId": "hanskw4267"
         },
         "content": "    }"
       },
       {
         "lineNumber": 175,
         "author": {
-          "gitId": "TanYiXiang"
+          "gitId": "hanskw4267"
         },
         "content": ""
       },
@@ -31410,31 +31607,59 @@
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    public String getModCode() {"
+        "content": "    public void setDone(boolean isDone) {"
       },
       {
         "lineNumber": 177,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        return modCode;"
+        "content": "        this.isDone \u003d isDone;"
       },
       {
         "lineNumber": 178,
         "author": {
-          "gitId": "hanskw4267"
+          "gitId": "TanYiXiang"
         },
         "content": "    }"
       },
       {
         "lineNumber": 179,
         "author": {
-          "gitId": "hanskw4267"
+          "gitId": "TanYiXiang"
         },
         "content": ""
       },
       {
         "lineNumber": 180,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "    public String getModCode() {"
+      },
+      {
+        "lineNumber": 181,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "        return modCode;"
+      },
+      {
+        "lineNumber": 182,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 183,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 184,
         "author": {
           "gitId": "E0310898"
         },
@@ -31443,7 +31668,7 @@
     ],
     "authorContributionMap": {
       "E0310898": 29,
-      "hanskw4267": 84,
+      "hanskw4267": 88,
       "TanYiXiang": 56,
       "fauzt": 11
     }
@@ -34613,14 +34838,14 @@
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        if (!comment.isBlank()) {"
+        "content": "        if (!location.isBlank()) {"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            message \u003d message + \"\\n  Note to self: \" + comment;"
+        "content": "            message \u003d message + \"\\n\" + location;"
       },
       {
         "lineNumber": 78,
@@ -34634,115 +34859,136 @@
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        return message;"
+        "content": "        if (!comment.isBlank()) {"
       },
       {
         "lineNumber": 80,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "            message \u003d message + \"\\nNote to self: \" + comment;"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "        return message;"
+      },
+      {
+        "lineNumber": 83,
         "author": {
           "gitId": "E0310898"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 81,
-        "author": {
-          "gitId": "fauzt"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 82,
-        "author": {
-          "gitId": "fauzt"
-        },
-        "content": "    @Override"
-      },
-      {
-        "lineNumber": 83,
-        "author": {
-          "gitId": "fauzt"
-        },
-        "content": "    public void setReminder(int days) {"
-      },
-      {
         "lineNumber": 84,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "        reminder \u003d new Reminder(days);"
+        "content": ""
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "    }"
+        "content": "    @Override"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "fauzt"
         },
-        "content": ""
+        "content": "    public void setReminder(int days) {"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "    @Override"
+        "content": "        reminder \u003d new Reminder(days);"
       },
       {
         "lineNumber": 88,
         "author": {
-          "gitId": "TanYiXiang"
+          "gitId": "fauzt"
         },
-        "content": "    boolean isClash(Task taskToCheck) {"
+        "content": "    }"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "        return false;"
+        "content": ""
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "    }"
+        "content": "    @Override"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": ""
+        "content": "    boolean isClash(Task taskToCheck) {"
       },
       {
         "lineNumber": 92,
         "author": {
-          "gitId": "TanYiXiang"
+          "gitId": "fauzt"
         },
-        "content": "    public int getDuration() {"
+        "content": "        return false;"
       },
       {
         "lineNumber": 93,
         "author": {
-          "gitId": "TanYiXiang"
+          "gitId": "fauzt"
         },
-        "content": "        return duration;"
+        "content": "    }"
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "TanYiXiang"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 95,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "    public int getDuration() {"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "        return duration;"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "TanYiXiang"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 98,
         "author": {
           "gitId": "assman"
         },
@@ -34751,7 +34997,7 @@
     ],
     "authorContributionMap": {
       "E0310898": 21,
-      "hanskw4267": 43,
+      "hanskw4267": 46,
       "TanYiXiang": 21,
       "assman": 1,
       "fauzt": 9
@@ -36729,6 +36975,218 @@
     "authorContributionMap": {
       "E0310898": 71,
       "hanskw4267": 1
+    }
+  },
+  {
+    "path": "src/main/java/chronologer/ui/MessageBuilder.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "package chronologer.ui;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "public class MessageBuilder {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "    private static StringBuilder message;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "     * Initialises the string builder to an empty string and await for incoming string."
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "    public static void initialiseMessage() {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "        message \u003d new StringBuilder();"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "     * Appends the incoming string to the existing string."
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "     * @param output is the incoming string"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "    public static void loadMessage(String output) {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "        message.append(output);"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "     * Retrieves the message at its current state."
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "     * @return the message to be outputted"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "    public static String getMessage() {"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "        return message.toString();"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "fauzt": 29
     }
   },
   {
@@ -40512,406 +40970,406 @@
       {
         "lineNumber": 8,
         "author": {
+          "gitId": "fauzt"
+        },
+        "content": "import java.util.List;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
           "gitId": "E0310898"
         },
         "content": "import java.util.Scanner;"
       },
       {
-        "lineNumber": 9,
+        "lineNumber": 10,
         "author": {
           "gitId": "hanskw4267"
         },
         "content": ""
       },
       {
-        "lineNumber": 10,
+        "lineNumber": 11,
         "author": {
           "gitId": "E0310898"
         },
         "content": "/**"
       },
       {
-        "lineNumber": 11,
+        "lineNumber": 12,
         "author": {
           "gitId": "hanskw4267"
         },
         "content": " * The Ui class is used to handle all inputs and outputs used to interact with"
       },
       {
-        "lineNumber": 12,
+        "lineNumber": 13,
         "author": {
           "gitId": "hanskw4267"
         },
         "content": " * the end-user."
       },
       {
-        "lineNumber": 13,
+        "lineNumber": 14,
         "author": {
           "gitId": "E0310898"
         },
         "content": " *"
       },
       {
-        "lineNumber": 14,
+        "lineNumber": 15,
         "author": {
           "gitId": "E0310898"
         },
         "content": " * @author Sai Ganesh Suresh"
       },
       {
-        "lineNumber": 15,
+        "lineNumber": 16,
         "author": {
           "gitId": "E0310898"
         },
         "content": " * @version v1.0"
       },
       {
-        "lineNumber": 16,
+        "lineNumber": 17,
         "author": {
           "gitId": "E0310898"
         },
         "content": " */"
       },
       {
-        "lineNumber": 17,
+        "lineNumber": 18,
         "author": {
           "gitId": "E0310898"
         },
         "content": "public class UiTemporary {"
       },
       {
-        "lineNumber": 18,
-        "author": {
-          "gitId": "E0310898"
-        },
-        "content": ""
-      },
-      {
         "lineNumber": 19,
         "author": {
           "gitId": "E0310898"
         },
-        "content": "    // All the different definitions including the string definitions are here."
+        "content": ""
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "E0310898"
         },
-        "content": "    public static String userOutputForUI;"
+        "content": "    // All the different definitions including the string definitions are here."
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "E0310898"
         },
-        "content": "    private ObservableIntegerValue currentTheme;"
+        "content": "    public static String userOutputForUI;"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "E0310898"
         },
-        "content": ""
+        "content": "    private ObservableIntegerValue currentTheme;"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "E0310898"
         },
-        "content": "    private static String userOutputDash \u003d \"_______________________________\\n\";"
+        "content": ""
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "E0310898"
         },
-        "content": ""
+        "content": "    private static String userOutputDash \u003d \"_______________________________\\n\";"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "E0310898"
         },
-        "content": "    private static String userInput;"
+        "content": ""
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "E0310898"
         },
-        "content": ""
+        "content": "    private static String userInput;"
       },
       {
         "lineNumber": 27,
+        "author": {
+          "gitId": "E0310898"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 28,
         "author": {
           "gitId": "hanskw4267"
         },
         "content": "    private static String goodbye \u003d \"_______________________________\\n\" + \"Bye. Hope to see you again soon!\\n\""
       },
       {
-        "lineNumber": 28,
-        "author": {
-          "gitId": "E0310898"
-        },
-        "content": "        + \"_______________________________\\n\";"
-      },
-      {
         "lineNumber": 29,
         "author": {
           "gitId": "E0310898"
         },
-        "content": ""
+        "content": "            + \"_______________________________\\n\";"
       },
       {
         "lineNumber": 30,
         "author": {
-          "gitId": "hanskw4267"
+          "gitId": "E0310898"
         },
-        "content": "    private static String greeting \u003d \"_______________________________\\n\" + \"Hello! I\u0027m Duke\\n\""
+        "content": ""
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        + \"What can I do for you?\\n\" + \"_______________________________\\n\";"
+        "content": "    private static String greeting \u003d \"_______________________________\\n\" + \"Hello! I\u0027m Duke\\n\""
       },
       {
         "lineNumber": 32,
         "author": {
-          "gitId": "E0310898"
+          "gitId": "hanskw4267"
         },
-        "content": ""
+        "content": "            + \"What can I do for you?\\n\" + \"_______________________________\\n\";"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "E0310898"
         },
-        "content": "    private static Scanner scanner \u003d new Scanner(System.in);"
+        "content": ""
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "E0310898"
         },
-        "content": ""
+        "content": "    private static Scanner scanner \u003d new Scanner(System.in);"
       },
       {
         "lineNumber": 35,
         "author": {
-          "gitId": "hanskw4267"
+          "gitId": "E0310898"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 36,
         "author": {
-          "gitId": "E0310898"
+          "gitId": "fauzt"
         },
-        "content": "     * Prints a \u0027dashed\u0027 line."
+        "content": "    private static List\u003cString\u003e multiLineList \u003d new ArrayList\u003c\u003e();"
       },
       {
         "lineNumber": 37,
         "author": {
-          "gitId": "hanskw4267"
+          "gitId": "fauzt"
         },
-        "content": "     */"
+        "content": "    private static StringBuilder multiLineOutput;"
       },
       {
         "lineNumber": 38,
         "author": {
-          "gitId": "E0310898"
+          "gitId": "fauzt"
         },
-        "content": "    public static void printDash() {"
+        "content": ""
       },
       {
         "lineNumber": 39,
         "author": {
-          "gitId": "E0310898"
+          "gitId": "hanskw4267"
         },
-        "content": "        System.out.println(userOutputDash);"
+        "content": "    /**"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "E0310898"
         },
-        "content": "    }"
+        "content": "     * Prints a \u0027dashed\u0027 line."
       },
       {
         "lineNumber": 41,
         "author": {
-          "gitId": "E0310898"
+          "gitId": "hanskw4267"
         },
-        "content": ""
+        "content": "     */"
       },
       {
         "lineNumber": 42,
         "author": {
-          "gitId": "hanskw4267"
+          "gitId": "E0310898"
         },
-        "content": "    /**"
+        "content": "    public static void printDash() {"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "E0310898"
         },
-        "content": "     * Prints greeting."
+        "content": "        System.out.println(userOutputDash);"
       },
       {
         "lineNumber": 44,
         "author": {
-          "gitId": "hanskw4267"
+          "gitId": "E0310898"
         },
-        "content": "     */"
+        "content": "    }"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "E0310898"
         },
-        "content": "    public static void printGreeting() {"
-      },
-      {
-        "lineNumber": 46,
-        "author": {
-          "gitId": "E0310898"
-        },
-        "content": "        System.out.println(greeting);"
-      },
-      {
-        "lineNumber": 47,
-        "author": {
-          "gitId": "E0310898"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 48,
-        "author": {
-          "gitId": "E0310898"
-        },
         "content": ""
       },
       {
-        "lineNumber": 49,
+        "lineNumber": 46,
         "author": {
           "gitId": "hanskw4267"
         },
         "content": "    /**"
       },
       {
-        "lineNumber": 50,
+        "lineNumber": 47,
         "author": {
           "gitId": "E0310898"
         },
-        "content": "     * Prints the reminders triggered."
+        "content": "     * Prints greeting."
       },
       {
-        "lineNumber": 51,
+        "lineNumber": 48,
         "author": {
           "gitId": "hanskw4267"
         },
         "content": "     */"
       },
       {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "E0310898"
+        },
+        "content": "    public static void printGreeting() {"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "E0310898"
+        },
+        "content": "        System.out.println(greeting);"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "E0310898"
+        },
+        "content": "    }"
+      },
+      {
         "lineNumber": 52,
+        "author": {
+          "gitId": "E0310898"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "E0310898"
+        },
+        "content": "     * Prints the reminders triggered."
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 56,
         "author": {
           "gitId": "fauzt"
         },
         "content": "    public static void printReminder(TaskList tasks) {"
       },
       {
-        "lineNumber": 53,
+        "lineNumber": 57,
         "author": {
           "gitId": "fauzt"
         },
         "content": "        ArrayList\u003cTask\u003e taskList \u003d tasks.getTasks();"
       },
       {
-        "lineNumber": 54,
+        "lineNumber": 58,
         "author": {
           "gitId": "fauzt"
         },
         "content": "        System.out.println(\"You have these upcoming tasks:\\n\");"
       },
       {
-        "lineNumber": 55,
+        "lineNumber": 59,
         "author": {
           "gitId": "fauzt"
         },
         "content": "        for (Task t : taskList) {"
       },
       {
-        "lineNumber": 56,
+        "lineNumber": 60,
         "author": {
           "gitId": "TanYiXiang"
         },
         "content": "            if (t.isReminderTrigger()) {"
       },
       {
-        "lineNumber": 57,
+        "lineNumber": 61,
         "author": {
           "gitId": "fauzt"
         },
         "content": "                System.out.println(t.toString());"
       },
       {
-        "lineNumber": 58,
+        "lineNumber": 62,
         "author": {
           "gitId": "fauzt"
         },
         "content": "            }"
       },
       {
-        "lineNumber": 59,
+        "lineNumber": 63,
         "author": {
           "gitId": "fauzt"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 60,
-        "author": {
-          "gitId": "fauzt"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 61,
-        "author": {
-          "gitId": "fauzt"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 62,
-        "author": {
-          "gitId": "E0310898"
-        },
-        "content": "    public static void printGoodbye() {"
-      },
-      {
-        "lineNumber": 63,
-        "author": {
-          "gitId": "E0310898"
-        },
-        "content": "        System.out.println(goodbye);"
-      },
-      {
         "lineNumber": 64,
         "author": {
-          "gitId": "E0310898"
+          "gitId": "fauzt"
         },
         "content": "    }"
       },
       {
         "lineNumber": 65,
         "author": {
-          "gitId": "E0310898"
+          "gitId": "fauzt"
         },
         "content": ""
       },
@@ -40920,497 +41378,560 @@
         "author": {
           "gitId": "E0310898"
         },
-        "content": "    /**"
+        "content": "    public static void printGoodbye() {"
       },
       {
         "lineNumber": 67,
         "author": {
-          "gitId": "hanskw4267"
+          "gitId": "E0310898"
         },
-        "content": "     * This printOutput function is used to print the output in the current Ui"
+        "content": "        System.out.println(goodbye);"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "E0310898"
         },
-        "content": "     * format. Moreover it also handles the refresh of the userOutputForUT."
+        "content": "    }"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "E0310898"
         },
-        "content": "     *"
+        "content": ""
       },
       {
         "lineNumber": 70,
         "author": {
-          "gitId": "hanskw4267"
+          "gitId": "E0310898"
         },
-        "content": "     * @param userOutput This string will be used to print the message between to"
+        "content": "    /**"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     *                   data."
+        "content": "     * This printOutput function is used to print the output in the current Ui"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "E0310898"
         },
-        "content": "     */"
+        "content": "     * format. Moreover it also handles the refresh of the userOutputForUT."
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "E0310898"
         },
-        "content": ""
+        "content": "     *"
       },
       {
         "lineNumber": 74,
         "author": {
-          "gitId": "E0310898"
+          "gitId": "hanskw4267"
         },
-        "content": "    public static void printOutput(String userOutput) {"
+        "content": "     * @param userOutput This string will be used to print the message between to"
       },
       {
         "lineNumber": 75,
         "author": {
-          "gitId": "E0310898"
+          "gitId": "hanskw4267"
         },
-        "content": "        UiTemporary.userOutputForUI \u003d userOutput + \"\\n\";"
+        "content": "     *                   data."
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "E0310898"
         },
-        "content": "        System.out.println(userOutputDash);"
+        "content": "     */"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "E0310898"
         },
-        "content": "        System.out.println(userOutput);"
+        "content": "    public static void printOutput(String userOutput) {"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "E0310898"
         },
-        "content": "        System.out.println(userOutputDash);"
+        "content": "        UiTemporary.userOutputForUI \u003d userOutput + \"\\n\";"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "E0310898"
         },
-        "content": "    }"
+        "content": "        System.out.println(userOutputDash);"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "E0310898"
         },
-        "content": ""
+        "content": "        System.out.println(userOutput);"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "E0310898"
         },
-        "content": "    /**"
+        "content": "        System.out.println(userOutputDash);"
       },
       {
         "lineNumber": 82,
+        "author": {
+          "gitId": "E0310898"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "E0310898"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "E0310898"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 85,
         "author": {
           "gitId": "hanskw4267"
         },
         "content": "     * This readInput function is used to constantly take in the userInput by"
       },
       {
-        "lineNumber": 83,
+        "lineNumber": 86,
         "author": {
           "gitId": "hanskw4267"
         },
         "content": "     * checking if there is a line to be read. But if there is no line to be read"
       },
       {
-        "lineNumber": 84,
+        "lineNumber": 87,
         "author": {
           "gitId": "hanskw4267"
         },
         "content": "     * then the program terminates."
       },
       {
-        "lineNumber": 85,
-        "author": {
-          "gitId": "E0310898"
-        },
-        "content": "     *"
-      },
-      {
-        "lineNumber": 86,
-        "author": {
-          "gitId": "E0310898"
-        },
-        "content": "     * @return This function will return a String which contains the user input."
-      },
-      {
-        "lineNumber": 87,
-        "author": {
-          "gitId": "E0310898"
-        },
-        "content": "     */"
-      },
-      {
         "lineNumber": 88,
         "author": {
           "gitId": "E0310898"
         },
-        "content": "    public static String readInput() {"
+        "content": "     *"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "E0310898"
         },
-        "content": "        if (scanner.hasNextLine()) {"
+        "content": "     * @return This function will return a String which contains the user input."
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "E0310898"
         },
-        "content": "            userInput \u003d scanner.nextLine();"
+        "content": "     */"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "E0310898"
         },
-        "content": "        } else {"
+        "content": "    public static String readInput() {"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "E0310898"
         },
-        "content": "            userInput \u003d \"bye\";"
+        "content": "        if (scanner.hasNextLine()) {"
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "E0310898"
         },
-        "content": "        }"
+        "content": "            userInput \u003d scanner.nextLine();"
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "E0310898"
         },
-        "content": "        return userInput;"
+        "content": "        } else {"
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "E0310898"
         },
-        "content": "    }"
+        "content": "            userInput \u003d \"bye\";"
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "E0310898"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "E0310898"
         },
-        "content": "    /**"
+        "content": "        return userInput;"
       },
       {
         "lineNumber": 98,
         "author": {
-          "gitId": "hanskw4267"
+          "gitId": "E0310898"
         },
-        "content": "     * This printMessage function is called to print an exception message to the"
+        "content": "    }"
       },
       {
         "lineNumber": 99,
         "author": {
-          "gitId": "hanskw4267"
+          "gitId": "E0310898"
         },
-        "content": "     * user."
+        "content": ""
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "E0310898"
         },
-        "content": "     *"
+        "content": "    /**"
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * @param message This message contains the message generated by the exception"
+        "content": "     * This printMessage function is called to print an exception message to the"
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     *                that was caught."
+        "content": "     * user."
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "E0310898"
         },
-        "content": "     */"
+        "content": "     *"
       },
       {
         "lineNumber": 104,
         "author": {
-          "gitId": "E0310898"
+          "gitId": "hanskw4267"
         },
-        "content": "    public static void printMessage(String message) {"
+        "content": "     * @param message This message contains the message generated by the exception"
       },
       {
         "lineNumber": 105,
         "author": {
-          "gitId": "E0310898"
+          "gitId": "hanskw4267"
         },
-        "content": "        System.out.println(message);"
+        "content": "     *                that was caught."
       },
       {
         "lineNumber": 106,
         "author": {
           "gitId": "E0310898"
         },
-        "content": "    }"
+        "content": "     */"
       },
       {
         "lineNumber": 107,
         "author": {
           "gitId": "E0310898"
         },
-        "content": ""
+        "content": "    public static void printMessage(String message) {"
       },
       {
         "lineNumber": 108,
         "author": {
           "gitId": "E0310898"
         },
-        "content": "    /**"
+        "content": "        System.out.println(message);"
       },
       {
         "lineNumber": 109,
         "author": {
-          "gitId": "hanskw4267"
+          "gitId": "E0310898"
         },
-        "content": "     * This printManual function is called to aid the user in the usage of \u0027Duke\u0027 by"
+        "content": "    }"
       },
       {
         "lineNumber": 110,
         "author": {
-          "gitId": "hanskw4267"
+          "gitId": "E0310898"
         },
-        "content": "     * guiding them on how to input their task."
+        "content": ""
       },
       {
         "lineNumber": 111,
         "author": {
           "gitId": "E0310898"
         },
-        "content": "     */"
+        "content": "    /**"
       },
       {
         "lineNumber": 112,
         "author": {
-          "gitId": "E0310898"
+          "gitId": "hanskw4267"
         },
-        "content": "    public static String printManual() {"
+        "content": "     * This printManual function is called to aid the user in the usage of \u0027Duke\u0027 by"
       },
       {
         "lineNumber": 113,
         "author": {
-          "gitId": "E0310898"
+          "gitId": "hanskw4267"
         },
-        "content": ""
+        "content": "     * guiding them on how to input their task."
       },
       {
         "lineNumber": 114,
         "author": {
           "gitId": "E0310898"
         },
-        "content": "        return (\"Hi, this is the Chronologer manual!\\n\")"
+        "content": "     */"
       },
       {
         "lineNumber": 115,
         "author": {
           "gitId": "E0310898"
         },
-        "content": "            + (\"For all commands with date-time, the format is - dd/MM/yyyy HHmm\\n\\n\")"
+        "content": "    public static String printManual() {"
       },
       {
         "lineNumber": 116,
         "author": {
           "gitId": "E0310898"
         },
-        "content": "            + (\"1. Todo - todo\u003cspace\u003eyour task description eg. todo borrow books\\n\")"
+        "content": ""
       },
       {
         "lineNumber": 117,
         "author": {
           "gitId": "E0310898"
         },
-        "content": "            + (\"2. Deadline - deadline\u003cspace\u003eyour deadline description\u003cspace\u003e/by\u003cspace\u003e date-time\\n\")"
+        "content": "        return (\"Hi, this is the Chronologer manual!\\n\")"
       },
       {
         "lineNumber": 118,
         "author": {
           "gitId": "E0310898"
         },
-        "content": "            + (\"3. Event - event\u003cspace\u003eyour event description\u003cspace\u003e/at\u003cspace\u003e date-time-date-time\\n\")"
+        "content": "                + (\"For all commands with date-time, the format is - dd/MM/yyyy HHmm\\n\\n\")"
       },
       {
         "lineNumber": 119,
         "author": {
           "gitId": "E0310898"
         },
-        "content": "            + (\"4. To list out all your tasks simply enter list\\n\")"
+        "content": "                + (\"1. Todo - todo\u003cspace\u003eyour task description eg. todo borrow books\\n\")"
       },
       {
         "lineNumber": 120,
         "author": {
           "gitId": "E0310898"
         },
-        "content": "            + (\"5. Done - done\u003cspace\u003e index of the task as listed\\n\")"
+        "content": "                + (\"2. Deadline - deadline\u003cspace\u003eyour deadline description\u003cspace\u003e/by\u003cspace\u003e date-time\\n\")"
       },
       {
         "lineNumber": 121,
         "author": {
           "gitId": "E0310898"
         },
-        "content": "            + (\"6. Find - find\u003cspace\u003eany word in the task\\n\")"
+        "content": "                + (\"3. Event - event\u003cspace\u003eyour event description\u003cspace\u003e/at\u003cspace\u003e date-time-date-time\\n\")"
       },
       {
         "lineNumber": 122,
         "author": {
-          "gitId": "E0310898"
+          "gitId": "hanskw4267"
         },
-        "content": "            + (\"7. Delete - delete\u003cspace\u003e index of task as listed\\n\")"
+        "content": "                + (\"4. Assignments - assignment\u003cspace\u003e/m\u003cspace\u003emodule code\u003cspace\u003e/by\u003cspace\u003edate-time\")"
       },
       {
         "lineNumber": 123,
         "author": {
-          "gitId": "E0310898"
+          "gitId": "hanskw4267"
         },
-        "content": "            + (\"8. Undo/Redo - undo or redo changes to your tasks\\n\")"
+        "content": "                + (\"5. Lectures - lecture\u003cspace\u003e/m\u003cspace\u003emodule code\u003cspace\u003e/at\u003cspace\u003eday of week\u003cspace\u003e\""
       },
       {
         "lineNumber": 124,
         "author": {
-          "gitId": "E0310898"
+          "gitId": "hanskw4267"
         },
-        "content": "            + (\"9. Theme - theme\u003cspace\u003edark or light\\n\")"
+        "content": "                        + \"starttime-endtime\\n\")"
       },
       {
         "lineNumber": 125,
         "author": {
-          "gitId": "E0310898"
+          "gitId": "hanskw4267"
         },
-        "content": "            + (\"10. Store/Restore - store or restore\u003cspace\u003e index of storage\\n\")"
+        "content": "                + (\"6. Tutorials - tutorial\u003cspace\u003e/m\u003cspace\u003emodule code\u003cspace\u003e/at\u003cspace\u003eday of week\u003cspace\u003e\""
       },
       {
         "lineNumber": 126,
         "author": {
-          "gitId": "E0310898"
+          "gitId": "hanskw4267"
         },
-        "content": "            + (\"11. To exit, enter bye\\n\\n\")"
+        "content": "                        + \"starttime-endtime\\n\")"
       },
       {
         "lineNumber": 127,
         "author": {
-          "gitId": "E0310898"
+          "gitId": "hanskw4267"
         },
-        "content": "            + (\"12. If still unclear, enter manual to see our user guide!\");"
+        "content": "                + (\"7. Exams - exam\u003cspace\u003e/m\u003cspace\u003emodule code\u003cspace\u003e/at\u003cspace\u003edate-time-date-time\\n\")"
       },
       {
         "lineNumber": 128,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "                + (\"8. To list out all your tasks simply enter list\\n\")"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "                + (\"9. Done - done\u003cspace\u003e index of the task as listed\\n\")"
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "                + (\"10. Find - find\u003cspace\u003eany word in the task\\n\")"
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "                + (\"11. Delete - delete\u003cspace\u003e index of task as listed\\n\")"
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "                + (\"12. Search - search\u003cspace\u003eduration of task in hours\\n\")"
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "                + (\"13. Comment - comment\u003cspace\u003eindex of task as listed\u003cspace\u003eyour comment\\n\")"
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "                + (\"14. Location - location\u003cspace\u003eindex of task as listed\u003cspace\u003eyour location\\n\")"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "                + (\"15. Undo/Redo - undo or redo changes to your tasks\\n\") + (\"16. Theme - theme\u003cspace\u003edark or light\\n\")"
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "                + (\"17. Store/Restore - store or restore\u003cspace\u003e index of storage\\n\") + (\"18. To exit, enter bye\\n\\n\")"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "                + (\"19. If still unclear, enter manual to see our user guide!\");"
+      },
+      {
+        "lineNumber": 138,
         "author": {
           "gitId": "E0310898"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 129,
+        "lineNumber": 139,
         "author": {
           "gitId": "E0310898"
         },
         "content": ""
       },
       {
-        "lineNumber": 130,
+        "lineNumber": 140,
         "author": {
           "gitId": "E0310898"
         },
         "content": "    public static void printUnknownInput() {"
       },
       {
-        "lineNumber": 131,
+        "lineNumber": 141,
         "author": {
           "gitId": "E0310898"
         },
         "content": "        System.out.println(\" ☹ OOPS!!! I\u0027m sorry, but I don\u0027t know what that means. If you would like to know how to \""
       },
       {
-        "lineNumber": 132,
+        "lineNumber": 142,
         "author": {
           "gitId": "E0310898"
         },
-        "content": "            + \"use Duke, Enter duke-manual\");"
+        "content": "                + \"use Duke, Enter duke-manual\");"
       },
       {
-        "lineNumber": 133,
+        "lineNumber": 143,
         "author": {
           "gitId": "E0310898"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 134,
+        "lineNumber": 144,
         "author": {
           "gitId": "E0310898"
         },
         "content": "}"
-      },
-      {
-        "lineNumber": 135,
-        "author": {
-          "gitId": "E0310898"
-        },
-        "content": ""
       }
     ],
     "authorContributionMap": {
-      "E0310898": 99,
-      "hanskw4267": 25,
+      "E0310898": 88,
+      "hanskw4267": 41,
       "TanYiXiang": 1,
-      "fauzt": 10
+      "fauzt": 14
     }
   },
   {
@@ -48484,9 +49005,9 @@
       {
         "lineNumber": 53,
         "author": {
-          "gitId": "TanYiXiang"
+          "gitId": "hanskw4267"
         },
-        "content": "            + \"\\\"time\\\":{\\\"hour\\\":19,\\\"minute\\\":0,\\\"second\\\":0,\\\"nano\\\":0}},\\\"priority\\\":\\\"MEDIUM\\\",\""
+        "content": "            + \"\\\"time\\\":{\\\"hour\\\":19,\\\"minute\\\":0,\\\"second\\\":0,\\\"nano\\\":0}},\\\"location\\\":\\\"\\\",\\\"priority\\\":\\\"MEDIUM\\\",\""
       },
       {
         "lineNumber": 54,
@@ -48665,7 +49186,8 @@
       }
     ],
     "authorContributionMap": {
-      "TanYiXiang": 78
+      "hanskw4267": 1,
+      "TanYiXiang": 77
     }
   },
   {
@@ -49384,14 +49906,14 @@
         "author": {
           "gitId": "fauzt"
         },
-        "content": "    public void testIndexException() {"
+        "content": "    public void testIndexOutOfBoundException() {"
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "        Assertions.assertThrows(IndexOutOfBoundsException.class, () -\u003e {"
+        "content": "        Assertions.assertThrows(ChronologerException.class, () -\u003e {"
       },
       {
         "lineNumber": 104,
@@ -49419,7 +49941,7 @@
         "author": {
           "gitId": "fauzt"
         },
-        "content": "        Assertions.assertThrows(IndexOutOfBoundsException.class, () -\u003e {"
+        "content": "        Assertions.assertThrows(ChronologerException.class, () -\u003e {"
       },
       {
         "lineNumber": 108,
@@ -49447,14 +49969,14 @@
         "author": {
           "gitId": "fauzt"
         },
-        "content": "        Assertions.assertThrows(IndexOutOfBoundsException.class, () -\u003e {"
+        "content": "        Assertions.assertThrows(ChronologerException.class, () -\u003e {"
       },
       {
         "lineNumber": 112,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "            Command test \u003d new TaskScheduleCommand(100, 0);"
+        "content": "            Command test \u003d new TaskScheduleCommand(2, 0);"
       },
       {
         "lineNumber": 113,
@@ -49475,14 +49997,14 @@
         "author": {
           "gitId": "fauzt"
         },
-        "content": "        Assertions.assertThrows(IndexOutOfBoundsException.class, () -\u003e {"
+        "content": "        Assertions.assertThrows(ChronologerException.class, () -\u003e {"
       },
       {
         "lineNumber": 116,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "            Command test \u003d new TaskScheduleCommand(1, 100);"
+        "content": "            Command test \u003d new TaskScheduleCommand(1, 2);"
       },
       {
         "lineNumber": 117,
@@ -49503,28 +50025,28 @@
         "author": {
           "gitId": "fauzt"
         },
-        "content": "        Assertions.assertThrows(ChronologerException.class, () -\u003e {"
+        "content": "    }"
       },
       {
         "lineNumber": 120,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "            Command test \u003d new TaskScheduleCommand(1, 1);"
+        "content": ""
       },
       {
         "lineNumber": 121,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "            test.execute(tasks, storage);"
+        "content": "    @Test"
       },
       {
         "lineNumber": 122,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "        });"
+        "content": "    public void testIndexException() {"
       },
       {
         "lineNumber": 123,
@@ -49538,7 +50060,7 @@
         "author": {
           "gitId": "fauzt"
         },
-        "content": "            Command test \u003d new TaskScheduleCommand(0, 0);"
+        "content": "            Command test \u003d new TaskScheduleCommand(1, 1);"
       },
       {
         "lineNumber": 125,
@@ -49559,73 +50081,101 @@
         "author": {
           "gitId": "fauzt"
         },
-        "content": "    }"
+        "content": "        Assertions.assertThrows(ChronologerException.class, () -\u003e {"
       },
       {
         "lineNumber": 128,
         "author": {
           "gitId": "fauzt"
         },
-        "content": ""
+        "content": "            Command test \u003d new TaskScheduleCommand(0, 0);"
       },
       {
         "lineNumber": 129,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "    @Test"
+        "content": "            test.execute(tasks, storage);"
       },
       {
         "lineNumber": 130,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "    public void testDateException() {"
+        "content": "        });"
       },
       {
         "lineNumber": 131,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "        Assertions.assertThrows(ChronologerException.class, () -\u003e {"
+        "content": "    }"
       },
       {
         "lineNumber": 132,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "            LocalDateTime exceptionDate \u003d LocalDateTime.of(2001, 1, 1, 1, 0);"
+        "content": ""
       },
       {
         "lineNumber": 133,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "            Command test \u003d new TaskScheduleCommand(1, exceptionDate);"
+        "content": "    @Test"
       },
       {
         "lineNumber": 134,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "            test.execute(tasks, storage);"
+        "content": "    public void testDateException() {"
       },
       {
         "lineNumber": 135,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "        });"
+        "content": "        Assertions.assertThrows(ChronologerException.class, () -\u003e {"
       },
       {
         "lineNumber": 136,
         "author": {
           "gitId": "fauzt"
         },
-        "content": "    }"
+        "content": "            LocalDateTime exceptionDate \u003d LocalDateTime.of(2001, 1, 1, 1, 0);"
       },
       {
         "lineNumber": 137,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "            Command test \u003d new TaskScheduleCommand(1, exceptionDate);"
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "            test.execute(tasks, storage);"
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "        });"
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 141,
         "author": {
           "gitId": "fauzt"
         },
@@ -49633,7 +50183,716 @@
       }
     ],
     "authorContributionMap": {
-      "fauzt": 137
+      "fauzt": 141
+    }
+  },
+  {
+    "path": "src/test/java/TaskSchedulerTest.java",
+    "fileType": "tests",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "import chronologer.TaskScheduler;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "import chronologer.parser.DateTimeExtractor;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "import chronologer.task.Task;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "import chronologer.task.Event;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "import chronologer.task.TaskList;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "import org.junit.jupiter.api.*;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "import java.io.ByteArrayOutputStream;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "import java.io.PrintStream;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "import java.time.LocalDateTime;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "public class TaskSchedulerTest {"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "    private static ArrayList\u003cTask\u003e list;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "    private static TaskList tasks;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "    private ByteArrayOutputStream outContent;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "    private PrintStream originalOut;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "    private LocalDateTime firstDeadlineStartDate \u003d LocalDateTime.now().plusDays(1);"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "    private LocalDateTime secondDeadlineStartDate \u003d LocalDateTime.now().plusDays(2);"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "    private static LocalDateTime firstEventStartDate \u003d LocalDateTime.now().plusDays(1).plusHours(4);"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "    private static LocalDateTime firstEventEndDate \u003d LocalDateTime.now().plusDays(1).plusHours(8);"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "    private static LocalDateTime secondEventStartDate \u003d LocalDateTime.now().plusDays(1).plusHours(9);"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "    private static LocalDateTime secondEventEndDate \u003d LocalDateTime.now().plusDays(1).plusHours(11);"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "    private static LocalDateTime thirdEventStartDate \u003d LocalDateTime.now().plusDays(1).plusHours(15);"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "    private static LocalDateTime thirdEventEndDate \u003d LocalDateTime.now().plusDays(1).plusHours(18);"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "     * Populates the schedule with necessary tasks to carry out the test operations."
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "    @BeforeAll"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "    public static void setup() {"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "        list \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "        tasks \u003d new TaskList(list);"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "        Event firstEvent \u003d new Event(\"first event\", firstEventStartDate, firstEventEndDate);"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "        tasks.add(firstEvent);"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "        Event secondEvent \u003d new Event(\"second event\", secondEventStartDate, secondEventEndDate);"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "        tasks.add(secondEvent);"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "        Event thirdEvent \u003d new Event(\"third event\", thirdEventStartDate, thirdEventEndDate);"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "        tasks.add(thirdEvent);"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "     * Sets up the output stream to read the UI/CLI messages before each test."
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "    @BeforeEach"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "    public void setUpStreams() {"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "        originalOut \u003d System.out;"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "        outContent \u003d new ByteArrayOutputStream();"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "        System.setOut(new PrintStream(outContent));"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "    @AfterEach"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "    public void restoreStreams() {"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "        System.setOut(originalOut);"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "    public void testTaskSchedulerForEmptySchedule() {"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "        Long taskDuration \u003d (long) 2;"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "        TaskScheduler.scheduleByDeadline(tasks, taskDuration, firstDeadlineStartDate);"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "        String testOutput \u003d outContent.toString();"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "        String expectedOutput \u003d \"You can schedule this task from now till the deadline.\\n\";"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "        Assertions.assertTrue(testOutput.contains(expectedOutput));"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "    public void testTaskSchedulerForFilledSchedule() {"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "        Long taskDuration \u003d (long) 2;"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "        TaskScheduler.scheduleByDeadline(tasks, taskDuration, secondDeadlineStartDate);"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "        String testOutput \u003d outContent.toString();"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "        String expectedOutput \u003d String.format(\"You can schedule this task from now till %s\\n\","
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "                firstEventStartDate.format(DateTimeExtractor.DATE_FORMATTER))"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "                + String.format(\"You can schedule this task from %s till %s\\n\","
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "                secondEventEndDate.format(DateTimeExtractor.DATE_FORMATTER),"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "                thirdEventStartDate.format(DateTimeExtractor.DATE_FORMATTER))"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "                + String.format(\"You can schedule this task from %s till %s\\n\","
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "                thirdEventEndDate.format(DateTimeExtractor.DATE_FORMATTER),"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "                secondDeadlineStartDate.format(DateTimeExtractor.DATE_FORMATTER));"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "        Assertions.assertTrue(testOutput.contains(expectedOutput));"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "    public void testTaskSchedulerForNoFreeSlots() {"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "        Long taskDuration \u003d (long) 28;"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "        TaskScheduler.scheduleByDeadline(tasks, taskDuration, secondDeadlineStartDate);"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "        String testOutput \u003d outContent.toString();"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "        String expectedOutput \u003d \"There is no free slot to insert the task. Consider freeing up your schedule.\\n\";"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "        Assertions.assertTrue(testOutput.contains(expectedOutput));"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "fauzt"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "fauzt": 100
     }
   },
   {
