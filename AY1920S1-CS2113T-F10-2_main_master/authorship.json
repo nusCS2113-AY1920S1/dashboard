@@ -4336,7 +4336,7 @@
         "author": {
           "gitId": "woblek"
         },
-        "content": "import task.NUSEvents;"
+        "content": "import task.NUSEventList;"
       },
       {
         "lineNumber": 6,
@@ -4805,14 +4805,14 @@
         "author": {
           "gitId": "woblek"
         },
-        "content": "                NUSEvents NUSEvents \u003d new NUSEvents();"
+        "content": "                NUSEventList NUSEventList \u003d new NUSEventList();"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "woblek"
         },
-        "content": "                NUSEvents.addDegreeTasks(this.arguments, tasks);"
+        "content": "                NUSEventList.addDegreeTasks(this.arguments, tasks);"
       },
       {
         "lineNumber": 74,
@@ -8499,7 +8499,7 @@
         "author": {
           "gitId": "woblek"
         },
-        "content": "import task.NUSEvents;"
+        "content": "import task.NUSEventList;"
       },
       {
         "lineNumber": 7,
@@ -8814,14 +8814,14 @@
         "author": {
           "gitId": "woblek"
         },
-        "content": "            NUSEvents NUSEvents \u003d new NUSEvents();"
+        "content": "            NUSEventList NUSEventList \u003d new NUSEventList();"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "woblek"
         },
-        "content": "            NUSEvents.removeDegreeTasks(this.input, lists, tasks);"
+        "content": "            NUSEventList.removeDegreeTasks(this.input, lists, tasks);"
       },
       {
         "lineNumber": 53,
@@ -10136,189 +10136,189 @@
         "author": {
           "gitId": "woblek"
         },
-        "content": "import java.io.IOException;"
+        "content": "public class SortCommand extends Command {"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "woblek"
         },
-        "content": "import java.time.LocalDateTime;"
+        "content": "    private String arguments;"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "woblek"
         },
-        "content": ""
+        "content": "    private String command;"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "woblek"
         },
-        "content": "public class SortCommand extends Command {"
+        "content": "    private Memento memento;"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "woblek"
         },
-        "content": "    private String arguments;"
+        "content": ""
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "woblek"
         },
-        "content": "    private String command;"
+        "content": "    /**"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "woblek"
         },
-        "content": "    private Memento memento;"
+        "content": "     * Creates AddCommand."
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "woblek"
         },
-        "content": ""
+        "content": "     * @param command command type to be used."
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "woblek"
         },
-        "content": "    /**"
+        "content": "     * @param arguments to be added."
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "woblek"
         },
-        "content": "     * Creates AddCommand."
+        "content": "     */"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "woblek"
         },
-        "content": "     * @param command command type to be used."
+        "content": "    public SortCommand(String command, String arguments) {"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "woblek"
         },
-        "content": "     * @param arguments to be added."
+        "content": "        this.command \u003d command;"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "woblek"
         },
-        "content": "     */"
+        "content": "        this.arguments \u003d arguments;"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "woblek"
         },
-        "content": "    public SortCommand(String command, String arguments) {"
+        "content": "    }"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "woblek"
         },
-        "content": "        this.command \u003d command;"
+        "content": ""
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "woblek"
         },
-        "content": "        this.arguments \u003d arguments;"
+        "content": ""
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "woblek"
         },
-        "content": "    }"
+        "content": "    @Override"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "woblek"
         },
-        "content": ""
+        "content": "    public void execute(TaskList tasks, UI ui, Storage storage, DegreeList lists, DegreeManager mydegrees) throws DukeException {"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "woblek"
         },
-        "content": ""
+        "content": "        TaskList tasksBuffer;"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "woblek"
         },
-        "content": "    @Override"
+        "content": ""
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "woblek"
         },
-        "content": "    public void execute(TaskList tasks, UI ui, Storage storage, DegreeList lists, DegreeManager mydegrees) throws DukeException {"
+        "content": "        tasksBuffer \u003d tasks.deepClone();"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "woblek"
         },
-        "content": "        TaskList tasksBuffer;"
+        "content": "        memento \u003d new Memento(tasksBuffer);"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "woblek"
         },
-        "content": ""
+        "content": "        if (this.arguments.matches(\"by priority\")){"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "woblek"
         },
-        "content": "        tasksBuffer \u003d tasks.deepClone();"
+        "content": "            tasks.sortbyPriority();"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "woblek"
         },
-        "content": "        memento \u003d new Memento(tasksBuffer);"
+        "content": "        }"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "woblek"
         },
-        "content": "        if (this.arguments.matches(\"priority\")){"
+        "content": "        else if (this.arguments.matches(\"by date\")){"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "woblek"
         },
-        "content": "            tasks.sortPriority();"
+        "content": "            tasks.sortbyDate();"
       },
       {
         "lineNumber": 40,
@@ -10339,171 +10339,199 @@
         "author": {
           "gitId": "woblek"
         },
-        "content": "            throw new DukeException(\"That is not a valid way to sort your tasks!\\n\\n\\n\");"
+        "content": "            throw new DukeException(\"That is not a valid way to sort your tasks!\\n\" +"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "woblek"
         },
-        "content": "        }"
+        "content": "                    \"Try typing:\\n\" +"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "woblek"
         },
-        "content": "    }"
+        "content": "                    \"   sort by priority\\n\" +"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "woblek"
         },
-        "content": ""
+        "content": "                    \"   sort by date\\n\" +"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "woblek"
         },
-        "content": "    /**"
+        "content": "                    \"   sort by degree\" );"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "woblek"
         },
-        "content": "     * Overwrites default unexecute to remove the modification of taskList and degreeList."
+        "content": "        }"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "woblek"
         },
-        "content": "     * Recalls the previous state of the taskList/degreeList via memento."
+        "content": "    }"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "woblek"
         },
-        "content": "     * It then returns this state to the current state of the taskList/degreeList."
+        "content": ""
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "woblek"
         },
-        "content": "     *"
+        "content": "    /**"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "woblek"
         },
-        "content": "     * @param tasks   TasksList has tasks"
+        "content": "     * Overwrites default unexecute to remove the modification of taskList and degreeList."
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "woblek"
         },
-        "content": "     * @param ui      UI.UI prints messages"
+        "content": "     * Recalls the previous state of the taskList/degreeList via memento."
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "woblek"
         },
-        "content": "     * @param storage Storage.Storage loads and saves files"
+        "content": "     * It then returns this state to the current state of the taskList/degreeList."
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "woblek"
         },
-        "content": "     * @param lists DegreeList has the array for the user to maintain a list of their degree choices."
+        "content": "     *"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "woblek"
         },
-        "content": "     * @throws DukeException Throws the wrong amount of arguments."
+        "content": "     * @param tasks   TasksList has tasks"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "woblek"
         },
-        "content": "     */"
+        "content": "     * @param ui      UI.UI prints messages"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "woblek"
         },
-        "content": "    @Override"
+        "content": "     * @param storage Storage.Storage loads and saves files"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "woblek"
         },
-        "content": "    public void unExecute(TaskList tasks, UI ui, Storage storage, DegreeList lists, DegreeManager degreeManager) throws DukeException {"
+        "content": "     * @param lists DegreeList has the array for the user to maintain a list of their degree choices."
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "woblek"
         },
-        "content": "        TaskList tasksBuffer \u003d memento.getTaskState();"
+        "content": "     * @throws DukeException Throws the wrong amount of arguments."
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "woblek"
         },
-        "content": "        tasks.clear();"
+        "content": "     */"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "woblek"
         },
-        "content": ""
+        "content": "    @Override"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "woblek"
         },
-        "content": "        for (int i \u003d 0; i \u003c tasksBuffer.size(); i++) {"
+        "content": "    public void unExecute(TaskList tasks, UI ui, Storage storage, DegreeList lists, DegreeManager degreeManager) throws DukeException {"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "woblek"
         },
-        "content": "            tasks.add(tasksBuffer.get(i));"
+        "content": "        TaskList tasksBuffer \u003d memento.getTaskState();"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "woblek"
         },
-        "content": "        }"
+        "content": "        tasks.clear();"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "woblek"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 66,
+        "author": {
+          "gitId": "woblek"
+        },
+        "content": "        for (int i \u003d 0; i \u003c tasksBuffer.size(); i++) {"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "woblek"
+        },
+        "content": "            tasks.add(tasksBuffer.get(i));"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "woblek"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "woblek"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 70,
         "author": {
           "gitId": "woblek"
         },
@@ -10511,7 +10539,7 @@
       }
     ],
     "authorContributionMap": {
-      "woblek": 66
+      "woblek": 70
     }
   },
   {
@@ -27722,639 +27750,639 @@
       {
         "lineNumber": 15,
         "author": {
-          "gitId": "woblek"
-        },
-        "content": "import task.UniversityTaskHandler;"
-      },
-      {
-        "lineNumber": 16,
-        "author": {
           "gitId": "manaswini05"
         },
         "content": "import statistics.GraduateEmployment;"
       },
       {
-        "lineNumber": 17,
+        "lineNumber": 16,
         "author": {
           "gitId": "woblek"
         },
-        "content": "import task.NUSEvents;"
+        "content": "import task.NUSEventList;"
       },
       {
-        "lineNumber": 18,
+        "lineNumber": 17,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "import task.TaskList;"
       },
       {
-        "lineNumber": 19,
+        "lineNumber": 18,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "import ui.UI;"
       },
       {
-        "lineNumber": 20,
+        "lineNumber": 19,
         "author": {
           "gitId": "woblek"
         },
         "content": ""
       },
       {
-        "lineNumber": 21,
+        "lineNumber": 20,
         "author": {
           "gitId": "zyleet"
         },
         "content": "import java.io.ByteArrayOutputStream;"
       },
       {
-        "lineNumber": 22,
+        "lineNumber": 21,
         "author": {
           "gitId": "zyleet"
         },
         "content": "import java.io.PrintStream;"
       },
       {
-        "lineNumber": 23,
+        "lineNumber": 22,
         "author": {
           "gitId": "zyleet"
         },
         "content": "import java.util.*;"
       },
       {
-        "lineNumber": 24,
+        "lineNumber": 23,
         "author": {
           "gitId": "manaswini05"
         },
         "content": "import java.util.ArrayList;"
       },
       {
-        "lineNumber": 25,
+        "lineNumber": 24,
         "author": {
           "gitId": "zyleet"
         },
         "content": ""
       },
       {
-        "lineNumber": 26,
+        "lineNumber": 25,
         "author": {
           "gitId": "zyleet"
         },
         "content": "/**"
       },
       {
-        "lineNumber": 27,
+        "lineNumber": 26,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": " * The JavaFX.Main.Duke class inherits methods from Applications and allows it to be called by another class."
       },
       {
-        "lineNumber": 28,
+        "lineNumber": 27,
         "author": {
           "gitId": "zyleet"
         },
         "content": " * It is no longer the main class, but rather it will initialize the parameters, save files and all other classes"
       },
       {
-        "lineNumber": 29,
+        "lineNumber": 28,
         "author": {
           "gitId": "zyleet"
         },
         "content": " * not related to the GUI."
       },
       {
-        "lineNumber": 30,
+        "lineNumber": 29,
         "author": {
           "gitId": "zyleet"
         },
         "content": " * It also acts as a liaison between the GUI and the terminal, as it will echo whatever is in the terminal to"
       },
       {
-        "lineNumber": 31,
+        "lineNumber": 30,
         "author": {
           "gitId": "zyleet"
         },
         "content": " * the GUI."
       },
       {
-        "lineNumber": 32,
+        "lineNumber": 31,
         "author": {
           "gitId": "zyleet"
         },
         "content": " *"
       },
       {
-        "lineNumber": 33,
+        "lineNumber": 32,
         "author": {
           "gitId": "zyleet"
         },
         "content": " * @author Lee Zhen Yu"
       },
       {
-        "lineNumber": 34,
+        "lineNumber": 33,
         "author": {
           "gitId": "zyleet"
         },
         "content": " * @version %I%"
       },
       {
-        "lineNumber": 35,
+        "lineNumber": 34,
         "author": {
           "gitId": "zyleet"
         },
         "content": " * @since 1.0"
       },
       {
-        "lineNumber": 36,
+        "lineNumber": 35,
         "author": {
           "gitId": "zyleet"
         },
         "content": " */"
       },
       {
-        "lineNumber": 37,
+        "lineNumber": 36,
         "author": {
           "gitId": "zyleet"
         },
         "content": "public class Duke extends Application {"
       },
       {
-        "lineNumber": 38,
+        "lineNumber": 37,
         "author": {
           "gitId": "zyleet"
         },
         "content": ""
       },
       {
-        "lineNumber": 39,
+        "lineNumber": 38,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "    private DegreeManager degreesManager;"
       },
       {
-        "lineNumber": 40,
+        "lineNumber": 39,
         "author": {
           "gitId": "zyleet"
         },
         "content": "    private TaskList myList;"
       },
       {
-        "lineNumber": 41,
+        "lineNumber": 40,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "    private Storage storage;"
       },
       {
-        "lineNumber": 42,
+        "lineNumber": 41,
         "author": {
           "gitId": "zyleet"
         },
         "content": "    private UI ui;"
       },
       {
-        "lineNumber": 43,
+        "lineNumber": 42,
         "author": {
           "gitId": "zyleet"
         },
         "content": "    private Parser parse;"
       },
       {
-        "lineNumber": 44,
+        "lineNumber": 43,
         "author": {
           "gitId": "manaswini05"
         },
         "content": "    private DegreeList lists;"
       },
       {
-        "lineNumber": 45,
+        "lineNumber": 44,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "    private Map\u003cString, List\u003cString\u003e\u003e degrees \u003d new HashMap\u003c\u003e();"
       },
       {
-        "lineNumber": 46,
+        "lineNumber": 45,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "    private Map\u003cString, Degree\u003e degreeInfo \u003d new HashMap\u003c\u003e();"
       },
       {
-        "lineNumber": 47,
+        "lineNumber": 46,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "    private ArrayList\u003cString\u003e mydegrees \u003d new ArrayList\u003c\u003e();"
       },
       {
-        "lineNumber": 48,
-        "author": {
-          "gitId": "manaswini05"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 49,
-        "author": {
-          "gitId": "woblek"
-        },
-        "content": "    private UniversityTaskHandler universityTaskHandler \u003d new UniversityTaskHandler();"
-      },
-      {
-        "lineNumber": 50,
+        "lineNumber": 47,
         "author": {
           "gitId": "manaswini05"
         },
         "content": "    private GraduateEmployment graduateEmployment \u003d new GraduateEmployment();"
       },
       {
-        "lineNumber": 51,
+        "lineNumber": 48,
         "author": {
           "gitId": "manaswini05"
         },
         "content": "    private CohortSize cohortSize \u003d new CohortSize();"
       },
       {
-        "lineNumber": 52,
+        "lineNumber": 49,
         "author": {
           "gitId": "manaswini05"
         },
         "content": ""
       },
       {
-        "lineNumber": 53,
+        "lineNumber": 50,
         "author": {
           "gitId": "woblek"
         },
-        "content": "    private NUSEvents NUSEvents \u003d new NUSEvents();"
+        "content": "    private NUSEventList NUSEventList \u003d new NUSEventList();"
       },
       {
-        "lineNumber": 54,
+        "lineNumber": 51,
         "author": {
           "gitId": "manaswini05"
         },
         "content": ""
       },
       {
-        "lineNumber": 55,
+        "lineNumber": 52,
         "author": {
           "gitId": "manaswini05"
         },
         "content": "    private DegreeListStorage DegreeListStorage \u003d new DegreeListStorage();"
       },
       {
-        "lineNumber": 56,
+        "lineNumber": 53,
         "author": {
           "gitId": "zyleet"
         },
         "content": "    private CommandList commandList \u003d new CommandList();"
       },
       {
-        "lineNumber": 57,
+        "lineNumber": 54,
         "author": {
           "gitId": "zyleet"
         },
         "content": "    private Boolean typoFlag;"
       },
       {
-        "lineNumber": 58,
+        "lineNumber": 55,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "    public ArrayList\u003cString\u003e getTasks() {"
       },
       {
-        "lineNumber": 59,
+        "lineNumber": 56,
         "author": {
           "gitId": "manaswini05"
         },
         "content": "        return mydegrees;"
       },
       {
-        "lineNumber": 60,
+        "lineNumber": 57,
         "author": {
           "gitId": "manaswini05"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 61,
+        "lineNumber": 58,
         "author": {
           "gitId": "zyleet"
         },
         "content": ""
       },
       {
-        "lineNumber": 62,
+        "lineNumber": 59,
         "author": {
           "gitId": "zyleet"
         },
         "content": "    /**"
       },
       {
-        "lineNumber": 63,
+        "lineNumber": 60,
         "author": {
           "gitId": "zyleet"
         },
         "content": "     * The constructor that is called when the GUI is starting up."
       },
       {
-        "lineNumber": 64,
+        "lineNumber": 61,
         "author": {
           "gitId": "zyleet"
         },
         "content": "     * It will initialise all the classes related to the management of user input and save data."
       },
       {
-        "lineNumber": 65,
+        "lineNumber": 62,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "     * Its output will go to the terminal, which will then be echoed to the UI.UI as daduke."
       },
       {
-        "lineNumber": 66,
+        "lineNumber": 63,
         "author": {
           "gitId": "zyleet"
         },
         "content": "     * Its initialization requires the file path of the save file in order to save the task data."
       },
       {
-        "lineNumber": 67,
+        "lineNumber": 64,
         "author": {
           "gitId": "zyleet"
         },
         "content": "     *"
       },
       {
-        "lineNumber": 68,
+        "lineNumber": 65,
         "author": {
           "gitId": "zyleet"
         },
         "content": "     * @param filePath The file path of the save file."
       },
       {
-        "lineNumber": 69,
+        "lineNumber": 66,
         "author": {
           "gitId": "zyleet"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 70,
+        "lineNumber": 67,
         "author": {
           "gitId": "zyleet"
         },
         "content": "    //Method to initialize all important classes and data on startup"
       },
       {
-        "lineNumber": 71,
+        "lineNumber": 68,
         "author": {
           "gitId": "manaswini05"
         },
         "content": "    public Duke(String filePath, String another_filePath) {"
       },
       {
-        "lineNumber": 72,
+        "lineNumber": 69,
         "author": {
           "gitId": "zyleet"
         },
         "content": ""
       },
       {
-        "lineNumber": 73,
+        "lineNumber": 70,
         "author": {
           "gitId": "zyleet"
         },
         "content": "        ui \u003d new UI(); //initialize ui class that handles input from user"
       },
       {
-        "lineNumber": 74,
+        "lineNumber": 71,
         "author": {
           "gitId": "manaswini05"
         },
         "content": "        this.storage \u003d new Storage(filePath, another_filePath);"
       },
       {
-        "lineNumber": 75,
+        "lineNumber": 72,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "        try {"
       },
       {
-        "lineNumber": 76,
+        "lineNumber": 73,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "            myList \u003d new TaskList(storage.getTaskList());"
       },
       {
-        "lineNumber": 77,
+        "lineNumber": 74,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "        } catch (DukeException e) {"
       },
       {
-        "lineNumber": 78,
+        "lineNumber": 75,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "            myList \u003d new TaskList();"
       },
       {
-        "lineNumber": 79,
+        "lineNumber": 76,
         "author": {
           "gitId": "zyleet"
         },
         "content": "            ui.showLoadingError();"
       },
       {
-        "lineNumber": 80,
+        "lineNumber": 77,
         "author": {
           "gitId": "zyleet"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 81,
+        "lineNumber": 78,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "        try{"
       },
       {
-        "lineNumber": 82,
+        "lineNumber": 79,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "            degreesManager \u003d new DegreeManager(this.storage);"
       },
       {
-        "lineNumber": 83,
+        "lineNumber": 80,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "        } catch (DukeException e) {"
       },
       {
-        "lineNumber": 84,
+        "lineNumber": 81,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "            ui.showLoadingError();"
       },
       {
-        "lineNumber": 85,
+        "lineNumber": 82,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "            degreesManager \u003d new DegreeManager();"
       },
       {
-        "lineNumber": 86,
+        "lineNumber": 83,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "            System.out.println(e.getLocalizedMessage());"
       },
       {
-        "lineNumber": 87,
+        "lineNumber": 84,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "            System.out.println(\"Degree Information Failed to Load, please contact Administrator\");"
       },
       {
-        "lineNumber": 88,
+        "lineNumber": 85,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "        }"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "KaneQuah"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "woblek"
+        },
+        "content": "            NUSEventList.loadEventLists(storage.fetchListOutput(\"degreeTasks\")); //loads information from degreeTasks.txt"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "KaneQuah"
+        },
+        "content": "        } catch (DukeException e) {"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "KaneQuah"
         },
-        "content": "        try {"
-      },
-      {
-        "lineNumber": 90,
-        "author": {
-          "gitId": "woblek"
-        },
-        "content": "            NUSEvents.loadDegreeTasks(storage.fetchListOutput(\"degreeTasks\")); //loads information from degreeTasks.txt"
-      },
-      {
-        "lineNumber": 91,
-        "author": {
-          "gitId": "KaneQuah"
-        },
-        "content": "        } catch (DukeException e) {"
-      },
-      {
-        "lineNumber": 92,
-        "author": {
-          "gitId": "KaneQuah"
-        },
         "content": "            System.out.println(e.getLocalizedMessage());"
       },
       {
-        "lineNumber": 93,
+        "lineNumber": 90,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 94,
+        "lineNumber": 91,
         "author": {
           "gitId": "manaswini05"
         },
         "content": "        try {"
       },
       {
-        "lineNumber": 95,
+        "lineNumber": 92,
         "author": {
           "gitId": "manaswini05"
         },
         "content": "            graduateEmployment.loadDegreeEmploymentStats(storage.fetchListOutput(\"stats_employer\"));"
       },
       {
-        "lineNumber": 96,
+        "lineNumber": 93,
         "author": {
           "gitId": "manaswini05"
         },
         "content": "        } catch (DukeException e) {"
       },
       {
-        "lineNumber": 97,
+        "lineNumber": 94,
         "author": {
           "gitId": "manaswini05"
         },
         "content": "            System.out.println(e.getLocalizedMessage());"
       },
       {
-        "lineNumber": 98,
+        "lineNumber": 95,
         "author": {
           "gitId": "manaswini05"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 99,
+        "lineNumber": 96,
         "author": {
           "gitId": "manaswini05"
         },
         "content": "        try {"
       },
       {
-        "lineNumber": 100,
+        "lineNumber": 97,
         "author": {
           "gitId": "manaswini05"
         },
         "content": "            cohortSize.loadCohortStats(storage.fetchListOutput(\"cohort\"));"
       },
       {
-        "lineNumber": 101,
+        "lineNumber": 98,
         "author": {
           "gitId": "manaswini05"
         },
         "content": "        } catch (DukeException e) {"
       },
       {
-        "lineNumber": 102,
+        "lineNumber": 99,
         "author": {
           "gitId": "manaswini05"
         },
         "content": "            System.out.println(e.getLocalizedMessage());"
       },
       {
-        "lineNumber": 103,
+        "lineNumber": 100,
         "author": {
           "gitId": "manaswini05"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 104,
+        "lineNumber": 101,
         "author": {
           "gitId": "manaswini05"
         },
         "content": "        this.lists \u003d new DegreeList();"
       },
       {
-        "lineNumber": 105,
+        "lineNumber": 102,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "        DegreeListStorage.ReadFile(storage.fetchListOutput(\"savedegree\"));"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "KaneQuah"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "KaneQuah"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "KaneQuah"
+        },
+        "content": ""
       },
       {
         "lineNumber": 106,
@@ -28366,721 +28394,721 @@
       {
         "lineNumber": 107,
         "author": {
-          "gitId": "KaneQuah"
+          "gitId": "zyleet"
         },
-        "content": "    }"
+        "content": "    public String reminder() {"
       },
       {
         "lineNumber": 108,
         "author": {
-          "gitId": "KaneQuah"
+          "gitId": "zyleet"
         },
-        "content": ""
+        "content": "        ByteArrayOutputStream output \u003d new ByteArrayOutputStream();"
       },
       {
         "lineNumber": 109,
         "author": {
-          "gitId": "KaneQuah"
+          "gitId": "zyleet"
         },
-        "content": ""
+        "content": "        PrintStream ps \u003d new PrintStream(output);"
       },
       {
         "lineNumber": 110,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "    public String reminder() {"
+        "content": "        // IMPORTANT: Save the old System.out!"
       },
       {
         "lineNumber": 111,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "        ByteArrayOutputStream output \u003d new ByteArrayOutputStream();"
+        "content": "        PrintStream old \u003d System.out;"
       },
       {
         "lineNumber": 112,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "        PrintStream ps \u003d new PrintStream(output);"
+        "content": "        // Tell Java to use your special stream"
       },
       {
         "lineNumber": 113,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "        // IMPORTANT: Save the old System.out!"
+        "content": "        System.setOut(ps);"
       },
       {
         "lineNumber": 114,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "        PrintStream old \u003d System.out;"
+        "content": "        myList.printReminders();"
       },
       {
         "lineNumber": 115,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "        // Tell Java to use your special stream"
+        "content": "        // Put things back"
       },
       {
         "lineNumber": 116,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "        System.setOut(ps);"
+        "content": "        System.out.flush();"
       },
       {
         "lineNumber": 117,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "        myList.printReminders();"
+        "content": "        System.setOut(old);"
       },
       {
         "lineNumber": 118,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "        // Put things back"
-      },
-      {
-        "lineNumber": 119,
-        "author": {
-          "gitId": "zyleet"
-        },
-        "content": "        System.out.flush();"
-      },
-      {
-        "lineNumber": 120,
-        "author": {
-          "gitId": "zyleet"
-        },
-        "content": "        System.setOut(old);"
-      },
-      {
-        "lineNumber": 121,
-        "author": {
-          "gitId": "zyleet"
-        },
         "content": "        // Show what happened"
       },
       {
-        "lineNumber": 122,
+        "lineNumber": 119,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "        //System.out.println(output.toString());"
       },
       {
-        "lineNumber": 123,
+        "lineNumber": 120,
         "author": {
           "gitId": "zyleet"
         },
         "content": "        return output.toString();"
       },
       {
-        "lineNumber": 124,
+        "lineNumber": 121,
         "author": {
           "gitId": "zyleet"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 125,
+        "lineNumber": 122,
         "author": {
           "gitId": "zyleet"
         },
         "content": ""
       },
       {
-        "lineNumber": 126,
+        "lineNumber": 123,
         "author": {
           "gitId": "zyleet"
         },
         "content": "    /**"
       },
       {
-        "lineNumber": 127,
+        "lineNumber": 124,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "     * Method to run the JavaFX.Main.Duke program."
       },
       {
-        "lineNumber": 128,
+        "lineNumber": 125,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "     *"
       },
       {
-        "lineNumber": 129,
+        "lineNumber": 126,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "     * @return the string to be printed by JavaFx"
       },
       {
-        "lineNumber": 130,
+        "lineNumber": 127,
         "author": {
           "gitId": "zyleet"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 131,
+        "lineNumber": 128,
         "author": {
           "gitId": "zyleet"
         },
         "content": "    //method output initial reading of save file"
       },
       {
-        "lineNumber": 132,
+        "lineNumber": 129,
         "author": {
           "gitId": "zyleet"
         },
         "content": "    public String run(String line) throws DukeException {"
       },
       {
-        "lineNumber": 133,
+        "lineNumber": 130,
         "author": {
           "gitId": "zyleet"
         },
         "content": "        typoFlag \u003d false;"
       },
       {
-        "lineNumber": 134,
+        "lineNumber": 131,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "        ByteArrayOutputStream output \u003d new ByteArrayOutputStream();"
       },
       {
-        "lineNumber": 135,
+        "lineNumber": 132,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "        PrintStream ps \u003d new PrintStream(output);"
       },
       {
-        "lineNumber": 136,
+        "lineNumber": 133,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "        PrintStream old \u003d System.out;"
       },
       {
-        "lineNumber": 137,
+        "lineNumber": 134,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "        System.setOut(ps);"
       },
       {
-        "lineNumber": 138,
+        "lineNumber": 135,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "        try {"
       },
       {
-        "lineNumber": 139,
+        "lineNumber": 136,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "            ui.showLine();"
       },
       {
-        "lineNumber": 140,
+        "lineNumber": 137,
         "author": {
           "gitId": "zyleet"
         },
         "content": "            Scanner temp \u003d new Scanner(line);"
       },
       {
-        "lineNumber": 141,
+        "lineNumber": 138,
         "author": {
           "gitId": "zyleet"
         },
         "content": "            String command;"
       },
       {
-        "lineNumber": 142,
+        "lineNumber": 139,
         "author": {
           "gitId": "zyleet"
         },
         "content": "            if (!temp.hasNext()) {"
       },
       {
-        "lineNumber": 143,
+        "lineNumber": 140,
         "author": {
           "gitId": "zyleet"
         },
         "content": "                throw new DukeException(\"Empty Command!\");"
       },
       {
-        "lineNumber": 144,
+        "lineNumber": 141,
         "author": {
           "gitId": "zyleet"
         },
         "content": "            } else {"
       },
       {
-        "lineNumber": 145,
+        "lineNumber": 142,
         "author": {
           "gitId": "zyleet"
         },
         "content": "                command \u003d temp.next();"
       },
       {
-        "lineNumber": 146,
+        "lineNumber": 143,
         "author": {
           "gitId": "zyleet"
         },
         "content": "            }"
       },
       {
-        "lineNumber": 147,
+        "lineNumber": 144,
         "author": {
           "gitId": "zyleet"
         },
         "content": ""
       },
       {
-        "lineNumber": 148,
+        "lineNumber": 145,
         "author": {
           "gitId": "zyleet"
         },
         "content": "            if (command.matches(\"undo\")) {"
       },
       {
-        "lineNumber": 149,
+        "lineNumber": 146,
         "author": {
           "gitId": "zyleet"
         },
         "content": "                commandList.undo();"
       },
       {
-        "lineNumber": 150,
+        "lineNumber": 147,
         "author": {
           "gitId": "zyleet"
         },
         "content": "                this.myList \u003d commandList.getTaskList();"
       },
       {
-        "lineNumber": 151,
+        "lineNumber": 148,
         "author": {
           "gitId": "zyleet"
         },
         "content": "                this.lists \u003d commandList.getDegreeLists();"
       },
       {
-        "lineNumber": 152,
+        "lineNumber": 149,
         "author": {
           "gitId": "zyleet"
         },
         "content": "            } else if (command.matches(\"redo\")) {"
       },
       {
-        "lineNumber": 153,
+        "lineNumber": 150,
         "author": {
           "gitId": "zyleet"
         },
         "content": "                commandList.redo();"
       },
       {
-        "lineNumber": 154,
+        "lineNumber": 151,
         "author": {
           "gitId": "zyleet"
         },
         "content": "                this.myList \u003d commandList.getTaskList();"
       },
       {
-        "lineNumber": 155,
+        "lineNumber": 152,
         "author": {
           "gitId": "zyleet"
         },
         "content": "                this.lists \u003d commandList.getDegreeLists();"
       },
       {
-        "lineNumber": 156,
+        "lineNumber": 153,
         "author": {
           "gitId": "zyleet"
         },
         "content": "            } else {"
       },
       {
-        "lineNumber": 157,
+        "lineNumber": 154,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "                Command c \u003d Parser.parse(line);"
       },
       {
-        "lineNumber": 158,
+        "lineNumber": 155,
         "author": {
           "gitId": "zyleet"
         },
         "content": ""
       },
       {
-        "lineNumber": 159,
+        "lineNumber": 156,
         "author": {
           "gitId": "zyleet"
         },
         "content": "                if ((c.getClass() \u003d\u003d AddCommand.class) | (c.getClass() \u003d\u003d ModCommand.class)"
       },
       {
-        "lineNumber": 160,
+        "lineNumber": 157,
         "author": {
           "gitId": "zyleet"
         },
         "content": "                        | (c.getClass() \u003d\u003d SortCommand.class) | (c.getClass() \u003d\u003d SwapCommand.class)) {"
       },
       {
-        "lineNumber": 161,
+        "lineNumber": 158,
         "author": {
           "gitId": "zyleet"
         },
         "content": "                    commandList.addCommand(c, this.myList, this.ui, this.storage, this.lists, this.degreesManager, line);"
       },
       {
-        "lineNumber": 162,
+        "lineNumber": 159,
         "author": {
           "gitId": "zyleet"
         },
         "content": "                } else if ((c.getClass() \u003d\u003d BadCommand.class) || c.getClass() \u003d\u003d null) {"
       },
       {
-        "lineNumber": 163,
+        "lineNumber": 160,
         "author": {
           "gitId": "zyleet"
         },
         "content": "                    typoFlag \u003d true; //when the user enters a command not understood by the program, trigger flag"
       },
       {
-        "lineNumber": 164,
+        "lineNumber": 161,
         "author": {
           "gitId": "zyleet"
         },
         "content": "                    c.execute(this.myList, this.ui, this.storage, this.lists, this.degreesManager);"
       },
       {
-        "lineNumber": 165,
+        "lineNumber": 162,
         "author": {
           "gitId": "zyleet"
         },
         "content": "                } else {"
       },
       {
-        "lineNumber": 166,
+        "lineNumber": 163,
         "author": {
           "gitId": "zyleet"
         },
         "content": "                    c.execute(this.myList, this.ui, this.storage, this.lists, this.degreesManager);"
       },
       {
-        "lineNumber": 167,
+        "lineNumber": 164,
         "author": {
           "gitId": "zyleet"
         },
         "content": "                }"
       },
       {
-        "lineNumber": 168,
+        "lineNumber": 165,
         "author": {
           "gitId": "zyleet"
         },
         "content": "            }"
       },
       {
-        "lineNumber": 169,
+        "lineNumber": 166,
         "author": {
           "gitId": "zyleet"
         },
         "content": "        } catch (DukeException | NullPointerException e) {"
       },
       {
-        "lineNumber": 170,
+        "lineNumber": 167,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "            ui.showError(e.getLocalizedMessage());"
       },
       {
-        "lineNumber": 171,
+        "lineNumber": 168,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "        } finally {"
       },
       {
-        "lineNumber": 172,
+        "lineNumber": 169,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "            ui.showLine();"
       },
       {
-        "lineNumber": 173,
+        "lineNumber": 170,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "            System.out.flush();"
       },
       {
-        "lineNumber": 174,
+        "lineNumber": 171,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "            System.setOut(old);"
       },
       {
-        "lineNumber": 175,
+        "lineNumber": 172,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "            System.out.println(output.toString());"
       },
       {
-        "lineNumber": 176,
+        "lineNumber": 173,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 177,
+        "lineNumber": 174,
         "author": {
           "gitId": "zyleet"
         },
         "content": "        return output.toString();"
       },
       {
-        "lineNumber": 178,
+        "lineNumber": 175,
         "author": {
           "gitId": "zyleet"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 179,
+        "lineNumber": 176,
         "author": {
           "gitId": "zyleet"
         },
         "content": ""
       },
       {
-        "lineNumber": 180,
+        "lineNumber": 177,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "    private void run() {"
       },
       {
-        "lineNumber": 181,
+        "lineNumber": 178,
         "author": {
           "gitId": "woblek"
         },
         "content": "        ui.showWelcome(this.myList);"
       },
       {
-        "lineNumber": 182,
+        "lineNumber": 179,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "        boolean isExit \u003d false;"
       },
       {
-        "lineNumber": 183,
+        "lineNumber": 180,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "        while (!isExit) {"
       },
       {
-        "lineNumber": 184,
+        "lineNumber": 181,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "            try {"
       },
       {
-        "lineNumber": 185,
+        "lineNumber": 182,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "                String line \u003d ui.readCommand();"
       },
       {
-        "lineNumber": 186,
+        "lineNumber": 183,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "                ui.showLine();"
       },
       {
-        "lineNumber": 187,
+        "lineNumber": 184,
         "author": {
           "gitId": "zyleet"
         },
         "content": "                Command c \u003d Parser.parse(line);"
       },
       {
-        "lineNumber": 188,
+        "lineNumber": 185,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "                isExit \u003d c.isExit();"
       },
       {
-        "lineNumber": 189,
+        "lineNumber": 186,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "                c.execute(this.myList, this.ui, this.storage, this.lists, this.degreesManager);"
       },
       {
-        "lineNumber": 190,
+        "lineNumber": 187,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "            } catch (DukeException | NullPointerException e) {"
       },
       {
-        "lineNumber": 191,
+        "lineNumber": 188,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "                ui.showError(e.getLocalizedMessage());"
       },
       {
-        "lineNumber": 192,
+        "lineNumber": 189,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "            } finally {"
       },
       {
-        "lineNumber": 193,
+        "lineNumber": 190,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "                ui.showLine();"
       },
       {
-        "lineNumber": 194,
+        "lineNumber": 191,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "            }"
       },
       {
-        "lineNumber": 195,
+        "lineNumber": 192,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 196,
+        "lineNumber": 193,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 197,
+        "lineNumber": 194,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": ""
       },
       {
-        "lineNumber": 198,
+        "lineNumber": 195,
         "author": {
           "gitId": "zyleet"
         },
         "content": ""
       },
       {
-        "lineNumber": 199,
+        "lineNumber": 196,
         "author": {
           "gitId": "zyleet"
         },
         "content": "    /**"
       },
       {
-        "lineNumber": 200,
+        "lineNumber": 197,
         "author": {
           "gitId": "zyleet"
         },
         "content": "     * Method to run the duke program with the file path of the save file."
       },
       {
-        "lineNumber": 201,
+        "lineNumber": 198,
         "author": {
           "gitId": "zyleet"
         },
         "content": "     * To be overwritten."
       },
       {
-        "lineNumber": 202,
+        "lineNumber": 199,
         "author": {
           "gitId": "zyleet"
         },
         "content": "     *"
       },
       {
-        "lineNumber": 203,
+        "lineNumber": 200,
         "author": {
           "gitId": "zyleet"
         },
         "content": "     * @param args A duke program."
       },
       {
-        "lineNumber": 204,
+        "lineNumber": 201,
         "author": {
           "gitId": "zyleet"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 205,
+        "lineNumber": 202,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "    public static void main(String[] args) {"
       },
       {
-        "lineNumber": 206,
+        "lineNumber": 203,
         "author": {
           "gitId": "zyleet"
         },
         "content": ""
       },
       {
-        "lineNumber": 207,
+        "lineNumber": 204,
         "author": {
           "gitId": "manaswini05"
         },
         "content": "        new Duke(\"save.txt\", \"savedegree.txt\").run();"
       },
       {
-        "lineNumber": 208,
+        "lineNumber": 205,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "        System.exit(0);"
       },
       {
-        "lineNumber": 209,
+        "lineNumber": 206,
         "author": {
           "gitId": "manaswini05"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 207,
+        "author": {
+          "gitId": "zyleet"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 208,
+        "author": {
+          "gitId": "zyleet"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 209,
+        "author": {
+          "gitId": "zyleet"
         },
         "content": ""
       },
@@ -29089,343 +29117,343 @@
         "author": {
           "gitId": "zyleet"
         },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 211,
-        "author": {
-          "gitId": "zyleet"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 212,
-        "author": {
-          "gitId": "zyleet"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 213,
-        "author": {
-          "gitId": "zyleet"
-        },
         "content": "    /**"
       },
       {
-        "lineNumber": 214,
+        "lineNumber": 211,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "     * Method to be overwritten in the JavaFX.Main class."
       },
       {
-        "lineNumber": 215,
+        "lineNumber": 212,
         "author": {
           "gitId": "zyleet"
         },
         "content": "     *"
       },
       {
-        "lineNumber": 216,
+        "lineNumber": 213,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "     * @param stage The stage object to be initialized, done in the JavaFX.Main class."
       },
       {
-        "lineNumber": 217,
+        "lineNumber": 214,
         "author": {
           "gitId": "zyleet"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 218,
+        "lineNumber": 215,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "    // This entire start method is to be overwritten by the start method in JavaFX.Main"
       },
       {
-        "lineNumber": 219,
+        "lineNumber": 216,
         "author": {
           "gitId": "zyleet"
         },
         "content": "    @Override"
       },
       {
-        "lineNumber": 220,
+        "lineNumber": 217,
         "author": {
           "gitId": "zyleet"
         },
         "content": "    public void start(Stage stage) {"
       },
       {
-        "lineNumber": 221,
+        "lineNumber": 218,
         "author": {
           "gitId": "zyleet"
         },
         "content": ""
+      },
+      {
+        "lineNumber": 219,
+        "author": {
+          "gitId": "zyleet"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 220,
+        "author": {
+          "gitId": "zyleet"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 221,
+        "author": {
+          "gitId": "zyleet"
+        },
+        "content": "    /**"
       },
       {
         "lineNumber": 222,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "    }"
+        "content": "     * Method to return the current task list in duke, for use in javafx"
       },
       {
         "lineNumber": 223,
         "author": {
           "gitId": "zyleet"
         },
-        "content": ""
+        "content": "     *"
       },
       {
         "lineNumber": 224,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "    /**"
+        "content": "     * @return the task list to be used by javafx"
       },
       {
         "lineNumber": 225,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "     * Method to return the current task list in duke, for use in javafx"
+        "content": "     */"
       },
       {
         "lineNumber": 226,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "     *"
+        "content": "    public TaskList getTaskList() {"
       },
       {
         "lineNumber": 227,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "     * @return the task list to be used by javafx"
+        "content": "        return this.myList;"
       },
       {
         "lineNumber": 228,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "     */"
+        "content": "    }"
       },
       {
         "lineNumber": 229,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "    public TaskList getTaskList() {"
+        "content": ""
       },
       {
         "lineNumber": 230,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "        return this.myList;"
+        "content": "    /**"
       },
       {
         "lineNumber": 231,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "    }"
+        "content": "     * Method to return the current choices of degree list in duke, for use in javafx"
       },
       {
         "lineNumber": 232,
         "author": {
           "gitId": "zyleet"
         },
-        "content": ""
+        "content": "     *"
       },
       {
         "lineNumber": 233,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "    /**"
+        "content": "     * @return the choices of degrees list to be used by javafx"
       },
       {
         "lineNumber": 234,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "     * Method to return the current choices of degree list in duke, for use in javafx"
+        "content": "     */"
       },
       {
         "lineNumber": 235,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "     *"
+        "content": "    public DegreeList getDegreeList() {"
       },
       {
         "lineNumber": 236,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "     * @return the choices of degrees list to be used by javafx"
+        "content": "        return this.lists;"
       },
       {
         "lineNumber": 237,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "     */"
+        "content": "    }"
       },
       {
         "lineNumber": 238,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "    public DegreeList getDegreeList() {"
+        "content": ""
       },
       {
         "lineNumber": 239,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "        return this.lists;"
+        "content": "    /**"
       },
       {
         "lineNumber": 240,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "    }"
+        "content": "     * Method to check if the most recent input has a type and thus the command is not accepted"
       },
       {
         "lineNumber": 241,
         "author": {
           "gitId": "zyleet"
         },
-        "content": ""
+        "content": "     *"
       },
       {
         "lineNumber": 242,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "    /**"
+        "content": "     * @return the flag to javafx to check for user typos"
       },
       {
         "lineNumber": 243,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "     * Method to check if the most recent input has a type and thus the command is not accepted"
+        "content": "     */"
       },
       {
         "lineNumber": 244,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "     *"
+        "content": "    public Boolean getTypoFlag () {"
       },
       {
         "lineNumber": 245,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "     * @return the flag to javafx to check for user typos"
+        "content": "        return this.typoFlag;"
       },
       {
         "lineNumber": 246,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "     */"
+        "content": "    }"
       },
       {
         "lineNumber": 247,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "    public Boolean getTypoFlag () {"
+        "content": ""
       },
       {
         "lineNumber": 248,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "        return this.typoFlag;"
+        "content": "    /**"
       },
       {
         "lineNumber": 249,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "    }"
+        "content": "     * Method to return the degree information stored in duke, for use in javafx"
       },
       {
         "lineNumber": 250,
         "author": {
           "gitId": "zyleet"
         },
-        "content": ""
+        "content": "     *"
       },
       {
         "lineNumber": 251,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "    /**"
+        "content": "     * @return the degree manager storing the degree information, of use in javafx"
       },
       {
         "lineNumber": 252,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "     * Method to return the degree information stored in duke, for use in javafx"
+        "content": "     */"
       },
       {
         "lineNumber": 253,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "     *"
+        "content": "    public DegreeManager getDegreesManager () {"
       },
       {
         "lineNumber": 254,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "     * @return the degree manager storing the degree information, of use in javafx"
+        "content": "        return this.degreesManager;"
       },
       {
         "lineNumber": 255,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "     */"
+        "content": "    }"
       },
       {
         "lineNumber": 256,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "    public DegreeManager getDegreesManager () {"
+        "content": ""
       },
       {
         "lineNumber": 257,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "        return this.degreesManager;"
+        "content": "}"
       },
       {
         "lineNumber": 258,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 259,
@@ -29433,32 +29461,11 @@
           "gitId": "zyleet"
         },
         "content": ""
-      },
-      {
-        "lineNumber": 260,
-        "author": {
-          "gitId": "zyleet"
-        },
-        "content": "}"
-      },
-      {
-        "lineNumber": 261,
-        "author": {
-          "gitId": "zyleet"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 262,
-        "author": {
-          "gitId": "zyleet"
-        },
-        "content": ""
       }
     ],
     "authorContributionMap": {
-      "woblek": 7,
-      "manaswini05": 28,
+      "woblek": 5,
+      "manaswini05": 27,
       "KaneQuah": 79,
       "zyleet": 148
     }
@@ -33536,7 +33543,7 @@
         "author": {
           "gitId": "woblek"
         },
-        "content": "    public static final Map\u003cString, Integer\u003e userPriorityMap;"
+        "content": "    public static final Map\u003cString, String\u003e userPriorityMap;"
       },
       {
         "lineNumber": 32,
@@ -33550,133 +33557,133 @@
         "author": {
           "gitId": "woblek"
         },
-        "content": "        Map\u003cString, Integer\u003e aMap \u003d new HashMap\u003c\u003e();"
+        "content": "        Map\u003cString, String\u003e aMap \u003d new HashMap\u003c\u003e();"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "woblek"
         },
-        "content": "        aMap.put(\"high\", 0);"
+        "content": "        aMap.put(\"very high\", \"Very High\");"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "woblek"
         },
-        "content": "        aMap.put(\"medium\", 1);"
+        "content": "        aMap.put(\"high\", \"High\");"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "woblek"
         },
-        "content": "        aMap.put(\"low\", 2);"
+        "content": "        aMap.put(\"normal\", \"Normal\");"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "woblek"
         },
-        "content": "        userPriorityMap \u003d Collections.unmodifiableMap(aMap);"
+        "content": "        aMap.put(\"low\", \"Low\");"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "woblek"
         },
-        "content": "    }"
+        "content": "        userPriorityMap \u003d Collections.unmodifiableMap(aMap);"
       },
       {
         "lineNumber": 39,
         "author": {
-          "gitId": "KaneQuah"
+          "gitId": "woblek"
         },
-        "content": "    Parser() {"
+        "content": "    }"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "KaneQuah"
         },
-        "content": "    }"
+        "content": "    Parser() {"
       },
       {
         "lineNumber": 41,
         "author": {
-          "gitId": "zyleet"
+          "gitId": "KaneQuah"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 43,
         "author": {
-          "gitId": "KaneQuah"
+          "gitId": "zyleet"
         },
-        "content": "     * Returns the appropiate command based on line input."
+        "content": "    /**"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "KaneQuah"
         },
-        "content": "     *"
+        "content": "     * Returns the appropiate command based on line input."
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "KaneQuah"
         },
-        "content": "     * @param line String which is the next line of input."
+        "content": "     *"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "KaneQuah"
         },
-        "content": "     * @return Command is of the appropriate type."
+        "content": "     * @param line String which is the next line of input."
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "KaneQuah"
         },
-        "content": "     * @throws DukeException throws when incorrect number of arguments passed."
+        "content": "     * @return Command is of the appropriate type."
       },
       {
         "lineNumber": 48,
         "author": {
-          "gitId": "zyleet"
+          "gitId": "KaneQuah"
         },
-        "content": "     */"
+        "content": "     * @throws DukeException throws when incorrect number of arguments passed."
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "    public static Command parse(String line) throws DukeException {"
+        "content": "     */"
       },
       {
         "lineNumber": 50,
         "author": {
-          "gitId": "KaneQuah"
+          "gitId": "zyleet"
         },
-        "content": "        Scanner temp \u003d new Scanner(line);"
+        "content": "    public static Command parse(String line) throws DukeException {"
       },
       {
         "lineNumber": 51,
         "author": {
-          "gitId": "zyleet"
+          "gitId": "KaneQuah"
         },
-        "content": ""
+        "content": "        Scanner temp \u003d new Scanner(line);"
       },
       {
         "lineNumber": 52,
@@ -33690,493 +33697,500 @@
         "author": {
           "gitId": "zyleet"
         },
-        "content": "        if (!temp.hasNext()) {"
+        "content": ""
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "            throw new DukeException(\"Empty Command!\");"
+        "content": "        if (!temp.hasNext()) {"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "        }"
+        "content": "            throw new DukeException(\"Empty Command!\");"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "zyleet"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 57,
+        "author": {
+          "gitId": "zyleet"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 58,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "        String command \u003d temp.next();"
       },
       {
-        "lineNumber": 58,
+        "lineNumber": 59,
         "author": {
           "gitId": "woblek"
         },
         "content": "        if (command.matches(\"tasks|bye|choices\")) {"
       },
       {
-        "lineNumber": 59,
+        "lineNumber": 60,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "            if (temp.hasNextLine()) {"
       },
       {
-        "lineNumber": 60,
+        "lineNumber": 61,
         "author": {
           "gitId": "zyleet"
         },
         "content": "                throw new DukeException(command + \" should not have any other arguments (whitespace acceptable)\");"
       },
       {
-        "lineNumber": 61,
+        "lineNumber": 62,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "            } else {"
       },
       {
-        "lineNumber": 62,
+        "lineNumber": 63,
         "author": {
           "gitId": "woblek"
         },
         "content": "                if (command.matches(\"tasks\")) {"
       },
       {
-        "lineNumber": 63,
+        "lineNumber": 64,
         "author": {
           "gitId": "manaswini05"
         },
         "content": "                    return new PrintCommand(command) {"
       },
       {
-        "lineNumber": 64,
+        "lineNumber": 65,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "                    };"
       },
       {
-        "lineNumber": 65,
+        "lineNumber": 66,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "                } else if (command.matches(\"bye\")) {"
       },
       {
-        "lineNumber": 66,
+        "lineNumber": 67,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "                    return new ExitCommand();"
       },
       {
-        "lineNumber": 67,
+        "lineNumber": 68,
         "author": {
           "gitId": "manaswini05"
         },
         "content": "                } else if (command.matches(\"choices\")) {"
       },
       {
-        "lineNumber": 68,
+        "lineNumber": 69,
         "author": {
           "gitId": "zyleet"
         },
         "content": "                    return new PrintCommand(command);"
       },
       {
-        "lineNumber": 69,
-        "author": {
-          "gitId": "zyleet"
-        },
-        "content": "                }"
-      },
-      {
         "lineNumber": 70,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "            }"
+        "content": "                }"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "        } else if (command.matches(\"help\")) {"
+        "content": "            }"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "            if (!temp.hasNextLine()) { //if the user wants to display all commands"
+        "content": "        } else if (command.matches(\"help\")) {"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "                return new HelpCommand(command);"
+        "content": "            if (!temp.hasNextLine()) { //if the user wants to display all commands"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "            } else { //if the user wants to display help for only one command"
+        "content": "                return new HelpCommand(command);"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "                String input \u003d temp.nextLine();"
+        "content": "            } else { //if the user wants to display help for only one command"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "                input \u003d input.strip();"
+        "content": "                String input \u003d temp.nextLine();"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "                if (input.matches(\"help|detail|compare|add|degreelist|swap|replace|delete|clear|custom\""
+        "content": "                input \u003d input.strip();"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "                        + \"|bye|undo|redo\")) {"
+        "content": "                if (input.matches(\"help|detail|compare|add|degreelist|swap|replace|delete|clear|custom\""
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "                    return new HelpCommand(command, input);"
+        "content": "                        + \"|bye|undo|redo\")) {"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "                } else {"
+        "content": "                    return new HelpCommand(command, input);"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "                    throw new DukeException(\"I do not understand that command. \""
+        "content": "                } else {"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "                            + \"Type \\\"help\\\" for a full list of available commands\");"
+        "content": "                    throw new DukeException(\"I do not understand that command. \""
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "                }"
+        "content": "                            + \"Type \\\"help\\\" for a full list of available commands\");"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "zyleet"
         },
-        "content": "            }"
+        "content": "                }"
       },
       {
         "lineNumber": 85,
+        "author": {
+          "gitId": "zyleet"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 86,
         "author": {
           "gitId": "manaswini05"
         },
         "content": ""
       },
       {
-        "lineNumber": 86,
+        "lineNumber": 87,
         "author": {
           "gitId": "woblek"
         },
         "content": "        } else if (command.matches(\"todo|deadline|event|done|delete|find|select\""
       },
       {
-        "lineNumber": 87,
+        "lineNumber": 88,
         "author": {
           "gitId": "manaswini05"
         },
         "content": "                + \"|snooze|schedule|add|remove|swap|sort|detail|compare|view_employment|cohort_size\")) {"
       },
       {
-        "lineNumber": 88,
+        "lineNumber": 89,
         "author": {
           "gitId": "zyleet"
         },
         "content": "            if (!temp.hasNextLine() \u0026\u0026 command.matches(\"detail\")) {"
       },
       {
-        "lineNumber": 89,
+        "lineNumber": 90,
         "author": {
           "gitId": "zyleet"
         },
         "content": "                throw new DukeException(\"You can try \\\" detail come \\\" to show information on Computer Engineering!\");"
       },
       {
-        "lineNumber": 90,
+        "lineNumber": 91,
         "author": {
           "gitId": "zyleet"
         },
         "content": "            } else if (!temp.hasNextLine() \u0026\u0026 command.matches(\"compare\")) {"
       },
       {
-        "lineNumber": 91,
+        "lineNumber": 92,
         "author": {
           "gitId": "zyleet"
         },
         "content": "                throw new DukeException(\"You can try \\\" compare bme come \\\" to show differences between \""
       },
       {
-        "lineNumber": 92,
+        "lineNumber": 93,
         "author": {
           "gitId": "zyleet"
         },
         "content": "                        + \"Biomedical Engineering and Computer Engineering!\");"
       },
       {
-        "lineNumber": 93,
+        "lineNumber": 94,
         "author": {
           "gitId": "zyleet"
         },
         "content": "            } else if (!temp.hasNextLine()) {"
       },
       {
-        "lineNumber": 94,
-        "author": {
-          "gitId": "KaneQuah"
-        },
-        "content": "                throw new DukeException(\"OOPS!!! The description of a \" + command + \" cannot be empty.\");"
-      },
-      {
         "lineNumber": 95,
         "author": {
           "gitId": "KaneQuah"
         },
-        "content": "            }"
+        "content": "                throw new DukeException(\"OOPS!!! The description of a \" + command + \" cannot be empty.\");"
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "KaneQuah"
         },
-        "content": "                String input \u003d temp.nextLine();"
+        "content": "            }"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "KaneQuah"
         },
-        "content": "            input \u003d input.strip();"
+        "content": "                String input \u003d temp.nextLine();"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "KaneQuah"
         },
-        "content": "            //System.out.println(\"input is\" + input + \"\\nCommand is\" + command);"
+        "content": "            input \u003d input.strip();"
       },
       {
         "lineNumber": 99,
+        "author": {
+          "gitId": "KaneQuah"
+        },
+        "content": "            //System.out.println(\"input is\" + input + \"\\nCommand is\" + command);"
+      },
+      {
+        "lineNumber": 100,
         "author": {
           "gitId": "zyleet"
         },
         "content": ""
       },
       {
-        "lineNumber": 100,
+        "lineNumber": 101,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "            if (input.isBlank()) {"
       },
       {
-        "lineNumber": 101,
+        "lineNumber": 102,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "                throw new DukeException(\"OOPS!!! The description of a \" + command + \" cannot be empty.\");"
       },
       {
-        "lineNumber": 102,
+        "lineNumber": 103,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "            } else {"
       },
       {
-        "lineNumber": 103,
+        "lineNumber": 104,
         "author": {
           "gitId": "zyleet"
         },
         "content": "                //add new tasks"
       },
       {
-        "lineNumber": 104,
+        "lineNumber": 105,
         "author": {
           "gitId": "woblek"
         },
         "content": "                if (command.matches(\"todo|deadline|event|add\")) {"
       },
       {
-        "lineNumber": 105,
+        "lineNumber": 106,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "                    return new AddCommand(command, input);"
       },
       {
-        "lineNumber": 106,
+        "lineNumber": 107,
         "author": {
           "gitId": "manaswini05"
         },
         "content": "                } else if (command.matches(\"done|delete|select|snooze|remove\")) {"
       },
       {
-        "lineNumber": 107,
+        "lineNumber": 108,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "                    return new ModCommand(command, input);"
       },
       {
-        "lineNumber": 108,
+        "lineNumber": 109,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "                } else if (command.matches(\"find|schedule\")) { //reading task list"
       },
       {
-        "lineNumber": 109,
+        "lineNumber": 110,
         "author": {
           "gitId": "manaswini05"
         },
         "content": "                    return new SearchCommand(command, input);"
       },
       {
-        "lineNumber": 110,
+        "lineNumber": 111,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "                } else if (command.matches(\"detail|compare\")) {"
       },
       {
-        "lineNumber": 111,
+        "lineNumber": 112,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "                    return new PrintCommand(command, input);"
       },
       {
-        "lineNumber": 112,
+        "lineNumber": 113,
         "author": {
           "gitId": "manaswini05"
         },
         "content": "                } else if (command.matches(\"swap\")) {"
       },
       {
-        "lineNumber": 113,
+        "lineNumber": 114,
         "author": {
           "gitId": "manaswini05"
         },
         "content": "                    return new SwapCommand(command, input);"
       },
       {
-        "lineNumber": 114,
+        "lineNumber": 115,
         "author": {
           "gitId": "woblek"
         },
         "content": "                } else if (command.matches(\"sort\")) {"
       },
       {
-        "lineNumber": 115,
+        "lineNumber": 116,
         "author": {
           "gitId": "woblek"
         },
         "content": "                    return new SortCommand(command, input);"
       },
       {
-        "lineNumber": 116,
+        "lineNumber": 117,
         "author": {
           "gitId": "manaswini05"
         },
         "content": "                } else if (command.matches(\"view_employment|cohort_size\")) {"
       },
       {
-        "lineNumber": 117,
+        "lineNumber": 118,
         "author": {
           "gitId": "manaswini05"
         },
         "content": "                    return new ViewCommand(command, input);"
       },
       {
-        "lineNumber": 118,
+        "lineNumber": 119,
         "author": {
           "gitId": "manaswini05"
         },
         "content": "                }"
       },
       {
-        "lineNumber": 119,
+        "lineNumber": 120,
         "author": {
           "gitId": "zyleet"
         },
         "content": "            }"
       },
       {
-        "lineNumber": 120,
+        "lineNumber": 121,
         "author": {
           "gitId": "zyleet"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 121,
+        "lineNumber": 122,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "        return new BadCommand(\"bad\", \"\");"
       },
       {
-        "lineNumber": 122,
+        "lineNumber": 123,
         "author": {
           "gitId": "zyleet"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 123,
+        "lineNumber": 124,
         "author": {
           "gitId": "zyleet"
         },
@@ -34184,7 +34198,7 @@
       }
     ],
     "authorContributionMap": {
-      "woblek": 20,
+      "woblek": 21,
       "manaswini05": 12,
       "KaneQuah": 43,
       "zyleet": 48
@@ -39099,14 +39113,14 @@
         "author": {
           "gitId": "woblek"
         },
-        "content": "            if (!splitPriority[1].toLowerCase().matches(\"high|medium|low\")){"
+        "content": "            if (!splitPriority[1].toLowerCase().matches(\"very high|high|normal|low\")){"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "woblek"
         },
-        "content": "                throw new DukeException(\"Please ensure that priority level is either High, Medium, or Low\");"
+        "content": "                throw new DukeException(\"Please ensure that priority level is either Very High, High, Normal, or Low\");"
       },
       {
         "lineNumber": 39,
@@ -39141,7 +39155,7 @@
         "author": {
           "gitId": "woblek"
         },
-        "content": "            this.userDefinedPriority \u003d splitPriority[1].toLowerCase();"
+        "content": "            this.userDefinedPriority \u003d Parser.userPriorityMap.get(splitPriority[1].toLowerCase());"
       },
       {
         "lineNumber": 44,
@@ -39197,7 +39211,7 @@
         "author": {
           "gitId": "woblek"
         },
-        "content": "            this.userDefinedPriority \u003d \"low\";"
+        "content": "            this.userDefinedPriority \u003d \"Normal\";"
       },
       {
         "lineNumber": 52,
@@ -39853,14 +39867,14 @@
         "author": {
           "gitId": "woblek"
         },
-        "content": "            if (!splitPriority[1].toLowerCase().matches(\"high|medium|low\")){"
+        "content": "            if (!splitPriority[1].toLowerCase().matches(\"very high|high|normal|low\")){"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "woblek"
         },
-        "content": "                throw new DukeException(\"Please ensure that priority level is either High, Medium, or Low\");"
+        "content": "                throw new DukeException(\"Please ensure that priority level is either Very High, High, Normal, or Low\");"
       },
       {
         "lineNumber": 33,
@@ -39895,7 +39909,7 @@
         "author": {
           "gitId": "woblek"
         },
-        "content": "            this.userDefinedPriority \u003d splitPriority[1].toLowerCase();"
+        "content": "            this.userDefinedPriority \u003d Parser.userPriorityMap.get(splitPriority[1].toLowerCase());"
       },
       {
         "lineNumber": 38,
@@ -39951,7 +39965,7 @@
         "author": {
           "gitId": "woblek"
         },
-        "content": "            this.userDefinedPriority \u003d \"low\";"
+        "content": "            this.userDefinedPriority \u003d \"Normal\";"
       },
       {
         "lineNumber": 46,
@@ -40368,7 +40382,7 @@
     }
   },
   {
-    "path": "src/main/java/task/NUSEvents.java",
+    "path": "src/main/java/task/NUSEventList.java",
     "fileType": "functional",
     "lines": [
       {
@@ -40495,7 +40509,7 @@
         "author": {
           "gitId": "woblek"
         },
-        "content": "public class NUSEvents {"
+        "content": "public class NUSEventList {"
       },
       {
         "lineNumber": 19,
@@ -40782,7 +40796,7 @@
         "author": {
           "gitId": "woblek"
         },
-        "content": "    public void loadDegreeTasks(List\u003cString\u003e taskDataRaw) throws DukeException {"
+        "content": "    public void loadEventLists(List\u003cString\u003e taskDataRaw) throws DukeException {"
       },
       {
         "lineNumber": 60,
@@ -41342,7 +41356,7 @@
       {
         "lineNumber": 2,
         "author": {
-          "gitId": "-"
+          "gitId": "zyleet"
         },
         "content": ""
       },
@@ -41363,7 +41377,7 @@
       {
         "lineNumber": 5,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": ""
       },
@@ -41377,35 +41391,35 @@
       {
         "lineNumber": 7,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "import java.text.DateFormat;"
       },
       {
         "lineNumber": 8,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "import java.text.ParseException;"
       },
       {
         "lineNumber": 9,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "import java.text.SimpleDateFormat;"
       },
       {
         "lineNumber": 10,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "import java.util.ArrayList;"
       },
       {
         "lineNumber": 11,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "import java.util.Date;"
       },
@@ -41419,14 +41433,14 @@
       {
         "lineNumber": 13,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": ""
       },
       {
         "lineNumber": 14,
         "author": {
-          "gitId": "-"
+          "gitId": "zyleet"
         },
         "content": "/**"
       },
@@ -41454,28 +41468,28 @@
       {
         "lineNumber": 18,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": " * @author Kane Quah"
       },
       {
         "lineNumber": 19,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": " * @version 1.0"
       },
       {
         "lineNumber": 20,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": " * @since 08/2019"
       },
       {
         "lineNumber": 21,
         "author": {
-          "gitId": "-"
+          "gitId": "zyleet"
         },
         "content": " */"
       },
@@ -41489,14 +41503,14 @@
       {
         "lineNumber": 23,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "    String description;"
       },
       {
         "lineNumber": 24,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "    boolean isDone;"
       },
@@ -41505,7 +41519,7 @@
         "author": {
           "gitId": "woblek"
         },
-        "content": "    Integer overallPriorityScore;"
+        "content": "    Integer sortingScore;"
       },
       {
         "lineNumber": 26,
@@ -41531,42 +41545,42 @@
       {
         "lineNumber": 29,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "    //protected String dueDate;"
       },
       {
         "lineNumber": 30,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "    private Date dueDate \u003d null;"
       },
       {
         "lineNumber": 31,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "    private ArrayList\u003cDate\u003e tentativeDates \u003d new ArrayList\u003c\u003e();"
       },
       {
         "lineNumber": 32,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "    protected static DateFormat dateFormatter \u003d new SimpleDateFormat(\"dd-MM-yyyy HHmm\");"
       },
       {
         "lineNumber": 33,
         "author": {
-          "gitId": "-"
+          "gitId": "manaswini05"
         },
         "content": "    protected static DateFormat dateFormatter_event \u003d new SimpleDateFormat(\"dd-MM-yyyy HHmm-HHmm\");"
       },
       {
         "lineNumber": 34,
         "author": {
-          "gitId": "-"
+          "gitId": "zyleet"
         },
         "content": ""
       },
@@ -41580,7 +41594,7 @@
       {
         "lineNumber": 36,
         "author": {
-          "gitId": "-"
+          "gitId": "zyleet"
         },
         "content": "    /**"
       },
@@ -41601,14 +41615,14 @@
       {
         "lineNumber": 39,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "     * @param description String containing description information"
       },
       {
         "lineNumber": 40,
         "author": {
-          "gitId": "-"
+          "gitId": "zyleet"
         },
         "content": "     */"
       },
@@ -41622,14 +41636,14 @@
       {
         "lineNumber": 42,
         "author": {
-          "gitId": "-"
+          "gitId": "zyleet"
         },
         "content": "        this.description \u003d description;"
       },
       {
         "lineNumber": 43,
         "author": {
-          "gitId": "-"
+          "gitId": "zyleet"
         },
         "content": "        this.isDone \u003d false;"
       },
@@ -41638,7 +41652,7 @@
         "author": {
           "gitId": "woblek"
         },
-        "content": "        this.overallPriorityScore \u003d 1;"
+        "content": "        this.sortingScore \u003d 1;"
       },
       {
         "lineNumber": 45,
@@ -41650,21 +41664,21 @@
       {
         "lineNumber": 46,
         "author": {
-          "gitId": "-"
+          "gitId": "zyleet"
         },
         "content": "    }"
       },
       {
         "lineNumber": 47,
         "author": {
-          "gitId": "-"
+          "gitId": "zyleet"
         },
         "content": ""
       },
       {
         "lineNumber": 48,
         "author": {
-          "gitId": "-"
+          "gitId": "zyleet"
         },
         "content": "    /**"
       },
@@ -41678,7 +41692,7 @@
       {
         "lineNumber": 50,
         "author": {
-          "gitId": "-"
+          "gitId": "zyleet"
         },
         "content": "     */"
       },
@@ -41692,21 +41706,21 @@
       {
         "lineNumber": 52,
         "author": {
-          "gitId": "-"
+          "gitId": "zyleet"
         },
         "content": "    }"
       },
       {
         "lineNumber": 53,
         "author": {
-          "gitId": "-"
+          "gitId": "zyleet"
         },
         "content": ""
       },
       {
         "lineNumber": 54,
         "author": {
-          "gitId": "-"
+          "gitId": "zyleet"
         },
         "content": "    /**"
       },
@@ -41720,49 +41734,49 @@
       {
         "lineNumber": 56,
         "author": {
-          "gitId": "-"
+          "gitId": "zyleet"
         },
         "content": "     * To be overwritten by the After, Recurring, Within and Duration class"
       },
       {
         "lineNumber": 57,
         "author": {
-          "gitId": "-"
+          "gitId": "zyleet"
         },
         "content": "     */"
       },
       {
         "lineNumber": 58,
         "author": {
-          "gitId": "-"
+          "gitId": "zyleet"
         },
         "content": "    public String getAfter() {"
       },
       {
         "lineNumber": 59,
         "author": {
-          "gitId": "-"
+          "gitId": "zyleet"
         },
         "content": "        return \"\";"
       },
       {
         "lineNumber": 60,
         "author": {
-          "gitId": "-"
+          "gitId": "zyleet"
         },
         "content": "    }"
       },
       {
         "lineNumber": 61,
         "author": {
-          "gitId": "-"
+          "gitId": "zyleet"
         },
         "content": ""
       },
       {
         "lineNumber": 62,
         "author": {
-          "gitId": "-"
+          "gitId": "zyleet"
         },
         "content": "    /**"
       },
@@ -41783,42 +41797,42 @@
       {
         "lineNumber": 65,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "     * @param date String which is in Date format"
       },
       {
         "lineNumber": 66,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "     * @throws DukeException DukeException thrown when dateFormatter parsing fails"
       },
       {
         "lineNumber": 67,
         "author": {
-          "gitId": "-"
+          "gitId": "zyleet"
         },
         "content": "     */"
       },
       {
         "lineNumber": 68,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "    void readDate(String date) throws DukeException {"
       },
       {
         "lineNumber": 69,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "        try {"
       },
       {
         "lineNumber": 70,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "            String[] split \u003d date.split(Parser.dateSeparator);"
       },
@@ -41832,7 +41846,7 @@
       {
         "lineNumber": 72,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "                this.dueDate \u003d dateFormatter.parse(date);"
       },
@@ -41846,7 +41860,7 @@
       {
         "lineNumber": 74,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "                this.readDate(split);"
       },
@@ -41867,49 +41881,49 @@
       {
         "lineNumber": 77,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "            throw new DukeException(\"Error! Please enter date in the format DD-MM-YYYY 2359.\");"
       },
       {
         "lineNumber": 78,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "            //throw new DukeException(\"Please use DDD format for date\");"
       },
       {
         "lineNumber": 79,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "        }"
       },
       {
         "lineNumber": 80,
         "author": {
-          "gitId": "-"
+          "gitId": "zyleet"
         },
         "content": "    }"
       },
       {
         "lineNumber": 81,
         "author": {
-          "gitId": "-"
+          "gitId": "zyleet"
         },
         "content": ""
       },
       {
         "lineNumber": 82,
         "author": {
-          "gitId": "-"
+          "gitId": "manaswini05"
         },
         "content": ""
       },
       {
         "lineNumber": 83,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "    /**"
       },
@@ -41930,35 +41944,35 @@
       {
         "lineNumber": 86,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "     * @param input String Array which shall be in Date format"
       },
       {
         "lineNumber": 87,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "     * @throws DukeException DukeException thrown when dateFormatter parsing fails"
       },
       {
         "lineNumber": 88,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "     */"
       },
       {
         "lineNumber": 89,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "    void readDate(String[] input) throws DukeException {"
       },
       {
         "lineNumber": 90,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "        try {"
       },
@@ -41972,7 +41986,7 @@
       {
         "lineNumber": 92,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "                readDate(input[0]);"
       },
@@ -41993,21 +42007,21 @@
       {
         "lineNumber": 95,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "                    this.tentativeDates.add(dateFormatter.parse(input[i]));"
       },
       {
         "lineNumber": 96,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "                }"
       },
       {
         "lineNumber": 97,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "            }"
       },
@@ -42021,42 +42035,42 @@
       {
         "lineNumber": 99,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "            throw new DukeException(\"Error! Please enter date in the format DD-MM-YYYY 2359.\");"
       },
       {
         "lineNumber": 100,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "            //throw new DukeException(\"Please use DDD format for date\");"
       },
       {
         "lineNumber": 101,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "        }"
       },
       {
         "lineNumber": 102,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "    }"
       },
       {
         "lineNumber": 103,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": ""
       },
       {
         "lineNumber": 104,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "    /**"
       },
@@ -42077,14 +42091,14 @@
       {
         "lineNumber": 107,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "     * @return true is it does else false"
       },
       {
         "lineNumber": 108,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "     */"
       },
@@ -42098,14 +42112,14 @@
       {
         "lineNumber": 110,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "        return !this.tentativeDates.isEmpty();"
       },
       {
         "lineNumber": 111,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "    }"
       },
@@ -42119,7 +42133,7 @@
       {
         "lineNumber": 113,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "    /**"
       },
@@ -42133,7 +42147,7 @@
       {
         "lineNumber": 115,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "     */"
       },
@@ -42147,14 +42161,14 @@
       {
         "lineNumber": 117,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "        this.tentativeDates.clear();"
       },
       {
         "lineNumber": 118,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "    }"
       },
@@ -42168,7 +42182,7 @@
       {
         "lineNumber": 120,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "    /**"
       },
@@ -42189,14 +42203,14 @@
       {
         "lineNumber": 123,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "     * @param newDate is the new dueDate of the Task"
       },
       {
         "lineNumber": 124,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "     */"
       },
@@ -42210,28 +42224,28 @@
       {
         "lineNumber": 126,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "        this.dueDate \u003d newDate;"
       },
       {
         "lineNumber": 127,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "    }"
       },
       {
         "lineNumber": 128,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": ""
       },
       {
         "lineNumber": 129,
         "author": {
-          "gitId": "-"
+          "gitId": "zyleet"
         },
         "content": "    /**"
       },
@@ -42252,14 +42266,14 @@
       {
         "lineNumber": 132,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "     * @return String which is a status icon in unicode format"
       },
       {
         "lineNumber": 133,
         "author": {
-          "gitId": "-"
+          "gitId": "zyleet"
         },
         "content": "     */"
       },
@@ -42273,28 +42287,28 @@
       {
         "lineNumber": 135,
         "author": {
-          "gitId": "-"
+          "gitId": "zyleet"
         },
         "content": "        return (isDone ? \"Y\" : \"N\"); //return Y or N"
       },
       {
         "lineNumber": 136,
         "author": {
-          "gitId": "-"
+          "gitId": "zyleet"
         },
         "content": "    }"
       },
       {
         "lineNumber": 137,
         "author": {
-          "gitId": "-"
+          "gitId": "zyleet"
         },
         "content": ""
       },
       {
         "lineNumber": 138,
         "author": {
-          "gitId": "-"
+          "gitId": "zyleet"
         },
         "content": "    /**"
       },
@@ -42315,21 +42329,21 @@
       {
         "lineNumber": 141,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "     * @throws DukeException DukeException warns the use that the Task has already been done"
       },
       {
         "lineNumber": 142,
         "author": {
-          "gitId": "-"
+          "gitId": "zyleet"
         },
         "content": "     */"
       },
       {
         "lineNumber": 143,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "    void markDone() throws DukeException {"
       },
@@ -42343,7 +42357,7 @@
       {
         "lineNumber": 145,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "            throw new DukeException(\"But good sir, this task is already done!\");"
       },
@@ -42357,7 +42371,7 @@
       {
         "lineNumber": 147,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "            this.isDone \u003d true;"
       },
@@ -42371,21 +42385,21 @@
       {
         "lineNumber": 149,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "    }"
       },
       {
         "lineNumber": 150,
         "author": {
-          "gitId": "-"
+          "gitId": "zyleet"
         },
         "content": ""
       },
       {
         "lineNumber": 151,
         "author": {
-          "gitId": "-"
+          "gitId": "woblek"
         },
         "content": "    /**"
       },
@@ -42420,7 +42434,7 @@
       {
         "lineNumber": 156,
         "author": {
-          "gitId": "-"
+          "gitId": "woblek"
         },
         "content": "     */"
       },
@@ -42434,21 +42448,21 @@
       {
         "lineNumber": 158,
         "author": {
-          "gitId": "-"
+          "gitId": "woblek"
         },
         "content": "    }"
       },
       {
         "lineNumber": 159,
         "author": {
-          "gitId": "-"
+          "gitId": "woblek"
         },
         "content": ""
       },
       {
         "lineNumber": 160,
         "author": {
-          "gitId": "-"
+          "gitId": "zyleet"
         },
         "content": "    /**"
       },
@@ -42469,14 +42483,14 @@
       {
         "lineNumber": 163,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "     * @return boolean describing if Task is Done"
       },
       {
         "lineNumber": 164,
         "author": {
-          "gitId": "-"
+          "gitId": "zyleet"
         },
         "content": "     */"
       },
@@ -42518,14 +42532,14 @@
       {
         "lineNumber": 170,
         "author": {
-          "gitId": "-"
+          "gitId": "woblek"
         },
         "content": ""
       },
       {
         "lineNumber": 171,
         "author": {
-          "gitId": "-"
+          "gitId": "zyleet"
         },
         "content": "    /**"
       },
@@ -42546,49 +42560,49 @@
       {
         "lineNumber": 174,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "     * @return String description"
       },
       {
         "lineNumber": 175,
         "author": {
-          "gitId": "-"
+          "gitId": "zyleet"
         },
         "content": "     */"
       },
       {
         "lineNumber": 176,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "    public String getDescription() {"
       },
       {
         "lineNumber": 177,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "        return this.description;"
       },
       {
         "lineNumber": 178,
         "author": {
-          "gitId": "-"
+          "gitId": "zyleet"
         },
         "content": "    }"
       },
       {
         "lineNumber": 179,
         "author": {
-          "gitId": "-"
+          "gitId": "zyleet"
         },
         "content": ""
       },
       {
         "lineNumber": 180,
         "author": {
-          "gitId": "-"
+          "gitId": "zyleet"
         },
         "content": "    /**"
       },
@@ -42609,21 +42623,21 @@
       {
         "lineNumber": 183,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "     * @return String Date as per Date format"
       },
       {
         "lineNumber": 184,
         "author": {
-          "gitId": "-"
+          "gitId": "zyleet"
         },
         "content": "     */"
       },
       {
         "lineNumber": 185,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "    public String getDueDate() {"
       },
@@ -42637,7 +42651,7 @@
       {
         "lineNumber": 187,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "            return dateFormatter.format(this.dueDate);"
       },
@@ -42651,14 +42665,14 @@
       {
         "lineNumber": 189,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "            StringBuilder dates \u003d new StringBuilder();"
       },
       {
         "lineNumber": 190,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "            dates.append(dateFormatter.format(this.tentativeDates.get(0)));"
       },
@@ -42672,21 +42686,21 @@
       {
         "lineNumber": 192,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "                dates.append(\" OR \").append(dateFormatter.format(this.tentativeDates.get(i)));"
       },
       {
         "lineNumber": 193,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "            }"
       },
       {
         "lineNumber": 194,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "            return dates.toString();"
       },
@@ -42700,7 +42714,7 @@
       {
         "lineNumber": 196,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
         "content": "            return \"\";"
       },
@@ -42737,126 +42751,126 @@
         "author": {
           "gitId": "woblek"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 202,
         "author": {
           "gitId": "woblek"
         },
-        "content": "    public void setOverallPriorityScore(Integer overallPriorityScore) {"
+        "content": "     * this function considers the current date, the user\u0027s defined priority"
       },
       {
         "lineNumber": 203,
         "author": {
           "gitId": "woblek"
         },
-        "content": "        this.overallPriorityScore \u003d overallPriorityScore;"
+        "content": "     * and the user\u0027s degree list to assign a Priority score to a task"
       },
       {
         "lineNumber": 204,
         "author": {
           "gitId": "woblek"
         },
-        "content": "    }"
+        "content": "     */"
       },
       {
         "lineNumber": 205,
         "author": {
           "gitId": "woblek"
         },
-        "content": ""
+        "content": "    public void calculatePriorityScore(){"
       },
       {
         "lineNumber": 206,
         "author": {
           "gitId": "woblek"
         },
-        "content": ""
+        "content": "        this.sortingScore \u003d 0;"
       },
       {
         "lineNumber": 207,
         "author": {
           "gitId": "woblek"
         },
-        "content": "    public Integer getOverallPriorityScore() {"
+        "content": ""
       },
       {
         "lineNumber": 208,
         "author": {
           "gitId": "woblek"
         },
-        "content": "        return overallPriorityScore;"
+        "content": "        if (userDefinedPriority.toLowerCase().matches(\"very high\")){"
       },
       {
         "lineNumber": 209,
         "author": {
           "gitId": "woblek"
         },
-        "content": "    }"
+        "content": "            this.sortingScore \u003d 5;"
       },
       {
         "lineNumber": 210,
         "author": {
           "gitId": "woblek"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 211,
         "author": {
           "gitId": "woblek"
         },
-        "content": ""
+        "content": "        else if (userDefinedPriority.toLowerCase().matches(\"high\")){"
       },
       {
         "lineNumber": 212,
         "author": {
           "gitId": "woblek"
         },
-        "content": "    public void calculatePriorityScore(){"
+        "content": "            this.sortingScore \u003d 4;"
       },
       {
         "lineNumber": 213,
         "author": {
           "gitId": "woblek"
         },
-        "content": "        if (this.dueDate \u003d\u003d null){"
+        "content": "        }"
       },
       {
         "lineNumber": 214,
         "author": {
           "gitId": "woblek"
         },
-        "content": "            this.overallPriorityScore \u003d 1;"
+        "content": "        else if (userDefinedPriority.toLowerCase().matches(\"normal\")){"
       },
       {
         "lineNumber": 215,
         "author": {
           "gitId": "woblek"
         },
-        "content": "        }"
+        "content": "            this.sortingScore \u003d 3;"
       },
       {
         "lineNumber": 216,
         "author": {
           "gitId": "woblek"
         },
-        "content": "        Integer daysAway \u003d (int)getDifferenceDays(this.dueDate);"
+        "content": "        }"
       },
       {
         "lineNumber": 217,
         "author": {
           "gitId": "woblek"
         },
-        "content": "        if (daysAway \u003c 0){"
+        "content": "        else if (userDefinedPriority.toLowerCase().matches(\"low\")){"
       },
       {
         "lineNumber": 218,
         "author": {
           "gitId": "woblek"
         },
-        "content": "            this.overallPriorityScore \u003d -1;"
+        "content": "            this.sortingScore \u003d 2;"
       },
       {
         "lineNumber": 219,
@@ -42870,497 +42884,686 @@
         "author": {
           "gitId": "woblek"
         },
-        "content": "        else{"
+        "content": "    }"
       },
       {
         "lineNumber": 221,
         "author": {
           "gitId": "woblek"
         },
-        "content": "            Integer urgency \u003d 40 - (daysAway / 7);"
+        "content": ""
       },
       {
         "lineNumber": 222,
         "author": {
           "gitId": "woblek"
         },
-        "content": ""
+        "content": "    public void calculateDateScore(){"
       },
       {
         "lineNumber": 223,
         "author": {
           "gitId": "woblek"
         },
-        "content": "        }"
+        "content": "        this.sortingScore \u003d 0;"
       },
       {
         "lineNumber": 224,
         "author": {
           "gitId": "woblek"
         },
-        "content": "    }"
+        "content": "        Integer daysAway \u003d (int)getDifferenceDays(this.dueDate);"
       },
       {
         "lineNumber": 225,
         "author": {
           "gitId": "woblek"
         },
-        "content": ""
+        "content": "        if (this.dueDate \u003d\u003d null){"
       },
       {
         "lineNumber": 226,
         "author": {
           "gitId": "woblek"
         },
-        "content": "    public static long getDifferenceDays(Date d1) {"
+        "content": "            this.sortingScore +\u003d 1;"
       },
       {
         "lineNumber": 227,
         "author": {
           "gitId": "woblek"
         },
-        "content": "        Date d2 \u003d new Date();"
+        "content": "        }"
       },
       {
         "lineNumber": 228,
         "author": {
           "gitId": "woblek"
         },
-        "content": "        long diff \u003d d2.getTime() - d1.getTime();"
+        "content": "        if (daysAway \u003c 0){"
       },
       {
         "lineNumber": 229,
         "author": {
           "gitId": "woblek"
         },
-        "content": "        return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);"
+        "content": "            this.sortingScore -\u003d 1;"
       },
       {
         "lineNumber": 230,
         "author": {
-          "gitId": "-"
+          "gitId": "woblek"
         },
-        "content": "    }"
+        "content": "        }"
       },
       {
         "lineNumber": 231,
         "author": {
-          "gitId": "-"
+          "gitId": "woblek"
         },
-        "content": ""
+        "content": "        else {"
       },
       {
         "lineNumber": 232,
         "author": {
-          "gitId": "-"
+          "gitId": "woblek"
         },
-        "content": "    public Date getTentativeDate(int index) {"
+        "content": "            this.sortingScore \u003d 100*650 - daysAway;"
       },
       {
         "lineNumber": 233,
         "author": {
-          "gitId": "-"
+          "gitId": "woblek"
         },
-        "content": "        return tentativeDates.get(index);"
+        "content": "        }"
       },
       {
         "lineNumber": 234,
         "author": {
-          "gitId": "-"
+          "gitId": "woblek"
         },
         "content": "    }"
       },
       {
         "lineNumber": 235,
         "author": {
-          "gitId": "-"
+          "gitId": "woblek"
         },
         "content": ""
       },
       {
         "lineNumber": 236,
         "author": {
-          "gitId": "-"
+          "gitId": "woblek"
         },
         "content": "    /**"
       },
       {
         "lineNumber": 237,
         "author": {
-          "gitId": "KaneQuah"
+          "gitId": "woblek"
         },
-        "content": "     * Out of Bounds checker."
+        "content": "     * This function calculates the number of days between now and the task date"
       },
       {
         "lineNumber": 238,
         "author": {
-          "gitId": "KaneQuah"
+          "gitId": "woblek"
         },
-        "content": "     *"
+        "content": "     * @param d1"
       },
       {
         "lineNumber": 239,
         "author": {
-          "gitId": "-"
+          "gitId": "woblek"
         },
-        "content": "     * @param request int The index to be checked if it exists"
+        "content": "     * @return"
       },
       {
         "lineNumber": 240,
         "author": {
-          "gitId": "-"
-        },
-        "content": "     * @return boolean true if within range, false if not"
-      },
-      {
-        "lineNumber": 241,
-        "author": {
-          "gitId": "-"
+          "gitId": "woblek"
         },
         "content": "     */"
       },
       {
+        "lineNumber": 241,
+        "author": {
+          "gitId": "woblek"
+        },
+        "content": "    public static long getDifferenceDays(Date d1) {"
+      },
+      {
         "lineNumber": 242,
         "author": {
-          "gitId": "KaneQuah"
+          "gitId": "woblek"
         },
-        "content": "    boolean outsideTentative(int request) {"
+        "content": "        Date d2 \u003d new Date();"
       },
       {
         "lineNumber": 243,
         "author": {
-          "gitId": "-"
+          "gitId": "woblek"
         },
-        "content": "        return ((request \u003c 0) || (request \u003e\u003d this.tentativeDates.size()));"
+        "content": "        long diff \u003d d1.getTime() - d2.getTime();"
       },
       {
         "lineNumber": 244,
         "author": {
-          "gitId": "-"
+          "gitId": "woblek"
         },
-        "content": "    }"
+        "content": "        return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);"
       },
       {
         "lineNumber": 245,
         "author": {
-          "gitId": "-"
+          "gitId": "woblek"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 246,
         "author": {
-          "gitId": "-"
+          "gitId": "woblek"
         },
         "content": ""
       },
       {
         "lineNumber": 247,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
-        "content": "    /**"
+        "content": "    public Date getTentativeDate(int index) {"
       },
       {
         "lineNumber": 248,
         "author": {
           "gitId": "KaneQuah"
         },
-        "content": "     * Returns Task in print friendly format."
+        "content": "        return tentativeDates.get(index);"
       },
       {
         "lineNumber": 249,
         "author": {
           "gitId": "KaneQuah"
         },
-        "content": "     *"
+        "content": "    }"
       },
       {
         "lineNumber": 250,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
-        "content": "     * @return String which contains Task Type icon, status and Description and DueDate if any"
+        "content": ""
       },
       {
         "lineNumber": 251,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
-        "content": "     */"
+        "content": "    /**"
       },
       {
         "lineNumber": 252,
         "author": {
           "gitId": "KaneQuah"
         },
-        "content": "    public String toList() {"
+        "content": "     * Out of Bounds checker."
       },
       {
         "lineNumber": 253,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        return \"[?][\" + this.getStatusIcon() + \"] \" + this.getDescription() + \"(on:\" + getDueDate() + \")\";"
-      },
-      {
-        "lineNumber": 254,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 255,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 256,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 257,
-        "author": {
-          "gitId": "KaneQuah"
-        },
-        "content": "     * Returns type of Task."
-      },
-      {
-        "lineNumber": 258,
         "author": {
           "gitId": "KaneQuah"
         },
         "content": "     *"
       },
       {
-        "lineNumber": 259,
+        "lineNumber": 254,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
         },
-        "content": "     * @return String consisting of a single Letter (for now)"
+        "content": "     * @param request int The index to be checked if it exists"
       },
       {
-        "lineNumber": 260,
+        "lineNumber": 255,
         "author": {
-          "gitId": "-"
+          "gitId": "KaneQuah"
+        },
+        "content": "     * @return boolean true if within range, false if not"
+      },
+      {
+        "lineNumber": 256,
+        "author": {
+          "gitId": "KaneQuah"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 261,
+        "lineNumber": 257,
         "author": {
           "gitId": "KaneQuah"
         },
-        "content": "    public String getType() {"
+        "content": "    boolean outsideTentative(int request) {"
+      },
+      {
+        "lineNumber": 258,
+        "author": {
+          "gitId": "KaneQuah"
+        },
+        "content": "        return ((request \u003c 0) || (request \u003e\u003d this.tentativeDates.size()));"
+      },
+      {
+        "lineNumber": 259,
+        "author": {
+          "gitId": "KaneQuah"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 260,
+        "author": {
+          "gitId": "KaneQuah"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 261,
+        "author": {
+          "gitId": "manaswini05"
+        },
+        "content": ""
       },
       {
         "lineNumber": 262,
         "author": {
           "gitId": "KaneQuah"
         },
-        "content": "        return \"G\";"
+        "content": "    /**"
       },
       {
         "lineNumber": 263,
         "author": {
           "gitId": "KaneQuah"
         },
-        "content": "    }"
+        "content": "     * Returns Task in print friendly format."
       },
       {
         "lineNumber": 264,
         "author": {
           "gitId": "KaneQuah"
         },
-        "content": ""
+        "content": "     *"
       },
       {
         "lineNumber": 265,
         "author": {
-          "gitId": "woblek"
+          "gitId": "KaneQuah"
         },
-        "content": "    /**"
+        "content": "     * @return String which contains Task Type icon, status and Description and DueDate if any"
       },
       {
         "lineNumber": 266,
         "author": {
-          "gitId": "woblek"
+          "gitId": "KaneQuah"
         },
-        "content": "     * Returns the user defined priority level of the task"
+        "content": "     */"
       },
       {
         "lineNumber": 267,
         "author": {
-          "gitId": "woblek"
+          "gitId": "KaneQuah"
         },
-        "content": "     * @return"
+        "content": "    public String toList() {"
       },
       {
         "lineNumber": 268,
         "author": {
-          "gitId": "woblek"
+          "gitId": "KaneQuah"
         },
-        "content": "     */"
+        "content": "        return \"[?][\" + this.getStatusIcon() + \"] \" + this.getDescription() + \"(on:\" + getDueDate() + \")\";"
       },
       {
         "lineNumber": 269,
         "author": {
-          "gitId": "woblek"
-        },
-        "content": "    public String getUserDefinedPriority() {"
-      },
-      {
-        "lineNumber": 270,
-        "author": {
-          "gitId": "woblek"
-        },
-        "content": "        return userDefinedPriority;"
-      },
-      {
-        "lineNumber": 271,
-        "author": {
-          "gitId": "woblek"
+          "gitId": "zyleet"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 272,
+        "lineNumber": 270,
         "author": {
-          "gitId": "-"
+          "gitId": "zyleet"
         },
         "content": ""
       },
       {
-        "lineNumber": 273,
+        "lineNumber": 271,
         "author": {
-          "gitId": "woblek"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 274,
-        "author": {
-          "gitId": "woblek"
+          "gitId": "KaneQuah"
         },
         "content": "    /**"
       },
       {
+        "lineNumber": 272,
+        "author": {
+          "gitId": "KaneQuah"
+        },
+        "content": "     * Returns type of Task."
+      },
+      {
+        "lineNumber": 273,
+        "author": {
+          "gitId": "KaneQuah"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 274,
+        "author": {
+          "gitId": "KaneQuah"
+        },
+        "content": "     * @return String consisting of a single Letter (for now)"
+      },
+      {
         "lineNumber": 275,
         "author": {
-          "gitId": "woblek"
-        },
-        "content": "     * Returns the NUS Degree Name that is related to this task"
-      },
-      {
-        "lineNumber": 276,
-        "author": {
-          "gitId": "woblek"
-        },
-        "content": "     * @return"
-      },
-      {
-        "lineNumber": 277,
-        "author": {
-          "gitId": "woblek"
+          "gitId": "KaneQuah"
         },
         "content": "     */"
       },
       {
+        "lineNumber": 276,
+        "author": {
+          "gitId": "KaneQuah"
+        },
+        "content": "    public String getType() {"
+      },
+      {
+        "lineNumber": 277,
+        "author": {
+          "gitId": "KaneQuah"
+        },
+        "content": "        return \"G\";"
+      },
+      {
         "lineNumber": 278,
         "author": {
-          "gitId": "woblek"
+          "gitId": "KaneQuah"
         },
-        "content": "    public String getNusDegreeName() {"
+        "content": "    }"
       },
       {
         "lineNumber": 279,
         "author": {
-          "gitId": "woblek"
+          "gitId": "KaneQuah"
         },
-        "content": "        return nusDegreeName;"
+        "content": ""
       },
       {
         "lineNumber": 280,
         "author": {
           "gitId": "woblek"
         },
-        "content": "    }"
+        "content": "    /**"
       },
       {
         "lineNumber": 281,
         "author": {
           "gitId": "woblek"
         },
-        "content": ""
+        "content": "     * Returns the user defined priority level of the task"
       },
       {
         "lineNumber": 282,
         "author": {
           "gitId": "woblek"
         },
-        "content": "    /**"
+        "content": "     * @return"
       },
       {
         "lineNumber": 283,
         "author": {
           "gitId": "woblek"
         },
-        "content": "     * sets the NUS Degree Name that is related to this task"
+        "content": "     */"
       },
       {
         "lineNumber": 284,
         "author": {
           "gitId": "woblek"
         },
-        "content": "     * @param nusDegreeName"
+        "content": "    public String getUserDefinedPriority() {"
       },
       {
         "lineNumber": 285,
         "author": {
           "gitId": "woblek"
         },
-        "content": "     */"
+        "content": "        return userDefinedPriority;"
       },
       {
         "lineNumber": 286,
         "author": {
           "gitId": "woblek"
         },
-        "content": "    public void setNusDegreeName(String nusDegreeName) {"
+        "content": "    }"
       },
       {
         "lineNumber": 287,
         "author": {
           "gitId": "woblek"
         },
-        "content": "        this.nusDegreeName \u003d nusDegreeName;"
+        "content": ""
       },
       {
         "lineNumber": 288,
         "author": {
           "gitId": "woblek"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 289,
         "author": {
-          "gitId": "-"
+          "gitId": "woblek"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 290,
+        "author": {
+          "gitId": "woblek"
+        },
+        "content": "     * Returns the NUS Degree Name that is related to this task"
+      },
+      {
+        "lineNumber": 291,
+        "author": {
+          "gitId": "woblek"
+        },
+        "content": "     * @return"
+      },
+      {
+        "lineNumber": 292,
+        "author": {
+          "gitId": "woblek"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 293,
+        "author": {
+          "gitId": "woblek"
+        },
+        "content": "    public String getNusDegreeName() {"
+      },
+      {
+        "lineNumber": 294,
+        "author": {
+          "gitId": "woblek"
+        },
+        "content": "        return nusDegreeName;"
+      },
+      {
+        "lineNumber": 295,
+        "author": {
+          "gitId": "woblek"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 296,
+        "author": {
+          "gitId": "woblek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 297,
+        "author": {
+          "gitId": "woblek"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 298,
+        "author": {
+          "gitId": "woblek"
+        },
+        "content": "     * sets the NUS Degree Name that is related to this task"
+      },
+      {
+        "lineNumber": 299,
+        "author": {
+          "gitId": "woblek"
+        },
+        "content": "     * @param nusDegreeName"
+      },
+      {
+        "lineNumber": 300,
+        "author": {
+          "gitId": "woblek"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 301,
+        "author": {
+          "gitId": "woblek"
+        },
+        "content": "    public void setNusDegreeName(String nusDegreeName) {"
+      },
+      {
+        "lineNumber": 302,
+        "author": {
+          "gitId": "woblek"
+        },
+        "content": "        this.nusDegreeName \u003d nusDegreeName;"
+      },
+      {
+        "lineNumber": 303,
+        "author": {
+          "gitId": "woblek"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 304,
+        "author": {
+          "gitId": "woblek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 305,
+        "author": {
+          "gitId": "woblek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 306,
+        "author": {
+          "gitId": "woblek"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 307,
+        "author": {
+          "gitId": "woblek"
+        },
+        "content": "     * sets the UserDefinedPriority that is related to this task"
+      },
+      {
+        "lineNumber": 308,
+        "author": {
+          "gitId": "woblek"
+        },
+        "content": "     * It is usually called to input an automatic string of \"medium\""
+      },
+      {
+        "lineNumber": 309,
+        "author": {
+          "gitId": "woblek"
+        },
+        "content": "     * when the user does not specify the desired priority"
+      },
+      {
+        "lineNumber": 310,
+        "author": {
+          "gitId": "woblek"
+        },
+        "content": "     * @param userDefinedPriority"
+      },
+      {
+        "lineNumber": 311,
+        "author": {
+          "gitId": "woblek"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 312,
+        "author": {
+          "gitId": "woblek"
+        },
+        "content": "    public void setUserDefinedPriority(String userDefinedPriority) {"
+      },
+      {
+        "lineNumber": 313,
+        "author": {
+          "gitId": "woblek"
+        },
+        "content": "        this.userDefinedPriority \u003d userDefinedPriority;"
+      },
+      {
+        "lineNumber": 314,
+        "author": {
+          "gitId": "zyleet"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 315,
+        "author": {
+          "gitId": "woblek"
         },
         "content": "}"
+      },
+      {
+        "lineNumber": 316,
+        "author": {
+          "gitId": "woblek"
+        },
+        "content": ""
       }
     ],
     "authorContributionMap": {
-      "woblek": 63,
-      "KaneQuah": 69,
-      "-": 149,
-      "zyleet": 8
+      "woblek": 98,
+      "manaswini05": 3,
+      "KaneQuah": 163,
+      "zyleet": 52
     }
   },
   {
@@ -46235,7 +46438,7 @@
         "author": {
           "gitId": "woblek"
         },
-        "content": "    public void sortPriority(){"
+        "content": "    public void sortbyPriority(){"
       },
       {
         "lineNumber": 411,
@@ -46249,171 +46452,276 @@
         "author": {
           "gitId": "woblek"
         },
-        "content": "////            if (this.list.get(i).getTaskPriority() \u003d\u003d null){"
+        "content": "            this.list.get(i).calculatePriorityScore();"
       },
       {
         "lineNumber": 413,
         "author": {
           "gitId": "woblek"
         },
-        "content": "////                this.list.get(i).setTaskPriority(2);"
+        "content": "        }"
       },
       {
         "lineNumber": 414,
         "author": {
           "gitId": "woblek"
         },
-        "content": "//                System.out.println(this.list.get(i).toList());"
+        "content": "        Collections.sort(this.list, new Comparator\u003cTask\u003e() {"
       },
       {
         "lineNumber": 415,
         "author": {
           "gitId": "woblek"
         },
-        "content": "//                System.out.println(this.list.get(i).getTaskPriority());"
+        "content": "            @Override"
       },
       {
         "lineNumber": 416,
         "author": {
           "gitId": "woblek"
         },
-        "content": "        }"
+        "content": "            public int compare(Task o1, Task o2) {"
       },
       {
         "lineNumber": 417,
         "author": {
           "gitId": "woblek"
         },
-        "content": "        Collections.sort(this.list, new Comparator\u003cTask\u003e() {"
+        "content": "                return (o2.sortingScore - o1.sortingScore);"
       },
       {
         "lineNumber": 418,
         "author": {
           "gitId": "woblek"
         },
-        "content": "            @Override"
+        "content": "//                return o1.getDescription().compareTo(o2.getDescription());"
       },
       {
         "lineNumber": 419,
         "author": {
           "gitId": "woblek"
         },
-        "content": "            public int compare(Task o1, Task o2) {"
+        "content": "            }"
       },
       {
         "lineNumber": 420,
         "author": {
           "gitId": "woblek"
         },
-        "content": "                return (o2.overallPriorityScore - o1.overallPriorityScore);"
+        "content": "        });"
       },
       {
         "lineNumber": 421,
         "author": {
           "gitId": "woblek"
         },
-        "content": "//                return o1.getDescription().compareTo(o2.getDescription());"
+        "content": "        System.out.println(\"Done! Your tasks have been sorted by priority; the most important one is at the top:\\n\");"
       },
       {
         "lineNumber": 422,
         "author": {
           "gitId": "woblek"
         },
-        "content": "            }"
+        "content": "        print();"
       },
       {
         "lineNumber": 423,
         "author": {
           "gitId": "woblek"
         },
-        "content": "        });"
+        "content": "    }"
       },
       {
         "lineNumber": 424,
         "author": {
           "gitId": "woblek"
         },
-        "content": "        System.out.println(\"Done! Your tasks have been sorted by priority; the most important one is at the top:\\n\");"
+        "content": ""
       },
       {
         "lineNumber": 425,
         "author": {
           "gitId": "woblek"
         },
-        "content": "        print();"
+        "content": "    /**"
       },
       {
         "lineNumber": 426,
         "author": {
           "gitId": "woblek"
         },
-        "content": "    }"
+        "content": "     * sorts this tasklist according to date, nearest to latest, with overdue items at the bottom"
       },
       {
         "lineNumber": 427,
         "author": {
           "gitId": "woblek"
         },
-        "content": ""
+        "content": "     */"
       },
       {
         "lineNumber": 428,
         "author": {
           "gitId": "woblek"
         },
-        "content": ""
+        "content": "    public void sortbyDate(){"
       },
       {
         "lineNumber": 429,
         "author": {
           "gitId": "woblek"
         },
-        "content": ""
+        "content": "        for (int i \u003d 0 ; i \u003c this.list.size(); i++){"
       },
       {
         "lineNumber": 430,
+        "author": {
+          "gitId": "woblek"
+        },
+        "content": "            this.list.get(i).calculateDateScore();"
+      },
+      {
+        "lineNumber": 431,
+        "author": {
+          "gitId": "woblek"
+        },
+        "content": "            System.out.println(this.list.get(i).sortingScore);"
+      },
+      {
+        "lineNumber": 432,
+        "author": {
+          "gitId": "woblek"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 433,
+        "author": {
+          "gitId": "woblek"
+        },
+        "content": "        Collections.sort(this.list, new Comparator\u003cTask\u003e() {"
+      },
+      {
+        "lineNumber": 434,
+        "author": {
+          "gitId": "woblek"
+        },
+        "content": "            @Override"
+      },
+      {
+        "lineNumber": 435,
+        "author": {
+          "gitId": "woblek"
+        },
+        "content": "            public int compare(Task o1, Task o2) {"
+      },
+      {
+        "lineNumber": 436,
+        "author": {
+          "gitId": "woblek"
+        },
+        "content": "                return (o2.sortingScore - o1.sortingScore);"
+      },
+      {
+        "lineNumber": 437,
+        "author": {
+          "gitId": "woblek"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 438,
+        "author": {
+          "gitId": "woblek"
+        },
+        "content": "        });"
+      },
+      {
+        "lineNumber": 439,
+        "author": {
+          "gitId": "woblek"
+        },
+        "content": "        System.out.println(\"Done! Your tasks have been sorted by date; the earliest one is at the top:\\n\");"
+      },
+      {
+        "lineNumber": 440,
+        "author": {
+          "gitId": "woblek"
+        },
+        "content": "        print();"
+      },
+      {
+        "lineNumber": 441,
+        "author": {
+          "gitId": "woblek"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 442,
+        "author": {
+          "gitId": "woblek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 443,
+        "author": {
+          "gitId": "woblek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 444,
+        "author": {
+          "gitId": "woblek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 445,
         "author": {
           "gitId": "zyleet"
         },
         "content": "    /**"
       },
       {
-        "lineNumber": 431,
+        "lineNumber": 446,
         "author": {
           "gitId": "zyleet"
         },
         "content": "     * Deletes the entire taskList."
       },
       {
-        "lineNumber": 432,
+        "lineNumber": 447,
         "author": {
           "gitId": "zyleet"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 433,
+        "lineNumber": 448,
         "author": {
           "gitId": "zyleet"
         },
         "content": "    public void clear() {"
       },
       {
-        "lineNumber": 434,
+        "lineNumber": 449,
         "author": {
           "gitId": "zyleet"
         },
         "content": "        list.clear();"
       },
       {
-        "lineNumber": 435,
+        "lineNumber": 450,
         "author": {
           "gitId": "zyleet"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 436,
+        "lineNumber": 451,
         "author": {
           "gitId": "KaneQuah"
         },
@@ -46421,7 +46729,7 @@
       }
     ],
     "authorContributionMap": {
-      "woblek": 93,
+      "woblek": 108,
       "manaswini05": 30,
       "KaneQuah": 262,
       "zyleet": 51
@@ -46569,14 +46877,14 @@
         "author": {
           "gitId": "woblek"
         },
-        "content": "            if (!splitPriority[1].toLowerCase().matches(\"high|medium|low\")){"
+        "content": "            if (!splitPriority[1].toLowerCase().matches(\"very high|high|normal|low\")){"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "woblek"
         },
-        "content": "                throw new DukeException(\"Please ensure that priority level is either High, Medium, or Low\");"
+        "content": "                throw new DukeException(\"Please ensure that priority level is either Very High, High, Normal, or Low\");"
       },
       {
         "lineNumber": 22,
@@ -46604,7 +46912,7 @@
         "author": {
           "gitId": "woblek"
         },
-        "content": "            this.userDefinedPriority \u003d splitPriority[1].toLowerCase();"
+        "content": "            this.userDefinedPriority \u003d Parser.userPriorityMap.get(splitPriority[1].toLowerCase());"
       },
       {
         "lineNumber": 26,
@@ -46646,7 +46954,7 @@
         "author": {
           "gitId": "woblek"
         },
-        "content": "            this.userDefinedPriority \u003d \"low\";"
+        "content": "            this.userDefinedPriority \u003d \"Normal\";"
       },
       {
         "lineNumber": 32,
