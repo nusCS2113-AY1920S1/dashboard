@@ -10772,889 +10772,889 @@
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        }"
+        "content": "        } catch (ParseException e) {"
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        catch (ParseException e) {"
+        "content": "            throw new RimsException(\"Please specify a valid date using the following format: dd/MM/yyyy HHmm\");"
       },
       {
         "lineNumber": 104,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            throw new RimsException(\"Please specify the date using the following format: dd/MM/yyyy HHmm\");"
+        "content": "        }"
       },
       {
         "lineNumber": 105,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        }"
+        "content": "    }"
       },
       {
         "lineNumber": 106,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 107,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 108,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "    /**"
+        "content": "     * Checks if a date, in String format, entered by the user is parsable into a Date object."
       },
       {
         "lineNumber": 109,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "     * Checks if a date, in String format, entered by the user is parsable into a Date object."
+        "content": "     * @param date the String inputted by the user."
       },
       {
         "lineNumber": 110,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "     * @param date the String inputted by the user."
+        "content": "     * @return the same String inputted by the user, if it is indeed parsable into a Date object."
       },
       {
         "lineNumber": 111,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "     * @return the same String inputted by the user, if it is indeed parsable into a Date object."
+        "content": "     * @throws RimsException if the String is not parsable into a Date object."
       },
       {
         "lineNumber": 112,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "     * @throws RimsException if the String is not parsable into a Date object."
+        "content": "     */"
       },
       {
         "lineNumber": 113,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "     */"
+        "content": "    public String parseDate(String date) throws RimsException {"
       },
       {
         "lineNumber": 114,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "    public String parseDate(String date) throws RimsException {"
+        "content": "        if (date.length() \u003c 15) {"
       },
       {
         "lineNumber": 115,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        if (date.length() \u003c 15) {"
+        "content": "            if (!(date.contains(\" \"))) {"
       },
       {
         "lineNumber": 116,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            if (!(date.contains(\" \"))) {"
+        "content": "                throw new RimsException(\"Please enter a valid day / time.\");"
       },
       {
         "lineNumber": 117,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                throw new RimsException(\"Please enter a valid day / time.\");"
+        "content": "            }"
       },
       {
         "lineNumber": 118,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            }"
+        "content": "            String[] splitDate \u003d date.split(\" \"); // check for error"
       },
       {
         "lineNumber": 119,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            String[] splitDate \u003d date.split(\" \"); // check for error"
+        "content": "            date \u003d convertNaturalDate(splitDate[0], splitDate[1]);"
       },
       {
         "lineNumber": 120,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            date \u003d convertNaturalDate(splitDate[0], splitDate[1]);"
+        "content": "            return date;"
       },
       {
         "lineNumber": 121,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            return date;"
+        "content": "        }"
       },
       {
         "lineNumber": 122,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        }"
+        "content": "        checkParsableDate(date);"
       },
       {
         "lineNumber": 123,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        checkParsableDate(date);"
+        "content": "        return date;"
       },
       {
         "lineNumber": 124,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        return date;"
+        "content": ""
       },
       {
         "lineNumber": 125,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 126,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 127,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 128,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "    /**"
+        "content": "     * Checks if a String inputted by the user is a valid integer."
       },
       {
         "lineNumber": 129,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "     * Checks if a String inputted by the user is a valid integer."
+        "content": "     * @param input the String inputted by the user."
       },
       {
         "lineNumber": 130,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "     * @param input the String inputted by the user."
+        "content": "     * @return the integer conversion of the String, if it does represent a valid integer."
       },
       {
         "lineNumber": 131,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "     * @return the integer conversion of the String, if it does represent a valid integer."
+        "content": "     * @throws RimsException if the String does not represent a valid integer."
       },
       {
         "lineNumber": 132,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "     * @throws RimsException if the String does not represent a valid integer."
+        "content": "     */"
       },
       {
         "lineNumber": 133,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "     */"
+        "content": "    public int parseInt(String input) throws RimsException {"
       },
       {
         "lineNumber": 134,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "    public int parseInt(String input) throws RimsException {"
+        "content": "        try {"
       },
       {
         "lineNumber": 135,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        try {"
+        "content": "            return Integer.parseInt(input);"
       },
       {
         "lineNumber": 136,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            return Integer.parseInt(input);"
+        "content": "        }"
       },
       {
         "lineNumber": 137,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        }"
+        "content": "        catch (NumberFormatException e) {"
       },
       {
         "lineNumber": 138,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        catch (NumberFormatException e) {"
+        "content": "            throw new RimsException(\"Please use a valid integer value!\");"
       },
       {
         "lineNumber": 139,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            throw new RimsException(\"Please use a valid integer value!\");"
+        "content": "        }"
       },
       {
         "lineNumber": 140,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        }"
+        "content": "    }"
       },
       {
         "lineNumber": 141,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 142,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 143,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "    /**"
+        "content": "     * Parses the input obtained by the Ui from the user into an executable command."
       },
       {
         "lineNumber": 144,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "     * Parses the input obtained by the Ui from the user into an executable command."
+        "content": "     *"
       },
       {
         "lineNumber": 145,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "     *"
+        "content": "     * @param input the input obtained from the user by the Ui."
       },
       {
         "lineNumber": 146,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "     * @param input the input obtained from the user by the Ui."
+        "content": "     * @return a Command that can be executed to carry out the necessary tasks"
       },
       {
         "lineNumber": 147,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "     * @return a Command that can be executed to carry out the necessary tasks"
+        "content": "     * @throws RimsException if the input is in a wrong format or does not make"
       },
       {
         "lineNumber": 148,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "     * @throws RimsException if the input is in a wrong format or does not make"
+        "content": "     *                       sense."
       },
       {
         "lineNumber": 149,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "     *                       sense."
+        "content": "     */"
       },
       {
         "lineNumber": 150,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "     */"
+        "content": "    public Command parseInput(String input) throws RimsException, ParseException {"
       },
       {
         "lineNumber": 151,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "    public Command parseInput(String input) throws RimsException, ParseException {"
+        "content": "        input \u003d input.trim();"
       },
       {
         "lineNumber": 152,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        input \u003d input.trim();"
+        "content": "        Command c;"
       },
       {
         "lineNumber": 153,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        Command c;"
+        "content": "        String[] words \u003d input.split(\" \");"
       },
       {
         "lineNumber": 154,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        String[] words \u003d input.split(\" \");"
+        "content": ""
       },
       {
         "lineNumber": 155,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": ""
+        "content": "        if (input.equals(\"bye\") \u0026\u0026 words.length \u003d\u003d 1) {"
       },
       {
         "lineNumber": 156,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        if (input.equals(\"bye\") \u0026\u0026 words.length \u003d\u003d 1) {"
+        "content": "            c \u003d new CloseCommand();"
       },
       {
         "lineNumber": 157,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            c \u003d new CloseCommand();"
+        "content": "        } else if (input.equals(\"list\") \u0026\u0026 words.length \u003d\u003d 1) {"
       },
       {
         "lineNumber": 158,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        } else if (input.equals(\"list\") \u0026\u0026 words.length \u003d\u003d 1) {"
+        "content": "            c \u003d new ListCommand();"
       },
       {
         "lineNumber": 159,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            c \u003d new ListCommand();"
+        "content": "        // fix for date"
       },
       {
         "lineNumber": 160,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        // fix for date"
+        "content": "        } else if (words[0].equals(\"list\") \u0026\u0026 words.length \u003e 1) {"
       },
       {
         "lineNumber": 161,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        } else if (words[0].equals(\"list\") \u0026\u0026 words.length \u003e 1) {"
-      },
-      {
-        "lineNumber": 162,
-        "author": {
-          "gitId": "rabhijit"
-        },
         "content": "            c \u003d ListParser(input, words);"
       },
       {
-        "lineNumber": 163,
+        "lineNumber": 162,
         "author": {
           "gitId": "aarushisingh1"
         },
         "content": "        //@@author aarushisingh1"
       },
       {
-        "lineNumber": 164,
+        "lineNumber": 163,
         "author": {
           "gitId": "aarushisingh1"
         },
         "content": "        } else if (input.equals(\"deadlines\") \u0026\u0026 words.length \u003d\u003d 1) {"
       },
       {
-        "lineNumber": 165,
+        "lineNumber": 164,
         "author": {
           "gitId": "aarushisingh1"
         },
         "content": "            c \u003d new ViewDeadlinesCommand();"
       },
       {
-        "lineNumber": 166,
+        "lineNumber": 165,
         "author": {
           "gitId": "aarushisingh1"
         },
         "content": "        } else if (input.equals(\"help\") \u0026\u0026 words.length \u003d\u003d 1) {"
       },
       {
-        "lineNumber": 167,
+        "lineNumber": 166,
         "author": {
           "gitId": "aarushisingh1"
         },
         "content": "            c \u003d new HelpCommand();"
       },
       {
-        "lineNumber": 168,
+        "lineNumber": 167,
         "author": {
           "gitId": "danielcyc"
         },
         "content": "        // @@author danielcyc"
       },
       {
-        "lineNumber": 169,
+        "lineNumber": 168,
         "author": {
           "gitId": "danielcyc"
         },
         "content": "        } else if (words[0].equals(\"calendar\") \u0026\u0026 words.length \u003d\u003d 1) {"
       },
       {
-        "lineNumber": 170,
+        "lineNumber": 169,
         "author": {
           "gitId": "danielcyc"
         },
         "content": "            CalendarCommand.printCal(resources, ui);"
       },
       {
-        "lineNumber": 171,
+        "lineNumber": 170,
         "author": {
           "gitId": "danielcyc"
         },
         "content": "            c \u003d new ListCommand();"
       },
       {
-        "lineNumber": 172,
+        "lineNumber": 171,
         "author": {
           "gitId": "danielcyc"
         },
         "content": "        } else if (words[0].equals(\"calendar+\") \u0026\u0026 words.length \u003d\u003d 1) {"
       },
       {
-        "lineNumber": 173,
+        "lineNumber": 172,
         "author": {
           "gitId": "danielcyc"
         },
         "content": "            CalendarCommand.increaseSize(resources, ui);"
       },
       {
-        "lineNumber": 174,
+        "lineNumber": 173,
         "author": {
           "gitId": "danielcyc"
         },
         "content": "            c \u003d new ListCommand();"
       },
       {
-        "lineNumber": 175,
+        "lineNumber": 174,
         "author": {
           "gitId": "danielcyc"
         },
         "content": "        } else if (words[0].equals(\"calendar-\") \u0026\u0026 words.length \u003d\u003d 1) {"
       },
       {
-        "lineNumber": 176,
+        "lineNumber": 175,
         "author": {
           "gitId": "danielcyc"
         },
         "content": "            CalendarCommand.decreaseSize(resources, ui);"
       },
       {
-        "lineNumber": 177,
+        "lineNumber": 176,
         "author": {
           "gitId": "danielcyc"
         },
         "content": "            c \u003d new ListCommand();"
       },
       {
-        "lineNumber": 178,
+        "lineNumber": 177,
         "author": {
           "gitId": "rabhijit"
         },
         "content": "         //@@author rabhijit"
       },
       {
-        "lineNumber": 179,
+        "lineNumber": 178,
         "author": {
           "gitId": "rabhijit"
         },
         "content": "        } else if (words[0].equals(\"add\")) {"
       },
       {
-        "lineNumber": 180,
+        "lineNumber": 179,
         "author": {
           "gitId": "rabhijit"
         },
         "content": "            c \u003d AddParser(input, words);"
       },
       {
-        "lineNumber": 181,
+        "lineNumber": 180,
         "author": {
           "gitId": "rabhijit"
         },
         "content": "        } else if (words[0].equals(\"delete\")) {"
       },
       {
-        "lineNumber": 182,
+        "lineNumber": 181,
         "author": {
           "gitId": "rabhijit"
         },
         "content": "            c \u003d DeleteParser(input, words);"
       },
       {
-        "lineNumber": 183,
+        "lineNumber": 182,
         "author": {
           "gitId": "rabhijit"
         },
         "content": "        } else if (words[0].equals(\"loan\")) {"
       },
       {
-        "lineNumber": 184,
+        "lineNumber": 183,
         "author": {
           "gitId": "rabhijit"
         },
         "content": "            c \u003d LoanParser(input, words);"
       },
       {
-        "lineNumber": 185,
+        "lineNumber": 184,
         "author": {
           "gitId": "rabhijit"
         },
         "content": "        } else if (words[0].equals(\"reserve\")) {"
       },
       {
-        "lineNumber": 186,
+        "lineNumber": 185,
         "author": {
           "gitId": "rabhijit"
         },
         "content": "            c \u003d ReserveParser(input, words);"
       },
       {
-        "lineNumber": 187,
+        "lineNumber": 186,
         "author": {
           "gitId": "rabhijit"
         },
         "content": "        } else if (words[0].equals(\"return\") \u0026\u0026 input.contains(\" /id\")) {"
       },
       {
-        "lineNumber": 188,
+        "lineNumber": 187,
         "author": {
           "gitId": "rabhijit"
         },
         "content": "            c \u003d ReturnParser(input, words);"
       },
       {
-        "lineNumber": 189,
+        "lineNumber": 188,
         "author": {
           "gitId": "rabhijit"
         },
         "content": "        } else if (input.equals(\"undo\")) {"
       },
       {
-        "lineNumber": 190,
+        "lineNumber": 189,
         "author": {
           "gitId": "rabhijit"
         },
         "content": "            c \u003d new UndoCommand(prevCommand);"
       },
       {
-        "lineNumber": 191,
+        "lineNumber": 190,
         "author": {
           "gitId": "rabhijit"
         },
         "content": "        } else if ((words[0].equals(\"stats\") \u0026\u0026 words.length \u003e 1)) {"
       },
       {
-        "lineNumber": 192,
+        "lineNumber": 191,
         "author": {
           "gitId": "rabhijit"
         },
         "content": "            c \u003d StatsParser(input, words);"
       },
       {
-        "lineNumber": 193,
+        "lineNumber": 192,
         "author": {
           "gitId": "rabhijit"
         },
         "content": "        } else {"
       },
       {
-        "lineNumber": 194,
+        "lineNumber": 193,
         "author": {
           "gitId": "rabhijit"
         },
         "content": "            throw new RimsException(\"Please enter a recognizable command!\");"
       },
       {
-        "lineNumber": 195,
+        "lineNumber": 194,
         "author": {
           "gitId": "rabhijit"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 196,
+        "lineNumber": 195,
         "author": {
           "gitId": "rabhijit"
         },
         "content": "        return c;"
       },
       {
-        "lineNumber": 197,
+        "lineNumber": 196,
         "author": {
           "gitId": "rabhijit"
         },
         "content": "    }"
+      },
+      {
+        "lineNumber": 197,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": ""
       },
       {
         "lineNumber": 198,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 199,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "    protected Command ListParser(String input, String[] words) throws RimsException {"
+        "content": "     * Parses user input into the parameters for a ListCommand."
       },
       {
         "lineNumber": 200,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        int paramTypeIndex \u003d input.indexOf(\"/\");"
+        "content": "     * @param input the input obtained from the user by the Ui."
       },
       {
         "lineNumber": 201,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        int paramIndex \u003d paramTypeIndex + 5;"
+        "content": "     * @param words the input from the user, delimited by spaces into an array of individual words."
       },
       {
         "lineNumber": 202,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        if (paramTypeIndex \u003d\u003d -1 || paramIndex \u003e input.length() || paramIndex + 1 \u003e input.length()) {"
+        "content": "     * @return a ListCommand, if the input can be parsed into the required parameters."
       },
       {
         "lineNumber": 203,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            throw new RimsException(\"Please specify the parameter you want to view a detailed list of.\");"
+        "content": "     * @throws RimsException if the input cannot be parsed into the required parameters for a ListCommand."
       },
       {
         "lineNumber": 204,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        }"
+        "content": "     */"
       },
       {
         "lineNumber": 205,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        String paramType \u003d input.substring(paramTypeIndex + 1, paramIndex);"
+        "content": "    protected Command ListParser(String input, String[] words) throws RimsException {"
       },
       {
         "lineNumber": 206,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        if (!(paramType.equals(\"date\") || paramType.equals(\"room\") || paramType.equals(\"item\"))) {"
+        "content": "        int paramTypeIndex \u003d input.indexOf(\"/\");"
       },
       {
         "lineNumber": 207,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            throw new RimsException(\"Invalid list parameter! Please specify \u0027/date\u0027, \u0027/room\u0027 or \u0027/item\u0027 to view a detailed list.\");"
+        "content": "        int paramIndex \u003d paramTypeIndex + 5;"
       },
       {
         "lineNumber": 208,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        }"
+        "content": "        if (paramTypeIndex \u003d\u003d -1 || paramIndex \u003e input.length() || paramIndex + 1 \u003e input.length()) {"
       },
       {
         "lineNumber": 209,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        String param \u003d input.substring(paramIndex + 1);"
+        "content": "            throw new RimsException(\"Please specify the parameter you want to view a detailed list of.\");"
       },
       {
         "lineNumber": 210,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        return new ListCommand(paramType, param.trim());"
+        "content": "        }"
       },
       {
         "lineNumber": 211,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "    }"
+        "content": "        String paramType \u003d input.substring(paramTypeIndex + 1, paramIndex);"
       },
       {
         "lineNumber": 212,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": ""
+        "content": "        if (!(paramType.equals(\"date\") || paramType.equals(\"room\") || paramType.equals(\"item\"))) {"
       },
       {
         "lineNumber": 213,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "    protected Command AddParser(String input, String[] words) throws RimsException {"
+        "content": "            throw new RimsException(\"Invalid list parameter! Please specify \u0027/date\u0027, \u0027/room\u0027 or \u0027/item\u0027 to view a detailed list.\");"
       },
       {
         "lineNumber": 214,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        if (!(words.length \u003e 1)) {"
+        "content": "        }"
       },
       {
         "lineNumber": 215,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                throw new RimsException(\"Please specify the resource to add to your inventory.\");"
+        "content": "        String param \u003d input.substring(paramIndex + 1);"
       },
       {
         "lineNumber": 216,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            }"
+        "content": "        return new ListCommand(paramType, param.trim());"
       },
       {
         "lineNumber": 217,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        if (words[1].equals(\"/item\")) {"
+        "content": "    }"
       },
       {
         "lineNumber": 218,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            int itemIndex \u003d input.indexOf(\"/item\") + 6;"
+        "content": ""
       },
       {
         "lineNumber": 219,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            int qtyIndex \u003d input.indexOf(\" /qty\");"
+        "content": "    /**"
       },
       {
         "lineNumber": 220,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            if (qtyIndex \u003d\u003d -1) {"
+        "content": "     * Parses user input into the parameters for an AddCommand."
       },
       {
         "lineNumber": 221,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                throw new RimsException(\"Please specify the quantity of item to add to your inventory.\");"
+        "content": "     * @param input the input obtained from the user by the Ui."
       },
       {
         "lineNumber": 222,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            }"
+        "content": "     * @param words the input from the user, delimited by spaces into an array of individual words."
       },
       {
         "lineNumber": 223,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            if (itemIndex \u003e qtyIndex) {"
+        "content": "     * @return an AddCommand, if the input can be parsed into the required parameters."
       },
       {
         "lineNumber": 224,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                throw new RimsException(\"Please specify the item to add to your inventory.\");"
+        "content": "     * @throws RimsException if the input cannot be parsed into the required parameters for an AddCommand."
       },
       {
         "lineNumber": 225,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            }"
+        "content": "     */"
       },
       {
         "lineNumber": 226,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            String item \u003d input.substring(itemIndex, qtyIndex);"
+        "content": "    protected Command AddParser(String input, String[] words) throws RimsException {"
       },
       {
         "lineNumber": 227,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            if (item.trim().isEmpty()) {"
+        "content": "        if (!(words.length \u003e 1)) {"
       },
       {
         "lineNumber": 228,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                throw new RimsException(\"Please specify the item to add to your inventory.\");"
+        "content": "                throw new RimsException(\"Please specify the resource to add to your inventory.\");"
       },
       {
         "lineNumber": 229,
@@ -11668,350 +11668,350 @@
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            int qty \u003d parseInt(input.replaceFirst(\"add /item \" + item + \" /qty \", \"\").trim());"
+        "content": "        if (words[1].equals(\"/item\")) {"
       },
       {
         "lineNumber": 231,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            return new AddCommand(item.trim(), qty);"
+        "content": "            int itemIndex \u003d input.indexOf(\"/item\") + 6;"
       },
       {
         "lineNumber": 232,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        } else if (words[1].equals(\"/room\")) {"
+        "content": "            int qtyIndex \u003d input.indexOf(\" /qty\");"
       },
       {
         "lineNumber": 233,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            int roomIndex \u003d input.indexOf(\"/room\") + 6;"
+        "content": "            if (qtyIndex \u003d\u003d -1) {"
       },
       {
         "lineNumber": 234,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            if (roomIndex \u003e input.length()) {"
+        "content": "                throw new RimsException(\"Please specify the quantity of item to add to your inventory.\");"
       },
       {
         "lineNumber": 235,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                throw new RimsException(\"Please specify the room to add to your inventory.\");"
+        "content": "            }"
       },
       {
         "lineNumber": 236,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            }"
+        "content": "            if (itemIndex \u003e qtyIndex) {"
       },
       {
         "lineNumber": 237,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            String room \u003d input.substring(roomIndex);"
+        "content": "                throw new RimsException(\"Please specify the item to add to your inventory.\");"
       },
       {
         "lineNumber": 238,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            return new AddCommand(room.trim());"
+        "content": "            }"
       },
       {
         "lineNumber": 239,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        }"
+        "content": "            String item \u003d input.substring(itemIndex, qtyIndex);"
       },
       {
         "lineNumber": 240,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        else {"
+        "content": "            if (item.trim().isEmpty()) {"
       },
       {
         "lineNumber": 241,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            throw new RimsException(\"Please choose a room or item to add to your inventory.\");"
+        "content": "                throw new RimsException(\"Please specify the item to add to your inventory.\");"
       },
       {
         "lineNumber": 242,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        }"
+        "content": "            }"
       },
       {
         "lineNumber": 243,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "    }"
+        "content": "            int qty \u003d parseInt(input.replaceFirst(\"add /item \" + item + \" /qty \", \"\").trim());"
       },
       {
         "lineNumber": 244,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": ""
+        "content": "            return new AddCommand(item.trim(), qty);"
       },
       {
         "lineNumber": 245,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "    protected Command DeleteParser(String input, String[] words) throws RimsException {"
+        "content": "        } else if (words[1].equals(\"/room\")) {"
       },
       {
         "lineNumber": 246,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        if (!(words.length \u003e 1)) {"
+        "content": "            int roomIndex \u003d input.indexOf(\"/room\") + 6;"
       },
       {
         "lineNumber": 247,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                throw new RimsException(\"Please specify the resource to delete from your inventory.\");"
+        "content": "            if (roomIndex \u003e input.length()) {"
       },
       {
         "lineNumber": 248,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            }"
+        "content": "                throw new RimsException(\"Please specify the room to add to your inventory.\");"
       },
       {
         "lineNumber": 249,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        if (words[1].equals(\"/item\")) {"
+        "content": "            }"
       },
       {
         "lineNumber": 250,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            int itemIndex \u003d input.indexOf(\"/item\") + 6;"
+        "content": "            String room \u003d input.substring(roomIndex);"
       },
       {
         "lineNumber": 251,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            if (itemIndex \u003e input.length()) {"
+        "content": "            return new AddCommand(room.trim());"
       },
       {
         "lineNumber": 252,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                throw new RimsException(\"Please specify the item to delete from your inventory.\");"
+        "content": "        }"
       },
       {
         "lineNumber": 253,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            }"
+        "content": "        else {"
       },
       {
         "lineNumber": 254,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            String itemName \u003d input.substring(itemIndex);"
+        "content": "            throw new RimsException(\"Please choose a room or item to add to your inventory.\");"
       },
       {
         "lineNumber": 255,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            return new DeleteCommand(itemName.trim(), \"item\");"
+        "content": "        }"
       },
       {
         "lineNumber": 256,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        } else if (words[1].equals(\"/room\")) {"
+        "content": "    }"
       },
       {
         "lineNumber": 257,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            int roomIndex \u003d input.indexOf(\"/room\") + 6;"
+        "content": ""
       },
       {
         "lineNumber": 258,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            if (roomIndex \u003e input.length()) {"
+        "content": "    /**"
       },
       {
         "lineNumber": 259,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                throw new RimsException(\"Please specify the room to delete from your inventory.\");"
+        "content": "     * Parses user input into the parameters for a DeleteCommand."
       },
       {
         "lineNumber": 260,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            }"
+        "content": "     * @param input the input obtained from the user by the Ui."
       },
       {
         "lineNumber": 261,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            String roomName \u003d input.substring(roomIndex);"
+        "content": "     * @param words the input from the user, delimited by spaces into an array of individual words."
       },
       {
         "lineNumber": 262,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            return new DeleteCommand(roomName.trim(), \"room\");"
+        "content": "     * @return a DeleteCommand, if the input can be parsed into the required parameters."
       },
       {
         "lineNumber": 263,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        } else {"
+        "content": "     * @throws RimsException if the input cannot be parsed into the required parameters for a DeleteCommand."
       },
       {
         "lineNumber": 264,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            throw new RimsException(\"Please choose a room or item to delete from your inventory.\");"
+        "content": "     */"
       },
       {
         "lineNumber": 265,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        }"
+        "content": "    protected Command DeleteParser(String input, String[] words) throws RimsException {"
       },
       {
         "lineNumber": 266,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "    }"
+        "content": "        if (!(words.length \u003e 1)) {"
       },
       {
         "lineNumber": 267,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": ""
+        "content": "                throw new RimsException(\"Please specify the resource to delete from your inventory.\");"
       },
       {
         "lineNumber": 268,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "    protected Command LoanParser(String input, String[] words) throws RimsException {"
+        "content": "            }"
       },
       {
         "lineNumber": 269,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        if (!(words.length \u003e 1)) {"
+        "content": "        if (words[1].equals(\"/item\")) {"
       },
       {
         "lineNumber": 270,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                throw new RimsException(\"Please specify the resource to be loaned out.\");"
+        "content": "            int itemIndex \u003d input.indexOf(\"/item\") + 6;"
       },
       {
         "lineNumber": 271,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            }"
+        "content": "            if (itemIndex \u003e input.length()) {"
       },
       {
         "lineNumber": 272,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        if (words[1].equals(\"/item\")) {"
+        "content": "                throw new RimsException(\"Please specify the item to delete from your inventory.\");"
       },
       {
         "lineNumber": 273,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            int itemIndex \u003d input.indexOf(\"/item\") + 6;"
+        "content": "            }"
       },
       {
         "lineNumber": 274,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            int qtyIndex \u003d input.indexOf(\" /qty\");"
+        "content": "            String itemName \u003d input.substring(itemIndex);"
       },
       {
         "lineNumber": 275,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            if (qtyIndex \u003d\u003d -1) {"
+        "content": "            return new DeleteCommand(itemName.trim(), \"item\");"
       },
       {
         "lineNumber": 276,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                throw new RimsException(\"Please specify the quantity of item to be loaned out.\");"
+        "content": "        } else if (words[1].equals(\"/room\")) {"
       },
       {
         "lineNumber": 277,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            }"
+        "content": "            int roomIndex \u003d input.indexOf(\"/room\") + 6;"
       },
       {
         "lineNumber": 278,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            if (itemIndex \u003e qtyIndex) {"
+        "content": "            if (roomIndex \u003e input.length()) {"
       },
       {
         "lineNumber": 279,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                throw new RimsException(\"Please specify the name of the item to be loaned out.\");"
+        "content": "                throw new RimsException(\"Please specify the room to delete from your inventory.\");"
       },
       {
         "lineNumber": 280,
@@ -12025,315 +12025,315 @@
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            String itemName \u003d input.substring(itemIndex, qtyIndex).trim();"
+        "content": "            String roomName \u003d input.substring(roomIndex);"
       },
       {
         "lineNumber": 282,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            if (itemName.isEmpty()) {"
+        "content": "            return new DeleteCommand(roomName.trim(), \"room\");"
       },
       {
         "lineNumber": 283,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                throw new RimsException(\"Please specify the name of the item to be loaned out.\");"
+        "content": "        } else {"
       },
       {
         "lineNumber": 284,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            }"
+        "content": "            throw new RimsException(\"Please choose a room or item to delete from your inventory.\");"
       },
       {
         "lineNumber": 285,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            if (!resources.isItem(itemName)) {"
+        "content": "        }"
       },
       {
         "lineNumber": 286,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                throw new RimsException(\"This item does not exist in your inventory!\");"
+        "content": "    }"
       },
       {
         "lineNumber": 287,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            }"
+        "content": ""
       },
       {
         "lineNumber": 288,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            int idIndex \u003d input.indexOf(\" /id\");"
+        "content": "    /**"
       },
       {
         "lineNumber": 289,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            if (idIndex \u003d\u003d -1) {"
+        "content": "     * Parses user input into the parameters for a LoanCommand."
       },
       {
         "lineNumber": 290,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                throw new RimsException(\"Please specify the ID of the borrower of this item.\");"
+        "content": "     * @param input the input obtained from the user by the Ui."
       },
       {
         "lineNumber": 291,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            }"
+        "content": "     * @param words the input from the user, delimited by spaces into an array of individual words."
       },
       {
         "lineNumber": 292,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            if (qtyIndex + 6 \u003e idIndex) {"
+        "content": "     * @return a LoanCommand, if the input can be parsed into the required parameters."
       },
       {
         "lineNumber": 293,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                throw new RimsException(\"Please specify the quantity of this item to be loaned out.\");"
+        "content": "     * @throws RimsException if the input cannot be parsed into the required parameters for a LoanCommand."
       },
       {
         "lineNumber": 294,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            }"
+        "content": "     */"
       },
       {
         "lineNumber": 295,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            int qty \u003d parseInt(input.substring(qtyIndex + 6, idIndex).trim());"
+        "content": "    protected Command LoanParser(String input, String[] words) throws RimsException {"
       },
       {
         "lineNumber": 296,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            int byIndex \u003d input.indexOf(\" /by\");"
+        "content": "        if (!(words.length \u003e 1)) {"
       },
       {
         "lineNumber": 297,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            if (byIndex \u003d\u003d -1) {"
+        "content": "                throw new RimsException(\"Please specify the resource to be loaned out.\");"
       },
       {
         "lineNumber": 298,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                throw new RimsException(\"Please specify the date by which the item is to be returned.\");"
+        "content": "            }"
       },
       {
         "lineNumber": 299,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            }"
+        "content": "        if (words[1].equals(\"/item\")) {"
       },
       {
         "lineNumber": 300,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            int userId \u003d parseInt(input.substring(idIndex + 5, byIndex).trim());"
+        "content": "            int itemIndex \u003d input.indexOf(\"/item\") + 6;"
       },
       {
         "lineNumber": 301,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            String dateTill \u003d parseDate(input.substring(byIndex + 5).trim());"
+        "content": "            int qtyIndex \u003d input.indexOf(\" /qty\");"
       },
       {
         "lineNumber": 302,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            ui.printLine();"
+        "content": "            if (qtyIndex \u003d\u003d -1) {"
       },
       {
         "lineNumber": 303,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            ArrayList\u003cResource\u003e allOfItem \u003d resources.getAllOfResource(itemName);"
+        "content": "                throw new RimsException(\"Please specify the quantity of item to be loaned out.\");"
       },
       {
         "lineNumber": 304,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            for (int i \u003d 0; i \u003c allOfItem.size(); i++) {"
+        "content": "            }"
       },
       {
         "lineNumber": 305,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                Resource thisResource \u003d allOfItem.get(i);"
+        "content": "            if (itemIndex \u003e qtyIndex) {"
       },
       {
         "lineNumber": 306,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                ReservationList thisResourceReservations \u003d thisResource.getReservations();"
+        "content": "                throw new RimsException(\"Please specify the name of the item to be loaned out.\");"
       },
       {
         "lineNumber": 307,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                ui.printDash();"
+        "content": "            }"
       },
       {
         "lineNumber": 308,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                ui.print(thisResource.toString() + \" (resource ID: \" + thisResource.getResourceId() + \")\");"
+        "content": "            String itemName \u003d input.substring(itemIndex, qtyIndex).trim();"
       },
       {
         "lineNumber": 309,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                if (!thisResourceReservations.isEmpty()) {"
+        "content": "            if (itemName.isEmpty()) {"
       },
       {
         "lineNumber": 310,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                    for (int j \u003d 0; j \u003c thisResourceReservations.size(); j++) {"
+        "content": "                throw new RimsException(\"Please specify the name of the item to be loaned out.\");"
       },
       {
         "lineNumber": 311,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                        ui.print(\"\\t\" + thisResourceReservations.getReservationByIndex(j).toString());"
+        "content": "            }"
       },
       {
         "lineNumber": 312,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                    }"
+        "content": "            if (!resources.isItem(itemName)) {"
       },
       {
         "lineNumber": 313,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                } else {"
+        "content": "                throw new RimsException(\"This item does not exist in your inventory!\");"
       },
       {
         "lineNumber": 314,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                    ui.print(\"No bookings for this resource yet!\");"
+        "content": "            }"
       },
       {
         "lineNumber": 315,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                }"
+        "content": "            int idIndex \u003d input.indexOf(\" /id\");"
       },
       {
         "lineNumber": 316,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            }"
+        "content": "            if (idIndex \u003d\u003d -1) {"
       },
       {
         "lineNumber": 317,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            ui.printDash();"
+        "content": "                throw new RimsException(\"Please specify the ID of the borrower of this item.\");"
       },
       {
         "lineNumber": 318,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            ui.printLine();"
+        "content": "            }"
       },
       {
         "lineNumber": 319,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            return new ReserveCommand(itemName, qty, dateTill, userId);"
+        "content": "            if (qtyIndex + 6 \u003e idIndex) {"
       },
       {
         "lineNumber": 320,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        }"
+        "content": "                throw new RimsException(\"Please specify the quantity of this item to be loaned out.\");"
       },
       {
         "lineNumber": 321,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        else if (words[1].equals(\"/room\")) {"
+        "content": "            }"
       },
       {
         "lineNumber": 322,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            int roomIndex \u003d input.indexOf(\"/room\") + 6;"
+        "content": "            int qty \u003d parseInt(input.substring(qtyIndex + 6, idIndex).trim());"
       },
       {
         "lineNumber": 323,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            int idIndex \u003d input.indexOf(\" /id\");"
+        "content": "            int byIndex \u003d input.indexOf(\" /by\");"
       },
       {
         "lineNumber": 324,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            if (idIndex \u003d\u003d -1) {"
+        "content": "            if (byIndex \u003d\u003d -1) {"
       },
       {
         "lineNumber": 325,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                throw new RimsException(\"Please specify the ID of the borrower of this room.\");"
+        "content": "                throw new RimsException(\"Please specify the date by which the item is to be returned.\");"
       },
       {
         "lineNumber": 326,
@@ -12347,112 +12347,112 @@
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            if (roomIndex \u003e idIndex) {"
+        "content": "            int userId \u003d parseInt(input.substring(idIndex + 5, byIndex).trim());"
       },
       {
         "lineNumber": 328,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                throw new RimsException(\"Please specify the name of the room to be loaned out.\");"
+        "content": "            String dateTill \u003d parseDate(input.substring(byIndex + 5).trim());"
       },
       {
         "lineNumber": 329,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            }"
+        "content": "            ui.printLine();"
       },
       {
         "lineNumber": 330,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            String roomName \u003d input.substring(roomIndex, idIndex).trim();"
+        "content": "            ArrayList\u003cResource\u003e allOfItem \u003d resources.getAllOfResource(itemName);"
       },
       {
         "lineNumber": 331,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            if (roomName.isEmpty()) {"
+        "content": "            for (int i \u003d 0; i \u003c allOfItem.size(); i++) {"
       },
       {
         "lineNumber": 332,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                throw new RimsException(\"Please specify the name of the room to be loaned out.\");"
+        "content": "                Resource thisResource \u003d allOfItem.get(i);"
       },
       {
         "lineNumber": 333,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            }"
+        "content": "                ReservationList thisResourceReservations \u003d thisResource.getReservations();"
       },
       {
         "lineNumber": 334,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            if (!resources.isRoom(roomName)) {"
+        "content": "                ui.printDash();"
       },
       {
         "lineNumber": 335,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                throw new RimsException(\"This room does not exist in your inventory!\");"
+        "content": "                ui.print(thisResource.toString() + \" (resource ID: \" + thisResource.getResourceId() + \")\");"
       },
       {
         "lineNumber": 336,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            }"
+        "content": "                if (!thisResourceReservations.isEmpty()) {"
       },
       {
         "lineNumber": 337,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            int byIndex \u003d input.indexOf(\" /by\");"
+        "content": "                    for (int j \u003d 0; j \u003c thisResourceReservations.size(); j++) {"
       },
       {
         "lineNumber": 338,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            if (byIndex \u003d\u003d -1) {"
+        "content": "                        ui.print(\"\\t\" + thisResourceReservations.getReservationByIndex(j).toString());"
       },
       {
         "lineNumber": 339,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                throw new RimsException(\"Please specify the date by which the room is to be returned.\");"
+        "content": "                    }"
       },
       {
         "lineNumber": 340,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            }"
+        "content": "                } else {"
       },
       {
         "lineNumber": 341,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            if (idIndex + 5 \u003e byIndex) {"
+        "content": "                    ui.print(\"No bookings for this resource yet!\");"
       },
       {
         "lineNumber": 342,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                throw new RimsException(\"Please specify the ID of the borrower of this room.\");"
+        "content": "                }"
       },
       {
         "lineNumber": 343,
@@ -12466,112 +12466,112 @@
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            int userId \u003d parseInt(input.substring(idIndex + 5, byIndex).trim());"
+        "content": "            ui.printDash();"
       },
       {
         "lineNumber": 345,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            if (byIndex + 5 \u003e input.length()) {"
+        "content": "            ui.printLine();"
       },
       {
         "lineNumber": 346,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                throw new RimsException(\"Please specify the date by which the room is to be returned.\");"
+        "content": "            return new ReserveCommand(itemName, qty, dateTill, userId);"
       },
       {
         "lineNumber": 347,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            }"
+        "content": "        }"
       },
       {
         "lineNumber": 348,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            String dateTill \u003d parseDate(input.substring(byIndex + 5).trim());"
+        "content": "        else if (words[1].equals(\"/room\")) {"
       },
       {
         "lineNumber": 349,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            // get list of rooms"
+        "content": "            int roomIndex \u003d input.indexOf(\"/room\") + 6;"
       },
       {
         "lineNumber": 350,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            ui.printLine();"
+        "content": "            int idIndex \u003d input.indexOf(\" /id\");"
       },
       {
         "lineNumber": 351,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            Resource thisResource \u003d resources.getResourceByName(roomName);"
+        "content": "            if (idIndex \u003d\u003d -1) {"
       },
       {
         "lineNumber": 352,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            ReservationList thisResourceReservations \u003d thisResource.getReservations();"
+        "content": "                throw new RimsException(\"Please specify the ID of the borrower of this room.\");"
       },
       {
         "lineNumber": 353,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            ui.print(thisResource.toString() + \" (resource ID: \" + thisResource.getResourceId() + \")\");"
+        "content": "            }"
       },
       {
         "lineNumber": 354,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            if (!thisResourceReservations.isEmpty()) {"
+        "content": "            if (roomIndex \u003e idIndex) {"
       },
       {
         "lineNumber": 355,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                for (int j \u003d 0; j \u003c thisResourceReservations.size(); j++) {"
+        "content": "                throw new RimsException(\"Please specify the name of the room to be loaned out.\");"
       },
       {
         "lineNumber": 356,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                    ui.print(\"\\t\" + thisResourceReservations.getReservationByIndex(j).toString());"
+        "content": "            }"
       },
       {
         "lineNumber": 357,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                }"
+        "content": "            String roomName \u003d input.substring(roomIndex, idIndex).trim();"
       },
       {
         "lineNumber": 358,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            } else {"
+        "content": "            if (roomName.isEmpty()) {"
       },
       {
         "lineNumber": 359,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                ui.print(\"No bookings for this resource yet!\");"
+        "content": "                throw new RimsException(\"Please specify the name of the room to be loaned out.\");"
       },
       {
         "lineNumber": 360,
@@ -12585,182 +12585,182 @@
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            ui.printLine();"
+        "content": "            if (!resources.isRoom(roomName)) {"
       },
       {
         "lineNumber": 362,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            return new ReserveCommand(roomName, dateTill, userId);"
+        "content": "                throw new RimsException(\"This room does not exist in your inventory!\");"
       },
       {
         "lineNumber": 363,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        } else {"
+        "content": "            }"
       },
       {
         "lineNumber": 364,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            throw new RimsException(\"Please choose an item or room to loan out.\");"
+        "content": "            int byIndex \u003d input.indexOf(\" /by\");"
       },
       {
         "lineNumber": 365,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        }"
+        "content": "            if (byIndex \u003d\u003d -1) {"
       },
       {
         "lineNumber": 366,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "    }"
+        "content": "                throw new RimsException(\"Please specify the date by which the room is to be returned.\");"
       },
       {
         "lineNumber": 367,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": ""
+        "content": "            }"
       },
       {
         "lineNumber": 368,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "    protected Command ReserveParser(String input, String[] words) throws RimsException {"
+        "content": "            if (idIndex + 5 \u003e byIndex) {"
       },
       {
         "lineNumber": 369,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        if (!(words.length \u003e 1)) {"
+        "content": "                throw new RimsException(\"Please specify the ID of the borrower of this room.\");"
       },
       {
         "lineNumber": 370,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                throw new RimsException(\"Please specify the resource to be reserved.\");"
+        "content": "            }"
       },
       {
         "lineNumber": 371,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        }"
+        "content": "            int userId \u003d parseInt(input.substring(idIndex + 5, byIndex).trim());"
       },
       {
         "lineNumber": 372,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        if (words[1].equals(\"/item\")) {"
+        "content": "            if (byIndex + 5 \u003e input.length()) {"
       },
       {
         "lineNumber": 373,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            int itemIndex \u003d input.indexOf(\"/item\") + 6;"
+        "content": "                throw new RimsException(\"Please specify the date by which the room is to be returned.\");"
       },
       {
         "lineNumber": 374,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            int qtyIndex \u003d input.indexOf(\" /qty\");"
+        "content": "            }"
       },
       {
         "lineNumber": 375,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            if (qtyIndex \u003d\u003d -1) {"
+        "content": "            String dateTill \u003d parseDate(input.substring(byIndex + 5).trim());"
       },
       {
         "lineNumber": 376,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                throw new RimsException(\"Please specify the quantity of item to be reserved.\");"
+        "content": "            // get list of rooms"
       },
       {
         "lineNumber": 377,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            }"
+        "content": "            ui.printLine();"
       },
       {
         "lineNumber": 378,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            if (itemIndex \u003e qtyIndex) {"
+        "content": "            Resource thisResource \u003d resources.getResourceByName(roomName);"
       },
       {
         "lineNumber": 379,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                throw new RimsException(\"Please specify the name of the item to be reserved.\");"
+        "content": "            ReservationList thisResourceReservations \u003d thisResource.getReservations();"
       },
       {
         "lineNumber": 380,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            }"
+        "content": "            ui.print(thisResource.toString() + \" (resource ID: \" + thisResource.getResourceId() + \")\");"
       },
       {
         "lineNumber": 381,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            String itemName \u003d input.substring(itemIndex, qtyIndex).trim();"
+        "content": "            if (!thisResourceReservations.isEmpty()) {"
       },
       {
         "lineNumber": 382,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            if (itemName.isEmpty()) {"
+        "content": "                for (int j \u003d 0; j \u003c thisResourceReservations.size(); j++) {"
       },
       {
         "lineNumber": 383,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                throw new RimsException(\"Please specify the name of the item to be loaned out.\");"
+        "content": "                    ui.print(\"\\t\" + thisResourceReservations.getReservationByIndex(j).toString());"
       },
       {
         "lineNumber": 384,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            }"
+        "content": "                }"
       },
       {
         "lineNumber": 385,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            if (!resources.isItem(itemName)) {"
+        "content": "            } else {"
       },
       {
         "lineNumber": 386,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                throw new RimsException(\"This item does not exist in your inventory!\");"
+        "content": "                ui.print(\"No bookings for this resource yet!\");"
       },
       {
         "lineNumber": 387,
@@ -12774,259 +12774,259 @@
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            int idIndex \u003d input.indexOf(\" /id\");"
+        "content": "            ui.printLine();"
       },
       {
         "lineNumber": 389,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            if (idIndex \u003d\u003d -1) {"
+        "content": "            return new ReserveCommand(roomName, dateTill, userId);"
       },
       {
         "lineNumber": 390,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                throw new RimsException(\"Please specify the ID of the borrower of this item.\");"
+        "content": "        } else {"
       },
       {
         "lineNumber": 391,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            }"
+        "content": "            throw new RimsException(\"Please choose an item or room to loan out.\");"
       },
       {
         "lineNumber": 392,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            if (qtyIndex + 6 \u003e idIndex) {"
+        "content": "        }"
       },
       {
         "lineNumber": 393,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                throw new RimsException(\"Please specify the quantity of this item to be loaned out.\");"
+        "content": "    }"
       },
       {
         "lineNumber": 394,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            }"
+        "content": ""
       },
       {
         "lineNumber": 395,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            int qty \u003d parseInt(input.substring(qtyIndex + 6, idIndex).trim());"
+        "content": "    /**"
       },
       {
         "lineNumber": 396,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            int fromIndex \u003d input.indexOf(\" /from\");"
+        "content": "     * Parses user input into the parameters for a ReserveCommand."
       },
       {
         "lineNumber": 397,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            if (fromIndex \u003d\u003d -1) {"
+        "content": "     * @param input the input obtained from the user by the Ui."
       },
       {
         "lineNumber": 398,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                throw new RimsException(\"Please specify the date from which the item is to be reserved.\");"
+        "content": "     * @param words the input from the user, delimited by spaces into an array of individual words."
       },
       {
         "lineNumber": 399,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            }"
+        "content": "     * @return a ReserveCommand, if the input can be parsed into the required parameters."
       },
       {
         "lineNumber": 400,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            if (idIndex + 5 \u003e fromIndex) {"
+        "content": "     * @throws RimsException if the input cannot be parsed into the required parameters for a ReserveCommand."
       },
       {
         "lineNumber": 401,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                throw new RimsException(\"Please specify the ID of the borrower of this item.\");"
+        "content": "     */"
       },
       {
         "lineNumber": 402,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            }"
+        "content": "    protected Command ReserveParser(String input, String[] words) throws RimsException {"
       },
       {
         "lineNumber": 403,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            int userId \u003d parseInt(input.substring(idIndex + 5, fromIndex).trim());"
+        "content": "        if (!(words.length \u003e 1)) {"
       },
       {
         "lineNumber": 404,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            int byIndex \u003d input.indexOf(\" /by\");"
+        "content": "                throw new RimsException(\"Please specify the resource to be reserved.\");"
       },
       {
         "lineNumber": 405,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            if (byIndex \u003d\u003d -1 || byIndex + 5 \u003e input.length()) {"
+        "content": "        }"
       },
       {
         "lineNumber": 406,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                throw new RimsException(\"Please specify the date by which the item is to be returned.\");"
+        "content": "        if (words[1].equals(\"/item\")) {"
       },
       {
         "lineNumber": 407,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            }"
+        "content": "            int itemIndex \u003d input.indexOf(\"/item\") + 6;"
       },
       {
         "lineNumber": 408,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            String dateFrom \u003d parseDate(input.substring(fromIndex + 7, byIndex).trim());"
+        "content": "            int qtyIndex \u003d input.indexOf(\" /qty\");"
       },
       {
         "lineNumber": 409,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            String dateTill \u003d parseDate(input.substring(byIndex + 5).trim());"
+        "content": "            if (qtyIndex \u003d\u003d -1) {"
       },
       {
         "lineNumber": 410,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            // get list of items - move to fn?"
+        "content": "                throw new RimsException(\"Please specify the quantity of item to be reserved.\");"
       },
       {
         "lineNumber": 411,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            ui.printLine();"
+        "content": "            }"
       },
       {
         "lineNumber": 412,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            ArrayList\u003cResource\u003e allOfItem \u003d resources.getAllOfResource(itemName);"
+        "content": "            if (itemIndex \u003e qtyIndex) {"
       },
       {
         "lineNumber": 413,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            for (int i \u003d 0; i \u003c allOfItem.size(); i++) {"
+        "content": "                throw new RimsException(\"Please specify the name of the item to be reserved.\");"
       },
       {
         "lineNumber": 414,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                Resource thisResource \u003d allOfItem.get(i);"
+        "content": "            }"
       },
       {
         "lineNumber": 415,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                ReservationList thisResourceReservations \u003d thisResource.getReservations();"
+        "content": "            String itemName \u003d input.substring(itemIndex, qtyIndex).trim();"
       },
       {
         "lineNumber": 416,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                ui.printDash();"
+        "content": "            if (itemName.isEmpty()) {"
       },
       {
         "lineNumber": 417,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                ui.print(thisResource.toString() + \" (resource ID: \" + thisResource.getResourceId() + \")\");"
+        "content": "                throw new RimsException(\"Please specify the name of the item to be loaned out.\");"
       },
       {
         "lineNumber": 418,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                if (!thisResourceReservations.isEmpty()) {"
+        "content": "            }"
       },
       {
         "lineNumber": 419,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                    for (int j \u003d 0; j \u003c thisResourceReservations.size(); j++) {"
+        "content": "            if (!resources.isItem(itemName)) {"
       },
       {
         "lineNumber": 420,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                        ui.print(\"\\t\" + thisResourceReservations.getReservationByIndex(j).toString());"
+        "content": "                throw new RimsException(\"This item does not exist in your inventory!\");"
       },
       {
         "lineNumber": 421,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                    }"
+        "content": "            }"
       },
       {
         "lineNumber": 422,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                } else {"
+        "content": "            int idIndex \u003d input.indexOf(\" /id\");"
       },
       {
         "lineNumber": 423,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                    ui.print(\"No bookings for this resource yet!\");"
+        "content": "            if (idIndex \u003d\u003d -1) {"
       },
       {
         "lineNumber": 424,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                }"
+        "content": "                throw new RimsException(\"Please specify the ID of the borrower of this item.\");"
       },
       {
         "lineNumber": 425,
@@ -13040,105 +13040,105 @@
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            ui.printDash();"
+        "content": "            if (qtyIndex + 6 \u003e idIndex) {"
       },
       {
         "lineNumber": 427,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            ui.printLine();"
+        "content": "                throw new RimsException(\"Please specify the quantity of this item to be loaned out.\");"
       },
       {
         "lineNumber": 428,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            return new ReserveCommand(itemName, qty, dateFrom, dateTill, userId);"
+        "content": "            }"
       },
       {
         "lineNumber": 429,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        } else if (words[1].equals(\"/room\")) {"
+        "content": "            int qty \u003d parseInt(input.substring(qtyIndex + 6, idIndex).trim());"
       },
       {
         "lineNumber": 430,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            int roomIndex \u003d input.indexOf(\"/room\") + 6;"
+        "content": "            int fromIndex \u003d input.indexOf(\" /from\");"
       },
       {
         "lineNumber": 431,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            int idIndex \u003d input.indexOf(\" /id\");"
+        "content": "            if (fromIndex \u003d\u003d -1) {"
       },
       {
         "lineNumber": 432,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            if (idIndex \u003d\u003d -1) {"
+        "content": "                throw new RimsException(\"Please specify the date from which the item is to be reserved.\");"
       },
       {
         "lineNumber": 433,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                throw new RimsException(\"Please specify the ID of the borrower of this room.\");"
+        "content": "            }"
       },
       {
         "lineNumber": 434,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            }"
+        "content": "            if (idIndex + 5 \u003e fromIndex) {"
       },
       {
         "lineNumber": 435,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            if (roomIndex \u003e idIndex) {"
+        "content": "                throw new RimsException(\"Please specify the ID of the borrower of this item.\");"
       },
       {
         "lineNumber": 436,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                throw new RimsException(\"Please specify the name of the room to be reserved.\");"
+        "content": "            }"
       },
       {
         "lineNumber": 437,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            }"
+        "content": "            int userId \u003d parseInt(input.substring(idIndex + 5, fromIndex).trim());"
       },
       {
         "lineNumber": 438,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            String roomName \u003d input.substring(roomIndex, idIndex);"
+        "content": "            int byIndex \u003d input.indexOf(\" /by\");"
       },
       {
         "lineNumber": 439,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            if (roomName.isEmpty()) {"
+        "content": "            if (byIndex \u003d\u003d -1 || byIndex + 5 \u003e input.length()) {"
       },
       {
         "lineNumber": 440,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                throw new RimsException(\"Please specify the name of the room to be reserved.\");"
+        "content": "                throw new RimsException(\"Please specify the date by which the item is to be returned.\");"
       },
       {
         "lineNumber": 441,
@@ -13152,542 +13152,878 @@
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            if (!resources.isRoom(roomName)) {"
+        "content": "            String dateFrom \u003d parseDate(input.substring(fromIndex + 7, byIndex).trim());"
       },
       {
         "lineNumber": 443,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                throw new RimsException(\"This room does not exist in your inventory!\");"
+        "content": "            String dateTill \u003d parseDate(input.substring(byIndex + 5).trim());"
       },
       {
         "lineNumber": 444,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            }"
+        "content": "            // get list of items - move to fn?"
       },
       {
         "lineNumber": 445,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            int fromIndex \u003d input.indexOf(\" /from\");"
+        "content": "            ui.printLine();"
       },
       {
         "lineNumber": 446,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            if (fromIndex \u003d\u003d -1) {"
+        "content": "            ArrayList\u003cResource\u003e allOfItem \u003d resources.getAllOfResource(itemName);"
       },
       {
         "lineNumber": 447,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                throw new RimsException(\"Please specify the date from which the room is to be reserved.\");"
+        "content": "            for (int i \u003d 0; i \u003c allOfItem.size(); i++) {"
       },
       {
         "lineNumber": 448,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            }"
+        "content": "                Resource thisResource \u003d allOfItem.get(i);"
       },
       {
         "lineNumber": 449,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            if (idIndex + 5 \u003e fromIndex) {"
+        "content": "                ReservationList thisResourceReservations \u003d thisResource.getReservations();"
       },
       {
         "lineNumber": 450,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                throw new RimsException(\"Please specify the ID of the borrower of this room.\");"
+        "content": "                ui.printDash();"
       },
       {
         "lineNumber": 451,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            }"
+        "content": "                ui.print(thisResource.toString() + \" (resource ID: \" + thisResource.getResourceId() + \")\");"
       },
       {
         "lineNumber": 452,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            int userId \u003d parseInt(input.substring(idIndex + 5, fromIndex));"
+        "content": "                if (!thisResourceReservations.isEmpty()) {"
       },
       {
         "lineNumber": 453,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            int byIndex \u003d input.indexOf(\" /by\");"
+        "content": "                    for (int j \u003d 0; j \u003c thisResourceReservations.size(); j++) {"
       },
       {
         "lineNumber": 454,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            if (byIndex \u003d\u003d -1 || byIndex + 5 \u003e input.length()) {"
+        "content": "                        ui.print(\"\\t\" + thisResourceReservations.getReservationByIndex(j).toString());"
       },
       {
         "lineNumber": 455,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                throw new RimsException(\"Please specify the date by which the room is to be returned.\");"
+        "content": "                    }"
       },
       {
         "lineNumber": 456,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            }"
+        "content": "                } else {"
       },
       {
         "lineNumber": 457,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            String dateFrom \u003d parseDate(input.substring(fromIndex + 7, byIndex).trim());"
+        "content": "                    ui.print(\"No bookings for this resource yet!\");"
       },
       {
         "lineNumber": 458,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            String dateTill \u003d parseDate(input.substring(byIndex + 5).trim());"
+        "content": "                }"
       },
       {
         "lineNumber": 459,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            // get list of rooms"
+        "content": "            }"
       },
       {
         "lineNumber": 460,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            ui.printLine();"
+        "content": "            ui.printDash();"
       },
       {
         "lineNumber": 461,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            Resource thisResource \u003d resources.getResourceByName(roomName);"
+        "content": "            ui.printLine();"
       },
       {
         "lineNumber": 462,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            ReservationList thisResourceReservations \u003d thisResource.getReservations();"
+        "content": "            return new ReserveCommand(itemName, qty, dateFrom, dateTill, userId);"
       },
       {
         "lineNumber": 463,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            ui.print(thisResource.toString() + \" (resource ID: \" + thisResource.getResourceId() + \")\");"
+        "content": "        } else if (words[1].equals(\"/room\")) {"
       },
       {
         "lineNumber": 464,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            if (!thisResourceReservations.isEmpty()) {"
+        "content": "            int roomIndex \u003d input.indexOf(\"/room\") + 6;"
       },
       {
         "lineNumber": 465,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                for (int j \u003d 0; j \u003c thisResourceReservations.size(); j++) {"
+        "content": "            int idIndex \u003d input.indexOf(\" /id\");"
       },
       {
         "lineNumber": 466,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                    ui.print(\"\\t\" + thisResourceReservations.getReservationByIndex(j).toString());"
+        "content": "            if (idIndex \u003d\u003d -1) {"
       },
       {
         "lineNumber": 467,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                }"
+        "content": "                throw new RimsException(\"Please specify the ID of the borrower of this room.\");"
       },
       {
         "lineNumber": 468,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            } else {"
+        "content": "            }"
       },
       {
         "lineNumber": 469,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                ui.print(\"No bookings for this resource yet!\");"
+        "content": "            if (roomIndex \u003e idIndex) {"
       },
       {
         "lineNumber": 470,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            }"
+        "content": "                throw new RimsException(\"Please specify the name of the room to be reserved.\");"
       },
       {
         "lineNumber": 471,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            ui.printLine();"
+        "content": "            }"
       },
       {
         "lineNumber": 472,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            return new ReserveCommand(roomName, dateFrom, dateTill, userId);"
+        "content": "            String roomName \u003d input.substring(roomIndex, idIndex);"
       },
       {
         "lineNumber": 473,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        } else {"
+        "content": "            if (roomName.isEmpty()) {"
       },
       {
         "lineNumber": 474,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            throw new RimsException(\"Please choose an item or room to reserve.\");"
+        "content": "                throw new RimsException(\"Please specify the name of the room to be reserved.\");"
       },
       {
         "lineNumber": 475,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        }"
+        "content": "            }"
       },
       {
         "lineNumber": 476,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "    }"
+        "content": "            if (!resources.isRoom(roomName)) {"
       },
       {
         "lineNumber": 477,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": ""
+        "content": "                throw new RimsException(\"This room does not exist in your inventory!\");"
       },
       {
         "lineNumber": 478,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "    protected Command ReturnParser(String input, String[] words) throws RimsException {"
+        "content": "            }"
       },
       {
         "lineNumber": 479,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        if (words[1].equals(\"/id\")) {"
+        "content": "            int fromIndex \u003d input.indexOf(\" /from\");"
       },
       {
         "lineNumber": 480,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            int idIndex \u003d input.indexOf(\" /id\") + 5;"
+        "content": "            if (fromIndex \u003d\u003d -1) {"
       },
       {
         "lineNumber": 481,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            int userId \u003d parseInt(input.substring(idIndex).trim());"
+        "content": "                throw new RimsException(\"Please specify the date from which the room is to be reserved.\");"
       },
       {
         "lineNumber": 482,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            ReservationList userReservations \u003d resources.getUserBookings(userId);"
+        "content": "            }"
       },
       {
         "lineNumber": 483,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            ui.printLine();"
+        "content": "            if (idIndex + 5 \u003e fromIndex) {"
       },
       {
         "lineNumber": 484,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            for (int i \u003d 0; i \u003c userReservations.size(); i++) {"
+        "content": "                throw new RimsException(\"Please specify the ID of the borrower of this room.\");"
       },
       {
         "lineNumber": 485,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                Reservation thisReservation \u003d userReservations.getReservationByIndex(i);"
+        "content": "            }"
       },
       {
         "lineNumber": 486,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                Resource borrowedResource \u003d resources.getResourceById(thisReservation.getResourceId());"
+        "content": "            int userId \u003d parseInt(input.substring(idIndex + 5, fromIndex));"
       },
       {
         "lineNumber": 487,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                ui.print(borrowedResource.toString());"
+        "content": "            int byIndex \u003d input.indexOf(\" /by\");"
       },
       {
         "lineNumber": 488,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                ui.print(\"\\t\" + userReservations.getReservationByIndex(i).toString());"
+        "content": "            if (byIndex \u003d\u003d -1 || byIndex + 5 \u003e input.length()) {"
       },
       {
         "lineNumber": 489,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            }"
+        "content": "                throw new RimsException(\"Please specify the date by which the room is to be returned.\");"
       },
       {
         "lineNumber": 490,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            ArrayList\u003cInteger\u003e resourcesToReturn \u003d new ArrayList\u003cInteger\u003e();"
+        "content": "            }"
       },
       {
         "lineNumber": 491,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            ArrayList\u003cInteger\u003e reservationsToCancel \u003d new ArrayList\u003cInteger\u003e();"
+        "content": "            String dateFrom \u003d parseDate(input.substring(fromIndex + 7, byIndex).trim());"
       },
       {
         "lineNumber": 492,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            String stringReservations \u003d ui.getInput("
+        "content": "            String dateTill \u003d parseDate(input.substring(byIndex + 5).trim());"
       },
       {
         "lineNumber": 493,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                \"Enter the reservation ID(s) (separated by a space for multiple IDs) \""
+        "content": "            // get list of rooms"
       },
       {
         "lineNumber": 494,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                + \"that you wish to return / cancel:\");"
+        "content": "            ui.printLine();"
       },
       {
         "lineNumber": 495,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            String[] splitStringReservations \u003d stringReservations.split(\" \");"
+        "content": "            Resource thisResource \u003d resources.getResourceByName(roomName);"
       },
       {
         "lineNumber": 496,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            for (int j \u003d 0; j \u003c splitStringReservations.length; j++) {"
+        "content": "            ReservationList thisResourceReservations \u003d thisResource.getReservations();"
       },
       {
         "lineNumber": 497,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                int thisReservationId \u003d parseInt(splitStringReservations[j]);"
+        "content": "            ui.print(thisResource.toString() + \" (resource ID: \" + thisResource.getResourceId() + \")\");"
       },
       {
         "lineNumber": 498,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                resourcesToReturn.add(userReservations.getReservationById(thisReservationId).getResourceId());"
+        "content": "            if (!thisResourceReservations.isEmpty()) {"
       },
       {
         "lineNumber": 499,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "                reservationsToCancel.add(thisReservationId);"
+        "content": "                for (int j \u003d 0; j \u003c thisResourceReservations.size(); j++) {"
       },
       {
         "lineNumber": 500,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            }"
+        "content": "                    ui.print(\"\\t\" + thisResourceReservations.getReservationByIndex(j).toString());"
       },
       {
         "lineNumber": 501,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            return new ReturnCommand(userId, resourcesToReturn, reservationsToCancel);"
+        "content": "                }"
       },
       {
         "lineNumber": 502,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        } else {"
+        "content": "            } else {"
       },
       {
         "lineNumber": 503,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            throw new RimsException(\"Please follow the correct format for the return command.\");"
+        "content": "                ui.print(\"No bookings for this resource yet!\");"
       },
       {
         "lineNumber": 504,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        }"
+        "content": "            }"
       },
       {
         "lineNumber": 505,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "    }"
+        "content": "            ui.printLine();"
       },
       {
         "lineNumber": 506,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": ""
+        "content": "            return new ReserveCommand(roomName, dateFrom, dateTill, userId);"
       },
       {
         "lineNumber": 507,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "    protected Command StatsParser(String input, String[] words) throws RimsException, ParseException {"
+        "content": "        } else {"
       },
       {
         "lineNumber": 508,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        int dateFromIndex \u003d input.indexOf(\" /from\");"
+        "content": "            throw new RimsException(\"Please choose an item or room to reserve.\");"
       },
       {
         "lineNumber": 509,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        int dateTillIndex \u003d input.indexOf(\" /till\");"
+        "content": "        }"
       },
       {
         "lineNumber": 510,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        if (dateFromIndex + 7 \u003e dateTillIndex) {"
+        "content": "    }"
       },
       {
         "lineNumber": 511,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "            throw new RimsException(\"Please specify the date for which you want to view statistics.\");"
+        "content": ""
       },
       {
         "lineNumber": 512,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        }"
+        "content": "    /**"
       },
       {
         "lineNumber": 513,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        String dateFrom \u003d parseDate(input.substring(dateFromIndex + 7, dateTillIndex));"
+        "content": "     * Parses user input into the parameters for a ReturnCommand."
       },
       {
         "lineNumber": 514,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        String dateTill \u003d parseDate(input.substring(dateTillIndex + 7));"
+        "content": "     * @param input the input obtained from the user by the Ui."
       },
       {
         "lineNumber": 515,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        return new StatsCommand(dateFrom, dateTill);"
+        "content": "     * @param words the input from the user, delimited by spaces into an array of individual words."
       },
       {
         "lineNumber": 516,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "    }"
+        "content": "     * @return a ReturnCommand, if the input can be parsed into the required parameters."
       },
       {
         "lineNumber": 517,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": ""
+        "content": "     * @throws RimsException if the input cannot be parsed into the required parameters for a ReturnCommand."
       },
       {
         "lineNumber": 518,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": ""
+        "content": "     */"
       },
       {
         "lineNumber": 519,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    protected Command ReturnParser(String input, String[] words) throws RimsException {"
+      },
+      {
+        "lineNumber": 520,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        if (words[1].equals(\"/id\")) {"
+      },
+      {
+        "lineNumber": 521,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            int idIndex \u003d input.indexOf(\" /id\") + 5;"
+      },
+      {
+        "lineNumber": 522,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            int userId \u003d parseInt(input.substring(idIndex).trim());"
+      },
+      {
+        "lineNumber": 523,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            ReservationList userReservations \u003d resources.getUserBookings(userId);"
+      },
+      {
+        "lineNumber": 524,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            ui.printLine();"
+      },
+      {
+        "lineNumber": 525,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            for (int i \u003d 0; i \u003c userReservations.size(); i++) {"
+      },
+      {
+        "lineNumber": 526,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                Reservation thisReservation \u003d userReservations.getReservationByIndex(i);"
+      },
+      {
+        "lineNumber": 527,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                Resource borrowedResource \u003d resources.getResourceById(thisReservation.getResourceId());"
+      },
+      {
+        "lineNumber": 528,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                ui.print(borrowedResource.toString());"
+      },
+      {
+        "lineNumber": 529,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                ui.print(\"\\t\" + userReservations.getReservationByIndex(i).toString());"
+      },
+      {
+        "lineNumber": 530,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 531,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            ArrayList\u003cInteger\u003e resourcesToReturn \u003d new ArrayList\u003cInteger\u003e();"
+      },
+      {
+        "lineNumber": 532,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            ArrayList\u003cInteger\u003e reservationsToCancel \u003d new ArrayList\u003cInteger\u003e();"
+      },
+      {
+        "lineNumber": 533,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            String stringReservations \u003d ui.getInput("
+      },
+      {
+        "lineNumber": 534,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                \"Enter the reservation ID(s) (separated by a space for multiple IDs) \""
+      },
+      {
+        "lineNumber": 535,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                + \"that you wish to return / cancel:\");"
+      },
+      {
+        "lineNumber": 536,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            String[] splitStringReservations \u003d stringReservations.split(\" \");"
+      },
+      {
+        "lineNumber": 537,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            for (int j \u003d 0; j \u003c splitStringReservations.length; j++) {"
+      },
+      {
+        "lineNumber": 538,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                int thisReservationId \u003d parseInt(splitStringReservations[j]);"
+      },
+      {
+        "lineNumber": 539,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                resourcesToReturn.add(userReservations.getReservationById(thisReservationId).getResourceId());"
+      },
+      {
+        "lineNumber": 540,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                reservationsToCancel.add(thisReservationId);"
+      },
+      {
+        "lineNumber": 541,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 542,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            return new ReturnCommand(userId, resourcesToReturn, reservationsToCancel);"
+      },
+      {
+        "lineNumber": 543,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 544,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            throw new RimsException(\"Please follow the correct format for the return command.\");"
+      },
+      {
+        "lineNumber": 545,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 546,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 547,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 548,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 549,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "     * Parses user input into the parameters for a StatsCommand."
+      },
+      {
+        "lineNumber": 550,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "     * @param input the input obtained from the user by the Ui."
+      },
+      {
+        "lineNumber": 551,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "     * @param words the input from the user, delimited by spaces into an array of individual words."
+      },
+      {
+        "lineNumber": 552,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "     * @return a StatsCommand, if the input can be parsed into the required parameters."
+      },
+      {
+        "lineNumber": 553,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "     * @throws RimsException if the input cannot be parsed into the required parameters for a StatsCommand."
+      },
+      {
+        "lineNumber": 554,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 555,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    protected Command StatsParser(String input, String[] words) throws RimsException, ParseException {"
+      },
+      {
+        "lineNumber": 556,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        int dateFromIndex \u003d input.indexOf(\" /from\");"
+      },
+      {
+        "lineNumber": 557,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        int dateTillIndex \u003d input.indexOf(\" /till\");"
+      },
+      {
+        "lineNumber": 558,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        if (dateFromIndex + 7 \u003e dateTillIndex) {"
+      },
+      {
+        "lineNumber": 559,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            throw new RimsException(\"Please specify the date for which you want to view statistics.\");"
+      },
+      {
+        "lineNumber": 560,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 561,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        String dateFrom \u003d parseDate(input.substring(dateFromIndex + 7, dateTillIndex));"
+      },
+      {
+        "lineNumber": 562,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        String dateTill \u003d parseDate(input.substring(dateTillIndex + 7));"
+      },
+      {
+        "lineNumber": 563,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        return new StatsCommand(dateFrom, dateTill);"
+      },
+      {
+        "lineNumber": 564,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 565,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 566,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 567,
         "author": {
           "gitId": "rabhijit"
         },
@@ -13698,7 +14034,7 @@
       "aarushisingh1": 5,
       "isbobby": 14,
       "danielcyc": 11,
-      "rabhijit": 489
+      "rabhijit": 537
     }
   },
   {
