@@ -5307,7 +5307,7 @@
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "        LOGGER.setLevel(Level.FINER);"
+        "content": "        LOGGER.setLevel(Level.WARNING);"
       },
       {
         "lineNumber": 39,
@@ -7557,7 +7557,7 @@
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    static boolean containsIllegalCharacter(String inputCommand) {"
+        "content": "    public static boolean containsIllegalCharacter(String inputCommand) {"
       },
       {
         "lineNumber": 49,
@@ -21354,9 +21354,9 @@
       {
         "lineNumber": 36,
         "author": {
-          "gitId": "GlenWong97"
+          "gitId": "RusdiHaizim"
         },
-        "content": "    private String returnFileName(String inputCommand) {"
+        "content": "    private String returnFileName(String inputCommand) throws CakeException {"
       },
       {
         "lineNumber": 37,
@@ -21368,698 +21368,705 @@
       {
         "lineNumber": 38,
         "author": {
-          "gitId": "GlenWong97"
+          "gitId": "RusdiHaizim"
         },
-        "content": "        return parametersInCommand[1];"
+        "content": "        String nameOfFile \u003d IFileUtilities.returnOriginalFileName(defaultFilePath, parametersInCommand[1]);"
       },
       {
         "lineNumber": 39,
         "author": {
-          "gitId": "GlenWong97"
+          "gitId": "RusdiHaizim"
         },
-        "content": "    }"
+        "content": "        return nameOfFile;"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * Checks the parameters of input by user."
+        "content": "    /**"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * Checks if user inputs file name."
+        "content": "     * Checks the parameters of input by user."
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * Checks if command contains multiple parameters."
+        "content": "     * Checks if user inputs file name."
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * Checks if command contains special characters."
+        "content": "     * Checks if command contains multiple parameters."
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * Checks if file exists in save directory."
+        "content": "     * Checks if command contains special characters."
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * Checks if file specified is empty."
+        "content": "     * Checks if file exists in save directory."
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * @param inputCommand View note command by user."
+        "content": "     * Checks if file specified is empty."
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * @throws CakeException If one of the above conditions is met."
+        "content": "     * @param inputCommand View note command by user."
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     */"
+        "content": "     * @throws CakeException If one of the above conditions is met."
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    private void validateCommand(String inputCommand) throws CakeException {"
+        "content": "     */"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        if (doesNotContainFileName(inputCommand)) {"
+        "content": "    private void validateCommand(String inputCommand) throws CakeException {"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            throw new CakeException(\"Please input the name of the file you wish to view!\""
+        "content": "        if (doesNotContainFileName(inputCommand)) {"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            + \"E.g. viewnote [name of file]\");"
+        "content": "            throw new CakeException(\"Please input the name of the file you wish to view!\""
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        } else if (containsMultipleParameters(inputCommand)) {"
+        "content": "            + \"E.g. viewnote [name of file]\");"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            throw new CakeException(\"Please only enter one file name! E.g. viewnote [name of file]\");"
+        "content": "        } else if (containsMultipleParameters(inputCommand)) {"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        } else if (Command.containsIllegalCharacter(inputCommand)) {"
+        "content": "            throw new CakeException(\"Please only enter one file name! E.g. viewnote [name of file]\");"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            throw new CakeException(\"Invalid file name: Special character(s) in file name detected!\");"
+        "content": "        } else if (Command.containsIllegalCharacter(inputCommand)) {"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        } else if (fileDoesNotExist(inputCommand)) {"
+        "content": "            throw new CakeException(\"Invalid file name: Special character(s) in file name detected!\");"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            throw new CakeException(\"File specified does not exist! \""
+        "content": "        } else if (fileDoesNotExist(inputCommand)) {"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            + \"Please refer to the notes window to view existing notes file!\");"
+        "content": "            throw new CakeException(\"File specified does not exist! \""
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        } else if (fileIsEmpty(inputCommand)) {"
+        "content": "            + \"Please refer to the notes window to view existing notes file!\");"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            throw new CakeException(\"File specified is empty! \""
+        "content": "        } else if (fileIsEmpty(inputCommand)) {"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            + \"Use \u0027editnote [name of file]\u0027 to write new content!\");"
+        "content": "            throw new CakeException(\"File specified is empty! \""
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        }"
+        "content": "            + \"Use \u0027editnote [name of file]\u0027 to write new content!\");"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    }"
+        "content": "        }"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * Checks if file specified by user is empty."
+        "content": "    /**"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * @param inputCommand View note command by user."
+        "content": "     * Checks if file specified by user is empty."
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * @return True if file specified by user is empty."
+        "content": "     * @param inputCommand View note command by user."
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     */"
+        "content": "     * @return True if file specified by user is empty."
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    private boolean fileIsEmpty(String inputCommand) {"
+        "content": "     */"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        String[] parametersInCommand \u003d inputCommand.split(BY_SPACES);"
+        "content": "    private boolean fileIsEmpty(String inputCommand) {"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        String fileName \u003d parametersInCommand[1];"
+        "content": "        String[] parametersInCommand \u003d inputCommand.split(BY_SPACES);"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        String filePath \u003d defaultFilePath + fileName + \".txt\";"
+        "content": "        String fileName \u003d parametersInCommand[1];"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        File tempFile \u003d new File(filePath);"
+        "content": "        String filePath \u003d defaultFilePath + fileName + \".txt\";"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        return (tempFile.length() \u003d\u003d 0);"
+        "content": "        File tempFile \u003d new File(filePath);"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    }"
+        "content": "        return (tempFile.length() \u003d\u003d 0);"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * Checks if file exists."
+        "content": "    /**"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * @param inputCommand View note command by user."
+        "content": "     * Checks if file exists."
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * @return True if file does not exist."
+        "content": "     * @param inputCommand View note command by user."
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     */"
+        "content": "     * @return True if file does not exist."
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    private boolean fileDoesNotExist(String inputCommand) {"
+        "content": "     */"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        String[] parametersInCommand \u003d inputCommand.split(BY_SPACES);"
+        "content": "    private boolean fileDoesNotExist(String inputCommand) {"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        String fileName \u003d parametersInCommand[1];"
+        "content": "        String[] parametersInCommand \u003d inputCommand.split(BY_SPACES);"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        String filePath \u003d defaultFilePath + fileName + \".txt\";"
+        "content": "        String fileName \u003d parametersInCommand[1];"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        File tempFile \u003d new File(filePath);"
+        "content": "        String filePath \u003d defaultFilePath + fileName + \".txt\";"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        return !tempFile.exists();"
+        "content": "        File tempFile \u003d new File(filePath);"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    }"
+        "content": "        return !tempFile.exists();"
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * Checks if user inputs multiple parameters."
+        "content": "    /**"
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * @param inputCommand View note command by user."
+        "content": "     * Checks if user inputs multiple parameters."
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * @return True if user inputs multiple parameters."
+        "content": "     * @param inputCommand View note command by user."
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     */"
+        "content": "     * @return True if user inputs multiple parameters."
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    private boolean containsMultipleParameters(String inputCommand) {"
+        "content": "     */"
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        String[] parametersInCommand \u003d inputCommand.split(BY_SPACES);"
+        "content": "    private boolean containsMultipleParameters(String inputCommand) {"
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        return (parametersInCommand.length \u003e 2);"
+        "content": "        String[] parametersInCommand \u003d inputCommand.split(BY_SPACES);"
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    }"
+        "content": "        return (parametersInCommand.length \u003e 2);"
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 104,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 105,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * Checks if user inputs name of file to view."
+        "content": "    /**"
       },
       {
         "lineNumber": 106,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * @param inputCommand View note command by user."
+        "content": "     * Checks if user inputs name of file to view."
       },
       {
         "lineNumber": 107,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * @return True if user does not input name of file to view."
+        "content": "     * @param inputCommand View note command by user."
       },
       {
         "lineNumber": 108,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     */"
+        "content": "     * @return True if user does not input name of file to view."
       },
       {
         "lineNumber": 109,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    private boolean doesNotContainFileName(String inputCommand) {"
+        "content": "     */"
       },
       {
         "lineNumber": 110,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        String[] parametersInCommand \u003d inputCommand.split(BY_SPACES);"
+        "content": "    private boolean doesNotContainFileName(String inputCommand) {"
       },
       {
         "lineNumber": 111,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        return (parametersInCommand.length \u003d\u003d 1);"
+        "content": "        String[] parametersInCommand \u003d inputCommand.split(BY_SPACES);"
       },
       {
         "lineNumber": 112,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    }"
+        "content": "        return (parametersInCommand.length \u003d\u003d 1);"
       },
       {
         "lineNumber": 113,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 114,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 115,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * Returns the full path to the note file to be viewed."
+        "content": "    /**"
       },
       {
         "lineNumber": 116,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * @return Full path to the note file to be viewed."
+        "content": "     * Returns the full path to the note file to be viewed."
       },
       {
         "lineNumber": 117,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     */"
+        "content": "     * @return Full path to the note file to be viewed."
       },
       {
         "lineNumber": 118,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    private String generateCurrentFilePath() {"
+        "content": "     */"
       },
       {
         "lineNumber": 119,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        return defaultFilePath + fileName + \".txt\";"
+        "content": "    private String generateCurrentFilePath() {"
       },
       {
         "lineNumber": 120,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    }"
+        "content": "        return defaultFilePath + fileName + \".txt\";"
       },
       {
         "lineNumber": 121,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 122,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 123,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * Views the content of the note file specified by the user."
+        "content": "    /**"
       },
       {
         "lineNumber": 124,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * Allows user to view the content without having to commit to any editing."
+        "content": "     * Views the content of the note file specified by the user."
       },
       {
         "lineNumber": 125,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * @param logic tracks current location in program"
+        "content": "     * Allows user to view the content without having to commit to any editing."
       },
       {
         "lineNumber": 126,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * @param ui the Ui responsible for outputting messages"
+        "content": "     * @param logic tracks current location in program"
       },
       {
         "lineNumber": 127,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * @param storageManager storage container."
+        "content": "     * @param ui the Ui responsible for outputting messages"
       },
       {
         "lineNumber": 128,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * @return Content in the file specified by the user."
+        "content": "     * @param storageManager storage container."
       },
       {
         "lineNumber": 129,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * @throws CakeException If file does not exist."
+        "content": "     * @return Content in the file specified by the user."
       },
       {
         "lineNumber": 130,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     */"
+        "content": "     * @throws CakeException If file does not exist."
       },
       {
         "lineNumber": 131,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    @Override"
+        "content": "     */"
       },
       {
         "lineNumber": 132,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    public String execute(Logic logic, Ui ui, StorageManager storageManager) throws CakeException {"
+        "content": "    @Override"
       },
       {
         "lineNumber": 133,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        String filePath \u003d generateCurrentFilePath();"
+        "content": "    public String execute(Logic logic, Ui ui, StorageManager storageManager) throws CakeException {"
       },
       {
         "lineNumber": 134,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        return \"Below is the file [\" + fileName + \"] that you want to view!\\n\""
+        "content": "        String filePath \u003d generateCurrentFilePath();"
       },
       {
         "lineNumber": 135,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "                + IFileUtilities.readFile(filePath);"
+        "content": "        return \"Below is the file [\" + fileName + \"] that you want to view!\\n\""
       },
       {
         "lineNumber": 136,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    }"
+        "content": "                + IFileUtilities.readFile(filePath);"
       },
       {
         "lineNumber": 137,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 138,
         "author": {
           "gitId": "GlenWong97"
         },
@@ -22067,7 +22074,8 @@
       }
     ],
     "authorContributionMap": {
-      "GlenWong97": 137
+      "GlenWong97": 135,
+      "RusdiHaizim": 3
     }
   },
   {
@@ -22421,269 +22429,458 @@
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": ""
+        "content": "    private static final char[] ILLEGAL_CHARACTERS \u003d { \u0027/\u0027, \u0027\\n\u0027, \u0027\\r\u0027, \u0027\\t\u0027,"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    /**"
+        "content": "        \u0027\\0\u0027, \u0027\\f\u0027, \u0027`\u0027, \u0027?\u0027, \u0027*\u0027, \u0027\\\\\u0027, \u0027\u003c\u0027, \u0027\u003e\u0027, \u0027|\u0027, \u0027\\\"\u0027, \u0027:\u0027, \u0027.\u0027, \u0027,\u0027};"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * Using Depth-First-Search to find all text files."
+        "content": ""
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * In current directory, the text files are notes."
+        "content": ""
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * @return ArrayList storing all the notes."
+        "content": "    /**"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * @throws CakeException If text file does not exist."
+        "content": "     * Using Depth-First-Search to find all text files."
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     */"
+        "content": "     * In current directory, the text files are notes."
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    public ArrayList\u003cNote\u003e compileNotes() throws CakeException {"
+        "content": "     * @return ArrayList storing all the notes."
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        try {"
+        "content": "     * @throws CakeException If text file does not exist."
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            Stream\u003cPath\u003e walk \u003d Files.walk(Paths.get(Storage.returnNotesDefaultFilePath()));"
+        "content": "     */"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            List\u003cString\u003e result \u003d walk.filter(Files::isRegularFile)"
+        "content": "    public ArrayList\u003cNote\u003e compileNotes() throws CakeException {"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "                    .map(Path::toString).collect(Collectors.toList());"
+        "content": "        try {"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": ""
+        "content": "            Stream\u003cPath\u003e walk \u003d Files.walk(Paths.get(Storage.returnNotesDefaultFilePath()));"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            for (String resultName : result) {"
+        "content": "            List\u003cString\u003e result \u003d walk.filter(Files::isRegularFile)"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "                String processedName \u003d processFileNames(resultName);"
+        "content": "                    .map(Path::toString).collect(Collectors.toList());"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "                al.add(new Note(processedName));"
+        "content": ""
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            }"
+        "content": "            for (String resultName : result) {"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        } catch (NullPointerException | IOException e) {"
+        "content": "                String processedName \u003d processFileNames(resultName);"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            throw new CakeException(\"Content not found!\" + \"\\nPls key \u0027back\u0027 or \u0027list\u0027 to view previous content!\");"
+        "content": "                if (processedName !\u003d null) {"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        }"
+        "content": "                    al.add(new Note(processedName));"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        return al;"
+        "content": "                }"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    }"
+        "content": "            }"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": ""
+        "content": "        } catch (NullPointerException | IOException e) {"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    /**"
+        "content": "            throw new CakeException(\"Content not found!\" + \"\\nPls key \u0027back\u0027 or \u0027list\u0027 to view previous content!\");"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * Format the names to only display the last partition of file path."
+        "content": "        }"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * @param resultName File paths that are not processed."
+        "content": "        return al;"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * @return String containing the last partition of file path."
+        "content": "    }"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     * @throws CakeException If index of array does not exist."
+        "content": ""
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "     */"
+        "content": "    /**"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    private String processFileNames(String resultName) throws CakeException {"
+        "content": "     * Format the names to only display the last partition of file path."
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        try {"
+        "content": "     * @param resultName File paths that are not processed."
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            File file \u003d new File(resultName);"
+        "content": "     * @return String containing the last partition of file path."
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            String fileName \u003d file.getName();"
+        "content": "     * @throws CakeException If index of array does not exist."
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            return FilenameUtils.removeExtension(fileName);"
+        "content": "     */"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        } catch (IndexOutOfBoundsException e) {"
+        "content": "    private String processFileNames(String resultName) throws CakeException {"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            throw new CakeException(e.getMessage());"
+        "content": "        try {"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        }"
+        "content": "            File file \u003d new File(resultName);"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    }"
+        "content": "            String fileName \u003d file.getName();"
       },
       {
         "lineNumber": 60,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            String rawFileName \u003d FilenameUtils.removeExtension(fileName);"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            System.out.println(\"RAW\" + rawFileName);"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            if (!checkForIllegalChar(rawFileName) \u0026\u0026 !rawFileName.contains(\" \")) {"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                return rawFileName;"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            } else {"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                return null;"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        } catch (IndexOutOfBoundsException e) {"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            throw new CakeException(e.getMessage());"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "     * Checks for illegal characters in a keyword."
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "     * @param word Parameter within a input command."
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "     * @return True if illegal character is found."
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    private static boolean checkForIllegalChar(String word) {"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        for (char illegalChar : ILLEGAL_CHARACTERS) {"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            if (word.indexOf(illegalChar) \u003e\u003d 0) {"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                return true;"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        return false;"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 87,
         "author": {
           "gitId": "GlenWong97"
         },
@@ -22691,7 +22888,7 @@
       }
     ],
     "authorContributionMap": {
-      "GlenWong97": 60
+      "GlenWong97": 87
     }
   },
   {
@@ -26851,33 +27048,40 @@
       {
         "lineNumber": 110,
         "author": {
-          "gitId": "claysmilesoil"
+          "gitId": "kishore03109"
         },
-        "content": "            throw new CakeException(\"You can\u0027t use that command here! Type a valid question number or \\\"back\\\".\");"
+        "content": "            throw new CakeException(\"You can\u0027t use that command here or number is out of range! \""
       },
       {
         "lineNumber": 111,
         "author": {
-          "gitId": "claysmilesoil"
+          "gitId": "kishore03109"
         },
-        "content": "        }"
+        "content": "                    + \"Type a valid question number or \\\"back\\\".\");"
       },
       {
         "lineNumber": 112,
         "author": {
           "gitId": "claysmilesoil"
         },
-        "content": "        return true;"
+        "content": "        }"
       },
       {
         "lineNumber": 113,
         "author": {
           "gitId": "claysmilesoil"
         },
-        "content": "    }"
+        "content": "        return true;"
       },
       {
         "lineNumber": 114,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 115,
         "author": {
           "gitId": "claysmilesoil"
         },
@@ -26887,7 +27091,8 @@
     "authorContributionMap": {
       "GlenWong97": 10,
       "RusdiHaizim": 9,
-      "claysmilesoil": 95
+      "claysmilesoil": 94,
+      "kishore03109": 2
     }
   },
   {
@@ -37801,7 +38006,7 @@
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                if (\"exit\".equals(input)) {"
+        "content": "                if (\"exit\".equals(input) \u0026\u0026 !isWritingNote) {"
       },
       {
         "lineNumber": 167,
@@ -37836,154 +38041,154 @@
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                } else if (\"listnote\".equals(input)) {"
+        "content": "                } else if (isReview) {"
       },
       {
         "lineNumber": 172,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                    //must be \"listnote\" exactly, else wont exe"
+        "content": "                    LOGGER.info(\"Review Quiz Settings\");"
       },
       {
         "lineNumber": 173,
         "author": {
-          "gitId": "GlenWong97"
+          "gitId": "RusdiHaizim"
         },
-        "content": "                    handleListNote();"
+        "content": "                    handleIsReview();"
       },
       {
         "lineNumber": 174,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                } else if (\"deletenote\".equals(inputDivider[0])) {"
-      },
-      {
-        "lineNumber": 175,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                    handleDeleteNote();"
-      },
-      {
-        "lineNumber": 176,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                } else if (\"createnote\".equals(inputDivider[0])) {"
-      },
-      {
-        "lineNumber": 177,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                    handleCreateNote();"
-      },
-      {
-        "lineNumber": 178,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                } else if (isStarting \u0026\u0026 javaCake.isFirstTimeUser) { //set up new username"
-      },
-      {
-        "lineNumber": 179,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                    LOGGER.info(\"NEW USER Settings\");"
-      },
-      {
-        "lineNumber": 180,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                    handleStartAndFirstTime();"
-      },
-      {
-        "lineNumber": 181,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                } else if (isTryingReset) { //confirmation of reset"
-      },
-      {
-        "lineNumber": 182,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                    LOGGER.info(\"Confirm Reset Settings\");"
-      },
-      {
-        "lineNumber": 183,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                    handleResetConfirmation();"
-      },
-      {
-        "lineNumber": 184,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                } else if (isWritingNote) {"
-      },
-      {
-        "lineNumber": 185,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                    LOGGER.info(\"Writing Note Settings\");"
-      },
-      {
-        "lineNumber": 186,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                    handleWriteNote();"
-      },
-      {
-        "lineNumber": 187,
-        "author": {
-          "gitId": "claysmilesoil"
-        },
         "content": "                } else if (isResult) { // On results screen"
       },
       {
-        "lineNumber": 188,
+        "lineNumber": 175,
         "author": {
           "gitId": "RusdiHaizim"
         },
         "content": "                    LOGGER.info(\"Display Results Settings\");"
       },
       {
-        "lineNumber": 189,
+        "lineNumber": 176,
         "author": {
-          "gitId": "GlenWong97"
+          "gitId": "RusdiHaizim"
         },
         "content": "                    handleIsResult();"
       },
       {
+        "lineNumber": 177,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                } else if (isTryingReset) { //confirmation of reset"
+      },
+      {
+        "lineNumber": 178,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                    LOGGER.info(\"Confirm Reset Settings\");"
+      },
+      {
+        "lineNumber": 179,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                    handleResetConfirmation();"
+      },
+      {
+        "lineNumber": 180,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                } else if (isWritingNote) {"
+      },
+      {
+        "lineNumber": 181,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                    LOGGER.info(\"Writing Note Settings\");"
+      },
+      {
+        "lineNumber": 182,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                    handleWriteNote();"
+      },
+      {
+        "lineNumber": 183,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                } else if (\"listnote\".equals(input)) {"
+      },
+      {
+        "lineNumber": 184,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                    //must be \"listnote\" exactly, else wont exe"
+      },
+      {
+        "lineNumber": 185,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                    handleListNote();"
+      },
+      {
+        "lineNumber": 186,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                } else if (\"deletenote\".equals(inputDivider[0])) {"
+      },
+      {
+        "lineNumber": 187,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                    handleDeleteNote();"
+      },
+      {
+        "lineNumber": 188,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                } else if (\"createnote\".equals(inputDivider[0])) {"
+      },
+      {
+        "lineNumber": 189,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                    handleCreateNote();"
+      },
+      {
         "lineNumber": 190,
         "author": {
-          "gitId": "claysmilesoil"
+          "gitId": "RusdiHaizim"
         },
-        "content": "                } else if (isReview) {"
+        "content": "                } else if (isStarting \u0026\u0026 javaCake.isFirstTimeUser) { //set up new username"
       },
       {
         "lineNumber": 191,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                    LOGGER.info(\"Review Quiz Settings\");"
+        "content": "                    LOGGER.info(\"NEW USER Settings\");"
       },
       {
         "lineNumber": 192,
         "author": {
-          "gitId": "GlenWong97"
+          "gitId": "RusdiHaizim"
         },
-        "content": "                    handleIsReview();"
+        "content": "                    handleStartAndFirstTime();"
       },
       {
         "lineNumber": 193,
@@ -41767,9 +41972,9 @@
       }
     ],
     "authorContributionMap": {
-      "GlenWong97": 146,
-      "RusdiHaizim": 497,
-      "claysmilesoil": 77,
+      "GlenWong97": 142,
+      "RusdiHaizim": 503,
+      "claysmilesoil": 75,
       "kishore03109": 12
     }
   },
@@ -49449,6 +49654,233 @@
     }
   },
   {
+    "path": "src/test/java/QuestionTest.java",
+    "fileType": "tests",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "import javacake.exceptions.CakeException;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "import javacake.quiz.Question;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "import org.junit.jupiter.api.Test;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.assertTrue;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.assertFalse;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.assertEquals;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.assertThrows;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "public class QuestionTest {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "    Question dummyQuestion1 \u003d new Question(\"abc\", \"3\", 5);"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "    public void inputValidationPositiveTest() throws CakeException {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "        assertTrue(dummyQuestion1.isAnswerCorrect(\" 3   \"));"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "    public void inputValidationNegativeTest() throws CakeException {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "        assertFalse(dummyQuestion1.isAnswerCorrect(\"2\"));"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "        assertFalse(dummyQuestion1.isAnswerCorrect(\"5  \"));"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "    public void inputValidationNotInRangeTest() {"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        Exception e1 \u003d assertThrows(CakeException.class, () -\u003e dummyQuestion1.isAnswerCorrect(\"0\"));"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        assertEquals(e1.getMessage(), \"[!] Please enter option number between 1 and 5! [!]\\n\");"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "        assertThrows(CakeException.class, () -\u003e dummyQuestion1.isAnswerCorrect(\"6\"));"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "RusdiHaizim": 7,
+      "claysmilesoil": 24
+    }
+  },
+  {
     "path": "src/test/java/junittesting/GotoTest.java",
     "fileType": "tests",
     "lines": [
@@ -55878,44 +56310,44 @@
       {
         "lineNumber": 9,
         "author": {
-          "gitId": "RusdiHaizim"
+          "gitId": "kishore03109"
         },
-        "content": "    //private static JavaCake javacake;"
+        "content": ""
       },
       {
         "lineNumber": 10,
         "author": {
-          "gitId": "kishore03109"
+          "gitId": "claysmilesoil"
         },
-        "content": ""
+        "content": "    // unused, this test has been moved to QuizSessionTest.testForDuplicates()"
       },
       {
         "lineNumber": 11,
         "author": {
-          "gitId": "kishore03109"
+          "gitId": "claysmilesoil"
         },
-        "content": "    //@BeforeEach"
+        "content": "    @Test"
       },
       {
         "lineNumber": 12,
         "author": {
-          "gitId": "kishore03109"
+          "gitId": "GlenWong97"
         },
-        "content": "    //public void"
+        "content": "    public void initializeBasicQuizTest() throws CakeException {"
       },
       {
         "lineNumber": 13,
         "author": {
-          "gitId": "kishore03109"
+          "gitId": "claysmilesoil"
         },
-        "content": ""
+        "content": "        /*"
       },
       {
         "lineNumber": 14,
         "author": {
-          "gitId": "kishore03109"
+          "gitId": "claysmilesoil"
         },
-        "content": ""
+        "content": "        QuestionList test \u003d new QuestionList(QuestionType.BASIC);"
       },
       {
         "lineNumber": 15,
@@ -55929,115 +56361,59 @@
         "author": {
           "gitId": "claysmilesoil"
         },
-        "content": "    // TODO this test is dummied out until a reliable unit test can be written."
+        "content": "        //check if there are the correct number of test questions"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "claysmilesoil"
         },
-        "content": "    @Test"
+        "content": "        assertEquals(test.getQuestionList().size(), MAX_QUESTIONS);"
       },
       {
         "lineNumber": 18,
         "author": {
-          "gitId": "GlenWong97"
+          "gitId": "claysmilesoil"
         },
-        "content": "    public void initializeBasicQuizTest() throws CakeException {"
+        "content": ""
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "claysmilesoil"
         },
-        "content": "        /*"
+        "content": "        // check if there are any duplicate questions"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "claysmilesoil"
         },
-        "content": "        QuestionList test \u003d new QuestionList(QuestionType.BASIC);"
-      },
-      {
-        "lineNumber": 21,
-        "author": {
-          "gitId": "kishore03109"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 22,
-        "author": {
-          "gitId": "claysmilesoil"
-        },
-        "content": "        //check if there are the correct number of test questions"
-      },
-      {
-        "lineNumber": 23,
-        "author": {
-          "gitId": "claysmilesoil"
-        },
-        "content": "        assertEquals(test.getQuestionList().size(), MAX_QUESTIONS);"
-      },
-      {
-        "lineNumber": 24,
-        "author": {
-          "gitId": "claysmilesoil"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 25,
-        "author": {
-          "gitId": "claysmilesoil"
-        },
-        "content": "        // check if there are any duplicate questions"
-      },
-      {
-        "lineNumber": 26,
-        "author": {
-          "gitId": "claysmilesoil"
-        },
         "content": "        Set\u003cQuestion\u003e set \u003d new HashSet\u003c\u003e(test.getQuestionList());"
       },
       {
-        "lineNumber": 27,
+        "lineNumber": 21,
         "author": {
           "gitId": "claysmilesoil"
         },
         "content": "        assertEquals(set.size(), test.getQuestionList().size());"
       },
       {
-        "lineNumber": 28,
+        "lineNumber": 22,
         "author": {
           "gitId": "claysmilesoil"
         },
         "content": "         */"
       },
       {
-        "lineNumber": 29,
-        "author": {
-          "gitId": "claysmilesoil"
-        },
-        "content": "        String h \u003d \"head hurts\";"
-      },
-      {
-        "lineNumber": 30,
-        "author": {
-          "gitId": "claysmilesoil"
-        },
-        "content": "        assertEquals(h.length(), 10);"
-      },
-      {
-        "lineNumber": 31,
+        "lineNumber": 23,
         "author": {
           "gitId": "claysmilesoil"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 32,
+        "lineNumber": 24,
         "author": {
           "gitId": "claysmilesoil"
         },
@@ -56046,9 +56422,9 @@
     ],
     "authorContributionMap": {
       "GlenWong97": 2,
-      "RusdiHaizim": 2,
-      "kishore03109": 8,
-      "claysmilesoil": 20
+      "RusdiHaizim": 1,
+      "kishore03109": 3,
+      "claysmilesoil": 18
     }
   },
   {
@@ -56144,7 +56520,7 @@
         "author": {
           "gitId": "claysmilesoil"
         },
-        "content": "    Question dummyQuestion1 \u003d new Question(\"abc\", \"3\", 5);"
+        "content": "    private Question dummyQuestion1 \u003d new Question(\"abc\", \"3\", 5);"
       },
       {
         "lineNumber": 14,
@@ -57201,12 +57577,33 @@
       {
         "lineNumber": 130,
         "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 133,
+        "author": {
           "gitId": "kishore03109"
         },
         "content": "}"
       },
       {
-        "lineNumber": 131,
+        "lineNumber": 134,
         "author": {
           "gitId": "kishore03109"
         },
@@ -57215,7 +57612,536 @@
     ],
     "authorContributionMap": {
       "RusdiHaizim": 4,
-      "kishore03109": 127
+      "kishore03109": 127,
+      "claysmilesoil": 3
+    }
+  },
+  {
+    "path": "src/test/java/junittesting/quiztest/ReviewSessionTest.java",
+    "fileType": "tests",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "package junittesting.quiztest;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "import javacake.JavaCake;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "import javacake.exceptions.CakeException;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "import javacake.quiz.QuestionDifficulty;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "import javacake.quiz.QuestionType;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "import javacake.quiz.QuizSession;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "import javacake.quiz.ReviewSession;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "import org.junit.jupiter.api.BeforeEach;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "import org.junit.jupiter.api.Test;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "import static javacake.quiz.QuizSession.MAX_QUESTIONS;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.assertEquals;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.assertThrows;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.assertTrue;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "public class ReviewSessionTest {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "    private ReviewSession reviewSession;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "    private static JavaCake javacake;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "    private String response;"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "    private String[] topics;"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "     * In case it is the user\u0027s first time, name will be just set as list."
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "    @BeforeEach"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "    void init() throws CakeException {"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "            javacake \u003d new JavaCake();"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "        } catch (CakeException e) {"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "            System.out.println(e.getMessage());"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "        javacake.getResponse(\"list\");"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "        response \u003d javacake.getResponse(\"list\");"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "        topics \u003d response.split(\"\\\\r?\\\\n\");"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "        for (int i \u003d 1; i \u003c topics.length; i++) {"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "            if (topics[i].contains(\"Test\")) {"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "                response \u003d javacake.getResponse(\"goto \" + i + \".1\");"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "        QuizSession quizSession \u003d new QuizSession(QuestionType.BASIC, QuestionDifficulty.EASY, false);"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "        for (int i \u003d 0; i \u003c MAX_QUESTIONS; i++) {"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "            quizSession.parseInput(i, \"1\");"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "        reviewSession \u003d new ReviewSession(quizSession.getQuestionList());"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "    void parseInputTest() throws CakeException {"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "        String result;"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "        // positive test: go to question"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "        result \u003d reviewSession.parseInput(0, \"1\");"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "        assertEquals(result, \"0\");"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "        // negative test: non-int string"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "        Exception e1 \u003d assertThrows(CakeException.class, () -\u003e reviewSession.parseInput(0, \"no\"));"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "        assertTrue(e1.getMessage().contains(\"You can\u0027t use that command here\"));"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "        // negative test: out of bounds of number of questions"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        Exception e2 \u003d assertThrows(CakeException.class, () -\u003e reviewSession.parseInput("
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                0, String.valueOf(MAX_QUESTIONS + 1)));"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "        assertTrue(e2.getMessage().contains(\"That question number is out of range! Try again.\"));"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "        // negative test: int overflow input"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        Exception e3 \u003d assertThrows(CakeException.class, () -\u003e reviewSession.parseInput("
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                0, \"2147483700\"));"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "        assertTrue(e3.getMessage().contains(\"number is out of range!\"));"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "        // positive test: back"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "        assertEquals(reviewSession.parseInput(0,\"back\"), \"!@#_BACK\");"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "claysmilesoil"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "RusdiHaizim": 4,
+      "claysmilesoil": 70
     }
   }
 ]
