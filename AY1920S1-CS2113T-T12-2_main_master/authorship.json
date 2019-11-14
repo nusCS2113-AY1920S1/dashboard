@@ -4884,31 +4884,38 @@
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": ""
+        "content": "    public static final String MESSAGE_TAG_TOO_LONG \u003d \"The maximum length of tag is 30 chars.\";"
       },
       {
         "lineNumber": 40,
         "author": {
-          "gitId": "lucasfoo"
+          "gitId": "ChaojieLiu666"
         },
-        "content": "    public DukeException(String message) {"
+        "content": ""
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "lucasfoo"
         },
-        "content": "        super(message);"
+        "content": "    public DukeException(String message) {"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "lucasfoo"
         },
-        "content": "    }"
+        "content": "        super(message);"
       },
       {
         "lineNumber": 43,
+        "author": {
+          "gitId": "lucasfoo"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 44,
         "author": {
           "gitId": "lucasfoo"
         },
@@ -4918,7 +4925,7 @@
     "authorContributionMap": {
       "termehlee": 7,
       "otonashixav": 17,
-      "ChaojieLiu666": 11,
+      "ChaojieLiu666": 12,
       "lucasfoo": 8
     }
   },
@@ -10192,311 +10199,276 @@
         "author": {
           "gitId": "lucasfoo"
         },
-        "content": ""
+        "content": "    private enum SecondaryParam {"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "lucasfoo"
         },
-        "content": "    private enum SecondaryParam {"
+        "content": "        TAG(\"tag\", \"tags that we want a budget to be associated with\");"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "lucasfoo"
         },
-        "content": "        TAG(\"tag\", \"tags that we want a budget to be associated with\");"
+        "content": ""
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "lucasfoo"
         },
-        "content": ""
+        "content": "        private String name;"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "lucasfoo"
         },
-        "content": "        private String name;"
+        "content": "        private String description;"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "lucasfoo"
         },
-        "content": "        private String description;"
+        "content": ""
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "lucasfoo"
         },
-        "content": ""
+        "content": "        SecondaryParam(String name, String description) {"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "lucasfoo"
         },
-        "content": "        SecondaryParam(String name, String description) {"
+        "content": "            this.name \u003d name;"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "lucasfoo"
         },
-        "content": "            this.name \u003d name;"
+        "content": "            this.description \u003d description;"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "lucasfoo"
         },
-        "content": "            this.description \u003d description;"
+        "content": "        }"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "lucasfoo"
         },
-        "content": "        }"
+        "content": "    }"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "lucasfoo"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "lucasfoo"
         },
-        "content": ""
+        "content": "    public BudgetCommand() {"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "lucasfoo"
         },
-        "content": "    public BudgetCommand() {"
+        "content": "        super(name, description, usage, Stream.of(BudgetCommand.SecondaryParam.values())"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "lucasfoo"
         },
-        "content": "        super(name, description, usage, Stream.of(BudgetCommand.SecondaryParam.values())"
+        "content": "                .collect(Collectors.toMap(s -\u003e s.name, s -\u003e s.description)));"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "lucasfoo"
         },
-        "content": "                .collect(Collectors.toMap(s -\u003e s.name, s -\u003e s.description)));"
+        "content": "    }"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "lucasfoo"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "lucasfoo"
         },
-        "content": ""
+        "content": "    @Override"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "lucasfoo"
         },
-        "content": "    @Override"
+        "content": "    public CommandResult execute(CommandParams commandParams, Model model, Storage storage) throws DukeException {"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "lucasfoo"
         },
-        "content": "    public CommandResult execute(CommandParams commandParams, Model model, Storage storage) throws DukeException {"
+        "content": "        if (!commandParams.containsMainParam()) {"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "lucasfoo"
         },
-        "content": "        if (!commandParams.containsMainParam()) {"
+        "content": "            throw new DukeException(String.format(DukeException.MESSAGE_COMMAND_PARAM_MISSING, \"amount\"));"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "lucasfoo"
         },
-        "content": "            throw new DukeException(String.format(DukeException.MESSAGE_COMMAND_PARAM_MISSING, \"amount\"));"
+        "content": "        }"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "lucasfoo"
         },
-        "content": "        }"
+        "content": "        try {"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "lucasfoo"
         },
-        "content": "        try {"
+        "content": "            BigDecimal amount \u003d new BigDecimal(commandParams.getMainParam());"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "lucasfoo"
         },
-        "content": "            BigDecimal amount \u003d new BigDecimal(commandParams.getMainParam());"
+        "content": "            BigDecimal scaledAmount \u003d amount.setScale(2, RoundingMode.HALF_UP);"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "lucasfoo"
         },
-        "content": "            BigDecimal scaledAmount \u003d amount.setScale(2, RoundingMode.HALF_UP);"
-      },
-      {
-        "lineNumber": 49,
-        "author": {
-          "gitId": "lucasfoo"
-        },
         "content": "            if (commandParams.containsParams(SecondaryParam.TAG.name)) {"
       },
       {
-        "lineNumber": 50,
+        "lineNumber": 49,
         "author": {
           "gitId": "termehlee"
         },
         "content": "                String category \u003d commandParams.getParam(SecondaryParam.TAG.name).toUpperCase();"
       },
       {
-        "lineNumber": 51,
+        "lineNumber": 50,
         "author": {
           "gitId": "lucasfoo"
         },
         "content": "                model.setCategoryBudget(category, amount);"
       },
       {
-        "lineNumber": 52,
+        "lineNumber": 51,
         "author": {
           "gitId": "lucasfoo"
         },
         "content": "            } else {"
       },
       {
-        "lineNumber": 53,
+        "lineNumber": 52,
         "author": {
           "gitId": "lucasfoo"
         },
         "content": "                model.setMonthlyBudget(scaledAmount);"
       },
       {
-        "lineNumber": 54,
+        "lineNumber": 53,
         "author": {
           "gitId": "lucasfoo"
         },
         "content": "            }"
       },
       {
-        "lineNumber": 55,
+        "lineNumber": 54,
         "author": {
           "gitId": "lucasfoo"
         },
         "content": "            storage.saveBudget(model.getBudget());"
       },
       {
-        "lineNumber": 56,
+        "lineNumber": 55,
         "author": {
           "gitId": "lucasfoo"
         },
         "content": ""
       },
       {
-        "lineNumber": 57,
+        "lineNumber": 56,
         "author": {
           "gitId": "lucasfoo"
         },
         "content": "        } catch (NumberFormatException e) {"
       },
       {
-        "lineNumber": 58,
+        "lineNumber": 57,
         "author": {
           "gitId": "otonashixav"
         },
         "content": "            throw new DukeException(String.format(DukeException.MESSAGE_BUDGET_AMOUNT_INVALID,"
       },
       {
-        "lineNumber": 59,
+        "lineNumber": 58,
         "author": {
           "gitId": "otonashixav"
         },
         "content": "                    commandParams.getMainParam()));"
       },
       {
-        "lineNumber": 60,
+        "lineNumber": 59,
         "author": {
           "gitId": "lucasfoo"
         },
         "content": "        }"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "termehlee"
+        },
+        "content": "        return new CommandResult(COMPLETE_MESSAGE, CommandResult.DisplayedPane.BUDGET);"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "termehlee"
         },
-        "content": "        if (model.getBudgetCategory().containsKey(commandParams.getParam(SecondaryParam.TAG.name))) {"
-      },
-      {
-        "lineNumber": 62,
-        "author": {
-          "gitId": "termehlee"
-        },
-        "content": "            return new CommandResult(DUPLICATE_MESSAGE, CommandResult.DisplayedPane.BUDGET);"
-      },
-      {
-        "lineNumber": 63,
-        "author": {
-          "gitId": "termehlee"
-        },
-        "content": "        } else {"
-      },
-      {
-        "lineNumber": 64,
-        "author": {
-          "gitId": "termehlee"
-        },
-        "content": "            return new CommandResult(COMPLETE_MESSAGE, CommandResult.DisplayedPane.BUDGET);"
-      },
-      {
-        "lineNumber": 65,
-        "author": {
-          "gitId": "termehlee"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 66,
-        "author": {
-          "gitId": "lucasfoo"
-        },
         "content": "    }"
       },
       {
-        "lineNumber": 67,
+        "lineNumber": 62,
         "author": {
           "gitId": "lucasfoo"
         },
@@ -10504,10 +10476,10 @@
       }
     ],
     "authorContributionMap": {
-      "termehlee": 9,
+      "termehlee": 6,
       "otonashixav": 2,
       "ChaojieLiu666": 3,
-      "lucasfoo": 53
+      "lucasfoo": 51
     }
   },
   {
@@ -16299,595 +16271,595 @@
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": ""
+        "content": "    private static final int MAX_TAG_LENGTH \u003d 30;"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "     * Contains all secondary parameters used by {@code AddPaymentCommand}."
+        "content": "    /**"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "     */"
+        "content": "     * Contains all secondary parameters used by {@code AddPaymentCommand}."
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "    private enum SecondaryParam {"
+        "content": "     */"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        DESCRIPTION(\"description\", \"a short description or name of the pending payment\"),"
+        "content": "    private enum SecondaryParam {"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        DUE(\"due\", \"the due date of affording the payment\"),"
+        "content": "        DESCRIPTION(\"description\", \"a short description or name of the pending payment\"),"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        PRIORITY(\"priority\", \"the priority of the payment\"),"
+        "content": "        DUE(\"due\", \"the due date of affording the payment\"),"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        RECEIVER(\"receiver\", \"the receiver of the payment\"),"
+        "content": "        PRIORITY(\"priority\", \"the priority of the payment\"),"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        TAG(\"tag\", \"tag of the pending payment\");"
+        "content": "        RECEIVER(\"receiver\", \"the receiver of the payment\"),"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": ""
+        "content": "        TAG(\"tag\", \"tag of the pending payment\");"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        private String name;"
+        "content": ""
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        private String description;"
+        "content": "        private String name;"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": ""
+        "content": "        private String description;"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        /**"
+        "content": ""
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "         * Constructs a {@code SecondaryParam} with its name and usage."
+        "content": "        /**"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "         *"
+        "content": "         * Constructs a {@code SecondaryParam} with its name and usage."
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "         * @param name        The name of the secondary parameter."
+        "content": "         *"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "         * @param description The usage of this parameter."
+        "content": "         * @param name        The name of the secondary parameter."
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "         */"
+        "content": "         * @param description The usage of this parameter."
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        SecondaryParam(String name, String description) {"
+        "content": "         */"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "            this.name \u003d name;"
+        "content": "        SecondaryParam(String name, String description) {"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "            this.description \u003d description;"
+        "content": "            this.name \u003d name;"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        }"
+        "content": "            this.description \u003d description;"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "    }"
+        "content": "        }"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "     * Creates an AddPaymentCommand, with its name, description, usage and secondary parameters."
+        "content": "    /**"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "     */"
+        "content": "     * Creates an AddPaymentCommand, with its name, description, usage and secondary parameters."
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "    public AddPaymentCommand() {"
+        "content": "     */"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        super(name, description, usage, Stream.of(SecondaryParam.values())"
+        "content": "    public AddPaymentCommand() {"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "                    .collect(Collectors.toMap(s -\u003e s.name, s -\u003e s.description))"
+        "content": "        super(name, description, usage, Stream.of(SecondaryParam.values())"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        );"
+        "content": "                    .collect(Collectors.toMap(s -\u003e s.name, s -\u003e s.description))"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "    }"
+        "content": "        );"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "    @Override"
+        "content": ""
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "    public CommandResult execute(CommandParams commandParams, Model model, Storage storage) throws DukeException {"
+        "content": "    @Override"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        Payment.Builder paymentBuilder \u003d new Payment.Builder();"
+        "content": "    public CommandResult execute(CommandParams commandParams, Model model, Storage storage) throws DukeException {"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": ""
+        "content": "        Payment.Builder paymentBuilder \u003d new Payment.Builder();"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        // Amount is a compulsory field and also the main param."
+        "content": ""
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        if (!commandParams.containsMainParam()) {"
+        "content": "        // Amount is a compulsory field and also the main param."
       },
       {
         "lineNumber": 67,
         "author": {
-          "gitId": "termehlee"
+          "gitId": "ChaojieLiu666"
         },
-        "content": "            throw new DukeException(String.format(DukeException.MESSAGE_COMMAND_PARAM_MISSING,"
+        "content": "        if (!commandParams.containsMainParam()) {"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "termehlee"
         },
-        "content": "                    PARAM_AMOUNT_NAME));"
+        "content": "            throw new DukeException(String.format(DukeException.MESSAGE_COMMAND_PARAM_MISSING,"
       },
       {
         "lineNumber": 69,
         "author": {
-          "gitId": "ChaojieLiu666"
+          "gitId": "termehlee"
         },
-        "content": "        }"
+        "content": "                    PARAM_AMOUNT_NAME));"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        paymentBuilder.setAmount(commandParams.getMainParam());"
+        "content": ""
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": ""
+        "content": "        paymentBuilder.setAmount(commandParams.getMainParam());"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        // Description is a compulsory field."
+        "content": ""
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        if (!commandParams.containsParams(SecondaryParam.DESCRIPTION.name)) {"
+        "content": "        // Description is a compulsory field."
       },
       {
         "lineNumber": 75,
         "author": {
-          "gitId": "termehlee"
+          "gitId": "ChaojieLiu666"
         },
-        "content": "            throw new DukeException(String.format(DukeException.MESSAGE_COMMAND_PARAM_MISSING,"
+        "content": "        if (!commandParams.containsParams(SecondaryParam.DESCRIPTION.name)) {"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "termehlee"
         },
-        "content": "                    SecondaryParam.DESCRIPTION.name));"
+        "content": "            throw new DukeException(String.format(DukeException.MESSAGE_COMMAND_PARAM_MISSING,"
       },
       {
         "lineNumber": 77,
         "author": {
-          "gitId": "ChaojieLiu666"
+          "gitId": "termehlee"
         },
-        "content": "        }"
+        "content": "                    SecondaryParam.DESCRIPTION.name));"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        paymentBuilder.setDescription(commandParams.getParam(SecondaryParam.DESCRIPTION.name));"
+        "content": ""
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": ""
+        "content": "        paymentBuilder.setDescription(commandParams.getParam(SecondaryParam.DESCRIPTION.name));"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        // Due is a compulsory field."
+        "content": ""
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        if (!commandParams.containsParams(SecondaryParam.DUE.name)) {"
+        "content": "        // Due is a compulsory field."
       },
       {
         "lineNumber": 83,
         "author": {
-          "gitId": "termehlee"
+          "gitId": "ChaojieLiu666"
         },
-        "content": "            throw new DukeException(String.format(DukeException.MESSAGE_COMMAND_PARAM_MISSING,"
+        "content": "        if (!commandParams.containsParams(SecondaryParam.DUE.name)) {"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "termehlee"
         },
-        "content": "                    SecondaryParam.DUE.name));"
+        "content": "            throw new DukeException(String.format(DukeException.MESSAGE_COMMAND_PARAM_MISSING,"
       },
       {
         "lineNumber": 85,
         "author": {
-          "gitId": "ChaojieLiu666"
+          "gitId": "termehlee"
         },
-        "content": "        }"
+        "content": "                    SecondaryParam.DUE.name));"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        paymentBuilder.setDue(commandParams.getParam(SecondaryParam.DUE.name));"
+        "content": ""
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": ""
+        "content": "        paymentBuilder.setDue(commandParams.getParam(SecondaryParam.DUE.name));"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        // Priority is a optional field."
+        "content": ""
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        if (commandParams.containsParams(SecondaryParam.PRIORITY.name)) {"
+        "content": "        // Priority is a optional field."
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "            paymentBuilder.setPriority(commandParams.getParam(SecondaryParam.PRIORITY.name));"
+        "content": "        if (commandParams.containsParams(SecondaryParam.PRIORITY.name)) {"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        }"
+        "content": "            paymentBuilder.setPriority(commandParams.getParam(SecondaryParam.PRIORITY.name));"
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        // Receiver is a optional field."
+        "content": ""
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        if (commandParams.containsParams(SecondaryParam.RECEIVER.name)) {"
+        "content": "        // Receiver is a optional field."
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "            paymentBuilder.setReceiver(commandParams.getParam(SecondaryParam.RECEIVER.name));"
+        "content": "        if (commandParams.containsParams(SecondaryParam.RECEIVER.name)) {"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        }"
+        "content": "            paymentBuilder.setReceiver(commandParams.getParam(SecondaryParam.RECEIVER.name));"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        // Tag is a optional field."
+        "content": ""
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        if (commandParams.containsParams(SecondaryParam.TAG.name)) {"
+        "content": "        // Tag is a optional field."
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "            paymentBuilder.setTag(commandParams.getParam(SecondaryParam.TAG.name));"
+        "content": "        if (commandParams.containsParams(SecondaryParam.TAG.name)) {"
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        }"
+        "content": "            String tag \u003d commandParams.getParam(SecondaryParam.TAG.name);"
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": ""
+        "content": "            // The length of tag shouldn\u0027t exceed 30 chars."
       },
       {
         "lineNumber": 104,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        model.addPayment(paymentBuilder.build());"
+        "content": "            if (tag.length() \u003e MAX_TAG_LENGTH) {"
       },
       {
         "lineNumber": 105,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": ""
+        "content": "                throw new DukeException(DukeException.MESSAGE_TAG_TOO_LONG);"
       },
       {
         "lineNumber": 106,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        try {"
+        "content": "            }"
       },
       {
         "lineNumber": 107,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "            storage.savePaymentList(model.getPaymentList());"
+        "content": "            paymentBuilder.setTag(commandParams.getParam(SecondaryParam.TAG.name));"
       },
       {
         "lineNumber": 108,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        } catch (IOException e) {"
+        "content": "        }"
       },
       {
         "lineNumber": 109,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "            throw new DukeException(DukeException.MESSAGE_PAYMENT_SAVE_FAILED);"
+        "content": ""
       },
       {
         "lineNumber": 110,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        }"
+        "content": "        model.addPayment(paymentBuilder.build());"
       },
       {
         "lineNumber": 111,
@@ -16901,17 +16873,59 @@
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        return new CommandResult(COMPLETE_MESSAGE, CommandResult.DisplayedPane.PAYMENT);"
+        "content": "        try {"
       },
       {
         "lineNumber": 113,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "    }"
+        "content": "            storage.savePaymentList(model.getPaymentList());"
       },
       {
         "lineNumber": 114,
+        "author": {
+          "gitId": "ChaojieLiu666"
+        },
+        "content": "        } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "ChaojieLiu666"
+        },
+        "content": "            throw new DukeException(DukeException.MESSAGE_PAYMENT_SAVE_FAILED);"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "ChaojieLiu666"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "ChaojieLiu666"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "ChaojieLiu666"
+        },
+        "content": "        return new CommandResult(COMPLETE_MESSAGE, CommandResult.DisplayedPane.PAYMENT);"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "ChaojieLiu666"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 120,
         "author": {
           "gitId": "ChaojieLiu666"
         },
@@ -16920,7 +16934,7 @@
     ],
     "authorContributionMap": {
       "termehlee": 6,
-      "ChaojieLiu666": 108
+      "ChaojieLiu666": 114
     }
   },
   {
@@ -17100,619 +17114,661 @@
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": ""
+        "content": "    private static final int MAX_TAG_LENGTH \u003d 30;"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "     * Contains all secondary parameters used by {@code ChangePaymentCommand}."
+        "content": "    /**"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "     */"
+        "content": "     * Contains all secondary parameters used by {@code ChangePaymentCommand}."
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "    private enum SecondaryParam {"
+        "content": "     */"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        DESCRIPTION(\"description\", \"a short description or name of the pending payment\"),"
+        "content": "    private enum SecondaryParam {"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        DUE(\"due\", \"the due date of affording the payment\"),"
+        "content": "        DESCRIPTION(\"description\", \"a short description or name of the pending payment\"),"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        PRIORITY(\"priority\", \"the priority of the payment\"),"
+        "content": "        DUE(\"due\", \"the due date of affording the payment\"),"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        RECEIVER(\"receiver\", \"the receiver of the payment\"),"
+        "content": "        PRIORITY(\"priority\", \"the priority of the payment\"),"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        AMOUNT(\"amount\", \"the money of payment\"),"
+        "content": "        RECEIVER(\"receiver\", \"the receiver of the payment\"),"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        TAG(\"tag\", \"remark of the pending payment\");"
+        "content": "        AMOUNT(\"amount\", \"the money of payment\"),"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": ""
+        "content": "        TAG(\"tag\", \"remark of the pending payment\");"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        private String name;"
+        "content": ""
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        private String description;"
+        "content": "        private String name;"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": ""
+        "content": "        private String description;"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        /**"
+        "content": ""
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "         * Constructs a {@code SecondaryParam} with its name and usage."
+        "content": "        /**"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "         *"
+        "content": "         * Constructs a {@code SecondaryParam} with its name and usage."
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "         * @param name        The name of the secondary parameter."
+        "content": "         *"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "         * @param description The usage of this parameter."
+        "content": "         * @param name        The name of the secondary parameter."
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "         */"
+        "content": "         * @param description The usage of this parameter."
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        SecondaryParam(String name, String description) {"
+        "content": "         */"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "            this.name \u003d name;"
+        "content": "        SecondaryParam(String name, String description) {"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "            this.description \u003d description;"
+        "content": "            this.name \u003d name;"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        }"
+        "content": "            this.description \u003d description;"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "    }"
+        "content": "        }"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "     * Creates a ChangePaymentCommand, with its name, description, usage and secondary parameters."
+        "content": "    /**"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "     */"
+        "content": "     * Creates a ChangePaymentCommand, with its name, description, usage and secondary parameters."
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "    public ChangePaymentCommand() {"
+        "content": "     */"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        super(name, description, usage, Stream.of(SecondaryParam.values())"
+        "content": "    public ChangePaymentCommand() {"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "                .collect(Collectors.toMap(s -\u003e s.name, s -\u003e s.description))"
+        "content": "        super(name, description, usage, Stream.of(SecondaryParam.values())"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        );"
+        "content": "                .collect(Collectors.toMap(s -\u003e s.name, s -\u003e s.description))"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "    }"
+        "content": "        );"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "    @Override"
+        "content": ""
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "    public CommandResult execute(CommandParams commandParams, Model model, Storage storage) throws DukeException {"
+        "content": "    @Override"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": ""
+        "content": "    public CommandResult execute(CommandParams commandParams, Model model, Storage storage) throws DukeException {"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        if (!commandParams.containsMainParam()) {"
+        "content": ""
       },
       {
         "lineNumber": 65,
         "author": {
-          "gitId": "termehlee"
+          "gitId": "ChaojieLiu666"
         },
-        "content": "            throw new DukeException(String.format(DukeException.MESSAGE_COMMAND_PARAM_MISSING,"
+        "content": "        if (!commandParams.containsMainParam()) {"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "termehlee"
         },
-        "content": "                    EXCEPTION_WORD_INDEX));"
+        "content": "            throw new DukeException(String.format(DukeException.MESSAGE_COMMAND_PARAM_MISSING,"
       },
       {
         "lineNumber": 67,
         "author": {
-          "gitId": "ChaojieLiu666"
+          "gitId": "termehlee"
         },
-        "content": "        }"
+        "content": "                    EXCEPTION_WORD_INDEX));"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        int index;"
+        "content": ""
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        String mainParam \u003d commandParams.getMainParam();"
+        "content": "        int index;"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        try {"
+        "content": "        String mainParam \u003d commandParams.getMainParam();"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "            index \u003d Integer.parseInt(mainParam);"
+        "content": "        try {"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        } catch (NumberFormatException e) {"
+        "content": "            index \u003d Integer.parseInt(mainParam);"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "            throw new DukeException(String.format(DukeException.MESSAGE_NUMBER_FORMAT_INVALID, mainParam));"
+        "content": "        } catch (NumberFormatException e) {"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        }"
+        "content": "            throw new DukeException(String.format(DukeException.MESSAGE_NUMBER_FORMAT_INVALID, mainParam));"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        // Constructs a builder with same fields as the target payment for modification on fields."
+        "content": ""
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        Payment.Builder paymentBuilder \u003d new Payment.Builder(model.getPayment(index));"
+        "content": "        // Constructs a builder with same fields as the target payment for modification on fields."
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": ""
+        "content": "        Payment.Builder paymentBuilder \u003d new Payment.Builder(model.getPayment(index));"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        if (commandParams.containsParams(SecondaryParam.AMOUNT.name)) {"
+        "content": ""
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "            paymentBuilder.setAmount(commandParams.getParam(SecondaryParam.AMOUNT.name));"
+        "content": "        if (commandParams.containsParams(SecondaryParam.AMOUNT.name)) {"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        }"
+        "content": "            paymentBuilder.setAmount(commandParams.getParam(SecondaryParam.AMOUNT.name));"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        if (commandParams.containsParams(SecondaryParam.DESCRIPTION.name)) {"
+        "content": ""
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "            paymentBuilder.setDescription(commandParams.getParam(SecondaryParam.DESCRIPTION.name));"
+        "content": "        if (commandParams.containsParams(SecondaryParam.DESCRIPTION.name)) {"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        }"
+        "content": "            paymentBuilder.setDescription(commandParams.getParam(SecondaryParam.DESCRIPTION.name));"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        if (commandParams.containsParams(SecondaryParam.DUE.name)) {"
+        "content": ""
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "            paymentBuilder.setDue(commandParams.getParam(SecondaryParam.DUE.name));"
+        "content": "        if (commandParams.containsParams(SecondaryParam.DUE.name)) {"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        }"
+        "content": "            paymentBuilder.setDue(commandParams.getParam(SecondaryParam.DUE.name));"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        if (commandParams.containsParams(SecondaryParam.PRIORITY.name)) {"
+        "content": ""
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "            paymentBuilder.setPriority(commandParams.getParam(SecondaryParam.PRIORITY.name));"
+        "content": "        if (commandParams.containsParams(SecondaryParam.PRIORITY.name)) {"
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        }"
+        "content": "            paymentBuilder.setPriority(commandParams.getParam(SecondaryParam.PRIORITY.name));"
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        if (commandParams.containsParams(SecondaryParam.RECEIVER.name)) {"
+        "content": ""
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "            paymentBuilder.setReceiver(commandParams.getParam(SecondaryParam.RECEIVER.name));"
+        "content": "        if (commandParams.containsParams(SecondaryParam.RECEIVER.name)) {"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        }"
+        "content": "            paymentBuilder.setReceiver(commandParams.getParam(SecondaryParam.RECEIVER.name));"
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        if (commandParams.containsParams(SecondaryParam.TAG.name)) {"
+        "content": ""
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "            paymentBuilder.setTag(commandParams.getParam(SecondaryParam.TAG.name));"
+        "content": "        if (commandParams.containsParams(SecondaryParam.TAG.name)) {"
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        }"
+        "content": "            String tag \u003d commandParams.getParam(ChangePaymentCommand.SecondaryParam.TAG.name);"
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": ""
+        "content": "            // The length of tag should not exceed 30 chars."
       },
       {
         "lineNumber": 104,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        model.setPayment(index, paymentBuilder.build());"
+        "content": "            if (tag.length() \u003e MAX_TAG_LENGTH) {"
       },
       {
         "lineNumber": 105,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        try {"
+        "content": "                throw new DukeException(DukeException.MESSAGE_TAG_TOO_LONG);"
       },
       {
         "lineNumber": 106,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "            storage.savePaymentList(model.getPaymentList());"
+        "content": "            }"
       },
       {
         "lineNumber": 107,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        } catch (IOException e) {"
+        "content": "            paymentBuilder.setTag(commandParams.getParam(SecondaryParam.TAG.name));"
       },
       {
         "lineNumber": 108,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "            throw new DukeException(DukeException.MESSAGE_PAYMENT_SAVE_FAILED);"
+        "content": "        }"
       },
       {
         "lineNumber": 109,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        }"
+        "content": ""
       },
       {
         "lineNumber": 110,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": ""
+        "content": "        model.setPayment(index, paymentBuilder.build());"
       },
       {
         "lineNumber": 111,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        return new CommandResult(COMPLETE_MESSAGE, CommandResult.DisplayedPane.PAYMENT);"
+        "content": "        try {"
       },
       {
         "lineNumber": 112,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "    }"
+        "content": "            storage.savePaymentList(model.getPaymentList());"
       },
       {
         "lineNumber": 113,
+        "author": {
+          "gitId": "ChaojieLiu666"
+        },
+        "content": "        } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "ChaojieLiu666"
+        },
+        "content": "            throw new DukeException(DukeException.MESSAGE_PAYMENT_SAVE_FAILED);"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "ChaojieLiu666"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "ChaojieLiu666"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "ChaojieLiu666"
+        },
+        "content": "        return new CommandResult(COMPLETE_MESSAGE, CommandResult.DisplayedPane.PAYMENT);"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "ChaojieLiu666"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 119,
         "author": {
           "gitId": "ChaojieLiu666"
         },
@@ -17721,7 +17777,7 @@
     ],
     "authorContributionMap": {
       "termehlee": 2,
-      "ChaojieLiu666": 111
+      "ChaojieLiu666": 117
     }
   },
   {
@@ -43366,9 +43422,9 @@
       {
         "lineNumber": 299,
         "author": {
-          "gitId": "lucasfoo"
+          "gitId": "ChaojieLiu666"
         },
-        "content": "                    phoneBillExpenseBuilder.setTag(\"phone bill\");"
+        "content": "                    phoneBillExpenseBuilder.setTag(\"PHONE BILL\");"
       },
       {
         "lineNumber": 300,
@@ -43457,9 +43513,9 @@
       {
         "lineNumber": 312,
         "author": {
-          "gitId": "lucasfoo"
+          "gitId": "ChaojieLiu666"
         },
-        "content": "                    netflixExpenseBuilder.setTag(\"netflix\");"
+        "content": "                    netflixExpenseBuilder.setTag(\"NETFLIX\");"
       },
       {
         "lineNumber": 313,
@@ -43534,9 +43590,9 @@
       {
         "lineNumber": 323,
         "author": {
-          "gitId": "lucasfoo"
+          "gitId": "ChaojieLiu666"
         },
-        "content": "                    spotifyExpenseBuilder.setTag(\"spotify\");"
+        "content": "                    spotifyExpenseBuilder.setTag(\"SPOTIFY\");"
       },
       {
         "lineNumber": 324,
@@ -44051,8 +44107,8 @@
       }
     ],
     "authorContributionMap": {
-      "ChaojieLiu666": 1,
-      "lucasfoo": 395
+      "ChaojieLiu666": 4,
+      "lucasfoo": 392
     }
   },
   {
@@ -60060,726 +60116,740 @@
       {
         "lineNumber": 153,
         "author": {
+          "gitId": "ChaojieLiu666"
+        },
+        "content": "            paneStack.getChildren().clear();"
+      },
+      {
+        "lineNumber": 154,
+        "author": {
+          "gitId": "ChaojieLiu666"
+        },
+        "content": "            fillInnerPart();"
+      },
+      {
+        "lineNumber": 155,
+        "author": {
           "gitId": "termehlee"
         },
         "content": "            showPane(commandResult);"
       },
       {
-        "lineNumber": 154,
+        "lineNumber": 156,
         "author": {
           "gitId": "termehlee"
         },
         "content": ""
-      },
-      {
-        "lineNumber": 155,
-        "author": {
-          "gitId": "lucasfoo"
-        },
-        "content": "            if (commandResult.isExit()) {"
-      },
-      {
-        "lineNumber": 156,
-        "author": {
-          "gitId": "lucasfoo"
-        },
-        "content": "                Platform.exit();"
       },
       {
         "lineNumber": 157,
         "author": {
           "gitId": "lucasfoo"
         },
-        "content": "            }"
+        "content": "            if (commandResult.isExit()) {"
       },
       {
         "lineNumber": 158,
         "author": {
-          "gitId": "termehlee"
+          "gitId": "lucasfoo"
         },
-        "content": "        } catch (DukeException e) {"
+        "content": "                Platform.exit();"
       },
       {
         "lineNumber": 159,
         "author": {
-          "gitId": "termehlee"
+          "gitId": "lucasfoo"
         },
-        "content": "            console.setText(e.getMessage());"
+        "content": "            }"
       },
       {
         "lineNumber": 160,
         "author": {
           "gitId": "termehlee"
         },
-        "content": "        }"
+        "content": "        } catch (DukeException e) {"
       },
       {
         "lineNumber": 161,
         "author": {
           "gitId": "termehlee"
         },
-        "content": ""
+        "content": "            console.setText(e.getMessage());"
       },
       {
         "lineNumber": 162,
         "author": {
-          "gitId": "ChaojieLiu666"
+          "gitId": "termehlee"
         },
-        "content": "        inputHistory.add(inputString);"
+        "content": "        }"
       },
       {
         "lineNumber": 163,
         "author": {
           "gitId": "termehlee"
         },
-        "content": "        userInput.clear();"
+        "content": ""
       },
       {
         "lineNumber": 164,
         "author": {
-          "gitId": "termehlee"
+          "gitId": "ChaojieLiu666"
         },
-        "content": "    }"
+        "content": "        inputHistory.add(inputString);"
       },
       {
         "lineNumber": 165,
         "author": {
           "gitId": "termehlee"
         },
-        "content": ""
+        "content": "        userInput.clear();"
       },
       {
         "lineNumber": 166,
         "author": {
-          "gitId": "ChaojieLiu666"
+          "gitId": "termehlee"
         },
-        "content": "    @FXML"
+        "content": "    }"
       },
       {
         "lineNumber": 167,
         "author": {
-          "gitId": "ChaojieLiu666"
+          "gitId": "termehlee"
         },
-        "content": "    private void handleKeyPressed(KeyEvent keyEvent) {"
+        "content": ""
       },
       {
         "lineNumber": 168,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        switch (keyEvent.getCode()) {"
+        "content": "    @FXML"
       },
       {
         "lineNumber": 169,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        case UP:"
+        "content": "    private void handleKeyPressed(KeyEvent keyEvent) {"
       },
       {
         "lineNumber": 170,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "            userInput.setText(inputHistory.getLastInput());"
+        "content": "        switch (keyEvent.getCode()) {"
       },
       {
         "lineNumber": 171,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "            userInput.positionCaret(userInput.getText().length());"
+        "content": "        case UP:"
       },
       {
         "lineNumber": 172,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "            break;"
+        "content": "            userInput.setText(inputHistory.getLastInput());"
       },
       {
         "lineNumber": 173,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": ""
+        "content": "            userInput.positionCaret(userInput.getText().length());"
       },
       {
         "lineNumber": 174,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        case DOWN:"
+        "content": "            break;"
       },
       {
         "lineNumber": 175,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "            userInput.setText(inputHistory.getNextInput());"
+        "content": ""
       },
       {
         "lineNumber": 176,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "            userInput.positionCaret(userInput.getText().length());"
+        "content": "        case DOWN:"
       },
       {
         "lineNumber": 177,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "            break;"
+        "content": "            userInput.setText(inputHistory.getNextInput());"
       },
       {
         "lineNumber": 178,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": ""
+        "content": "            userInput.positionCaret(userInput.getText().length());"
       },
       {
         "lineNumber": 179,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        default:"
+        "content": "            break;"
       },
       {
         "lineNumber": 180,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "            // other key events will be ignored."
+        "content": ""
       },
       {
         "lineNumber": 181,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "            break;"
+        "content": "        default:"
       },
       {
         "lineNumber": 182,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        }"
+        "content": "            // other key events will be ignored."
       },
       {
         "lineNumber": 183,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "    }"
+        "content": "            break;"
       },
       {
         "lineNumber": 184,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 185,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 186,
         "author": {
-          "gitId": "termehlee"
+          "gitId": "ChaojieLiu666"
         },
-        "content": "    private void showPane(CommandResult commandResult) {"
+        "content": ""
       },
       {
         "lineNumber": 187,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        displayedPane \u003d commandResult.getDisplayedPane();"
+        "content": ""
       },
       {
         "lineNumber": 188,
+        "author": {
+          "gitId": "termehlee"
+        },
+        "content": "    private void showPane(CommandResult commandResult) {"
+      },
+      {
+        "lineNumber": 189,
+        "author": {
+          "gitId": "ChaojieLiu666"
+        },
+        "content": "        displayedPane \u003d commandResult.getDisplayedPane();"
+      },
+      {
+        "lineNumber": 190,
         "author": {
           "gitId": "ChaojieLiu666"
         },
         "content": "        switch (displayedPane) {"
       },
       {
-        "lineNumber": 189,
+        "lineNumber": 191,
         "author": {
           "gitId": "termehlee"
         },
         "content": "        case EXPENSE:"
       },
       {
-        "lineNumber": 190,
+        "lineNumber": 192,
         "author": {
           "gitId": "termehlee"
         },
         "content": "            showExpensePane();"
       },
       {
-        "lineNumber": 191,
-        "author": {
-          "gitId": "termehlee"
-        },
-        "content": "            break;"
-      },
-      {
-        "lineNumber": 192,
-        "author": {
-          "gitId": "termehlee"
-        },
-        "content": ""
-      },
-      {
         "lineNumber": 193,
         "author": {
           "gitId": "termehlee"
         },
-        "content": "        case TRENDING:"
+        "content": "            break;"
       },
       {
         "lineNumber": 194,
         "author": {
           "gitId": "termehlee"
         },
-        "content": "            showTrendingPane();"
+        "content": ""
       },
       {
         "lineNumber": 195,
         "author": {
           "gitId": "termehlee"
         },
-        "content": "            break;"
+        "content": "        case TRENDING:"
       },
       {
         "lineNumber": 196,
         "author": {
           "gitId": "termehlee"
         },
-        "content": ""
+        "content": "            showTrendingPane();"
       },
       {
         "lineNumber": 197,
         "author": {
-          "gitId": "lucasfoo"
+          "gitId": "termehlee"
         },
-        "content": "        case PLAN:"
+        "content": "            break;"
       },
       {
         "lineNumber": 198,
         "author": {
-          "gitId": "lucasfoo"
+          "gitId": "termehlee"
         },
-        "content": "            showPlanPane();"
+        "content": ""
       },
       {
         "lineNumber": 199,
         "author": {
           "gitId": "lucasfoo"
         },
-        "content": "            break;"
+        "content": "        case PLAN:"
       },
       {
         "lineNumber": 200,
         "author": {
-          "gitId": "ChaojieLiu666"
+          "gitId": "lucasfoo"
         },
-        "content": ""
+        "content": "            showPlanPane();"
       },
       {
         "lineNumber": 201,
         "author": {
-          "gitId": "ChaojieLiu666"
+          "gitId": "lucasfoo"
         },
-        "content": "        case PAYMENT:"
+        "content": "            break;"
       },
       {
         "lineNumber": 202,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "            showPaymentPane();"
+        "content": ""
       },
       {
         "lineNumber": 203,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "            break;"
+        "content": "        case PAYMENT:"
       },
       {
         "lineNumber": 204,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": ""
+        "content": "            showPaymentPane();"
       },
       {
         "lineNumber": 205,
         "author": {
-          "gitId": "termehlee"
+          "gitId": "ChaojieLiu666"
         },
-        "content": "        case BUDGET:"
+        "content": "            break;"
       },
       {
         "lineNumber": 206,
         "author": {
-          "gitId": "termehlee"
+          "gitId": "ChaojieLiu666"
         },
-        "content": "            showBudgetPane();"
+        "content": ""
       },
       {
         "lineNumber": 207,
         "author": {
           "gitId": "termehlee"
         },
-        "content": "            break;"
+        "content": "        case BUDGET:"
       },
       {
         "lineNumber": 208,
         "author": {
           "gitId": "termehlee"
         },
-        "content": ""
+        "content": "            showBudgetPane();"
       },
       {
         "lineNumber": 209,
         "author": {
           "gitId": "termehlee"
         },
-        "content": "        default:"
+        "content": "            break;"
       },
       {
         "lineNumber": 210,
         "author": {
           "gitId": "termehlee"
         },
-        "content": "            break;"
+        "content": ""
       },
       {
         "lineNumber": 211,
         "author": {
           "gitId": "termehlee"
         },
-        "content": "        }"
+        "content": "        default:"
       },
       {
         "lineNumber": 212,
         "author": {
           "gitId": "termehlee"
         },
-        "content": "    }"
+        "content": "            break;"
       },
       {
         "lineNumber": 213,
         "author": {
           "gitId": "termehlee"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 214,
         "author": {
           "gitId": "termehlee"
         },
-        "content": "    private void showExpensePane() {"
+        "content": "    }"
       },
       {
         "lineNumber": 215,
         "author": {
-          "gitId": "ChaojieLiu666"
+          "gitId": "termehlee"
         },
-        "content": "        expensePane.getRoot().setVisible(true);"
+        "content": ""
       },
       {
         "lineNumber": 216,
         "author": {
-          "gitId": "ChaojieLiu666"
+          "gitId": "termehlee"
         },
-        "content": "        planPane.getRoot().setVisible(false);"
+        "content": "    private void showExpensePane() {"
       },
       {
         "lineNumber": 217,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        trendingPane.getRoot().setVisible(false);"
+        "content": "        expensePane.getRoot().setVisible(true);"
       },
       {
         "lineNumber": 218,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        paymentPane.getRoot().setVisible(false);"
+        "content": "        planPane.getRoot().setVisible(false);"
       },
       {
         "lineNumber": 219,
         "author": {
-          "gitId": "termehlee"
+          "gitId": "ChaojieLiu666"
         },
-        "content": "        budgetPane.getRoot().setVisible(false);"
+        "content": "        trendingPane.getRoot().setVisible(false);"
       },
       {
         "lineNumber": 220,
         "author": {
-          "gitId": "termehlee"
+          "gitId": "ChaojieLiu666"
         },
-        "content": "    }"
+        "content": "        paymentPane.getRoot().setVisible(false);"
       },
       {
         "lineNumber": 221,
         "author": {
           "gitId": "termehlee"
         },
-        "content": ""
+        "content": "        budgetPane.getRoot().setVisible(false);"
       },
       {
         "lineNumber": 222,
         "author": {
           "gitId": "termehlee"
         },
-        "content": "    private void showTrendingPane() {"
+        "content": "    }"
       },
       {
         "lineNumber": 223,
         "author": {
-          "gitId": "ChaojieLiu666"
+          "gitId": "termehlee"
         },
-        "content": "        expensePane.getRoot().setVisible(false);"
+        "content": ""
       },
       {
         "lineNumber": 224,
         "author": {
-          "gitId": "ChaojieLiu666"
+          "gitId": "termehlee"
         },
-        "content": "        planPane.getRoot().setVisible(false);"
+        "content": "    private void showTrendingPane() {"
       },
       {
         "lineNumber": 225,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        trendingPane.getRoot().setVisible(true);"
+        "content": "        expensePane.getRoot().setVisible(false);"
       },
       {
         "lineNumber": 226,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        paymentPane.getRoot().setVisible(false);"
+        "content": "        planPane.getRoot().setVisible(false);"
       },
       {
         "lineNumber": 227,
+        "author": {
+          "gitId": "ChaojieLiu666"
+        },
+        "content": "        trendingPane.getRoot().setVisible(true);"
+      },
+      {
+        "lineNumber": 228,
+        "author": {
+          "gitId": "ChaojieLiu666"
+        },
+        "content": "        paymentPane.getRoot().setVisible(false);"
+      },
+      {
+        "lineNumber": 229,
         "author": {
           "gitId": "termehlee"
         },
         "content": "        budgetPane.getRoot().setVisible(false);"
       },
       {
-        "lineNumber": 228,
+        "lineNumber": 230,
         "author": {
           "gitId": "termehlee"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 229,
-        "author": {
-          "gitId": "ChaojieLiu666"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 230,
-        "author": {
-          "gitId": "ChaojieLiu666"
-        },
-        "content": ""
-      },
-      {
         "lineNumber": 231,
         "author": {
-          "gitId": "lucasfoo"
+          "gitId": "ChaojieLiu666"
         },
-        "content": "    private void showPlanPane() {"
+        "content": ""
       },
       {
         "lineNumber": 232,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        expensePane.getRoot().setVisible(false);"
+        "content": ""
       },
       {
         "lineNumber": 233,
         "author": {
-          "gitId": "ChaojieLiu666"
+          "gitId": "lucasfoo"
         },
-        "content": "        planPane.getRoot().setVisible(true);"
+        "content": "    private void showPlanPane() {"
       },
       {
         "lineNumber": 234,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        trendingPane.getRoot().setVisible(false);"
+        "content": "        expensePane.getRoot().setVisible(false);"
       },
       {
         "lineNumber": 235,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "        paymentPane.getRoot().setVisible(false);"
+        "content": "        planPane.getRoot().setVisible(true);"
       },
       {
         "lineNumber": 236,
         "author": {
-          "gitId": "termehlee"
+          "gitId": "ChaojieLiu666"
         },
-        "content": "        budgetPane.getRoot().setVisible(false);"
+        "content": "        trendingPane.getRoot().setVisible(false);"
       },
       {
         "lineNumber": 237,
         "author": {
-          "gitId": "termehlee"
+          "gitId": "ChaojieLiu666"
         },
-        "content": "    }"
+        "content": "        paymentPane.getRoot().setVisible(false);"
       },
       {
         "lineNumber": 238,
         "author": {
           "gitId": "termehlee"
         },
-        "content": ""
+        "content": "        budgetPane.getRoot().setVisible(false);"
       },
       {
         "lineNumber": 239,
         "author": {
           "gitId": "termehlee"
         },
-        "content": "    private void showBudgetPane() {"
+        "content": "    }"
       },
       {
         "lineNumber": 240,
         "author": {
           "gitId": "termehlee"
         },
-        "content": "        expensePane.getRoot().setVisible(false);"
+        "content": ""
       },
       {
         "lineNumber": 241,
         "author": {
           "gitId": "termehlee"
         },
-        "content": "        planPane.getRoot().setVisible(false);"
+        "content": "    private void showBudgetPane() {"
       },
       {
         "lineNumber": 242,
         "author": {
           "gitId": "termehlee"
         },
-        "content": "        trendingPane.getRoot().setVisible(false);"
+        "content": "        expensePane.getRoot().setVisible(false);"
       },
       {
         "lineNumber": 243,
         "author": {
           "gitId": "termehlee"
         },
-        "content": "        budgetPane.getRoot().setVisible(true);"
+        "content": "        planPane.getRoot().setVisible(false);"
       },
       {
         "lineNumber": 244,
         "author": {
-          "gitId": "ChaojieLiu666"
+          "gitId": "termehlee"
         },
-        "content": "        paymentPane.getRoot().setVisible(false);"
+        "content": "        trendingPane.getRoot().setVisible(false);"
       },
       {
         "lineNumber": 245,
         "author": {
-          "gitId": "lucasfoo"
+          "gitId": "termehlee"
         },
-        "content": "    }"
+        "content": "        budgetPane.getRoot().setVisible(true);"
       },
       {
         "lineNumber": 246,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": ""
+        "content": "        paymentPane.getRoot().setVisible(false);"
       },
       {
         "lineNumber": 247,
-        "author": {
-          "gitId": "ChaojieLiu666"
-        },
-        "content": "    private void showPaymentPane() {"
-      },
-      {
-        "lineNumber": 248,
-        "author": {
-          "gitId": "ChaojieLiu666"
-        },
-        "content": "        expensePane.getRoot().setVisible(false);"
-      },
-      {
-        "lineNumber": 249,
-        "author": {
-          "gitId": "ChaojieLiu666"
-        },
-        "content": "        planPane.getRoot().setVisible(false);"
-      },
-      {
-        "lineNumber": 250,
-        "author": {
-          "gitId": "ChaojieLiu666"
-        },
-        "content": "        trendingPane.getRoot().setVisible(false);"
-      },
-      {
-        "lineNumber": 251,
-        "author": {
-          "gitId": "ChaojieLiu666"
-        },
-        "content": "        budgetPane.getRoot().setVisible(false);"
-      },
-      {
-        "lineNumber": 252,
-        "author": {
-          "gitId": "ChaojieLiu666"
-        },
-        "content": "        paymentPane.getRoot().setVisible(true);"
-      },
-      {
-        "lineNumber": 253,
         "author": {
           "gitId": "lucasfoo"
         },
         "content": "    }"
       },
       {
+        "lineNumber": 248,
+        "author": {
+          "gitId": "ChaojieLiu666"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 249,
+        "author": {
+          "gitId": "ChaojieLiu666"
+        },
+        "content": "    private void showPaymentPane() {"
+      },
+      {
+        "lineNumber": 250,
+        "author": {
+          "gitId": "ChaojieLiu666"
+        },
+        "content": "        expensePane.getRoot().setVisible(false);"
+      },
+      {
+        "lineNumber": 251,
+        "author": {
+          "gitId": "ChaojieLiu666"
+        },
+        "content": "        planPane.getRoot().setVisible(false);"
+      },
+      {
+        "lineNumber": 252,
+        "author": {
+          "gitId": "ChaojieLiu666"
+        },
+        "content": "        trendingPane.getRoot().setVisible(false);"
+      },
+      {
+        "lineNumber": 253,
+        "author": {
+          "gitId": "ChaojieLiu666"
+        },
+        "content": "        budgetPane.getRoot().setVisible(false);"
+      },
+      {
         "lineNumber": 254,
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": ""
+        "content": "        paymentPane.getRoot().setVisible(true);"
       },
       {
         "lineNumber": 255,
+        "author": {
+          "gitId": "lucasfoo"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 256,
         "author": {
           "gitId": "ChaojieLiu666"
         },
         "content": ""
       },
       {
-        "lineNumber": 256,
+        "lineNumber": 257,
+        "author": {
+          "gitId": "ChaojieLiu666"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 258,
         "author": {
           "gitId": "termehlee"
         },
@@ -60788,7 +60858,7 @@
     ],
     "authorContributionMap": {
       "termehlee": 107,
-      "ChaojieLiu666": 108,
+      "ChaojieLiu666": 110,
       "lucasfoo": 41
     }
   },
@@ -66882,7 +66952,7 @@
         "author": {
           "gitId": "ChaojieLiu666"
         },
-        "content": "      \u003cLabel alignment\u003d\"CENTER\" layoutX\u003d\"500.0\" prefHeight\u003d\"50.0\" prefWidth\u003d\"1000.0\" text\u003d\"Payments Reminder\" AnchorPane.leftAnchor\u003d\"0.0\" AnchorPane.rightAnchor\u003d\"0.0\" AnchorPane.topAnchor\u003d\"0.0\"\u003e"
+        "content": "      \u003cLabel alignment\u003d\"CENTER\" layoutX\u003d\"500.0\" prefHeight\u003d\"50.0\" prefWidth\u003d\"1000.0\" text\u003d\"Payments Reminder\" textFill\u003d\"GOLD\" AnchorPane.leftAnchor\u003d\"0.0\" AnchorPane.rightAnchor\u003d\"0.0\" AnchorPane.topAnchor\u003d\"0.0\"\u003e"
       },
       {
         "lineNumber": 42,
